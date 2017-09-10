@@ -1,5 +1,6 @@
 # Pock. 
 #### Switch your favorites apps from your Touch Bar
+![Pock. Preview](https://raw.githubusercontent.com/pigigaldi/Pock/master/Resources/pock-preview.jpg)
 ### Instructions:
 ___
 Pock. uses **private API** to let custom item stay in Touch Bar's Control Strip.
@@ -24,9 +25,7 @@ ___
 ___
 * [WIP] Put "Launch at login" option in status bar menu;
 * [WIP] Custom hotkey for showing the dock
-
-### Limitations:
-* Can't add notification badge to icons.
+* [???] Add icon's notification badge
 
 ### Thank you!
 ___
