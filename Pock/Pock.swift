@@ -12,7 +12,17 @@ import MediaPlayer
 import SnapKit
 
 public class DockItem: NSObject {
-    var label: String!, bundleIdentifier: String!, icon: NSImage!, isRunning: Bool = false, isFrontmostApplication: Bool = false
+    var label: String!, bundleIdentifier: String!, icon: NSImage!
+    var isRunning: Bool {
+        get {
+            return PockUtilities.runningAppsIdentifiers.contains(self.bundleIdentifier)
+        }
+    }
+    var isFrontmostApplication: Bool {
+        get {
+            return self.bundleIdentifier == PockUtilities.frontmostApplicationIdentifier
+        }
+    }
     convenience init(label: String, bundleIdentifier: String, icon: NSImage) {
         self.init()
         self.label = label
@@ -92,6 +102,13 @@ public class PockUtilities {
             returnable.insert(dockItem, at: ind)
             
         }
+        
+        /// Insert Finder as first
+        let finderItem = DockItem(label: "Finder", bundleIdentifier: kFinderIdentifier, icon: PockUtilities.getIcon(forBundleIdentifier: kFinderIdentifier))
+        returnable.insert(finderItem, at: 0)
+        
+        /// Add Finder identifier to persistentAppsIdentifiers array. This way, "getMissingRunningApps()" will not re-add it to final items array
+        PockUtilities.persistentAppsIdentifiers.insert(kFinderIdentifier, at: 0)
         
         /// Return returnable array.
         return returnable
@@ -270,8 +287,8 @@ public class PockUtilities {
         }else {
 
             /// Launch app
-            returnable = NSWorkspace.shared().launchApplication(withBundleIdentifier: bundleIdentifier!, options: [],
-                                                                additionalEventParamDescriptor: nil, launchIdentifier: nil)
+            returnable = NSWorkspace.shared().launchApplication(withBundleIdentifier: bundleIdentifier!, options: [.default], additionalEventParamDescriptor: nil, launchIdentifier: nil)
+            
         }
         
         /// Return status

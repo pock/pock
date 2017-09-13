@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import CoreGraphics
 import Magnet
 import SnapKit
 
@@ -16,9 +17,21 @@ extension NSTouchBarItemIdentifier {
     static let dockScrollableView = NSTouchBarItemIdentifier("com.pigigaldi.pock.dockScrollableView")
 }
 
+/// Known identifiers
+public let kFinderIdentifier: String = "com.apple.finder"
+
+/// Public utitlities
+public func executeWithDelay(delay:Double, closure:@escaping ()->()) {
+    DispatchQueue.main.asyncAfter(deadline: DispatchTime(uptimeNanoseconds: UInt64(delay * Double(NSEC_PER_SEC))), execute: closure)
+}
+
 @available(OSX 10.12.2, *)
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
+    
+    /// UI
+    fileprivate let dockScrollView: NSScrollView = NSScrollView(frame: .zero)
+    fileprivate let dockContentView: NSView = NSView(frame: .zero)
     
     /// Touch Bar
     fileprivate var pockTouchBar: NSTouchBar?
@@ -86,26 +99,44 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         /// Get dock persistent others list
         self.dockItems += PockUtilities.getDockPersistentOthersList()
         
-        /// Set running indicator
-        self.dockItems.forEach({ dockItem in
-            
-            /// Set running indicator
-            dockItem.isRunning = PockUtilities.runningAppsIdentifiers.contains(dockItem.bundleIdentifier)
-            
-            /// Set if is frontmostApplication
-            dockItem.isFrontmostApplication = (dockItem.bundleIdentifier == PockUtilities.frontmostApplicationIdentifier)
-            
-            /// If Finder, insert as first
-            if dockItem.bundleIdentifier == "com.apple.finder" {
-                guard let index = self.dockItems.index(of: dockItem) else { return }
-                let finderItem = self.dockItems.remove(at: index)
-                self.dockItems.insert(finderItem, at: 0)
-            }
-            
+        /// Display icons
+        executeWithDelay(delay: 0.1, closure: {
+            self.displayIconsInScrollView()
+        })
+    
+    }
+    
+    /// Display icons in scroll view
+    private func displayIconsInScrollView() {
+    
+        /// Remove all olds item views
+        self.dockContentView.subviews.forEach({ subview in
+            subview.removeFromSuperview()
         })
         
-        /// Reload scrubber, if any
-        AppDelegate.pockDockIconsScrubber?.reloadData()
+        /// Iterate on dockItems
+        self.dockItems.enumerated().forEach({ index, dockItem in
+        
+            /// Get icon view
+            let itemView = PockItemView()
+            itemView.dockItem = dockItem
+            
+            /// Add dockView to scroll view
+            self.dockContentView.addSubview(itemView)
+            
+            /// Change x position
+            itemView.frame.origin.x = 50 * CGFloat(index)
+        
+        })
+        
+        /// Update dockContentView content size
+        self.dockContentView.frame.size.width = 50 * CGFloat(self.dockItems.count)
+        self.dockContentView.frame.size.height = self.dockScrollView.frame.height
+        
+        /// Set dockContentView as scrollView's documentView
+        if self.dockScrollView.documentView != self.dockContentView {
+            self.dockScrollView.documentView = self.dockContentView
+        }
     
     }
     
@@ -129,7 +160,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     /// Present pock as system touch bar
     @objc private func presentPock() {
+        
+        /// Present dock in touch bar
         NSTouchBar.presentSystemModalFunctionBar(self.touchBar(), systemTrayItemIdentifier: NSTouchBarItemIdentifier.pockSystemIcon.rawValue)
+        
     }
     
     /// Add global hotkey for setting Pock as top-most-application
@@ -150,47 +184,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 }
 
 @available(OSX 10.12.2, *)
-extension AppDelegate: NSScrubberDelegate, NSScrubberDataSource {
-    
-    func numberOfItems(for scrubber: NSScrubber) -> Int {
-        return self.dockItems.count
-    }
-    
-    func scrubber(_ scrubber: NSScrubber, viewForItemAt index: Int) -> NSScrubberItemView {
-        /// Return item customized for dock icon.
-        let itemView = scrubber.makeItem(withIdentifier: "DockIconScrubberItem", owner: nil) as! PockItemView
-        
-        /// Get item
-        let item = self.dockItems[index]
-        
-        /// Create icon view
-        itemView.dockItem = item
-        
-        /// Check if is frontmostApplication
-        if item.isFrontmostApplication {
-            
-            /// Set as selected
-            scrubber.selectedIndex = index
-            
-        }
-
-        /// Return item view
-        return itemView
-    }
-    
-    func scrubber(_ scrubber: NSScrubber, didSelectItemAt index: Int) {
-        
-        /// Get item
-        let item = self.dockItems[index]
-        
-        /// Launch application
-        PockUtilities.launch(bundleIdentifier: item.bundleIdentifier, completion: { _ in })
-    
-    }
-
-}
-
-@available(OSX 10.12.2, *)
 extension AppDelegate: NSTouchBarDelegate {
     
     func touchBar() -> NSTouchBar? {
@@ -207,29 +200,14 @@ extension AppDelegate: NSTouchBarDelegate {
         switch identifier {
         case NSTouchBarItemIdentifier.dockScrollableView:
             
-            /// Return scrollable item
+            /// Create custom item
             let item = NSCustomTouchBarItem(identifier: identifier)
             
-            guard AppDelegate.pockDockIconsScrubber == nil else {
-                
-                /// Reload data
-                AppDelegate.pockDockIconsScrubber?.reloadData()
-                item.view = AppDelegate.pockDockIconsScrubber!
-                
-                /// Stop here
-                return item
-                
-            }
+            /// Get scroll view
+            self.dockScrollView.backgroundColor = NSColor.black
+            item.view = self.dockScrollView
             
-            AppDelegate.pockDockIconsScrubber = NSScrubber()
-            AppDelegate.pockDockIconsScrubber?.scrubberLayout = NSScrubberFlowLayout()
-            AppDelegate.pockDockIconsScrubber?.register(PockItemView.self, forItemIdentifier: "DockIconScrubberItem")
-            AppDelegate.pockDockIconsScrubber?.mode = .free
-            AppDelegate.pockDockIconsScrubber?.showsAdditionalContentIndicators = true
-            AppDelegate.pockDockIconsScrubber?.selectionBackgroundStyle = .roundedBackground
-            AppDelegate.pockDockIconsScrubber?.delegate = self
-            AppDelegate.pockDockIconsScrubber?.dataSource = self
-            item.view = AppDelegate.pockDockIconsScrubber!
+            /// Stop here
             return item
             
         case NSTouchBarItemIdentifier.pockSystemIcon:

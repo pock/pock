@@ -10,7 +10,7 @@ import Cocoa
 import SnapKit
 
 @available(OSX 10.12.2, *)
-public class PockItemView: NSScrubberItemView {
+public class PockItemView: NSView {
     
     /// UI
     private var iconView: NSImageView!
@@ -22,6 +22,10 @@ public class PockItemView: NSScrubberItemView {
         didSet {
             self.updateContents()
         }
+    }
+    
+    public func getIconView() -> NSImageView {
+        return self.iconView
     }
     
     private func updateContents() {
@@ -54,15 +58,42 @@ public class PockItemView: NSScrubberItemView {
             })
         }
         
+        /// Check if is frontmostApplication
+        if self.dockItem?.isFrontmostApplication ?? false {
+            self.wantsLayer = true
+            self.layer?.backgroundColor = NSColor.white.withAlphaComponent(0.6).cgColor
+        }else {
+            self.wantsLayer = false
+            self.layer?.backgroundColor = NSColor.clear.cgColor
+        }
+        
+        /// Set corner radius
+        self.layer?.cornerRadius = 3.6
+        
         /// Set self frame size
-        self.frame.size = NSSize(width: 30, height: 30)
+        self.frame.size = NSSize(width: 40, height: 30)
     
     }
     
-    override public func prepareForReuse() {
-        super.prepareForReuse()
-        self.iconView?.removeFromSuperview()
-        self.dotView?.removeFromSuperview()
+    override public func touchesEnded(with event: NSEvent) {
+        
+        /// Touches ended
+        super.touchesEnded(with: event)
+        
+        /// Get touch
+        guard let touch = event.allTouches().first else { return }
+        
+        /// Get touch location
+        let location = touch.location(in: self.superview)
+        
+        /// Check if location is in self
+        if self.frame.contains(location) {
+        
+            /// Launch application
+            PockUtilities.launch(bundleIdentifier: self.dockItem!.bundleIdentifier, completion: { _ in })
+        
+        }
+        
     }
     
 }
