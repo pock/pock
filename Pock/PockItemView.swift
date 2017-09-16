@@ -13,33 +13,51 @@ import SnapKit
 public class PockItemView: NSView {
     
     /// UI
-    private var iconView: NSImageView!
+    private var iconView: NSImageView? = nil
     private var dotView: NSView!
     private var dotSize: CGFloat = 2.5
     
     /// Data
     public var dockItem: DockItem? {
         didSet {
-            self.updateContents()
+            
+            /// Set icon
+            self.initIconView()
+            
+            /// Update is running UI
+            self.updateRunningDot()
+            
         }
     }
     
-    public func getIconView() -> NSImageView {
-        return self.iconView
+    override public init(frame frameRect: NSRect) {
+        super.init(frame: NSRect(origin: .zero, size: NSSize(width: 40, height: 30)))
+        
+        /// Set corner radius
+        self.layer?.cornerRadius = 3.6
+        
     }
     
-    private func updateContents() {
-        
+    required public init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func initIconView() {
+    
         /// Init icon view
         self.iconView = NSImageView(image: self.dockItem?.icon ?? NSImage(size: .zero))
         self.addSubview(self.iconView!)
-        self.iconView.snp.makeConstraints({ make in
+        self.iconView?.snp.remakeConstraints({ make in
             make.size.width.equalTo(25)
             make.size.height.equalTo(25)
             make.centerX.equalToSuperview()
             make.top.equalTo(1)
         })
-        
+    
+    }
+    
+    private func updateRunningDot() {
+    
         /// Remove dot icon
         self.dotView?.removeFromSuperview()
         
@@ -66,12 +84,6 @@ public class PockItemView: NSView {
             self.wantsLayer = false
             self.layer?.backgroundColor = NSColor.clear.cgColor
         }
-        
-        /// Set corner radius
-        self.layer?.cornerRadius = 3.6
-        
-        /// Set self frame size
-        self.frame.size = NSSize(width: 40, height: 30)
     
     }
     

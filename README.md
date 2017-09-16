@@ -1,5 +1,5 @@
 # Pock. 
-#### Switch your favorites apps from your Touch Bar
+#### Switch your favorites apps from your Touch Bar.
 ![Pock. Preview](https://raw.githubusercontent.com/pigigaldi/Pock/master/Resources/pock-preview.jpg)
 ### Instructions:
 ___
@@ -23,8 +23,8 @@ ___
 
 ### TODO:
 ___
-* [WIP] Put "Launch at login" option in status bar menu;
-* [WIP] Custom hotkey for showing the dock
+* [???] Put "Launch at login" option in status bar menu;
+* [???] Custom hotkey for showing the dock
 * [???] Add icon's notification badge
 
 ### Thank you!
@@ -33,6 +33,11 @@ ___
 * [SnapKit](https://github.com/SnapKit/SnapKit)
 * [Magnet](https://github.com/Clipy/Magnet)
 * [touch-baer](https://github.com/a2/touch-baer) - How to put icon in Control Strip
+* [ESCapey](https://github.com/brianmichel/ESCapey) - Simulate `esc` button
+
+### Info:
+___
+**Pock.** is not meant to be a commercial package.
 
 ### License:
 ___

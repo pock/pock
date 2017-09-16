@@ -14,6 +14,7 @@
 		348343DA1F631B2E00CDA005 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348343D91F631B2E00CDA005 /* AppDelegate.swift */; };
 		348343DE1F631B2E00CDA005 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 348343DD1F631B2E00CDA005 /* Assets.xcassets */; };
 		348343E91F631B6700CDA005 /* Pock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348343E81F631B6700CDA005 /* Pock.swift */; };
+		34DC32E61F6DAAC500037E68 /* KeySender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34DC32E51F6DAAC500037E68 /* KeySender.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,9 @@
 		348343DD1F631B2E00CDA005 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		348343E21F631B2E00CDA005 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		348343E81F631B6700CDA005 /* Pock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pock.swift; sourceTree = "<group>"; };
+		34DC259B1F69CB4F00ABFB60 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		34DC259D1F69CB6E00ABFB60 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = ../../../../../../../../../System/Library/Frameworks/AppKit.framework; sourceTree = "<group>"; };
+		34DC32E51F6DAAC500037E68 /* KeySender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeySender.swift; sourceTree = "<group>"; };
 		3BA42833BC69C895EB31DF93 /* Pods-Pock.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pock.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pock/Pods-Pock.debug.xcconfig"; sourceTree = "<group>"; };
 		716D62071D19174E56D6E33D /* Pods-Pock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pock.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pock/Pods-Pock.release.xcconfig"; sourceTree = "<group>"; };
 		863BE70CFBAC31BDBF35B1FD /* Pods_Pock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,6 +108,7 @@
 				348343D91F631B2E00CDA005 /* AppDelegate.swift */,
 				348343E81F631B6700CDA005 /* Pock.swift */,
 				3427C72C1F65746000FE39FF /* PockItemView.swift */,
+				34DC32E51F6DAAC500037E68 /* KeySender.swift */,
 				340C81D71F6538CF0063BAB0 /* Pock-Bridging-Header.h */,
 				340C81B31F6528860063BAB0 /* Storyboard */,
 				340C81B21F65287E0063BAB0 /* Various */,
@@ -253,6 +258,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34DC32E61F6DAAC500037E68 /* KeySender.swift in Sources */,
 				3427C72D1F65746000FE39FF /* PockItemView.swift in Sources */,
 				348343E91F631B6700CDA005 /* Pock.swift in Sources */,
 				348343DA1F631B2E00CDA005 /* AppDelegate.swift in Sources */,
