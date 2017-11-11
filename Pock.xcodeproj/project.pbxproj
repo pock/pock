@@ -378,7 +378,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.pigigaldi.pock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/Pierluigi/Documents/Pierluigi/Progetti/Pock/Project/Xcode/Pock/Pock/Pock-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/Pock/Pock-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -401,7 +401,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.pigigaldi.pock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/Pierluigi/Documents/Pierluigi/Progetti/Pock/Project/Xcode/Pock/Pock/Pock-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/Pock/Pock-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
