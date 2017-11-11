@@ -32,10 +32,6 @@ public class PockItemView: NSView {
     
     override public init(frame frameRect: NSRect) {
         super.init(frame: NSRect(origin: .zero, size: NSSize(width: 40, height: 30)))
-        
-        /// Set corner radius
-        self.layer?.cornerRadius = 3.6
-        
     }
     
     required public init?(coder: NSCoder) {
@@ -85,6 +81,9 @@ public class PockItemView: NSView {
             self.layer?.backgroundColor = NSColor.clear.cgColor
         }
     
+        /// Set corner radius
+        self.layer?.cornerRadius = 3.6
+        
     }
     
     override public func touchesEnded(with event: NSEvent) {
