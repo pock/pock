@@ -7,6 +7,7 @@ target 'Pock' do
 
   # Pods for Pock
   pod 'SnapKit', '~> 3.2.0'
-  pod 'Magnet'
+  pod 'Magnet', '2.0.1'
+  pod 'SMJobKit'
 
 end

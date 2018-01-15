@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>${PRODUCT_NAME}</string>
+	<key>MachServices</key>
+	<dict>
+		<key>${PRODUCT_NAME}</key>
+		<true/>
+	</dict>
+	<key>StandardOutPath</key>
+	<string>/var/log/com.pigigaldi.Pock.inject_installer.out.log</string>
+	<key>StandardErrorPath</key>
+	<string>/var/log/com.pigigaldi.Pock.inject_installer.err.log</string>
+</dict>
+</plist>

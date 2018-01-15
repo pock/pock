@@ -8,29 +8,155 @@
 
 /* Begin PBXBuildFile section */
 		009B0E12E317757741CE38C8 /* Pods_Pock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 863BE70CFBAC31BDBF35B1FD /* Pods_Pock.framework */; };
+		34062BF4200A915600DB937D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 34062BF3200A915600DB937D /* main.m */; };
+		34062BFD200A91A400DB937D /* pock_internal.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 34062BF1200A915600DB937D /* pock_internal.bundle */; };
 		340C81DD1F653F7F0063BAB0 /* DFRFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 340C81DC1F653F7F0063BAB0 /* DFRFoundation.framework */; };
+		3414091D200B7A8E00A08F0C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3414091C200B7A8E00A08F0C /* main.m */; };
+		34140923200B7BB400A08F0C /* PockInjectConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C6596B200A746D0004F266 /* PockInjectConstants.m */; };
+		34140926200B7BD000A08F0C /* InjectInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 34140925200B7BD000A08F0C /* InjectInstaller.m */; };
+		34140929200B801000A08F0C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34C6593A200A67210004F266 /* Foundation.framework */; };
 		3427C72B1F65573B00FE39FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3427C72A1F65573B00FE39FF /* Main.storyboard */; };
 		3427C72D1F65746000FE39FF /* PockItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3427C72C1F65746000FE39FF /* PockItemView.swift */; };
+		345E825D200B81F80046518E /* com.pigigaldi.Pock.inject_installer in CopyFiles */ = {isa = PBXBuildFile; fileRef = 34140919200B7A8E00A08F0C /* com.pigigaldi.Pock.inject_installer */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		345E825E200BAA4E0046518E /* PockInjectConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C6596B200A746D0004F266 /* PockInjectConstants.m */; };
+		345E8260200BCFA90046518E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34C6593A200A67210004F266 /* Foundation.framework */; };
+		345E8262200BCFAE0046518E /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 345E8261200BCFAE0046518E /* AppKit.framework */; };
 		348343DA1F631B2E00CDA005 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348343D91F631B2E00CDA005 /* AppDelegate.swift */; };
 		348343DE1F631B2E00CDA005 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 348343DD1F631B2E00CDA005 /* Assets.xcassets */; };
 		348343E91F631B6700CDA005 /* Pock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348343E81F631B6700CDA005 /* Pock.swift */; };
+		34C65907200A65250004F266 /* load_bundle.c in Sources */ = {isa = PBXBuildFile; fileRef = 34C65903200A65250004F266 /* load_bundle.c */; };
+		34C65908200A65250004F266 /* mach_inject_bundle_stub.c in Sources */ = {isa = PBXBuildFile; fileRef = 34C65905200A65250004F266 /* mach_inject_bundle_stub.c */; };
+		34C6592A200A66710004F266 /* mach_inject_bundle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34C65923200A66710004F266 /* mach_inject_bundle.framework */; };
+		34C65934200A66A00004F266 /* mach_inject_bundle.c in Sources */ = {isa = PBXBuildFile; fileRef = 34C65930200A66A00004F266 /* mach_inject_bundle.c */; };
+		34C65935200A66A00004F266 /* mach_inject_bundle.h in Headers */ = {isa = PBXBuildFile; fileRef = 34C65931200A66A00004F266 /* mach_inject_bundle.h */; };
+		34C65936200A66A00004F266 /* mach_inject.c in Sources */ = {isa = PBXBuildFile; fileRef = 34C65932200A66A00004F266 /* mach_inject.c */; };
+		34C65937200A66A00004F266 /* mach_inject.h in Headers */ = {isa = PBXBuildFile; fileRef = 34C65933200A66A00004F266 /* mach_inject.h */; };
+		34C65939200A66CA0004F266 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34C65938200A66CA0004F266 /* Carbon.framework */; };
+		34C6593B200A67210004F266 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34C6593A200A67210004F266 /* Foundation.framework */; };
+		34C6593E200A67600004F266 /* mach_inject_bundle_stub.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 34C658FD200A64A90004F266 /* mach_inject_bundle_stub.bundle */; };
+		34C65944200A67A70004F266 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34C6593A200A67210004F266 /* Foundation.framework */; };
+		34C65947200A67A70004F266 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C65946200A67A70004F266 /* main.m */; };
+		34C6594F200A6AA70004F266 /* com.pigigaldi.Pock.inject_helper in CopyFiles */ = {isa = PBXBuildFile; fileRef = 34C65943200A67A70004F266 /* com.pigigaldi.Pock.inject_helper */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		34C65953200A6AD60004F266 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34C65952200A6AD60004F266 /* Security.framework */; };
+		34C65954200A6ADC0004F266 /* mach_inject_bundle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34C65923200A66710004F266 /* mach_inject_bundle.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		34C65955200A6C270004F266 /* mach_inject_bundle.framework in Resources */ = {isa = PBXBuildFile; fileRef = 34C65923200A66710004F266 /* mach_inject_bundle.framework */; };
+		34C6595D200A714F0004F266 /* InjectHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C6595C200A714F0004F266 /* InjectHelper.m */; };
+		34C6596A200A73F50004F266 /* PockInjectHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C65969200A73F50004F266 /* PockInjectHelper.swift */; };
+		34C6596C200A746D0004F266 /* PockInjectConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C6596B200A746D0004F266 /* PockInjectConstants.m */; };
+		34C6596D200A74E50004F266 /* PockInjectConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C6596B200A746D0004F266 /* PockInjectConstants.m */; };
 		34DC32E61F6DAAC500037E68 /* KeySender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34DC32E51F6DAAC500037E68 /* KeySender.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		34062BFB200A919D00DB937D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 348343CE1F631B2E00CDA005 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 34062BF0200A915600DB937D;
+			remoteInfo = pock_internal;
+		};
+		34140927200B7BF500A08F0C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 348343CE1F631B2E00CDA005 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 34140918200B7A8E00A08F0C;
+			remoteInfo = inject_installer;
+		};
+		34C6593C200A67520004F266 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 348343CE1F631B2E00CDA005 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 34C658FC200A64A90004F266;
+			remoteInfo = mach_inject_bundle_stub;
+		};
+		34C65950200A6ACA0004F266 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 348343CE1F631B2E00CDA005 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 34C65922200A66710004F266;
+			remoteInfo = mach_inject_bundle;
+		};
+		34C65956200A6C7F0004F266 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 348343CE1F631B2E00CDA005 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 34C65942200A67A70004F266;
+			remoteInfo = inject_helper;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3421E011200A5A630075CC01 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/LaunchServices;
+			dstSubfolderSpec = 1;
+			files = (
+				345E825D200B81F80046518E /* com.pigigaldi.Pock.inject_installer in CopyFiles */,
+				34C6594F200A6AA70004F266 /* com.pigigaldi.Pock.inject_helper in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		34C6592F200A66710004F266 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		34062BF1200A915600DB937D /* pock_internal.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pock_internal.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		34062BF3200A915600DB937D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		34062BF6200A915600DB937D /* CaptainHook.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CaptainHook.h; path = Hook/CaptainHook.h; sourceTree = "<group>"; };
+		34062BF7200A915600DB937D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		340C81D51F6538580063BAB0 /* NSTouchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSTouchBar.h; path = Private/NSTouchBar.h; sourceTree = "<group>"; };
 		340C81D71F6538CF0063BAB0 /* Pock-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Pock-Bridging-Header.h"; sourceTree = "<group>"; };
 		340C81D91F653C900063BAB0 /* DFRFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DFRFoundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/PrivateFrameworks/DFRFoundation.framework; sourceTree = DEVELOPER_DIR; };
 		340C81DC1F653F7F0063BAB0 /* DFRFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DFRFoundation.framework; path = ../../../../../../../../../System/Library/PrivateFrameworks/DFRFoundation.framework; sourceTree = "<group>"; };
+		34140919200B7A8E00A08F0C /* com.pigigaldi.Pock.inject_installer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = com.pigigaldi.Pock.inject_installer; sourceTree = BUILT_PRODUCTS_DIR; };
+		3414091C200B7A8E00A08F0C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3414091E200B7A8E00A08F0C /* inject_installer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "inject_installer-Info.plist"; sourceTree = "<group>"; };
+		3414091F200B7A8E00A08F0C /* inject_installer-Launchd.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "inject_installer-Launchd.plist"; sourceTree = "<group>"; };
+		34140924200B7BC400A08F0C /* InjectInstaller.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InjectInstaller.h; sourceTree = "<group>"; };
+		34140925200B7BD000A08F0C /* InjectInstaller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InjectInstaller.m; sourceTree = "<group>"; };
+		3421E005200A5A220075CC01 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		3427C72A1F65573B00FE39FF /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		3427C72C1F65746000FE39FF /* PockItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PockItemView.swift; sourceTree = "<group>"; };
+		345E8261200BCFAE0046518E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		348343D61F631B2E00CDA005 /* Pock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		348343D91F631B2E00CDA005 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		348343DD1F631B2E00CDA005 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		348343E21F631B2E00CDA005 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		348343E81F631B6700CDA005 /* Pock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pock.swift; sourceTree = "<group>"; };
-		34DC259B1F69CB4F00ABFB60 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		34DC259D1F69CB6E00ABFB60 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = ../../../../../../../../../System/Library/Frameworks/AppKit.framework; sourceTree = "<group>"; };
+		34C658FD200A64A90004F266 /* mach_inject_bundle_stub.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mach_inject_bundle_stub.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		34C658FF200A64A90004F266 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		34C65903200A65250004F266 /* load_bundle.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = load_bundle.c; sourceTree = "<group>"; };
+		34C65904200A65250004F266 /* load_bundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = load_bundle.h; sourceTree = "<group>"; };
+		34C65905200A65250004F266 /* mach_inject_bundle_stub.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mach_inject_bundle_stub.c; sourceTree = "<group>"; };
+		34C65906200A65250004F266 /* mach_inject_bundle_stub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mach_inject_bundle_stub.h; sourceTree = "<group>"; };
+		34C65923200A66710004F266 /* mach_inject_bundle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = mach_inject_bundle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		34C65926200A66710004F266 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		34C65930200A66A00004F266 /* mach_inject_bundle.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mach_inject_bundle.c; sourceTree = "<group>"; };
+		34C65931200A66A00004F266 /* mach_inject_bundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mach_inject_bundle.h; sourceTree = "<group>"; };
+		34C65932200A66A00004F266 /* mach_inject.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mach_inject.c; sourceTree = "<group>"; };
+		34C65933200A66A00004F266 /* mach_inject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mach_inject.h; sourceTree = "<group>"; };
+		34C65938200A66CA0004F266 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+		34C6593A200A67210004F266 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		34C65943200A67A70004F266 /* com.pigigaldi.Pock.inject_helper */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = com.pigigaldi.Pock.inject_helper; sourceTree = BUILT_PRODUCTS_DIR; };
+		34C65946200A67A70004F266 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		34C65948200A67A70004F266 /* inject_helper-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "inject_helper-Info.plist"; sourceTree = "<group>"; };
+		34C65949200A67A70004F266 /* inject_helper-Launchd.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "inject_helper-Launchd.plist"; sourceTree = "<group>"; };
+		34C65952200A6AD60004F266 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		34C6595B200A70FB0004F266 /* InjectHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InjectHelper.h; sourceTree = "<group>"; };
+		34C6595C200A714F0004F266 /* InjectHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InjectHelper.m; sourceTree = "<group>"; };
+		34C65968200A73F50004F266 /* PockInjectConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PockInjectConstants.h; sourceTree = "<group>"; };
+		34C65969200A73F50004F266 /* PockInjectHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PockInjectHelper.swift; sourceTree = "<group>"; };
+		34C6596B200A746D0004F266 /* PockInjectConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PockInjectConstants.m; sourceTree = "<group>"; };
 		34DC32E51F6DAAC500037E68 /* KeySender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeySender.swift; sourceTree = "<group>"; };
 		3BA42833BC69C895EB31DF93 /* Pods-Pock.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pock.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pock/Pods-Pock.debug.xcconfig"; sourceTree = "<group>"; };
 		716D62071D19174E56D6E33D /* Pods-Pock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pock.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pock/Pods-Pock.release.xcconfig"; sourceTree = "<group>"; };
@@ -38,12 +164,56 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		34062BEE200A915600DB937D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				345E8262200BCFAE0046518E /* AppKit.framework in Frameworks */,
+				345E8260200BCFA90046518E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		34140917200B7A8E00A08F0C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34140929200B801000A08F0C /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		348343D31F631B2E00CDA005 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				340C81DD1F653F7F0063BAB0 /* DFRFoundation.framework in Frameworks */,
+				34C6592A200A66710004F266 /* mach_inject_bundle.framework in Frameworks */,
 				009B0E12E317757741CE38C8 /* Pods_Pock.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		34C658FA200A64A90004F266 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34C65939200A66CA0004F266 /* Carbon.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		34C6591F200A66710004F266 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34C6593B200A67210004F266 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		34C65941200A67A70004F266 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34C65954200A6ADC0004F266 /* mach_inject_bundle.framework in Frameworks */,
+				34C65953200A6AD60004F266 /* Security.framework in Frameworks */,
+				34C65944200A67A70004F266 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,6 +227,24 @@
 				716D62071D19174E56D6E33D /* Pods-Pock.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		34062BF2200A915600DB937D /* pock_internal */ = {
+			isa = PBXGroup;
+			children = (
+				34062BF3200A915600DB937D /* main.m */,
+				34062BF7200A915600DB937D /* Info.plist */,
+				34062BF5200A915600DB937D /* Hook */,
+			);
+			path = pock_internal;
+			sourceTree = "<group>";
+		};
+		34062BF5200A915600DB937D /* Hook */ = {
+			isa = PBXGroup;
+			children = (
+				34062BF6200A915600DB937D /* CaptainHook.h */,
+			);
+			name = Hook;
 			sourceTree = "<group>";
 		};
 		340C81B21F65287E0063BAB0 /* Various */ = {
@@ -84,10 +272,27 @@
 			name = Private;
 			sourceTree = "<group>";
 		};
+		3414091B200B7A8E00A08F0C /* inject_installer */ = {
+			isa = PBXGroup;
+			children = (
+				3414091C200B7A8E00A08F0C /* main.m */,
+				34140924200B7BC400A08F0C /* InjectInstaller.h */,
+				34140925200B7BD000A08F0C /* InjectInstaller.m */,
+				3414091E200B7A8E00A08F0C /* inject_installer-Info.plist */,
+				3414091F200B7A8E00A08F0C /* inject_installer-Launchd.plist */,
+			);
+			path = inject_installer;
+			sourceTree = "<group>";
+		};
 		348343CD1F631B2E00CDA005 = {
 			isa = PBXGroup;
 			children = (
 				348343D81F631B2E00CDA005 /* Pock */,
+				34062BF2200A915600DB937D /* pock_internal */,
+				3414091B200B7A8E00A08F0C /* inject_installer */,
+				34C65945200A67A70004F266 /* inject_helper */,
+				34C65924200A66710004F266 /* mach_inject_bundle */,
+				34C658FE200A64A90004F266 /* mach_inject_bundle_stub */,
 				348343D71F631B2E00CDA005 /* Products */,
 				2F31B7DC05EFA1E8090C87AE /* Pods */,
 				4ED8D081458713BE440562D3 /* Frameworks */,
@@ -98,6 +303,11 @@
 			isa = PBXGroup;
 			children = (
 				348343D61F631B2E00CDA005 /* Pock.app */,
+				34C658FD200A64A90004F266 /* mach_inject_bundle_stub.bundle */,
+				34C65923200A66710004F266 /* mach_inject_bundle.framework */,
+				34C65943200A67A70004F266 /* com.pigigaldi.Pock.inject_helper */,
+				34062BF1200A915600DB937D /* pock_internal.bundle */,
+				34140919200B7A8E00A08F0C /* com.pigigaldi.Pock.inject_installer */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -110,6 +320,7 @@
 				3427C72C1F65746000FE39FF /* PockItemView.swift */,
 				34DC32E51F6DAAC500037E68 /* KeySender.swift */,
 				340C81D71F6538CF0063BAB0 /* Pock-Bridging-Header.h */,
+				34C65967200A73F50004F266 /* PockInject */,
 				340C81B31F6528860063BAB0 /* Storyboard */,
 				340C81B21F65287E0063BAB0 /* Various */,
 				340C81D61F6538B40063BAB0 /* Private */,
@@ -117,19 +328,116 @@
 			path = Pock;
 			sourceTree = "<group>";
 		};
+		34C658FE200A64A90004F266 /* mach_inject_bundle_stub */ = {
+			isa = PBXGroup;
+			children = (
+				34C658FF200A64A90004F266 /* Info.plist */,
+				34C65903200A65250004F266 /* load_bundle.c */,
+				34C65904200A65250004F266 /* load_bundle.h */,
+				34C65905200A65250004F266 /* mach_inject_bundle_stub.c */,
+				34C65906200A65250004F266 /* mach_inject_bundle_stub.h */,
+			);
+			path = mach_inject_bundle_stub;
+			sourceTree = "<group>";
+		};
+		34C65924200A66710004F266 /* mach_inject_bundle */ = {
+			isa = PBXGroup;
+			children = (
+				34C65926200A66710004F266 /* Info.plist */,
+				34C65930200A66A00004F266 /* mach_inject_bundle.c */,
+				34C65931200A66A00004F266 /* mach_inject_bundle.h */,
+				34C65932200A66A00004F266 /* mach_inject.c */,
+				34C65933200A66A00004F266 /* mach_inject.h */,
+			);
+			path = mach_inject_bundle;
+			sourceTree = "<group>";
+		};
+		34C65945200A67A70004F266 /* inject_helper */ = {
+			isa = PBXGroup;
+			children = (
+				34C65946200A67A70004F266 /* main.m */,
+				34C6595B200A70FB0004F266 /* InjectHelper.h */,
+				34C6595C200A714F0004F266 /* InjectHelper.m */,
+				34C65948200A67A70004F266 /* inject_helper-Info.plist */,
+				34C65949200A67A70004F266 /* inject_helper-Launchd.plist */,
+			);
+			path = inject_helper;
+			sourceTree = "<group>";
+		};
+		34C65967200A73F50004F266 /* PockInject */ = {
+			isa = PBXGroup;
+			children = (
+				34C65969200A73F50004F266 /* PockInjectHelper.swift */,
+				34C65968200A73F50004F266 /* PockInjectConstants.h */,
+				34C6596B200A746D0004F266 /* PockInjectConstants.m */,
+			);
+			path = PockInject;
+			sourceTree = "<group>";
+		};
 		4ED8D081458713BE440562D3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				345E8261200BCFAE0046518E /* AppKit.framework */,
+				34C65952200A6AD60004F266 /* Security.framework */,
+				34C6593A200A67210004F266 /* Foundation.framework */,
+				34C65938200A66CA0004F266 /* Carbon.framework */,
 				340C81DC1F653F7F0063BAB0 /* DFRFoundation.framework */,
 				340C81D91F653C900063BAB0 /* DFRFoundation.framework */,
 				863BE70CFBAC31BDBF35B1FD /* Pods_Pock.framework */,
+				3421E005200A5A220075CC01 /* Foundation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		34C65920200A66710004F266 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34C65937200A66A00004F266 /* mach_inject.h in Headers */,
+				34C65935200A66A00004F266 /* mach_inject_bundle.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		34062BF0200A915600DB937D /* pock_internal */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 34062BF8200A915600DB937D /* Build configuration list for PBXNativeTarget "pock_internal" */;
+			buildPhases = (
+				34062BED200A915600DB937D /* Sources */,
+				34062BEE200A915600DB937D /* Frameworks */,
+				34062BEF200A915600DB937D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = pock_internal;
+			productName = pock_internal;
+			productReference = 34062BF1200A915600DB937D /* pock_internal.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+		34140918200B7A8E00A08F0C /* inject_installer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 34140920200B7A8E00A08F0C /* Build configuration list for PBXNativeTarget "inject_installer" */;
+			buildPhases = (
+				34140915200B7A8E00A08F0C /* ShellScript */,
+				34140916200B7A8E00A08F0C /* Sources */,
+				34140917200B7A8E00A08F0C /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = inject_installer;
+			productName = inject_installer;
+			productReference = 34140919200B7A8E00A08F0C /* com.pigigaldi.Pock.inject_installer */;
+			productType = "com.apple.product-type.tool";
+		};
 		348343D51F631B2E00CDA005 /* Pock */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 348343E51F631B2E00CDA005 /* Build configuration list for PBXNativeTarget "Pock" */;
@@ -140,15 +448,74 @@
 				348343D41F631B2E00CDA005 /* Resources */,
 				9C497126EC20FAC73A4D0299 /* [CP] Embed Pods Frameworks */,
 				228FEB2793E23834D37F85CF /* [CP] Copy Pods Resources */,
+				3421E011200A5A630075CC01 /* CopyFiles */,
+				34C6592F200A66710004F266 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				34062BFC200A919D00DB937D /* PBXTargetDependency */,
+				34140928200B7BF500A08F0C /* PBXTargetDependency */,
+				34C65957200A6C7F0004F266 /* PBXTargetDependency */,
 			);
 			name = Pock;
 			productName = Pock;
 			productReference = 348343D61F631B2E00CDA005 /* Pock.app */;
 			productType = "com.apple.product-type.application";
+		};
+		34C658FC200A64A90004F266 /* mach_inject_bundle_stub */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 34C65900200A64A90004F266 /* Build configuration list for PBXNativeTarget "mach_inject_bundle_stub" */;
+			buildPhases = (
+				34C658F9200A64A90004F266 /* Sources */,
+				34C658FA200A64A90004F266 /* Frameworks */,
+				34C658FB200A64A90004F266 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = mach_inject_bundle_stub;
+			productName = mach_inject_bundle_stub;
+			productReference = 34C658FD200A64A90004F266 /* mach_inject_bundle_stub.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+		34C65922200A66710004F266 /* mach_inject_bundle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 34C6592C200A66710004F266 /* Build configuration list for PBXNativeTarget "mach_inject_bundle" */;
+			buildPhases = (
+				34C6591E200A66710004F266 /* Sources */,
+				34C6591F200A66710004F266 /* Frameworks */,
+				34C65920200A66710004F266 /* Headers */,
+				34C65921200A66710004F266 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				34C6593D200A67520004F266 /* PBXTargetDependency */,
+			);
+			name = mach_inject_bundle;
+			productName = mach_inject_bundle;
+			productReference = 34C65923200A66710004F266 /* mach_inject_bundle.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		34C65942200A67A70004F266 /* inject_helper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 34C6594A200A67A70004F266 /* Build configuration list for PBXNativeTarget "inject_helper" */;
+			buildPhases = (
+				34C6593F200A67A70004F266 /* ShellScript */,
+				34C65940200A67A70004F266 /* Sources */,
+				34C65941200A67A70004F266 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				34C65951200A6ACA0004F266 /* PBXTargetDependency */,
+			);
+			name = inject_helper;
+			productName = inject_helper;
+			productReference = 34C65943200A67A70004F266 /* com.pigigaldi.Pock.inject_helper */;
+			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
@@ -160,10 +527,35 @@
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Pierluigi Galdi";
 				TargetAttributes = {
+					34062BF0200A915600DB937D = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 788D9WZ9Z3;
+						ProvisioningStyle = Manual;
+					};
+					34140918200B7A8E00A08F0C = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 788D9WZ9Z3;
+						ProvisioningStyle = Manual;
+					};
 					348343D51F631B2E00CDA005 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 788D9WZ9Z3;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
+					};
+					34C658FC200A64A90004F266 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 788D9WZ9Z3;
+						ProvisioningStyle = Manual;
+					};
+					34C65922200A66710004F266 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 788D9WZ9Z3;
+						ProvisioningStyle = Manual;
+					};
+					34C65942200A67A70004F266 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 788D9WZ9Z3;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -181,17 +573,46 @@
 			projectRoot = "";
 			targets = (
 				348343D51F631B2E00CDA005 /* Pock */,
+				34062BF0200A915600DB937D /* pock_internal */,
+				34140918200B7A8E00A08F0C /* inject_installer */,
+				34C65942200A67A70004F266 /* inject_helper */,
+				34C65922200A66710004F266 /* mach_inject_bundle */,
+				34C658FC200A64A90004F266 /* mach_inject_bundle_stub */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		34062BEF200A915600DB937D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		348343D41F631B2E00CDA005 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34062BFD200A91A400DB937D /* pock_internal.bundle in Resources */,
+				34C65955200A6C270004F266 /* mach_inject_bundle.framework in Resources */,
 				348343DE1F631B2E00CDA005 /* Assets.xcassets in Resources */,
 				3427C72B1F65573B00FE39FF /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		34C658FB200A64A90004F266 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		34C65921200A66710004F266 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34C6593E200A67600004F266 /* mach_inject_bundle_stub.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,6 +652,32 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		34140915200B7A8E00A08F0C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "/usr/bin/env ruby";
+			shellScript = "# Generic preprocessing for ${ENV_VAR} with output to the build dir.\n\nrequire 'cgi'\nrequire 'fileutils'\n\nmissing_keys = ['BUILD_DIR', 'CODE_SIGN_IDENTITY', 'SMJ_PREPROCESS_FILES', 'SMJ_PREPROCESS_DIR'] - ENV.keys\nraise \"Missing required ENV values: #{missing_keys.inspect}\" if missing_keys.size > 0\n\n# SMJ_PREPROCESS_FILES is a comma-separated list of *relative* file paths to preprocess\n#  and spit out into the SMJ_PREPROCESS_DIR (w/ the same relative paths as given)\nfiles_to_preprocess = ENV['SMJ_PREPROCESS_FILES'].split(',').map(&:strip)\n\n\n# Environment Cleanup\n# -------------------\ndummy_path = \"#{ENV['BUILD_DIR']}/SMJobKitCodeSigningDummy\"\n\nidentity = ENV['CODE_SIGN_IDENTITY']\n# If you use the generic code signing identity, chances are that it'll conflict.\nidentity = \"#{identity}:\" if identity.end_with? ' Developer'\n\n# We can't seem to get direct access to the code signing certificate that Xcode has\n# selected at this point :(\n`touch #{dummy_path}`\n`codesign --force --sign \"#{identity}\" \"#{dummy_path}\"`\nresult = `codesign --display --verbose --verbose \"#{dummy_path}\" 2>&1`\n`rm #{dummy_path}`\n\nENV['FULL_CODE_SIGN_IDENTITY'] = result[/Authority\\=(.*#{Regexp.escape(identity)}.*)/, 1]\n\n\n# Actual Preprocessing\n# --------------------\n\nfiles_to_preprocess.each do |path|\n  target_path = File.join(ENV['SMJ_PREPROCESS_DIR'], path)\n  FileUtils.mkpath File.dirname(target_path)\n\n  open(path) do |input|\n    open(target_path, 'w') do |output|\n      # Specify macros via ${VAR_NAME} in the preprocessed file.  Same as regular\n      # Info.plist preprocessing.\n      output.write input.read.gsub(/\\$\\{([A-Z_]+)\\}/) { CGI.escapeHTML(ENV[$1]) }\n    end\n    puts target_path\n  end\nend";
+		};
+		34C6593F200A67A70004F266 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "/usr/bin/env ruby";
+			shellScript = "# Generic preprocessing for ${ENV_VAR} with output to the build dir.\n\nrequire 'cgi'\nrequire 'fileutils'\n\nmissing_keys = ['BUILD_DIR', 'CODE_SIGN_IDENTITY', 'SMJ_PREPROCESS_FILES', 'SMJ_PREPROCESS_DIR'] - ENV.keys\nraise \"Missing required ENV values: #{missing_keys.inspect}\" if missing_keys.size > 0\n\n# SMJ_PREPROCESS_FILES is a comma-separated list of *relative* file paths to preprocess\n#  and spit out into the SMJ_PREPROCESS_DIR (w/ the same relative paths as given)\nfiles_to_preprocess = ENV['SMJ_PREPROCESS_FILES'].split(',').map(&:strip)\n\n\n# Environment Cleanup\n# -------------------\ndummy_path = \"#{ENV['BUILD_DIR']}/SMJobKitCodeSigningDummy\"\n\nidentity = ENV['CODE_SIGN_IDENTITY']\n# If you use the generic code signing identity, chances are that it'll conflict.\nidentity = \"#{identity}:\" if identity.end_with? ' Developer'\n\n# We can't seem to get direct access to the code signing certificate that Xcode has\n# selected at this point :(\n`touch #{dummy_path}`\n`codesign --force --sign \"#{identity}\" \"#{dummy_path}\"`\nresult = `codesign --display --verbose --verbose \"#{dummy_path}\" 2>&1`\n`rm #{dummy_path}`\n\nENV['FULL_CODE_SIGN_IDENTITY'] = result[/Authority\\=(.*#{Regexp.escape(identity)}.*)/, 1]\n\n\n# Actual Preprocessing\n# --------------------\n\nfiles_to_preprocess.each do |path|\n  target_path = File.join(ENV['SMJ_PREPROCESS_DIR'], path)\n  FileUtils.mkpath File.dirname(target_path)\n\n  open(path) do |input|\n    open(target_path, 'w') do |output|\n      # Specify macros via ${VAR_NAME} in the preprocessed file.  Same as regular\n      # Info.plist preprocessing.\n      output.write input.read.gsub(/\\$\\{([A-Z_]+)\\}/) { CGI.escapeHTML(ENV[$1]) }\n    end\n    puts target_path\n  end\nend";
+		};
 		9C497126EC20FAC73A4D0299 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -239,11 +686,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Pock/Pods-Pock-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Magnet/Magnet.framework",
+				"${BUILT_PRODUCTS_DIR}/SMJobKit/SMJobKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Magnet.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SMJobKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -254,20 +703,182 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		34062BED200A915600DB937D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34062BF4200A915600DB937D /* main.m in Sources */,
+				345E825E200BAA4E0046518E /* PockInjectConstants.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		34140916200B7A8E00A08F0C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3414091D200B7A8E00A08F0C /* main.m in Sources */,
+				34140923200B7BB400A08F0C /* PockInjectConstants.m in Sources */,
+				34140926200B7BD000A08F0C /* InjectInstaller.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		348343D21F631B2E00CDA005 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34C6596A200A73F50004F266 /* PockInjectHelper.swift in Sources */,
 				34DC32E61F6DAAC500037E68 /* KeySender.swift in Sources */,
 				3427C72D1F65746000FE39FF /* PockItemView.swift in Sources */,
 				348343E91F631B6700CDA005 /* Pock.swift in Sources */,
 				348343DA1F631B2E00CDA005 /* AppDelegate.swift in Sources */,
+				34C6596C200A746D0004F266 /* PockInjectConstants.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		34C658F9200A64A90004F266 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34C65907200A65250004F266 /* load_bundle.c in Sources */,
+				34C65908200A65250004F266 /* mach_inject_bundle_stub.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		34C6591E200A66710004F266 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34C65934200A66A00004F266 /* mach_inject_bundle.c in Sources */,
+				34C65936200A66A00004F266 /* mach_inject.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		34C65940200A67A70004F266 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34C6596D200A74E50004F266 /* PockInjectConstants.m in Sources */,
+				34C6595D200A714F0004F266 /* InjectHelper.m in Sources */,
+				34C65947200A67A70004F266 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		34062BFC200A919D00DB937D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 34062BF0200A915600DB937D /* pock_internal */;
+			targetProxy = 34062BFB200A919D00DB937D /* PBXContainerItemProxy */;
+		};
+		34140928200B7BF500A08F0C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 34140918200B7A8E00A08F0C /* inject_installer */;
+			targetProxy = 34140927200B7BF500A08F0C /* PBXContainerItemProxy */;
+		};
+		34C6593D200A67520004F266 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 34C658FC200A64A90004F266 /* mach_inject_bundle_stub */;
+			targetProxy = 34C6593C200A67520004F266 /* PBXContainerItemProxy */;
+		};
+		34C65951200A6ACA0004F266 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 34C65922200A66710004F266 /* mach_inject_bundle */;
+			targetProxy = 34C65950200A6ACA0004F266 /* PBXContainerItemProxy */;
+		};
+		34C65957200A6C7F0004F266 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 34C65942200A67A70004F266 /* inject_helper */;
+			targetProxy = 34C65956200A6C7F0004F266 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		34062BF9200A915600DB937D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 788D9WZ9Z3;
+				INFOPLIST_FILE = pock_internal/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pigigaldi.pock-internal";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		34062BFA200A915600DB937D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 788D9WZ9Z3;
+				INFOPLIST_FILE = pock_internal/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pigigaldi.pock-internal";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		34140921200B7A8E00A08F0C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				DEVELOPMENT_TEAM = 788D9WZ9Z3;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/inject_installer/inject_installer-Info.plist";
+				OTHER_LDFLAGS = (
+					"-sectcreate",
+					__TEXT,
+					__info_plist,
+					"\"$(SMJ_PREPROCESS_DIR)/inject_installer/inject_installer-Info.plist\"",
+					"-sectcreate",
+					__TEXT,
+					__launchd_plist,
+					"\"$(SMJ_PREPROCESS_DIR)/inject_installer/inject_installer-Launchd.plist\"",
+				);
+				PARENT_APPLICATION_IDENTIFIER = "com.pigigaldi.$(PROJECT_NAME)";
+				PRODUCT_NAME = "com.pigigaldi.$(PROJECT_NAME).$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SMJ_PREPROCESS_DIR = "$(BUILD_DIR)/Preprocessed";
+				SMJ_PREPROCESS_FILES = "inject_installer/inject_installer-Info.plist, inject_installer/inject_installer-Launchd.plist";
+			};
+			name = Debug;
+		};
+		34140922200B7A8E00A08F0C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = 788D9WZ9Z3;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/inject_installer/inject_installer-Info.plist";
+				OTHER_LDFLAGS = (
+					"-sectcreate",
+					__TEXT,
+					__info_plist,
+					"\"$(SMJ_PREPROCESS_DIR)/inject_installer/inject_installer-Info.plist\"",
+					"-sectcreate",
+					__TEXT,
+					__launchd_plist,
+					"\"$(SMJ_PREPROCESS_DIR)/inject_installer/inject_installer-Launchd.plist\"",
+				);
+				PARENT_APPLICATION_IDENTIFIER = "com.pigigaldi.$(PROJECT_NAME)";
+				PRODUCT_NAME = "com.pigigaldi.$(PROJECT_NAME).$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SMJ_PREPROCESS_DIR = "$(BUILD_DIR)/Preprocessed";
+				SMJ_PREPROCESS_FILES = "inject_installer/inject_installer-Info.plist, inject_installer/inject_installer-Launchd.plist";
+			};
+			name = Release;
+		};
 		348343E31F631B2E00CDA005 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -365,7 +976,7 @@
 			baseConfigurationReference = 3BA42833BC69C895EB31DF93 /* Pods-Pock.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 788D9WZ9Z3;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -388,7 +999,7 @@
 			baseConfigurationReference = 716D62071D19174E56D6E33D /* Pods-Pock.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 788D9WZ9Z3;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -406,9 +1017,160 @@
 			};
 			name = Release;
 		};
+		34C65901200A64A90004F266 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 788D9WZ9Z3;
+				INFOPLIST_FILE = mach_inject_bundle_stub/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pigigaldi.mach-inject-bundle-stub";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		34C65902200A64A90004F266 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 788D9WZ9Z3;
+				INFOPLIST_FILE = mach_inject_bundle_stub/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pigigaldi.mach-inject-bundle-stub";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		34C6592D200A66710004F266 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 788D9WZ9Z3;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = mach_inject_bundle/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pigigaldi.mach-inject-bundle";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		34C6592E200A66710004F266 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 788D9WZ9Z3;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = mach_inject_bundle/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pigigaldi.mach-inject-bundle";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		34C6594B200A67A70004F266 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				DEVELOPMENT_TEAM = 788D9WZ9Z3;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/inject_helper/inject_helper-Info.plist";
+				OTHER_LDFLAGS = (
+					"-sectcreate",
+					__TEXT,
+					__info_plist,
+					"\"$(SMJ_PREPROCESS_DIR)/inject_helper/inject_helper-Info.plist\"",
+					"-sectcreate",
+					__TEXT,
+					__launchd_plist,
+					"\"$(SMJ_PREPROCESS_DIR)/inject_helper/inject_helper-Launchd.plist\"",
+				);
+				PARENT_APPLICATION_IDENTIFIER = "com.pigigaldi.$(PROJECT_NAME)";
+				PRODUCT_NAME = "com.pigigaldi.$(PROJECT_NAME).$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SMJ_PREPROCESS_DIR = "$(BUILD_DIR)/Preprocessed";
+				SMJ_PREPROCESS_FILES = "inject_helper/inject_helper-Info.plist, inject_helper/inject_helper-Launchd.plist";
+			};
+			name = Debug;
+		};
+		34C6594C200A67A70004F266 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = 788D9WZ9Z3;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/inject_helper/inject_helper-Info.plist";
+				OTHER_LDFLAGS = (
+					"-sectcreate",
+					__TEXT,
+					__info_plist,
+					"\"$(SMJ_PREPROCESS_DIR)/inject_helper/inject_helper-Info.plist\"",
+					"-sectcreate",
+					__TEXT,
+					__launchd_plist,
+					"\"$(SMJ_PREPROCESS_DIR)/inject_helper/inject_helper-Launchd.plist\"",
+				);
+				PARENT_APPLICATION_IDENTIFIER = "com.pigigaldi.$(PROJECT_NAME)";
+				PRODUCT_NAME = "com.pigigaldi.$(PROJECT_NAME).$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SMJ_PREPROCESS_DIR = "$(BUILD_DIR)/Preprocessed";
+				SMJ_PREPROCESS_FILES = "inject_helper/inject_helper-Info.plist, inject_helper/inject_helper-Launchd.plist";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		34062BF8200A915600DB937D /* Build configuration list for PBXNativeTarget "pock_internal" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				34062BF9200A915600DB937D /* Debug */,
+				34062BFA200A915600DB937D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		34140920200B7A8E00A08F0C /* Build configuration list for PBXNativeTarget "inject_installer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				34140921200B7A8E00A08F0C /* Debug */,
+				34140922200B7A8E00A08F0C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		348343D11F631B2E00CDA005 /* Build configuration list for PBXProject "Pock" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -423,6 +1185,33 @@
 			buildConfigurations = (
 				348343E61F631B2E00CDA005 /* Debug */,
 				348343E71F631B2E00CDA005 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		34C65900200A64A90004F266 /* Build configuration list for PBXNativeTarget "mach_inject_bundle_stub" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				34C65901200A64A90004F266 /* Debug */,
+				34C65902200A64A90004F266 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		34C6592C200A66710004F266 /* Build configuration list for PBXNativeTarget "mach_inject_bundle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				34C6592D200A66710004F266 /* Debug */,
+				34C6592E200A66710004F266 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		34C6594A200A67A70004F266 /* Build configuration list for PBXNativeTarget "inject_helper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				34C6594B200A67A70004F266 /* Debug */,
+				34C6594C200A67A70004F266 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.2</string>
+	<string>0.3</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSApplicationCategoryType</key>
@@ -32,5 +32,12 @@
 	<string>Main</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>SMPrivilegedExecutables</key>
+	<dict>
+		<key>com.pigigaldi.Pock.inject_installer</key>
+		<string>identifier &quot;com.pigigaldi.Pock.inject_installer&quot;</string>
+		<key>com.pigigaldi.Pock.inject_helper</key>
+		<string>identifier &quot;com.pigigaldi.Pock.inject_helper&quot;</string>
+	</dict>
 </dict>
 </plist>

@@ -10,6 +10,7 @@ import Cocoa
 import CoreGraphics
 import Magnet
 import SnapKit
+import SMJobKit
 
 /// Custom identifiers
 extension NSTouchBarItemIdentifier {
@@ -48,7 +49,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     /// Finish launching
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Insert code here to initialize your application
+        
+        /// Init injection
+        self.installInjectInstaller()
         
         /// Check for status bar icon
         if let button = pockStatusbarIcon.button {
@@ -85,6 +88,101 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to tear down your application
     }
     
+    /// Install inject_installer
+    private func installInjectInstaller() {
+        
+        /// Check if framework is already installed
+        if FileManager.default.fileExists(atPath: kInjectFrameworkDirPath + "/" + kInjectFrameworkName) {
+        
+            /// Try installing inject_helper
+            self.installInjectHelper()
+        
+        }
+        
+        /// Init PockInject
+        do {
+            
+            /// Install inject_installer helper
+            try PockInjectInstaller.installWithPrompt(prompt: "To get notification badge,")
+            
+            /// Get XPC installer connection
+            let injectXPCInstallerConnection = PockInjectManager.shared.getXPCInstallerConnection()?.remoteObjectProxyWithErrorHandler({ error in
+                
+                /// Log
+                NSLog("[Pock]: Can't create XPC Installer connection. Error: \(error)")
+                
+            }) as! PockInjectInstallerProtocol
+            
+            /// Install framework
+            injectXPCInstallerConnection.installInjectFramework(Bundle.main.path(forResource: kInjectFrameworkName, ofType: nil), completionBlock: { success in
+                
+                /// Error?
+                if !success {
+                    
+                    /// Log
+                    NSLog("[Pock]: Can't install \(kInjectFrameworkName).")
+                    
+                    /// Show alert
+                    let alert = NSAlert()
+                    alert.alertStyle = NSAlertStyle.critical
+                    alert.messageText = "Unable to install all files needed by Pock to get icon's notification badge."
+                    alert.informativeText = "Please relaunch Pock and allow it to install."
+                    alert.runModal()
+                    
+                    return
+                    
+                }
+                
+                /// Install inject_helper
+                self.installInjectHelper()
+                
+            })
+            
+        } catch let error {
+            
+            /// Log
+            NSLog("[Pock]: PockInject (installer) install failed. Error: \(error)")
+            
+            /// Show alert
+            let alert = NSAlert()
+            alert.alertStyle = NSAlertStyle.critical
+            alert.messageText = "Unable to install all files needed by Pock to get icon's notification badge."
+            alert.informativeText = "Please relaunch Pock and allow it to install."
+            alert.runModal()
+            
+        }
+        
+    }
+    
+    /// Install inject_helper helper
+    private func installInjectHelper() {
+    
+        do {
+        
+            /// Check if helper already installed
+            if !FileManager.default.fileExists(atPath: "/Library/PrivilegedHelperTools/" + kInjectHelperBundleID) {
+                
+                /// Install inject_helper
+                try PockInjectHelper.installWithPrompt(prompt: "To get notification badge,")
+                
+            }
+        
+        } catch let error {
+        
+            /// Log
+            NSLog("[Pock]: PockInject (helper) install failed. Error: \(error)")
+            
+            /// Show alert
+            let alert = NSAlert()
+            alert.alertStyle = NSAlertStyle.critical
+            alert.messageText = "Unable to install all files needed by Pock to get icon's notification badge."
+            alert.informativeText = "Please relaunch Pock and allow it to install."
+            alert.runModal()
+        
+        }
+    
+    }
+    
     /// Load data
     @objc private func loadData() {
         
@@ -99,6 +197,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         /// Get dock persistent others list
         self.dockItems += PockUtilities.getDockPersistentOthersList()
+        
+        /// Update item notification badge
+        PockInjectManager.inject(into: self.dockItems)
         
         /// Display icons
         executeWithDelay(delay: 0.1, closure: {

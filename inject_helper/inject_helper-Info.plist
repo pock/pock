@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleIdentifier</key>
+	<string>com.pigigaldi.Pock.inject_helper</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>inject_helper</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0.0</string>
+	<key>CFBundleVersion</key>
+	<string>0.01</string>
+	<key>SecTaskAccess</key>
+	<array>
+		<string>allowed</string>
+		<string>debug</string>
+	</array>
+	<key>SMAuthorizedClients</key>
+	<array>
+		<string>identifier &quot;com.pigigaldi.pock&quot;</string>
+	</array>
+</dict>
+</plist>

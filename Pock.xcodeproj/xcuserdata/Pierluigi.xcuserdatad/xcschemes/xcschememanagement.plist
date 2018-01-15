@@ -9,10 +9,80 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>inject_helper.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>6</integer>
+		</dict>
+		<key>inject_installer.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>9</integer>
+		</dict>
+		<key>mach_inject_bundle.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
+		<key>mach_inject_bundle_stub.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>8</integer>
+		</dict>
+		<key>pock_internal.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>34062BDF200A8FBD00DB937D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>34062BF0200A915600DB937D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>34140918200B7A8E00A08F0C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3421E003200A5A220075CC01</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>348343D51F631B2E00CDA005</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>34C658FC200A64A90004F266</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>34C6590C200A65460004F266</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>34C65919200A66420004F266</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>34C65922200A66710004F266</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>34C65942200A67A70004F266</key>
 		<dict>
 			<key>primary</key>
 			<true/>

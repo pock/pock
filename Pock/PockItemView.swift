@@ -16,6 +16,8 @@ public class PockItemView: NSView {
     private var iconView: NSImageView? = nil
     private var dotView: NSView!
     private var dotSize: CGFloat = 2.5
+    private var badgeView: NSTextField!
+    private var badgeSize: CGFloat = 10
     
     /// Data
     public var dockItem: DockItem? {
@@ -84,6 +86,32 @@ public class PockItemView: NSView {
         /// Set corner radius
         self.layer?.cornerRadius = 3.6
         
+        /// Update badge
+        self.updateBadge()
+        
+    }
+    
+    private func updateBadge() {
+    
+        /// Remove badge label
+        self.badgeView?.removeFromSuperview()
+        
+        /// Check if item has badge
+        if self.dockItem?.hasNotification ?? false {
+            self.badgeView = NSTextField(frame: .zero)
+            self.badgeView.wantsLayer = true
+            self.badgeView.backgroundColor = .red
+            self.badgeView.layer?.cornerRadius = self.badgeSize / 2
+            self.badgeView.layer?.opacity = 0.9
+            self.addSubview(self.badgeView)
+            self.badgeView.snp.makeConstraints({ make in
+                make.size.width.equalTo(self.badgeSize)
+                make.size.height.equalTo(self.badgeSize)
+                make.right.equalTo(-(self.badgeSize / 1.35))
+                make.top.equalTo(0.15)
+            })
+        }
+    
     }
     
     override public func touchesEnded(with event: NSEvent) {

@@ -23,6 +23,16 @@ public class DockItem: NSObject {
             return self.bundleIdentifier == PockUtilities.frontmostApplicationIdentifier
         }
     }
+    var badge: String? {
+        get {
+            return PockInjectManager.notificationDictionary?[self.bundleIdentifier] as? String
+        }
+    }
+    var hasNotification: Bool {
+        get {
+            return self.badge != nil && self.badge?.characters.count ?? 0 > 0 && self.badge != "0"
+        }
+    }
     convenience init(label: String, bundleIdentifier: String, icon: NSImage) {
         self.init()
         self.label = label
