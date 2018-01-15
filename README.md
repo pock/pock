@@ -25,7 +25,7 @@ ___
 ___
 * [???] Put "Launch at login" option in status bar menu;
 * [???] Custom hotkey for showing the dock
-* [???] Add icon's notification badge
+* [???] Add icon's notification badge (see [`badge_inject`](https://github.com/pigigaldi/Pock/tree/badge_inject) branch)
 
 ### Thank you!
 ___
