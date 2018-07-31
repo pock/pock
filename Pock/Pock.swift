@@ -42,7 +42,7 @@ public class PockUtilities {
     /// Get top most application bundle identifier
     public static var frontmostApplicationIdentifier: String? {
         get {
-            guard let frontmostId = NSWorkspace.shared().frontmostApplication?.bundleIdentifier else { return nil }
+            guard let frontmostId = NSWorkspace.shared.frontmostApplication?.bundleIdentifier else { return nil }
             return frontmostId
         }
     }
@@ -125,10 +125,10 @@ public class PockUtilities {
         var returnable: [DockItem] = []
         
         /// Iterate on running appps from shared NSWorkspace
-        for app in NSWorkspace.shared().runningApplications {
+        for app in NSWorkspace.shared.runningApplications {
             
             /// Check for policy
-            guard app.activationPolicy == NSApplicationActivationPolicy.regular else { continue }
+            guard app.activationPolicy == NSApplication.ActivationPolicy.regular else { continue }
             
             /// Get app identifier
             guard let id = app.bundleIdentifier else { continue }
@@ -226,10 +226,10 @@ public class PockUtilities {
         if bundleIdentifier != nil {
             
             /// Get app's absolute path
-            if let appPath = NSWorkspace.shared().absolutePathForApplication(withBundleIdentifier: bundleIdentifier!) {
+            if let appPath = NSWorkspace.shared.absolutePathForApplication(withBundleIdentifier: bundleIdentifier!) {
             
                 /// Return icon
-                return NSWorkspace.shared().icon(forFile: appPath)
+                return NSWorkspace.shared.icon(forFile: appPath)
                 
             }
             
@@ -238,7 +238,7 @@ public class PockUtilities {
         /// Then check for path
         if path != nil {
         
-            return NSWorkspace.shared().icon(forFile: path!)
+            return NSWorkspace.shared.icon(forFile: path!)
         
         }
         
@@ -282,12 +282,12 @@ public class PockUtilities {
         if bundleIdentifier!.contains("file://") {
         
             /// Is path, continue as path.
-            returnable = NSWorkspace.shared().openFile(bundleIdentifier!.replacingOccurrences(of: "file://", with: ""))
+            returnable = NSWorkspace.shared.openFile(bundleIdentifier!.replacingOccurrences(of: "file://", with: ""))
 
         }else {
 
             /// Launch app
-            returnable = NSWorkspace.shared().launchApplication(withBundleIdentifier: bundleIdentifier!, options: [.default], additionalEventParamDescriptor: nil, launchIdentifier: nil)
+            returnable = NSWorkspace.shared.launchApplication(withBundleIdentifier: bundleIdentifier!, options: [NSWorkspace.LaunchOptions.default], additionalEventParamDescriptor: nil, launchIdentifier: nil)
             
         }
         

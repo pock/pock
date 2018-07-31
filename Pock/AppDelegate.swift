@@ -12,10 +12,11 @@ import Magnet
 import SnapKit
 
 /// Custom identifiers
-extension NSTouchBarItemIdentifier {
-    static let pockSystemIcon = NSTouchBarItemIdentifier("com.pigigaldi.pock.pockSystemIcon")
-    static let dockScrollableView = NSTouchBarItemIdentifier("com.pigigaldi.pock.dockScrollableView")
-    static let escButton = NSTouchBarItemIdentifier("com.pigigaldi.pock.escButton")
+@available(OSX 10.12.2, *)
+extension NSTouchBarItem.Identifier {
+    static let pockSystemIcon = NSTouchBarItem.Identifier("com.pigigaldi.pock.pockSystemIcon")
+    static let dockScrollableView = NSTouchBarItem.Identifier("com.pigigaldi.pock.dockScrollableView")
+    static let escButton = NSTouchBarItem.Identifier("com.pigigaldi.pock.escButton")
 }
 
 /// Known identifiers
@@ -44,7 +45,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     fileprivate var dockItems: [DockItem] = []
     
     /// Status bar Pock icon
-    fileprivate let pockStatusbarIcon = NSStatusBar.system().statusItem(withLength: NSSquareStatusItemLength)
+    fileprivate let pockStatusbarIcon = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
     
     /// Finish launching
     func applicationDidFinishLaunching(_ aNotification: Notification) {
@@ -70,9 +71,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         self.loadData()
         
         /// Register for notification
-        NSWorkspace.shared().notificationCenter.addObserver(self,
+        NSWorkspace.shared.notificationCenter.addObserver(self,
                                                             selector: #selector(self.loadData),
-                                                            name: NSNotification.Name.NSWorkspaceDidActivateApplication,
+                                                            name: NSWorkspace.didActivateApplicationNotification,
                                                             object: nil)
         
         /// Set Pock inactive
@@ -163,7 +164,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @objc private func presentPock() {
         
         /// Present dock in touch bar
-        NSTouchBar.presentSystemModalFunctionBar(self.touchBar(), systemTrayItemIdentifier: NSTouchBarItemIdentifier.pockSystemIcon.rawValue)
+        NSTouchBar.presentSystemModalFunctionBar(self.touchBar(), systemTrayItemIdentifier: NSTouchBarItem.Identifier.pockSystemIcon.rawValue)
         
     }
     
@@ -171,7 +172,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private func initializeHotKey() {
         
         /// Create HotKey
-        if let keyCombo = KeyCombo(keyCode: 35, cocoaModifiers: [.command, .option]) {
+        if let keyCombo = KeyCombo(keyCode: 35, cocoaModifiers: [NSEvent.ModifierFlags.command, NSEvent.ModifierFlags.option]) {
             let hotKey = HotKey(identifier: "CommandP", keyCombo: keyCombo, target: self, action: #selector(self.addPockItemToControlStrip))
             let _ = HotKeyCenter.shared.register(with: hotKey)
         }
@@ -201,17 +202,17 @@ extension AppDelegate: NSTouchBarDelegate {
         return self.pockTouchBar
     }
     
-    func touchBar(_ touchBar: NSTouchBar, makeItemForIdentifier identifier: NSTouchBarItemIdentifier) -> NSTouchBarItem? {
+    func touchBar(_ touchBar: NSTouchBar, makeItemForIdentifier identifier: NSTouchBarItem.Identifier) -> NSTouchBarItem? {
         
         switch identifier {
-        case NSTouchBarItemIdentifier.escButton:
+        case NSTouchBarItem.Identifier.escButton:
             
             /// Return esc button item
             let item = NSCustomTouchBarItem(identifier: identifier)
             item.view = NSButton(title: "esc", target: self, action: #selector(self.escButtonSender))
             return item
             
-        case NSTouchBarItemIdentifier.dockScrollableView:
+        case NSTouchBarItem.Identifier.dockScrollableView:
             
             /// Create custom item
             let item = NSCustomTouchBarItem(identifier: identifier)
@@ -223,7 +224,7 @@ extension AppDelegate: NSTouchBarDelegate {
             /// Stop here
             return item
             
-        case NSTouchBarItemIdentifier.pockSystemIcon:
+        case NSTouchBarItem.Identifier.pockSystemIcon:
             
             /// Return Pock system item
             let item = NSCustomTouchBarItem(identifier: identifier)
