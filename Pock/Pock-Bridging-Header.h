@@ -7,3 +7,4 @@
 //
 
 #import "Private/NSTouchBar.h"
+#import "Private/PockDockHelper/PockDockHelper.h"

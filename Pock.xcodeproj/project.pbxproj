@@ -8,9 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		009B0E12E317757741CE38C8 /* Pods_Pock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 863BE70CFBAC31BDBF35B1FD /* Pods_Pock.framework */; };
-		340C81DD1F653F7F0063BAB0 /* DFRFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 340C81DC1F653F7F0063BAB0 /* DFRFoundation.framework */; };
 		3427C72B1F65573B00FE39FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3427C72A1F65573B00FE39FF /* Main.storyboard */; };
 		3427C72D1F65746000FE39FF /* PockItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3427C72C1F65746000FE39FF /* PockItemView.swift */; };
+		342D3CB121110BF70028FC59 /* DFRFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 342D3CB021110BF70028FC59 /* DFRFoundation.framework */; };
+		342D3CB42111998A0028FC59 /* PockDockHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 342D3CB32111998A0028FC59 /* PockDockHelper.m */; };
 		348343DA1F631B2E00CDA005 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348343D91F631B2E00CDA005 /* AppDelegate.swift */; };
 		348343DE1F631B2E00CDA005 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 348343DD1F631B2E00CDA005 /* Assets.xcassets */; };
 		348343E91F631B6700CDA005 /* Pock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348343E81F631B6700CDA005 /* Pock.swift */; };
@@ -20,10 +21,11 @@
 /* Begin PBXFileReference section */
 		340C81D51F6538580063BAB0 /* NSTouchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSTouchBar.h; path = Private/NSTouchBar.h; sourceTree = "<group>"; };
 		340C81D71F6538CF0063BAB0 /* Pock-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Pock-Bridging-Header.h"; sourceTree = "<group>"; };
-		340C81D91F653C900063BAB0 /* DFRFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DFRFoundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/PrivateFrameworks/DFRFoundation.framework; sourceTree = DEVELOPER_DIR; };
-		340C81DC1F653F7F0063BAB0 /* DFRFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DFRFoundation.framework; path = ../../../../../../../../../System/Library/PrivateFrameworks/DFRFoundation.framework; sourceTree = "<group>"; };
 		3427C72A1F65573B00FE39FF /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		3427C72C1F65746000FE39FF /* PockItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PockItemView.swift; sourceTree = "<group>"; };
+		342D3CB021110BF70028FC59 /* DFRFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DFRFoundation.framework; path = ../../../../../../System/Library/PrivateFrameworks/DFRFoundation.framework; sourceTree = "<group>"; };
+		342D3CB22111998A0028FC59 /* PockDockHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PockDockHelper.h; path = Private/PockDockHelper/PockDockHelper.h; sourceTree = "<group>"; };
+		342D3CB32111998A0028FC59 /* PockDockHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PockDockHelper.m; path = Private/PockDockHelper/PockDockHelper.m; sourceTree = "<group>"; };
 		348343D61F631B2E00CDA005 /* Pock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		348343D91F631B2E00CDA005 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		348343DD1F631B2E00CDA005 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -40,7 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				340C81DD1F653F7F0063BAB0 /* DFRFoundation.framework in Frameworks */,
+				342D3CB121110BF70028FC59 /* DFRFoundation.framework in Frameworks */,
 				009B0E12E317757741CE38C8 /* Pods_Pock.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -77,9 +79,19 @@
 		340C81D61F6538B40063BAB0 /* Private */ = {
 			isa = PBXGroup;
 			children = (
+				342D3CB52111998E0028FC59 /* PockDockHelper */,
 				340C81D51F6538580063BAB0 /* NSTouchBar.h */,
 			);
 			name = Private;
+			sourceTree = "<group>";
+		};
+		342D3CB52111998E0028FC59 /* PockDockHelper */ = {
+			isa = PBXGroup;
+			children = (
+				342D3CB22111998A0028FC59 /* PockDockHelper.h */,
+				342D3CB32111998A0028FC59 /* PockDockHelper.m */,
+			);
+			name = PockDockHelper;
 			sourceTree = "<group>";
 		};
 		348343CD1F631B2E00CDA005 = {
@@ -118,8 +130,7 @@
 		4ED8D081458713BE440562D3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				340C81DC1F653F7F0063BAB0 /* DFRFoundation.framework */,
-				340C81D91F653C900063BAB0 /* DFRFoundation.framework */,
+				342D3CB021110BF70028FC59 /* DFRFoundation.framework */,
 				863BE70CFBAC31BDBF35B1FD /* Pods_Pock.framework */,
 			);
 			name = Frameworks;
@@ -260,6 +271,7 @@
 				34DC32E61F6DAAC500037E68 /* KeySender.swift in Sources */,
 				3427C72D1F65746000FE39FF /* PockItemView.swift in Sources */,
 				348343E91F631B6700CDA005 /* Pock.swift in Sources */,
+				342D3CB42111998A0028FC59 /* PockDockHelper.m in Sources */,
 				348343DA1F631B2E00CDA005 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
