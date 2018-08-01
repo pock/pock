@@ -9,7 +9,6 @@ $ git clone http://github.com/pigigaldi/Pock
 $ cd Pock/
 $ pod install
 $ open Pock.xcworkspace
-$ echo "Run!"
 ```
 
 ### Usage:
@@ -23,9 +22,9 @@ ___
 
 ### TODO:
 ___
+* [WIP] Add icon's notification badge (it works, it's just "retarded")
 * [???] Put "Launch at login" option in status bar menu;
 * [???] Custom hotkey for showing the dock
-* [???] Add icon's notification badge (see [`badge_inject`](https://github.com/pigigaldi/Pock/tree/badge_inject) branch)
 
 ### Thank you!
 ___
@@ -34,6 +33,7 @@ ___
 * [Magnet](https://github.com/Clipy/Magnet)
 * [touch-baer](https://github.com/a2/touch-baer) - How to put icon in Control Strip
 * [ESCapey](https://github.com/brianmichel/ESCapey) - Simulate `esc` button
+* [Minebomber](https://stackoverflow.com/a/36115210) - This comment blowed my mind
 
 ### Info:
 ___
