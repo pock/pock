@@ -38,7 +38,7 @@ This process occures everytime [`NSWorkspaceDidActivateApplicationNotification`]
 ___
 * [???] Put "Launch at login" option in status bar menu;
 * [???] Custom hotkey for showing the dock
-* [???] Add icon's notification badge (better way needed)
+* [WIP] Add icon's notification badge (better way founded! See [`feature/icon-badge`](https://github.com/pigigaldi/Pock/tree/feature/icon-badge) branch)
 
 ### Thank you!
 ___
