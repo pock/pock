@@ -163,7 +163,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @objc private func presentPock() {
         
         /// Present dock in touch bar
-        NSTouchBar.presentSystemModalFunctionBar(self.touchBar(), systemTrayItemIdentifier: NSTouchBarItemIdentifier.pockSystemIcon.rawValue)
+        if #available (macOS 10.14, *) {
+            NSTouchBar.presentSystemModalTouchBar(self.touchBar(), systemTrayItemIdentifier: NSTouchBarItemIdentifier(rawValue: NSTouchBarItemIdentifier.pockSystemIcon.rawValue))
+        } else {
+            NSTouchBar.presentSystemModalFunctionBar(self.touchBar(), systemTrayItemIdentifier: NSTouchBarItemIdentifier(rawValue: NSTouchBarItemIdentifier.pockSystemIcon.rawValue))
+        }
         
     }
     
