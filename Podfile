@@ -6,7 +6,7 @@ target 'Pock' do
   use_frameworks!
 
   # Pods for Pock
-  pod 'SnapKit', '~> 3.2.0'
+  pod 'SnapKit'
   pod 'Magnet'
 
 end

@@ -1,15 +1,15 @@
 PODS:
-  - Magnet (2.1.0)
-  - SnapKit (3.2.0)
+  - Magnet (2.3.0)
+  - SnapKit (4.0.1)
 
 DEPENDENCIES:
   - Magnet
-  - SnapKit (~> 3.2.0)
+  - SnapKit
 
 SPEC CHECKSUMS:
-  Magnet: 6c26f03a279b9340bb6a86a73a1314d2da110219
-  SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
+  Magnet: 85344b019d023e26062199aeb5b4ad1f8d41c5df
+  SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
 
-PODFILE CHECKSUM: 9d72476ffd8ac922b8522a0ee06ced6e6f84b164
+PODFILE CHECKSUM: 10dfbab536aa72cb553ba9b7d830ae411fc0eee1
 
 COCOAPODS: 1.4.0
