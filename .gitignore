@@ -3,3 +3,5 @@
 
 ## No Pods folder
 Pods/
+
+*.xcuserstate
