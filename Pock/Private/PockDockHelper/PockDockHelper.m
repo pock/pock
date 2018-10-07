@@ -70,11 +70,19 @@ void SafeCFRelease(CFTypeRef cf) {
         if ([(__bridge NSString *)aResult isEqualToString:name]) {
             itemIndex = i;
         }
+        SafeCFRelease(aResult);
     }
     SafeCFRelease(aChildren);
-    if (itemIndex == -1) return nil;
+    SafeCFRelease(anAXDockApp);
+    if (itemIndex == -1) {
+        SafeCFRelease(aList);
+        return nil;
+    }
     AXUIElementRef aReturnItem = [self copyAXUIElementFrom:aList role:kAXDockItemRole atIndex:itemIndex];
-    if (aReturnItem == nil) return nil;
+    if (aReturnItem == nil) {
+        SafeCFRelease(aList);
+        return nil;
+    }
     SafeCFRelease(aList);
     return  aReturnItem;
 }
@@ -84,6 +92,7 @@ void SafeCFRelease(CFTypeRef cf) {
     if (dockItem == nil) return nil;
     CFTypeRef aStatusLabel;
     AXUIElementCopyAttributeValue(dockItem, kAXStatusLabelAttribute, &aStatusLabel);
+    SafeCFRelease(dockItem);
     return (__bridge NSString *)aStatusLabel;
 }
 
