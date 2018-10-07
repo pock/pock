@@ -12,10 +12,11 @@ import Magnet
 import SnapKit
 
 /// Custom identifiers
-extension NSTouchBarItemIdentifier {
-    static let pockSystemIcon = NSTouchBarItemIdentifier("com.pigigaldi.pock.pockSystemIcon")
-    static let dockScrollableView = NSTouchBarItemIdentifier("com.pigigaldi.pock.dockScrollableView")
-    static let escButton = NSTouchBarItemIdentifier("com.pigigaldi.pock.escButton")
+@available(OSX 10.12.2, *)
+extension NSTouchBarItem.Identifier {
+    static let pockSystemIcon = NSTouchBarItem.Identifier("com.pigigaldi.pock.pockSystemIcon")
+    static let dockScrollableView = NSTouchBarItem.Identifier("com.pigigaldi.pock.dockScrollableView")
+    static let escButton = NSTouchBarItem.Identifier("com.pigigaldi.pock.escButton")
 }
 
 /// Known identifiers
@@ -41,14 +42,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     public static var pockDockIconsScrubber: NSScrubber?
     
     /// Dock's list array
-    fileprivate var dockItems: [DockItem] = []
+    fileprivate var dockItems: [PockItem] = []
     
     /// Status bar Pock icon
-    fileprivate let pockStatusbarIcon = NSStatusBar.system().statusItem(withLength: NSSquareStatusItemLength)
+    fileprivate let pockStatusbarIcon = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
     
     /// Finish launching
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
+        
+        /// Check for accessibility (needed for badges to work)
+        self.checkAccessibility()
         
         /// Check for status bar icon
         if let button = pockStatusbarIcon.button {
@@ -70,10 +74,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         self.loadData()
         
         /// Register for notification
-        NSWorkspace.shared().notificationCenter.addObserver(self,
-                                                            selector: #selector(self.loadData),
-                                                            name: NSNotification.Name.NSWorkspaceDidActivateApplication,
-                                                            object: nil)
+        NSWorkspace.shared.notificationCenter.addObserver(self,
+                                                          selector: #selector(self.loadData),
+                                                          name: NSWorkspace.didActivateApplicationNotification,
+                                                          object: nil)
+        
+        NSWorkspace.shared.notificationCenter.addObserver(self,
+                                                          selector: #selector(self.reloadBadgesAndRunningDot),
+                                                          name: NSWindow.didUpdateNotification,
+                                                          object: nil)
         
         /// Set Pock inactive
         NSApp.deactivate()
@@ -83,6 +92,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     /// Will terminate
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
+    }
+    
+    /// Check for accessibility
+    @discardableResult
+    private func checkAccessibility() -> Bool {
+        let checkOptPrompt = kAXTrustedCheckOptionPrompt.takeUnretainedValue() as NSString
+        let options = [checkOptPrompt: true]
+        let accessEnabled = AXIsProcessTrustedWithOptions(options as CFDictionary?)
+        return accessEnabled
     }
     
     /// Load data
@@ -105,6 +123,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             self.displayIconsInScrollView()
         })
     
+    }
+    
+    /// Reload badges and running dot
+    @objc private func reloadBadgesAndRunningDot() {
+        
+        /// Iterate on dock content view
+        for subview in self.dockContentView.subviews {
+            
+            /// Check if is `PockItemView`
+            guard let itemView = subview as? PockItemView else { continue }
+            
+            /// Update UI
+            itemView.reloadUI()
+            
+        }
+        
     }
     
     /// Display icons in scroll view
@@ -164,9 +198,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         /// Present dock in touch bar
         if #available (macOS 10.14, *) {
-            NSTouchBar.presentSystemModalTouchBar(self.touchBar(), systemTrayItemIdentifier: NSTouchBarItemIdentifier(rawValue: NSTouchBarItemIdentifier.pockSystemIcon.rawValue))
+            NSTouchBar.presentSystemModalTouchBar(self.touchBar(), systemTrayItemIdentifier: NSTouchBarItem.Identifier.pockSystemIcon)
         } else {
-            NSTouchBar.presentSystemModalFunctionBar(self.touchBar(), systemTrayItemIdentifier: NSTouchBarItemIdentifier(rawValue: NSTouchBarItemIdentifier.pockSystemIcon.rawValue))
+            NSTouchBar.presentSystemModalFunctionBar(self.touchBar(), systemTrayItemIdentifier: NSTouchBarItem.Identifier.pockSystemIcon)
         }
         
     }
@@ -175,7 +209,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private func initializeHotKey() {
         
         /// Create HotKey
-        if let keyCombo = KeyCombo(keyCode: 35, cocoaModifiers: [.command, .option]) {
+        if let keyCombo = KeyCombo(keyCode: 35, cocoaModifiers: [NSEvent.ModifierFlags.command, NSEvent.ModifierFlags.option]) {
             let hotKey = HotKey(identifier: "CommandP", keyCombo: keyCombo, target: self, action: #selector(self.addPockItemToControlStrip))
             let _ = HotKeyCenter.shared.register(with: hotKey)
         }
@@ -205,17 +239,17 @@ extension AppDelegate: NSTouchBarDelegate {
         return self.pockTouchBar
     }
     
-    func touchBar(_ touchBar: NSTouchBar, makeItemForIdentifier identifier: NSTouchBarItemIdentifier) -> NSTouchBarItem? {
+    func touchBar(_ touchBar: NSTouchBar, makeItemForIdentifier identifier: NSTouchBarItem.Identifier) -> NSTouchBarItem? {
         
         switch identifier {
-        case NSTouchBarItemIdentifier.escButton:
+        case NSTouchBarItem.Identifier.escButton:
             
             /// Return esc button item
             let item = NSCustomTouchBarItem(identifier: identifier)
             item.view = NSButton(title: "esc", target: self, action: #selector(self.escButtonSender))
             return item
             
-        case NSTouchBarItemIdentifier.dockScrollableView:
+        case NSTouchBarItem.Identifier.dockScrollableView:
             
             /// Create custom item
             let item = NSCustomTouchBarItem(identifier: identifier)
@@ -227,7 +261,7 @@ extension AppDelegate: NSTouchBarDelegate {
             /// Stop here
             return item
             
-        case NSTouchBarItemIdentifier.pockSystemIcon:
+        case NSTouchBarItem.Identifier.pockSystemIcon:
             
             /// Return Pock system item
             let item = NSCustomTouchBarItem(identifier: identifier)

@@ -6,4 +6,5 @@
 //  Copyright © 2017 Pierluigi Galdi. All rights reserved.
 //
 
-#import "Private/NSTouchBar.h"
+#import "./NSTouchBar.h"
+#import "./PockDockHelper/PockDockHelper.h"

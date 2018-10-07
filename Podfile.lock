@@ -1,0 +1,15 @@
+PODS:
+  - Magnet (2.1.0)
+  - SnapKit (3.2.0)
+
+DEPENDENCIES:
+  - Magnet
+  - SnapKit (~> 3.2.0)
+
+SPEC CHECKSUMS:
+  Magnet: 6c26f03a279b9340bb6a86a73a1314d2da110219
+  SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
+
+PODFILE CHECKSUM: 9d72476ffd8ac922b8522a0ee06ced6e6f84b164
+
+COCOAPODS: 1.4.0

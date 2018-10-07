@@ -11,26 +11,6 @@ import AppKit
 import MediaPlayer
 import SnapKit
 
-public class DockItem: NSObject {
-    var label: String!, bundleIdentifier: String!, icon: NSImage!
-    var isRunning: Bool {
-        get {
-            return PockUtilities.runningAppsIdentifiers.contains(self.bundleIdentifier)
-        }
-    }
-    var isFrontmostApplication: Bool {
-        get {
-            return self.bundleIdentifier == PockUtilities.frontmostApplicationIdentifier
-        }
-    }
-    convenience init(label: String, bundleIdentifier: String, icon: NSImage) {
-        self.init()
-        self.label = label
-        self.bundleIdentifier = bundleIdentifier
-        self.icon = icon
-    }
-}
-
 public class PockUtilities {
     
     /// Persistent apps identifiers
@@ -42,19 +22,19 @@ public class PockUtilities {
     /// Get top most application bundle identifier
     public static var frontmostApplicationIdentifier: String? {
         get {
-            guard let frontmostId = NSWorkspace.shared().frontmostApplication?.bundleIdentifier else { return nil }
+            guard let frontmostId = NSWorkspace.shared.frontmostApplication?.bundleIdentifier else { return nil }
             return frontmostId
         }
     }
     
     /// Returns bundle identifier for the Dock's persistent apps.
-    public class func getDockPersistentAppsList() -> [DockItem] {
+    public class func getDockPersistentAppsList() -> [PockItem] {
         
         /// Remove all from persistentIdentifiers array
         PockUtilities.persistentAppsIdentifiers = []
         
         /// Declare returnable array.
-        var returnable: [DockItem] = []
+        var returnable: [PockItem] = []
         
         /// Read data from Dock's preferences file.
         guard let dict = UserDefaults.standard.persistentDomain(forName: "com.apple.dock") else {
@@ -98,13 +78,13 @@ public class PockUtilities {
             PockUtilities.persistentAppsIdentifiers.append(bundleIdentifier)
             
             /// Add bundle identifier to returnable array.
-            let dockItem = DockItem(label: label, bundleIdentifier: bundleIdentifier, icon: PockUtilities.getIcon(forBundleIdentifier: bundleIdentifier))
+            let dockItem = PockItem(label: label, bundleIdentifier: bundleIdentifier, icon: PockUtilities.getIcon(forBundleIdentifier: bundleIdentifier))
             returnable.insert(dockItem, at: ind)
             
         }
         
         /// Insert Finder as first
-        let finderItem = DockItem(label: "Finder", bundleIdentifier: kFinderIdentifier, icon: PockUtilities.getIcon(forBundleIdentifier: kFinderIdentifier))
+        let finderItem = PockItem(label: "Finder", bundleIdentifier: kFinderIdentifier, icon: PockUtilities.getIcon(forBundleIdentifier: kFinderIdentifier))
         returnable.insert(finderItem, at: 0)
         
         /// Add Finder identifier to persistentAppsIdentifiers array. This way, "getMissingRunningApps()" will not re-add it to final items array
@@ -116,19 +96,19 @@ public class PockUtilities {
     }
     
     /// Returns remaining running apps that ar not present in persistent-apps list in com.apple.dock.plist
-    public class func getMissingRunningApps() -> [DockItem] {
+    public class func getMissingRunningApps() -> [PockItem] {
     
         /// Remove all from running apps identifiers array
         PockUtilities.runningAppsIdentifiers = []
         
         /// Declare returnable
-        var returnable: [DockItem] = []
+        var returnable: [PockItem] = []
         
         /// Iterate on running appps from shared NSWorkspace
-        for app in NSWorkspace.shared().runningApplications {
+        for app in NSWorkspace.shared.runningApplications {
             
             /// Check for policy
-            guard app.activationPolicy == NSApplicationActivationPolicy.regular else { continue }
+            guard app.activationPolicy == NSApplication.ActivationPolicy.regular else { continue }
             
             /// Get app identifier
             guard let id = app.bundleIdentifier else { continue }
@@ -139,7 +119,7 @@ public class PockUtilities {
             /// Create dock item, if already not present
             guard PockUtilities.persistentAppsIdentifiers.contains(id) == false else { continue }
             guard let label = app.localizedName else { continue }
-            let dockItem = DockItem(label: label, bundleIdentifier: id, icon: PockUtilities.getIcon(forBundleIdentifier: id))
+            let dockItem = PockItem(label: label, bundleIdentifier: id, icon: PockUtilities.getIcon(forBundleIdentifier: id))
             returnable.append(dockItem)
         
         }
@@ -150,10 +130,10 @@ public class PockUtilities {
     }
     
     /// Returns Label and path for the Dock's persistent others.
-    public class func getDockPersistentOthersList() -> [DockItem] {
+    public class func getDockPersistentOthersList() -> [PockItem] {
         
         /// Declare returnable array.
-        var returnable: [DockItem] = []
+        var returnable: [PockItem] = []
         
         /// Read data from Dock's preferences file.
         guard let dict = UserDefaults.standard.persistentDomain(forName: "com.apple.dock") else {
@@ -204,14 +184,14 @@ public class PockUtilities {
             let tileType = otherItem["tile-type"] as? String
             
             /// Add key-value to returnable.
-            let dockItem = DockItem(label: label, bundleIdentifier: path, icon: PockUtilities.getIcon(forBundleIdentifier: nil, orType: tileType))
+            let dockItem = PockItem(label: label, bundleIdentifier: path, icon: PockUtilities.getIcon(forBundleIdentifier: nil, orType: tileType))
             returnable.insert(dockItem, at: ind)
             
         }
         
         /// Add trash icon
         let trashPath = "file://".appending(NSHomeDirectory().appending("/.Trash"))
-        let trashItem = DockItem(label: "Trash", bundleIdentifier: trashPath, icon: PockUtilities.getIcon(orType: "trash-icon"))
+        let trashItem = PockItem(label: "Trash", bundleIdentifier: trashPath, icon: PockUtilities.getIcon(orType: "trash-icon"))
         returnable.append(trashItem)
         
         /// Return returnable array.
@@ -226,10 +206,10 @@ public class PockUtilities {
         if bundleIdentifier != nil {
             
             /// Get app's absolute path
-            if let appPath = NSWorkspace.shared().absolutePathForApplication(withBundleIdentifier: bundleIdentifier!) {
+            if let appPath = NSWorkspace.shared.absolutePathForApplication(withBundleIdentifier: bundleIdentifier!) {
             
                 /// Return icon
-                return NSWorkspace.shared().icon(forFile: appPath)
+                return NSWorkspace.shared.icon(forFile: appPath)
                 
             }
             
@@ -238,7 +218,7 @@ public class PockUtilities {
         /// Then check for path
         if path != nil {
         
-            return NSWorkspace.shared().icon(forFile: path!)
+            return NSWorkspace.shared.icon(forFile: path!)
         
         }
         
@@ -282,12 +262,12 @@ public class PockUtilities {
         if bundleIdentifier!.contains("file://") {
         
             /// Is path, continue as path.
-            returnable = NSWorkspace.shared().openFile(bundleIdentifier!.replacingOccurrences(of: "file://", with: ""))
+            returnable = NSWorkspace.shared.openFile(bundleIdentifier!.replacingOccurrences(of: "file://", with: ""))
 
         }else {
 
             /// Launch app
-            returnable = NSWorkspace.shared().launchApplication(withBundleIdentifier: bundleIdentifier!, options: [.default], additionalEventParamDescriptor: nil, launchIdentifier: nil)
+            returnable = NSWorkspace.shared.launchApplication(withBundleIdentifier: bundleIdentifier!, options: [NSWorkspace.LaunchOptions.default], additionalEventParamDescriptor: nil, launchIdentifier: nil)
             
         }
         
