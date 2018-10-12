@@ -8,5 +8,7 @@ target 'Pock' do
   # Pods for Pock
   pod 'SnapKit'
   pod 'Magnet'
+  pod 'Defaults'
+  pod 'Preferences'
 
 end

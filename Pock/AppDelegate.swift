@@ -60,6 +60,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             button.image?.isTemplate = true
             /// Create menu
             let menu = NSMenu(title: "Menu")
+            menu.addItem(withTitle: "Preferences", action: #selector(openPreferences), keyEquivalent: "P")
             menu.addItem(withTitle: "Quit Pock.", action: #selector(NSApp.terminate(_:)), keyEquivalent: "")
             pockStatusbarIcon.menu = menu
         }
@@ -101,6 +102,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let options = [checkOptPrompt: true]
         let accessEnabled = AXIsProcessTrustedWithOptions(options as CFDictionary?)
         return accessEnabled
+    }
+    
+    /// Open preferences
+    @objc private func openPreferences() {
+        
     }
     
     /// Load data
