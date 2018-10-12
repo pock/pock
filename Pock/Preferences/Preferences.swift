@@ -9,7 +9,7 @@
 import Foundation
 import Defaults
 
-enum DurationKeys: Int, Codable {
+enum NotificationBadgeRefreshRateKeys: Int, Codable {
     case fiveSeconds    = 5
     case tenSeconds     = 10
     case thirtySeconds  = 30
@@ -33,8 +33,9 @@ enum DurationKeys: Int, Codable {
 }
 
 extension Defaults.Keys {
-    static let notificationBadgeRefreshInterval: Defaults.Key<DurationKeys> = Defaults.Key<DurationKeys>("notificationBadgeRefreshInterval", default: .thirtySeconds)
-    static let launchAtLogin:                    Defaults.Key<Bool>         = Defaults.Key<Bool>("launchAtLogin", default: false)
+    static let launchAtLogin:                    Defaults.Key<Bool>                             = Defaults.Key<Bool>("launchAtLogin", default: false)
+    static let notificationBadgeRefreshInterval: Defaults.Key<NotificationBadgeRefreshRateKeys> = Defaults.Key<NotificationBadgeRefreshRateKeys>("notificationBadgeRefreshInterval",
+                                                                                                                                                 default: .thirtySeconds)
 }
 
 

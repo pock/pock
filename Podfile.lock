@@ -1,7 +1,7 @@
 PODS:
   - Defaults (0.2.2)
   - Magnet (2.3.0)
-  - Preferences (0.1.1)
+  - Preferences (0.2.0)
   - SnapKit (4.0.1)
 
 DEPENDENCIES:
@@ -13,7 +13,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   Defaults: 79e548c40579ef7e225835547acdf1ce7c2e8e55
   Magnet: 85344b019d023e26062199aeb5b4ad1f8d41c5df
-  Preferences: 29356626f99bce0c2ba4a335d1a2cd6ba7e15c18
+  Preferences: ebc036a176a298cde835155c73251173768a2f8d
   SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
 
 PODFILE CHECKSUM: 38e2a9508fb8fc51c773e8807be63987cc69afed

@@ -10,6 +10,7 @@ import Cocoa
 import CoreGraphics
 import Magnet
 import SnapKit
+import Preferences
 
 /// Custom identifiers
 @available(OSX 10.12.2, *)
@@ -30,6 +31,9 @@ public func executeWithDelay(delay:Double, closure:@escaping ()->()) {
 @available(OSX 10.12.2, *)
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
+    
+    /// Preferences
+    fileprivate let preferencesWindowController: PreferencesWindowController = PreferencesWindowController(viewControllers: [GeneralPreferencePane()])
     
     /// UI
     fileprivate let dockScrollView: NSScrollView = NSScrollView(frame: .zero)
@@ -106,7 +110,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     /// Open preferences
     @objc private func openPreferences() {
-        
+        preferencesWindowController.showWindow()
     }
     
     /// Load data
