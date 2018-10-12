@@ -9,7 +9,12 @@
 import Foundation
 import Defaults
 
-enum NotificationBadgeRefreshRateKeys: Int, Codable {
+extension NSNotification.Name {
+    static let didChangeNotificationBadgeRefreshRate = NSNotification.Name("didSelectNotificationBadgeRefreshRate")
+}
+
+enum NotificationBadgeRefreshRateKeys: Double, Codable {
+    case instantly      = 0.5
     case fiveSeconds    = 5
     case tenSeconds     = 10
     case thirtySeconds  = 30
@@ -18,6 +23,8 @@ enum NotificationBadgeRefreshRateKeys: Int, Codable {
     
     func toString() -> String {
         switch self {
+        case .instantly:
+            return "Instantly"
         case .fiveSeconds:
             return "5 seconds"
         case .tenSeconds:
@@ -33,9 +40,8 @@ enum NotificationBadgeRefreshRateKeys: Int, Codable {
 }
 
 extension Defaults.Keys {
-    static let launchAtLogin:                    Defaults.Key<Bool>                             = Defaults.Key<Bool>("launchAtLogin", default: false)
-    static let notificationBadgeRefreshInterval: Defaults.Key<NotificationBadgeRefreshRateKeys> = Defaults.Key<NotificationBadgeRefreshRateKeys>("notificationBadgeRefreshInterval",
-                                                                                                                                                 default: .thirtySeconds)
+    static let launchAtLogin                    = Defaults.Key<Bool>("launchAtLogin", default: false)
+    static let notificationBadgeRefreshInterval = Defaults.Key<NotificationBadgeRefreshRateKeys>("notificationBadgeRefreshInterval", default: .tenSeconds)
 }
 
 

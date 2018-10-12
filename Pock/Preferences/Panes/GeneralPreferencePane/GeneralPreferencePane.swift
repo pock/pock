@@ -22,6 +22,7 @@ final class GeneralPreferencePane: NSViewController, Preferenceable {
     
     /// Data
     private let notificationBadgeRefreshRateOptions: [NotificationBadgeRefreshRateKeys] = [
+        NotificationBadgeRefreshRateKeys.instantly,
         NotificationBadgeRefreshRateKeys.fiveSeconds,
         NotificationBadgeRefreshRateKeys.tenSeconds,
         NotificationBadgeRefreshRateKeys.thirtySeconds,
@@ -46,5 +47,6 @@ final class GeneralPreferencePane: NSViewController, Preferenceable {
     
     @IBAction private func didSelectNotificationBadgeRefreshRate(_: NSButton) {
         defaults[.notificationBadgeRefreshInterval] = notificationBadgeRefreshRateOptions[self.notificationBadgeRefreshRatePicker.indexOfSelectedItem]
+        NSWorkspace.shared.notificationCenter.post(name: .didChangeNotificationBadgeRefreshRate, object: nil)
     }
 }

@@ -11,6 +11,7 @@ import CoreGraphics
 import Magnet
 import SnapKit
 import Preferences
+import Defaults
 
 /// Custom identifiers
 @available(OSX 10.12.2, *)
@@ -34,6 +35,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     /// Preferences
     fileprivate let preferencesWindowController: PreferencesWindowController = PreferencesWindowController(viewControllers: [GeneralPreferencePane()])
+    
+    /// Core
+    fileprivate var notificationBadgeRefreshTimer: Timer!
     
     /// UI
     fileprivate let dockScrollView: NSScrollView = NSScrollView(frame: .zero)
@@ -89,6 +93,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                                                           name: NSWindow.didUpdateNotification,
                                                           object: nil)
         
+        NSWorkspace.shared.notificationCenter.addObserver(self,
+                                                          selector: #selector(self.setupNotificationBadgeRefreshTimer),
+                                                          name: .didChangeNotificationBadgeRefreshRate,
+                                                          object: nil)
+        
+        /// Start timer
+        self.setupNotificationBadgeRefreshTimer()
+        
         /// Set Pock inactive
         NSApp.deactivate()
         
@@ -133,6 +145,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             self.displayIconsInScrollView()
         })
     
+    }
+    
+    /// Update notification badge refresh timer
+    @objc private func setupNotificationBadgeRefreshTimer() {
+        
+        /// Get refresh rate
+        let refreshRate = defaults[.notificationBadgeRefreshInterval].rawValue
+        
+        /// Invalidate last timer
+        self.notificationBadgeRefreshTimer?.invalidate()
+        
+        /// Set timer
+        self.notificationBadgeRefreshTimer = Timer.scheduledTimer(withTimeInterval: refreshRate, repeats: true, block: { _ in
+            
+            /// Reload badge and running dot
+            self.reloadBadgesAndRunningDot()
+            
+        })
+        
     }
     
     /// Reload badges and running dot
