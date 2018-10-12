@@ -18,7 +18,7 @@ final class GeneralPreferencePane: NSViewController, Preferenceable {
     
     /// Preferenceable
     let toolbarItemTitle: String   = "General"
-    let toolbarItemIcon:  NSImage? = nil
+    let toolbarItemIcon:  NSImage  = NSImage(named: NSImage.Name("pock-inner-icon"))!
     
     /// Data
     private let notificationBadgeRefreshRateOptions: [NotificationBadgeRefreshRateKeys] = [
