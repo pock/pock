@@ -34,6 +34,8 @@ ___
 * [touch-baer](https://github.com/a2/touch-baer) - How to put icon in Control Strip
 * [ESCapey](https://github.com/brianmichel/ESCapey) - Simulate `esc` button
 * [Minebomber](https://stackoverflow.com/a/36115210) - This comment blowed my mind
+* [Defaults](https://github.com/sindresorhus/)
+* [Preferences](https://github.com/sindresorhus/)
 
 ### Info:
 ___
