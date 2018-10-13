@@ -13,8 +13,9 @@ extension NSNotification.Name {
     static let didChangeNotificationBadgeRefreshRate = NSNotification.Name("didSelectNotificationBadgeRefreshRate")
 }
 
-enum NotificationBadgeRefreshRateKeys: Double, Codable {
-    case instantly      = 0.5
+enum NotificationBadgeRefreshRateKeys: Double, Codable, CaseIterable {
+    case instantly      = 0.25
+    case oneSecond      = 1
     case fiveSeconds    = 5
     case tenSeconds     = 10
     case thirtySeconds  = 30
@@ -25,6 +26,8 @@ enum NotificationBadgeRefreshRateKeys: Double, Codable {
         switch self {
         case .instantly:
             return "Instantly"
+        case .oneSecond:
+            return "1 second"
         case .fiveSeconds:
             return "5 seconds"
         case .tenSeconds:
