@@ -151,16 +151,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @objc private func setupNotificationBadgeRefreshTimer() {
         
         /// Get refresh rate
-        let refreshRate = defaults[.notificationBadgeRefreshInterval].rawValue
+        let refreshRate = defaults[.notificationBadgeRefreshInterval]
         
         /// Invalidate last timer
         self.notificationBadgeRefreshTimer?.invalidate()
         
         /// Set timer
-        self.notificationBadgeRefreshTimer = Timer.scheduledTimer(withTimeInterval: refreshRate, repeats: true, block: { _ in
+        self.notificationBadgeRefreshTimer = Timer.scheduledTimer(withTimeInterval: refreshRate.rawValue, repeats: true, block: { _ in
+            
+            /// Log
+            NSLog("[Pock]: Refreshing notification badge... (rate: %@)", refreshRate.toString())
             
             /// Reload badge and running dot
-            self.reloadBadgesAndRunningDot()
+            DispatchQueue.main.async {
+                self.reloadBadgesAndRunningDot()
+            }
             
         })
         

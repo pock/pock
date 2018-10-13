@@ -10,6 +10,7 @@
             <connections>
                 <outlet property="launchAtLoginCheckbox" destination="OvG-0j-ema" id="eFG-v4-gaq"/>
                 <outlet property="notificationBadgeRefreshRatePicker" destination="HqG-Ap-oix" id="nII-ow-lHf"/>
+                <outlet property="versionLabel" destination="p8O-cG-rIH" id="2e0-3L-F9H"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
@@ -47,11 +48,11 @@
                         </menu>
                     </popUpButtonCell>
                     <connections>
-                        <action selector="didSelectNotificationBadgeRefreshRate" target="-2" id="wye-YL-hOe"/>
+                        <action selector="didSelectNotificationBadgeRefreshRate:" target="-2" id="whQ-2s-0yd"/>
                     </connections>
                 </popUpButton>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OvG-0j-ema">
-                    <rect key="frame" x="139" y="18" width="323" height="24"/>
+                    <rect key="frame" x="139" y="18" width="115" height="24"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="ydu-eg-Qht"/>
                     </constraints>
@@ -81,7 +82,7 @@
                     </constraints>
                 </box>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dLe-Qb-BCd">
-                    <rect key="frame" x="18" y="31" width="84" height="16"/>
+                    <rect key="frame" x="18" y="37" width="84" height="16"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="16" id="BHW-qp-NN0"/>
                     </constraints>
@@ -91,20 +92,34 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="p8O-cG-rIH">
-                    <rect key="frame" x="18" y="17" width="84" height="10"/>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p8O-cG-rIH">
+                    <rect key="frame" x="18" y="19" width="84" height="10"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="10" id="wrH-Fs-1Vo"/>
                     </constraints>
-                    <textFieldCell key="cell" controlSize="mini" lineBreakMode="clipping" alignment="center" title="0.3" id="K9v-5R-z7Q">
+                    <textFieldCell key="cell" controlSize="mini" lineBreakMode="clipping" enabled="NO" alignment="center" title="VERSION" id="K9v-5R-z7Q">
                         <font key="font" metaFont="miniSystem"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iOr-af-uPA">
+                    <rect key="frame" x="314" y="13" width="152" height="31"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="oiG-mG-BSb"/>
+                    </constraints>
+                    <buttonCell key="cell" type="push" title="Check for updates" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="MJG-ij-J6R">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="checkForUpdates:" target="-2" id="uNV-Y7-Uzu"/>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="ebU-tb-qZd" secondAttribute="bottom" id="28x-tc-R6N"/>
+                <constraint firstItem="iOr-af-uPA" firstAttribute="centerY" secondItem="OvG-0j-ema" secondAttribute="centerY" id="2I3-W1-oDN"/>
                 <constraint firstItem="u9C-Dc-GcL" firstAttribute="top" secondItem="DJh-bT-ySZ" secondAttribute="bottom" constant="20" id="2NG-tx-3Vh"/>
                 <constraint firstAttribute="trailing" secondItem="HqG-Ap-oix" secondAttribute="trailing" constant="20" id="4KN-5c-e3s"/>
                 <constraint firstItem="HqG-Ap-oix" firstAttribute="leading" secondItem="DJh-bT-ySZ" secondAttribute="trailing" constant="8" id="52h-66-EjU"/>
@@ -114,10 +129,10 @@
                 <constraint firstItem="DJh-bT-ySZ" firstAttribute="leading" secondItem="ebU-tb-qZd" secondAttribute="trailing" constant="20" id="HLF-Ir-Lvz"/>
                 <constraint firstItem="HqG-Ap-oix" firstAttribute="centerY" secondItem="DJh-bT-ySZ" secondAttribute="centerY" id="LGU-iI-3wd"/>
                 <constraint firstItem="OvG-0j-ema" firstAttribute="top" secondItem="u9C-Dc-GcL" secondAttribute="bottom" constant="20" id="MvA-Ro-7UC"/>
-                <constraint firstItem="dLe-Qb-BCd" firstAttribute="top" secondItem="Jxs-rJ-hZ7" secondAttribute="bottom" id="X3u-U4-KBd"/>
+                <constraint firstAttribute="trailing" secondItem="iOr-af-uPA" secondAttribute="trailing" constant="20" id="PR4-6l-3zJ"/>
+                <constraint firstItem="dLe-Qb-BCd" firstAttribute="top" secondItem="Jxs-rJ-hZ7" secondAttribute="bottom" constant="-6" id="X3u-U4-KBd"/>
                 <constraint firstItem="ebU-tb-qZd" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="Yrd-h1-hMm"/>
-                <constraint firstAttribute="trailing" secondItem="OvG-0j-ema" secondAttribute="trailing" constant="20" id="aPq-nH-7KA"/>
-                <constraint firstItem="p8O-cG-rIH" firstAttribute="top" secondItem="dLe-Qb-BCd" secondAttribute="bottom" constant="4" id="ap9-P9-4TO"/>
+                <constraint firstItem="p8O-cG-rIH" firstAttribute="top" secondItem="dLe-Qb-BCd" secondAttribute="bottom" constant="8" id="ap9-P9-4TO"/>
                 <constraint firstItem="Jxs-rJ-hZ7" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="gdZ-en-fho"/>
                 <constraint firstItem="ebU-tb-qZd" firstAttribute="leading" secondItem="Jxs-rJ-hZ7" secondAttribute="trailing" id="gzj-8E-LgF"/>
                 <constraint firstItem="p8O-cG-rIH" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="qNs-wr-v9I"/>
