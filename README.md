@@ -22,8 +22,8 @@ ___
 
 ### TODO:
 ___
-* [WIP] Add icon's notification badge (it works, it's just "retarded")
-* [???] Put "Launch at login" option in status bar menu;
+* [  √  ] Add icon's notification badge (it just works)
+* [WIP] Put "Launch at login" option in preference panel;
 * [???] Custom hotkey for showing the dock
 
 ### Thank you!
