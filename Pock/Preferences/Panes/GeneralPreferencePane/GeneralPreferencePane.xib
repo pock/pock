@@ -8,6 +8,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="GeneralPreferencePane">
             <connections>
+                <outlet property="checkForUpdatesButton" destination="iOr-af-uPA" id="lpM-rd-vN1"/>
                 <outlet property="launchAtLoginCheckbox" destination="OvG-0j-ema" id="eFG-v4-gaq"/>
                 <outlet property="notificationBadgeRefreshRatePicker" destination="HqG-Ap-oix" id="nII-ow-lHf"/>
                 <outlet property="versionLabel" destination="p8O-cG-rIH" id="2e0-3L-F9H"/>
@@ -111,7 +112,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="22" id="oiG-mG-BSb"/>
                     </constraints>
-                    <buttonCell key="cell" type="push" title="Check for updates" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="MJG-ij-J6R">
+                    <buttonCell key="cell" type="push" title="Check for updates" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="MJG-ij-J6R">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>

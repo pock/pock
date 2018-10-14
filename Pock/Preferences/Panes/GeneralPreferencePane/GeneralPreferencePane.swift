@@ -17,6 +17,10 @@ final class GeneralPreferencePane: NSViewController, Preferenceable {
     @IBOutlet weak var versionLabel:                       NSTextField!
     @IBOutlet weak var notificationBadgeRefreshRatePicker: NSPopUpButton!
     @IBOutlet weak var launchAtLoginCheckbox:              NSButton!
+    @IBOutlet weak var checkForUpdatesButton:              NSButton!
+    
+    /// Core
+    private var appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String ?? "Unknown"
     
     /// Preferenceable
     let toolbarItemTitle: String   = "General"
@@ -34,7 +38,6 @@ final class GeneralPreferencePane: NSViewController, Preferenceable {
     }
     
     private func loadVersionNumber() {
-        guard let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String else { return }
         self.versionLabel.stringValue = appVersion
     }
     
@@ -58,6 +61,46 @@ final class GeneralPreferencePane: NSViewController, Preferenceable {
     }
     
     @IBAction private func checkForUpdates(_: NSButton) {
-        NSLog("Checking for updates...")
+        
+        self.checkForUpdatesButton.isEnabled = false
+        self.checkForUpdatesButton.title     = "Checking..."
+        
+        let latestVersionURL: URL = URL(string: "http://pock.pigigaldi.com/api/latestRelease.json")!
+        
+        URLSession.shared.dataTask(with: latestVersionURL, completionHandler: { [weak self] data, response, error in
+            guard let _self = self else { return }
+            
+            var buttonTitle: String = "Check for updates"; defer {
+                DispatchQueue.main.async { [weak self] in
+                    self?.checkForUpdatesButton.isEnabled = true
+                    self?.checkForUpdatesButton.title     = buttonTitle
+                }
+            }
+            
+            if let json = try? JSONSerialization.jsonObject(with: data!, options: []) as? [String: String] {
+                if let latestVersionNumber = json?["version_number"] {
+                    if _self.appVersion < latestVersionNumber {
+                        /// Show alert
+                        DispatchQueue.main.sync {
+                            let alert: NSAlert = NSAlert()
+                            alert.messageText = "New version available!"
+                            alert.informativeText = "Do you want to download version \"\(latestVersionNumber)\" now?"
+                            alert.addButton(withTitle: "Download")
+                            alert.addButton(withTitle: "Later")
+                            alert.alertStyle = NSAlert.Style.informational
+                            
+                            alert.beginSheetModal(for: _self.view.window!, completionHandler: { modalResponse in
+                                if modalResponse == .alertFirstButtonReturn {
+                                    NSWorkspace.shared.open(URL(string: json!["download_link"]!)!)
+                                }
+                            })
+                        }
+                    }else {
+                        buttonTitle = "Already on latest version"
+                    }
+                }
+            }
+            
+        }).resume()
     }
 }
