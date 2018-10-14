@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Pock.xcodeproj">
+      location = "absolute:Pock.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:README.md">

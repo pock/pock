@@ -69,6 +69,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             /// Create menu
             let menu = NSMenu(title: "Menu")
             menu.addItem(withTitle: "Preferences", action: #selector(openPreferences), keyEquivalent: "P")
+            menu.addItem(NSMenuItem.separator())
             menu.addItem(withTitle: "Quit Pock.", action: #selector(NSApp.terminate(_:)), keyEquivalent: "")
             pockStatusbarIcon.menu = menu
         }

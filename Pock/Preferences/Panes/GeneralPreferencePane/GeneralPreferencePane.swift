@@ -9,6 +9,7 @@
 import Foundation
 import Preferences
 import Defaults
+import LaunchAtLogin
 
 final class GeneralPreferencePane: NSViewController, Preferenceable {
     
@@ -29,6 +30,7 @@ final class GeneralPreferencePane: NSViewController, Preferenceable {
         super.viewWillAppear()
         self.loadVersionNumber()
         self.populatePopUpButton()
+        self.setupLaunchAtLoginCheckbox()
     }
     
     private func loadVersionNumber() {
@@ -42,9 +44,17 @@ final class GeneralPreferencePane: NSViewController, Preferenceable {
         self.notificationBadgeRefreshRatePicker.selectItem(withTitle: defaults[.notificationBadgeRefreshInterval].toString())
     }
     
+    private func setupLaunchAtLoginCheckbox() {
+        self.launchAtLoginCheckbox.state = LaunchAtLogin.isEnabled ? .on : .off
+    }
+    
     @IBAction private func didSelectNotificationBadgeRefreshRate(_: NSButton) {
         defaults[.notificationBadgeRefreshInterval] = NotificationBadgeRefreshRateKeys.allCases[self.notificationBadgeRefreshRatePicker.indexOfSelectedItem]
         NSWorkspace.shared.notificationCenter.post(name: .didChangeNotificationBadgeRefreshRate, object: nil)
+    }
+    
+    @IBAction private func didChangeLaunchAtLoginValue(button: NSButton) {
+        LaunchAtLogin.isEnabled = button.state == .on
     }
     
     @IBAction private func checkForUpdates(_: NSButton) {

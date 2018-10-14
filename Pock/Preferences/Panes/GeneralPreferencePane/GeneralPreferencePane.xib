@@ -60,6 +60,9 @@
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="didChangeLaunchAtLoginValueWithButton:" target="-2" id="Ti6-2c-pPK"/>
+                    </connections>
                 </button>
                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Jxs-rJ-hZ7">
                     <rect key="frame" x="0.0" y="47" width="120" height="70"/>
@@ -82,9 +85,9 @@
                     </constraints>
                 </box>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dLe-Qb-BCd">
-                    <rect key="frame" x="18" y="37" width="84" height="16"/>
+                    <rect key="frame" x="18" y="35" width="84" height="18"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="16" id="BHW-qp-NN0"/>
+                        <constraint firstAttribute="height" constant="18" id="BHW-qp-NN0"/>
                     </constraints>
                     <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Pock" id="aMA-Da-MZq">
                         <font key="font" metaFont="system"/>
@@ -93,9 +96,9 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p8O-cG-rIH">
-                    <rect key="frame" x="18" y="19" width="84" height="10"/>
+                    <rect key="frame" x="18" y="15" width="84" height="12"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="10" id="wrH-Fs-1Vo"/>
+                        <constraint firstAttribute="height" constant="12" id="wrH-Fs-1Vo"/>
                     </constraints>
                     <textFieldCell key="cell" controlSize="mini" lineBreakMode="clipping" enabled="NO" alignment="center" title="VERSION" id="K9v-5R-z7Q">
                         <font key="font" metaFont="miniSystem"/>
@@ -104,11 +107,11 @@
                     </textFieldCell>
                 </textField>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iOr-af-uPA">
-                    <rect key="frame" x="314" y="13" width="152" height="31"/>
+                    <rect key="frame" x="314" y="12" width="152" height="33"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="20" id="oiG-mG-BSb"/>
+                        <constraint firstAttribute="height" constant="22" id="oiG-mG-BSb"/>
                     </constraints>
-                    <buttonCell key="cell" type="push" title="Check for updates" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="MJG-ij-J6R">
+                    <buttonCell key="cell" type="push" title="Check for updates" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="MJG-ij-J6R">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>

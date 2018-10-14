@@ -1,21 +1,24 @@
 PODS:
   - Defaults (0.2.2)
+  - LaunchAtLogin (2.3.0)
   - Magnet (2.3.0)
   - Preferences (0.2.0)
   - SnapKit (4.0.1)
 
 DEPENDENCIES:
   - Defaults
+  - LaunchAtLogin
   - Magnet
   - Preferences
   - SnapKit
 
 SPEC CHECKSUMS:
   Defaults: 79e548c40579ef7e225835547acdf1ce7c2e8e55
+  LaunchAtLogin: 7ca1e1ab83a07ce89443d321eea20451658181d1
   Magnet: 85344b019d023e26062199aeb5b4ad1f8d41c5df
   Preferences: ebc036a176a298cde835155c73251173768a2f8d
   SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
 
-PODFILE CHECKSUM: 38e2a9508fb8fc51c773e8807be63987cc69afed
+PODFILE CHECKSUM: f422c17e2a5ae06766744f31ed8214384a25de6e
 
 COCOAPODS: 1.4.0
