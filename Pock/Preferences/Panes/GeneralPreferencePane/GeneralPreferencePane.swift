@@ -70,33 +70,34 @@ final class GeneralPreferencePane: NSViewController, Preferenceable {
         URLSession.shared.dataTask(with: latestVersionURL, completionHandler: { [weak self] data, response, error in
             guard let _self = self else { return }
             
-            var buttonTitle: String = "Check for updates"; defer {
+            defer {
                 DispatchQueue.main.async { [weak self] in
                     self?.checkForUpdatesButton.isEnabled = true
-                    self?.checkForUpdatesButton.title     = buttonTitle
+                    self?.checkForUpdatesButton.title     = "Check for updates"
                 }
             }
             
             if let json = try? JSONSerialization.jsonObject(with: data!, options: []) as? [String: String] {
                 if let latestVersionNumber = json?["version_number"] {
-                    if _self.appVersion < latestVersionNumber {
-                        /// Show alert
-                        DispatchQueue.main.sync {
-                            let alert: NSAlert = NSAlert()
-                            alert.messageText = "New version available!"
+                    DispatchQueue.main.async {
+                        let alert: NSAlert = NSAlert()
+                        alert.alertStyle = NSAlert.Style.informational
+                        if let downloadLink = json?["download_link"], let downloadURL = URL(string: downloadLink), _self.appVersion < latestVersionNumber {
+                            alert.messageText     = "New version available!"
                             alert.informativeText = "Do you want to download version \"\(latestVersionNumber)\" now?"
                             alert.addButton(withTitle: "Download")
                             alert.addButton(withTitle: "Later")
-                            alert.alertStyle = NSAlert.Style.informational
-                            
                             alert.beginSheetModal(for: _self.view.window!, completionHandler: { modalResponse in
                                 if modalResponse == .alertFirstButtonReturn {
-                                    NSWorkspace.shared.open(URL(string: json!["download_link"]!)!)
+                                    NSWorkspace.shared.open(downloadURL)
                                 }
                             })
+                        }else {
+                            alert.messageText     = "Installed version: \(_self.appVersion)"
+                            alert.informativeText = "Already on latest version"
+                            alert.addButton(withTitle: "Ok")
+                            alert.beginSheetModal(for: _self.view.window!, completionHandler: nil)
                         }
-                    }else {
-                        buttonTitle = "Already on latest version"
                     }
                 }
             }
