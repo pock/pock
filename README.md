@@ -23,7 +23,7 @@ ___
 ### TODO:
 ___
 * [  √  ] Add icon's notification badge (it just works)
-* [WIP] Put "Launch at login" option in preference panel;
+* [  √  ] Put "Launch at login" option in preference panel;
 * [???] Custom hotkey for showing the dock
 
 ### Thank you!
