@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		009B0E12E317757741CE38C8 /* Pods_Pock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 863BE70CFBAC31BDBF35B1FD /* Pods_Pock.framework */; };
+		3413964C217659C500DCD2B0 /* PockController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3413964B217659C500DCD2B0 /* PockController.swift */; };
 		3427C72D1F65746000FE39FF /* PockItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3427C72C1F65746000FE39FF /* PockItemView.swift */; };
 		342D3CB121110BF70028FC59 /* DFRFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 342D3CB021110BF70028FC59 /* DFRFoundation.framework */; };
 		342D3CB42111998A0028FC59 /* PockDockHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 342D3CB32111998A0028FC59 /* PockDockHelper.m */; };
@@ -24,6 +25,7 @@
 
 /* Begin PBXFileReference section */
 		340C81D51F6538580063BAB0 /* NSTouchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSTouchBar.h; path = Private/NSTouchBar.h; sourceTree = "<group>"; };
+		3413964B217659C500DCD2B0 /* PockController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PockController.swift; sourceTree = "<group>"; };
 		3427C72C1F65746000FE39FF /* PockItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PockItemView.swift; sourceTree = "<group>"; };
 		342D3CB021110BF70028FC59 /* DFRFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DFRFoundation.framework; path = ../../../../../../System/Library/PrivateFrameworks/DFRFoundation.framework; sourceTree = "<group>"; };
 		342D3CB22111998A0028FC59 /* PockDockHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PockDockHelper.h; path = Private/PockDockHelper/PockDockHelper.h; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				348343D91F631B2E00CDA005 /* AppDelegate.swift */,
+				3413964B217659C500DCD2B0 /* PockController.swift */,
 				348343E81F631B6700CDA005 /* PockUtilities.swift */,
 				342D3CB62111ACC30028FC59 /* PockItem.swift */,
 				3427C72C1F65746000FE39FF /* PockItemView.swift */,
@@ -333,6 +336,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				34DC32E61F6DAAC500037E68 /* KeySender.swift in Sources */,
+				3413964C217659C500DCD2B0 /* PockController.swift in Sources */,
 				3483BF7621712BA8008570D0 /* Preferences.swift in Sources */,
 				3427C72D1F65746000FE39FF /* PockItemView.swift in Sources */,
 				348343E91F631B6700CDA005 /* PockUtilities.swift in Sources */,

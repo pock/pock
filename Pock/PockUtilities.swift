@@ -8,7 +8,6 @@
 
 import Foundation
 import AppKit
-import MediaPlayer
 import SnapKit
 
 public class PockUtilities {
