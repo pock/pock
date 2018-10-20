@@ -8,6 +8,8 @@
 
 import Cocoa
 import Preferences
+import Fabric
+import Crashlytics
 
 @available(OSX 10.12.2, *)
 @NSApplicationMain
@@ -22,6 +24,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     /// Finish launching
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
+        
+        /// Initialize Crashlytics
+        UserDefaults.standard.register(defaults: ["NSApplicationCrashOnExceptions": true])
+        Fabric.with([Crashlytics.self])
         
         /// Check for accessibility (needed for badges to work)
         self.checkAccessibility()

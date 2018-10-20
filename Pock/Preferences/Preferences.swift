@@ -46,5 +46,3 @@ extension Defaults.Keys {
     static let launchAtLogin                    = Defaults.Key<Bool>("launchAtLogin", default: false)
     static let notificationBadgeRefreshInterval = Defaults.Key<NotificationBadgeRefreshRateKeys>("notificationBadgeRefreshInterval", default: .tenSeconds)
 }
-
-
