@@ -20,7 +20,7 @@ final class GeneralPreferencePane: NSViewController, Preferenceable {
     @IBOutlet weak var checkForUpdatesButton:              NSButton!
     
     /// Core
-    private var appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String ?? "Unknown"
+    private static let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String ?? "Unknown"
     
     /// Preferenceable
     let toolbarItemTitle: String   = "General"
@@ -38,7 +38,7 @@ final class GeneralPreferencePane: NSViewController, Preferenceable {
     }
     
     private func loadVersionNumber() {
-        self.versionLabel.stringValue = appVersion
+        self.versionLabel.stringValue = GeneralPreferencePane.appVersion
     }
     
     private func populatePopUpButton() {
@@ -65,43 +65,52 @@ final class GeneralPreferencePane: NSViewController, Preferenceable {
         self.checkForUpdatesButton.isEnabled = false
         self.checkForUpdatesButton.title     = "Checking..."
         
-        let latestVersionURL: URL = URL(string: "http://pock.pigigaldi.com/api/latestRelease.json")!
-        
-        URLSession.shared.dataTask(with: latestVersionURL, completionHandler: { [weak self] data, response, error in
+        GeneralPreferencePane.hasLatestVersion(completion: { [weak self] latestVersion, latestVersionDownloadURL in
             guard let _self = self else { return }
-            
-            defer {
-                DispatchQueue.main.async { [weak self] in
-                    self?.checkForUpdatesButton.isEnabled = true
-                    self?.checkForUpdatesButton.title     = "Check for updates"
-                }
-            }
-            
-            if let json = try? JSONSerialization.jsonObject(with: data!, options: []) as? [String: String] {
-                if let latestVersionNumber = json?["version_number"] {
-                    DispatchQueue.main.async {
-                        let alert: NSAlert = NSAlert()
-                        alert.alertStyle = NSAlert.Style.informational
-                        if let downloadLink = json?["download_link"], let downloadURL = URL(string: downloadLink), _self.appVersion < latestVersionNumber {
-                            alert.messageText     = "New version available!"
-                            alert.informativeText = "Do you want to download version \"\(latestVersionNumber)\" now?"
-                            alert.addButton(withTitle: "Download")
-                            alert.addButton(withTitle: "Later")
-                            alert.beginSheetModal(for: _self.view.window!, completionHandler: { modalResponse in
-                                if modalResponse == .alertFirstButtonReturn {
-                                    NSWorkspace.shared.open(downloadURL)
-                                }
-                            })
-                        }else {
-                            alert.messageText     = "Installed version: \(_self.appVersion)"
-                            alert.informativeText = "Already on latest version"
-                            alert.addButton(withTitle: "Ok")
-                            alert.beginSheetModal(for: _self.view.window!, completionHandler: nil)
+            DispatchQueue.main.async {
+                
+                let alert: NSAlert = NSAlert()
+                alert.alertStyle = NSAlert.Style.informational
+                if let latestVersion = latestVersion, let latestVersionDownloadURL = latestVersionDownloadURL {
+                    alert.messageText     = "New version available!"
+                    alert.informativeText = "Do you want to download version \"\(latestVersion)\" now?"
+                    alert.addButton(withTitle: "Download")
+                    alert.addButton(withTitle: "Later")
+                    alert.beginSheetModal(for: _self.view.window!, completionHandler: { modalResponse in
+                        if modalResponse == .alertFirstButtonReturn {
+                            NSWorkspace.shared.open(latestVersionDownloadURL)
                         }
-                    }
+                    })
+                }else {
+                    alert.messageText     = "Installed version: \(GeneralPreferencePane.appVersion)"
+                    alert.informativeText = "Already on latest version"
+                    alert.addButton(withTitle: "Ok")
+                    alert.beginSheetModal(for: _self.view.window!, completionHandler: nil)
                 }
+                
+                self?.checkForUpdatesButton.isEnabled = true
+                self?.checkForUpdatesButton.title     = "Check for updates"
+                
             }
-            
+        })
+        
+    }
+}
+
+extension GeneralPreferencePane {
+    
+    class func hasLatestVersion(completion: @escaping (String?, URL?) -> Void) {
+        let latestVersionURL: URL = URL(string: "http://pock.pigigaldi.com/api/latestRelease.json")!
+        URLSession.shared.dataTask(with: latestVersionURL, completionHandler: { data, response, error in
+            guard let json                = try? JSONSerialization.jsonObject(with: data!, options: []) as? [String: String],
+                  let latestVersionNumber = json?["version_number"], GeneralPreferencePane.appVersion < latestVersionNumber,
+                  let downloadLink        = json?["download_link"],
+                  let downloadURL         = URL(string: downloadLink) else {
+                    completion(nil, nil)
+                    return
+            }
+            completion(latestVersionNumber, downloadURL)
         }).resume()
     }
+    
 }
