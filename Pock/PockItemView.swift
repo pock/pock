@@ -12,35 +12,33 @@ import SnapKit
 @available(OSX 10.12.2, *)
 public class PockItemView: NSView {
     
+    /// Core
+    private static let kBounceAnimationKey: String = "kBounceAnimationKey"
+    
     /// UI
     private var iconView: NSImageView? = nil
     private var dotView: NSView!
     private var dotSize: CGFloat = 2.5
     private var badgeView: NSTextField!
     private var badgeSize: CGFloat = 10
+    private var shouldAnimate: Bool = false
     
     /// Data
     public var dockItem: PockItem? {
         didSet {
-            
             /// Set icon
             self.initIconView()
-            
             /// Update is running UI
             self.reloadUI()
-            
         }
     }
     
     /// Reload
     public func reloadUI() {
-        
         /// Update running dot
         self.updateRunningDot()
-        
         /// Update badge
         self.updateBadge()
-        
     }
     
     override public init(frame frameRect: NSRect) {
@@ -53,8 +51,20 @@ public class PockItemView: NSView {
     
     private func initIconView() {
     
+        /// Check for icon
+        guard let icon = self.dockItem?.icon else {
+            self.iconView?.image = nil
+            return
+        }
+        
+        /// Check if iconView is initialized
+        if let iconView = self.iconView {
+            iconView.image = icon
+            return
+        }
+        
         /// Init icon view
-        self.iconView = NSImageView(image: self.dockItem?.icon ?? NSImage(size: .zero))
+        self.iconView = NSImageView(image: icon)
         self.addSubview(self.iconView!)
         self.iconView?.snp.remakeConstraints({ make in
             make.size.width.equalTo(25)
@@ -143,4 +153,29 @@ public class PockItemView: NSView {
         
     }
     
+}
+
+@available(OSX 10.12.2, *)
+extension PockItemView: CAAnimationDelegate {
+    func startBounceAnimation() {
+        self.shouldAnimate = true
+        self.loadBounceAnimation()
+    }
+    func loadBounceAnimation() {
+        let bounce                   = CABasicAnimation(keyPath: "position.y")
+        bounce.delegate              = self
+        bounce.fromValue             = (self.iconView?.layer?.position.y ?? 0) + 3
+        bounce.toValue               = (bounce.fromValue as? Float ?? 0) + 6
+        bounce.duration              = 0.3
+        bounce.autoreverses          = true
+        self.iconView?.layer?.add(bounce, forKey: PockItemView.kBounceAnimationKey)
+    }
+    func stopBounceAnimation() {
+        self.shouldAnimate = false
+    }
+    private func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        if self.shouldAnimate {
+            self.loadBounceAnimation()
+        }
+    }
 }

@@ -12,7 +12,7 @@ public class PockItem: NSObject {
     var label: String!, bundleIdentifier: String!, icon: NSImage!
     var isRunning: Bool {
         get {
-            return PockUtilities.runningAppsIdentifiers.contains(self.bundleIdentifier)
+            return PockUtilities.runningAppsIdentifiers.contains(where: { $0 == bundleIdentifier })
         }
     }
     var isFrontmostApplication: Bool {

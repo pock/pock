@@ -71,13 +71,18 @@ final class PockController: NSObject {
         
         /// Register for notification
         NSWorkspace.shared.notificationCenter.addObserver(self,
-                                                          selector: #selector(self.loadData),
-                                                          name: NSWorkspace.didActivateApplicationNotification,
+                                                          selector: #selector(self.startLaunchAnimation(notification:)),
+                                                          name: NSWorkspace.willLaunchApplicationNotification,
                                                           object: nil)
         
         NSWorkspace.shared.notificationCenter.addObserver(self,
-                                                          selector: #selector(self.reloadBadgesAndRunningDot),
-                                                          name: NSWindow.didUpdateNotification,
+                                                          selector: #selector(self.stopLaunchAnimation(notification:)),
+                                                          name: NSWorkspace.didLaunchApplicationNotification,
+                                                          object: nil)
+        
+        NSWorkspace.shared.notificationCenter.addObserver(self,
+                                                          selector: #selector(self.loadData),
+                                                          name: NSWorkspace.didActivateApplicationNotification,
                                                           object: nil)
         
         NSWorkspace.shared.notificationCenter.addObserver(self,
@@ -102,8 +107,8 @@ final class PockController: NSObject {
         self.dockItems += PockUtilities.getDockPersistentOthersList()
         
         /// Display icons
-        executeWithDelay(delay: 0.1, closure: {
-            self.displayIconsInScrollView()
+        executeWithDelay(delay: 0.001, closure: { [weak self] in
+            self?.displayIconsInScrollView()
         })
         
     }
@@ -132,6 +137,20 @@ final class PockController: NSObject {
         
     }
     
+    /// Start launch animation
+    @objc private func startLaunchAnimation(notification: NSNotification) {
+        guard let bundleIdentifier = notification.userInfo?["NSApplicationBundleIdentifier"] as? String else { return }
+        let iconView = self.dockContentView.subviews.first(where: { ($0 as? PockItemView)?.dockItem?.bundleIdentifier == bundleIdentifier }) as? PockItemView
+        iconView?.startBounceAnimation()
+    }
+    
+    /// Stop launch animation
+    @objc private func stopLaunchAnimation(notification: NSNotification) {
+        guard let bundleIdentifier = notification.userInfo?["NSApplicationBundleIdentifier"] as? String else { return }
+        let iconView = self.dockContentView.subviews.first(where: { ($0 as? PockItemView)?.dockItem?.bundleIdentifier == bundleIdentifier }) as? PockItemView
+        iconView?.stopBounceAnimation()
+    }
+    
     /// Reload badges and running dot
     @objc private func reloadBadgesAndRunningDot() {
         
@@ -151,13 +170,20 @@ final class PockController: NSObject {
     /// Display icons in scroll view
     private func displayIconsInScrollView() {
         
-        /// Remove all olds item views
-        self.dockContentView.subviews.forEach({ subview in
-            subview.removeFromSuperview()
-        })
+        /// Mark all icons as "to be updated"
+        for iconView in self.dockContentView.subviews {
+            guard let iconView = iconView as? PockItemView else { continue }
+            iconView.dockItem = nil
+        }
         
         /// Iterate on dockItems
-        self.dockItems.enumerated().forEach({ index, dockItem in
+        for (index, dockItem) in self.dockItems.enumerated() {
+            
+            /// Check for icon view
+            if index < self.dockContentView.subviews.count, let itemView = self.dockContentView.subviews[index] as? PockItemView {
+                itemView.dockItem = dockItem
+                continue
+            }
             
             /// Get icon view
             let itemView = PockItemView()
@@ -169,7 +195,13 @@ final class PockController: NSObject {
             /// Change x position
             itemView.frame.origin.x = 50 * CGFloat(index)
             
-        })
+        }
+        
+        /// Remove un-needed icons
+        for iconView in self.dockContentView.subviews {
+            guard let iconView = iconView as? PockItemView, iconView.dockItem == nil else { continue }
+            iconView.removeFromSuperview()
+        }
         
         /// Update dockContentView content size
         self.dockContentView.frame.size.width = 50 * CGFloat(self.dockItems.count)
