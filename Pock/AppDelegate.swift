@@ -19,18 +19,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     fileprivate let pockStatusbarIcon = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
     
     /// Preferences
-    fileprivate let preferencesWindowController: PreferencesWindowController = PreferencesWindowController(viewControllers: [GeneralPreferencePane()])
+    fileprivate let generalPreferencePane: GeneralPreferencePane = GeneralPreferencePane()
+    fileprivate var preferencesWindowController: PreferencesWindowController!
     
     /// Finish launching
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
         
-        /// Initialize Crashlytics
-        UserDefaults.standard.register(defaults: ["NSApplicationCrashOnExceptions": true])
-        Fabric.with([Crashlytics.self])
+        /// Initialize Crashlytics only in release modi
+        #if PROD
+            UserDefaults.standard.register(defaults: ["NSApplicationCrashOnExceptions": true])
+            Fabric.with([Crashlytics.self])
+        #endif
         
         /// Check for accessibility (needed for badges to work)
         self.checkAccessibility()
+        
+        /// Preferences
+        self.preferencesWindowController = PreferencesWindowController(viewControllers: [generalPreferencePane])
         
         /// Check for status bar icon
         if let button = pockStatusbarIcon.button {
@@ -44,6 +50,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             pockStatusbarIcon.menu = menu
         }
         
+        /// Check for updates
+        self.checkForUpdates()
+        
         /// Set Pock inactive
         NSApp.deactivate()
         
@@ -55,6 +64,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     /// Will terminate
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
+    }
+    
+    /// Check for updates
+    private func checkForUpdates() {
+        GeneralPreferencePane.hasLatestVersion(completion: { [unowned self] versionNumber, downloadURL in
+            guard let versionNumber = versionNumber, let downloadURL = downloadURL else { return }
+            self.generalPreferencePane.newVersionAvailable = (versionNumber, downloadURL)
+            DispatchQueue.main.async { [unowned self] in
+                self.openPreferences()
+            }
+        })
     }
     
     /// Check for accessibility

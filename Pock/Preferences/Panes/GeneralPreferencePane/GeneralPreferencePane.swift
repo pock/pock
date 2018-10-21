@@ -26,6 +26,9 @@ final class GeneralPreferencePane: NSViewController, Preferenceable {
     let toolbarItemTitle: String   = "General"
     let toolbarItemIcon:  NSImage  = NSImage(named: NSImage.Name("pock-icon"))!
     
+    /// Updates
+    var newVersionAvailable: (String, URL)?
+    
     override var nibName: NSNib.Name? {
         return NSNib.Name(rawValue: "GeneralPreferencePane")
     }
@@ -35,6 +38,10 @@ final class GeneralPreferencePane: NSViewController, Preferenceable {
         self.loadVersionNumber()
         self.populatePopUpButton()
         self.setupLaunchAtLoginCheckbox()
+        if let newVersionNumber = self.newVersionAvailable?.0, let newVersionDownloadURL = self.newVersionAvailable?.1 {
+            self.showNewVersionAlert(versionNumber: newVersionNumber, downloadURL: newVersionDownloadURL)
+            self.newVersionAvailable = nil
+        }
     }
     
     private func loadVersionNumber() {
@@ -66,35 +73,43 @@ final class GeneralPreferencePane: NSViewController, Preferenceable {
         self.checkForUpdatesButton.title     = "Checking..."
         
         GeneralPreferencePane.hasLatestVersion(completion: { [weak self] latestVersion, latestVersionDownloadURL in
-            guard let _self = self else { return }
-            DispatchQueue.main.async {
-                
-                let alert: NSAlert = NSAlert()
-                alert.alertStyle = NSAlert.Style.informational
-                if let latestVersion = latestVersion, let latestVersionDownloadURL = latestVersionDownloadURL {
-                    alert.messageText     = "New version available!"
-                    alert.informativeText = "Do you want to download version \"\(latestVersion)\" now?"
-                    alert.addButton(withTitle: "Download")
-                    alert.addButton(withTitle: "Later")
-                    alert.beginSheetModal(for: _self.view.window!, completionHandler: { modalResponse in
-                        if modalResponse == .alertFirstButtonReturn {
-                            NSWorkspace.shared.open(latestVersionDownloadURL)
-                        }
-                    })
-                }else {
-                    alert.messageText     = "Installed version: \(GeneralPreferencePane.appVersion)"
-                    alert.informativeText = "Already on latest version"
-                    alert.addButton(withTitle: "Ok")
-                    alert.beginSheetModal(for: _self.view.window!, completionHandler: nil)
-                }
-                
+            if let latestVersion = latestVersion, let latestVersionDownloadURL = latestVersionDownloadURL {
+                self?.showNewVersionAlert(versionNumber: latestVersion, downloadURL: latestVersionDownloadURL)
+            }else {
+                self?.showAlert(title: "Installed version: \(GeneralPreferencePane.appVersion)", message: "Already on latest version")
+            }
+            DispatchQueue.main.async { [weak self] in
                 self?.checkForUpdatesButton.isEnabled = true
                 self?.checkForUpdatesButton.title     = "Check for updates"
-                
             }
         })
-        
     }
+}
+
+extension GeneralPreferencePane {
+    
+    func showNewVersionAlert(versionNumber: String, downloadURL: URL) {
+        self.showAlert(title:      "New version available!",
+                       message:    "Do you want to download version \"\(versionNumber)\" now?",
+                       buttons:    ["Download", "Later"],
+                       completion: { modalResponse in if modalResponse == .alertFirstButtonReturn { NSWorkspace.shared.open(downloadURL) }
+        })
+    }
+    
+    private func showAlert(title: String, message: String, buttons: [String] = [], completion: ((NSApplication.ModalResponse) -> Void)? = nil) {
+        DispatchQueue.main.async { [weak self] in
+            guard let _self = self else { return }
+            let alert             = NSAlert()
+            alert.alertStyle      = NSAlert.Style.informational
+            alert.messageText     = title
+            alert.informativeText = message
+            for buttonTitle in buttons {
+                alert.addButton(withTitle: buttonTitle)
+            }
+            alert.beginSheetModal(for: _self.view.window!, completionHandler: completion)
+        }
+    }
+    
 }
 
 extension GeneralPreferencePane {
