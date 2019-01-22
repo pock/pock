@@ -16,7 +16,6 @@ import SnapKit
 extension NSTouchBarItem.Identifier {
     static let pockSystemIcon = NSTouchBarItem.Identifier("com.pigigaldi.pock.pockSystemIcon")
     static let dockScrollableView = NSTouchBarItem.Identifier("com.pigigaldi.pock.dockScrollableView")
-    static let escButton = NSTouchBarItem.Identifier("com.pigigaldi.pock.escButton")
 }
 
 /// Known identifiers
@@ -216,11 +215,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
     }
     
-    @objc fileprivate func escButtonSender() {
-        let escSender = ESCKeySender()
-        escSender.send()
-    }
-    
     @objc fileprivate func addPockItemToControlStrip() {
         self.presentPock()
     }
@@ -234,7 +228,7 @@ extension AppDelegate: NSTouchBarDelegate {
         guard self.pockTouchBar == nil else { return self.pockTouchBar }
         let touchBar = NSTouchBar()
         touchBar.delegate = self
-        touchBar.defaultItemIdentifiers = [.escButton, .dockScrollableView]
+        touchBar.defaultItemIdentifiers = [.dockScrollableView]
         self.pockTouchBar = touchBar
         return self.pockTouchBar
     }
@@ -242,13 +236,6 @@ extension AppDelegate: NSTouchBarDelegate {
     func touchBar(_ touchBar: NSTouchBar, makeItemForIdentifier identifier: NSTouchBarItem.Identifier) -> NSTouchBarItem? {
         
         switch identifier {
-        case NSTouchBarItem.Identifier.escButton:
-            
-            /// Return esc button item
-            let item = NSCustomTouchBarItem(identifier: identifier)
-            item.view = NSButton(title: "esc", target: self, action: #selector(self.escButtonSender))
-            return item
-            
         case NSTouchBarItem.Identifier.dockScrollableView:
             
             /// Create custom item
