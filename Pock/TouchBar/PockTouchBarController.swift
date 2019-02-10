@@ -21,14 +21,6 @@ class PockTouchBarController: NSObject {
     
     private func registerForNotifications() {
         NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(reloadPock), name: .shouldReloadPock, object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(willEnterCustomization(_:)),
-                                               name: NSNotification.Name("NSTouchBarWillEnterCustomization"),
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(didExitCustomization(_:)),
-                                               name: NSNotification.Name("NSTouchBarDidExitCustomization"),
-                                               object: nil)
     }
     
     @objc func reloadPock() {
@@ -71,7 +63,28 @@ extension PockTouchBarController {
     
     func openCustomization() {
         NSApp.touchBar = self.touchBar
+        self.addCustomizationObservers()
         self.perform(#selector(delayedOpenCustomization), with: nil, afterDelay: 0)
+    }
+    
+    private func addCustomizationObservers() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(willEnterCustomization(_:)),
+                                               name: NSNotification.Name("NSTouchBarWillEnterCustomization"),
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didExitCustomization(_:)),
+                                               name: NSNotification.Name("NSTouchBarDidExitCustomization"),
+                                               object: nil)
+    }
+    
+    private func removeCustomizationObservers() {
+        NotificationCenter.default.removeObserver(self,
+                                                  name: NSNotification.Name("NSTouchBarWillEnterCustomization"),
+                                                  object: nil)
+        NotificationCenter.default.removeObserver(self,
+                                                  name: NSNotification.Name("NSTouchBarDidExitCustomization"),
+                                                  object: nil)
     }
     
     @objc private func delayedOpenCustomization() {
@@ -84,6 +97,7 @@ extension PockTouchBarController {
     
     @objc private func didExitCustomization(_ sender: Any?) {
         NSApp.touchBar = nil
+        self.removeCustomizationObservers()
         self.present()
     }
     
