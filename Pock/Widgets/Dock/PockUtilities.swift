@@ -12,6 +12,9 @@ import SnapKit
 
 public class PockUtilities {
     
+    /// Known identifiers
+    private static let kFinderIdentifier: String = "com.apple.finder"
+    
     /// Persistent apps identifiers
     private static var persistentAppsIdentifiers: [String] = []
     
@@ -269,6 +272,14 @@ public class PockUtilities {
         /// Return status
         completion(returnable)
         
+    }
+    
+    /// Get NSRunningApplication from NSNotification object
+    public class func getRunningApplication(from notification: NSNotification?) -> NSRunningApplication? {
+        if let runningApp = notification?.userInfo?[NSWorkspace.applicationUserInfoKey] as? NSRunningApplication {
+            return runningApp
+        }
+        return nil
     }
     
 }

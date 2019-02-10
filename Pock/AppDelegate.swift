@@ -11,9 +11,11 @@ import Preferences
 import Fabric
 import Crashlytics
 
-@available(OSX 10.12.2, *)
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
+    
+    /// IBOutlets
+    @IBOutlet weak var touchBarController: PockTouchBarController!
     
     /// Status bar Pock icon
     fileprivate let pockStatusbarIcon = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
@@ -25,6 +27,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     /// Finish launching
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
+        NSApp.isAutomaticCustomizeTouchBarMenuItemEnabled = true
         
         /// Initialize Crashlytics only in release modi
         #if PROD
@@ -44,7 +47,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             button.image?.isTemplate = true
             /// Create menu
             let menu = NSMenu(title: "Menu")
-            menu.addItem(withTitle: "Preferences", action: #selector(openPreferences), keyEquivalent: "P")
+            menu.addItem(withTitle: "Preferences", action: #selector(openPreferences), keyEquivalent: "")
             menu.addItem(NSMenuItem.separator())
             menu.addItem(withTitle: "Quit Pock.", action: #selector(NSApp.terminate(_:)), keyEquivalent: "")
             pockStatusbarIcon.menu = menu
@@ -53,11 +56,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         /// Check for updates
         self.checkForUpdates()
         
+        /// Present Pock
+        self.touchBarController.present()
+        
         /// Set Pock inactive
         NSApp.deactivate()
-        
-        /// Load Pock
-        PockController.shared.loadPock()
         
     }
     

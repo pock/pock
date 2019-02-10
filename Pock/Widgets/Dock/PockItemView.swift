@@ -9,19 +9,18 @@
 import Cocoa
 import SnapKit
 
-@available(OSX 10.12.2, *)
 public class PockItemView: NSView {
     
     /// Core
     private static let kBounceAnimationKey: String = "kBounceAnimationKey"
     
     /// UI
+    private var contentView: NSView!
     private var iconView: NSImageView? = nil
     private var dotView: NSView!
     private var dotSize: CGFloat = 2.5
     private var badgeView: NSTextField!
     private var badgeSize: CGFloat = 10
-    private var shouldAnimate: Bool = false
     
     /// Data
     public var dockItem: PockItem? {
@@ -43,6 +42,11 @@ public class PockItemView: NSView {
     
     override public init(frame frameRect: NSRect) {
         super.init(frame: NSRect(origin: .zero, size: NSSize(width: 40, height: 30)))
+        self.contentView = NSView(frame: NSRect(x: 0, y: 0, width: 40, height: 30))
+        self.contentView.layer?.cornerRadius = 3.6
+        self.contentView.layer?.backgroundColor = CGColor.init(red: 255/255, green: 0/255, blue: 0/255, alpha: 1)
+        self.contentView.wantsLayer = true
+        self.addSubview(contentView)
     }
     
     required public init?(coder: NSCoder) {
@@ -65,7 +69,7 @@ public class PockItemView: NSView {
         
         /// Init icon view
         self.iconView = NSImageView(image: icon)
-        self.addSubview(self.iconView!)
+        self.contentView.addSubview(self.iconView!)
         self.iconView?.snp.remakeConstraints({ make in
             make.size.width.equalTo(25)
             make.size.height.equalTo(25)
@@ -86,7 +90,7 @@ public class PockItemView: NSView {
             self.dotView.wantsLayer = true
             self.dotView.layer?.backgroundColor = NSColor.white.cgColor
             self.dotView.layer?.cornerRadius = self.dotSize / 2
-            self.addSubview(self.dotView)
+            self.contentView.addSubview(self.dotView)
             self.dotView.snp.makeConstraints({ make in
                 make.size.width.equalTo(self.dotSize)
                 make.size.height.equalTo(self.dotSize)
@@ -97,15 +101,13 @@ public class PockItemView: NSView {
         
         /// Check if is frontmostApplication
         if self.dockItem?.isFrontmostApplication ?? false {
-            self.wantsLayer = true
-            self.layer?.backgroundColor = NSColor.white.withAlphaComponent(0.6).cgColor
+            self.contentView.wantsLayer = true
+            self.contentView.layer?.cornerRadius = 3.6
+            self.contentView.layer?.backgroundColor = NSColor.white.withAlphaComponent(0.4).cgColor
         }else {
-            self.wantsLayer = false
-            self.layer?.backgroundColor = NSColor.clear.cgColor
+            self.contentView.wantsLayer = false
+            self.contentView.layer?.backgroundColor = NSColor.clear.cgColor
         }
-    
-        /// Set corner radius
-        self.layer?.cornerRadius = 3.6
         
     }
     
@@ -121,7 +123,7 @@ public class PockItemView: NSView {
             self.badgeView.backgroundColor = .red
             self.badgeView.layer?.cornerRadius = self.badgeSize / 2
             self.badgeView.layer?.opacity = 0.9
-            self.addSubview(self.badgeView)
+            self.contentView.addSubview(self.badgeView)
             self.badgeView.snp.makeConstraints({ make in
                 make.size.width.equalTo(self.badgeSize)
                 make.size.height.equalTo(self.badgeSize)
@@ -145,7 +147,7 @@ public class PockItemView: NSView {
         
         /// Check if location is in self
         if self.frame.contains(location) {
-        
+            
             /// Launch application
             PockUtilities.launch(bundleIdentifier: self.dockItem!.bundleIdentifier, completion: { _ in })
         
@@ -155,13 +157,12 @@ public class PockItemView: NSView {
     
 }
 
-@available(OSX 10.12.2, *)
 extension PockItemView: CAAnimationDelegate {
     func startBounceAnimation() {
-        self.shouldAnimate = true
         self.loadBounceAnimation()
     }
     func loadBounceAnimation() {
+        if self.iconView?.layer?.animationKeys()?.contains(PockItemView.kBounceAnimationKey) ?? false { return }
         let bounce                   = CABasicAnimation(keyPath: "position.y")
         bounce.delegate              = self
         bounce.fromValue             = (self.iconView?.layer?.position.y ?? 0) + 3
@@ -171,10 +172,10 @@ extension PockItemView: CAAnimationDelegate {
         self.iconView?.layer?.add(bounce, forKey: PockItemView.kBounceAnimationKey)
     }
     func stopBounceAnimation() {
-        self.shouldAnimate = false
+        self.iconView?.layer?.removeAnimation(forKey: PockItemView.kBounceAnimationKey)
     }
-    private func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-        if self.shouldAnimate {
+    public func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        if flag {
             self.loadBounceAnimation()
         }
     }
