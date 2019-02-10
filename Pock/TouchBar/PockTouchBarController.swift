@@ -41,7 +41,7 @@ class PockTouchBarController: NSObject {
         if #available (macOS 10.14, *) {
             NSTouchBar.presentSystemModalTouchBar(touchBar, placement: placement, systemTrayItemIdentifier: .pockSystemIcon)
         } else {
-            NSTouchBar.presentSystemModalFunctionBar(touchBar, systemTrayItemIdentifier: .pockSystemIcon)
+            NSTouchBar.presentSystemModalFunctionBar(touchBar, placement: placement, systemTrayItemIdentifier: .pockSystemIcon)
         }
     }
     
