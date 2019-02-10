@@ -12,33 +12,43 @@
 		342D3CB121110BF70028FC59 /* DFRFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 342D3CB021110BF70028FC59 /* DFRFoundation.framework */; };
 		342D3CB42111998A0028FC59 /* PockDockHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 342D3CB32111998A0028FC59 /* PockDockHelper.m */; };
 		342D3CB72111ACC30028FC59 /* PockItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D3CB62111ACC30028FC59 /* PockItem.swift */; };
-		342D3CB92111B1940028FC59 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 342D3CB82111B1930028FC59 /* Main.storyboard */; };
 		342D3CBD2111B1AD0028FC59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 342D3CBB2111B1AD0028FC59 /* Assets.xcassets */; };
 		348343DA1F631B2E00CDA005 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348343D91F631B2E00CDA005 /* AppDelegate.swift */; };
 		348343E91F631B6700CDA005 /* PockUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348343E81F631B6700CDA005 /* PockUtilities.swift */; };
 		3483BF7621712BA8008570D0 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3483BF7521712BA8008570D0 /* Preferences.swift */; };
 		3494645A21713821000480C5 /* GeneralPreferencePane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3494645821713821000480C5 /* GeneralPreferencePane.xib */; };
 		3494645C2171383A000480C5 /* GeneralPreferencePane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3494645B2171383A000480C5 /* GeneralPreferencePane.swift */; };
+		349557E6217CEFDB000DEB55 /* EscWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349557E5217CEFDB000DEB55 /* EscWidget.swift */; };
+		349557E9217CF187000DEB55 /* PockWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349557E8217CF187000DEB55 /* PockWidget.swift */; };
+		349557EB217CF5A3000DEB55 /* PockMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349557EA217CF5A3000DEB55 /* PockMainController.swift */; };
+		349557ED217CF627000DEB55 /* PockTouchBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349557EC217CF627000DEB55 /* PockTouchBarController.swift */; };
+		349557F0217CFCC5000DEB55 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 349557EF217CFCC5000DEB55 /* MainWindow.xib */; };
+		349557F4217CFEB7000DEB55 /* DockWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349557F3217CFEB7000DEB55 /* DockWidget.swift */; };
 		34DC32E61F6DAAC500037E68 /* KeySender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34DC32E51F6DAAC500037E68 /* KeySender.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		340C81D51F6538580063BAB0 /* NSTouchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSTouchBar.h; path = Private/NSTouchBar.h; sourceTree = "<group>"; };
+		340C81D51F6538580063BAB0 /* NSTouchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSTouchBar.h; sourceTree = "<group>"; };
 		3427C72C1F65746000FE39FF /* PockItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PockItemView.swift; sourceTree = "<group>"; };
 		342D3CB021110BF70028FC59 /* DFRFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DFRFoundation.framework; path = ../../../../../../System/Library/PrivateFrameworks/DFRFoundation.framework; sourceTree = "<group>"; };
-		342D3CB22111998A0028FC59 /* PockDockHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PockDockHelper.h; path = Private/PockDockHelper/PockDockHelper.h; sourceTree = "<group>"; };
-		342D3CB32111998A0028FC59 /* PockDockHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PockDockHelper.m; path = Private/PockDockHelper/PockDockHelper.m; sourceTree = "<group>"; };
+		342D3CB22111998A0028FC59 /* PockDockHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PockDockHelper.h; sourceTree = "<group>"; };
+		342D3CB32111998A0028FC59 /* PockDockHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PockDockHelper.m; sourceTree = "<group>"; };
 		342D3CB62111ACC30028FC59 /* PockItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PockItem.swift; sourceTree = "<group>"; };
-		342D3CB82111B1930028FC59 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Storyboard/Main.storyboard; sourceTree = "<group>"; };
-		342D3CBA2111B1AD0028FC59 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Various/Info.plist; sourceTree = "<group>"; };
-		342D3CBB2111B1AD0028FC59 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Various/Assets.xcassets; sourceTree = "<group>"; };
-		342D3CBE2111B1DA0028FC59 /* Pock-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Pock-Bridging-Header.h"; path = "Private/Pock-Bridging-Header.h"; sourceTree = "<group>"; };
+		342D3CBA2111B1AD0028FC59 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		342D3CBB2111B1AD0028FC59 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		342D3CBE2111B1DA0028FC59 /* Pock-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Pock-Bridging-Header.h"; sourceTree = "<group>"; };
 		348343D61F631B2E00CDA005 /* Pock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		348343D91F631B2E00CDA005 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		348343E81F631B6700CDA005 /* PockUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PockUtilities.swift; sourceTree = "<group>"; };
 		3483BF7521712BA8008570D0 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		3494645821713821000480C5 /* GeneralPreferencePane.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeneralPreferencePane.xib; sourceTree = "<group>"; };
 		3494645B2171383A000480C5 /* GeneralPreferencePane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPreferencePane.swift; sourceTree = "<group>"; };
+		349557E5217CEFDB000DEB55 /* EscWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EscWidget.swift; sourceTree = "<group>"; };
+		349557E8217CF187000DEB55 /* PockWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PockWidget.swift; sourceTree = "<group>"; };
+		349557EA217CF5A3000DEB55 /* PockMainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PockMainController.swift; sourceTree = "<group>"; };
+		349557EC217CF627000DEB55 /* PockTouchBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PockTouchBarController.swift; sourceTree = "<group>"; };
+		349557EF217CFCC5000DEB55 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		349557F3217CFEB7000DEB55 /* DockWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockWidget.swift; sourceTree = "<group>"; };
 		34DC32E51F6DAAC500037E68 /* KeySender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeySender.swift; sourceTree = "<group>"; };
 		3BA42833BC69C895EB31DF93 /* Pods-Pock.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pock.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pock/Pods-Pock.debug.xcconfig"; sourceTree = "<group>"; };
 		716D62071D19174E56D6E33D /* Pods-Pock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pock.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pock/Pods-Pock.release.xcconfig"; sourceTree = "<group>"; };
@@ -73,15 +83,15 @@
 				342D3CBB2111B1AD0028FC59 /* Assets.xcassets */,
 				342D3CBA2111B1AD0028FC59 /* Info.plist */,
 			);
-			name = Various;
+			path = Various;
 			sourceTree = "<group>";
 		};
-		340C81B31F6528860063BAB0 /* Storyboard */ = {
+		340C81B31F6528860063BAB0 /* Interfaces UI */ = {
 			isa = PBXGroup;
 			children = (
-				342D3CB82111B1930028FC59 /* Main.storyboard */,
+				349557EF217CFCC5000DEB55 /* MainWindow.xib */,
 			);
-			name = Storyboard;
+			path = "Interfaces UI";
 			sourceTree = "<group>";
 		};
 		340C81D61F6538B40063BAB0 /* Private */ = {
@@ -91,7 +101,7 @@
 				340C81D51F6538580063BAB0 /* NSTouchBar.h */,
 				342D3CBE2111B1DA0028FC59 /* Pock-Bridging-Header.h */,
 			);
-			name = Private;
+			path = Private;
 			sourceTree = "<group>";
 		};
 		342D3CB52111998E0028FC59 /* PockDockHelper */ = {
@@ -100,7 +110,7 @@
 				342D3CB22111998A0028FC59 /* PockDockHelper.h */,
 				342D3CB32111998A0028FC59 /* PockDockHelper.m */,
 			);
-			name = PockDockHelper;
+			path = PockDockHelper;
 			sourceTree = "<group>";
 		};
 		348343CD1F631B2E00CDA005 = {
@@ -125,11 +135,9 @@
 			isa = PBXGroup;
 			children = (
 				348343D91F631B2E00CDA005 /* AppDelegate.swift */,
-				348343E81F631B6700CDA005 /* PockUtilities.swift */,
-				342D3CB62111ACC30028FC59 /* PockItem.swift */,
-				3427C72C1F65746000FE39FF /* PockItemView.swift */,
-				34DC32E51F6DAAC500037E68 /* KeySender.swift */,
-				340C81B31F6528860063BAB0 /* Storyboard */,
+				349557EE217CF62C000DEB55 /* TouchBar */,
+				349557E7217CEFE0000DEB55 /* Widgets */,
+				340C81B31F6528860063BAB0 /* Interfaces UI */,
 				3483BF7421712B94008570D0 /* Preferences */,
 				340C81B21F65287E0063BAB0 /* Various */,
 				340C81D61F6538B40063BAB0 /* Private */,
@@ -163,6 +171,53 @@
 			path = GeneralPreferencePane;
 			sourceTree = "<group>";
 		};
+		349557E7217CEFE0000DEB55 /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				349557F2217CFEA3000DEB55 /* Common */,
+				349557F1217CFE9D000DEB55 /* Esc key */,
+				349557F5217CFEBB000DEB55 /* Dock */,
+			);
+			path = Widgets;
+			sourceTree = "<group>";
+		};
+		349557EE217CF62C000DEB55 /* TouchBar */ = {
+			isa = PBXGroup;
+			children = (
+				349557EC217CF627000DEB55 /* PockTouchBarController.swift */,
+				349557EA217CF5A3000DEB55 /* PockMainController.swift */,
+			);
+			path = TouchBar;
+			sourceTree = "<group>";
+		};
+		349557F1217CFE9D000DEB55 /* Esc key */ = {
+			isa = PBXGroup;
+			children = (
+				349557E5217CEFDB000DEB55 /* EscWidget.swift */,
+				34DC32E51F6DAAC500037E68 /* KeySender.swift */,
+			);
+			path = "Esc key";
+			sourceTree = "<group>";
+		};
+		349557F2217CFEA3000DEB55 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				349557E8217CF187000DEB55 /* PockWidget.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		349557F5217CFEBB000DEB55 /* Dock */ = {
+			isa = PBXGroup;
+			children = (
+				349557F3217CFEB7000DEB55 /* DockWidget.swift */,
+				348343E81F631B6700CDA005 /* PockUtilities.swift */,
+				342D3CB62111ACC30028FC59 /* PockItem.swift */,
+				3427C72C1F65746000FE39FF /* PockItemView.swift */,
+			);
+			path = Dock;
+			sourceTree = "<group>";
+		};
 		4ED8D081458713BE440562D3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -185,7 +240,7 @@
 				348343D41F631B2E00CDA005 /* Resources */,
 				9C497126EC20FAC73A4D0299 /* [CP] Embed Pods Frameworks */,
 				34FBB7B721734E8F004D5BC0 /* [LaunchAtLogin] Copy helper */,
-				228FEB2793E23834D37F85CF /* [CP] Copy Pods Resources */,
+				3413964E217B8B6200DCD2B0 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -237,30 +292,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				342D3CB92111B1940028FC59 /* Main.storyboard in Resources */,
 				3494645A21713821000480C5 /* GeneralPreferencePane.xib in Resources */,
 				342D3CBD2111B1AD0028FC59 /* Assets.xcassets in Resources */,
+				349557F0217CFCC5000DEB55 /* MainWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		228FEB2793E23834D37F85CF /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Pock/Pods-Pock-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		2B2556069E62CDAC367ACF33 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -278,6 +318,24 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		3413964E217B8B6200DCD2B0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" ***REMOVED*** f04291cd68b694e07286202380e88c7792220eadb3b7679b1a382fca31a37113\n";
 		};
 		34FBB7B721734E8F004D5BC0 /* [LaunchAtLogin] Copy helper */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -305,7 +363,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Pock/Pods-Pock-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Pock/Pods-Pock-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Defaults/Defaults.framework",
 				"${BUILT_PRODUCTS_DIR}/LaunchAtLogin/LaunchAtLogin.framework",
 				"${BUILT_PRODUCTS_DIR}/Magnet/Magnet.framework",
@@ -322,7 +380,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Pock/Pods-Pock-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Pock/Pods-Pock-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -332,14 +390,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				349557E9217CF187000DEB55 /* PockWidget.swift in Sources */,
 				34DC32E61F6DAAC500037E68 /* KeySender.swift in Sources */,
 				3483BF7621712BA8008570D0 /* Preferences.swift in Sources */,
+				349557F4217CFEB7000DEB55 /* DockWidget.swift in Sources */,
 				3427C72D1F65746000FE39FF /* PockItemView.swift in Sources */,
 				348343E91F631B6700CDA005 /* PockUtilities.swift in Sources */,
+				349557ED217CF627000DEB55 /* PockTouchBarController.swift in Sources */,
 				342D3CB42111998A0028FC59 /* PockDockHelper.m in Sources */,
 				348343DA1F631B2E00CDA005 /* AppDelegate.swift in Sources */,
 				342D3CB72111ACC30028FC59 /* PockItem.swift in Sources */,
+				349557EB217CF5A3000DEB55 /* PockMainController.swift in Sources */,
 				3494645C2171383A000480C5 /* GeneralPreferencePane.swift in Sources */,
+				349557E6217CEFDB000DEB55 /* EscWidget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,6 +524,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 788D9WZ9Z3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -468,7 +532,7 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Pock/Various/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.12.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pigigaldi.pock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -491,10 +555,11 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Pock/Various/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.12.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pigigaldi.pock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = PROD;
 				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/Pock/Private/Pock-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 			};

@@ -1,24 +1,41 @@
 PODS:
-  - Defaults (0.2.2)
+  - Crashlytics (3.10.9):
+    - Fabric (~> 1.7.13)
+  - Defaults (1.0.0)
+  - Fabric (1.7.13)
   - LaunchAtLogin (2.3.0)
   - Magnet (2.3.0)
   - Preferences (0.2.0)
   - SnapKit (4.0.1)
 
 DEPENDENCIES:
+  - Crashlytics
   - Defaults
+  - Fabric
   - LaunchAtLogin
   - Magnet
   - Preferences
   - SnapKit
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Crashlytics
+    - Defaults
+    - Fabric
+    - LaunchAtLogin
+    - Magnet
+    - Preferences
+    - SnapKit
+
 SPEC CHECKSUMS:
-  Defaults: 79e548c40579ef7e225835547acdf1ce7c2e8e55
+  Crashlytics: 55e24fc23989680285a21cb1146578d9d18e432c
+  Defaults: 03670ce02760a4421bd156ebe0f3a8d56c23230b
+  Fabric: 25d0963b691fc97be566392243ff0ecef5a68338
   LaunchAtLogin: 7ca1e1ab83a07ce89443d321eea20451658181d1
   Magnet: 85344b019d023e26062199aeb5b4ad1f8d41c5df
   Preferences: ebc036a176a298cde835155c73251173768a2f8d
   SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
 
-PODFILE CHECKSUM: f422c17e2a5ae06766744f31ed8214384a25de6e
+PODFILE CHECKSUM: 38e2a215b1cf7101ef29df96b885ded4932e7a2d
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.6.0.beta.2

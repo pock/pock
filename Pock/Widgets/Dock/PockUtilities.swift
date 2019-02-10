@@ -8,16 +8,20 @@
 
 import Foundation
 import AppKit
-import MediaPlayer
 import SnapKit
 
 public class PockUtilities {
+    
+    /// Known identifiers
+    private static let kFinderIdentifier: String = "com.apple.finder"
     
     /// Persistent apps identifiers
     private static var persistentAppsIdentifiers: [String] = []
     
     /// Runnings apps identifiers
-    public static var runningAppsIdentifiers: [String] = []
+    public static var runningAppsIdentifiers: [String?] {
+        return NSWorkspace.shared.runningApplications.map({ $0.bundleIdentifier })
+    }
     
     /// Get top most application bundle identifier
     public static var frontmostApplicationIdentifier: String? {
@@ -97,9 +101,6 @@ public class PockUtilities {
     
     /// Returns remaining running apps that ar not present in persistent-apps list in com.apple.dock.plist
     public class func getMissingRunningApps() -> [PockItem] {
-    
-        /// Remove all from running apps identifiers array
-        PockUtilities.runningAppsIdentifiers = []
         
         /// Declare returnable
         var returnable: [PockItem] = []
@@ -112,9 +113,6 @@ public class PockUtilities {
             
             /// Get app identifier
             guard let id = app.bundleIdentifier else { continue }
-            
-            /// Add to static identifiers array
-            PockUtilities.runningAppsIdentifiers.append(id)
             
             /// Create dock item, if already not present
             guard PockUtilities.persistentAppsIdentifiers.contains(id) == false else { continue }
@@ -274,6 +272,14 @@ public class PockUtilities {
         /// Return status
         completion(returnable)
         
+    }
+    
+    /// Get NSRunningApplication from NSNotification object
+    public class func getRunningApplication(from notification: NSNotification?) -> NSRunningApplication? {
+        if let runningApp = notification?.userInfo?[NSWorkspace.applicationUserInfoKey] as? NSRunningApplication {
+            return runningApp
+        }
+        return nil
     }
     
 }
