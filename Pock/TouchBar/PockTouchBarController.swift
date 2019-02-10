@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Defaults
 
 class PockTouchBarController: NSObject {
     
@@ -15,10 +16,25 @@ class PockTouchBarController: NSObject {
     override init() {
         super.init()
         self.showControlStripIcon()
+        self.registerForNotifications()
+    }
+    
+    private func registerForNotifications() {
+        NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(reloadPock), name: .shouldReloadPock, object: nil)
+    }
+    
+    @objc func reloadPock() {
+        if #available (macOS 10.14, *) {
+            NSTouchBar.dismissSystemModalTouchBar(touchBar)
+        } else {
+            NSTouchBar.dismissSystemModalFunctionBar(touchBar)
+        }
+        self.present()
     }
     
     @objc func present() {
-        self.presentWithPlacement(placement: 1)
+        let placement: Int64 = defaults[.hideControlStrip] ? 1 : 0
+        self.presentWithPlacement(placement: placement)
     }
     
     private func presentWithPlacement(placement: Int64) {

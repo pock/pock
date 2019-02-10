@@ -16,6 +16,7 @@ final class GeneralPreferencePane: NSViewController, Preferenceable {
     /// UI
     @IBOutlet weak var versionLabel:                       NSTextField!
     @IBOutlet weak var notificationBadgeRefreshRatePicker: NSPopUpButton!
+    @IBOutlet weak var hideControlStripCheckbox:           NSButton!
     @IBOutlet weak var launchAtLoginCheckbox:              NSButton!
     @IBOutlet weak var checkForUpdatesButton:              NSButton!
     
@@ -65,6 +66,11 @@ final class GeneralPreferencePane: NSViewController, Preferenceable {
     
     @IBAction private func didChangeLaunchAtLoginValue(button: NSButton) {
         LaunchAtLogin.isEnabled = button.state == .on
+    }
+    
+    @IBAction private func didChangeHideControlStripValue(button: NSButton) {
+        defaults[.hideControlStrip] = button.state == .on
+        NSWorkspace.shared.notificationCenter.post(name: .shouldReloadPock, object: nil)
     }
     
     @IBAction private func checkForUpdates(_: NSButton) {

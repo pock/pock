@@ -11,6 +11,7 @@ import Defaults
 
 extension NSNotification.Name {
     static let didChangeNotificationBadgeRefreshRate = NSNotification.Name("didSelectNotificationBadgeRefreshRate")
+    static let shouldReloadPock                      = NSNotification.Name("shouldReloadPock")
 }
 
 enum NotificationBadgeRefreshRateKeys: Double, Codable, CaseIterable {
@@ -45,4 +46,5 @@ enum NotificationBadgeRefreshRateKeys: Double, Codable, CaseIterable {
 extension Defaults.Keys {
     static let launchAtLogin                    = Defaults.Key<Bool>("launchAtLogin", default: false)
     static let notificationBadgeRefreshInterval = Defaults.Key<NotificationBadgeRefreshRateKeys>("notificationBadgeRefreshInterval", default: .tenSeconds)
+    static let hideControlStrip                 = Defaults.Key<Bool>("hideControlStrip", default: false)
 }
