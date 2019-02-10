@@ -21,15 +21,27 @@ class PockTouchBarController: NSObject {
     
     private func registerForNotifications() {
         NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(reloadPock), name: .shouldReloadPock, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(willEnterCustomization(_:)),
+                                               name: NSNotification.Name("NSTouchBarWillEnterCustomization"),
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didExitCustomization(_:)),
+                                               name: NSNotification.Name("NSTouchBarDidExitCustomization"),
+                                               object: nil)
     }
     
     @objc func reloadPock() {
+        self.dismiss()
+        self.present()
+    }
+    
+    @objc func dismiss() {
         if #available (macOS 10.14, *) {
             NSTouchBar.dismissSystemModalTouchBar(touchBar)
         } else {
             NSTouchBar.dismissSystemModalFunctionBar(touchBar)
         }
-        self.present()
     }
     
     @objc func present() {
@@ -51,6 +63,28 @@ class PockTouchBarController: NSObject {
         let item = NSCustomTouchBarItem(identifier: .pockSystemIcon)
         item.view = NSButton(image: #imageLiteral(resourceName: "pock-inner-icon"), target: self, action: #selector(present))
         NSTouchBarItem.addSystemTrayItem(item)
+    }
+    
+}
+
+extension PockTouchBarController {
+    
+    func openCustomization() {
+        NSApp.touchBar = self.touchBar
+        self.perform(#selector(delayedOpenCustomization), with: nil, afterDelay: 0)
+    }
+    
+    @objc private func delayedOpenCustomization() {
+        NSApp.toggleTouchBarCustomizationPalette(self)
+    }
+    
+    @objc private func willEnterCustomization(_ sender: Any?) {
+        self.dismiss()
+    }
+    
+    @objc private func didExitCustomization(_ sender: Any?) {
+        NSApp.touchBar = nil
+        self.present()
     }
     
 }

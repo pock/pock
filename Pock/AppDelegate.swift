@@ -48,6 +48,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             /// Create menu
             let menu = NSMenu(title: "Menu")
             menu.addItem(withTitle: "Preferences", action: #selector(openPreferences), keyEquivalent: "")
+            menu.addItem(withTitle: "Customize", action: #selector(openCustomization), keyEquivalent: "")
             menu.addItem(NSMenuItem.separator())
             menu.addItem(withTitle: "Quit Pock.", action: #selector(NSApp.terminate(_:)), keyEquivalent: "")
             pockStatusbarIcon.menu = menu
@@ -92,6 +93,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     /// Open preferences
     @objc private func openPreferences() {
         preferencesWindowController.showWindow()
+    }
+    
+    @objc private func openCustomization() {
+        touchBarController.openCustomization()
     }
     
 }

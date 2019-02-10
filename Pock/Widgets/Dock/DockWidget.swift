@@ -113,13 +113,10 @@ extension DockWidget {
             /// Check for bouncing animation
             if let runningApplication = PockUtilities.getRunningApplication(from: notification) {
                 if runningApplication.bundleIdentifier == dockItem.bundleIdentifier {
-                    switch (notification?.name) {
-                    case NSWorkspace.willLaunchApplicationNotification:
+                    if notification?.name == NSWorkspace.willLaunchApplicationNotification {
                         itemView.startBounceAnimation()
-                    case NSWorkspace.didActivateApplicationNotification:
+                    }else if notification?.name == NSWorkspace.didActivateApplicationNotification {
                         itemView.stopBounceAnimation()
-                    default:
-                        NSLog("[Pock]: Should not handle this state.")
                     }
                 }
             }
