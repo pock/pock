@@ -9,17 +9,21 @@
 import Foundation
 
 /// Custom identifiers
+extension NSTouchBar.CustomizationIdentifier {
+    static let pockTouchBar = NSTouchBar.CustomizationIdentifier("PockTouchBar")
+}
 extension NSTouchBarItem.Identifier {
     static let pockSystemIcon = NSTouchBarItem.Identifier("Pock")
     static let dockView       = NSTouchBarItem.Identifier("Dock")
     static let escButton      = NSTouchBarItem.Identifier("Esc")
 }
 
-class PockMainController: PockTouchBarController, NSTouchBarDelegate {
+class PockMainController: PockTouchBarController {
     
     private var items: [String: PockWidget] = [:]
     
     override func awakeFromNib() {
+        self.touchBar?.customizationIdentifier              = .pockTouchBar
         self.touchBar?.defaultItemIdentifiers               = [.escButton, .dockView]
         self.touchBar?.customizationAllowedItemIdentifiers  = [.escButton, .dockView]
         

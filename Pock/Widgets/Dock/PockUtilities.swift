@@ -18,6 +18,10 @@ public class PockUtilities {
     /// Persistent apps identifiers
     private static var persistentAppsIdentifiers: [String] = []
     
+    /// Known paths
+    public static let dockPlist = NSHomeDirectory().appending("/Library/Preferences/com.apple.dock.plist")
+    public static let trashPath = NSHomeDirectory().appending("/.Trash")
+    
     /// Runnings apps identifiers
     public static var runningAppsIdentifiers: [String?] {
         return NSWorkspace.shared.runningApplications.map({ $0.bundleIdentifier })
@@ -188,8 +192,8 @@ public class PockUtilities {
         }
         
         /// Add trash icon
-        let trashPath = "file://".appending(NSHomeDirectory().appending("/.Trash"))
-        let trashItem = PockItem(label: "Trash", bundleIdentifier: trashPath, icon: PockUtilities.getIcon(orType: "trash-icon"))
+        let isTrashEmpty = (try? FileManager.default.contentsOfDirectory(atPath: trashPath).isEmpty) ?? true
+        let trashItem    = PockItem(label: "Trash", bundleIdentifier: "file://".appending(trashPath), icon: PockUtilities.getIcon(orType: isTrashEmpty ? "TrashIcon" : "FullTrashIcon"))
         returnable.append(trashItem)
         
         /// Return returnable array.
@@ -229,9 +233,9 @@ public class PockUtilities {
             
                 genericIconPath = "/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/GenericFolderIcon.icns"
             
-            }else if type == "trash-icon" {
+            }else if type == "TrashIcon" || type == "FullTrashIcon" {
             
-                genericIconPath = "/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/TrashIcon.icns"
+                genericIconPath = "/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/\(type!).icns"
             
             }
             

@@ -84,7 +84,19 @@ class DockWidget: PockWidget {
                                                           selector: #selector(self.setupNotificationBadgeRefreshTimer),
                                                           name: .didChangeNotificationBadgeRefreshRate,
                                                           object: nil)
+        
+        try? EonilFSEvents.startWatching(paths: [PockUtilities.dockPlist, PockUtilities.trashPath], for: ObjectIdentifier(self), with: { [weak self] event in
+            print("[Pock]: \(event.path)")
+            DispatchQueue.main.async { [weak self] in
+                self?.displayIconsInDockScrollView(nil)
+            }
+        })
     }
+    
+    override func viewWillDisappear() {
+        EonilFSEvents.stopWatching(for: ObjectIdentifier(self))
+    }
+    
 }
 
 extension DockWidget {
@@ -103,23 +115,19 @@ extension DockWidget {
             let itemView: PockItemView!
             if let cachedItemView = self.itemViews[dockItem.bundleIdentifier] {
                 itemView = cachedItemView
-                itemView.reloadUI()
             }else {
                 itemView = PockItemView(frame: .zero)
-                itemView.dockItem = dockItem
                 self.itemViews[dockItem.bundleIdentifier] = itemView
             }
+            itemView.dockItem = dockItem
         
             /// Check for bouncing animation
             if let runningApplication = PockUtilities.getRunningApplication(from: notification) {
                 if runningApplication.bundleIdentifier == dockItem.bundleIdentifier {
-                    switch (notification?.name) {
-                    case NSWorkspace.willLaunchApplicationNotification:
+                    if notification?.name == NSWorkspace.willLaunchApplicationNotification {
                         itemView.startBounceAnimation()
-                    case NSWorkspace.didActivateApplicationNotification:
+                    }else if notification?.name == NSWorkspace.didActivateApplicationNotification {
                         itemView.stopBounceAnimation()
-                    default:
-                        NSLog("[Pock]: Should not handle this state.")
                     }
                 }
             }
@@ -162,12 +170,12 @@ extension DockWidget {
         /// Invalidate last timer
         self.notificationBadgeRefreshTimer?.invalidate()
         /// Set timer
-        self.notificationBadgeRefreshTimer = Timer.scheduledTimer(withTimeInterval: refreshRate.rawValue, repeats: true, block: {  [unowned self] _ in
+        self.notificationBadgeRefreshTimer = Timer.scheduledTimer(withTimeInterval: refreshRate.rawValue, repeats: true, block: {  [weak self] _ in
             /// Log
-            NSLog("[Pock]: Refreshing notification badge... (rate: %@)", refreshRate.toString())
+            /// NSLog("[Pock]: Refreshing notification badge... (rate: %@)", refreshRate.toString())
             /// Reload badge and running dot
-            DispatchQueue.main.async {
-                self.reloadBadgesAndRunningDot()
+            DispatchQueue.main.async { [weak self] in
+                self?.reloadBadgesAndRunningDot()
             }
         })
     }

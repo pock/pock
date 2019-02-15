@@ -57,6 +57,7 @@ void SafeCFRelease(CFTypeRef cf) {
 
 - (AXUIElementRef)getDockItemWithName:(NSString *)name {
     NSArray *anArray = [NSRunningApplication runningApplicationsWithBundleIdentifier:@"com.apple.dock"];
+    if (anArray.count == 0) return nil;
     AXUIElementRef anAXDockApp = AXUIElementCreateApplication([[anArray objectAtIndex:0] processIdentifier]);
     AXUIElementRef aList = [self copyAXUIElementFrom:anAXDockApp role:kAXListRole atIndex:0];
     if (aList == nil) return nil;
