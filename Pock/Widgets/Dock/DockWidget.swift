@@ -93,7 +93,7 @@ class DockWidget: PockWidget {
         })
     }
     
-    deinit {
+    override func viewWillDisappear() {
         EonilFSEvents.stopWatching(for: ObjectIdentifier(self))
     }
     
