@@ -13,6 +13,7 @@ public class PockItemView: NSView {
     
     /// Core
     private static let kBounceAnimationKey: String = "kBounceAnimationKey"
+    private var isBouncing: Bool = false
     
     /// UI
     private var contentView: NSView!
@@ -148,8 +149,22 @@ public class PockItemView: NSView {
         /// Check if location is in self
         if self.frame.contains(location) {
             
-            /// Launch application
-            PockUtilities.launch(bundleIdentifier: self.dockItem!.bundleIdentifier, completion: { _ in })
+            /// Check if is running
+            if !(self.dockItem?.isFileOrDirectory ?? true) && !(self.dockItem?.isRunning ?? true) {
+                /// Start bouncing
+                self.startBounceAnimation()
+            }else {
+                /// Force stop bouncing
+                self.stopBounceAnimation()
+            }
+            
+            /// Check if is frontmost
+            if self.dockItem?.isFrontmostApplication ?? false {
+                /// TODO: Find a way to minimize other apps from Pock
+            }else {
+                /// Launch application
+                PockUtilities.launch(bundleIdentifier: self.dockItem!.bundleIdentifier, completion: { _ in })
+            }
         
         }
         
@@ -159,10 +174,12 @@ public class PockItemView: NSView {
 
 extension PockItemView: CAAnimationDelegate {
     func startBounceAnimation() {
-        self.loadBounceAnimation()
+        if !isBouncing {
+            self.loadBounceAnimation()
+        }
     }
-    func loadBounceAnimation() {
-        if self.iconView?.layer?.animationKeys()?.contains(PockItemView.kBounceAnimationKey) ?? false { return }
+    private func loadBounceAnimation() {
+        isBouncing                   = true
         let bounce                   = CABasicAnimation(keyPath: "position.y")
         bounce.delegate              = self
         bounce.fromValue             = (self.iconView?.layer?.position.y ?? 0) + 3
@@ -173,6 +190,7 @@ extension PockItemView: CAAnimationDelegate {
     }
     func stopBounceAnimation() {
         self.iconView?.layer?.removeAnimation(forKey: PockItemView.kBounceAnimationKey)
+        self.isBouncing = false
     }
     public func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
         if flag {

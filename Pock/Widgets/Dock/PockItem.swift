@@ -10,6 +10,9 @@ import Foundation
 
 public class PockItem: NSObject {
     var label: String!, bundleIdentifier: String!, icon: NSImage!
+    var isFileOrDirectory: Bool {
+        return bundleIdentifier.contains("file://")
+    }
     var isRunning: Bool {
         get {
             return PockUtilities.runningAppsIdentifiers.contains(where: { $0 == bundleIdentifier })
