@@ -19,6 +19,7 @@ public class PockUtilities {
     private static var persistentAppsIdentifiers: [String] = []
     
     /// Known paths
+    public static let dockPlist = NSHomeDirectory().appending("/Library/Preferences/com.apple.dock.plist")
     public static let trashPath = NSHomeDirectory().appending("/.Trash")
     
     /// Runnings apps identifiers

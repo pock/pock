@@ -25,8 +25,6 @@ public class PockItemView: NSView {
     /// Data
     public var dockItem: PockItem? {
         didSet {
-            /// Set icon
-            self.initIconView()
             /// Update is running UI
             self.reloadUI()
         }
@@ -34,6 +32,8 @@ public class PockItemView: NSView {
     
     /// Reload
     public func reloadUI() {
+        /// Update icon
+        self.initIconView()
         /// Update running dot
         self.updateRunningDot()
         /// Update badge
