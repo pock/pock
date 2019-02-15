@@ -9,7 +9,7 @@
 import Foundation
 import Defaults
 
-class PockTouchBarController: NSObject {
+class PockTouchBarController: NSObject, NSTouchBarDelegate {
     
     @IBOutlet weak var touchBar: NSTouchBar?
     

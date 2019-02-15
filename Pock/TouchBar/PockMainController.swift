@@ -18,7 +18,7 @@ extension NSTouchBarItem.Identifier {
     static let escButton      = NSTouchBarItem.Identifier("Esc")
 }
 
-class PockMainController: PockTouchBarController, NSTouchBarDelegate {
+class PockMainController: PockTouchBarController {
     
     private var items: [String: PockWidget] = [:]
     
