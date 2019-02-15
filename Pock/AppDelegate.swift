@@ -55,7 +55,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         /// Check for updates
-        self.checkForUpdates()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: { [weak self] in
+            self?.checkForUpdates()
+        })
         
         /// Present Pock
         self.touchBarController.present()
@@ -72,11 +74,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     /// Check for updates
     private func checkForUpdates() {
-        GeneralPreferencePane.hasLatestVersion(completion: { [unowned self] versionNumber, downloadURL in
+        GeneralPreferencePane.hasLatestVersion(completion: { [weak self] versionNumber, downloadURL in
             guard let versionNumber = versionNumber, let downloadURL = downloadURL else { return }
-            self.generalPreferencePane.newVersionAvailable = (versionNumber, downloadURL)
-            DispatchQueue.main.async { [unowned self] in
-                self.openPreferences()
+            self?.generalPreferencePane.newVersionAvailable = (versionNumber, downloadURL)
+            DispatchQueue.main.async { [weak self] in
+                self?.openPreferences()
             }
         })
     }

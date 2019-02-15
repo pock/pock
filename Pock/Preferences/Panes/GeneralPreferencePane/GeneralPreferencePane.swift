@@ -119,9 +119,14 @@ extension GeneralPreferencePane {
 }
 
 extension GeneralPreferencePane {
+    #if DEBUG
+    static let latestVersionURLString: String = "http://pock.pigigaldi.com/api/dev/latestRelease.json"
+    #else
+    static let latestVersionURLString: String = "http://pock.pigigaldi.com/api/latestRelease.json"
+    #endif
     
     class func hasLatestVersion(completion: @escaping (String?, URL?) -> Void) {
-        let latestVersionURL: URL = URL(string: "http://pock.pigigaldi.com/api/latestRelease.json")!
+        let latestVersionURL: URL = URL(string: latestVersionURLString)!
         URLSession.shared.dataTask(with: latestVersionURL, completionHandler: { data, response, error in
             guard let json                = try? JSONSerialization.jsonObject(with: data!, options: []) as? [String: String],
                   let latestVersionNumber = json?["version_number"], GeneralPreferencePane.appVersion < latestVersionNumber,
