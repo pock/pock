@@ -10,8 +10,15 @@ import Foundation
 
 public class PockItem: NSObject {
     var label: String!, bundleIdentifier: String!, icon: NSImage!
+    var isLaunchpad: Bool {
+        get {
+            return bundleIdentifier == "com.apple.launchpad.launcher"
+        }
+    }
     var isFileOrDirectory: Bool {
-        return bundleIdentifier.contains("file://")
+        get {
+            return bundleIdentifier.contains("file://")
+        }
     }
     var isRunning: Bool {
         get {
