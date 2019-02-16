@@ -16,6 +16,7 @@ class ControlCenterVolumeDownItem: ControlCenterItem {
     
     override func action() {
         NSSound.decreaseSystemVolume(by: 0.06)
+        NSSound.beep()
         DK_OSDUIHelper.showHUD(type: NSSound.systemVolume() < 0.06 ? .mute : .volume, filled: CUnsignedInt(NSSound.systemVolume() * 16))
     }
 
