@@ -150,7 +150,7 @@ public class PockItemView: NSView {
         if self.frame.contains(location) {
             
             /// Check if is running
-            if !(self.dockItem?.isFileOrDirectory ?? true) && !(self.dockItem?.isRunning ?? true) {
+            if !(self.dockItem?.isLaunchpad ?? true) && !(self.dockItem?.isFileOrDirectory ?? true) && !(self.dockItem?.isRunning ?? true) {
                 /// Start bouncing
                 self.startBounceAnimation()
             }else {
