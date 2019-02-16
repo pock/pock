@@ -16,6 +16,7 @@ extension NSTouchBarItem.Identifier {
     static let pockSystemIcon = NSTouchBarItem.Identifier("Pock")
     static let dockView       = NSTouchBarItem.Identifier("Dock")
     static let escButton      = NSTouchBarItem.Identifier("Esc")
+    static let controlCenter  = NSTouchBarItem.Identifier("ControlCenter")
 }
 
 class PockMainController: PockTouchBarController {
@@ -25,7 +26,7 @@ class PockMainController: PockTouchBarController {
     override func awakeFromNib() {
         self.touchBar?.customizationIdentifier              = .pockTouchBar
         self.touchBar?.defaultItemIdentifiers               = [.escButton, .dockView]
-        self.touchBar?.customizationAllowedItemIdentifiers  = [.escButton, .dockView]
+        self.touchBar?.customizationAllowedItemIdentifiers  = [.escButton, .dockView, .controlCenter]
         
         super.awakeFromNib()
     }
@@ -43,6 +44,12 @@ class PockMainController: PockTouchBarController {
         /// Dock widget
         case .dockView:
             let widget = DockWidget(identifier: identifier)
+            items[identifier.rawValue] = widget
+            return widget
+            
+        /// ControlCenter widget
+        case .controlCenter:
+            let widget = ControlCenterWidget(identifier: identifier)
             items[identifier.rawValue] = widget
             return widget
         

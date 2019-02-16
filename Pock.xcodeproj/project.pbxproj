@@ -23,6 +23,12 @@
 		349431C722175E07008622B1 /* EonilFSEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431BF22175E07008622B1 /* EonilFSEvents.swift */; };
 		349431C822175E07008622B1 /* EonilFSEventStreamEventFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431C022175E07008622B1 /* EonilFSEventStreamEventFlags.swift */; };
 		349431C922175E07008622B1 /* EonilFSEventStreamCreateFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431C122175E07008622B1 /* EonilFSEventStreamCreateFlags.swift */; };
+		349431CC22181608008622B1 /* ControlCenterWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431CB22181608008622B1 /* ControlCenterWidget.swift */; };
+		349431CE2218197A008622B1 /* ControlCenterItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431CD2218197A008622B1 /* ControlCenterItem.swift */; };
+		349431D122181C86008622B1 /* ControlCenterVolumeDownItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431D022181C86008622B1 /* ControlCenterVolumeDownItem.swift */; };
+		349431D322181DED008622B1 /* ControlCenterVolumeUpItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431D222181DED008622B1 /* ControlCenterVolumeUpItem.swift */; };
+		349431D722181ED7008622B1 /* ISSoundAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 349431D522181ED7008622B1 /* ISSoundAdditions.m */; };
+		349431DA22182070008622B1 /* OSDUIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431D922182070008622B1 /* OSDUIHelper.swift */; };
 		3494645A21713821000480C5 /* GeneralPreferencePane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3494645821713821000480C5 /* GeneralPreferencePane.xib */; };
 		3494645C2171383A000480C5 /* GeneralPreferencePane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3494645B2171383A000480C5 /* GeneralPreferencePane.swift */; };
 		349557E6217CEFDB000DEB55 /* EscWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349557E5217CEFDB000DEB55 /* EscWidget.swift */; };
@@ -56,6 +62,13 @@
 		349431BF22175E07008622B1 /* EonilFSEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EonilFSEvents.swift; sourceTree = "<group>"; };
 		349431C022175E07008622B1 /* EonilFSEventStreamEventFlags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EonilFSEventStreamEventFlags.swift; sourceTree = "<group>"; };
 		349431C122175E07008622B1 /* EonilFSEventStreamCreateFlags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EonilFSEventStreamCreateFlags.swift; sourceTree = "<group>"; };
+		349431CB22181608008622B1 /* ControlCenterWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlCenterWidget.swift; sourceTree = "<group>"; };
+		349431CD2218197A008622B1 /* ControlCenterItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlCenterItem.swift; sourceTree = "<group>"; };
+		349431D022181C86008622B1 /* ControlCenterVolumeDownItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlCenterVolumeDownItem.swift; sourceTree = "<group>"; };
+		349431D222181DED008622B1 /* ControlCenterVolumeUpItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlCenterVolumeUpItem.swift; sourceTree = "<group>"; };
+		349431D522181ED7008622B1 /* ISSoundAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISSoundAdditions.m; sourceTree = "<group>"; };
+		349431D622181ED7008622B1 /* ISSoundAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISSoundAdditions.h; sourceTree = "<group>"; };
+		349431D922182070008622B1 /* OSDUIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSDUIHelper.swift; sourceTree = "<group>"; };
 		3494645821713821000480C5 /* GeneralPreferencePane.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeneralPreferencePane.xib; sourceTree = "<group>"; };
 		3494645B2171383A000480C5 /* GeneralPreferencePane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPreferencePane.swift; sourceTree = "<group>"; };
 		349557E5217CEFDB000DEB55 /* EscWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EscWidget.swift; sourceTree = "<group>"; };
@@ -113,9 +126,11 @@
 		340C81D61F6538B40063BAB0 /* Private */ = {
 			isa = PBXGroup;
 			children = (
+				349431D422181ECE008622B1 /* ISSoundAdditions */,
 				342D3CB52111998E0028FC59 /* PockDockHelper */,
 				340C81D51F6538580063BAB0 /* NSTouchBar.h */,
 				342D3CBE2111B1DA0028FC59 /* Pock-Bridging-Header.h */,
+				349431D922182070008622B1 /* OSDUIHelper.swift */,
 			);
 			path = Private;
 			sourceTree = "<group>";
@@ -185,6 +200,34 @@
 			path = EonilFSEvents;
 			sourceTree = "<group>";
 		};
+		349431CA221815ED008622B1 /* ControlCenter */ = {
+			isa = PBXGroup;
+			children = (
+				349431CF22181C60008622B1 /* Items */,
+				349431CD2218197A008622B1 /* ControlCenterItem.swift */,
+				349431CB22181608008622B1 /* ControlCenterWidget.swift */,
+			);
+			path = ControlCenter;
+			sourceTree = "<group>";
+		};
+		349431CF22181C60008622B1 /* Items */ = {
+			isa = PBXGroup;
+			children = (
+				349431D022181C86008622B1 /* ControlCenterVolumeDownItem.swift */,
+				349431D222181DED008622B1 /* ControlCenterVolumeUpItem.swift */,
+			);
+			path = Items;
+			sourceTree = "<group>";
+		};
+		349431D422181ECE008622B1 /* ISSoundAdditions */ = {
+			isa = PBXGroup;
+			children = (
+				349431D622181ED7008622B1 /* ISSoundAdditions.h */,
+				349431D522181ED7008622B1 /* ISSoundAdditions.m */,
+			);
+			path = ISSoundAdditions;
+			sourceTree = "<group>";
+		};
 		3494644A21713331000480C5 /* Panes */ = {
 			isa = PBXGroup;
 			children = (
@@ -208,6 +251,7 @@
 				349557F2217CFEA3000DEB55 /* Common */,
 				349557F1217CFE9D000DEB55 /* Esc key */,
 				349557F5217CFEBB000DEB55 /* Dock */,
+				349431CA221815ED008622B1 /* ControlCenter */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -425,17 +469,23 @@
 				349557E9217CF187000DEB55 /* PockWidget.swift in Sources */,
 				34DC32E61F6DAAC500037E68 /* KeySender.swift in Sources */,
 				3483BF7621712BA8008570D0 /* Preferences.swift in Sources */,
+				349431DA22182070008622B1 /* OSDUIHelper.swift in Sources */,
 				349557F4217CFEB7000DEB55 /* DockWidget.swift in Sources */,
 				349431C722175E07008622B1 /* EonilFSEvents.swift in Sources */,
 				3427C72D1F65746000FE39FF /* PockItemView.swift in Sources */,
+				349431D322181DED008622B1 /* ControlCenterVolumeUpItem.swift in Sources */,
 				349431C822175E07008622B1 /* EonilFSEventStreamEventFlags.swift in Sources */,
+				349431D122181C86008622B1 /* ControlCenterVolumeDownItem.swift in Sources */,
 				348343E91F631B6700CDA005 /* PockUtilities.swift in Sources */,
 				349431C522175E07008622B1 /* EonilFSEventStreamEventID.swift in Sources */,
 				349557ED217CF627000DEB55 /* PockTouchBarController.swift in Sources */,
 				349431C322175E07008622B1 /* EonilFSEventStreamIllogicalErrorLog.swift in Sources */,
+				349431CE2218197A008622B1 /* ControlCenterItem.swift in Sources */,
 				349431C422175E07008622B1 /* EonilFSEventStreamEvent.swift in Sources */,
 				342D3CB42111998A0028FC59 /* PockDockHelper.m in Sources */,
 				349431C622175E07008622B1 /* EonilFSEventStream.swift in Sources */,
+				349431D722181ED7008622B1 /* ISSoundAdditions.m in Sources */,
+				349431CC22181608008622B1 /* ControlCenterWidget.swift in Sources */,
 				349431C222175E07008622B1 /* EonilFSEventStreamError.swift in Sources */,
 				349431C922175E07008622B1 /* EonilFSEventStreamCreateFlags.swift in Sources */,
 				348343DA1F631B2E00CDA005 /* AppDelegate.swift in Sources */,
