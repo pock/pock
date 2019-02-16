@@ -12,8 +12,10 @@ class ControlCenterWidget: PockWidget {
     
     /// Core
     fileprivate let controls: [ControlCenterItem] = [
-        ControlCenterVolumeDownItem(),
-        ControlCenterVolumeUpItem()
+        CCBrightnessDownItem(),
+        CCBrightnessUpItem(),
+        CCVolumeDownItem(),
+        CCVolumeUpItem()
     ]
     
     /// UI
@@ -30,6 +32,9 @@ class ControlCenterWidget: PockWidget {
         segmentedControl = NSSegmentedControl(images: items, trackingMode: .momentary, target: self, action: #selector(tap(_:)))
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
         segmentedControl.autoresizingMask = [.width, .height]
+        controls.enumerated().forEach({ index, _ in
+            segmentedControl.setWidth(50, forSegment: index)
+        })
     }
     
     @objc private func tap(_ sender: NSSegmentedControl) {

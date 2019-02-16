@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ControlCenterVolumeDownItem: ControlCenterItem {
+class CCVolumeDownItem: ControlCenterItem {
     
     override var title: String  { return "volume-down" }
     
@@ -17,7 +17,7 @@ class ControlCenterVolumeDownItem: ControlCenterItem {
     override func action() {
         NSSound.decreaseSystemVolume(by: 0.06)
         NSSound.beep()
-        DK_OSDUIHelper.showHUD(type: NSSound.systemVolume() < 0.06 ? .mute : .volume, filled: CUnsignedInt(NSSound.systemVolume() * 16))
+        DK_OSDUIHelper.showHUD(type: NSSound.isMuted() ? .mute : .volume, filled: CUnsignedInt(NSSound.systemVolume() * 16))
     }
 
 }

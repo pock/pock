@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ControlCenterVolumeUpItem: ControlCenterItem {
+class CCVolumeUpItem: ControlCenterItem {
     
     override var title: String  { return "volume-up" }
     
