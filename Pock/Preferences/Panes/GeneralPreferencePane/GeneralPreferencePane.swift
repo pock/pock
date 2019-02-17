@@ -38,6 +38,7 @@ final class GeneralPreferencePane: NSViewController, Preferenceable {
         super.viewWillAppear()
         self.loadVersionNumber()
         self.populatePopUpButton()
+        self.setupHideControlStripCheckbox()
         self.setupLaunchAtLoginCheckbox()
         if let newVersionNumber = self.newVersionAvailable?.0, let newVersionDownloadURL = self.newVersionAvailable?.1 {
             self.showNewVersionAlert(versionNumber: newVersionNumber, downloadURL: newVersionDownloadURL)
@@ -57,6 +58,10 @@ final class GeneralPreferencePane: NSViewController, Preferenceable {
     
     private func setupLaunchAtLoginCheckbox() {
         self.launchAtLoginCheckbox.state = LaunchAtLogin.isEnabled ? .on : .off
+    }
+    
+    private func setupHideControlStripCheckbox() {
+        self.hideControlStripCheckbox.state = defaults[.hideControlStrip] ? .on : .off
     }
     
     @IBAction private func didSelectNotificationBadgeRefreshRate(_: NSButton) {
