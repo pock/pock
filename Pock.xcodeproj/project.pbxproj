@@ -75,6 +75,7 @@
 		349431E02218310F008622B1 /* DKBrightness.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DKBrightness.swift; sourceTree = "<group>"; };
 		349431E22218325E008622B1 /* CCBrightnessDownItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCBrightnessDownItem.swift; sourceTree = "<group>"; };
 		349431E42218330D008622B1 /* CCBrightnessUpItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCBrightnessUpItem.swift; sourceTree = "<group>"; };
+		349431E622196F0A008622B1 /* MRMediaRemote.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MRMediaRemote.h; sourceTree = "<group>"; };
 		3494645821713821000480C5 /* GeneralPreferencePane.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeneralPreferencePane.xib; sourceTree = "<group>"; };
 		3494645B2171383A000480C5 /* GeneralPreferencePane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPreferencePane.swift; sourceTree = "<group>"; };
 		349557E5217CEFDB000DEB55 /* EscWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EscWidget.swift; sourceTree = "<group>"; };
@@ -138,6 +139,7 @@
 				340C81D51F6538580063BAB0 /* NSTouchBar.h */,
 				342D3CBE2111B1DA0028FC59 /* Pock-Bridging-Header.h */,
 				349431D922182070008622B1 /* OSDUIHelper.swift */,
+				349431E622196F0A008622B1 /* MRMediaRemote.h */,
 			);
 			path = Private;
 			sourceTree = "<group>";
