@@ -32,6 +32,12 @@
 		349431E12218310F008622B1 /* DKBrightness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431E02218310F008622B1 /* DKBrightness.swift */; };
 		349431E32218325E008622B1 /* CCBrightnessDownItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431E22218325E008622B1 /* CCBrightnessDownItem.swift */; };
 		349431E52218330D008622B1 /* CCBrightnessUpItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431E42218330D008622B1 /* CCBrightnessUpItem.swift */; };
+		349431E9221970A0008622B1 /* NowPlayingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431E8221970A0008622B1 /* NowPlayingHelper.swift */; };
+		349431EB22197127008622B1 /* NowPlayingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431EA22197127008622B1 /* NowPlayingItem.swift */; };
+		349431ED22197485008622B1 /* MediaRemote.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 349431EC22197484008622B1 /* MediaRemote.framework */; };
+		349431EF22197B75008622B1 /* NowPlayingItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431EE22197B75008622B1 /* NowPlayingItemView.swift */; };
+		349431F122198123008622B1 /* NowPlayingWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431F022198123008622B1 /* NowPlayingWidget.swift */; };
+		349431F6221998BD008622B1 /* PockTappableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431F5221998BC008622B1 /* PockTappableView.swift */; };
 		3494645A21713821000480C5 /* GeneralPreferencePane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3494645821713821000480C5 /* GeneralPreferencePane.xib */; };
 		3494645C2171383A000480C5 /* GeneralPreferencePane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3494645B2171383A000480C5 /* GeneralPreferencePane.swift */; };
 		349557E6217CEFDB000DEB55 /* EscWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349557E5217CEFDB000DEB55 /* EscWidget.swift */; };
@@ -75,6 +81,13 @@
 		349431E02218310F008622B1 /* DKBrightness.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DKBrightness.swift; sourceTree = "<group>"; };
 		349431E22218325E008622B1 /* CCBrightnessDownItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCBrightnessDownItem.swift; sourceTree = "<group>"; };
 		349431E42218330D008622B1 /* CCBrightnessUpItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCBrightnessUpItem.swift; sourceTree = "<group>"; };
+		349431E622196F0A008622B1 /* MRMediaRemote.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MRMediaRemote.h; sourceTree = "<group>"; };
+		349431E8221970A0008622B1 /* NowPlayingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingHelper.swift; sourceTree = "<group>"; };
+		349431EA22197127008622B1 /* NowPlayingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingItem.swift; sourceTree = "<group>"; };
+		349431EC22197484008622B1 /* MediaRemote.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaRemote.framework; path = ../../../../../../../../../System/Library/PrivateFrameworks/MediaRemote.framework; sourceTree = "<group>"; };
+		349431EE22197B75008622B1 /* NowPlayingItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingItemView.swift; sourceTree = "<group>"; };
+		349431F022198123008622B1 /* NowPlayingWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingWidget.swift; sourceTree = "<group>"; };
+		349431F5221998BC008622B1 /* PockTappableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PockTappableView.swift; sourceTree = "<group>"; };
 		3494645821713821000480C5 /* GeneralPreferencePane.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeneralPreferencePane.xib; sourceTree = "<group>"; };
 		3494645B2171383A000480C5 /* GeneralPreferencePane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPreferencePane.swift; sourceTree = "<group>"; };
 		349557E5217CEFDB000DEB55 /* EscWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EscWidget.swift; sourceTree = "<group>"; };
@@ -95,6 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				349431ED22197485008622B1 /* MediaRemote.framework in Frameworks */,
 				34BC3ECC2210B2EC00C1DD3C /* DFRFoundation.framework in Frameworks */,
 				009B0E12E317757741CE38C8 /* Pods_Pock.framework in Frameworks */,
 			);
@@ -138,6 +152,7 @@
 				340C81D51F6538580063BAB0 /* NSTouchBar.h */,
 				342D3CBE2111B1DA0028FC59 /* Pock-Bridging-Header.h */,
 				349431D922182070008622B1 /* OSDUIHelper.swift */,
+				349431E622196F0A008622B1 /* MRMediaRemote.h */,
 			);
 			path = Private;
 			sourceTree = "<group>";
@@ -245,6 +260,17 @@
 			path = DKBrightness;
 			sourceTree = "<group>";
 		};
+		349431E722197084008622B1 /* NowPlaying */ = {
+			isa = PBXGroup;
+			children = (
+				349431EA22197127008622B1 /* NowPlayingItem.swift */,
+				349431E8221970A0008622B1 /* NowPlayingHelper.swift */,
+				349431EE22197B75008622B1 /* NowPlayingItemView.swift */,
+				349431F022198123008622B1 /* NowPlayingWidget.swift */,
+			);
+			path = NowPlaying;
+			sourceTree = "<group>";
+		};
 		3494644A21713331000480C5 /* Panes */ = {
 			isa = PBXGroup;
 			children = (
@@ -269,6 +295,7 @@
 				349557F1217CFE9D000DEB55 /* Esc key */,
 				349557F5217CFEBB000DEB55 /* Dock */,
 				349431CA221815ED008622B1 /* ControlCenter */,
+				349431E722197084008622B1 /* NowPlaying */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -295,6 +322,7 @@
 			isa = PBXGroup;
 			children = (
 				349557E8217CF187000DEB55 /* PockWidget.swift */,
+				349431F5221998BC008622B1 /* PockTappableView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -314,6 +342,7 @@
 		4ED8D081458713BE440562D3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				349431EC22197484008622B1 /* MediaRemote.framework */,
 				34BC3ECB2210B2EC00C1DD3C /* DFRFoundation.framework */,
 				863BE70CFBAC31BDBF35B1FD /* Pods_Pock.framework */,
 			);
@@ -488,14 +517,18 @@
 				34DC32E61F6DAAC500037E68 /* KeySender.swift in Sources */,
 				3483BF7621712BA8008570D0 /* Preferences.swift in Sources */,
 				349431DA22182070008622B1 /* OSDUIHelper.swift in Sources */,
+				349431E9221970A0008622B1 /* NowPlayingHelper.swift in Sources */,
+				349431EB22197127008622B1 /* NowPlayingItem.swift in Sources */,
 				349557F4217CFEB7000DEB55 /* DockWidget.swift in Sources */,
 				349431C722175E07008622B1 /* EonilFSEvents.swift in Sources */,
 				349431E32218325E008622B1 /* CCBrightnessDownItem.swift in Sources */,
 				3427C72D1F65746000FE39FF /* PockItemView.swift in Sources */,
 				349431D322181DED008622B1 /* CCVolumeUpItem.swift in Sources */,
+				349431F6221998BD008622B1 /* PockTappableView.swift in Sources */,
 				349431C822175E07008622B1 /* EonilFSEventStreamEventFlags.swift in Sources */,
 				349431D122181C86008622B1 /* CCVolumeDownItem.swift in Sources */,
 				348343E91F631B6700CDA005 /* PockUtilities.swift in Sources */,
+				349431F122198123008622B1 /* NowPlayingWidget.swift in Sources */,
 				349431C522175E07008622B1 /* EonilFSEventStreamEventID.swift in Sources */,
 				349557ED217CF627000DEB55 /* PockTouchBarController.swift in Sources */,
 				349431C322175E07008622B1 /* EonilFSEventStreamIllogicalErrorLog.swift in Sources */,
@@ -507,6 +540,7 @@
 				349431CC22181608008622B1 /* ControlCenterWidget.swift in Sources */,
 				349431E52218330D008622B1 /* CCBrightnessUpItem.swift in Sources */,
 				349431C222175E07008622B1 /* EonilFSEventStreamError.swift in Sources */,
+				349431EF22197B75008622B1 /* NowPlayingItemView.swift in Sources */,
 				349431C922175E07008622B1 /* EonilFSEventStreamCreateFlags.swift in Sources */,
 				348343DA1F631B2E00CDA005 /* AppDelegate.swift in Sources */,
 				342D3CB72111ACC30028FC59 /* PockItem.swift in Sources */,

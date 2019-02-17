@@ -16,7 +16,9 @@ class CCVolumeDownItem: ControlCenterItem {
     
     override func action() {
         NSSound.decreaseSystemVolume(by: 0.06)
-        NSSound.beep()
+        if !(NowPlayingHelper.shared.nowPlayingItem?.isPlaying ?? true) {
+            NSSound.beep()
+        }
         DK_OSDUIHelper.showHUD(type: NSSound.isMuted() ? .mute : .volume, filled: CUnsignedInt(NSSound.systemVolume() * 16))
     }
 
