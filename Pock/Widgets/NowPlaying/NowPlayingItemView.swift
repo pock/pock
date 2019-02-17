@@ -47,20 +47,35 @@ class NowPlayingItemView: PockTappableView {
         subtitleView.autoresizingMask = .none
         subtitleView.alignment = .left
         subtitleView.font = NSFont.systemFont(ofSize: 9)
-        subtitleView.textColor = .gray
+        subtitleView.textColor = NSColor(calibratedRed: 124/255, green: 131/255, blue: 127/255, alpha: 1)
         
         addSubview(imageView)
         addSubview(titleView)
         addSubview(subtitleView)
         
+        updateContent()
         updateLayout()
     }
     
     private func updateContent() {
+        
+        var appBundleIdentifier: String = self.nowPLayingItem?.appBundleIdentifier ?? ""
+        
+        switch (appBundleIdentifier) {
+        case "com.apple.WebKit.WebContent":
+            appBundleIdentifier = "com.apple.Safari"
+        case "com.spotify.client", "com.apple.iTunes", "com.apple.Safari":
+            break
+        default:
+            appBundleIdentifier = "com.apple.iTunes"
+        }
+        
+        let path = NSWorkspace.shared.absolutePathForApplication(withBundleIdentifier: appBundleIdentifier)
+        
         DispatchQueue.main.async { [weak self] in
-            self?.imageView.image          = PockUtilities.getIcon(forBundleIdentifier: self?.nowPLayingItem?.appBundleIdentifier)
-            self?.titleView.stringValue    = self?.nowPLayingItem?.title ?? ""
-            self?.subtitleView.stringValue = self?.nowPLayingItem?.album ?? ""
+            self?.imageView.image = PockUtilities.getIcon(forBundleIdentifier: appBundleIdentifier, orPath: path)
+            self?.titleView.stringValue    = self?.nowPLayingItem?.title  ?? "Pock"
+            self?.subtitleView.stringValue = self?.nowPLayingItem?.artist ?? PockUtilities.getDisplayName(forPath: path) ??  "Unknown"
             self?.updateForNowPlayingState()
         }
     }
@@ -77,13 +92,13 @@ class NowPlayingItemView: PockTappableView {
         imageView.snp.makeConstraints({ maker in
             maker.width.equalTo(30)
             maker.top.bottom.equalTo(self)
-            maker.left.equalTo(self).inset(8)
+            maker.left.equalTo(self)
         })
         titleView.snp.makeConstraints({ maker in
             maker.height.equalTo(12)
             maker.left.equalTo(imageView.snp.right).offset(4)
             maker.top.equalTo(imageView)
-            maker.right.equalTo(self).inset(8)
+            maker.right.equalTo(self).inset(4)
         })
         subtitleView.snp.makeConstraints({ maker in
             maker.height.equalTo(12)

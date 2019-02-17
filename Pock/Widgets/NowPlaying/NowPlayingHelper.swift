@@ -59,6 +59,8 @@ class NowPlayingHelper {
                 self?.nowPlayingItem?.appBundleIdentifier = appBundleIdentifier
             }else if let appBundleIdentifier = MRNowPlayingClientGetParentAppBundleIdentifier(info) {
                 self?.nowPlayingItem?.appBundleIdentifier = appBundleIdentifier
+            }else {
+                self?.nowPlayingItem = nil
             }
             NotificationCenter.default.post(name: NowPlayingHelper.kNowPlayingItemDidChange, object: nil)
         }

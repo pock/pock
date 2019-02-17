@@ -201,6 +201,12 @@ public class PockUtilities {
         
     }
     
+    /// Get display name.
+    public class func getDisplayName(forPath path: String?) -> String? {
+        guard let path = path else { return nil }
+        return FileManager.default.displayName(atPath: path)
+    }
+    
     /// Get icon.
     public class func getIcon(forBundleIdentifier bundleIdentifier: String? = nil, orPath path: String? = nil, orType type: String? = nil) -> NSImage {
     
