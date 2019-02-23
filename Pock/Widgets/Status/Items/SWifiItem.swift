@@ -7,15 +7,55 @@
 //
 
 import Foundation
+import CoreWLAN
 
 class SWifiItem: StatusItem {
     
-    override var title: String  { return "wifi" }
+    /// Core
+    private let wifiClient: CWWiFiClient = CWWiFiClient.shared()
     
-    override var view: NSView { return NSImageView(image: NSImage(named: .touchBarVolumeDownTemplate)!) }
+    /// UI
+    private let iconView: NSImageView = NSImageView(frame: NSRect(x: 0, y: 0, width: 26, height: 26))
     
-    override func action() {
+    init() {
+        self.wifiClient.delegate = self
+        try? wifiClient.startMonitoringEvent(with: .powerDidChange)
+        try? wifiClient.startMonitoringEvent(with: .linkQualityDidChange)
+        reload()
+    }
+    
+    var title: String  { return "wifi" }
+    
+    var view: NSView { return iconView }
+    
+    func action() {
         print("[Pock]: WiFi Status icon tapped!")
     }
     
+    func reload() {
+        let rssi: Int   = wifiClient.interface()?.rssiValue() ?? 0
+        let percentage  = rssi == 0 ? 0 : min(max(2 * (rssi + 100), 0), 100)
+        let code: Int   = Int(percentage / 10)
+        let icon: NSImage.Name!
+        switch (code) {
+        case 0:
+            icon = NSImage.Name(rawValue: "wifiOff")
+        default:
+            let c = code - 1
+            icon = NSImage.Name(rawValue: "wifi\(c > 4 ? 4 : c)")
+        }
+        DispatchQueue.main.async { [weak self] in
+            self?.iconView.image = NSImage(named: icon)
+        }
+    }
+    
+}
+
+extension SWifiItem: CWEventDelegate {
+    func powerStateDidChangeForWiFiInterface(withName interfaceName: String) {
+        self.reload()
+    }
+    func linkQualityDidChangeForWiFiInterface(withName interfaceName: String, rssi: Int, transmitRate: Double) {
+        self.reload()
+    }
 }

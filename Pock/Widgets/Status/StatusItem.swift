@@ -8,21 +8,9 @@
 
 import Foundation
 
-class StatusItem {
-    
-    var title: String {
-        get {
-            fatalError("Property `title` must be override in subclasses.")
-        }
-    }
-    
-    var view: NSView {
-        get {
-            fatalError("Property `icon` must be override in subclasses.")
-        }
-    }
-    
-    func action() {
-        fatalError("Function `action()` must be override in subclasses.")
-    }
+protocol StatusItem {
+    var title:  String { get }
+    var view:   NSView { get }
+    func action()
+    func reload()
 }
