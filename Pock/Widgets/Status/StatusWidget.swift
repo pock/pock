@@ -12,17 +12,27 @@ class StatusWidget: PockWidget {
     
     /// Core
     private let statusElements: [StatusItem] = [
-        SWifiItem()
+        SWifiItem(),
+        SClockItem()
     ]
     private var statusElementViews: [String: NSView] = [:]
     
     /// UI
-    private let stackView: NSStackView = NSStackView(frame: .zero)
+    private var stackView: NSStackView!
     
     override func customInit() {
         self.customizationLabel = "Status"
+        self.initStackView()
         self.loadStatusElements()
         self.set(view: stackView)
+    }
+    
+    private func initStackView() {
+        stackView = NSStackView(frame: .zero)
+        stackView.orientation  = .horizontal
+        stackView.alignment    = .centerY
+        stackView.distribution = .fillProportionally
+        stackView.spacing      = 5
     }
     
     private func clearStackView() {

@@ -41,6 +41,7 @@
 		349431F9222138D9008622B1 /* StatusWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431F8222138D9008622B1 /* StatusWidget.swift */; };
 		349431FB2221395C008622B1 /* StatusItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431FA2221395C008622B1 /* StatusItem.swift */; };
 		349431FE22213997008622B1 /* SWifiItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431FD22213997008622B1 /* SWifiItem.swift */; };
+		3494320022214B1F008622B1 /* SClockItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431FF22214B1F008622B1 /* SClockItem.swift */; };
 		3494645A21713821000480C5 /* GeneralPreferencePane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3494645821713821000480C5 /* GeneralPreferencePane.xib */; };
 		3494645C2171383A000480C5 /* GeneralPreferencePane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3494645B2171383A000480C5 /* GeneralPreferencePane.swift */; };
 		349557E6217CEFDB000DEB55 /* EscWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349557E5217CEFDB000DEB55 /* EscWidget.swift */; };
@@ -94,6 +95,7 @@
 		349431F8222138D9008622B1 /* StatusWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusWidget.swift; sourceTree = "<group>"; };
 		349431FA2221395C008622B1 /* StatusItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusItem.swift; sourceTree = "<group>"; };
 		349431FD22213997008622B1 /* SWifiItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWifiItem.swift; sourceTree = "<group>"; };
+		349431FF22214B1F008622B1 /* SClockItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SClockItem.swift; sourceTree = "<group>"; };
 		3494645821713821000480C5 /* GeneralPreferencePane.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeneralPreferencePane.xib; sourceTree = "<group>"; };
 		3494645B2171383A000480C5 /* GeneralPreferencePane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPreferencePane.swift; sourceTree = "<group>"; };
 		349557E5217CEFDB000DEB55 /* EscWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EscWidget.swift; sourceTree = "<group>"; };
@@ -291,6 +293,7 @@
 			isa = PBXGroup;
 			children = (
 				349431FD22213997008622B1 /* SWifiItem.swift */,
+				349431FF22214B1F008622B1 /* SClockItem.swift */,
 			);
 			path = Items;
 			sourceTree = "<group>";
@@ -549,6 +552,7 @@
 				349431E32218325E008622B1 /* CCBrightnessDownItem.swift in Sources */,
 				3427C72D1F65746000FE39FF /* PockItemView.swift in Sources */,
 				349431D322181DED008622B1 /* CCVolumeUpItem.swift in Sources */,
+				3494320022214B1F008622B1 /* SClockItem.swift in Sources */,
 				349431F6221998BD008622B1 /* PockTappableView.swift in Sources */,
 				349431F9222138D9008622B1 /* StatusWidget.swift in Sources */,
 				349431C822175E07008622B1 /* EonilFSEventStreamEventFlags.swift in Sources */,
