@@ -19,6 +19,8 @@ class SWifiItem: StatusItem {
     
     init() {
         self.wifiClient.delegate = self
+        try? wifiClient.startMonitoringEvent(with: .linkDidChange)
+        try? wifiClient.startMonitoringEvent(with: .ssidDidChange)
         try? wifiClient.startMonitoringEvent(with: .powerDidChange)
         try? wifiClient.startMonitoringEvent(with: .linkQualityDidChange)
         reload()
@@ -33,25 +35,33 @@ class SWifiItem: StatusItem {
     }
     
     func reload() {
-        let rssi: Int   = wifiClient.interface()?.rssiValue() ?? 0
-        let percentage  = rssi == 0 ? 0 : min(max(2 * (rssi + 100), 0), 100)
-        let code: Int   = Int(percentage / 10)
-        let icon: NSImage.Name!
-        switch (code) {
-        case 0:
-            icon = NSImage.Name(rawValue: "wifiOff")
-        default:
-            let c = code - 1
-            icon = NSImage.Name(rawValue: "wifi\(c > 4 ? 4 : c)")
-        }
-        DispatchQueue.main.async { [weak self] in
-            self?.iconView.image = NSImage(named: icon)
+        DispatchQueue.global(qos: .background).async { [weak self] in
+            let rssi: Int   = self?.wifiClient.interface()?.rssiValue() ?? 0
+            let percentage  = rssi == 0 ? 0 : min(max(2 * (rssi + 100), 0), 100)
+            let code: Int   = Int(percentage / 10)
+            let icon: NSImage.Name!
+            switch (code) {
+            case 0:
+                icon = NSImage.Name(rawValue: "wifiOff")
+            default:
+                let c = code - 1
+                icon = NSImage.Name(rawValue: "wifi\(c > 4 ? 4 : c)")
+            }
+            DispatchQueue.main.async { [weak self] in
+                self?.iconView.image = NSImage(named: icon)
+            }
         }
     }
     
 }
 
 extension SWifiItem: CWEventDelegate {
+    func linkDidChangeForWiFiInterface(withName interfaceName: String) {
+        self.reload()
+    }
+    func ssidDidChangeForWiFiInterface(withName interfaceName: String) {
+        self.reload()
+    }
     func powerStateDidChangeForWiFiInterface(withName interfaceName: String) {
         self.reload()
     }
