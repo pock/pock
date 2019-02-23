@@ -18,6 +18,7 @@ extension NSTouchBarItem.Identifier {
     static let escButton      = NSTouchBarItem.Identifier("Esc")
     static let controlCenter  = NSTouchBarItem.Identifier("ControlCenter")
     static let nowPlaying     = NSTouchBarItem.Identifier("NowPlaying")
+    static let status         = NSTouchBarItem.Identifier("Status")
 }
 
 class PockMainController: PockTouchBarController {
@@ -27,7 +28,7 @@ class PockMainController: PockTouchBarController {
     override func awakeFromNib() {
         self.touchBar?.customizationIdentifier              = .pockTouchBar
         self.touchBar?.defaultItemIdentifiers               = [.escButton, .dockView]
-        self.touchBar?.customizationAllowedItemIdentifiers  = [.escButton, .dockView, .controlCenter, .nowPlaying]
+        self.touchBar?.customizationAllowedItemIdentifiers  = [.escButton, .dockView, .controlCenter, .nowPlaying, .status]
         
         super.awakeFromNib()
     }
@@ -57,6 +58,12 @@ class PockMainController: PockTouchBarController {
         /// NowPlaying widget
         case .nowPlaying:
             let widget = NowPlayingWidget(identifier: identifier)
+            items[identifier.rawValue] = widget
+            return widget
+            
+        /// Status widget
+        case .status:
+            let widget = StatusWidget(identifier: identifier)
             items[identifier.rawValue] = widget
             return widget
         

@@ -38,6 +38,9 @@
 		349431EF22197B75008622B1 /* NowPlayingItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431EE22197B75008622B1 /* NowPlayingItemView.swift */; };
 		349431F122198123008622B1 /* NowPlayingWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431F022198123008622B1 /* NowPlayingWidget.swift */; };
 		349431F6221998BD008622B1 /* PockTappableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431F5221998BC008622B1 /* PockTappableView.swift */; };
+		349431F9222138D9008622B1 /* StatusWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431F8222138D9008622B1 /* StatusWidget.swift */; };
+		349431FB2221395C008622B1 /* StatusItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431FA2221395C008622B1 /* StatusItem.swift */; };
+		349431FE22213997008622B1 /* SWifiItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431FD22213997008622B1 /* SWifiItem.swift */; };
 		3494645A21713821000480C5 /* GeneralPreferencePane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3494645821713821000480C5 /* GeneralPreferencePane.xib */; };
 		3494645C2171383A000480C5 /* GeneralPreferencePane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3494645B2171383A000480C5 /* GeneralPreferencePane.swift */; };
 		349557E6217CEFDB000DEB55 /* EscWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349557E5217CEFDB000DEB55 /* EscWidget.swift */; };
@@ -88,6 +91,9 @@
 		349431EE22197B75008622B1 /* NowPlayingItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingItemView.swift; sourceTree = "<group>"; };
 		349431F022198123008622B1 /* NowPlayingWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingWidget.swift; sourceTree = "<group>"; };
 		349431F5221998BC008622B1 /* PockTappableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PockTappableView.swift; sourceTree = "<group>"; };
+		349431F8222138D9008622B1 /* StatusWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusWidget.swift; sourceTree = "<group>"; };
+		349431FA2221395C008622B1 /* StatusItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusItem.swift; sourceTree = "<group>"; };
+		349431FD22213997008622B1 /* SWifiItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWifiItem.swift; sourceTree = "<group>"; };
 		3494645821713821000480C5 /* GeneralPreferencePane.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeneralPreferencePane.xib; sourceTree = "<group>"; };
 		3494645B2171383A000480C5 /* GeneralPreferencePane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPreferencePane.swift; sourceTree = "<group>"; };
 		349557E5217CEFDB000DEB55 /* EscWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EscWidget.swift; sourceTree = "<group>"; };
@@ -271,6 +277,24 @@
 			path = NowPlaying;
 			sourceTree = "<group>";
 		};
+		349431F722213898008622B1 /* Status */ = {
+			isa = PBXGroup;
+			children = (
+				349431FC22213979008622B1 /* Items */,
+				349431FA2221395C008622B1 /* StatusItem.swift */,
+				349431F8222138D9008622B1 /* StatusWidget.swift */,
+			);
+			path = Status;
+			sourceTree = "<group>";
+		};
+		349431FC22213979008622B1 /* Items */ = {
+			isa = PBXGroup;
+			children = (
+				349431FD22213997008622B1 /* SWifiItem.swift */,
+			);
+			path = Items;
+			sourceTree = "<group>";
+		};
 		3494644A21713331000480C5 /* Panes */ = {
 			isa = PBXGroup;
 			children = (
@@ -296,6 +320,7 @@
 				349557F5217CFEBB000DEB55 /* Dock */,
 				349431CA221815ED008622B1 /* ControlCenter */,
 				349431E722197084008622B1 /* NowPlaying */,
+				349431F722213898008622B1 /* Status */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -525,12 +550,15 @@
 				3427C72D1F65746000FE39FF /* PockItemView.swift in Sources */,
 				349431D322181DED008622B1 /* CCVolumeUpItem.swift in Sources */,
 				349431F6221998BD008622B1 /* PockTappableView.swift in Sources */,
+				349431F9222138D9008622B1 /* StatusWidget.swift in Sources */,
 				349431C822175E07008622B1 /* EonilFSEventStreamEventFlags.swift in Sources */,
 				349431D122181C86008622B1 /* CCVolumeDownItem.swift in Sources */,
 				348343E91F631B6700CDA005 /* PockUtilities.swift in Sources */,
 				349431F122198123008622B1 /* NowPlayingWidget.swift in Sources */,
 				349431C522175E07008622B1 /* EonilFSEventStreamEventID.swift in Sources */,
 				349557ED217CF627000DEB55 /* PockTouchBarController.swift in Sources */,
+				349431FB2221395C008622B1 /* StatusItem.swift in Sources */,
+				349431FE22213997008622B1 /* SWifiItem.swift in Sources */,
 				349431C322175E07008622B1 /* EonilFSEventStreamIllogicalErrorLog.swift in Sources */,
 				349431CE2218197A008622B1 /* ControlCenterItem.swift in Sources */,
 				349431C422175E07008622B1 /* EonilFSEventStreamEvent.swift in Sources */,
