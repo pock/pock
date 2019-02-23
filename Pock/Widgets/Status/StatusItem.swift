@@ -8,6 +8,13 @@
 
 import Foundation
 
+class StatusItemView: PockTappableView {
+    var item: StatusItem?
+    override func didTapHandler() {
+        item?.action()
+    }
+}
+
 protocol StatusItem {
     var title:  String { get }
     var view:   NSView { get }

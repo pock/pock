@@ -43,6 +43,7 @@
 		349431FE22213997008622B1 /* SWifiItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431FD22213997008622B1 /* SWifiItem.swift */; };
 		3494320022214B1F008622B1 /* SClockItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431FF22214B1F008622B1 /* SClockItem.swift */; };
 		34943202222151CD008622B1 /* SPowerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34943201222151CD008622B1 /* SPowerItem.swift */; };
+		3494320422216896008622B1 /* SSpotlightItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3494320322216896008622B1 /* SSpotlightItem.swift */; };
 		3494645A21713821000480C5 /* GeneralPreferencePane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3494645821713821000480C5 /* GeneralPreferencePane.xib */; };
 		3494645C2171383A000480C5 /* GeneralPreferencePane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3494645B2171383A000480C5 /* GeneralPreferencePane.swift */; };
 		349557E6217CEFDB000DEB55 /* EscWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349557E5217CEFDB000DEB55 /* EscWidget.swift */; };
@@ -98,6 +99,9 @@
 		349431FD22213997008622B1 /* SWifiItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWifiItem.swift; sourceTree = "<group>"; };
 		349431FF22214B1F008622B1 /* SClockItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SClockItem.swift; sourceTree = "<group>"; };
 		34943201222151CD008622B1 /* SPowerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPowerItem.swift; sourceTree = "<group>"; };
+		3494320322216896008622B1 /* SSpotlightItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSpotlightItem.swift; sourceTree = "<group>"; };
+		3494320822217738008622B1 /* Spotlight.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; name = Spotlight.app; path = ../../../../../../../../../System/Library/CoreServices/Spotlight.app; sourceTree = "<group>"; };
+		3494320B222179D7008622B1 /* BatteryUIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BatteryUIKit.framework; path = ../../../../../../../../../System/Library/PrivateFrameworks/BatteryUIKit.framework; sourceTree = "<group>"; };
 		3494645821713821000480C5 /* GeneralPreferencePane.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeneralPreferencePane.xib; sourceTree = "<group>"; };
 		3494645B2171383A000480C5 /* GeneralPreferencePane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPreferencePane.swift; sourceTree = "<group>"; };
 		349557E5217CEFDB000DEB55 /* EscWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EscWidget.swift; sourceTree = "<group>"; };
@@ -297,6 +301,7 @@
 				349431FD22213997008622B1 /* SWifiItem.swift */,
 				349431FF22214B1F008622B1 /* SClockItem.swift */,
 				34943201222151CD008622B1 /* SPowerItem.swift */,
+				3494320322216896008622B1 /* SSpotlightItem.swift */,
 			);
 			path = Items;
 			sourceTree = "<group>";
@@ -373,6 +378,8 @@
 		4ED8D081458713BE440562D3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3494320B222179D7008622B1 /* BatteryUIKit.framework */,
+				3494320822217738008622B1 /* Spotlight.app */,
 				349431EC22197484008622B1 /* MediaRemote.framework */,
 				34BC3ECB2210B2EC00C1DD3C /* DFRFoundation.framework */,
 				863BE70CFBAC31BDBF35B1FD /* Pods_Pock.framework */,
@@ -543,6 +550,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3494320422216896008622B1 /* SSpotlightItem.swift in Sources */,
 				349557E9217CF187000DEB55 /* PockWidget.swift in Sources */,
 				349431E12218310F008622B1 /* DKBrightness.swift in Sources */,
 				34DC32E61F6DAAC500037E68 /* KeySender.swift in Sources */,

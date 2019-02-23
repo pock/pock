@@ -57,17 +57,16 @@ class SPowerItem: StatusItem {
             iconName = NSImage.Name("powerIsCharging")
         }else {
             iconName = NSImage.Name("powerEmpty")
+            buildBatteryIcon(withValue: powerStatus.currentValue)
         }
         iconView.image = NSImage(named: iconName)
-        // TODO: Keep this here for test purpose only.
-        buildBatteryIcon(withValue: powerStatus.currentValue)
     }
     
     private func buildBatteryIcon(withValue value: Int) {
         iconView.subviews.forEach({ $0.removeFromSuperview() })
         let middleImage = NSImageView(image: NSImage(named: NSImage.Name("powerMiddle"))!)
         middleImage.imageScaling = .scaleAxesIndependently
-        let width = (iconView.frame.width - ((iconView.frame.width * CGFloat(value)) / 100)) + 2
+        let width = (iconView.frame.width - ((iconView.frame.width * CGFloat(value)) / 100)) + 5
         iconView.addSubview(middleImage)
         middleImage.snp.makeConstraints({ maker in
             maker.top.equalTo(iconView).inset(2)

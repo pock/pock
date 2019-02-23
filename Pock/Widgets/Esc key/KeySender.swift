@@ -11,14 +11,21 @@ import Foundation
 protocol KeySender {
     var keyCode: CGKeyCode { get }
     func send()
+    func press()
+    func release()
 }
 
 extension KeySender {
     func send() {
+        self.press()
+        self.release()
+    }
+    func press() {
         let downEvent = CGEvent(keyboardEventSource: nil, virtualKey: keyCode, keyDown: true)
-        let upEvent = CGEvent(keyboardEventSource: nil, virtualKey: keyCode, keyDown: false)
-        
         downEvent?.post(tap: .cghidEventTap)
+    }
+    func release() {
+        let upEvent = CGEvent(keyboardEventSource: nil, virtualKey: keyCode, keyDown: false)
         upEvent?.post(tap: .cghidEventTap)
     }
 }
