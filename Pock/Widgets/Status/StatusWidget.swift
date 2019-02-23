@@ -13,6 +13,7 @@ class StatusWidget: PockWidget {
     /// Core
     private let statusElements: [StatusItem] = [
         SWifiItem(),
+        SPowerItem(),
         SClockItem()
     ]
     private var statusElementViews: [String: NSView] = [:]
@@ -32,7 +33,7 @@ class StatusWidget: PockWidget {
         stackView.orientation  = .horizontal
         stackView.alignment    = .centerY
         stackView.distribution = .fillProportionally
-        stackView.spacing      = 5
+        stackView.spacing      = 8
     }
     
     private func clearStackView() {
