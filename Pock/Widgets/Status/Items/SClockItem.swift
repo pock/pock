@@ -36,6 +36,7 @@ class SClockItem: StatusItem {
     @objc func reload() {
         let formatter = DateFormatter()
         formatter.dateFormat = "EE dd MMM HH:mm"
+        formatter.locale = Locale(identifier: Locale.preferredLanguages.first ?? "en_US_POSIX")
         clockLabel.stringValue = formatter.string(from: Date())
         clockLabel.sizeToFit()
     }
