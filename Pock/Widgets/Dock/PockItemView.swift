@@ -149,21 +149,12 @@ public class PockItemView: NSView {
         /// Check if location is in self
         if self.frame.contains(location) {
             
-            /// Check if is running
-            if !(self.dockItem?.isLaunchpad ?? true) && !(self.dockItem?.isFileOrDirectory ?? true) && !(self.dockItem?.isRunning ?? true) {
-                /// Start bouncing
-                self.startBounceAnimation()
-            }else {
-                /// Force stop bouncing
-                self.stopBounceAnimation()
-            }
-            
             /// Check if is frontmost
             if self.dockItem?.isFrontmostApplication ?? false {
                 /// TODO: Find a way to minimize other apps from Pock
             }else {
                 /// Launch application
-                PockUtilities.launch(bundleIdentifier: self.dockItem!.bundleIdentifier, completion: { _ in })
+                PockUtilities.default.launch(bundleIdentifier: self.dockItem!.bundleIdentifier, completion: { _ in })
             }
         
         }

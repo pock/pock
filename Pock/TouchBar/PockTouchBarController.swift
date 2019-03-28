@@ -19,6 +19,14 @@ class PockTouchBarController: NSObject, NSTouchBarDelegate {
         self.registerForNotifications()
     }
     
+    deinit {
+        self.unregisterForNotifications()
+    }
+    
+    private func unregisterForNotifications() {
+        NSWorkspace.shared.notificationCenter.removeObserver(self)
+    }
+    
     private func registerForNotifications() {
         NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(reloadPock), name: .shouldReloadPock, object: nil)
     }

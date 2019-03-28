@@ -29,11 +29,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to initialize your application
         NSApp.isAutomaticCustomizeTouchBarMenuItemEnabled = true
         
-        /// Initialize Crashlytics only in release modi
-        #if PROD
+        /// Initialize Crashlytics
+        if isProd {
             UserDefaults.standard.register(defaults: ["NSApplicationCrashOnExceptions": true])
             Fabric.with([Crashlytics.self])
-        #endif
+        }
         
         /// Check for accessibility (needed for badges to work)
         self.checkAccessibility()
