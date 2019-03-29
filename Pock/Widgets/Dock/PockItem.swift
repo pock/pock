@@ -22,12 +22,12 @@ public class PockItem: NSObject {
     }
     var isRunning: Bool {
         get {
-            return PockUtilities.runningAppsIdentifiers.contains(where: { $0 == bundleIdentifier })
+            return PockUtilities.default.runningAppsIdentifiers.contains(where: { $0 == bundleIdentifier })
         }
     }
     var isFrontmostApplication: Bool {
         get {
-            return self.bundleIdentifier == PockUtilities.frontmostApplicationIdentifier
+            return self.bundleIdentifier == PockUtilities.default.frontmostApplicationIdentifier
         }
     }
     var hasBadge: Bool {

@@ -94,7 +94,9 @@ void SafeCFRelease(CFTypeRef cf) {
     CFTypeRef aStatusLabel;
     AXUIElementCopyAttributeValue(dockItem, kAXStatusLabelAttribute, &aStatusLabel);
     SafeCFRelease(dockItem);
-    return (__bridge NSString *)aStatusLabel;
+    NSString *statusLabel = (__bridge NSString *)aStatusLabel;
+    SafeCFRelease(aStatusLabel);
+    return statusLabel;
 }
 
 @end
