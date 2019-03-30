@@ -18,7 +18,7 @@ class NowPlayingHelper {
     public var nowPlayingItem: NowPlayingItem? = NowPlayingItem()
     
     private init() {
-        MRMediaRemoteRegisterForNowPlayingNotifications(DispatchQueue.global(qos: .background))
+        MRMediaRemoteRegisterForNowPlayingNotifications(DispatchQueue.global(qos: .utility))
         registerForNotifications()
         updateCurrentPlayingApp()
         updateMediaContent()
@@ -54,7 +54,10 @@ class NowPlayingHelper {
     }
     
     @objc private func updateCurrentPlayingApp() {
-        MRMediaRemoteGetNowPlayingClient(DispatchQueue.global(qos: .background)) { [weak self] info in
+        MRMediaRemoteGetNowPlayingClient(DispatchQueue.global(qos: .utility)) { [weak self] info in
+            if self?.nowPlayingItem == nil {
+                self?.nowPlayingItem = NowPlayingItem()
+            }
             if let appBundleIdentifier = MRNowPlayingClientGetBundleIdentifier(info) {
                 self?.nowPlayingItem?.appBundleIdentifier = appBundleIdentifier
             }else if let appBundleIdentifier = MRNowPlayingClientGetParentAppBundleIdentifier(info) {
@@ -67,7 +70,7 @@ class NowPlayingHelper {
     }
     
     @objc private func updateMediaContent() {
-        MRMediaRemoteGetNowPlayingInfo(DispatchQueue.global(qos: .background), { [weak self] info in
+        MRMediaRemoteGetNowPlayingInfo(DispatchQueue.global(qos: .utility), { [weak self] info in
             self?.nowPlayingItem?.title  = info?[kMRMediaRemoteNowPlayingInfoTitle]  as? String
             self?.nowPlayingItem?.album  = info?[kMRMediaRemoteNowPlayingInfoAlbum]  as? String
             self?.nowPlayingItem?.artist = info?[kMRMediaRemoteNowPlayingInfoArtist] as? String
@@ -76,7 +79,7 @@ class NowPlayingHelper {
     }
     
     @objc private func updateCurrentPlayingState() {
-        MRMediaRemoteGetNowPlayingApplicationIsPlaying(DispatchQueue.global(qos: .background), {[weak self] isPlaying in
+        MRMediaRemoteGetNowPlayingApplicationIsPlaying(DispatchQueue.global(qos: .utility), {[weak self] isPlaying in
             self?.nowPlayingItem?.isPlaying = isPlaying
             NotificationCenter.default.post(name: NowPlayingHelper.kNowPlayingItemDidChange, object: nil)
         })
