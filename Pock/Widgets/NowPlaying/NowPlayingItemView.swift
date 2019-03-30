@@ -90,20 +90,19 @@ class NowPlayingItemView: PockTappableView {
     
     private func updateLayout() {
         imageView.snp.makeConstraints({ maker in
-            maker.width.equalTo(30)
+            maker.width.equalTo(24)
             maker.top.bottom.equalTo(self)
             maker.left.equalTo(self)
         })
         titleView.snp.makeConstraints({ maker in
-            maker.height.equalTo(12)
             maker.left.equalTo(imageView.snp.right).offset(4)
-            maker.top.equalTo(imageView)
+            maker.top.equalTo(imageView).inset(4)
             maker.right.equalTo(self).inset(4)
         })
         subtitleView.snp.makeConstraints({ maker in
-            maker.height.equalTo(12)
+            maker.height.equalTo(imageView).dividedBy(2)
             maker.left.equalTo(titleView)
-            maker.top.equalTo(titleView.snp.bottom)
+            maker.top.equalTo(titleView.snp.bottom).offset(2)
             maker.right.equalTo(titleView)
             maker.bottom.equalTo(self)
         })
