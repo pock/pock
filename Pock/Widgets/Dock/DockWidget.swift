@@ -100,69 +100,75 @@ class DockWidget: PockWidget {
 
 extension DockWidget {
     
-    fileprivate func loadDockItems() {
+    fileprivate func loadDockItems(completion: @escaping () -> Void) {
         lock.lock(); defer { lock.unlock() }
-        /// Returnable
-        var items: [PockItem] = []
-        /// Get dock persistent apps list
-        items += PockUtilities.default.getDockPersistentAppsList()
-        // Get running apps for additional missing icon and active-badge
-        items += PockUtilities.default.getMissingRunningApps()
-        /// Get dock persistent others list
-        items += PockUtilities.default.getDockPersistentOthersList()
-        /// Set items
-        self.items = items
+        DispatchQueue.global(qos: .background).async {
+            /// Returnable
+            var items: [PockItem] = []
+            /// Get dock persistent apps list
+            items += PockUtilities.default.getDockPersistentAppsList()
+            // Get running apps for additional missing icon and active-badge
+            items += PockUtilities.default.getMissingRunningApps()
+            /// Get dock persistent others list
+            items += PockUtilities.default.getDockPersistentOthersList()
+            /// Set items
+            self.items = items
+            /// Call completion
+            DispatchQueue.main.async {
+                completion()
+            }
+        }
     }
     
     @objc fileprivate func displayIconsInDockScrollView(_ notification: NSNotification?) {
-        
-        /// Remove all olds item views
-        self.dockContentView.subviews.forEach({ subview in
-            subview.removeFromSuperview()
-        })
-        
         /// Load items
-        self.loadDockItems()
-        
-        /// Iterate on dockItems
-       self.items.enumerated().forEach({ index, dockItem in
+        self.loadDockItems {
             
-            /// Try get item view from cache
-            let itemView: PockItemView!
-            if let cachedItemView = self.itemViews[dockItem.bundleIdentifier] {
-                itemView = cachedItemView
-            }else {
-                itemView = PockItemView(frame: .zero)
-                self.itemViews[dockItem.bundleIdentifier] = itemView
-            }
-            itemView.dockItem = dockItem
-        
-            /// Check for bouncing animation
-            if let runningApplication = PockUtilities.default.getRunningApplication(from: notification) {
-                if runningApplication.bundleIdentifier == dockItem.bundleIdentifier {
-                    if notification?.name == NSWorkspace.willLaunchApplicationNotification {
-                        itemView.startBounceAnimation()
-                    }else if notification?.name == NSWorkspace.didActivateApplicationNotification {
-                        itemView.stopBounceAnimation()
-                    }
+            /// Remove all olds item views
+            self.dockContentView.subviews.forEach({ subview in
+                subview.removeFromSuperview()
+            })
+            
+            /// Iterate on dockItems
+            self.items.enumerated().forEach({ index, dockItem in
+                
+                /// Try get item view from cache
+                let itemView: PockItemView!
+                if let cachedItemView = self.itemViews[dockItem.bundleIdentifier] {
+                    itemView = cachedItemView
+                }else {
+                    itemView = PockItemView(frame: .zero)
+                    self.itemViews[dockItem.bundleIdentifier] = itemView
                 }
+                itemView.dockItem = dockItem
+                
+//                /// Check for bouncing animation
+//                if let runningApplication = PockUtilities.default.getRunningApplication(from: notification) {
+//                    if runningApplication.bundleIdentifier == dockItem.bundleIdentifier {
+//                        if notification?.name == NSWorkspace.willLaunchApplicationNotification {
+//                            itemView.startBounceAnimation()
+//                        }else if notification?.name == NSWorkspace.didActivateApplicationNotification {
+//                            itemView.stopBounceAnimation()
+//                        }
+//                    }
+//                }
+                
+                /// Add dockView to scroll view
+                self.dockContentView.addSubview(itemView)
+                
+                /// Change x position
+                itemView.frame.origin.x = 50 * CGFloat(index)
+                
+            })
+            
+            /// Update dockContentView content size
+            self.dockContentView.frame.size.width = 50 * CGFloat(self.items.count)
+            self.dockContentView.frame.size.height = self.dockScrollView.frame.height
+            
+            /// Set dockContentView as scrollView's documentView
+            if self.dockScrollView.documentView != self.dockContentView {
+                self.dockScrollView.documentView = self.dockContentView
             }
-            
-            /// Add dockView to scroll view
-            self.dockContentView.addSubview(itemView)
-            
-            /// Change x position
-            itemView.frame.origin.x = 50 * CGFloat(index)
-            
-        })
-        
-        /// Update dockContentView content size
-        self.dockContentView.frame.size.width = 50 * CGFloat(self.items.count)
-        self.dockContentView.frame.size.height = self.dockScrollView.frame.height
-        
-        /// Set dockContentView as scrollView's documentView
-        if self.dockScrollView.documentView != self.dockContentView {
-            self.dockScrollView.documentView = self.dockContentView
         }
     }
     

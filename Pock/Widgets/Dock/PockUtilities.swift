@@ -70,7 +70,7 @@ public class PockUtilities {
         }
         
         /// Iterate on persistent apps array.
-        for (ind, appItem) in persistentApps.enumerated() {
+        for appItem in persistentApps {
             
             /// Get item tile data.
             guard let tileData = appItem["tile-data"] as? [String: Any] else {
@@ -98,7 +98,7 @@ public class PockUtilities {
             
             /// Add bundle identifier to returnable array.
             let dockItem = PockItem(label: label, bundleIdentifier: bundleIdentifier, icon: PockUtilities.default.getIcon(forBundleIdentifier: bundleIdentifier))
-            returnable.insert(dockItem, at: ind)
+            returnable.append(dockItem)
             
         }
         
@@ -167,7 +167,7 @@ public class PockUtilities {
         }
         
         /// Iterate on persistent others array.
-        for (ind, otherItem) in persistentApps.enumerated() {
+        for otherItem in persistentApps {
             
             /// Get item tile data.
             guard let tileData = otherItem["tile-data"] as? [String: Any] else {
@@ -202,7 +202,7 @@ public class PockUtilities {
             
             /// Add key-value to returnable.
             let dockItem = PockItem(label: label, bundleIdentifier: path, icon: PockUtilities.default.getIcon(forBundleIdentifier: nil, orType: tileType))
-            returnable.insert(dockItem, at: ind)
+            returnable.append(dockItem)
             
         }
         
