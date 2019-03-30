@@ -178,7 +178,7 @@ extension PockItemView: CAAnimationDelegate {
     }
     public func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
         if flag {
-            self.loadBounceAnimation()
+            self.startBounceAnimation()
         }
     }
 }

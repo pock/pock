@@ -30,8 +30,9 @@ class DockWidget: PockWidget {
     /// Custom init
     override func customInit() {
         self.customizationLabel = "Dock"
-        self.dockScrollView.backgroundColor = .black
+        self.dockScrollView.backgroundColor = .clear
         self.dockScrollView.horizontalScrollElasticity = .allowed
+        self.dockContentView.layer?.backgroundColor = NSColor.clear.cgColor
         self.set(view: self.dockScrollView)
     }
     
