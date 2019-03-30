@@ -56,6 +56,7 @@ class SPowerItem: StatusItem {
     private func updateIcon() {
         var iconName: NSImage.Name!
         if powerStatus.isCharging {
+            iconView.subviews.forEach({ $0.removeFromSuperview() })
             iconName = NSImage.Name("powerIsCharging")
         }else {
             iconName = NSImage.Name("powerEmpty")
@@ -69,7 +70,7 @@ class SPowerItem: StatusItem {
         if !iconView.subviews.contains(bodyView) {
             iconView.addSubview(bodyView)
         }
-        bodyView.layer?.backgroundColor = value > 20 ? NSColor.lightGray.cgColor : NSColor.red.cgColor
+        bodyView.layer?.backgroundColor = value > 10 ? NSColor.lightGray.cgColor : NSColor.red.cgColor
         bodyView.frame.size.width = max(width, 1.25)
     }
 }
