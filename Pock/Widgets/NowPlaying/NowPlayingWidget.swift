@@ -31,7 +31,7 @@ class NowPlayingWidget: PockWidget {
     
     @objc private func updateNowPLayingItemView() {
         if nowPlayingItemView == nil {
-            nowPlayingItemView = NowPlayingItemView(frame: NSRect(x: 0, y: 0, width: 120, height: 30))
+            nowPlayingItemView = NowPlayingItemView(frame: .zero)
         }
         nowPlayingItemView.nowPLayingItem = NowPlayingHelper.shared.nowPlayingItem
     }
