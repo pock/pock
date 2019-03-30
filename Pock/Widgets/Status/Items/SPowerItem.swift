@@ -20,8 +20,10 @@ class SPowerItem: StatusItem {
     
     /// UI
     private let iconView: NSImageView = NSImageView(frame: NSRect(x: 0, y: 0, width: 26, height: 26))
+    private let bodyView: NSView      = NSView(frame: NSRect(x: 2, y: 2, width: 21, height: 8))
     
     init() {
+        bodyView.layer?.cornerRadius = 1
         reload()
         Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(reload), userInfo: nil, repeats: true)
     }
@@ -52,7 +54,6 @@ class SPowerItem: StatusItem {
     }
     
     private func updateIcon() {
-        iconView.subviews.forEach({ $0.removeFromSuperview() })
         var iconName: NSImage.Name!
         if powerStatus.isCharging {
             iconName = NSImage.Name("powerIsCharging")
@@ -64,15 +65,11 @@ class SPowerItem: StatusItem {
     }
     
     private func buildBatteryIcon(withValue value: Int) {
-        let middleImage = NSImageView(image: NSImage(named: NSImage.Name("powerMiddle"))!)
-        middleImage.imageScaling = .scaleAxesIndependently
-        let width = (iconView.frame.width - ((iconView.frame.width * CGFloat(value)) / 100)) + 5
-        iconView.addSubview(middleImage)
-        middleImage.snp.makeConstraints({ maker in
-            maker.top.equalTo(iconView).inset(2)
-            maker.left.equalTo(iconView).inset(2)
-            maker.bottom.equalTo(iconView).inset(2)
-            maker.right.equalTo(iconView).inset(width)
-        })
+        let width = ((CGFloat(value) / 100) * (iconView.frame.width - 7))
+        if !iconView.subviews.contains(bodyView) {
+            iconView.addSubview(bodyView)
+        }
+        bodyView.layer?.backgroundColor = value > 20 ? NSColor.lightGray.cgColor : NSColor.red.cgColor
+        bodyView.frame.size.width = max(width, 1.25)
     }
 }
