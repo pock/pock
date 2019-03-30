@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Defaults
 import Carbon.HIToolbox
 
 struct CommandKeySender: KeySender {
@@ -30,6 +31,8 @@ class SSpotlightItem: StatusItem {
             maker.edges.equalTo(tappableView).inset(2)
         })
     }
+    
+    var enabled: Bool{ return defaults[.shouldShowSpotlightItem] }
     
     var title: String  { return "spotlight" }
     

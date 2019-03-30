@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Defaults
 import CoreWLAN
 
 class SWifiItem: StatusItem {
@@ -25,6 +26,8 @@ class SWifiItem: StatusItem {
         try? wifiClient.startMonitoringEvent(with: .linkQualityDidChange)
         reload()
     }
+    
+    var enabled: Bool{ return defaults[.shouldShowWifiItem] }
     
     var title: String  { return "wifi" }
     

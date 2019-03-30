@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Defaults
 import IOKit.ps
 
 struct SPowerStatus {
@@ -27,6 +28,8 @@ class SPowerItem: StatusItem {
         reload()
         Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(reload), userInfo: nil, repeats: true)
     }
+    
+    var enabled: Bool{ return defaults[.shouldShowPowerItem] }
     
     var title: String  { return "power" }
     

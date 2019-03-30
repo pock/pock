@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Defaults
 
 class SClockItem: StatusItem {
     
@@ -24,6 +25,8 @@ class SClockItem: StatusItem {
         reload()
         Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(reload), userInfo: nil, repeats: true)
     }
+    
+    var enabled: Bool{ return defaults[.shouldShowDateItem] }
     
     var title: String  { return "clock" }
     

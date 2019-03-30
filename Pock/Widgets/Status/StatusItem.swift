@@ -16,8 +16,9 @@ class StatusItemView: PockTappableView {
 }
 
 protocol StatusItem {
-    var title:  String { get }
-    var view:   NSView { get }
+    var enabled: Bool   { get }
+    var title:   String { get }
+    var view:    NSView { get }
     func action()
     func reload()
 }

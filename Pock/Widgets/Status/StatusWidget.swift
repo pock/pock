@@ -29,6 +29,18 @@ class StatusWidget: PockWidget {
         self.set(view: stackView)
     }
     
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        NSWorkspace.shared.notificationCenter.addObserver(forName: .shouldReloadStatusWidget, object: nil, queue: .main, using: { [weak self] _ in
+            self?.loadStatusElements()
+        })
+    }
+    
+    override func viewWillDisappear() {
+        super.viewWillDisappear()
+        NSWorkspace.shared.notificationCenter.removeObserver(self)
+    }
+    
     private func initStackView() {
         stackView = NSStackView(frame: .zero)
         stackView.orientation  = .horizontal
@@ -39,14 +51,13 @@ class StatusWidget: PockWidget {
     
     private func clearStackView() {
         stackView.arrangedSubviews.forEach({ subview in
-            stackView.removeArrangedSubview(subview)
             stackView.removeView(subview)
         })
     }
     
     private func loadStatusElements() {
         clearStackView()
-        statusElements.forEach({ item in
+        statusElements.filter({ $0.enabled }).forEach({ item in
             if let cachedView = statusElementViews[item.title] {
                 stackView.addArrangedSubview(cachedView)
             }else {

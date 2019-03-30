@@ -14,6 +14,7 @@ let isProd: Bool = true
 extension NSNotification.Name {
     static let didChangeNotificationBadgeRefreshRate = NSNotification.Name("didSelectNotificationBadgeRefreshRate")
     static let shouldReloadPock                      = NSNotification.Name("shouldReloadPock")
+    static let shouldReloadStatusWidget              = NSNotification.Name("shouldReloadStatusWidget")
 }
 
 enum NotificationBadgeRefreshRateKeys: Double, Codable, CaseIterable {
@@ -49,4 +50,9 @@ extension Defaults.Keys {
     static let launchAtLogin                    = Defaults.Key<Bool>("launchAtLogin", default: false)
     static let notificationBadgeRefreshInterval = Defaults.Key<NotificationBadgeRefreshRateKeys>("notificationBadgeRefreshInterval", default: .tenSeconds)
     static let hideControlStrip                 = Defaults.Key<Bool>("hideControlStrip", default: false)
+    /// Status widget
+    static let shouldShowWifiItem       = Defaults.Key<Bool>("shouldShowWifiItem",      default: true)
+    static let shouldShowPowerItem      = Defaults.Key<Bool>("shouldShowPowerItem",   default: true)
+    static let shouldShowDateItem       = Defaults.Key<Bool>("shouldShowDateItem",      default: true)
+    static let shouldShowSpotlightItem  = Defaults.Key<Bool>("shouldShowSpotlightItem", default: true)
 }
