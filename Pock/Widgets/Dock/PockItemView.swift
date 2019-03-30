@@ -150,7 +150,7 @@ public class PockItemView: PockTappableView {
             /// TODO: Find a way to minimize other apps from Pock
         }else {
             /// Launch application
-            PockUtilities.launch(bundleIdentifier: self.dockItem!.bundleIdentifier, completion: { _ in })
+            PockUtilities.default.launch(bundleIdentifier: self.dockItem!.bundleIdentifier, completion: { _ in })
         }
     }
     

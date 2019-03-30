@@ -9,6 +9,8 @@
 import Foundation
 import Defaults
 
+let isProd: Bool = true
+
 extension NSNotification.Name {
     static let didChangeNotificationBadgeRefreshRate = NSNotification.Name("didSelectNotificationBadgeRefreshRate")
     static let shouldReloadPock                      = NSNotification.Name("shouldReloadPock")

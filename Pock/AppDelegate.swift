@@ -29,11 +29,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to initialize your application
         NSApp.isAutomaticCustomizeTouchBarMenuItemEnabled = true
         
-        /// Initialize Crashlytics only in release modi
-        #if PROD
+        /// Initialize Crashlytics
+        if isProd {
             UserDefaults.standard.register(defaults: ["NSApplicationCrashOnExceptions": true])
             Fabric.with([Crashlytics.self])
-        #endif
+        }
         
         /// Check for accessibility (needed for badges to work)
         self.checkAccessibility()
@@ -74,7 +74,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     /// Check for updates
     private func checkForUpdates() {
-        GeneralPreferencePane.hasLatestVersion(completion: { [weak self] versionNumber, downloadURL in
+        generalPreferencePane.hasLatestVersion(completion: { [weak self] versionNumber, downloadURL in
             guard let versionNumber = versionNumber, let downloadURL = downloadURL else { return }
             self?.generalPreferencePane.newVersionAvailable = (versionNumber, downloadURL)
             DispatchQueue.main.async { [weak self] in

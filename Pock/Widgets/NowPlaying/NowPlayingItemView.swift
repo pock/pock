@@ -73,7 +73,7 @@ class NowPlayingItemView: PockTappableView {
         let path = NSWorkspace.shared.absolutePathForApplication(withBundleIdentifier: appBundleIdentifier)
         
         DispatchQueue.main.async { [weak self] in
-            self?.imageView.image = PockUtilities.getIcon(forBundleIdentifier: appBundleIdentifier, orPath: path)
+            self?.imageView.image = PockUtilities.default.getIcon(forBundleIdentifier: appBundleIdentifier, orPath: path)
             self?.titleView.stringValue    = self?.nowPLayingItem?.title  ?? "Pock"
             self?.subtitleView.stringValue = self?.nowPLayingItem?.artist ?? PockUtilities.getDisplayName(forPath: path) ??  "Unknown"
             self?.updateForNowPlayingState()

@@ -21,7 +21,9 @@ import Foundation
 public struct EonilFSEvents {
     public static func startWatching(paths: [String], for id: ObjectIdentifier, with handler: @escaping (EonilFSEventsEvent) -> ()) throws {
         assert(Thread.isMainThread)
-        if (watchers[id] != nil) { return }
+        if watchers[id] != nil {
+            stopWatching(for: id)
+        }
         // This is convenient wrapper for UI.
         // UI usually needs quicker response rather than maximum throughput.
         // Tuned for quickest response.

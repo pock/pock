@@ -23,6 +23,13 @@ final class GeneralPreferencePane: NSViewController, Preferenceable {
     /// Core
     private static let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String ?? "Unknown"
     
+    /// Endpoint
+    #if DEBUG
+    private let latestVersionURLString: String = "https://pock.pigigaldi.com/api/dev/latestRelease.json"
+    #else
+    private let latestVersionURLString: String = "https://pock.pigigaldi.com/api/latestRelease.json"
+    #endif
+    
     /// Preferenceable
     let toolbarItemTitle: String   = "General"
     let toolbarItemIcon:  NSImage  = NSImage(named: NSImage.Name("pock-icon"))!
@@ -83,7 +90,7 @@ final class GeneralPreferencePane: NSViewController, Preferenceable {
         self.checkForUpdatesButton.isEnabled = false
         self.checkForUpdatesButton.title     = "Checking..."
         
-        GeneralPreferencePane.hasLatestVersion(completion: { [weak self] latestVersion, latestVersionDownloadURL in
+        self.hasLatestVersion(completion: { [weak self] latestVersion, latestVersionDownloadURL in
             if let latestVersion = latestVersion, let latestVersionDownloadURL = latestVersionDownloadURL {
                 self?.showNewVersionAlert(versionNumber: latestVersion, downloadURL: latestVersionDownloadURL)
             }else {
@@ -124,16 +131,12 @@ extension GeneralPreferencePane {
 }
 
 extension GeneralPreferencePane {
-    #if DEBUG
-    static let latestVersionURLString: String = "http://pock.pigigaldi.com/api/dev/latestRelease.json"
-    #else
-    static let latestVersionURLString: String = "http://pock.pigigaldi.com/api/latestRelease.json"
-    #endif
     
-    class func hasLatestVersion(completion: @escaping (String?, URL?) -> Void) {
+    func hasLatestVersion(completion: @escaping (String?, URL?) -> Void) {
         let latestVersionURL: URL = URL(string: latestVersionURLString)!
         URLSession.shared.dataTask(with: latestVersionURL, completionHandler: { data, response, error in
-            guard let json                = try? JSONSerialization.jsonObject(with: data!, options: []) as? [String: String],
+            guard let data                = data,
+                  let json                = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: String],
                   let latestVersionNumber = json?["version_number"], GeneralPreferencePane.appVersion < latestVersionNumber,
                   let downloadLink        = json?["download_link"],
                   let downloadURL         = URL(string: downloadLink) else {
