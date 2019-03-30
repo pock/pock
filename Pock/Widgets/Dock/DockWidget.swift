@@ -13,6 +13,8 @@ fileprivate class DockWidgetView: NSStackView {
     override open var intrinsicContentSize: NSSize { return NSMakeSize(NSView.noIntrinsicMetric, NSView.noIntrinsicMetric) }
 }
 
+fileprivate class DockWidgetScrollView: NSScrollView { /* nothing to do here */ }
+
 class DockWidget: PockWidget {
     
     /// Core
@@ -20,8 +22,8 @@ class DockWidget: PockWidget {
     fileprivate var notificationBadgeRefreshTimer: Timer!
     
     /// UI
-    fileprivate var dockScrollView:  NSScrollView = NSScrollView(frame: .zero)
-    fileprivate var dockContentView: NSView       = NSView(frame: .zero)
+    fileprivate var dockScrollView:  DockWidgetScrollView = DockWidgetScrollView(frame: .zero)
+    fileprivate var dockContentView: NSView               = NSView(frame: .zero)
     
     /// Data
     fileprivate var itemViews:  [String: PockItemView] = [:]
