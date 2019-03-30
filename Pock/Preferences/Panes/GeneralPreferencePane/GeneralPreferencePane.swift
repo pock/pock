@@ -10,6 +10,7 @@ import Foundation
 import Preferences
 import Defaults
 import LaunchAtLogin
+import Sparkle
 
 final class GeneralPreferencePane: NSViewController, Preferenceable {
     
@@ -87,20 +88,22 @@ final class GeneralPreferencePane: NSViewController, Preferenceable {
     
     @IBAction private func checkForUpdates(_: NSButton) {
         
-        self.checkForUpdatesButton.isEnabled = false
-        self.checkForUpdatesButton.title     = "Checking..."
-        
-        self.hasLatestVersion(completion: { [weak self] latestVersion, latestVersionDownloadURL in
-            if let latestVersion = latestVersion, let latestVersionDownloadURL = latestVersionDownloadURL {
-                self?.showNewVersionAlert(versionNumber: latestVersion, downloadURL: latestVersionDownloadURL)
-            }else {
-                self?.showAlert(title: "Installed version: \(GeneralPreferencePane.appVersion)", message: "Already on latest version")
-            }
-            DispatchQueue.main.async { [weak self] in
-                self?.checkForUpdatesButton.isEnabled = true
-                self?.checkForUpdatesButton.title     = "Check for updates"
-            }
-        })
+        SUUpdater.shared()?.checkForUpdates(self)
+
+//        self.checkForUpdatesButton.isEnabled = false
+//        self.checkForUpdatesButton.title     = "Checking..."
+//
+//        self.hasLatestVersion(completion: { [weak self] latestVersion, latestVersionDownloadURL in
+//            if let latestVersion = latestVersion, let latestVersionDownloadURL = latestVersionDownloadURL {
+//                self?.showNewVersionAlert(versionNumber: latestVersion, downloadURL: latestVersionDownloadURL)
+//            }else {
+//                self?.showAlert(title: "Installed version: \(GeneralPreferencePane.appVersion)", message: "Already on latest version")
+//            }
+//            DispatchQueue.main.async { [weak self] in
+//                self?.checkForUpdatesButton.isEnabled = true
+//                self?.checkForUpdatesButton.title     = "Check for updates"
+//            }
+//        }) //
     }
 }
 
