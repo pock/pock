@@ -59,9 +59,11 @@ class StatusWidget: PockWidget {
         clearStackView()
         statusElements.filter({ $0.enabled }).forEach({ item in
             if let cachedView = statusElementViews[item.title] {
+                item.reload()
                 stackView.addArrangedSubview(cachedView)
             }else {
                 statusElementViews[item.title] = item.view
+                item.reload()
                 stackView.addArrangedSubview(item.view)
             }
         })

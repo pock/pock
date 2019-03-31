@@ -18,13 +18,23 @@ class SPowerItem: StatusItem {
     
     /// Core
     private var powerStatus: SPowerStatus = SPowerStatus(isCharging: false, currentValue: 0)
+    private var shouldShowBatteryIcon: Bool {
+        return defaults[.shouldShowBatteryIcon]
+    }
+    private var shouldShowBatteryPercentage: Bool {
+        return defaults[.shouldShowBatteryPercentage]
+    }
     
     /// UI
+    private let stackView: NSStackView = NSStackView(frame: .zero)
     private let iconView: NSImageView = NSImageView(frame: NSRect(x: 0, y: 0, width: 26, height: 26))
     private let bodyView: NSView      = NSView(frame: NSRect(x: 2, y: 2, width: 21, height: 8))
+    private let valueLabel: NSTextField = NSTextField(frame: .zero)
     
     init() {
         bodyView.layer?.cornerRadius = 1
+        configureValueLabel()
+        configureStackView()
         reload()
         Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(reload), userInfo: nil, repeats: true)
     }
@@ -33,10 +43,27 @@ class SPowerItem: StatusItem {
     
     var title: String  { return "power" }
     
-    var view: NSView { return iconView }
+    var view: NSView { return stackView }
     
     func action() {
         print("[Pock]: Power Status icon tapped!")
+    }
+    
+    private func configureValueLabel() {
+        valueLabel.font = NSFont.systemFont(ofSize: 13)
+        valueLabel.backgroundColor = .clear
+        valueLabel.isBezeled = false
+        valueLabel.isEditable = false
+        valueLabel.sizeToFit()
+    }
+    
+    private func configureStackView() {
+        stackView.orientation = .horizontal
+        stackView.alignment = .centerY
+        stackView.distribution = .fillProportionally
+        stackView.spacing = 2
+        stackView.addArrangedSubview(valueLabel)
+        stackView.addArrangedSubview(iconView)
     }
     
     @objc func reload() {
@@ -52,20 +79,29 @@ class SPowerItem: StatusItem {
             }
         }
         DispatchQueue.main.async { [weak self] in
-            self?.updateIcon()
+            self?.updateIcon(value: self?.powerStatus.currentValue ?? 0)
         }
     }
     
-    private func updateIcon() {
-        var iconName: NSImage.Name!
-        if powerStatus.isCharging {
-            iconView.subviews.forEach({ $0.removeFromSuperview() })
-            iconName = NSImage.Name("powerIsCharging")
+    private func updateIcon(value: Int) {
+        if shouldShowBatteryIcon {
+            var iconName: NSImage.Name!
+            if powerStatus.isCharging {
+                iconView.subviews.forEach({ $0.removeFromSuperview() })
+                iconName = NSImage.Name("powerIsCharging")
+            }else {
+                iconName = NSImage.Name("powerEmpty")
+                buildBatteryIcon(withValue: value)
+            }
+            iconView.image    = NSImage(named: iconName)
+            iconView.isHidden = false
         }else {
-            iconName = NSImage.Name("powerEmpty")
-            buildBatteryIcon(withValue: powerStatus.currentValue)
+            iconView.isHidden = true
+            iconView.image    = nil
+            iconView.subviews.forEach({ $0.removeFromSuperview() })
         }
-        iconView.image = NSImage(named: iconName)
+        valueLabel.stringValue = shouldShowBatteryPercentage ? "\(value)%" : ""
+        valueLabel.isHidden    = !shouldShowBatteryPercentage
     }
     
     private func buildBatteryIcon(withValue value: Int) {
