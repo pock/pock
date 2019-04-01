@@ -272,7 +272,7 @@
 				348343D41F631B2E00CDA005 /* Resources */,
 				9C497126EC20FAC73A4D0299 /* [CP] Embed Pods Frameworks */,
 				34FBB7B721734E8F004D5BC0 /* [LaunchAtLogin] Copy helper */,
-				3413964E217B8B6200DCD2B0 /* ShellScript */,
+				3413964E217B8B6200DCD2B0 /* [Fabric] Run */,
 			);
 			buildRules = (
 			);
@@ -296,7 +296,7 @@
 					348343D51F631B2E00CDA005 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 788D9WZ9Z3;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1010;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -351,7 +351,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3413964E217B8B6200DCD2B0 /* ShellScript */ = {
+		3413964E217B8B6200DCD2B0 /* [Fabric] Run */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -361,13 +361,14 @@
 			inputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
 			);
+			name = "[Fabric] Run";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
-			shellScript = "apiKey=$(sed -n '1p' < FabricEnv)\nsecretKey=$(sed -n '2p' < FabricEnv)\n\nINFO_PLIST=\"${SRCROOT}/Pock/Various/Info.plist\"\n\necho \"===========\"\necho \"$INFO_PLIST\"\necho \"===========\"\n\n/usr/libexec/PlistBuddy -c \"Set :Fabric:APIKey $apiKey\" \"$INFO_PLIST\"\n\n\"${PODS_ROOT}/Fabric/run\" $apiKey $secretKey\n";
+			shellScript = "apiKey=$(sed -n '1p' < FabricEnv)\nsecretKey=$(sed -n '2p' < FabricEnv)\n\nINFO_PLIST=\"${SRCROOT}/Pock/Various/Info.plist\"\n\n/usr/libexec/PlistBuddy -c \"Set :Fabric:APIKey $apiKey\" \"$INFO_PLIST\"\n\n\"${PODS_ROOT}/Fabric/run\" $apiKey $secretKey\n";
 		};
 		34FBB7B721734E8F004D5BC0 /* [LaunchAtLogin] Copy helper */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -377,7 +378,6 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/Pods/LaunchAtLogin/LaunchAtLogin/copy-helper.sh",
 			);
 			name = "[LaunchAtLogin] Copy helper";
 			outputFileListPaths = (
@@ -386,8 +386,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "
-";
+			shellScript = "\"$SRCROOT/Pods/LaunchAtLogin/LaunchAtLogin/copy-helper.sh\"\n";
 		};
 		9C497126EC20FAC73A4D0299 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
