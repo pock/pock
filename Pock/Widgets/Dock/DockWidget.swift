@@ -18,7 +18,6 @@ fileprivate class DockWidgetScrollView: NSScrollView { /* nothing to do here */ 
 class DockWidget: PockWidget {
     
     /// Core
-    fileprivate var lock: NSRecursiveLock = NSRecursiveLock()
     fileprivate var notificationBadgeRefreshTimer: Timer!
     
     /// UI
@@ -85,9 +84,7 @@ class DockWidget: PockWidget {
         
         try? EonilFSEvents.startWatching(paths: [PockUtilities.default.dockPlist, PockUtilities.default.trashPath], for: ObjectIdentifier(self), with: { [weak self] event in
             print("[Pock]: \(event.path)")
-            DispatchQueue.main.async { [weak self] in
-                self?.displayIconsInDockScrollView(nil)
-            }
+            self?.displayIconsInDockScrollView(nil)
         })
     }
     
@@ -104,8 +101,13 @@ class DockWidget: PockWidget {
 extension DockWidget {
     
     fileprivate func loadDockItems(completion: @escaping () -> Void) {
-        lock.lock(); defer { lock.unlock() }
-        DispatchQueue.global(qos: .background).async {
+        DispatchQueue.global(qos: .background).async { [weak self] in
+            guard let _self = self else {
+                DispatchQueue.main.async {
+                    completion()
+                }
+                return
+            }
             /// Returnable
             var items: [PockItem] = []
             /// Get dock persistent apps list
@@ -114,10 +116,10 @@ extension DockWidget {
             items += PockUtilities.default.getMissingRunningApps()
             /// Get dock persistent others list
             items += PockUtilities.default.getDockPersistentOthersList()
-            /// Set items
-            self.items = items
             /// Call completion
             DispatchQueue.main.async {
+                /// Set items
+                _self.items = items
                 completion()
             }
         }
