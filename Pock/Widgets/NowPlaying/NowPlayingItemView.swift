@@ -9,6 +9,12 @@
 import Foundation
 import AppKit
 
+extension String {
+    func truncate(length: Int, trailing: String = "…") -> String {
+        return self.count > length ? String(self.prefix(length)) + trailing : self
+    }
+}
+
 class NowPlayingItemView: PockTappableView {
     
     /// Core
@@ -74,7 +80,7 @@ class NowPlayingItemView: PockTappableView {
         
         DispatchQueue.main.async { [weak self] in
             self?.imageView.image = PockUtilities.default.getIcon(forBundleIdentifier: appBundleIdentifier, orPath: path)
-            self?.titleView.stringValue    = self?.nowPLayingItem?.title  ?? "Pock"
+            self?.titleView.stringValue    = self?.nowPLayingItem?.title?.truncate(length: 30) ?? "Pock"
             self?.subtitleView.stringValue = self?.nowPLayingItem?.artist ?? PockUtilities.getDisplayName(forPath: path) ??  "Unknown"
             self?.updateForNowPlayingState()
         }
