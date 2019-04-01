@@ -102,7 +102,7 @@ extension DockWidget {
     
     fileprivate func loadDockItems(completion: @escaping () -> Void) {
         lock.lock(); defer { lock.unlock() }
-        DispatchQueue.global(qos: .background).async {
+        DispatchQueue.global(qos: .background).async { [weak self] in
             /// Returnable
             var items: [PockItem] = []
             /// Get dock persistent apps list
@@ -111,10 +111,10 @@ extension DockWidget {
             items += PockUtilities.default.getMissingRunningApps()
             /// Get dock persistent others list
             items += PockUtilities.default.getDockPersistentOthersList()
-            /// Set items
-            self.items = items
             /// Call completion
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [weak self] in
+                /// Set items
+                self?.items = items
                 completion()
             }
         }
