@@ -39,6 +39,10 @@ public class PockItemView: NSView {
         self.updateRunningDot()
         /// Update badge
         self.updateBadge()
+        /// Check for trash
+        if self.dockItem?.label == "Trash" {
+            self.updateIconIfItemIsTrash()
+        }
     }
     
     override public init(frame frameRect: NSRect) {
@@ -78,6 +82,14 @@ public class PockItemView: NSView {
             make.top.equalTo(1)
         })
     
+    }
+    
+    private func updateIconIfItemIsTrash() {
+        Timer(timeInterval: 2, repeats: true, block: { [weak self] _ in
+            let isTrashEmpty      = (try? FileManager.default.contentsOfDirectory(atPath: PockUtilities.default.trashPath).isEmpty) ?? true
+            self?.dockItem?.icon  = PockUtilities.default.getIcon(orType: isTrashEmpty ? "TrashIcon" : "FullTrashIcon")
+            DispatchQueue.main.async { [weak self] in self?.iconView?.image = self?.dockItem?.icon }
+        }).fire()
     }
     
     private func updateRunningDot() {

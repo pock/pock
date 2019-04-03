@@ -54,11 +54,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             pockStatusbarIcon.menu = menu
         }
         
-        /// Check for updates
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: { [weak self] in
-            self?.checkForUpdates()
-        })
-        
         /// Present Pock
         self.touchBarController.present()
         
@@ -70,17 +65,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     /// Will terminate
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
-    }
-    
-    /// Check for updates
-    private func checkForUpdates() {
-        generalPreferencePane.hasLatestVersion(completion: { [weak self] versionNumber, downloadURL in
-            guard let versionNumber = versionNumber, let downloadURL = downloadURL else { return }
-            self?.generalPreferencePane.newVersionAvailable = (versionNumber, downloadURL)
-            DispatchQueue.main.async { [weak self] in
-                self?.openPreferences()
-            }
-        })
     }
     
     /// Check for accessibility

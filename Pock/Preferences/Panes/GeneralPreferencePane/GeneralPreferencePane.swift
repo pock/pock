@@ -10,6 +10,7 @@ import Foundation
 import Preferences
 import Defaults
 import LaunchAtLogin
+import Sparkle
 
 final class GeneralPreferencePane: NSViewController, Preferenceable {
     
@@ -23,19 +24,9 @@ final class GeneralPreferencePane: NSViewController, Preferenceable {
     /// Core
     private static let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String ?? "Unknown"
     
-    /// Endpoint
-    #if DEBUG
-    private let latestVersionURLString: String = "https://pock.pigigaldi.com/api/dev/latestRelease.json"
-    #else
-    private let latestVersionURLString: String = "https://pock.pigigaldi.com/api/latestRelease.json"
-    #endif
-    
     /// Preferenceable
     let toolbarItemTitle: String   = "General"
     let toolbarItemIcon:  NSImage  = NSImage(named: NSImage.Name("pock-icon"))!
-    
-    /// Updates
-    var newVersionAvailable: (String, URL)?
     
     override var nibName: NSNib.Name? {
         return NSNib.Name(rawValue: "GeneralPreferencePane")
@@ -46,10 +37,6 @@ final class GeneralPreferencePane: NSViewController, Preferenceable {
         self.loadVersionNumber()
         self.populatePopUpButton()
         self.setupLaunchAtLoginCheckbox()
-        if let newVersionNumber = self.newVersionAvailable?.0, let newVersionDownloadURL = self.newVersionAvailable?.1 {
-            self.showNewVersionAlert(versionNumber: newVersionNumber, downloadURL: newVersionDownloadURL)
-            self.newVersionAvailable = nil
-        }
     }
     
     private func loadVersionNumber() {
@@ -80,22 +67,8 @@ final class GeneralPreferencePane: NSViewController, Preferenceable {
         NSWorkspace.shared.notificationCenter.post(name: .shouldReloadPock, object: nil)
     }
     
-    @IBAction private func checkForUpdates(_: NSButton) {
-        
-        self.checkForUpdatesButton.isEnabled = false
-        self.checkForUpdatesButton.title     = "Checking..."
-        
-        self.hasLatestVersion(completion: { [weak self] latestVersion, latestVersionDownloadURL in
-            if let latestVersion = latestVersion, let latestVersionDownloadURL = latestVersionDownloadURL {
-                self?.showNewVersionAlert(versionNumber: latestVersion, downloadURL: latestVersionDownloadURL)
-            }else {
-                self?.showAlert(title: "Installed version: \(GeneralPreferencePane.appVersion)", message: "Already on latest version")
-            }
-            DispatchQueue.main.async { [weak self] in
-                self?.checkForUpdatesButton.isEnabled = true
-                self?.checkForUpdatesButton.title     = "Check for updates"
-            }
-        })
+    @IBAction private func checkForUpdates(_ sender: NSButton) {
+        SUUpdater.shared()?.checkForUpdates(sender)
     }
 }
 
@@ -121,25 +94,6 @@ extension GeneralPreferencePane {
             }
             alert.beginSheetModal(for: _self.view.window!, completionHandler: completion)
         }
-    }
-    
-}
-
-extension GeneralPreferencePane {
-    
-    func hasLatestVersion(completion: @escaping (String?, URL?) -> Void) {
-        let latestVersionURL: URL = URL(string: latestVersionURLString)!
-        URLSession.shared.dataTask(with: latestVersionURL, completionHandler: { data, response, error in
-            guard let data                = data,
-                  let json                = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: String],
-                  let latestVersionNumber = json?["version_number"], GeneralPreferencePane.appVersion < latestVersionNumber,
-                  let downloadLink        = json?["download_link"],
-                  let downloadURL         = URL(string: downloadLink) else {
-                    completion(nil, nil)
-                    return
-            }
-            completion(latestVersionNumber, downloadURL)
-        }).resume()
     }
     
 }

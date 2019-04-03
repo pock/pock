@@ -59,5 +59,7 @@
 	<string>MainWindow</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>SUFeedURL</key>
+	<string>https://pock.pigigaldi.com/builds/appcast.xml</string>
 </dict>
 </plist>

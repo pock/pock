@@ -8,8 +8,6 @@
 
 import Foundation
 import Defaults
-import RxSwift
-import RxFileMonitor
 
 fileprivate class DockWidgetView: NSStackView {
     override open var intrinsicContentSize: NSSize { return NSMakeSize(NSView.noIntrinsicMetric, NSView.noIntrinsicMetric) }
@@ -18,7 +16,6 @@ fileprivate class DockWidgetView: NSStackView {
 class DockWidget: PockWidget {
     
     /// Core
-    fileprivate var disposeBag: DisposeBag = DisposeBag()
     fileprivate var lock: NSRecursiveLock = NSRecursiveLock()
     fileprivate var notificationBadgeRefreshTimer: Timer!
     
@@ -81,13 +78,6 @@ class DockWidget: PockWidget {
                                                           selector: #selector(self.setupNotificationBadgeRefreshTimer),
                                                           name: .didChangeNotificationBadgeRefreshRate,
                                                           object: nil)
-        
-        FolderContentMonitor(pathsToWatch: [PockUtilities.default.dockPlist, PockUtilities.default.trashPath]).asObservable().subscribe(onNext: { [weak self] event in
-            print("[Pock]: \(event)")
-            DispatchQueue.main.async { [weak self] in
-                self?.displayIconsInDockScrollView(nil)
-            }
-        }).disposed(by: disposeBag)
     }
     
     override func viewWillDisappear() {

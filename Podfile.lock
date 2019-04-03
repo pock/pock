@@ -6,9 +6,6 @@ PODS:
   - LaunchAtLogin (2.5.0)
   - Magnet (2.3.1)
   - Preferences (0.2.1)
-  - RxFileMonitor (1.2.1):
-    - RxSwift (~> 4.0)
-  - RxSwift (4.5.0)
   - SnapKit (4.2.0)
   - Sparkle (1.21.3)
 
@@ -19,7 +16,6 @@ DEPENDENCIES:
   - LaunchAtLogin
   - Magnet
   - Preferences
-  - RxFileMonitor
   - SnapKit
   - Sparkle
 
@@ -31,8 +27,6 @@ SPEC REPOS:
     - LaunchAtLogin
     - Magnet
     - Preferences
-    - RxFileMonitor
-    - RxSwift
     - SnapKit
     - Sparkle
 
@@ -43,11 +37,9 @@ SPEC CHECKSUMS:
   LaunchAtLogin: 550b0cbbdaf1b13f87a0fab6a3f8e2fbafe067fe
   Magnet: f8dac2ffc845ffe68b2dd21c68a801f866f4a098
   Preferences: 5543bfd757a2485a310683da977d661c0ae509a9
-  RxFileMonitor: b3da98aaf933bea5e5e157badc48a8fa4e0f7fc6
-  RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   Sparkle: 3f75576db8b0265adef36c43249d747f22d0b708
 
-PODFILE CHECKSUM: 146c9f389e8d2424f31727e2416ae93ab26db849
+PODFILE CHECKSUM: 4870de53cd7d4bab837406443f3a3f01e4908690
 
 COCOAPODS: 1.6.0.beta.2
