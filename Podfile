@@ -14,5 +14,6 @@ target 'Pock' do
   pod 'Preferences'
   pod 'LaunchAtLogin'
   pod 'RxFileMonitor'
+  pod 'Sparkle'
   
 end

@@ -10,6 +10,7 @@ PODS:
     - RxSwift (~> 4.0)
   - RxSwift (4.5.0)
   - SnapKit (4.2.0)
+  - Sparkle (1.21.3)
 
 DEPENDENCIES:
   - Crashlytics
@@ -20,6 +21,7 @@ DEPENDENCIES:
   - Preferences
   - RxFileMonitor
   - SnapKit
+  - Sparkle
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -32,6 +34,7 @@ SPEC REPOS:
     - RxFileMonitor
     - RxSwift
     - SnapKit
+    - Sparkle
 
 SPEC CHECKSUMS:
   Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
@@ -43,7 +46,8 @@ SPEC CHECKSUMS:
   RxFileMonitor: b3da98aaf933bea5e5e157badc48a8fa4e0f7fc6
   RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
+  Sparkle: 3f75576db8b0265adef36c43249d747f22d0b708
 
-PODFILE CHECKSUM: 8fe1a45f4abe7de228c0ecab576dfc3cf09f9e49
+PODFILE CHECKSUM: 146c9f389e8d2424f31727e2416ae93ab26db849
 
 COCOAPODS: 1.6.0.beta.2
