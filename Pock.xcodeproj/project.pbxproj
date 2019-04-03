@@ -15,14 +15,6 @@
 		348343DA1F631B2E00CDA005 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348343D91F631B2E00CDA005 /* AppDelegate.swift */; };
 		348343E91F631B6700CDA005 /* PockUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348343E81F631B6700CDA005 /* PockUtilities.swift */; };
 		3483BF7621712BA8008570D0 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3483BF7521712BA8008570D0 /* Preferences.swift */; };
-		349431C222175E07008622B1 /* EonilFSEventStreamError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431BA22175E06008622B1 /* EonilFSEventStreamError.swift */; };
-		349431C322175E07008622B1 /* EonilFSEventStreamIllogicalErrorLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431BB22175E06008622B1 /* EonilFSEventStreamIllogicalErrorLog.swift */; };
-		349431C422175E07008622B1 /* EonilFSEventStreamEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431BC22175E07008622B1 /* EonilFSEventStreamEvent.swift */; };
-		349431C522175E07008622B1 /* EonilFSEventStreamEventID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431BD22175E07008622B1 /* EonilFSEventStreamEventID.swift */; };
-		349431C622175E07008622B1 /* EonilFSEventStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431BE22175E07008622B1 /* EonilFSEventStream.swift */; };
-		349431C722175E07008622B1 /* EonilFSEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431BF22175E07008622B1 /* EonilFSEvents.swift */; };
-		349431C822175E07008622B1 /* EonilFSEventStreamEventFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431C022175E07008622B1 /* EonilFSEventStreamEventFlags.swift */; };
-		349431C922175E07008622B1 /* EonilFSEventStreamCreateFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431C122175E07008622B1 /* EonilFSEventStreamCreateFlags.swift */; };
 		3494645A21713821000480C5 /* GeneralPreferencePane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3494645821713821000480C5 /* GeneralPreferencePane.xib */; };
 		3494645C2171383A000480C5 /* GeneralPreferencePane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3494645B2171383A000480C5 /* GeneralPreferencePane.swift */; };
 		349557E6217CEFDB000DEB55 /* EscWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349557E5217CEFDB000DEB55 /* EscWidget.swift */; };
@@ -48,14 +40,6 @@
 		348343D91F631B2E00CDA005 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		348343E81F631B6700CDA005 /* PockUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PockUtilities.swift; sourceTree = "<group>"; };
 		3483BF7521712BA8008570D0 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
-		349431BA22175E06008622B1 /* EonilFSEventStreamError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EonilFSEventStreamError.swift; sourceTree = "<group>"; };
-		349431BB22175E06008622B1 /* EonilFSEventStreamIllogicalErrorLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EonilFSEventStreamIllogicalErrorLog.swift; sourceTree = "<group>"; };
-		349431BC22175E07008622B1 /* EonilFSEventStreamEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EonilFSEventStreamEvent.swift; sourceTree = "<group>"; };
-		349431BD22175E07008622B1 /* EonilFSEventStreamEventID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EonilFSEventStreamEventID.swift; sourceTree = "<group>"; };
-		349431BE22175E07008622B1 /* EonilFSEventStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EonilFSEventStream.swift; sourceTree = "<group>"; };
-		349431BF22175E07008622B1 /* EonilFSEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EonilFSEvents.swift; sourceTree = "<group>"; };
-		349431C022175E07008622B1 /* EonilFSEventStreamEventFlags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EonilFSEventStreamEventFlags.swift; sourceTree = "<group>"; };
-		349431C122175E07008622B1 /* EonilFSEventStreamCreateFlags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EonilFSEventStreamCreateFlags.swift; sourceTree = "<group>"; };
 		3494645821713821000480C5 /* GeneralPreferencePane.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeneralPreferencePane.xib; sourceTree = "<group>"; };
 		3494645B2171383A000480C5 /* GeneralPreferencePane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPreferencePane.swift; sourceTree = "<group>"; };
 		349557E5217CEFDB000DEB55 /* EscWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EscWidget.swift; sourceTree = "<group>"; };
@@ -170,21 +154,6 @@
 			path = Preferences;
 			sourceTree = "<group>";
 		};
-		349431B922175DFE008622B1 /* EonilFSEvents */ = {
-			isa = PBXGroup;
-			children = (
-				349431BF22175E07008622B1 /* EonilFSEvents.swift */,
-				349431BE22175E07008622B1 /* EonilFSEventStream.swift */,
-				349431C122175E07008622B1 /* EonilFSEventStreamCreateFlags.swift */,
-				349431BA22175E06008622B1 /* EonilFSEventStreamError.swift */,
-				349431BC22175E07008622B1 /* EonilFSEventStreamEvent.swift */,
-				349431C022175E07008622B1 /* EonilFSEventStreamEventFlags.swift */,
-				349431BD22175E07008622B1 /* EonilFSEventStreamEventID.swift */,
-				349431BB22175E06008622B1 /* EonilFSEventStreamIllogicalErrorLog.swift */,
-			);
-			path = EonilFSEvents;
-			sourceTree = "<group>";
-		};
 		3494644A21713331000480C5 /* Panes */ = {
 			isa = PBXGroup;
 			children = (
@@ -241,7 +210,6 @@
 		349557F5217CFEBB000DEB55 /* Dock */ = {
 			isa = PBXGroup;
 			children = (
-				349431B922175DFE008622B1 /* EonilFSEvents */,
 				349557F3217CFEB7000DEB55 /* DockWidget.swift */,
 				348343E81F631B6700CDA005 /* PockUtilities.swift */,
 				342D3CB62111ACC30028FC59 /* PockItem.swift */,
@@ -399,6 +367,8 @@
 				"${BUILT_PRODUCTS_DIR}/LaunchAtLogin/LaunchAtLogin.framework",
 				"${BUILT_PRODUCTS_DIR}/Magnet/Magnet.framework",
 				"${BUILT_PRODUCTS_DIR}/Preferences/Preferences.framework",
+				"${BUILT_PRODUCTS_DIR}/RxFileMonitor/RxFileMonitor.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -407,6 +377,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LaunchAtLogin.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Magnet.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Preferences.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxFileMonitor.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -425,18 +397,10 @@
 				34DC32E61F6DAAC500037E68 /* KeySender.swift in Sources */,
 				3483BF7621712BA8008570D0 /* Preferences.swift in Sources */,
 				349557F4217CFEB7000DEB55 /* DockWidget.swift in Sources */,
-				349431C722175E07008622B1 /* EonilFSEvents.swift in Sources */,
 				3427C72D1F65746000FE39FF /* PockItemView.swift in Sources */,
-				349431C822175E07008622B1 /* EonilFSEventStreamEventFlags.swift in Sources */,
 				348343E91F631B6700CDA005 /* PockUtilities.swift in Sources */,
-				349431C522175E07008622B1 /* EonilFSEventStreamEventID.swift in Sources */,
 				349557ED217CF627000DEB55 /* PockTouchBarController.swift in Sources */,
-				349431C322175E07008622B1 /* EonilFSEventStreamIllogicalErrorLog.swift in Sources */,
-				349431C422175E07008622B1 /* EonilFSEventStreamEvent.swift in Sources */,
 				342D3CB42111998A0028FC59 /* PockDockHelper.m in Sources */,
-				349431C622175E07008622B1 /* EonilFSEventStream.swift in Sources */,
-				349431C222175E07008622B1 /* EonilFSEventStreamError.swift in Sources */,
-				349431C922175E07008622B1 /* EonilFSEventStreamCreateFlags.swift in Sources */,
 				348343DA1F631B2E00CDA005 /* AppDelegate.swift in Sources */,
 				342D3CB72111ACC30028FC59 /* PockItem.swift in Sources */,
 				349557EB217CF5A3000DEB55 /* PockMainController.swift in Sources */,

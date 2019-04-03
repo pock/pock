@@ -13,5 +13,6 @@ target 'Pock' do
   pod 'Defaults'
   pod 'Preferences'
   pod 'LaunchAtLogin'
-
+  pod 'RxFileMonitor'
+  
 end
