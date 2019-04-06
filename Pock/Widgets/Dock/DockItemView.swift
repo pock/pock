@@ -29,7 +29,7 @@ class DockItemView: NSScrubberItemView {
         self.frontmostView.layer?.cornerRadius = Constants.dockItemCornerRadius
         self.contentView.addSubview(self.frontmostView, positioned: .below, relativeTo: self.iconView)
         self.frontmostView.snp.makeConstraints({ m in
-            m.left.right.equalToSuperview().inset(4)
+            m.left.right.equalToSuperview()
             m.top.bottom.equalToSuperview()
         })
     }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class DockItem: NSObject {
+class DockItem: NSObject, NSCopying {
     var index:              Int
     let bundleIdentifier:   String
     var name:               String
@@ -27,14 +27,26 @@ class DockItem: NSObject {
         return pid_t != 0
     }
     
-    init(_ index: Int, _ bundleIdentifier: String, name: String, path: URL, icon: NSImage, pid_t: pid_t, launching: Bool) {
+    init(_ index: Int, _ bundleIdentifier: String, name: String, path: URL?, icon: NSImage?, pid_t: pid_t, launching: Bool = false) {
         self.index              = index
         self.bundleIdentifier   = bundleIdentifier
         self.name               = name
-        self.path               = path
-        self.icon               = icon
+        self.path               = path ?? URL(string: "http://pock.dev")!
+        self.icon               = icon ?? NSImage()
         self.pid_t              = pid_t
         self.isLaunching        = launching
+    }
+    
+    func copy(with zone: NSZone? = nil) -> Any {
+        let item = DockItem(self.index,
+                        self.bundleIdentifier,
+                        name:       self.name,
+                        path:       self.path,
+                        icon:       self.icon,
+                        pid_t:      self.pid_t,
+                        launching:  self.isLaunching)
+        item.badge = self.badge
+        return item
     }
 
     static func == (lhs: DockItem, rhs: DockItem) -> Bool {
