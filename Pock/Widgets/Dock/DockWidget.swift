@@ -79,6 +79,15 @@ extension DockWidget: DockDelegate {
             }
         }
     }
+    func didUpdateRunningState(for apps: [DockItem]) {
+        for (key, view) in itemViews {
+            if let item = apps.first(where: { $0.bundleIdentifier == key }) {
+                view.set(isRunning: item.isRunning)
+            }else {
+                view.set(isRunning: false)
+            }
+        }
+    }
 }
 
 extension DockWidget: NSScrubberDataSource {

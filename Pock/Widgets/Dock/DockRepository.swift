@@ -12,6 +12,7 @@ import Defaults
 protocol DockDelegate {
     func didUpdate(apps: [DockItem])
     func didUpdateBadge(for apps: [DockItem])
+    func didUpdateRunningState(for apps: [DockItem])
 }
 
 class DockRepository {
@@ -22,8 +23,8 @@ class DockRepository {
     
     /// Running applications
     public  var allItems:            [DockItem] = []
+    private var runningItems:        [DockItem] = []
     private var persistentItems:     [DockItem] = []
-    private var runningApplications: [DockItem] = []
     
     /// Init
     init(delegate: DockDelegate) {
@@ -42,7 +43,8 @@ class DockRepository {
         // TODO: Analyze notification to add/edit/remove specific item instead of all dataset.
         loadPersistentItems()
         loadRunningApplications()
-        loadNotificationBadges()
+        updateNotificationBadges()
+        updateRunningState()
     }
     
     /// Unregister from notification
@@ -83,19 +85,23 @@ class DockRepository {
                                                           object: nil)
     }
     
+    /// Check if item can be removed
+    private func canRemove(item: DockItem) -> Bool {
+        return  !runningItems.contains(where: { $0.bundleIdentifier == item.bundleIdentifier }) &&
+                !persistentItems.contains(where: { $0.bundleIdentifier == item.bundleIdentifier })
+    }
+    
     /// Load running applications
     private func loadRunningApplications() {
-        runningApplications.removeAll(where: { item in
-            return !NSWorkspace.shared.runningApplications.contains(where: { app in
-                app.bundleIdentifier == item.bundleIdentifier
-            })
-        })
+        allItems.removeAll(where: { canRemove(item: $0) })
+        runningItems.removeAll()
         for app in NSWorkspace.shared.runningApplications {
             if let item = allItems.first(where: { $0.bundleIdentifier == app.bundleIdentifier }) {
                 item.name        = app.localizedName ?? item.name
                 item.icon        = app.icon ?? item.icon
                 item.pid_t       = app.processIdentifier
                 item.isLaunching = !app.isFinishedLaunching
+                runningItems.append(item)
             }else {
                 /// Check for policy
                 guard app.activationPolicy == .regular, let id = app.bundleIdentifier else { continue }
@@ -104,6 +110,7 @@ class DockRepository {
                         let icon          = app.icon else { continue }
                 
                 let item = DockItem(0, id, name: localizedName, path: bundleURL, icon: icon, pid_t: app.processIdentifier, launching: !app.isFinishedLaunching)
+                runningItems.append(item)
                 allItems.append(item)
             }
         }
@@ -122,6 +129,8 @@ class DockRepository {
             NSLog("[Pock]: Can't get persistent apps")
             return
         }
+        /// Empty array
+        persistentItems.removeAll()
         /// Iterate on apps
         for (index,app) in apps.enumerated() {
             /// Get data tile
@@ -132,7 +141,7 @@ class DockRepository {
             guard let bundleIdentifier = dataTile["bundle-identifier"] as? String else { NSLog("[Pock]: Can't get app bundle identifier"); continue }
             /// Check if item already exists
             if let item = allItems.first(where: { $0.bundleIdentifier == bundleIdentifier }) {
-                item.pid_t = runningApplications.first(where: { $0.bundleIdentifier == bundleIdentifier })?.pid_t ?? 0
+                persistentItems.append(item)
             }else {
                 /// Create item
                 let item = DockItem(index,
@@ -142,19 +151,29 @@ class DockRepository {
                                     icon: getIcon(forBundleIdentifier: bundleIdentifier),
                                     pid_t: 0,
                                     launching: false)
+                persistentItems.append(item)
                 allItems.append(item)
             }
         }
         delegate.didUpdate(apps: allItems)
     }
     
+    /// Load running dot
+    private func updateRunningState() {
+        for item in allItems {
+            item.pid_t = NSWorkspace.shared.runningApplications.first(where: { $0.bundleIdentifier == item.bundleIdentifier })?.processIdentifier ?? 0
+        }
+        let apps = allItems.filter({ $0.isRunning })
+        delegate.didUpdateRunningState(for: apps)
+    }
+    
     /// Load notification badges
-    private func loadNotificationBadges() {
+    private func updateNotificationBadges() {
         for item in allItems {
             item.badge = PockDockHelper.sharedInstance()?.getBadgeCountForItem(withName: item.name)
         }
-        let apps = persistentItems.filter({ $0.hasBadge }) + runningApplications.filter({ $0.hasBadge })
-        delegate.didUpdateBadge(for: Array(apps))
+        let apps = allItems.filter({ $0.hasBadge })
+        delegate.didUpdateBadge(for: apps)
     }
     
 }
@@ -223,7 +242,7 @@ extension DockRepository {
             NSLog("[Pock]: Refreshing notification badge... (rate: %@)", refreshRate.toString())
             /// Reload badge and running dot
             DispatchQueue.main.async { [weak self] in
-                self?.loadNotificationBadges()
+                self?.updateNotificationBadges()
             }
         })
     }
