@@ -105,10 +105,10 @@ class DockRepository {
             }else {
                 /// Check for policy
                 guard app.activationPolicy == .regular, let id = app.bundleIdentifier else { continue }
+                guard id != Constants.kFinderIdentifier else { continue }
                 guard   let localizedName = app.localizedName,
                         let bundleURL     = app.bundleURL,
                         let icon          = app.icon else { continue }
-                
                 let item = DockItem(0, id, name: localizedName, path: bundleURL, icon: icon, pid_t: app.processIdentifier, launching: !app.isFinishedLaunching)
                 runningItems.append(item)
                 allItems.append(item)
@@ -154,6 +154,11 @@ class DockRepository {
                 persistentItems.append(item)
                 allItems.append(item)
             }
+        }
+        if !allItems.contains(where: { $0.bundleIdentifier == Constants.kFinderIdentifier }) {
+            let finderItem = DockItem(0, Constants.kFinderIdentifier, name: "Finder", path: nil, icon: getIcon(forBundleIdentifier: Constants.kFinderIdentifier), pid_t: 0)
+            persistentItems.insert(finderItem, at: 0)
+            allItems.insert(finderItem, at: 0)
         }
         delegate.didUpdate(apps: allItems)
     }
