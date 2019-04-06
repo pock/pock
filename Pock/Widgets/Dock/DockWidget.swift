@@ -11,15 +11,16 @@ import Foundation
 class DockWidget: PockWidget {
     
     /// Core
-    private var dockRepository:                DockRepository!
-    private var notificationBadgeRefreshTimer: Timer!
+    private var dockRepository: DockRepository!
     
     /// UI
     private var dockScrubber: NSScrubber = NSScrubber(frame: NSRect(x: 0, y: 0, width: 200, height: 30))
     
     /// Data
     private var itemViews: [String: DockItemView] = [:]
-    private var items:     [DockItem] = []
+    private var items:     [DockItem] {
+        return Array(dockRepository.allItems)
+    }
     
     /// Custom init
     override func customInit() {
@@ -34,6 +35,7 @@ class DockWidget: PockWidget {
     private func configureDockScrubber() {
         let layout = NSScrubberFlowLayout()
         layout.itemSize = Constants.dockItemSize
+        layout.itemSpacing = 8
         dockScrubber.dataSource = self
         dockScrubber.delegate = self
         dockScrubber.showsAdditionalContentIndicators = true
@@ -46,9 +48,17 @@ class DockWidget: PockWidget {
 }
 
 extension DockWidget: DockDelegate {
-    func didUpdateRunningApps(apps: [DockItem]) {
-        self.items = apps
-        self.dockScrubber.reloadData()
+    func didUpdate(apps: [DockItem]) {
+        dockScrubber.reloadData()
+    }
+    func didUpdateBadge(for apps: [DockItem]) {
+        for (key, view) in itemViews {
+            if let item = apps.first(where: { $0.bundleIdentifier == key }) {
+                view.set(hasBadge: item.hasBadge)
+            }else {
+                view.set(hasBadge: false)
+            }
+        }
     }
 }
 
@@ -60,14 +70,12 @@ extension DockWidget: NSScrubberDataSource {
     func scrubber(_ scrubber: NSScrubber, viewForItemAt index: Int) -> NSScrubberItemView {
         let item = items[index]
         var view = itemViews[item.bundleIdentifier]
-        if view == nil {
-            view = DockItemView(frame: .zero)
-            view?.dockItem = item
-            itemViews[item.bundleIdentifier] = view
-        }else {
-            view?.reload()
-        }
+        if view == nil { view = DockItemView(frame: .zero); itemViews[item.bundleIdentifier] = view }
         view!.frame.size = Constants.dockItemSize
+        view!.set(hasBadge:     item.hasBadge)
+        view!.set(icon:         item.icon)
+        view!.set(isRunning:    item.isRunning)
+        view!.set(isFrontmost:  item.isFrontmost)
         return view!
     }
 }

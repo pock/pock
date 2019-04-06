@@ -8,19 +8,36 @@
 
 import Foundation
 
-class DockItem {
+class DockItem: NSObject {
+    var index:              Int
     let bundleIdentifier:   String
-    let name:               String
+    var name:               String
     let path:               URL
-    let icon:               NSImage
-    let pid_t:              pid_t
-    var isLaunching:        Bool
-    init(_ bundleIdentifier: String, name: String, path: URL, icon: NSImage, pid_t: pid_t, launching: Bool) {
+    var icon:               NSImage
+    var badge:              String?
+    var pid_t:              pid_t = 0
+    var isLaunching:        Bool  = false
+    var isFrontmost:        Bool { return NSWorkspace.shared.frontmostApplication?.bundleIdentifier == self.bundleIdentifier }
+    
+    var hasBadge: Bool {
+        return badge != nil && badge?.count ?? 0 > 0
+    }
+    
+    var isRunning: Bool {
+        return pid_t != 0
+    }
+    
+    init(_ index: Int, _ bundleIdentifier: String, name: String, path: URL, icon: NSImage, pid_t: pid_t, launching: Bool) {
+        self.index              = index
         self.bundleIdentifier   = bundleIdentifier
         self.name               = name
         self.path               = path
         self.icon               = icon
         self.pid_t              = pid_t
         self.isLaunching        = launching
+    }
+
+    static func == (lhs: DockItem, rhs: DockItem) -> Bool {
+        return lhs.bundleIdentifier == rhs.bundleIdentifier
     }
 }
