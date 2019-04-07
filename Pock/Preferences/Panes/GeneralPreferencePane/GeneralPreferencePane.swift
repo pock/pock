@@ -18,6 +18,8 @@ final class GeneralPreferencePane: NSViewController, Preferenceable {
     @IBOutlet weak var versionLabel:                       NSTextField!
     @IBOutlet weak var notificationBadgeRefreshRatePicker: NSPopUpButton!
     @IBOutlet weak var hideControlStripCheckbox:           NSButton!
+    @IBOutlet weak var hideFinderCheckbox:                 NSButton!
+    @IBOutlet weak var hideTrashCheckbox:                  NSButton!
     @IBOutlet weak var hidePersistentItemsCheckbox:        NSButton!
     @IBOutlet weak var launchAtLoginCheckbox:              NSButton!
     @IBOutlet weak var checkForUpdatesButton:              NSButton!
@@ -51,9 +53,11 @@ final class GeneralPreferencePane: NSViewController, Preferenceable {
     }
     
     private func setupCheckboxes() {
-        self.launchAtLoginCheckbox.state = LaunchAtLogin.isEnabled ? .on : .off
-        self.hideControlStripCheckbox.state = defaults[.hideControlStrip] ? .on : .off
-        self.hidePersistentItemsCheckbox.state = defaults[.hidePersistentItems] ? .on : .off
+        self.launchAtLoginCheckbox.state        = LaunchAtLogin.isEnabled        ? .on : .off
+        self.hideControlStripCheckbox.state     = defaults[.hideControlStrip]    ? .on : .off
+        self.hideFinderCheckbox.state           = defaults[.hideFinder]          ? .on : .off
+        self.hideTrashCheckbox.state            = defaults[.hideTrash]           ? .on : .off
+        self.hidePersistentItemsCheckbox.state  = defaults[.hidePersistentItems] ? .on : .off
     }
     
     @IBAction private func didSelectNotificationBadgeRefreshRate(_: NSButton) {
@@ -70,9 +74,19 @@ final class GeneralPreferencePane: NSViewController, Preferenceable {
         NSWorkspace.shared.notificationCenter.post(name: .shouldReloadPock, object: nil)
     }
     
+    @IBAction private func didChangeHideFinderValue(button: NSButton) {
+        defaults[.hideFinder] = button.state == .on
+        NSWorkspace.shared.notificationCenter.post(name: .shouldReloadDock, object: nil)
+    }
+    
+    @IBAction private func didChangeHideTrashValue(button: NSButton) {
+        defaults[.hideTrash] = button.state == .on
+        NSWorkspace.shared.notificationCenter.post(name: .shouldReloadDock, object: nil)
+    }
+    
     @IBAction private func didChangeHidePersistentValue(button: NSButton) {
         defaults[.hidePersistentItems] = button.state == .on
-        NSWorkspace.shared.notificationCenter.post(name: .shouldReloadDock, object: nil)
+        NSWorkspace.shared.notificationCenter.post(name: .shouldReloadPersistentItems, object: nil)
     }
     
     @IBAction private func checkForUpdates(_ sender: NSButton) {

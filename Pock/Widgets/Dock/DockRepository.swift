@@ -43,7 +43,6 @@ class DockRepository {
     
     /// Reload
     @objc public func reload(_ notification: NSNotification?) {
-        // TODO: Analyze notification to add/edit/remove specific item instead of all dataset.
         dockItems.removeAll()
         runningItems.removeAll()
         persistentApps.removeAll()
@@ -88,11 +87,17 @@ class DockRepository {
                                                           selector: #selector(loadRunningApplications(_:)),
                                                           name: NSWorkspace.didTerminateApplicationNotification,
                                                           object: nil)
+        
+        NSWorkspace.shared.notificationCenter.addObserver(self,
+                                                          selector: #selector(reload(_:)),
+                                                          name: .shouldReloadDock,
+                                                          object: nil)
 
         NSWorkspace.shared.notificationCenter.addObserver(self,
                                                           selector: #selector(self.setupNotificationBadgeRefreshTimer),
                                                           name: .didChangeNotificationBadgeRefreshRate,
                                                           object: nil)
+        
         fileMonitor = FileMonitor(paths: [Constants.trashPath, Constants.dockPlist], delegate: self)
     }
     
@@ -166,7 +171,7 @@ class DockRepository {
                 dockItems.append(item)
             }
         }
-        if !dockItems.contains(where: { $0.bundleIdentifier == Constants.kFinderIdentifier }) {
+        if !defaults[.hideFinder] && !dockItems.contains(where: { $0.bundleIdentifier == Constants.kFinderIdentifier }) {
             let finderItem = DockItem(0, Constants.kFinderIdentifier, name: "Finder", path: nil, icon: getIcon(forBundleIdentifier: Constants.kFinderIdentifier), pid_t: 0)
             persistentApps.insert(finderItem, at: 0)
             dockItems.insert(finderItem, at: 0)
@@ -209,9 +214,9 @@ class DockRepository {
                                 persistentItem: true)
             persistentItems.append(item)
         }
-        if !persistentItems.contains(where: { $0.path?.absoluteString == Constants.trashPath }) {
+        if !defaults[.hideTrash] && !persistentItems.contains(where: { $0.path?.absoluteString == Constants.trashPath }) {
             let trashType = ((try? FileManager.default.contentsOfDirectory(atPath: Constants.trashPath).isEmpty) ?? true) ? "TrashIcon" : "FullTrashIcon"
-            let trashItem = DockItem(0, nil, name: "Trash", path: URL(string: Constants.trashPath)!, icon: getIcon(orType: trashType), persistentItem: true)
+            let trashItem = DockItem(0, nil, name: "Trash", path: URL(string: "file://"+Constants.trashPath)!, icon: getIcon(orType: trashType), persistentItem: true)
             persistentItems.append(trashItem)
         }
         delegate.didUpdate(items: persistentItems)

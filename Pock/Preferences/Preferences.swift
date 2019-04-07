@@ -15,6 +15,7 @@ extension NSNotification.Name {
     static let didChangeNotificationBadgeRefreshRate = NSNotification.Name("didSelectNotificationBadgeRefreshRate")
     static let shouldReloadPock                      = NSNotification.Name("shouldReloadPock")
     static let shouldReloadDock                      = NSNotification.Name("shouldReloadDock")
+    static let shouldReloadPersistentItems           = NSNotification.Name("shouldReloadPersistentItems")
 }
 
 enum NotificationBadgeRefreshRateKeys: Double, Codable, CaseIterable {
@@ -47,8 +48,10 @@ enum NotificationBadgeRefreshRateKeys: Double, Codable, CaseIterable {
 }
 
 extension Defaults.Keys {
-    static let launchAtLogin                    = Defaults.Key<Bool>("launchAtLogin", default: false)
+    static let launchAtLogin                    = Defaults.Key<Bool>("launchAtLogin",       default: false)
     static let notificationBadgeRefreshInterval = Defaults.Key<NotificationBadgeRefreshRateKeys>("notificationBadgeRefreshInterval", default: .tenSeconds)
-    static let hideControlStrip                 = Defaults.Key<Bool>("hideControlStrip", default: false)
+    static let hideControlStrip                 = Defaults.Key<Bool>("hideControlStrip",    default: false)
+    static let hideFinder                       = Defaults.Key<Bool>("hideFinder",          default: false)
+    static let hideTrash                        = Defaults.Key<Bool>("hideTrash",           default: false)
     static let hidePersistentItems              = Defaults.Key<Bool>("hidePersistentItems", default: false)
 }

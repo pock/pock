@@ -32,7 +32,7 @@ class DockWidget: PockWidget {
         self.set(view: stackView)
         self.dockRepository = DockRepository(delegate: self)
         self.dockRepository.reload(nil)
-        NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(displayScrubbers), name: .shouldReloadDock, object: nil)
+        NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(displayScrubbers), name: .shouldReloadPersistentItems, object: nil)
     }
     
     deinit {
@@ -105,7 +105,7 @@ class DockWidget: PockWidget {
         persistentScrubber?.itemAlignment = .none
         persistentScrubber?.scrubberLayout = layout
         persistentScrubber?.snp.makeConstraints({ m in
-            m.width.equalTo(136)
+            m.width.equalTo((Constants.dockItemSize.width + 8) * CGFloat(persistentItems.count))
         })
         stackView.addArrangedSubview(persistentScrubber!)
     }
@@ -122,7 +122,9 @@ extension DockWidget: DockDelegate {
     func didUpdate(items: [DockItem]) {
         update(scrubber: persistentScrubber, old_items: persistentItems, new_items: items, canReload: true, completion: { [weak self] items in
             self?.persistentItems = items
-            self?.persistentScrubber?.needsLayout = true
+            persistentScrubber?.snp.updateConstraints({ m in
+                m.width.equalTo((Constants.dockItemSize.width + 8) * CGFloat(persistentItems.count))
+            })
         })
     }
     private func update(scrubber: NSScrubber?, old_items: [DockItem], new_items: [DockItem], canReload: Bool = false, completion: ([DockItem]) -> Void) {
@@ -194,7 +196,7 @@ extension DockWidget: NSScrubberDataSource {
 extension DockWidget: NSScrubberDelegate {
     func scrubber(_ scrubber: NSScrubber, didSelectItemAt selectedIndex: Int) {
         let item = scrubber == persistentScrubber ? persistentItems[selectedIndex] : dockItems[selectedIndex]
-        dockRepository.launch(bundleIdentifier: item.bundleIdentifier, completion: { success in
+        dockRepository.launch(bundleIdentifier: item.bundleIdentifier ?? item.path?.absoluteString, completion: { success in
             NSLog("[Pock]: Did open: \(item.bundleIdentifier ?? item.path?.absoluteString ?? "Unknown") [success: \(success)]")
         })
         scrubber.selectedIndex = -1

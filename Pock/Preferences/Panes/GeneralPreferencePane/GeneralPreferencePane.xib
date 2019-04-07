@@ -10,7 +10,9 @@
             <connections>
                 <outlet property="checkForUpdatesButton" destination="iOr-af-uPA" id="lpM-rd-vN1"/>
                 <outlet property="hideControlStripCheckbox" destination="3Do-iB-eoD" id="7jC-Mg-kqP"/>
+                <outlet property="hideFinderCheckbox" destination="MII-Ig-bPJ" id="xwB-3M-4O7"/>
                 <outlet property="hidePersistentItemsCheckbox" destination="20N-jZ-KXc" id="wFy-b4-Zy0"/>
+                <outlet property="hideTrashCheckbox" destination="3Do-iB-eoD" id="mYt-aJ-ogC"/>
                 <outlet property="launchAtLoginCheckbox" destination="OvG-0j-ema" id="eFG-v4-gaq"/>
                 <outlet property="notificationBadgeRefreshRatePicker" destination="HqG-Ap-oix" id="nII-ow-lHf"/>
                 <outlet property="versionLabel" destination="p8O-cG-rIH" id="2e0-3L-F9H"/>
@@ -20,11 +22,11 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="Hz6-mo-xeY">
-            <rect key="frame" x="0.0" y="0.0" width="480" height="141"/>
+            <rect key="frame" x="0.0" y="0.0" width="480" height="191"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DJh-bT-ySZ">
-                    <rect key="frame" x="139" y="101" width="194" height="20"/>
+                    <rect key="frame" x="139" y="151" width="194" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="W1A-8Y-LkX"/>
                     </constraints>
@@ -35,7 +37,7 @@
                     </textFieldCell>
                 </textField>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HqG-Ap-oix">
-                    <rect key="frame" x="337" y="98" width="126" height="24"/>
+                    <rect key="frame" x="337" y="148" width="126" height="24"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="ebk-mg-o54"/>
                     </constraints>
@@ -54,21 +56,8 @@
                         <action selector="didSelectNotificationBadgeRefreshRate:" target="-2" id="whQ-2s-0yd"/>
                     </connections>
                 </popUpButton>
-                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OvG-0j-ema">
-                    <rect key="frame" x="139" y="18" width="115" height="24"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="20" id="ydu-eg-Qht"/>
-                    </constraints>
-                    <buttonCell key="cell" type="check" title="Launch at login" bezelStyle="regularSquare" imagePosition="left" inset="2" id="0Zd-e7-34p">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="didChangeLaunchAtLoginValueWithButton:" target="-2" id="Ti6-2c-pPK"/>
-                    </connections>
-                </button>
                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Jxs-rJ-hZ7">
-                    <rect key="frame" x="0.0" y="67" width="120" height="70"/>
+                    <rect key="frame" x="0.0" y="117" width="120" height="70"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="120" id="B43-2G-d8G"/>
                         <constraint firstAttribute="height" constant="70" id="VbT-qn-k2e"/>
@@ -76,19 +65,19 @@
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="pock-icon" id="XoW-WB-C0h"/>
                 </imageView>
                 <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="ebU-tb-qZd">
-                    <rect key="frame" x="118" y="0.0" width="5" height="141"/>
+                    <rect key="frame" x="118" y="0.0" width="5" height="191"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="1" id="0rC-zb-JF4"/>
                     </constraints>
                 </box>
                 <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="u9C-Dc-GcL">
-                    <rect key="frame" x="141" y="78" width="319" height="5"/>
+                    <rect key="frame" x="141" y="128" width="319" height="5"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="Uyc-aC-4eQ"/>
                     </constraints>
                 </box>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dLe-Qb-BCd">
-                    <rect key="frame" x="18" y="55" width="84" height="18"/>
+                    <rect key="frame" x="18" y="105" width="84" height="18"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="18" id="BHW-qp-NN0"/>
                     </constraints>
@@ -99,7 +88,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p8O-cG-rIH">
-                    <rect key="frame" x="18" y="35" width="84" height="12"/>
+                    <rect key="frame" x="18" y="85" width="84" height="12"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="12" id="wrH-Fs-1Vo"/>
                     </constraints>
@@ -110,7 +99,7 @@
                     </textFieldCell>
                 </textField>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iOr-af-uPA">
-                    <rect key="frame" x="314" y="12" width="152" height="33"/>
+                    <rect key="frame" x="314" y="3" width="152" height="33"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="22" id="oiG-mG-BSb"/>
                     </constraints>
@@ -122,21 +111,77 @@
                         <action selector="checkForUpdates:" target="-2" id="uNV-Y7-Uzu"/>
                     </connections>
                 </button>
-                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3Do-iB-eoD">
-                    <rect key="frame" x="139" y="48" width="131" height="24"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="20" id="kV6-UI-yHO"/>
-                    </constraints>
-                    <buttonCell key="cell" type="check" title="Hide Control Strip" bezelStyle="regularSquare" imagePosition="left" inset="2" id="2Fh-FW-yAK">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="didChangeHideControlStripValueWithButton:" target="-2" id="Gue-rM-bAm"/>
-                    </connections>
-                </button>
+                <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gis-kK-TBu">
+                    <rect key="frame" x="141" y="10" width="127" height="110"/>
+                    <subviews>
+                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RXF-pX-jNz">
+                            <rect key="frame" x="-2" y="88" width="131" height="24"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="oaN-BM-WNf"/>
+                            </constraints>
+                            <buttonCell key="cell" type="check" title="Hide Control Strip" bezelStyle="regularSquare" imagePosition="left" inset="2" id="206-HT-yI6">
+                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="didChangeHideControlStripValueWithButton:" target="-2" id="NyO-D7-51C"/>
+                            </connections>
+                        </button>
+                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MII-Ig-bPJ">
+                            <rect key="frame" x="-2" y="58" width="92" height="24"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="CaG-Mg-eLC"/>
+                            </constraints>
+                            <buttonCell key="cell" type="check" title="Hide Finder" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Ew2-D2-7jj">
+                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="didChangeHideFinderValueWithButton:" target="-2" id="Iqt-2a-02n"/>
+                            </connections>
+                        </button>
+                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3Do-iB-eoD">
+                            <rect key="frame" x="-2" y="28" width="88" height="24"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="kV6-UI-yHO"/>
+                            </constraints>
+                            <buttonCell key="cell" type="check" title="Hide Trash" bezelStyle="regularSquare" imagePosition="left" inset="2" id="2Fh-FW-yAK">
+                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="didChangeHideTrashValueWithButton:" target="-2" id="S7r-bD-9lG"/>
+                            </connections>
+                        </button>
+                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OvG-0j-ema">
+                            <rect key="frame" x="-2" y="-2" width="115" height="24"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="ydu-eg-Qht"/>
+                            </constraints>
+                            <buttonCell key="cell" type="check" title="Launch at login" bezelStyle="regularSquare" imagePosition="left" inset="2" id="0Zd-e7-34p">
+                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="didChangeLaunchAtLoginValueWithButton:" target="-2" id="Ti6-2c-pPK"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <visibilityPriorities>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                    </visibilityPriorities>
+                    <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                    </customSpacing>
+                </stackView>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="20N-jZ-KXc">
-                    <rect key="frame" x="310" y="48" width="152" height="24"/>
+                    <rect key="frame" x="310" y="104" width="152" height="18"/>
                     <buttonCell key="cell" type="check" title="Hide Persistent Items" bezelStyle="regularSquare" imagePosition="left" inset="2" id="dt9-Gg-6FO">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -148,37 +193,35 @@
             </subviews>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="ebU-tb-qZd" secondAttribute="bottom" id="28x-tc-R6N"/>
-                <constraint firstItem="iOr-af-uPA" firstAttribute="centerY" secondItem="OvG-0j-ema" secondAttribute="centerY" id="2I3-W1-oDN"/>
                 <constraint firstItem="u9C-Dc-GcL" firstAttribute="top" secondItem="DJh-bT-ySZ" secondAttribute="bottom" constant="20" id="2NG-tx-3Vh"/>
+                <constraint firstItem="20N-jZ-KXc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Gis-kK-TBu" secondAttribute="trailing" constant="20" id="3Zu-GU-age"/>
                 <constraint firstAttribute="trailing" secondItem="HqG-Ap-oix" secondAttribute="trailing" constant="20" id="4KN-5c-e3s"/>
                 <constraint firstItem="HqG-Ap-oix" firstAttribute="leading" secondItem="DJh-bT-ySZ" secondAttribute="trailing" constant="8" id="52h-66-EjU"/>
                 <constraint firstItem="ebU-tb-qZd" firstAttribute="leading" secondItem="p8O-cG-rIH" secondAttribute="trailing" constant="20" id="7hk-YT-7m7"/>
-                <constraint firstItem="OvG-0j-ema" firstAttribute="leading" secondItem="ebU-tb-qZd" secondAttribute="trailing" constant="20" id="9Zg-aE-blB"/>
-                <constraint firstItem="20N-jZ-KXc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3Do-iB-eoD" secondAttribute="trailing" constant="10" id="Akm-U7-r8h"/>
                 <constraint firstItem="20N-jZ-KXc" firstAttribute="top" secondItem="u9C-Dc-GcL" secondAttribute="bottom" constant="10" id="C5y-DA-sWE"/>
                 <constraint firstItem="Jxs-rJ-hZ7" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="4" id="Cg0-7H-rn8"/>
                 <constraint firstItem="DJh-bT-ySZ" firstAttribute="leading" secondItem="ebU-tb-qZd" secondAttribute="trailing" constant="20" id="HLF-Ir-Lvz"/>
                 <constraint firstItem="HqG-Ap-oix" firstAttribute="centerY" secondItem="DJh-bT-ySZ" secondAttribute="centerY" id="LGU-iI-3wd"/>
+                <constraint firstItem="Gis-kK-TBu" firstAttribute="top" secondItem="u9C-Dc-GcL" secondAttribute="bottom" constant="10" id="MIy-Gv-nnx"/>
                 <constraint firstAttribute="trailing" secondItem="iOr-af-uPA" secondAttribute="trailing" constant="20" id="PR4-6l-3zJ"/>
+                <constraint firstAttribute="bottom" secondItem="Gis-kK-TBu" secondAttribute="bottom" constant="10" id="UBS-32-gQB"/>
                 <constraint firstItem="dLe-Qb-BCd" firstAttribute="top" secondItem="Jxs-rJ-hZ7" secondAttribute="bottom" constant="-6" id="X3u-U4-KBd"/>
                 <constraint firstItem="ebU-tb-qZd" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="Yrd-h1-hMm"/>
                 <constraint firstItem="p8O-cG-rIH" firstAttribute="top" secondItem="dLe-Qb-BCd" secondAttribute="bottom" constant="8" id="ap9-P9-4TO"/>
                 <constraint firstAttribute="trailing" secondItem="20N-jZ-KXc" secondAttribute="trailing" constant="20" id="bXT-rc-qu3"/>
                 <constraint firstItem="Jxs-rJ-hZ7" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="gdZ-en-fho"/>
                 <constraint firstItem="ebU-tb-qZd" firstAttribute="leading" secondItem="Jxs-rJ-hZ7" secondAttribute="trailing" id="gzj-8E-LgF"/>
+                <constraint firstItem="Gis-kK-TBu" firstAttribute="leading" secondItem="ebU-tb-qZd" secondAttribute="trailing" constant="20" id="oeM-EK-j3O"/>
                 <constraint firstItem="p8O-cG-rIH" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="qNs-wr-v9I"/>
-                <constraint firstItem="iOr-af-uPA" firstAttribute="top" secondItem="20N-jZ-KXc" secondAttribute="bottom" constant="9" id="qZF-Ff-ljU"/>
+                <constraint firstItem="iOr-af-uPA" firstAttribute="top" relation="greaterThanOrEqual" secondItem="20N-jZ-KXc" secondAttribute="bottom" constant="9" id="qZF-Ff-ljU"/>
                 <constraint firstItem="DJh-bT-ySZ" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="20" id="qzC-lN-MCc"/>
                 <constraint firstItem="u9C-Dc-GcL" firstAttribute="leading" secondItem="ebU-tb-qZd" secondAttribute="trailing" constant="20" id="rDw-sC-Co8"/>
-                <constraint firstItem="OvG-0j-ema" firstAttribute="top" secondItem="3Do-iB-eoD" secondAttribute="bottom" constant="10" id="reJ-u8-WqZ"/>
                 <constraint firstAttribute="trailing" secondItem="u9C-Dc-GcL" secondAttribute="trailing" constant="20" id="tMG-xH-Ces"/>
+                <constraint firstAttribute="bottom" secondItem="iOr-af-uPA" secondAttribute="bottom" constant="10" id="u9Z-By-JKO"/>
                 <constraint firstItem="ebU-tb-qZd" firstAttribute="leading" secondItem="dLe-Qb-BCd" secondAttribute="trailing" constant="20" id="uOf-uL-a0V"/>
-                <constraint firstItem="3Do-iB-eoD" firstAttribute="leading" secondItem="ebU-tb-qZd" secondAttribute="trailing" constant="20" id="vt3-7Z-Hdo"/>
-                <constraint firstItem="3Do-iB-eoD" firstAttribute="top" secondItem="u9C-Dc-GcL" secondAttribute="bottom" constant="10" id="x6h-Zy-LHg"/>
-                <constraint firstAttribute="bottom" secondItem="OvG-0j-ema" secondAttribute="bottom" constant="20" id="yDA-1c-1Nb"/>
                 <constraint firstItem="dLe-Qb-BCd" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="yjg-1P-Ui5"/>
             </constraints>
-            <point key="canvasLocation" x="139" y="72.5"/>
+            <point key="canvasLocation" x="139" y="102"/>
         </customView>
     </objects>
     <resources>

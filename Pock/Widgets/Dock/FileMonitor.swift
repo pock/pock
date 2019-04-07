@@ -16,13 +16,11 @@ class FileMonitor {
     
     private var witness:    Witness?
     private var delegate:   FileMonitorDelegate
-    private var queue:      DispatchQueue
     
     public var paths: [String]
     
-    init(paths: [String], queue: DispatchQueue = DispatchQueue.main, delegate: FileMonitorDelegate) {
+    init(paths: [String], delegate: FileMonitorDelegate) {
         self.paths    = paths
-        self.queue    = queue
         self.delegate = delegate
         self.startObserving()
     }
