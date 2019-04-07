@@ -70,7 +70,7 @@ class DockItemView: NSScrubberItemView {
         self.badgeView.snp.makeConstraints({ m in
             m.width.height.equalTo(Constants.dockItemBadgeSize.width)
             m.top.equalToSuperview().inset(1)
-            m.right.equalToSuperview().inset(6)
+            m.centerX.equalToSuperview().offset(10)
         })
     }
     
@@ -89,8 +89,10 @@ class DockItemView: NSScrubberItemView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func set(icon: NSImage) {
-        iconView.image = icon
+    public func set(icon: NSImage?) {
+        if iconView.image != icon {
+            iconView.image = icon
+        }
     }
     
     public func set(isFrontmost: Bool) {

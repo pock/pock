@@ -30,7 +30,7 @@ class DockRepository {
     init(delegate: DockDelegate) {
         self.delegate = delegate
         self.registerForNotifications()
-        //self.setupNotificationBadgeRefreshTimer()
+        self.setupNotificationBadgeRefreshTimer()
     }
     
     /// Deinit
@@ -41,8 +41,10 @@ class DockRepository {
     /// Reload
     @objc public func reload(_ notification: NSNotification?) {
         // TODO: Analyze notification to add/edit/remove specific item instead of all dataset.
+        loadPersistentApps()
+        loadRunningApplications(notification)
         loadPersistentItems()
-        loadRunningApplications()
+        delegate.didUpdate(apps: allItems)
         updateNotificationBadges()
         updateRunningState()
     }
@@ -55,27 +57,27 @@ class DockRepository {
     /// Register for notification
     private func registerForNotifications() {
         NSWorkspace.shared.notificationCenter.addObserver(self,
-                                                          selector: #selector(reload(_:)),
+                                                          selector: #selector(loadRunningApplications(_:)),
                                                           name: NSWorkspace.willLaunchApplicationNotification,
                                                           object: nil)
 
         NSWorkspace.shared.notificationCenter.addObserver(self,
-                                                          selector: #selector(reload(_:)),
+                                                          selector: #selector(loadRunningApplications(_:)),
                                                           name: NSWorkspace.didLaunchApplicationNotification,
                                                           object: nil)
 
         NSWorkspace.shared.notificationCenter.addObserver(self,
-                                                          selector: #selector(reload(_:)),
+                                                          selector: #selector(loadRunningApplications(_:)),
                                                           name: NSWorkspace.didActivateApplicationNotification,
                                                           object: nil)
 
         NSWorkspace.shared.notificationCenter.addObserver(self,
-                                                          selector: #selector(reload(_:)),
+                                                          selector: #selector(loadRunningApplications(_:)),
                                                           name: NSWorkspace.didDeactivateApplicationNotification,
                                                           object: nil)
 
         NSWorkspace.shared.notificationCenter.addObserver(self,
-                                                          selector: #selector(reload(_:)),
+                                                          selector: #selector(loadRunningApplications(_:)),
                                                           name: NSWorkspace.didTerminateApplicationNotification,
                                                           object: nil)
 
@@ -87,12 +89,11 @@ class DockRepository {
     
     /// Check if item can be removed
     private func canRemove(item: DockItem) -> Bool {
-        return  !runningItems.contains(where: { $0.bundleIdentifier == item.bundleIdentifier }) &&
-                !persistentItems.contains(where: { $0.bundleIdentifier == item.bundleIdentifier })
+        return  !runningItems.contains(item) && !persistentItems.contains(item)
     }
     
     /// Load running applications
-    private func loadRunningApplications() {
+    @objc private func loadRunningApplications(_ notification: NSNotification?) {
         allItems.removeAll(where: { canRemove(item: $0) })
         runningItems.removeAll()
         for app in NSWorkspace.shared.runningApplications {
@@ -115,10 +116,11 @@ class DockRepository {
             }
         }
         delegate.didUpdate(apps: allItems)
+        updateRunningState()
     }
     
-    /// Load persistent applications/folders/files
-    private func loadPersistentItems() {
+    /// Load persistent applications
+    private func loadPersistentApps() {
         /// Read data from Dock plist
         guard let dict = UserDefaults.standard.persistentDomain(forName: "com.apple.dock") else {
             NSLog("[Pock]: Can't read Dock preferences file")
@@ -160,7 +162,54 @@ class DockRepository {
             persistentItems.insert(finderItem, at: 0)
             allItems.insert(finderItem, at: 0)
         }
-        delegate.didUpdate(apps: allItems)
+    }
+    
+    /// Load persistent folders and files
+    private func loadPersistentItems() {
+        /// Read data from Dock plist
+        guard let dict = UserDefaults.standard.persistentDomain(forName: "com.apple.dock") else {
+            NSLog("[Pock]: Can't read Dock preferences file")
+            return
+        }
+        /// Read persistent apps array
+        guard let apps = dict["persistent-others"] as? [[String: Any]] else {
+            NSLog("[Pock]: Can't get persistent apps")
+            return
+        }
+        /// Iterate on apps
+        for (index,app) in apps.enumerated() {
+            /// Get data tile
+            guard let dataTile = app["tile-data"] as? [String: Any] else { NSLog("[Pock]: Can't get file tile-data"); continue }
+            /// Get app's label
+            guard let label = dataTile["file-label"] as? String else { NSLog("[Pock]: Can't get file label"); continue }
+            /// Get file data
+            guard let fileData = dataTile["file-data"] as? [String: Any] else { NSLog("[Pock]: Can't get file data"); continue }
+            /// Get app's bundle identifier
+            guard let path = fileData["_CFURLString"] as? String else { NSLog("[Pock]: Can't get file path"); continue }
+            /// Get other's file type.
+            let tileType = dataTile["file-type"] as? String
+            /// Check if item already exists
+            if let item = allItems.first(where: { $0.path?.absoluteString == path }) {
+                persistentItems.append(item)
+            }else {
+                /// Create item
+                let item = DockItem(index,
+                                    nil,
+                                    name: label,
+                                    path: URL(string: path),
+                                    icon: getIcon(orType: tileType),
+                                    pid_t: 0,
+                                    launching: false)
+                persistentItems.append(item)
+                allItems.append(item)
+            }
+        }
+        if !allItems.contains(where: { $0.path?.absoluteString == Constants.trashPath }) {
+            let trashType = ((try? FileManager.default.contentsOfDirectory(atPath: Constants.trashPath).isEmpty) ?? true) ? "TrashIcon" : "FullTrashIcon"
+            let trashItem = DockItem(0, nil, name: "Trash", path: URL(string: Constants.trashPath)!, icon: getIcon(orType: trashType), pid_t: 0)
+            persistentItems.append(trashItem)
+            allItems.append(trashItem)
+        }
     }
     
     /// Load running dot
@@ -244,7 +293,7 @@ extension DockRepository {
         /// Set timer
         self.notificationBadgeRefreshTimer = Timer.scheduledTimer(withTimeInterval: refreshRate.rawValue, repeats: true, block: {  [weak self] _ in
             /// Log
-            NSLog("[Pock]: Refreshing notification badge... (rate: %@)", refreshRate.toString())
+            /// NSLog("[Pock]: Refreshing notification badge... (rate: %@)", refreshRate.toString())
             /// Reload badge and running dot
             DispatchQueue.main.async { [weak self] in
                 self?.updateNotificationBadges()
