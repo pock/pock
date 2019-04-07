@@ -9,9 +9,6 @@
 import Foundation
 
 class DockItem: Equatable {
-    static func == (lhs: DockItem, rhs: DockItem) -> Bool {
-        return lhs.bundleIdentifier == rhs.bundleIdentifier || lhs.path == rhs.path
-    }
     
     var index:              Int
     let bundleIdentifier:   String?
@@ -22,16 +19,17 @@ class DockItem: Equatable {
     var pid_t:              pid_t = 0
     var isLaunching:        Bool  = false
     var isFrontmost:        Bool { return NSWorkspace.shared.frontmostApplication?.bundleIdentifier == self.bundleIdentifier }
+    let isPersistentItem:   Bool
     
     var hasBadge: Bool {
         return badge != nil && badge?.count ?? 0 > 0
     }
     
     var isRunning: Bool {
-        return pid_t != 0
+        return !isPersistentItem && pid_t != 0
     }
     
-    init(_ index: Int, _ bundleIdentifier: String?, name: String?, path: URL?, icon: NSImage?, pid_t: pid_t, launching: Bool = false) {
+    init(_ index: Int, _ bundleIdentifier: String?, name: String?, path: URL?, icon: NSImage?, pid_t: pid_t = 0, launching: Bool = false, persistentItem: Bool = false) {
         self.index              = index
         self.bundleIdentifier   = bundleIdentifier
         self.name               = name
@@ -39,5 +37,10 @@ class DockItem: Equatable {
         self.icon               = icon
         self.pid_t              = pid_t
         self.isLaunching        = launching
+        self.isPersistentItem   = persistentItem
+    }
+    
+    static func == (lhs: DockItem, rhs: DockItem) -> Bool {
+        return lhs.bundleIdentifier == rhs.bundleIdentifier || lhs.path == rhs.path
     }
 }

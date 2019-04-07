@@ -22,9 +22,10 @@ class DockRepository {
     private var notificationBadgeRefreshTimer: Timer!
     
     /// Running applications
-    public  var allItems:            [DockItem] = []
-    private var runningItems:        [DockItem] = []
-    private var persistentItems:     [DockItem] = []
+    public  var dockItems:       [DockItem] = []
+    private var runningItems:    [DockItem] = []
+    private var persistentApps:  [DockItem] = []
+    public  var persistentItems: [DockItem] = []
     
     /// Init
     init(delegate: DockDelegate) {
@@ -44,7 +45,7 @@ class DockRepository {
         loadPersistentApps()
         loadRunningApplications(notification)
         loadPersistentItems()
-        delegate.didUpdate(apps: allItems)
+        delegate.didUpdate(apps: dockItems)
         updateNotificationBadges()
         updateRunningState()
     }
@@ -57,12 +58,12 @@ class DockRepository {
     /// Register for notification
     private func registerForNotifications() {
         NSWorkspace.shared.notificationCenter.addObserver(self,
-                                                          selector: #selector(loadRunningApplications(_:)),
+                                                          selector: #selector(reload(_:)),
                                                           name: NSWorkspace.willLaunchApplicationNotification,
                                                           object: nil)
 
         NSWorkspace.shared.notificationCenter.addObserver(self,
-                                                          selector: #selector(loadRunningApplications(_:)),
+                                                          selector: #selector(reload(_:)),
                                                           name: NSWorkspace.didLaunchApplicationNotification,
                                                           object: nil)
 
@@ -89,15 +90,15 @@ class DockRepository {
     
     /// Check if item can be removed
     private func canRemove(item: DockItem) -> Bool {
-        return  !runningItems.contains(item) && !persistentItems.contains(item)
+        return  !runningItems.contains(item) && !persistentApps.contains(item)
     }
     
     /// Load running applications
     @objc private func loadRunningApplications(_ notification: NSNotification?) {
-        allItems.removeAll(where: { canRemove(item: $0) })
+        dockItems.removeAll(where: { canRemove(item: $0) })
         runningItems.removeAll()
         for app in NSWorkspace.shared.runningApplications {
-            if let item = allItems.first(where: { $0.bundleIdentifier == app.bundleIdentifier }) {
+            if let item = dockItems.first(where: { $0.bundleIdentifier == app.bundleIdentifier }) {
                 item.name        = app.localizedName ?? item.name
                 item.icon        = app.icon ?? item.icon
                 item.pid_t       = app.processIdentifier
@@ -112,10 +113,10 @@ class DockRepository {
                         let icon          = app.icon else { continue }
                 let item = DockItem(0, id, name: localizedName, path: bundleURL, icon: icon, pid_t: app.processIdentifier, launching: !app.isFinishedLaunching)
                 runningItems.append(item)
-                allItems.append(item)
+                dockItems.append(item)
             }
         }
-        delegate.didUpdate(apps: allItems)
+        delegate.didUpdate(apps: dockItems)
         updateRunningState()
     }
     
@@ -132,7 +133,7 @@ class DockRepository {
             return
         }
         /// Empty array
-        persistentItems.removeAll()
+        persistentApps.removeAll()
         /// Iterate on apps
         for (index,app) in apps.enumerated() {
             /// Get data tile
@@ -142,8 +143,8 @@ class DockRepository {
             /// Get app's bundle identifier
             guard let bundleIdentifier = dataTile["bundle-identifier"] as? String else { NSLog("[Pock]: Can't get app bundle identifier"); continue }
             /// Check if item already exists
-            if let item = allItems.first(where: { $0.bundleIdentifier == bundleIdentifier }) {
-                persistentItems.append(item)
+            if let item = dockItems.first(where: { $0.bundleIdentifier == bundleIdentifier }) {
+                persistentApps.append(item)
             }else {
                 /// Create item
                 let item = DockItem(index,
@@ -153,14 +154,14 @@ class DockRepository {
                                     icon: getIcon(forBundleIdentifier: bundleIdentifier),
                                     pid_t: 0,
                                     launching: false)
-                persistentItems.append(item)
-                allItems.append(item)
+                persistentApps.append(item)
+                dockItems.append(item)
             }
         }
-        if !allItems.contains(where: { $0.bundleIdentifier == Constants.kFinderIdentifier }) {
+        if !dockItems.contains(where: { $0.bundleIdentifier == Constants.kFinderIdentifier }) {
             let finderItem = DockItem(0, Constants.kFinderIdentifier, name: "Finder", path: nil, icon: getIcon(forBundleIdentifier: Constants.kFinderIdentifier), pid_t: 0)
-            persistentItems.insert(finderItem, at: 0)
-            allItems.insert(finderItem, at: 0)
+            persistentApps.insert(finderItem, at: 0)
+            dockItems.insert(finderItem, at: 0)
         }
     }
     
@@ -176,6 +177,8 @@ class DockRepository {
             NSLog("[Pock]: Can't get persistent apps")
             return
         }
+        /// Empty array
+        persistentItems.removeAll()
         /// Iterate on apps
         for (index,app) in apps.enumerated() {
             /// Get data tile
@@ -187,46 +190,39 @@ class DockRepository {
             /// Get app's bundle identifier
             guard let path = fileData["_CFURLString"] as? String else { NSLog("[Pock]: Can't get file path"); continue }
             /// Get other's file type.
-            let tileType = dataTile["file-type"] as? String
-            /// Check if item already exists
-            if let item = allItems.first(where: { $0.path?.absoluteString == path }) {
-                persistentItems.append(item)
-            }else {
-                /// Create item
-                let item = DockItem(index,
-                                    nil,
-                                    name: label,
-                                    path: URL(string: path),
-                                    icon: getIcon(orType: tileType),
-                                    pid_t: 0,
-                                    launching: false)
-                persistentItems.append(item)
-                allItems.append(item)
-            }
+            let tileType = app["tile-type"] as? String
+            /// Create item
+            let item = DockItem(index,
+                                nil,
+                                name: label,
+                                path: URL(string: path),
+                                icon: getIcon(orType: tileType),
+                                launching: false,
+                                persistentItem: true)
+            persistentItems.append(item)
         }
-        if !allItems.contains(where: { $0.path?.absoluteString == Constants.trashPath }) {
+        if !persistentItems.contains(where: { $0.path?.absoluteString == Constants.trashPath }) {
             let trashType = ((try? FileManager.default.contentsOfDirectory(atPath: Constants.trashPath).isEmpty) ?? true) ? "TrashIcon" : "FullTrashIcon"
-            let trashItem = DockItem(0, nil, name: "Trash", path: URL(string: Constants.trashPath)!, icon: getIcon(orType: trashType), pid_t: 0)
+            let trashItem = DockItem(0, nil, name: "Trash", path: URL(string: Constants.trashPath)!, icon: getIcon(orType: trashType), persistentItem: true)
             persistentItems.append(trashItem)
-            allItems.append(trashItem)
         }
     }
     
     /// Load running dot
     private func updateRunningState() {
-        for item in allItems {
+        for item in dockItems {
             item.pid_t = NSWorkspace.shared.runningApplications.first(where: { $0.bundleIdentifier == item.bundleIdentifier })?.processIdentifier ?? 0
         }
-        let apps = allItems.filter({ $0.isRunning })
+        let apps = dockItems.filter({ $0.isRunning })
         delegate.didUpdateRunningState(for: apps)
     }
     
     /// Load notification badges
     private func updateNotificationBadges() {
-        for item in allItems {
+        for item in dockItems {
             item.badge = PockDockHelper.sharedInstance()?.getBadgeCountForItem(withName: item.name)
         }
-        let apps = allItems.filter({ $0.hasBadge })
+        let apps = dockItems.filter({ $0.hasBadge })
         delegate.didUpdateBadge(for: apps)
     }
     
