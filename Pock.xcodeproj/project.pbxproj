@@ -12,8 +12,12 @@
 		3410210F2258AF28002D3F47 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3410210E2258AF28002D3F47 /* Constants.swift */; };
 		341021112258B31D002D3F47 /* DockItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341021102258B31D002D3F47 /* DockItem.swift */; };
 		341021132258B4F5002D3F47 /* DockRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341021122258B4F5002D3F47 /* DockRepository.swift */; };
-		341021152258BA1C002D3F47 /* SKQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341021142258BA1C002D3F47 /* SKQueue.swift */; };
 		341021172258BC1F002D3F47 /* DockItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341021162258BC1E002D3F47 /* DockItemView.swift */; };
+		341021192259E813002D3F47 /* FileMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341021182259E813002D3F47 /* FileMonitor.swift */; };
+		341021202259F8E5002D3F47 /* FileEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3410211B2259F8E5002D3F47 /* FileEvent.swift */; };
+		341021212259F8E5002D3F47 /* EventStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3410211C2259F8E5002D3F47 /* EventStream.swift */; };
+		341021222259F8E5002D3F47 /* Witness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3410211D2259F8E5002D3F47 /* Witness.swift */; };
+		341021232259F8E5002D3F47 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3410211F2259F8E5002D3F47 /* Info.plist */; };
 		342D3CB42111998A0028FC59 /* PockDockHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 342D3CB32111998A0028FC59 /* PockDockHelper.m */; };
 		342D3CBD2111B1AD0028FC59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 342D3CBB2111B1AD0028FC59 /* Assets.xcassets */; };
 		348343DA1F631B2E00CDA005 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348343D91F631B2E00CDA005 /* AppDelegate.swift */; };
@@ -35,8 +39,13 @@
 		3410210E2258AF28002D3F47 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		341021102258B31D002D3F47 /* DockItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockItem.swift; sourceTree = "<group>"; };
 		341021122258B4F5002D3F47 /* DockRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockRepository.swift; sourceTree = "<group>"; };
-		341021142258BA1C002D3F47 /* SKQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKQueue.swift; sourceTree = "<group>"; };
 		341021162258BC1E002D3F47 /* DockItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockItemView.swift; sourceTree = "<group>"; };
+		341021182259E813002D3F47 /* FileMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileMonitor.swift; sourceTree = "<group>"; };
+		3410211B2259F8E5002D3F47 /* FileEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileEvent.swift; sourceTree = "<group>"; };
+		3410211C2259F8E5002D3F47 /* EventStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventStream.swift; sourceTree = "<group>"; };
+		3410211D2259F8E5002D3F47 /* Witness.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Witness.swift; sourceTree = "<group>"; };
+		3410211E2259F8E5002D3F47 /* Witness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Witness.h; sourceTree = "<group>"; };
+		3410211F2259F8E5002D3F47 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		342D3CB22111998A0028FC59 /* PockDockHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PockDockHelper.h; sourceTree = "<group>"; };
 		342D3CB32111998A0028FC59 /* PockDockHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PockDockHelper.m; sourceTree = "<group>"; };
 		342D3CBA2111B1AD0028FC59 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -111,7 +120,8 @@
 		3410210B2258AC54002D3F47 /* Dock */ = {
 			isa = PBXGroup;
 			children = (
-				341021142258BA1C002D3F47 /* SKQueue.swift */,
+				3410211A2259F8E5002D3F47 /* Witness */,
+				341021182259E813002D3F47 /* FileMonitor.swift */,
 				3410210E2258AF28002D3F47 /* Constants.swift */,
 				3410210C2258AC6B002D3F47 /* DockWidget.swift */,
 				341021102258B31D002D3F47 /* DockItem.swift */,
@@ -119,6 +129,18 @@
 				341021122258B4F5002D3F47 /* DockRepository.swift */,
 			);
 			path = Dock;
+			sourceTree = "<group>";
+		};
+		3410211A2259F8E5002D3F47 /* Witness */ = {
+			isa = PBXGroup;
+			children = (
+				3410211B2259F8E5002D3F47 /* FileEvent.swift */,
+				3410211C2259F8E5002D3F47 /* EventStream.swift */,
+				3410211D2259F8E5002D3F47 /* Witness.swift */,
+				3410211E2259F8E5002D3F47 /* Witness.h */,
+				3410211F2259F8E5002D3F47 /* Info.plist */,
+			);
+			path = Witness;
 			sourceTree = "<group>";
 		};
 		342D3CB52111998E0028FC59 /* PockDockHelper */ = {
@@ -298,6 +320,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				341021232259F8E5002D3F47 /* Info.plist in Resources */,
 				3494645A21713821000480C5 /* GeneralPreferencePane.xib in Resources */,
 				342D3CBD2111B1AD0028FC59 /* Assets.xcassets in Resources */,
 				349557F0217CFCC5000DEB55 /* MainWindow.xib in Resources */,
@@ -400,17 +423,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				349557E9217CF187000DEB55 /* PockWidget.swift in Sources */,
-				341021152258BA1C002D3F47 /* SKQueue.swift in Sources */,
 				3410210F2258AF28002D3F47 /* Constants.swift in Sources */,
+				341021192259E813002D3F47 /* FileMonitor.swift in Sources */,
 				341021172258BC1F002D3F47 /* DockItemView.swift in Sources */,
 				34DC32E61F6DAAC500037E68 /* KeySender.swift in Sources */,
 				3483BF7621712BA8008570D0 /* Preferences.swift in Sources */,
+				341021212259F8E5002D3F47 /* EventStream.swift in Sources */,
+				341021222259F8E5002D3F47 /* Witness.swift in Sources */,
 				349557ED217CF627000DEB55 /* PockTouchBarController.swift in Sources */,
 				342D3CB42111998A0028FC59 /* PockDockHelper.m in Sources */,
 				348343DA1F631B2E00CDA005 /* AppDelegate.swift in Sources */,
 				3410210D2258AC6B002D3F47 /* DockWidget.swift in Sources */,
 				341021132258B4F5002D3F47 /* DockRepository.swift in Sources */,
 				349557EB217CF5A3000DEB55 /* PockMainController.swift in Sources */,
+				341021202259F8E5002D3F47 /* FileEvent.swift in Sources */,
 				341021112258B31D002D3F47 /* DockItem.swift in Sources */,
 				3494645C2171383A000480C5 /* GeneralPreferencePane.swift in Sources */,
 				349557E6217CEFDB000DEB55 /* EscWidget.swift in Sources */,

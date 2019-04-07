@@ -41,6 +41,11 @@ class DockItem: Equatable {
     }
     
     static func == (lhs: DockItem, rhs: DockItem) -> Bool {
-        return lhs.bundleIdentifier == rhs.bundleIdentifier || lhs.path == rhs.path
+        if lhs.isPersistentItem && rhs.isPersistentItem {
+            return lhs.path == rhs.path
+        }else if !lhs.isPersistentItem && !rhs.isPersistentItem {
+            return lhs.bundleIdentifier == rhs.bundleIdentifier
+        }
+        return false
     }
 }

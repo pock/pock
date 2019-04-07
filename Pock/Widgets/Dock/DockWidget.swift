@@ -20,7 +20,7 @@ class DockWidget: PockWidget {
     
     /// Data
     private var dockItems:       [DockItem] = []
-    private var persistentItems: [DockItem] { return dockRepository.persistentItems }
+    private var persistentItems: [DockItem] = []
     
     /// Custom init
     override func customInit() {
@@ -93,27 +93,40 @@ class DockWidget: PockWidget {
 
 extension DockWidget: DockDelegate {
     func didUpdate(apps: [DockItem]) {
-        dockScrubber.performSequentialBatchUpdates { [weak self] in
-            guard let scrubber = self?.dockScrubber, let items = self?.dockItems else { return }
+        update(scrubber: dockScrubber, old_items: dockItems, new_items: apps, completion: { [weak self] items in
+            self?.dockItems = items
+            self?.dockScrubber.needsLayout = true
+        })
+    }
+    func didUpdate(items: [DockItem]) {
+        update(scrubber: persistentScrubber, old_items: persistentItems, new_items: items, canReload: true, completion: { [weak self] items in
+            self?.persistentItems = items
+            self?.persistentScrubber.needsLayout = true
+        })
+    }
+    private func update(scrubber: NSScrubber, old_items: [DockItem], new_items: [DockItem], canReload: Bool = false, completion: ([DockItem]) -> Void) {
+        scrubber.performSequentialBatchUpdates {
             var count = scrubber.numberOfItems
-            let old_apps = items.map({ $0 })
-            let new_apps = apps.map({ $0 })
-            for (index, old_app) in old_apps.enumerated() {
-                if !new_apps.contains(old_app) {
+            for (index, old_item) in old_items.enumerated() {
+                if !new_items.contains(old_item) {
                     scrubber.removeItems(at: IndexSet(integer: index))
                     count -= 1
+                }else {
+                    if canReload {
+                        scrubber.reloadItems(at: IndexSet(integer: index))
+                    }
                 }
             }
-            for new_app in new_apps {
-                if !old_apps.contains(new_app) {
+            for new_item in new_items {
+                if !old_items.contains(new_item) {
                     scrubber.insertItems(at: IndexSet(integer: count))
-                    if old_apps.count > 0 {
+                    if old_items.count > 0 {
                         scrubber.scrollItem(at: count - 1, to: .leading)
                     }
                     count += 1
                 }
             }
-            self?.dockItems = new_apps
+            completion(new_items)
         }
     }
     func didUpdateBadge(for apps: [DockItem]) {
@@ -122,13 +135,6 @@ extension DockWidget: DockDelegate {
                 view.set(hasBadge: item.hasBadge)
             }
         }
-//        for (key, view) in itemViews {
-//            if let item = apps.first(where: { $0.bundleIdentifier == key }) {
-//                view.set(hasBadge: item.hasBadge)
-//            }else {
-//                view.set(hasBadge: false)
-//            }
-//        }
     }
     func didUpdateRunningState(for apps: [DockItem]) {
         for (index, item) in dockItems.enumerated() {
@@ -136,18 +142,8 @@ extension DockWidget: DockDelegate {
                 view.set(icon: item.icon)
                 view.set(isRunning: item.isRunning)
                 view.set(isFrontmost: item.isFrontmost)
-                if item.isFrontmost {
-                    dockScrubber.scrollItem(at: index, to: .none)
-                }
             }
         }
-//        for (key, view) in itemViews {
-//            if let item = apps.first(where: { $0.bundleIdentifier == key }) {
-//                view.set(isRunning: item.isRunning)
-//            }else {
-//                view.set(isRunning: false)
-//            }
-//        }
     }
 }
 
@@ -172,7 +168,7 @@ extension DockWidget: NSScrubberDataSource {
 
 extension DockWidget: NSScrubberDelegate {
     func scrubber(_ scrubber: NSScrubber, didSelectItemAt selectedIndex: Int) {
-        let item = dockItems[selectedIndex]
+        let item = scrubber == persistentScrubber ? persistentItems[selectedIndex] : dockItems[selectedIndex]
         dockRepository.launch(bundleIdentifier: item.bundleIdentifier, completion: { success in
             NSLog("[Pock]: Did open: \(item.bundleIdentifier ?? item.path?.absoluteString ?? "Unknown") [success: \(success)]")
         })

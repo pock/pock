@@ -23,6 +23,7 @@ From preference pane, you can decide if you want to launch Pock at login.
 * [ESCapey](https://github.com/brianmichel/ESCapey) - Simulate `esc` button
 * [Minebomber](https://stackoverflow.com/a/36115210) - This comment blowed my mind
 * [Defaults, Preferences, LaunchAtLogin](https://github.com/sindresorhus/)
+* [Witness](https://github.com/njdehoog/Witness)
 
 ## Info
 **Pock** will never be a commercial package.

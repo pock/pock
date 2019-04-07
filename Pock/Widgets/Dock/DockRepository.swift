@@ -11,6 +11,7 @@ import Defaults
 
 protocol DockDelegate {
     func didUpdate(apps: [DockItem])
+    func didUpdate(items: [DockItem])
     func didUpdateBadge(for apps: [DockItem])
     func didUpdateRunningState(for apps: [DockItem])
 }
@@ -18,6 +19,7 @@ protocol DockDelegate {
 class DockRepository {
     
     /// Core
+    private var fileMonitor: FileMonitor?
     private let delegate: DockDelegate
     private var notificationBadgeRefreshTimer: Timer!
     
@@ -42,6 +44,10 @@ class DockRepository {
     /// Reload
     @objc public func reload(_ notification: NSNotification?) {
         // TODO: Analyze notification to add/edit/remove specific item instead of all dataset.
+        dockItems.removeAll()
+        runningItems.removeAll()
+        persistentApps.removeAll()
+        persistentItems.removeAll()
         loadPersistentApps()
         loadRunningApplications(notification)
         loadPersistentItems()
@@ -52,18 +58,19 @@ class DockRepository {
     
     /// Unregister from notification
     private func unregisterForNotifications() {
+        fileMonitor = nil
         NSWorkspace.shared.notificationCenter.removeObserver(self)
     }
     
     /// Register for notification
     private func registerForNotifications() {
         NSWorkspace.shared.notificationCenter.addObserver(self,
-                                                          selector: #selector(reload(_:)),
+                                                          selector: #selector(loadRunningApplications(_:)),
                                                           name: NSWorkspace.willLaunchApplicationNotification,
                                                           object: nil)
 
         NSWorkspace.shared.notificationCenter.addObserver(self,
-                                                          selector: #selector(reload(_:)),
+                                                          selector: #selector(loadRunningApplications(_:)),
                                                           name: NSWorkspace.didLaunchApplicationNotification,
                                                           object: nil)
 
@@ -86,6 +93,7 @@ class DockRepository {
                                                           selector: #selector(self.setupNotificationBadgeRefreshTimer),
                                                           name: .didChangeNotificationBadgeRefreshRate,
                                                           object: nil)
+        fileMonitor = FileMonitor(paths: [Constants.trashPath, Constants.dockPlist], delegate: self)
     }
     
     /// Check if item can be removed
@@ -206,6 +214,7 @@ class DockRepository {
             let trashItem = DockItem(0, nil, name: "Trash", path: URL(string: Constants.trashPath)!, icon: getIcon(orType: trashType), persistentItem: true)
             persistentItems.append(trashItem)
         }
+        delegate.didUpdate(items: persistentItems)
     }
     
     /// Load running dot
@@ -226,6 +235,17 @@ class DockRepository {
         delegate.didUpdateBadge(for: apps)
     }
     
+}
+
+extension DockRepository: FileMonitorDelegate {
+    func didChange(fileMonitor: FileMonitor, paths: [String]) {
+        DispatchQueue.main.async { [weak self] in
+            for path in paths {
+                NSLog("[Pock]: [\(type(of: fileMonitor))] # Changes in path: \(path)")
+            }
+            self?.reload(nil)
+        }
+    }
 }
 
 extension DockRepository {

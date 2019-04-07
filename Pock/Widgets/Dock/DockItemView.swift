@@ -90,9 +90,7 @@ class DockItemView: NSScrubberItemView {
     }
     
     public func set(icon: NSImage?) {
-        if iconView.image != icon {
-            iconView.image = icon
-        }
+        iconView.image = icon
     }
     
     public func set(isFrontmost: Bool) {
