@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Defaults
 
 class DockWidget: PockWidget {
     
@@ -14,9 +15,10 @@ class DockWidget: PockWidget {
     private var dockRepository: DockRepository!
     
     /// UI
-    private var stackView:    NSStackView!
-    private var dockScrubber: NSScrubber = NSScrubber(frame: NSRect(x: 0, y: 0, width: 200, height: 30))
-    private var persistentScrubber: NSScrubber = NSScrubber(frame: NSRect(x: 0, y: 0, width: 50, height: 30))
+    private var stackView:          NSStackView = NSStackView(frame: .zero)
+    private var dockScrubber:       NSScrubber  = NSScrubber(frame: NSRect(x: 0, y: 0, width: 200, height: 30))
+    private var separator:          NSView?
+    private var persistentScrubber: NSScrubber?
     
     /// Data
     private var dockItems:       [DockItem] = []
@@ -27,19 +29,37 @@ class DockWidget: PockWidget {
         self.customizationLabel = "Dock"
         self.configureStackView()
         self.configureDockScrubber()
-        self.configureSeparator()
-        self.configurePersistentScrubber()
         self.set(view: stackView)
         self.dockRepository = DockRepository(delegate: self)
         self.dockRepository.reload(nil)
+        NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(displayScrubbers), name: .shouldReloadDock, object: nil)
+    }
+    
+    deinit {
+        NSWorkspace.shared.notificationCenter.removeObserver(self)
     }
     
     /// Configure stack view
     private func configureStackView() {
-        stackView = NSStackView(frame: .zero)
         stackView.alignment = .centerY
         stackView.orientation = .horizontal
         stackView.distribution = .fill
+    }
+    
+    @objc private func displayScrubbers() {
+        if !defaults[.hidePersistentItems] {
+            self.configureSeparator()
+            self.configurePersistentScrubber()
+        }else {
+            if persistentScrubber != nil {
+                stackView.removeArrangedSubview(separator!)
+                stackView.removeArrangedSubview(persistentScrubber!)
+                persistentScrubber?.removeFromSuperview()
+                persistentScrubber = nil
+                separator?.removeFromSuperview()
+                separator = nil
+            }
+        }
     }
     
     /// Configure dock scrubber
@@ -60,14 +80,14 @@ class DockWidget: PockWidget {
     
     /// Configure separator
     private func configureSeparator() {
-        let separator: NSView = NSView(frame: NSRect(x: 0, y: 0, width: 1, height: 20))
-        separator.wantsLayer = true
-        separator.layer?.backgroundColor = NSColor.darkGray.cgColor
-        separator.snp.makeConstraints({ m in
+        separator = NSView(frame: NSRect(x: 0, y: 0, width: 1, height: 20))
+        separator?.wantsLayer = true
+        separator?.layer?.backgroundColor = NSColor.darkGray.cgColor
+        separator?.snp.makeConstraints({ m in
             m.width.equalTo(1)
             m.height.equalTo(20)
         })
-        stackView.addArrangedSubview(separator)
+        stackView.addArrangedSubview(separator!)
     }
     
     /// Configure persistent scrubber
@@ -75,18 +95,19 @@ class DockWidget: PockWidget {
         let layout = NSScrubberFlowLayout()
         layout.itemSize = Constants.dockItemSize
         layout.itemSpacing = 8
-        persistentScrubber.dataSource = self
-        persistentScrubber.delegate = self
-        persistentScrubber.register(DockItemView.self, forItemIdentifier: Constants.kDockItemView)
-        persistentScrubber.showsAdditionalContentIndicators = true
-        persistentScrubber.mode = .free
-        persistentScrubber.isContinuous = false
-        persistentScrubber.itemAlignment = .none
-        persistentScrubber.scrubberLayout = layout
-        persistentScrubber.snp.makeConstraints({ m in
+        persistentScrubber = NSScrubber(frame: NSRect(x: 0, y: 0, width: 50, height: 30))
+        persistentScrubber?.dataSource = self
+        persistentScrubber?.delegate = self
+        persistentScrubber?.register(DockItemView.self, forItemIdentifier: Constants.kDockItemView)
+        persistentScrubber?.showsAdditionalContentIndicators = true
+        persistentScrubber?.mode = .free
+        persistentScrubber?.isContinuous = false
+        persistentScrubber?.itemAlignment = .none
+        persistentScrubber?.scrubberLayout = layout
+        persistentScrubber?.snp.makeConstraints({ m in
             m.width.equalTo(136)
         })
-        stackView.addArrangedSubview(persistentScrubber)
+        stackView.addArrangedSubview(persistentScrubber!)
     }
     
 }
@@ -101,10 +122,14 @@ extension DockWidget: DockDelegate {
     func didUpdate(items: [DockItem]) {
         update(scrubber: persistentScrubber, old_items: persistentItems, new_items: items, canReload: true, completion: { [weak self] items in
             self?.persistentItems = items
-            self?.persistentScrubber.needsLayout = true
+            self?.persistentScrubber?.needsLayout = true
         })
     }
-    private func update(scrubber: NSScrubber, old_items: [DockItem], new_items: [DockItem], canReload: Bool = false, completion: ([DockItem]) -> Void) {
+    private func update(scrubber: NSScrubber?, old_items: [DockItem], new_items: [DockItem], canReload: Bool = false, completion: ([DockItem]) -> Void) {
+        guard let scrubber = scrubber else {
+            completion(new_items)
+            return
+        }
         scrubber.performSequentialBatchUpdates {
             var count = scrubber.numberOfItems
             for (index, old_item) in old_items.enumerated() {

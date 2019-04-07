@@ -10,6 +10,7 @@
             <connections>
                 <outlet property="checkForUpdatesButton" destination="iOr-af-uPA" id="lpM-rd-vN1"/>
                 <outlet property="hideControlStripCheckbox" destination="3Do-iB-eoD" id="7jC-Mg-kqP"/>
+                <outlet property="hidePersistentItemsCheckbox" destination="20N-jZ-KXc" id="wFy-b4-Zy0"/>
                 <outlet property="launchAtLoginCheckbox" destination="OvG-0j-ema" id="eFG-v4-gaq"/>
                 <outlet property="notificationBadgeRefreshRatePicker" destination="HqG-Ap-oix" id="nII-ow-lHf"/>
                 <outlet property="versionLabel" destination="p8O-cG-rIH" id="2e0-3L-F9H"/>
@@ -134,6 +135,16 @@
                         <action selector="didChangeHideControlStripValueWithButton:" target="-2" id="Gue-rM-bAm"/>
                     </connections>
                 </button>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="20N-jZ-KXc">
+                    <rect key="frame" x="310" y="48" width="152" height="24"/>
+                    <buttonCell key="cell" type="check" title="Hide Persistent Items" bezelStyle="regularSquare" imagePosition="left" inset="2" id="dt9-Gg-6FO">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="didChangeHidePersistentValueWithButton:" target="-2" id="9YE-Bt-PIY"/>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="ebU-tb-qZd" secondAttribute="bottom" id="28x-tc-R6N"/>
@@ -143,6 +154,8 @@
                 <constraint firstItem="HqG-Ap-oix" firstAttribute="leading" secondItem="DJh-bT-ySZ" secondAttribute="trailing" constant="8" id="52h-66-EjU"/>
                 <constraint firstItem="ebU-tb-qZd" firstAttribute="leading" secondItem="p8O-cG-rIH" secondAttribute="trailing" constant="20" id="7hk-YT-7m7"/>
                 <constraint firstItem="OvG-0j-ema" firstAttribute="leading" secondItem="ebU-tb-qZd" secondAttribute="trailing" constant="20" id="9Zg-aE-blB"/>
+                <constraint firstItem="20N-jZ-KXc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3Do-iB-eoD" secondAttribute="trailing" constant="10" id="Akm-U7-r8h"/>
+                <constraint firstItem="20N-jZ-KXc" firstAttribute="top" secondItem="u9C-Dc-GcL" secondAttribute="bottom" constant="10" id="C5y-DA-sWE"/>
                 <constraint firstItem="Jxs-rJ-hZ7" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="4" id="Cg0-7H-rn8"/>
                 <constraint firstItem="DJh-bT-ySZ" firstAttribute="leading" secondItem="ebU-tb-qZd" secondAttribute="trailing" constant="20" id="HLF-Ir-Lvz"/>
                 <constraint firstItem="HqG-Ap-oix" firstAttribute="centerY" secondItem="DJh-bT-ySZ" secondAttribute="centerY" id="LGU-iI-3wd"/>
@@ -150,9 +163,11 @@
                 <constraint firstItem="dLe-Qb-BCd" firstAttribute="top" secondItem="Jxs-rJ-hZ7" secondAttribute="bottom" constant="-6" id="X3u-U4-KBd"/>
                 <constraint firstItem="ebU-tb-qZd" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="Yrd-h1-hMm"/>
                 <constraint firstItem="p8O-cG-rIH" firstAttribute="top" secondItem="dLe-Qb-BCd" secondAttribute="bottom" constant="8" id="ap9-P9-4TO"/>
+                <constraint firstAttribute="trailing" secondItem="20N-jZ-KXc" secondAttribute="trailing" constant="20" id="bXT-rc-qu3"/>
                 <constraint firstItem="Jxs-rJ-hZ7" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="gdZ-en-fho"/>
                 <constraint firstItem="ebU-tb-qZd" firstAttribute="leading" secondItem="Jxs-rJ-hZ7" secondAttribute="trailing" id="gzj-8E-LgF"/>
                 <constraint firstItem="p8O-cG-rIH" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="qNs-wr-v9I"/>
+                <constraint firstItem="iOr-af-uPA" firstAttribute="top" secondItem="20N-jZ-KXc" secondAttribute="bottom" constant="9" id="qZF-Ff-ljU"/>
                 <constraint firstItem="DJh-bT-ySZ" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="20" id="qzC-lN-MCc"/>
                 <constraint firstItem="u9C-Dc-GcL" firstAttribute="leading" secondItem="ebU-tb-qZd" secondAttribute="trailing" constant="20" id="rDw-sC-Co8"/>
                 <constraint firstItem="OvG-0j-ema" firstAttribute="top" secondItem="3Do-iB-eoD" secondAttribute="bottom" constant="10" id="reJ-u8-WqZ"/>

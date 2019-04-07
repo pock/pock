@@ -18,6 +18,7 @@ final class GeneralPreferencePane: NSViewController, Preferenceable {
     @IBOutlet weak var versionLabel:                       NSTextField!
     @IBOutlet weak var notificationBadgeRefreshRatePicker: NSPopUpButton!
     @IBOutlet weak var hideControlStripCheckbox:           NSButton!
+    @IBOutlet weak var hidePersistentItemsCheckbox:        NSButton!
     @IBOutlet weak var launchAtLoginCheckbox:              NSButton!
     @IBOutlet weak var checkForUpdatesButton:              NSButton!
     
@@ -36,7 +37,7 @@ final class GeneralPreferencePane: NSViewController, Preferenceable {
         super.viewWillAppear()
         self.loadVersionNumber()
         self.populatePopUpButton()
-        self.setupLaunchAtLoginCheckbox()
+        self.setupCheckboxes()
     }
     
     private func loadVersionNumber() {
@@ -49,8 +50,10 @@ final class GeneralPreferencePane: NSViewController, Preferenceable {
         self.notificationBadgeRefreshRatePicker.selectItem(withTitle: defaults[.notificationBadgeRefreshInterval].toString())
     }
     
-    private func setupLaunchAtLoginCheckbox() {
+    private func setupCheckboxes() {
         self.launchAtLoginCheckbox.state = LaunchAtLogin.isEnabled ? .on : .off
+        self.hideControlStripCheckbox.state = defaults[.hideControlStrip] ? .on : .off
+        self.hidePersistentItemsCheckbox.state = defaults[.hidePersistentItems] ? .on : .off
     }
     
     @IBAction private func didSelectNotificationBadgeRefreshRate(_: NSButton) {
@@ -67,33 +70,12 @@ final class GeneralPreferencePane: NSViewController, Preferenceable {
         NSWorkspace.shared.notificationCenter.post(name: .shouldReloadPock, object: nil)
     }
     
+    @IBAction private func didChangeHidePersistentValue(button: NSButton) {
+        defaults[.hidePersistentItems] = button.state == .on
+        NSWorkspace.shared.notificationCenter.post(name: .shouldReloadDock, object: nil)
+    }
+    
     @IBAction private func checkForUpdates(_ sender: NSButton) {
         SUUpdater.shared()?.checkForUpdates(sender)
     }
-}
-
-extension GeneralPreferencePane {
-    
-    func showNewVersionAlert(versionNumber: String, downloadURL: URL) {
-        self.showAlert(title:      "New version available!",
-                       message:    "Do you want to download version \"\(versionNumber)\" now?",
-                       buttons:    ["Download", "Later"],
-                       completion: { modalResponse in if modalResponse == .alertFirstButtonReturn { NSWorkspace.shared.open(downloadURL) }
-        })
-    }
-    
-    private func showAlert(title: String, message: String, buttons: [String] = [], completion: ((NSApplication.ModalResponse) -> Void)? = nil) {
-        DispatchQueue.main.async { [weak self] in
-            guard let _self = self else { return }
-            let alert             = NSAlert()
-            alert.alertStyle      = NSAlert.Style.informational
-            alert.messageText     = title
-            alert.informativeText = message
-            for buttonTitle in buttons {
-                alert.addButton(withTitle: buttonTitle)
-            }
-            alert.beginSheetModal(for: _self.view.window!, completionHandler: completion)
-        }
-    }
-    
 }
