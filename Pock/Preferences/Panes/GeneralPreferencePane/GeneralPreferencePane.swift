@@ -58,6 +58,7 @@ final class GeneralPreferencePane: NSViewController, Preferenceable {
         self.hideFinderCheckbox.state           = defaults[.hideFinder]          ? .on : .off
         self.hideTrashCheckbox.state            = defaults[.hideTrash]           ? .on : .off
         self.hidePersistentItemsCheckbox.state  = defaults[.hidePersistentItems] ? .on : .off
+        self.hideTrashCheckbox.isEnabled        = !defaults[.hidePersistentItems]
     }
     
     @IBAction private func didSelectNotificationBadgeRefreshRate(_: NSButton) {
@@ -86,6 +87,7 @@ final class GeneralPreferencePane: NSViewController, Preferenceable {
     
     @IBAction private func didChangeHidePersistentValue(button: NSButton) {
         defaults[.hidePersistentItems] = button.state == .on
+        hideTrashCheckbox.isEnabled = !defaults[.hidePersistentItems]
         NSWorkspace.shared.notificationCenter.post(name: .shouldReloadPersistentItems, object: nil)
     }
     

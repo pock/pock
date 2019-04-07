@@ -29,6 +29,7 @@ class DockWidget: PockWidget {
         self.customizationLabel = "Dock"
         self.configureStackView()
         self.configureDockScrubber()
+        self.displayScrubbers()
         self.set(view: stackView)
         self.dockRepository = DockRepository(delegate: self)
         self.dockRepository.reload(nil)
