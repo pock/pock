@@ -26,10 +26,10 @@ final class GeneralPreferencePane: NSViewController, Preferenceable {
     
     /// Preferenceable
     let toolbarItemTitle: String   = "General"
-    let toolbarItemIcon:  NSImage  = NSImage(named: NSImage.Name("pock-icon"))!
-    
+	let toolbarItemIcon:  NSImage  = NSImage(named: .preferencesGeneral)!
+
     override var nibName: NSNib.Name? {
-        return NSNib.Name(rawValue: "GeneralPreferencePane")
+        return NSNib.Name("GeneralPreferencePane")
     }
     
     override func viewWillAppear() {

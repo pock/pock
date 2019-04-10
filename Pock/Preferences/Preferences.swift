@@ -46,7 +46,7 @@ enum NotificationBadgeRefreshRateKeys: Double, Codable, CaseIterable {
 }
 
 extension Defaults.Keys {
-    static let launchAtLogin                    = Defaults.Key<Bool>("launchAtLogin", default: false)
-    static let notificationBadgeRefreshInterval = Defaults.Key<NotificationBadgeRefreshRateKeys>("notificationBadgeRefreshInterval", default: .tenSeconds)
-    static let hideControlStrip                 = Defaults.Key<Bool>("hideControlStrip", default: false)
+    static let launchAtLogin                    = Key<Bool>("launchAtLogin", default: false)
+    static let notificationBadgeRefreshInterval = Key<NotificationBadgeRefreshRateKeys>("notificationBadgeRefreshInterval", default: .tenSeconds)
+    static let hideControlStrip                 = Key<Bool>("hideControlStrip", default: false)
 }
