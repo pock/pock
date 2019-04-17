@@ -50,7 +50,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             menu.addItem(withTitle: "Preferences", action: #selector(openPreferences), keyEquivalent: "")
             // menu.addItem(withTitle: "Customize", action: #selector(openCustomization), keyEquivalent: "")
             menu.addItem(NSMenuItem.separator())
-            menu.addItem(withTitle: "Quit Pock.", action: #selector(NSApp.terminate(_:)), keyEquivalent: "")
+            menu.addItem(withTitle: "Quit Pock", action: #selector(NSApp.terminate(_:)), keyEquivalent: "")
             pockStatusbarIcon.menu = menu
         }
         
