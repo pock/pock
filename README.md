@@ -29,5 +29,5 @@ From preference pane, you can decide if you want to launch Pock at login.
 **Pock** will never be a commercial package.
 
 ## License
-Under MIT license. See LICENSE file for further information.
+Under MIT license. See [LICENSE](LICENSE) file for further information.
 
