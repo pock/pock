@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import Defaults
 import Preferences
 import Fabric
 import Crashlytics
@@ -16,6 +17,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     /// IBOutlets
     @IBOutlet weak var touchBarController: PockTouchBarController!
+    
+    /// Timer
+    fileprivate var automaticUpdatesTimer: Timer?
     
     /// Status bar Pock icon
     fileprivate let pockStatusbarIcon = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
@@ -54,6 +58,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             pockStatusbarIcon.menu = menu
         }
         
+        /// Check for updates
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: { [weak self] in
+            self?.checkForUpdates()
+        })
+        
+        /// Register for notification
+        NSWorkspace.shared.notificationCenter.addObserver(self,
+                                                          selector: #selector(toggleAutomaticUpdatesTimer),
+                                                          name: .shouldEnableAutomaticUpdates,
+                                                          object: nil)
+        toggleAutomaticUpdatesTimer()
+        
         /// Present Pock
         self.touchBarController.present()
         
@@ -62,9 +78,29 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
     }
     
+    @objc private func toggleAutomaticUpdatesTimer() {
+        if defaults[.enableAutomaticUpdates] {
+            automaticUpdatesTimer = Timer.scheduledTimer(timeInterval: 86400 /*24h*/, target: self, selector: #selector(checkForUpdates), userInfo: nil, repeats: true)
+        }else {
+            automaticUpdatesTimer?.invalidate()
+            automaticUpdatesTimer = nil
+        }
+    }
+    
     /// Will terminate
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
+    }
+    
+    /// Check for updates
+    @objc private func checkForUpdates() {
+        generalPreferencePane.hasLatestVersion(completion: { [weak self] versionNumber, downloadURL in
+            guard let versionNumber = versionNumber, let downloadURL = downloadURL else { return }
+            self?.generalPreferencePane.newVersionAvailable = (versionNumber, downloadURL)
+            DispatchQueue.main.async { [weak self] in
+                self?.openPreferences()
+            }
+        })
     }
     
     /// Check for accessibility

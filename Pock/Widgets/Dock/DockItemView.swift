@@ -89,6 +89,14 @@ class DockItemView: NSScrubberItemView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.set(icon:         nil)
+        self.set(hasBadge:     false)
+        self.set(isRunning:    false)
+        self.set(isFrontmost:  false)
+    }
+    
     public func set(icon: NSImage?) {
         iconView.image = icon
     }

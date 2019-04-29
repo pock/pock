@@ -24,7 +24,6 @@
                 <outlet property="touchBar" destination="WzL-AA-XcA" id="BsS-Fe-YNN"/>
             </connections>
         </customObject>
-        <customObject id="JFv-UD-CHu" customClass="SUUpdater"/>
         <touchBar id="WzL-AA-XcA">
             <nil name="touchBarItems"/>
             <connections>
