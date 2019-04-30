@@ -22,10 +22,10 @@ class StatusWidgetPreferencePane: NSViewController, Preferenceable {
     
     /// Preferenceable
     let toolbarItemTitle: String   = "Status"
-    let toolbarItemIcon:  NSImage  = NSImage(named: NSImage.Name.advanced)!
+    let toolbarItemIcon:  NSImage  = NSImage(named: NSImage.advancedName)!
     
     override var nibName: NSNib.Name? {
-        return NSNib.Name(rawValue: "StatusWidgetPreferencePane")
+        return "StatusWidgetPreferencePane"
     }
     
     override func viewDidLoad() {

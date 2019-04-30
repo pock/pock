@@ -12,7 +12,7 @@ class CCVolumeDownItem: ControlCenterItem {
     
     override var title: String  { return "volume-down" }
     
-    override var icon:  NSImage { return NSImage(named: .touchBarVolumeDownTemplate)! }
+    override var icon:  NSImage { return NSImage(named: NSImage.touchBarVolumeDownTemplateName)! }
     
     override func action() {
         NSSound.decreaseSystemVolume(by: 0.06)

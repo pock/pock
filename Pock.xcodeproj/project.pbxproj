@@ -8,114 +8,110 @@
 
 /* Begin PBXBuildFile section */
 		009B0E12E317757741CE38C8 /* Pods_Pock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 863BE70CFBAC31BDBF35B1FD /* Pods_Pock.framework */; };
-		3427C72D1F65746000FE39FF /* PockItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3427C72C1F65746000FE39FF /* PockItemView.swift */; };
-		342D3CB42111998A0028FC59 /* PockDockHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 342D3CB32111998A0028FC59 /* PockDockHelper.m */; };
-		342D3CB72111ACC30028FC59 /* PockItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D3CB62111ACC30028FC59 /* PockItem.swift */; };
-		342D3CBD2111B1AD0028FC59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 342D3CBB2111B1AD0028FC59 /* Assets.xcassets */; };
-		348343DA1F631B2E00CDA005 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348343D91F631B2E00CDA005 /* AppDelegate.swift */; };
-		348343E91F631B6700CDA005 /* PockUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348343E81F631B6700CDA005 /* PockUtilities.swift */; };
-		3483BF7621712BA8008570D0 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3483BF7521712BA8008570D0 /* Preferences.swift */; };
-		349431C222175E07008622B1 /* EonilFSEventStreamError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431BA22175E06008622B1 /* EonilFSEventStreamError.swift */; };
-		349431C322175E07008622B1 /* EonilFSEventStreamIllogicalErrorLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431BB22175E06008622B1 /* EonilFSEventStreamIllogicalErrorLog.swift */; };
-		349431C422175E07008622B1 /* EonilFSEventStreamEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431BC22175E07008622B1 /* EonilFSEventStreamEvent.swift */; };
-		349431C522175E07008622B1 /* EonilFSEventStreamEventID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431BD22175E07008622B1 /* EonilFSEventStreamEventID.swift */; };
-		349431C622175E07008622B1 /* EonilFSEventStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431BE22175E07008622B1 /* EonilFSEventStream.swift */; };
-		349431C722175E07008622B1 /* EonilFSEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431BF22175E07008622B1 /* EonilFSEvents.swift */; };
-		349431C822175E07008622B1 /* EonilFSEventStreamEventFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431C022175E07008622B1 /* EonilFSEventStreamEventFlags.swift */; };
-		349431C922175E07008622B1 /* EonilFSEventStreamCreateFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431C122175E07008622B1 /* EonilFSEventStreamCreateFlags.swift */; };
-		349431CC22181608008622B1 /* ControlCenterWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431CB22181608008622B1 /* ControlCenterWidget.swift */; };
-		349431CE2218197A008622B1 /* ControlCenterItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431CD2218197A008622B1 /* ControlCenterItem.swift */; };
-		349431D122181C86008622B1 /* CCVolumeDownItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431D022181C86008622B1 /* CCVolumeDownItem.swift */; };
-		349431D322181DED008622B1 /* CCVolumeUpItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431D222181DED008622B1 /* CCVolumeUpItem.swift */; };
-		349431D722181ED7008622B1 /* ISSoundAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 349431D522181ED7008622B1 /* ISSoundAdditions.m */; };
-		349431DA22182070008622B1 /* OSDUIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431D922182070008622B1 /* OSDUIHelper.swift */; };
-		349431E12218310F008622B1 /* DKBrightness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431E02218310F008622B1 /* DKBrightness.swift */; };
-		349431E32218325E008622B1 /* CCBrightnessDownItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431E22218325E008622B1 /* CCBrightnessDownItem.swift */; };
-		349431E52218330D008622B1 /* CCBrightnessUpItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431E42218330D008622B1 /* CCBrightnessUpItem.swift */; };
-		349431E9221970A0008622B1 /* NowPlayingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431E8221970A0008622B1 /* NowPlayingHelper.swift */; };
-		349431EB22197127008622B1 /* NowPlayingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431EA22197127008622B1 /* NowPlayingItem.swift */; };
+		342D83DF2278D5CF000D79DA /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 342D83952278D5CF000D79DA /* MainWindow.xib */; };
+		342D83E02278D5CF000D79DA /* PockTouchBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83972278D5CF000D79DA /* PockTouchBarController.swift */; };
+		342D83E12278D5CF000D79DA /* PockMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83982278D5CF000D79DA /* PockMainController.swift */; };
+		342D83E22278D5CF000D79DA /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D839A2278D5CF000D79DA /* Preferences.swift */; };
+		342D83E32278D5CF000D79DA /* GeneralPreferencePane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 342D839D2278D5CF000D79DA /* GeneralPreferencePane.xib */; };
+		342D83E42278D5CF000D79DA /* GeneralPreferencePane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D839E2278D5CF000D79DA /* GeneralPreferencePane.swift */; };
+		342D83E52278D5CF000D79DA /* StatusWidgetPreferencePane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 342D83A02278D5CF000D79DA /* StatusWidgetPreferencePane.xib */; };
+		342D83E62278D5CF000D79DA /* StatusWidgetPreferencePane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83A12278D5CF000D79DA /* StatusWidgetPreferencePane.swift */; };
+		342D83E72278D5CF000D79DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 342D83A32278D5CF000D79DA /* Assets.xcassets */; };
+		342D83E92278D5CF000D79DA /* PockDockHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 342D83AA2278D5CF000D79DA /* PockDockHelper.m */; };
+		342D83EA2278D5CF000D79DA /* ISSoundAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 342D83AD2278D5CF000D79DA /* ISSoundAdditions.m */; };
+		342D83EB2278D5CF000D79DA /* DKBrightness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83B02278D5CF000D79DA /* DKBrightness.swift */; };
+		342D83EC2278D5CF000D79DA /* OSDUIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83B22278D5CF000D79DA /* OSDUIHelper.swift */; };
+		342D83ED2278D5CF000D79DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83B32278D5CF000D79DA /* AppDelegate.swift */; };
+		342D83EE2278D5CF000D79DA /* ControlCenterWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83B62278D5CF000D79DA /* ControlCenterWidget.swift */; };
+		342D83EF2278D5CF000D79DA /* ControlCenterItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83B72278D5CF000D79DA /* ControlCenterItem.swift */; };
+		342D83F02278D5CF000D79DA /* CCBrightnessDownItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83B92278D5CF000D79DA /* CCBrightnessDownItem.swift */; };
+		342D83F12278D5CF000D79DA /* CCVolumeDownItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83BA2278D5CF000D79DA /* CCVolumeDownItem.swift */; };
+		342D83F22278D5CF000D79DA /* CCBrightnessUpItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83BB2278D5CF000D79DA /* CCBrightnessUpItem.swift */; };
+		342D83F32278D5CF000D79DA /* CCVolumeUpItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83BC2278D5CF000D79DA /* CCVolumeUpItem.swift */; };
+		342D83F42278D5CF000D79DA /* NowPlayingItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83BE2278D5CF000D79DA /* NowPlayingItemView.swift */; };
+		342D83F52278D5CF000D79DA /* NowPlayingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83BF2278D5CF000D79DA /* NowPlayingItem.swift */; };
+		342D83F62278D5CF000D79DA /* NowPlayingWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83C02278D5CF000D79DA /* NowPlayingWidget.swift */; };
+		342D83F72278D5CF000D79DA /* NowPlayingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83C12278D5CF000D79DA /* NowPlayingHelper.swift */; };
+		342D83F82278D5CF000D79DA /* StatusWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83C32278D5CF000D79DA /* StatusWidget.swift */; };
+		342D83F92278D5CF000D79DA /* StatusItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83C42278D5CF000D79DA /* StatusItem.swift */; };
+		342D83FA2278D5CF000D79DA /* SSpotlightItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83C62278D5CF000D79DA /* SSpotlightItem.swift */; };
+		342D83FB2278D5CF000D79DA /* SWifiItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83C72278D5CF000D79DA /* SWifiItem.swift */; };
+		342D83FC2278D5CF000D79DA /* SPowerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83C82278D5CF000D79DA /* SPowerItem.swift */; };
+		342D83FD2278D5CF000D79DA /* SClockItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83C92278D5CF000D79DA /* SClockItem.swift */; };
+		342D83FE2278D5CF000D79DA /* EscWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83CB2278D5CF000D79DA /* EscWidget.swift */; };
+		342D83FF2278D5CF000D79DA /* KeySender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83CC2278D5CF000D79DA /* KeySender.swift */; };
+		342D84002278D5CF000D79DA /* PockWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83CE2278D5CF000D79DA /* PockWidget.swift */; };
+		342D84012278D5CF000D79DA /* PockTappableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83CF2278D5CF000D79DA /* PockTappableView.swift */; };
+		342D84022278D5CF000D79DA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83D12278D5CF000D79DA /* Constants.swift */; };
+		342D84032278D5CF000D79DA /* FileEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83D32278D5CF000D79DA /* FileEvent.swift */; };
+		342D84042278D5CF000D79DA /* EventStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83D42278D5CF000D79DA /* EventStream.swift */; };
+		342D84052278D5CF000D79DA /* Witness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83D52278D5CF000D79DA /* Witness.swift */; };
+		342D84072278D5CF000D79DA /* DockRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83D82278D5CF000D79DA /* DockRepository.swift */; };
+		342D84082278D5CF000D79DA /* DockItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83D92278D5CF000D79DA /* DockItem.swift */; };
+		342D840B2278D5CF000D79DA /* DockItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83DC2278D5CF000D79DA /* DockItemView.swift */; };
+		342D840C2278D5CF000D79DA /* DockWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83DD2278D5CF000D79DA /* DockWidget.swift */; };
+		342D840D2278D5CF000D79DA /* FileMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83DE2278D5CF000D79DA /* FileMonitor.swift */; };
 		349431ED22197485008622B1 /* MediaRemote.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 349431EC22197484008622B1 /* MediaRemote.framework */; };
-		349431EF22197B75008622B1 /* NowPlayingItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431EE22197B75008622B1 /* NowPlayingItemView.swift */; };
-		349431F122198123008622B1 /* NowPlayingWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431F022198123008622B1 /* NowPlayingWidget.swift */; };
-		349431F6221998BD008622B1 /* PockTappableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431F5221998BC008622B1 /* PockTappableView.swift */; };
-		349431F9222138D9008622B1 /* StatusWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431F8222138D9008622B1 /* StatusWidget.swift */; };
-		349431FB2221395C008622B1 /* StatusItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431FA2221395C008622B1 /* StatusItem.swift */; };
-		349431FE22213997008622B1 /* SWifiItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431FD22213997008622B1 /* SWifiItem.swift */; };
-		3494320022214B1F008622B1 /* SClockItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349431FF22214B1F008622B1 /* SClockItem.swift */; };
-		34943202222151CD008622B1 /* SPowerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34943201222151CD008622B1 /* SPowerItem.swift */; };
-		3494320422216896008622B1 /* SSpotlightItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3494320322216896008622B1 /* SSpotlightItem.swift */; };
-		3494645A21713821000480C5 /* GeneralPreferencePane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3494645821713821000480C5 /* GeneralPreferencePane.xib */; };
-		3494645C2171383A000480C5 /* GeneralPreferencePane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3494645B2171383A000480C5 /* GeneralPreferencePane.swift */; };
-		349557E6217CEFDB000DEB55 /* EscWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349557E5217CEFDB000DEB55 /* EscWidget.swift */; };
-		349557E9217CF187000DEB55 /* PockWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349557E8217CF187000DEB55 /* PockWidget.swift */; };
-		349557EB217CF5A3000DEB55 /* PockMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349557EA217CF5A3000DEB55 /* PockMainController.swift */; };
-		349557ED217CF627000DEB55 /* PockTouchBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349557EC217CF627000DEB55 /* PockTouchBarController.swift */; };
-		349557F0217CFCC5000DEB55 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 349557EF217CFCC5000DEB55 /* MainWindow.xib */; };
-		349557F4217CFEB7000DEB55 /* DockWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349557F3217CFEB7000DEB55 /* DockWidget.swift */; };
-		34AEBD5822501F1C0086CDA2 /* StatusWidgetPreferencePane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AEBD5622501F1C0086CDA2 /* StatusWidgetPreferencePane.swift */; };
-		34AEBD5922501F1C0086CDA2 /* StatusWidgetPreferencePane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34AEBD5722501F1C0086CDA2 /* StatusWidgetPreferencePane.xib */; };
 		34BC3ECC2210B2EC00C1DD3C /* DFRFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34BC3ECB2210B2EC00C1DD3C /* DFRFoundation.framework */; };
-		34DC32E61F6DAAC500037E68 /* KeySender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34DC32E51F6DAAC500037E68 /* KeySender.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		340C81D51F6538580063BAB0 /* NSTouchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSTouchBar.h; sourceTree = "<group>"; };
-		3427C72C1F65746000FE39FF /* PockItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PockItemView.swift; sourceTree = "<group>"; };
-		342D3CB22111998A0028FC59 /* PockDockHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PockDockHelper.h; sourceTree = "<group>"; };
-		342D3CB32111998A0028FC59 /* PockDockHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PockDockHelper.m; sourceTree = "<group>"; };
-		342D3CB62111ACC30028FC59 /* PockItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PockItem.swift; sourceTree = "<group>"; };
-		342D3CBA2111B1AD0028FC59 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		342D3CBB2111B1AD0028FC59 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		342D3CBE2111B1DA0028FC59 /* Pock-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Pock-Bridging-Header.h"; sourceTree = "<group>"; };
+		342D83952278D5CF000D79DA /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		342D83972278D5CF000D79DA /* PockTouchBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PockTouchBarController.swift; sourceTree = "<group>"; };
+		342D83982278D5CF000D79DA /* PockMainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PockMainController.swift; sourceTree = "<group>"; };
+		342D839A2278D5CF000D79DA /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
+		342D839D2278D5CF000D79DA /* GeneralPreferencePane.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GeneralPreferencePane.xib; sourceTree = "<group>"; };
+		342D839E2278D5CF000D79DA /* GeneralPreferencePane.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralPreferencePane.swift; sourceTree = "<group>"; };
+		342D83A02278D5CF000D79DA /* StatusWidgetPreferencePane.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatusWidgetPreferencePane.xib; sourceTree = "<group>"; };
+		342D83A12278D5CF000D79DA /* StatusWidgetPreferencePane.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusWidgetPreferencePane.swift; sourceTree = "<group>"; };
+		342D83A32278D5CF000D79DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		342D83A42278D5CF000D79DA /* Pock.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Pock.entitlements; sourceTree = "<group>"; };
+		342D83A52278D5CF000D79DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		342D83A72278D5CF000D79DA /* NSTouchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSTouchBar.h; sourceTree = "<group>"; };
+		342D83A92278D5CF000D79DA /* PockDockHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PockDockHelper.h; sourceTree = "<group>"; };
+		342D83AA2278D5CF000D79DA /* PockDockHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PockDockHelper.m; sourceTree = "<group>"; };
+		342D83AC2278D5CF000D79DA /* ISSoundAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISSoundAdditions.h; sourceTree = "<group>"; };
+		342D83AD2278D5CF000D79DA /* ISSoundAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISSoundAdditions.m; sourceTree = "<group>"; };
+		342D83AE2278D5CF000D79DA /* Pock-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Pock-Bridging-Header.h"; sourceTree = "<group>"; };
+		342D83B02278D5CF000D79DA /* DKBrightness.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DKBrightness.swift; sourceTree = "<group>"; };
+		342D83B12278D5CF000D79DA /* MRMediaRemote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRMediaRemote.h; sourceTree = "<group>"; };
+		342D83B22278D5CF000D79DA /* OSDUIHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSDUIHelper.swift; sourceTree = "<group>"; };
+		342D83B32278D5CF000D79DA /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		342D83B62278D5CF000D79DA /* ControlCenterWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlCenterWidget.swift; sourceTree = "<group>"; };
+		342D83B72278D5CF000D79DA /* ControlCenterItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlCenterItem.swift; sourceTree = "<group>"; };
+		342D83B92278D5CF000D79DA /* CCBrightnessDownItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CCBrightnessDownItem.swift; sourceTree = "<group>"; };
+		342D83BA2278D5CF000D79DA /* CCVolumeDownItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CCVolumeDownItem.swift; sourceTree = "<group>"; };
+		342D83BB2278D5CF000D79DA /* CCBrightnessUpItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CCBrightnessUpItem.swift; sourceTree = "<group>"; };
+		342D83BC2278D5CF000D79DA /* CCVolumeUpItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CCVolumeUpItem.swift; sourceTree = "<group>"; };
+		342D83BE2278D5CF000D79DA /* NowPlayingItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NowPlayingItemView.swift; sourceTree = "<group>"; };
+		342D83BF2278D5CF000D79DA /* NowPlayingItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NowPlayingItem.swift; sourceTree = "<group>"; };
+		342D83C02278D5CF000D79DA /* NowPlayingWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NowPlayingWidget.swift; sourceTree = "<group>"; };
+		342D83C12278D5CF000D79DA /* NowPlayingHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NowPlayingHelper.swift; sourceTree = "<group>"; };
+		342D83C32278D5CF000D79DA /* StatusWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusWidget.swift; sourceTree = "<group>"; };
+		342D83C42278D5CF000D79DA /* StatusItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusItem.swift; sourceTree = "<group>"; };
+		342D83C62278D5CF000D79DA /* SSpotlightItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSpotlightItem.swift; sourceTree = "<group>"; };
+		342D83C72278D5CF000D79DA /* SWifiItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SWifiItem.swift; sourceTree = "<group>"; };
+		342D83C82278D5CF000D79DA /* SPowerItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPowerItem.swift; sourceTree = "<group>"; };
+		342D83C92278D5CF000D79DA /* SClockItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SClockItem.swift; sourceTree = "<group>"; };
+		342D83CB2278D5CF000D79DA /* EscWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EscWidget.swift; sourceTree = "<group>"; };
+		342D83CC2278D5CF000D79DA /* KeySender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeySender.swift; sourceTree = "<group>"; };
+		342D83CE2278D5CF000D79DA /* PockWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PockWidget.swift; sourceTree = "<group>"; };
+		342D83CF2278D5CF000D79DA /* PockTappableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PockTappableView.swift; sourceTree = "<group>"; };
+		342D83D12278D5CF000D79DA /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		342D83D32278D5CF000D79DA /* FileEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileEvent.swift; sourceTree = "<group>"; };
+		342D83D42278D5CF000D79DA /* EventStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventStream.swift; sourceTree = "<group>"; };
+		342D83D52278D5CF000D79DA /* Witness.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Witness.swift; sourceTree = "<group>"; };
+		342D83D62278D5CF000D79DA /* Witness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Witness.h; sourceTree = "<group>"; };
+		342D83D82278D5CF000D79DA /* DockRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DockRepository.swift; sourceTree = "<group>"; };
+		342D83D92278D5CF000D79DA /* DockItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DockItem.swift; sourceTree = "<group>"; };
+		342D83DC2278D5CF000D79DA /* DockItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DockItemView.swift; sourceTree = "<group>"; };
+		342D83DD2278D5CF000D79DA /* DockWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DockWidget.swift; sourceTree = "<group>"; };
+		342D83DE2278D5CF000D79DA /* FileMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileMonitor.swift; sourceTree = "<group>"; };
 		348343D61F631B2E00CDA005 /* Pock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pock.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		348343D91F631B2E00CDA005 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		348343E81F631B6700CDA005 /* PockUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PockUtilities.swift; sourceTree = "<group>"; };
-		3483BF7521712BA8008570D0 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
-		349431BA22175E06008622B1 /* EonilFSEventStreamError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EonilFSEventStreamError.swift; sourceTree = "<group>"; };
-		349431BB22175E06008622B1 /* EonilFSEventStreamIllogicalErrorLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EonilFSEventStreamIllogicalErrorLog.swift; sourceTree = "<group>"; };
-		349431BC22175E07008622B1 /* EonilFSEventStreamEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EonilFSEventStreamEvent.swift; sourceTree = "<group>"; };
-		349431BD22175E07008622B1 /* EonilFSEventStreamEventID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EonilFSEventStreamEventID.swift; sourceTree = "<group>"; };
-		349431BE22175E07008622B1 /* EonilFSEventStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EonilFSEventStream.swift; sourceTree = "<group>"; };
-		349431BF22175E07008622B1 /* EonilFSEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EonilFSEvents.swift; sourceTree = "<group>"; };
-		349431C022175E07008622B1 /* EonilFSEventStreamEventFlags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EonilFSEventStreamEventFlags.swift; sourceTree = "<group>"; };
-		349431C122175E07008622B1 /* EonilFSEventStreamCreateFlags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EonilFSEventStreamCreateFlags.swift; sourceTree = "<group>"; };
-		349431CB22181608008622B1 /* ControlCenterWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlCenterWidget.swift; sourceTree = "<group>"; };
-		349431CD2218197A008622B1 /* ControlCenterItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlCenterItem.swift; sourceTree = "<group>"; };
-		349431D022181C86008622B1 /* CCVolumeDownItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCVolumeDownItem.swift; sourceTree = "<group>"; };
-		349431D222181DED008622B1 /* CCVolumeUpItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCVolumeUpItem.swift; sourceTree = "<group>"; };
-		349431D522181ED7008622B1 /* ISSoundAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISSoundAdditions.m; sourceTree = "<group>"; };
-		349431D622181ED7008622B1 /* ISSoundAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISSoundAdditions.h; sourceTree = "<group>"; };
-		349431D922182070008622B1 /* OSDUIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSDUIHelper.swift; sourceTree = "<group>"; };
-		349431E02218310F008622B1 /* DKBrightness.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DKBrightness.swift; sourceTree = "<group>"; };
-		349431E22218325E008622B1 /* CCBrightnessDownItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCBrightnessDownItem.swift; sourceTree = "<group>"; };
-		349431E42218330D008622B1 /* CCBrightnessUpItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCBrightnessUpItem.swift; sourceTree = "<group>"; };
-		349431E622196F0A008622B1 /* MRMediaRemote.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MRMediaRemote.h; sourceTree = "<group>"; };
-		349431E8221970A0008622B1 /* NowPlayingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingHelper.swift; sourceTree = "<group>"; };
-		349431EA22197127008622B1 /* NowPlayingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingItem.swift; sourceTree = "<group>"; };
 		349431EC22197484008622B1 /* MediaRemote.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaRemote.framework; path = ../../../../../../../../../System/Library/PrivateFrameworks/MediaRemote.framework; sourceTree = "<group>"; };
-		349431EE22197B75008622B1 /* NowPlayingItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingItemView.swift; sourceTree = "<group>"; };
-		349431F022198123008622B1 /* NowPlayingWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingWidget.swift; sourceTree = "<group>"; };
-		349431F5221998BC008622B1 /* PockTappableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PockTappableView.swift; sourceTree = "<group>"; };
-		349431F8222138D9008622B1 /* StatusWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusWidget.swift; sourceTree = "<group>"; };
-		349431FA2221395C008622B1 /* StatusItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusItem.swift; sourceTree = "<group>"; };
-		349431FD22213997008622B1 /* SWifiItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWifiItem.swift; sourceTree = "<group>"; };
-		349431FF22214B1F008622B1 /* SClockItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SClockItem.swift; sourceTree = "<group>"; };
-		34943201222151CD008622B1 /* SPowerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPowerItem.swift; sourceTree = "<group>"; };
-		3494320322216896008622B1 /* SSpotlightItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSpotlightItem.swift; sourceTree = "<group>"; };
 		3494320822217738008622B1 /* Spotlight.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; name = Spotlight.app; path = ../../../../../../../../../System/Library/CoreServices/Spotlight.app; sourceTree = "<group>"; };
 		3494320B222179D7008622B1 /* BatteryUIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BatteryUIKit.framework; path = ../../../../../../../../../System/Library/PrivateFrameworks/BatteryUIKit.framework; sourceTree = "<group>"; };
-		3494645821713821000480C5 /* GeneralPreferencePane.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeneralPreferencePane.xib; sourceTree = "<group>"; };
-		3494645B2171383A000480C5 /* GeneralPreferencePane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPreferencePane.swift; sourceTree = "<group>"; };
-		349557E5217CEFDB000DEB55 /* EscWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EscWidget.swift; sourceTree = "<group>"; };
-		349557E8217CF187000DEB55 /* PockWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PockWidget.swift; sourceTree = "<group>"; };
-		349557EA217CF5A3000DEB55 /* PockMainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PockMainController.swift; sourceTree = "<group>"; };
-		349557EC217CF627000DEB55 /* PockTouchBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PockTouchBarController.swift; sourceTree = "<group>"; };
-		349557EF217CFCC5000DEB55 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
-		349557F3217CFEB7000DEB55 /* DockWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockWidget.swift; sourceTree = "<group>"; };
-		34AEBD5622501F1C0086CDA2 /* StatusWidgetPreferencePane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StatusWidgetPreferencePane.swift; path = Pock/Preferences/Panes/StatusWidgetPreferencePane/StatusWidgetPreferencePane.swift; sourceTree = SOURCE_ROOT; };
-		34AEBD5722501F1C0086CDA2 /* StatusWidgetPreferencePane.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = StatusWidgetPreferencePane.xib; path = Pock/Preferences/Panes/StatusWidgetPreferencePane/StatusWidgetPreferencePane.xib; sourceTree = SOURCE_ROOT; };
 		34BC3ECB2210B2EC00C1DD3C /* DFRFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DFRFoundation.framework; path = ../../../../../../../../../System/Library/PrivateFrameworks/DFRFoundation.framework; sourceTree = "<group>"; };
-		34DC32E51F6DAAC500037E68 /* KeySender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeySender.swift; sourceTree = "<group>"; };
 		3BA42833BC69C895EB31DF93 /* Pods-Pock.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pock.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pock/Pods-Pock.debug.xcconfig"; sourceTree = "<group>"; };
 		716D62071D19174E56D6E33D /* Pods-Pock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pock.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pock/Pods-Pock.release.xcconfig"; sourceTree = "<group>"; };
 		863BE70CFBAC31BDBF35B1FD /* Pods_Pock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -144,50 +140,236 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		340C81B21F65287E0063BAB0 /* Various */ = {
+		342D83932278D5CF000D79DA /* Pock */ = {
 			isa = PBXGroup;
 			children = (
-				342D3CBB2111B1AD0028FC59 /* Assets.xcassets */,
-				342D3CBA2111B1AD0028FC59 /* Info.plist */,
+				342D83B32278D5CF000D79DA /* AppDelegate.swift */,
+				342D83942278D5CF000D79DA /* Interfaces UI */,
+				342D83962278D5CF000D79DA /* TouchBar */,
+				342D83B42278D5CF000D79DA /* Widgets */,
+				342D83992278D5CF000D79DA /* Preferences */,
+				342D83A22278D5CF000D79DA /* Various */,
+				342D83A62278D5CF000D79DA /* Private */,
 			);
-			path = Various;
+			path = Pock;
 			sourceTree = "<group>";
 		};
-		340C81B31F6528860063BAB0 /* Interfaces UI */ = {
+		342D83942278D5CF000D79DA /* Interfaces UI */ = {
 			isa = PBXGroup;
 			children = (
-				349557EF217CFCC5000DEB55 /* MainWindow.xib */,
+				342D83952278D5CF000D79DA /* MainWindow.xib */,
 			);
 			path = "Interfaces UI";
 			sourceTree = "<group>";
 		};
-		340C81D61F6538B40063BAB0 /* Private */ = {
+		342D83962278D5CF000D79DA /* TouchBar */ = {
 			isa = PBXGroup;
 			children = (
-				349431DF22183101008622B1 /* DKBrightness */,
-				349431D422181ECE008622B1 /* ISSoundAdditions */,
-				342D3CB52111998E0028FC59 /* PockDockHelper */,
-				340C81D51F6538580063BAB0 /* NSTouchBar.h */,
-				342D3CBE2111B1DA0028FC59 /* Pock-Bridging-Header.h */,
-				349431D922182070008622B1 /* OSDUIHelper.swift */,
-				349431E622196F0A008622B1 /* MRMediaRemote.h */,
+				342D83972278D5CF000D79DA /* PockTouchBarController.swift */,
+				342D83982278D5CF000D79DA /* PockMainController.swift */,
+			);
+			path = TouchBar;
+			sourceTree = "<group>";
+		};
+		342D83992278D5CF000D79DA /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				342D839A2278D5CF000D79DA /* Preferences.swift */,
+				342D839B2278D5CF000D79DA /* Panes */,
+			);
+			path = Preferences;
+			sourceTree = "<group>";
+		};
+		342D839B2278D5CF000D79DA /* Panes */ = {
+			isa = PBXGroup;
+			children = (
+				342D839C2278D5CF000D79DA /* GeneralPreferencePane */,
+				342D839F2278D5CF000D79DA /* StatusWidgetPreferencePane */,
+			);
+			path = Panes;
+			sourceTree = "<group>";
+		};
+		342D839C2278D5CF000D79DA /* GeneralPreferencePane */ = {
+			isa = PBXGroup;
+			children = (
+				342D839D2278D5CF000D79DA /* GeneralPreferencePane.xib */,
+				342D839E2278D5CF000D79DA /* GeneralPreferencePane.swift */,
+			);
+			path = GeneralPreferencePane;
+			sourceTree = "<group>";
+		};
+		342D839F2278D5CF000D79DA /* StatusWidgetPreferencePane */ = {
+			isa = PBXGroup;
+			children = (
+				342D83A02278D5CF000D79DA /* StatusWidgetPreferencePane.xib */,
+				342D83A12278D5CF000D79DA /* StatusWidgetPreferencePane.swift */,
+			);
+			path = StatusWidgetPreferencePane;
+			sourceTree = "<group>";
+		};
+		342D83A22278D5CF000D79DA /* Various */ = {
+			isa = PBXGroup;
+			children = (
+				342D83A52278D5CF000D79DA /* Info.plist */,
+				342D83A32278D5CF000D79DA /* Assets.xcassets */,
+				342D83A42278D5CF000D79DA /* Pock.entitlements */,
+			);
+			path = Various;
+			sourceTree = "<group>";
+		};
+		342D83A62278D5CF000D79DA /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				342D83A72278D5CF000D79DA /* NSTouchBar.h */,
+				342D83A82278D5CF000D79DA /* PockDockHelper */,
+				342D83AB2278D5CF000D79DA /* ISSoundAdditions */,
+				342D83AE2278D5CF000D79DA /* Pock-Bridging-Header.h */,
+				342D83AF2278D5CF000D79DA /* DKBrightness */,
+				342D83B12278D5CF000D79DA /* MRMediaRemote.h */,
+				342D83B22278D5CF000D79DA /* OSDUIHelper.swift */,
 			);
 			path = Private;
 			sourceTree = "<group>";
 		};
-		342D3CB52111998E0028FC59 /* PockDockHelper */ = {
+		342D83A82278D5CF000D79DA /* PockDockHelper */ = {
 			isa = PBXGroup;
 			children = (
-				342D3CB22111998A0028FC59 /* PockDockHelper.h */,
-				342D3CB32111998A0028FC59 /* PockDockHelper.m */,
+				342D83A92278D5CF000D79DA /* PockDockHelper.h */,
+				342D83AA2278D5CF000D79DA /* PockDockHelper.m */,
 			);
 			path = PockDockHelper;
+			sourceTree = "<group>";
+		};
+		342D83AB2278D5CF000D79DA /* ISSoundAdditions */ = {
+			isa = PBXGroup;
+			children = (
+				342D83AC2278D5CF000D79DA /* ISSoundAdditions.h */,
+				342D83AD2278D5CF000D79DA /* ISSoundAdditions.m */,
+			);
+			path = ISSoundAdditions;
+			sourceTree = "<group>";
+		};
+		342D83AF2278D5CF000D79DA /* DKBrightness */ = {
+			isa = PBXGroup;
+			children = (
+				342D83B02278D5CF000D79DA /* DKBrightness.swift */,
+			);
+			path = DKBrightness;
+			sourceTree = "<group>";
+		};
+		342D83B42278D5CF000D79DA /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				342D83B52278D5CF000D79DA /* ControlCenter */,
+				342D83D02278D5CF000D79DA /* Dock */,
+				342D83BD2278D5CF000D79DA /* NowPlaying */,
+				342D83C22278D5CF000D79DA /* Status */,
+				342D83CA2278D5CF000D79DA /* Esc key */,
+				342D83CD2278D5CF000D79DA /* Common */,
+			);
+			path = Widgets;
+			sourceTree = "<group>";
+		};
+		342D83B52278D5CF000D79DA /* ControlCenter */ = {
+			isa = PBXGroup;
+			children = (
+				342D83B62278D5CF000D79DA /* ControlCenterWidget.swift */,
+				342D83B72278D5CF000D79DA /* ControlCenterItem.swift */,
+				342D83B82278D5CF000D79DA /* Items */,
+			);
+			path = ControlCenter;
+			sourceTree = "<group>";
+		};
+		342D83B82278D5CF000D79DA /* Items */ = {
+			isa = PBXGroup;
+			children = (
+				342D83B92278D5CF000D79DA /* CCBrightnessDownItem.swift */,
+				342D83BA2278D5CF000D79DA /* CCVolumeDownItem.swift */,
+				342D83BB2278D5CF000D79DA /* CCBrightnessUpItem.swift */,
+				342D83BC2278D5CF000D79DA /* CCVolumeUpItem.swift */,
+			);
+			path = Items;
+			sourceTree = "<group>";
+		};
+		342D83BD2278D5CF000D79DA /* NowPlaying */ = {
+			isa = PBXGroup;
+			children = (
+				342D83BE2278D5CF000D79DA /* NowPlayingItemView.swift */,
+				342D83BF2278D5CF000D79DA /* NowPlayingItem.swift */,
+				342D83C02278D5CF000D79DA /* NowPlayingWidget.swift */,
+				342D83C12278D5CF000D79DA /* NowPlayingHelper.swift */,
+			);
+			path = NowPlaying;
+			sourceTree = "<group>";
+		};
+		342D83C22278D5CF000D79DA /* Status */ = {
+			isa = PBXGroup;
+			children = (
+				342D83C32278D5CF000D79DA /* StatusWidget.swift */,
+				342D83C42278D5CF000D79DA /* StatusItem.swift */,
+				342D83C52278D5CF000D79DA /* Items */,
+			);
+			path = Status;
+			sourceTree = "<group>";
+		};
+		342D83C52278D5CF000D79DA /* Items */ = {
+			isa = PBXGroup;
+			children = (
+				342D83C62278D5CF000D79DA /* SSpotlightItem.swift */,
+				342D83C72278D5CF000D79DA /* SWifiItem.swift */,
+				342D83C82278D5CF000D79DA /* SPowerItem.swift */,
+				342D83C92278D5CF000D79DA /* SClockItem.swift */,
+			);
+			path = Items;
+			sourceTree = "<group>";
+		};
+		342D83CA2278D5CF000D79DA /* Esc key */ = {
+			isa = PBXGroup;
+			children = (
+				342D83CB2278D5CF000D79DA /* EscWidget.swift */,
+				342D83CC2278D5CF000D79DA /* KeySender.swift */,
+			);
+			path = "Esc key";
+			sourceTree = "<group>";
+		};
+		342D83CD2278D5CF000D79DA /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				342D83CE2278D5CF000D79DA /* PockWidget.swift */,
+				342D83CF2278D5CF000D79DA /* PockTappableView.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		342D83D02278D5CF000D79DA /* Dock */ = {
+			isa = PBXGroup;
+			children = (
+				342D83D22278D5CF000D79DA /* Witness */,
+				342D83D12278D5CF000D79DA /* Constants.swift */,
+				342D83D82278D5CF000D79DA /* DockRepository.swift */,
+				342D83D92278D5CF000D79DA /* DockItem.swift */,
+				342D83DC2278D5CF000D79DA /* DockItemView.swift */,
+				342D83DD2278D5CF000D79DA /* DockWidget.swift */,
+				342D83DE2278D5CF000D79DA /* FileMonitor.swift */,
+			);
+			path = Dock;
+			sourceTree = "<group>";
+		};
+		342D83D22278D5CF000D79DA /* Witness */ = {
+			isa = PBXGroup;
+			children = (
+				342D83D32278D5CF000D79DA /* FileEvent.swift */,
+				342D83D42278D5CF000D79DA /* EventStream.swift */,
+				342D83D52278D5CF000D79DA /* Witness.swift */,
+				342D83D62278D5CF000D79DA /* Witness.h */,
+			);
+			path = Witness;
 			sourceTree = "<group>";
 		};
 		348343CD1F631B2E00CDA005 = {
 			isa = PBXGroup;
 			children = (
-				348343D81F631B2E00CDA005 /* Pock */,
+				342D83932278D5CF000D79DA /* Pock */,
 				348343D71F631B2E00CDA005 /* Products */,
 				2F31B7DC05EFA1E8090C87AE /* Pods */,
 				4ED8D081458713BE440562D3 /* Frameworks */,
@@ -200,194 +382,6 @@
 				348343D61F631B2E00CDA005 /* Pock.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		348343D81F631B2E00CDA005 /* Pock */ = {
-			isa = PBXGroup;
-			children = (
-				348343D91F631B2E00CDA005 /* AppDelegate.swift */,
-				349557EE217CF62C000DEB55 /* TouchBar */,
-				349557E7217CEFE0000DEB55 /* Widgets */,
-				340C81B31F6528860063BAB0 /* Interfaces UI */,
-				3483BF7421712B94008570D0 /* Preferences */,
-				340C81B21F65287E0063BAB0 /* Various */,
-				340C81D61F6538B40063BAB0 /* Private */,
-			);
-			path = Pock;
-			sourceTree = "<group>";
-		};
-		3483BF7421712B94008570D0 /* Preferences */ = {
-			isa = PBXGroup;
-			children = (
-				3483BF7521712BA8008570D0 /* Preferences.swift */,
-				3494644A21713331000480C5 /* Panes */,
-			);
-			path = Preferences;
-			sourceTree = "<group>";
-		};
-		349431B922175DFE008622B1 /* EonilFSEvents */ = {
-			isa = PBXGroup;
-			children = (
-				349431BF22175E07008622B1 /* EonilFSEvents.swift */,
-				349431BE22175E07008622B1 /* EonilFSEventStream.swift */,
-				349431C122175E07008622B1 /* EonilFSEventStreamCreateFlags.swift */,
-				349431BA22175E06008622B1 /* EonilFSEventStreamError.swift */,
-				349431BC22175E07008622B1 /* EonilFSEventStreamEvent.swift */,
-				349431C022175E07008622B1 /* EonilFSEventStreamEventFlags.swift */,
-				349431BD22175E07008622B1 /* EonilFSEventStreamEventID.swift */,
-				349431BB22175E06008622B1 /* EonilFSEventStreamIllogicalErrorLog.swift */,
-			);
-			path = EonilFSEvents;
-			sourceTree = "<group>";
-		};
-		349431CA221815ED008622B1 /* ControlCenter */ = {
-			isa = PBXGroup;
-			children = (
-				349431CF22181C60008622B1 /* Items */,
-				349431CD2218197A008622B1 /* ControlCenterItem.swift */,
-				349431CB22181608008622B1 /* ControlCenterWidget.swift */,
-			);
-			path = ControlCenter;
-			sourceTree = "<group>";
-		};
-		349431CF22181C60008622B1 /* Items */ = {
-			isa = PBXGroup;
-			children = (
-				349431D022181C86008622B1 /* CCVolumeDownItem.swift */,
-				349431D222181DED008622B1 /* CCVolumeUpItem.swift */,
-				349431E22218325E008622B1 /* CCBrightnessDownItem.swift */,
-				349431E42218330D008622B1 /* CCBrightnessUpItem.swift */,
-			);
-			path = Items;
-			sourceTree = "<group>";
-		};
-		349431D422181ECE008622B1 /* ISSoundAdditions */ = {
-			isa = PBXGroup;
-			children = (
-				349431D622181ED7008622B1 /* ISSoundAdditions.h */,
-				349431D522181ED7008622B1 /* ISSoundAdditions.m */,
-			);
-			path = ISSoundAdditions;
-			sourceTree = "<group>";
-		};
-		349431DF22183101008622B1 /* DKBrightness */ = {
-			isa = PBXGroup;
-			children = (
-				349431E02218310F008622B1 /* DKBrightness.swift */,
-			);
-			path = DKBrightness;
-			sourceTree = "<group>";
-		};
-		349431E722197084008622B1 /* NowPlaying */ = {
-			isa = PBXGroup;
-			children = (
-				349431EA22197127008622B1 /* NowPlayingItem.swift */,
-				349431E8221970A0008622B1 /* NowPlayingHelper.swift */,
-				349431EE22197B75008622B1 /* NowPlayingItemView.swift */,
-				349431F022198123008622B1 /* NowPlayingWidget.swift */,
-			);
-			path = NowPlaying;
-			sourceTree = "<group>";
-		};
-		349431F722213898008622B1 /* Status */ = {
-			isa = PBXGroup;
-			children = (
-				349431FC22213979008622B1 /* Items */,
-				349431FA2221395C008622B1 /* StatusItem.swift */,
-				349431F8222138D9008622B1 /* StatusWidget.swift */,
-			);
-			path = Status;
-			sourceTree = "<group>";
-		};
-		349431FC22213979008622B1 /* Items */ = {
-			isa = PBXGroup;
-			children = (
-				349431FD22213997008622B1 /* SWifiItem.swift */,
-				349431FF22214B1F008622B1 /* SClockItem.swift */,
-				34943201222151CD008622B1 /* SPowerItem.swift */,
-				3494320322216896008622B1 /* SSpotlightItem.swift */,
-			);
-			path = Items;
-			sourceTree = "<group>";
-		};
-		3494644A21713331000480C5 /* Panes */ = {
-			isa = PBXGroup;
-			children = (
-				3494644B21713343000480C5 /* GeneralPreferencePane */,
-				34AEBD5522501EB50086CDA2 /* StatusWidgetPreferencePane */,
-			);
-			path = Panes;
-			sourceTree = "<group>";
-		};
-		3494644B21713343000480C5 /* GeneralPreferencePane */ = {
-			isa = PBXGroup;
-			children = (
-				3494645821713821000480C5 /* GeneralPreferencePane.xib */,
-				3494645B2171383A000480C5 /* GeneralPreferencePane.swift */,
-			);
-			path = GeneralPreferencePane;
-			sourceTree = "<group>";
-		};
-		349557E7217CEFE0000DEB55 /* Widgets */ = {
-			isa = PBXGroup;
-			children = (
-				349557F2217CFEA3000DEB55 /* Common */,
-				349557F1217CFE9D000DEB55 /* Esc key */,
-				349557F5217CFEBB000DEB55 /* Dock */,
-				349431CA221815ED008622B1 /* ControlCenter */,
-				349431E722197084008622B1 /* NowPlaying */,
-				349431F722213898008622B1 /* Status */,
-			);
-			path = Widgets;
-			sourceTree = "<group>";
-		};
-		349557EE217CF62C000DEB55 /* TouchBar */ = {
-			isa = PBXGroup;
-			children = (
-				349557EC217CF627000DEB55 /* PockTouchBarController.swift */,
-				349557EA217CF5A3000DEB55 /* PockMainController.swift */,
-			);
-			path = TouchBar;
-			sourceTree = "<group>";
-		};
-		349557F1217CFE9D000DEB55 /* Esc key */ = {
-			isa = PBXGroup;
-			children = (
-				349557E5217CEFDB000DEB55 /* EscWidget.swift */,
-				34DC32E51F6DAAC500037E68 /* KeySender.swift */,
-			);
-			path = "Esc key";
-			sourceTree = "<group>";
-		};
-		349557F2217CFEA3000DEB55 /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				349557E8217CF187000DEB55 /* PockWidget.swift */,
-				349431F5221998BC008622B1 /* PockTappableView.swift */,
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
-		349557F5217CFEBB000DEB55 /* Dock */ = {
-			isa = PBXGroup;
-			children = (
-				349431B922175DFE008622B1 /* EonilFSEvents */,
-				349557F3217CFEB7000DEB55 /* DockWidget.swift */,
-				348343E81F631B6700CDA005 /* PockUtilities.swift */,
-				342D3CB62111ACC30028FC59 /* PockItem.swift */,
-				3427C72C1F65746000FE39FF /* PockItemView.swift */,
-			);
-			path = Dock;
-			sourceTree = "<group>";
-		};
-		34AEBD5522501EB50086CDA2 /* StatusWidgetPreferencePane */ = {
-			isa = PBXGroup;
-			children = (
-				34AEBD5722501F1C0086CDA2 /* StatusWidgetPreferencePane.xib */,
-				34AEBD5622501F1C0086CDA2 /* StatusWidgetPreferencePane.swift */,
-			);
-			name = StatusWidgetPreferencePane;
-			path = GeneralPreferencePane;
 			sourceTree = "<group>";
 		};
 		4ED8D081458713BE440562D3 /* Frameworks */ = {
@@ -415,7 +409,7 @@
 				348343D41F631B2E00CDA005 /* Resources */,
 				9C497126EC20FAC73A4D0299 /* [CP] Embed Pods Frameworks */,
 				34FBB7B721734E8F004D5BC0 /* [LaunchAtLogin] Copy helper */,
-				3413964E217B8B6200DCD2B0 /* ShellScript */,
+				3413964E217B8B6200DCD2B0 /* [Fabric] Run */,
 			);
 			buildRules = (
 			);
@@ -433,14 +427,19 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 1000;
+				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Pierluigi Galdi";
 				TargetAttributes = {
 					348343D51F631B2E00CDA005 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 788D9WZ9Z3;
 						LastSwiftMigration = 1010;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.HardenedRuntime = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -467,10 +466,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3494645A21713821000480C5 /* GeneralPreferencePane.xib in Resources */,
-				342D3CBD2111B1AD0028FC59 /* Assets.xcassets in Resources */,
-				34AEBD5922501F1C0086CDA2 /* StatusWidgetPreferencePane.xib in Resources */,
-				349557F0217CFCC5000DEB55 /* MainWindow.xib in Resources */,
+				342D83DF2278D5CF000D79DA /* MainWindow.xib in Resources */,
+				342D83E32278D5CF000D79DA /* GeneralPreferencePane.xib in Resources */,
+				342D83E52278D5CF000D79DA /* StatusWidgetPreferencePane.xib in Resources */,
+				342D83E72278D5CF000D79DA /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -495,7 +494,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3413964E217B8B6200DCD2B0 /* ShellScript */ = {
+		3413964E217B8B6200DCD2B0 /* [Fabric] Run */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 8;
 			files = (
@@ -505,13 +504,14 @@
 			inputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
 			);
+			name = "[Fabric] Run";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
-			shellScript = "apiKey=$(sed -n '1p' < FabricEnv)\nsecretKey=$(sed -n '2p' < FabricEnv)\n\nINFO_PLIST=\"${SRCROOT}/Pock/Various/Info.plist\"\n\necho \"===========\"\necho \"$INFO_PLIST\"\necho \"===========\"\n\n/usr/libexec/PlistBuddy -c \"Set :Fabric:APIKey $apiKey\" \"$INFO_PLIST\"\n\n\"${PODS_ROOT}/Fabric/run\" $apiKey $secretKey\n";
+			shellScript = "apiKey=$(sed -n '1p' < FabricEnv)\nsecretKey=$(sed -n '2p' < FabricEnv)\n\nINFO_PLIST=\"${SRCROOT}/Pock/Various/Info.plist\"\n\n/usr/libexec/PlistBuddy -c \"Set :Fabric:APIKey $apiKey\" \"$INFO_PLIST\"\n\n\"${PODS_ROOT}/Fabric/run\" $apiKey $secretKey\n";
 		};
 		34FBB7B721734E8F004D5BC0 /* [LaunchAtLogin] Copy helper */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -529,7 +529,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
-			shellScript = "\"${PROJECT_DIR}/Pods/LaunchAtLogin/LaunchAtLogin/copy-helper.sh\"\n\n";
+			shellScript = "\"${PROJECT_DIR}/Pods/LaunchAtLogin/LaunchAtLogin/copy-helper.sh\"\n";
 		};
 		9C497126EC20FAC73A4D0299 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -543,8 +543,6 @@
 				"${BUILT_PRODUCTS_DIR}/Magnet/Magnet.framework",
 				"${BUILT_PRODUCTS_DIR}/Preferences/Preferences.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
-				"${PODS_ROOT}/Sparkle/Sparkle.framework",
-				"${PODS_ROOT}/Sparkle/Sparkle.framework.dSYM",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -553,8 +551,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Magnet.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Preferences.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sparkle.framework",
-				"${DWARF_DSYM_FOLDER_PATH}/Sparkle.framework.dSYM",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -568,48 +564,45 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3494320422216896008622B1 /* SSpotlightItem.swift in Sources */,
-				349557E9217CF187000DEB55 /* PockWidget.swift in Sources */,
-				34AEBD5822501F1C0086CDA2 /* StatusWidgetPreferencePane.swift in Sources */,
-				349431E12218310F008622B1 /* DKBrightness.swift in Sources */,
-				34DC32E61F6DAAC500037E68 /* KeySender.swift in Sources */,
-				3483BF7621712BA8008570D0 /* Preferences.swift in Sources */,
-				349431DA22182070008622B1 /* OSDUIHelper.swift in Sources */,
-				349431E9221970A0008622B1 /* NowPlayingHelper.swift in Sources */,
-				349431EB22197127008622B1 /* NowPlayingItem.swift in Sources */,
-				349557F4217CFEB7000DEB55 /* DockWidget.swift in Sources */,
-				349431C722175E07008622B1 /* EonilFSEvents.swift in Sources */,
-				349431E32218325E008622B1 /* CCBrightnessDownItem.swift in Sources */,
-				3427C72D1F65746000FE39FF /* PockItemView.swift in Sources */,
-				349431D322181DED008622B1 /* CCVolumeUpItem.swift in Sources */,
-				3494320022214B1F008622B1 /* SClockItem.swift in Sources */,
-				349431F6221998BD008622B1 /* PockTappableView.swift in Sources */,
-				349431F9222138D9008622B1 /* StatusWidget.swift in Sources */,
-				349431C822175E07008622B1 /* EonilFSEventStreamEventFlags.swift in Sources */,
-				349431D122181C86008622B1 /* CCVolumeDownItem.swift in Sources */,
-				348343E91F631B6700CDA005 /* PockUtilities.swift in Sources */,
-				349431F122198123008622B1 /* NowPlayingWidget.swift in Sources */,
-				349431C522175E07008622B1 /* EonilFSEventStreamEventID.swift in Sources */,
-				349557ED217CF627000DEB55 /* PockTouchBarController.swift in Sources */,
-				349431FB2221395C008622B1 /* StatusItem.swift in Sources */,
-				349431FE22213997008622B1 /* SWifiItem.swift in Sources */,
-				349431C322175E07008622B1 /* EonilFSEventStreamIllogicalErrorLog.swift in Sources */,
-				349431CE2218197A008622B1 /* ControlCenterItem.swift in Sources */,
-				349431C422175E07008622B1 /* EonilFSEventStreamEvent.swift in Sources */,
-				342D3CB42111998A0028FC59 /* PockDockHelper.m in Sources */,
-				349431C622175E07008622B1 /* EonilFSEventStream.swift in Sources */,
-				349431D722181ED7008622B1 /* ISSoundAdditions.m in Sources */,
-				349431CC22181608008622B1 /* ControlCenterWidget.swift in Sources */,
-				349431E52218330D008622B1 /* CCBrightnessUpItem.swift in Sources */,
-				349431C222175E07008622B1 /* EonilFSEventStreamError.swift in Sources */,
-				349431EF22197B75008622B1 /* NowPlayingItemView.swift in Sources */,
-				349431C922175E07008622B1 /* EonilFSEventStreamCreateFlags.swift in Sources */,
-				34943202222151CD008622B1 /* SPowerItem.swift in Sources */,
-				348343DA1F631B2E00CDA005 /* AppDelegate.swift in Sources */,
-				342D3CB72111ACC30028FC59 /* PockItem.swift in Sources */,
-				349557EB217CF5A3000DEB55 /* PockMainController.swift in Sources */,
-				3494645C2171383A000480C5 /* GeneralPreferencePane.swift in Sources */,
-				349557E6217CEFDB000DEB55 /* EscWidget.swift in Sources */,
+				342D83FA2278D5CF000D79DA /* SSpotlightItem.swift in Sources */,
+				342D83F92278D5CF000D79DA /* StatusItem.swift in Sources */,
+				342D84012278D5CF000D79DA /* PockTappableView.swift in Sources */,
+				342D83E62278D5CF000D79DA /* StatusWidgetPreferencePane.swift in Sources */,
+				342D83FB2278D5CF000D79DA /* SWifiItem.swift in Sources */,
+				342D83FC2278D5CF000D79DA /* SPowerItem.swift in Sources */,
+				342D83F82278D5CF000D79DA /* StatusWidget.swift in Sources */,
+				342D83F32278D5CF000D79DA /* CCVolumeUpItem.swift in Sources */,
+				342D84072278D5CF000D79DA /* DockRepository.swift in Sources */,
+				342D83E92278D5CF000D79DA /* PockDockHelper.m in Sources */,
+				342D84042278D5CF000D79DA /* EventStream.swift in Sources */,
+				342D84022278D5CF000D79DA /* Constants.swift in Sources */,
+				342D83FF2278D5CF000D79DA /* KeySender.swift in Sources */,
+				342D83F12278D5CF000D79DA /* CCVolumeDownItem.swift in Sources */,
+				342D84032278D5CF000D79DA /* FileEvent.swift in Sources */,
+				342D840B2278D5CF000D79DA /* DockItemView.swift in Sources */,
+				342D840C2278D5CF000D79DA /* DockWidget.swift in Sources */,
+				342D83EA2278D5CF000D79DA /* ISSoundAdditions.m in Sources */,
+				342D83EE2278D5CF000D79DA /* ControlCenterWidget.swift in Sources */,
+				342D83EC2278D5CF000D79DA /* OSDUIHelper.swift in Sources */,
+				342D83FE2278D5CF000D79DA /* EscWidget.swift in Sources */,
+				342D83E02278D5CF000D79DA /* PockTouchBarController.swift in Sources */,
+				342D83F22278D5CF000D79DA /* CCBrightnessUpItem.swift in Sources */,
+				342D83F02278D5CF000D79DA /* CCBrightnessDownItem.swift in Sources */,
+				342D83F52278D5CF000D79DA /* NowPlayingItem.swift in Sources */,
+				342D83F62278D5CF000D79DA /* NowPlayingWidget.swift in Sources */,
+				342D840D2278D5CF000D79DA /* FileMonitor.swift in Sources */,
+				342D83E12278D5CF000D79DA /* PockMainController.swift in Sources */,
+				342D83F72278D5CF000D79DA /* NowPlayingHelper.swift in Sources */,
+				342D83EF2278D5CF000D79DA /* ControlCenterItem.swift in Sources */,
+				342D83EB2278D5CF000D79DA /* DKBrightness.swift in Sources */,
+				342D84002278D5CF000D79DA /* PockWidget.swift in Sources */,
+				342D83E22278D5CF000D79DA /* Preferences.swift in Sources */,
+				342D83F42278D5CF000D79DA /* NowPlayingItemView.swift in Sources */,
+				342D83ED2278D5CF000D79DA /* AppDelegate.swift in Sources */,
+				342D84052278D5CF000D79DA /* Witness.swift in Sources */,
+				342D84082278D5CF000D79DA /* DockItem.swift in Sources */,
+				342D83E42278D5CF000D79DA /* GeneralPreferencePane.swift in Sources */,
+				342D83FD2278D5CF000D79DA /* SClockItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -729,22 +722,24 @@
 			baseConfigurationReference = 3BA42833BC69C895EB31DF93 /* Pods-Pock.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 788D9WZ9Z3;
+				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Pock/Various/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pigigaldi.pock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Pock (Distribution)";
 				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/Pock/Private/Pock-Bridging-Header.h";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -753,22 +748,24 @@
 			baseConfigurationReference = 716D62071D19174E56D6E33D /* Pods-Pock.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 788D9WZ9Z3;
+				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Pock/Various/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pigigaldi.pock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Pock (Distribution)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = PROD;
 				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/Pock/Private/Pock-Bridging-Header.h";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};

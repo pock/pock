@@ -88,9 +88,9 @@ class SPowerItem: StatusItem {
             var iconName: NSImage.Name!
             if powerStatus.isCharging {
                 iconView.subviews.forEach({ $0.removeFromSuperview() })
-                iconName = NSImage.Name("powerIsCharging")
+                iconName = "powerIsCharging"
             }else {
-                iconName = NSImage.Name("powerEmpty")
+                iconName = "powerEmpty"
                 buildBatteryIcon(withValue: value)
             }
             iconView.image    = NSImage(named: iconName)

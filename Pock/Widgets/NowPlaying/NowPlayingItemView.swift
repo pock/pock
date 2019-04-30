@@ -79,9 +79,9 @@ class NowPlayingItemView: PockTappableView {
         let path = NSWorkspace.shared.absolutePathForApplication(withBundleIdentifier: appBundleIdentifier)
         
         DispatchQueue.main.async { [weak self] in
-            self?.imageView.image = PockUtilities.default.getIcon(forBundleIdentifier: appBundleIdentifier, orPath: path)
+            self?.imageView.image          = DockRepository.getIcon(forBundleIdentifier: appBundleIdentifier, orPath: path)
             self?.titleView.stringValue    = self?.nowPLayingItem?.title?.truncate(length: 30) ?? "Pock"
-            self?.subtitleView.stringValue = self?.nowPLayingItem?.artist ?? PockUtilities.getDisplayName(forPath: path) ??  "Unknown"
+            self?.subtitleView.stringValue = self?.nowPLayingItem?.artist ?? FileManager.default.displayName(atPath: path ?? "Unknown")
             self?.updateForNowPlayingState()
         }
     }
@@ -149,7 +149,7 @@ extension NowPlayingItemView {
         bounce.duration              = 1.2
         bounce.autoreverses          = true
         bounce.repeatCount           = Float.infinity
-        bounce.timingFunction        = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        bounce.timingFunction        = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         
         let frame = self.imageView.layer?.frame
         self.imageView.layer?.anchorPoint = CGPoint(x: 0.5, y: 0.5)

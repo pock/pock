@@ -10,7 +10,7 @@ import Foundation
 
 /// Custom identifiers
 extension NSTouchBar.CustomizationIdentifier {
-    static let pockTouchBar = NSTouchBar.CustomizationIdentifier("PockTouchBar")
+    static let pockTouchBar = "PockTouchBar"
 }
 extension NSTouchBarItem.Identifier {
     static let pockSystemIcon = NSTouchBarItem.Identifier("Pock")

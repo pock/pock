@@ -12,7 +12,7 @@ class CCBrightnessDownItem: ControlCenterItem {
     
     override var title: String  { return "brightness-down" }
     
-    override var icon:  NSImage { return NSImage(named: NSImage.Name(title))! }
+    override var icon:  NSImage { return NSImage(named: title)! }
     
     override func action() {
         DKBrightness.decreaseBrightness(by: 0.06)

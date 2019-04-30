@@ -45,10 +45,10 @@ class SWifiItem: StatusItem {
             let icon: NSImage.Name!
             switch (code) {
             case 0:
-                icon = NSImage.Name(rawValue: "wifiOff")
+                icon = "wifiOff"
             default:
                 let c = code - 1
-                icon = NSImage.Name(rawValue: "wifi\(c > 4 ? 4 : c)")
+                icon = "wifi\(c > 4 ? 4 : c)"
             }
             DispatchQueue.main.async { [weak self] in
                 self?.iconView.image = NSImage(named: icon)

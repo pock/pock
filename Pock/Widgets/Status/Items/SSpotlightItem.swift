@@ -24,7 +24,7 @@ class SSpotlightItem: StatusItem {
     private let iconView: NSImageView = NSImageView(frame: .zero)
     
     init() {
-        iconView.image      = NSImage(named: .touchBarSearchTemplate)!
+        iconView.image      = NSImage(named: NSImage.touchBarSearchTemplateName)!
         tappableView.item   = self
         tappableView.addSubview(iconView)
         iconView.snp.makeConstraints({ maker in

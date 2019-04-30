@@ -1,33 +1,21 @@
-# Pock. 
-#### Switch your favorites apps from your Touch Bar.
-![Pock. Preview](https://raw.githubusercontent.com/pigigaldi/Pock/master/Resources/pock-preview.jpg)
-### Instructions:
-___
-Pock. uses **private API** to let custom item stay in Touch Bar's Control Strip.
-```
-$ git clone http://github.com/pigigaldi/Pock
-$ cd Pock/
-$ pod install
-$ open Pock.xcworkspace
-```
+<p align="center"><img src="https://raw.githubusercontent.com/pigigaldi/Pock/master/Resources/pock_logo_b.png" width="76"/></p>
+<p align="center">Display macOS Dock in Touch Bar. It's free and open source!</p>
 
-### Usage:
-___
-Just launch and **BAM**! 
-Your dock is in your Touch Bar!
+### Features
+Pock can place your macOS Dock inside your MacBook's TouchBar, letting you enjoy your screen in full-size every time!
 
-### Utils:
-___
-`⌥+⌘+P`:  Will set *Pock.* as first item in Control Strip (if any other apps, like iTunes or Spotify, did replace it). This is Global.
+<p align="center"><img src="https://raw.githubusercontent.com/pigigaldi/Pock/master/Resources/pock_preview.png"/></p>
 
-### TODO:
-___
-* [  √  ] Add icon's notification badge (it just works)
-* [  √  ] Put "Launch at login" option in preference panel;
-* [???] Custom hotkey for showing the dock
+### Badge Support
+It comes with fully-functional badge support so you will not miss any notification.
 
-### Thank you!
-___
+### ESC Button
+A handy ESC button is there, so you don't have to hide Pock to access the system one.
+
+### Preferences
+From preference pane, you can decide if you want to launch Pock at login.
+
+## Thank you!
 * [BrokenSt0rm](https://twitter.com/BrokenSt0rm) 🙅‍♂️
 * [SnapKit](https://github.com/SnapKit/SnapKit)
 * [Magnet](https://github.com/Clipy/Magnet)
@@ -35,11 +23,11 @@ ___
 * [ESCapey](https://github.com/brianmichel/ESCapey) - Simulate `esc` button
 * [Minebomber](https://stackoverflow.com/a/36115210) - This comment blowed my mind
 * [Defaults, Preferences, LaunchAtLogin](https://github.com/sindresorhus/)
+* [Witness](https://github.com/njdehoog/Witness)
 
-### Info:
-___
-**Pock.** is not meant to be a commercial package.
+## Info
+**Pock** will never be a commercial package.
 
-### License:
-___
-Under MIT license. See LICENSE file for further information.
+## License
+Under MIT license. See [LICENSE](LICENSE) file for further information.
+
