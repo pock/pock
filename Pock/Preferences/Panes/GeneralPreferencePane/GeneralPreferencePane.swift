@@ -172,10 +172,12 @@ extension GeneralPreferencePane {
             let downloadURL = URL(string: apiResponse.download_link),
             GeneralPreferencePane.appVersion < apiResponse.version_number else {
                 NSLog("[Pock]: Already on latest version: \(GeneralPreferencePane.appVersion)")
+                URLSession.shared.finishTasksAndInvalidate()
                 completion(nil, nil)
                 return
             }
             NSLog("[Pock]: New version available: \(apiResponse.version_number)")
+            URLSession.shared.finishTasksAndInvalidate()
             completion(apiResponse.version_number, downloadURL)
         }).resume()
     }
