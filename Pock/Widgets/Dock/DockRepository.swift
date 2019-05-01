@@ -209,7 +209,7 @@ class DockRepository {
                                 nil,
                                 name: label,
                                 path: URL(string: path),
-                                icon: DockRepository.getIcon(orType: tileType),
+                                icon: DockRepository.getIcon(orPath: path.replacingOccurrences(of: "file://", with: ""), orType: tileType),
                                 launching: false,
                                 persistentItem: true)
             persistentItems.append(item)
