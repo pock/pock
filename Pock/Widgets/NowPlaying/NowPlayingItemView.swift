@@ -80,8 +80,8 @@ class NowPlayingItemView: PockTappableView {
         
         DispatchQueue.main.async { [weak self] in
             self?.imageView.image          = DockRepository.getIcon(forBundleIdentifier: appBundleIdentifier, orPath: path)
-            self?.titleView.stringValue    = self?.nowPLayingItem?.title?.truncate(length: 30) ?? "Pock"
-            self?.subtitleView.stringValue = self?.nowPLayingItem?.artist ?? FileManager.default.displayName(atPath: path ?? "Unknown")
+            self?.titleView.stringValue    = self?.nowPLayingItem?.title?.truncate(length: 20)  ?? "Pock"
+            self?.subtitleView.stringValue = self?.nowPLayingItem?.artist?.truncate(length: 20) ?? FileManager.default.displayName(atPath: path ?? "Unknown")
             self?.updateForNowPlayingState()
         }
     }

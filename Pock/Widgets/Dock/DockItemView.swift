@@ -38,6 +38,7 @@ class DockItemView: NSScrubberItemView {
     private func loadIconView() {
         self.iconView = NSImageView(frame: .zero)
         self.iconView.imageScaling = .scaleProportionallyDown
+        self.iconView.wantsLayer = true
         self.contentView.addSubview(self.iconView)
         self.iconView.snp.makeConstraints({ m in
             m.width.height.equalTo(Constants.dockItemIconSize)
@@ -95,6 +96,15 @@ class DockItemView: NSScrubberItemView {
         self.set(hasBadge:     false)
         self.set(isRunning:    false)
         self.set(isFrontmost:  false)
+    }
+    
+    override func viewDidChangeBackingProperties() {
+        super.viewDidChangeBackingProperties()
+        layer?.contentsScale                = window?.backingScaleFactor ?? 1
+        iconView?.layer?.contentsScale      = window?.backingScaleFactor ?? 1
+        badgeView?.layer?.contentsScale     = window?.backingScaleFactor ?? 1
+        dotView?.layer?.contentsScale       = window?.backingScaleFactor ?? 1
+        frontmostView?.layer?.contentsScale = window?.backingScaleFactor ?? 1
     }
     
     public func set(icon: NSImage?) {

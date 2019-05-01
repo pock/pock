@@ -260,12 +260,12 @@
 		342D83B42278D5CF000D79DA /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
-				342D83B52278D5CF000D79DA /* ControlCenter */,
+				342D83CD2278D5CF000D79DA /* Common */,
+				342D83CA2278D5CF000D79DA /* Esc key */,
 				342D83D02278D5CF000D79DA /* Dock */,
 				342D83BD2278D5CF000D79DA /* NowPlaying */,
+				342D83B52278D5CF000D79DA /* ControlCenter */,
 				342D83C22278D5CF000D79DA /* Status */,
-				342D83CA2278D5CF000D79DA /* Esc key */,
-				342D83CD2278D5CF000D79DA /* Common */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
