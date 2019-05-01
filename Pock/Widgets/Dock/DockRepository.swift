@@ -311,6 +311,8 @@ extension DockRepository {
         let refreshRate = defaults[.notificationBadgeRefreshInterval]
         /// Invalidate last timer
         self.notificationBadgeRefreshTimer?.invalidate()
+        /// Check if disabled
+        guard refreshRate.rawValue >= 0 else { return }
         /// Set timer
         self.notificationBadgeRefreshTimer = Timer.scheduledTimer(withTimeInterval: refreshRate.rawValue, repeats: true, block: {  [weak self] _ in
             /// Log

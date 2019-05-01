@@ -21,6 +21,7 @@ extension NSNotification.Name {
 }
 
 enum NotificationBadgeRefreshRateKeys: Double, Codable, CaseIterable {
+    case never          = -1
     case instantly      = 0.25
     case oneSecond      = 1
     case fiveSeconds    = 5
@@ -31,6 +32,8 @@ enum NotificationBadgeRefreshRateKeys: Double, Codable, CaseIterable {
     
     func toString() -> String {
         switch self {
+        case .never:
+            return "Never"
         case .instantly:
             return "Instantly"
         case .oneSecond:
