@@ -88,7 +88,9 @@ class NowPlayingItemView: PockTappableView {
     
     private func updateForNowPlayingState() {
         if self.nowPLayingItem?.isPlaying ?? false {
-            self.startBounceAnimation()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25, execute: { [weak self] in
+                self?.startBounceAnimation()
+            })
         }else {
             self.stopBounceAnimation()
         }
