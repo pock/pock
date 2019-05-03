@@ -31,7 +31,7 @@ enum NotificationBadgeRefreshRateKeys: Double, Codable, CaseIterable {
     
     func toString() -> String {
         switch self {
-        case .never
+        case .never:
             return "Never"
         case .instantly:
             return "Instantly"
