@@ -12,6 +12,7 @@ typedef void (^MRMediaRemoteGetNowPlayingApplicationIsPlayingBlock)(BOOL playing
 
 extern void MRMediaRemoteRegisterForNowPlayingNotifications(dispatch_queue_t queue);
 extern void MRMediaRemoteGetNowPlayingClient(dispatch_queue_t queue, MRMediaRemoteGetNowPlayingClientBlock block);
+extern void MRMediaRemoteGetNowPlayingClients(dispatch_queue_t queue, MRMediaRemoteGetNowPlayingClientBlock block);
 extern void MRMediaRemoteGetNowPlayingInfo(dispatch_queue_t queue, MRMediaRemoteGetNowPlayingInfoBlock block);
 extern void MRMediaRemoteGetNowPlayingApplicationIsPlaying(dispatch_queue_t queue, MRMediaRemoteGetNowPlayingApplicationIsPlayingBlock block);
 

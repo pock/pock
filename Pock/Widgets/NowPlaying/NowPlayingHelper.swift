@@ -54,19 +54,23 @@ class NowPlayingHelper {
     }
     
     @objc private func updateCurrentPlayingApp() {
-        MRMediaRemoteGetNowPlayingClient(DispatchQueue.global(qos: .utility)) { [weak self] info in
-            if self?.nowPlayingItem == nil {
-                self?.nowPlayingItem = NowPlayingItem()
-            }
-            if let appBundleIdentifier = MRNowPlayingClientGetBundleIdentifier(info) {
-                self?.nowPlayingItem?.appBundleIdentifier = appBundleIdentifier
-            }else if let appBundleIdentifier = MRNowPlayingClientGetParentAppBundleIdentifier(info) {
-                self?.nowPlayingItem?.appBundleIdentifier = appBundleIdentifier
+        MRMediaRemoteGetNowPlayingClients(DispatchQueue.global(qos: .utility), { [weak self] clients in
+            if let info = (clients as? [Any])?.last {
+                if self?.nowPlayingItem == nil {
+                    self?.nowPlayingItem = NowPlayingItem()
+                }
+                if let appBundleIdentifier = MRNowPlayingClientGetBundleIdentifier(info) {
+                    self?.nowPlayingItem?.appBundleIdentifier = appBundleIdentifier
+                }else if let appBundleIdentifier = MRNowPlayingClientGetParentAppBundleIdentifier(info) {
+                    self?.nowPlayingItem?.appBundleIdentifier = appBundleIdentifier
+                }else {
+                    self?.nowPlayingItem = nil
+                }
             }else {
                 self?.nowPlayingItem = nil
             }
             NotificationCenter.default.post(name: NowPlayingHelper.kNowPlayingItemDidChange, object: nil)
-        }
+        })
     }
     
     @objc private func updateMediaContent() {
