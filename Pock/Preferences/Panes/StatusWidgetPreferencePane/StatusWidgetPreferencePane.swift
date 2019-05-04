@@ -18,7 +18,7 @@ class StatusWidgetPreferencePane: NSViewController, Preferenceable {
     @IBOutlet weak var showBatteryIconItem:         NSButton!
     @IBOutlet weak var showBatteryPercentageItem:   NSButton!
     @IBOutlet weak var showDateItem:                NSButton!
-    @IBOutlet weak var showSpotlightItem:           NSButton!
+    // @IBOutlet weak var showSpotlightItem:           NSButton!
     
     /// Preferenceable
     let toolbarItemTitle: String   = "Status"
@@ -39,7 +39,7 @@ class StatusWidgetPreferencePane: NSViewController, Preferenceable {
         self.showBatteryIconItem.state       = defaults[.shouldShowBatteryIcon]       ? .on : .off
         self.showBatteryPercentageItem.state = defaults[.shouldShowBatteryPercentage] ? .on : .off
         self.showDateItem.state              = defaults[.shouldShowDateItem]          ? .on : .off
-        self.showSpotlightItem.state         = defaults[.shouldShowSpotlightItem]     ? .on : .off
+        // self.showSpotlightItem.state         = defaults[.shouldShowSpotlightItem]     ? .on : .off
     }
     
     @IBAction func didChangeCheckboxValue(_ checkbox: NSButton) {
@@ -55,8 +55,8 @@ class StatusWidgetPreferencePane: NSViewController, Preferenceable {
             key = .shouldShowBatteryPercentage
         case 3:
             key = .shouldShowDateItem
-        case 4:
-            key = .shouldShowSpotlightItem
+        /* case 4:
+            key = .shouldShowSpotlightItem */
         default:
             return
         }

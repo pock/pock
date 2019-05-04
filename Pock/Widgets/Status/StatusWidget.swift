@@ -14,8 +14,7 @@ class StatusWidget: PockWidget {
     private let statusElements: [StatusItem] = [
         SWifiItem(),
         SPowerItem(),
-        SClockItem(),
-        SSpotlightItem()
+        SClockItem()
     ]
     private var statusElementViews: [String: NSView] = [:]
     
