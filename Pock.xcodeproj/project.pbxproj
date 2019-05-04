@@ -108,7 +108,6 @@
 		342D83DE2278D5CF000D79DA /* FileMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileMonitor.swift; sourceTree = "<group>"; };
 		348343D61F631B2E00CDA005 /* Pock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		349431EC22197484008622B1 /* MediaRemote.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaRemote.framework; path = ../../../../../../../../../System/Library/PrivateFrameworks/MediaRemote.framework; sourceTree = "<group>"; };
-		3494320822217738008622B1 /* Spotlight.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; name = Spotlight.app; path = ../../../../../../../../../System/Library/CoreServices/Spotlight.app; sourceTree = "<group>"; };
 		3494320B222179D7008622B1 /* BatteryUIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BatteryUIKit.framework; path = ../../../../../../../../../System/Library/PrivateFrameworks/BatteryUIKit.framework; sourceTree = "<group>"; };
 		34BC3ECB2210B2EC00C1DD3C /* DFRFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DFRFoundation.framework; path = ../../../../../../../../../System/Library/PrivateFrameworks/DFRFoundation.framework; sourceTree = "<group>"; };
 		34E644F3227CB6CE003D0450 /* KeySender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeySender.swift; sourceTree = "<group>"; };
@@ -402,7 +401,6 @@
 			isa = PBXGroup;
 			children = (
 				3494320B222179D7008622B1 /* BatteryUIKit.framework */,
-				3494320822217738008622B1 /* Spotlight.app */,
 				349431EC22197484008622B1 /* MediaRemote.framework */,
 				34BC3ECB2210B2EC00C1DD3C /* DFRFoundation.framework */,
 				863BE70CFBAC31BDBF35B1FD /* Pods_Pock.framework */,
