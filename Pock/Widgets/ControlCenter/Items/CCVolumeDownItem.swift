@@ -10,16 +10,14 @@ import Foundation
 
 class CCVolumeDownItem: ControlCenterItem {
     
+    private let key: KeySender = KeySender(keyCode: NX_KEYTYPE_SOUND_DOWN, isAux: true)
+    
     override var title: String  { return "volume-down" }
     
     override var icon:  NSImage { return NSImage(named: NSImage.touchBarVolumeDownTemplateName)! }
     
     override func action() {
-        NSSound.decreaseSystemVolume(by: 0.06)
-        if !(NowPlayingHelper.shared.nowPlayingItem?.isPlaying ?? true) {
-            NSSound.beep()
-        }
-        DK_OSDUIHelper.showHUD(type: NSSound.isMuted() ? .mute : .volume, filled: CUnsignedInt(NSSound.systemVolume() * 16))
+        key.send()
     }
 
 }

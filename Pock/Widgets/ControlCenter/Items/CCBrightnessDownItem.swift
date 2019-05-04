@@ -9,14 +9,15 @@
 import Foundation
 
 class CCBrightnessDownItem: ControlCenterItem {
+
+    private let key: KeySender = KeySender(keyCode: NX_KEYTYPE_BRIGHTNESS_DOWN, isAux: true)
     
     override var title: String  { return "brightness-down" }
     
     override var icon:  NSImage { return NSImage(named: title)! }
     
     override func action() {
-        DKBrightness.decreaseBrightness(by: 0.06)
-        DK_OSDUIHelper.showHUD(type: .brightness, filled: CUnsignedInt(DKBrightness.getBrightnessLevel() * 16))
+        key.send()
     }
     
 }

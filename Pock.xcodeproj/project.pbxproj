@@ -18,7 +18,6 @@
 		342D83E62278D5CF000D79DA /* StatusWidgetPreferencePane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83A12278D5CF000D79DA /* StatusWidgetPreferencePane.swift */; };
 		342D83E72278D5CF000D79DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 342D83A32278D5CF000D79DA /* Assets.xcassets */; };
 		342D83E92278D5CF000D79DA /* PockDockHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 342D83AA2278D5CF000D79DA /* PockDockHelper.m */; };
-		342D83EA2278D5CF000D79DA /* ISSoundAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 342D83AD2278D5CF000D79DA /* ISSoundAdditions.m */; };
 		342D83EB2278D5CF000D79DA /* DKBrightness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83B02278D5CF000D79DA /* DKBrightness.swift */; };
 		342D83EC2278D5CF000D79DA /* OSDUIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83B22278D5CF000D79DA /* OSDUIHelper.swift */; };
 		342D83ED2278D5CF000D79DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83B32278D5CF000D79DA /* AppDelegate.swift */; };
@@ -39,7 +38,6 @@
 		342D83FC2278D5CF000D79DA /* SPowerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83C82278D5CF000D79DA /* SPowerItem.swift */; };
 		342D83FD2278D5CF000D79DA /* SClockItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83C92278D5CF000D79DA /* SClockItem.swift */; };
 		342D83FE2278D5CF000D79DA /* EscWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83CB2278D5CF000D79DA /* EscWidget.swift */; };
-		342D83FF2278D5CF000D79DA /* KeySender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83CC2278D5CF000D79DA /* KeySender.swift */; };
 		342D84002278D5CF000D79DA /* PockWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83CE2278D5CF000D79DA /* PockWidget.swift */; };
 		342D84012278D5CF000D79DA /* PockTappableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83CF2278D5CF000D79DA /* PockTappableView.swift */; };
 		342D84022278D5CF000D79DA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83D12278D5CF000D79DA /* Constants.swift */; };
@@ -53,6 +51,8 @@
 		342D840D2278D5CF000D79DA /* FileMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83DE2278D5CF000D79DA /* FileMonitor.swift */; };
 		349431ED22197485008622B1 /* MediaRemote.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 349431EC22197484008622B1 /* MediaRemote.framework */; };
 		34BC3ECC2210B2EC00C1DD3C /* DFRFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34BC3ECB2210B2EC00C1DD3C /* DFRFoundation.framework */; };
+		34E644F4227CB6CE003D0450 /* KeySender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E644F3227CB6CE003D0450 /* KeySender.swift */; };
+		34E644F7227D783E003D0450 /* KeySenderHelper.c in Sources */ = {isa = PBXBuildFile; fileRef = 34E644F6227D783E003D0450 /* KeySenderHelper.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,8 +70,6 @@
 		342D83A72278D5CF000D79DA /* NSTouchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSTouchBar.h; sourceTree = "<group>"; };
 		342D83A92278D5CF000D79DA /* PockDockHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PockDockHelper.h; sourceTree = "<group>"; };
 		342D83AA2278D5CF000D79DA /* PockDockHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PockDockHelper.m; sourceTree = "<group>"; };
-		342D83AC2278D5CF000D79DA /* ISSoundAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISSoundAdditions.h; sourceTree = "<group>"; };
-		342D83AD2278D5CF000D79DA /* ISSoundAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISSoundAdditions.m; sourceTree = "<group>"; };
 		342D83AE2278D5CF000D79DA /* Pock-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Pock-Bridging-Header.h"; sourceTree = "<group>"; };
 		342D83B02278D5CF000D79DA /* DKBrightness.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DKBrightness.swift; sourceTree = "<group>"; };
 		342D83B12278D5CF000D79DA /* MRMediaRemote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRMediaRemote.h; sourceTree = "<group>"; };
@@ -94,7 +92,6 @@
 		342D83C82278D5CF000D79DA /* SPowerItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPowerItem.swift; sourceTree = "<group>"; };
 		342D83C92278D5CF000D79DA /* SClockItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SClockItem.swift; sourceTree = "<group>"; };
 		342D83CB2278D5CF000D79DA /* EscWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EscWidget.swift; sourceTree = "<group>"; };
-		342D83CC2278D5CF000D79DA /* KeySender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeySender.swift; sourceTree = "<group>"; };
 		342D83CE2278D5CF000D79DA /* PockWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PockWidget.swift; sourceTree = "<group>"; };
 		342D83CF2278D5CF000D79DA /* PockTappableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PockTappableView.swift; sourceTree = "<group>"; };
 		342D83D12278D5CF000D79DA /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -112,6 +109,9 @@
 		3494320822217738008622B1 /* Spotlight.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; name = Spotlight.app; path = ../../../../../../../../../System/Library/CoreServices/Spotlight.app; sourceTree = "<group>"; };
 		3494320B222179D7008622B1 /* BatteryUIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BatteryUIKit.framework; path = ../../../../../../../../../System/Library/PrivateFrameworks/BatteryUIKit.framework; sourceTree = "<group>"; };
 		34BC3ECB2210B2EC00C1DD3C /* DFRFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DFRFoundation.framework; path = ../../../../../../../../../System/Library/PrivateFrameworks/DFRFoundation.framework; sourceTree = "<group>"; };
+		34E644F3227CB6CE003D0450 /* KeySender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeySender.swift; sourceTree = "<group>"; };
+		34E644F5227D783E003D0450 /* KeySenderHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeySenderHelper.h; sourceTree = "<group>"; };
+		34E644F6227D783E003D0450 /* KeySenderHelper.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = KeySenderHelper.c; sourceTree = "<group>"; };
 		3BA42833BC69C895EB31DF93 /* Pods-Pock.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pock.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pock/Pods-Pock.debug.xcconfig"; sourceTree = "<group>"; };
 		716D62071D19174E56D6E33D /* Pods-Pock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pock.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pock/Pods-Pock.release.xcconfig"; sourceTree = "<group>"; };
 		863BE70CFBAC31BDBF35B1FD /* Pods_Pock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -220,13 +220,13 @@
 		342D83A62278D5CF000D79DA /* Private */ = {
 			isa = PBXGroup;
 			children = (
-				342D83A72278D5CF000D79DA /* NSTouchBar.h */,
-				342D83A82278D5CF000D79DA /* PockDockHelper */,
-				342D83AB2278D5CF000D79DA /* ISSoundAdditions */,
 				342D83AE2278D5CF000D79DA /* Pock-Bridging-Header.h */,
-				342D83AF2278D5CF000D79DA /* DKBrightness */,
+				342D83A72278D5CF000D79DA /* NSTouchBar.h */,
 				342D83B12278D5CF000D79DA /* MRMediaRemote.h */,
 				342D83B22278D5CF000D79DA /* OSDUIHelper.swift */,
+				342D83A82278D5CF000D79DA /* PockDockHelper */,
+				342D83AF2278D5CF000D79DA /* DKBrightness */,
+				34E644F8227D7848003D0450 /* KeySenderHelper */,
 			);
 			path = Private;
 			sourceTree = "<group>";
@@ -238,15 +238,6 @@
 				342D83AA2278D5CF000D79DA /* PockDockHelper.m */,
 			);
 			path = PockDockHelper;
-			sourceTree = "<group>";
-		};
-		342D83AB2278D5CF000D79DA /* ISSoundAdditions */ = {
-			isa = PBXGroup;
-			children = (
-				342D83AC2278D5CF000D79DA /* ISSoundAdditions.h */,
-				342D83AD2278D5CF000D79DA /* ISSoundAdditions.m */,
-			);
-			path = ISSoundAdditions;
 			sourceTree = "<group>";
 		};
 		342D83AF2278D5CF000D79DA /* DKBrightness */ = {
@@ -327,7 +318,7 @@
 			isa = PBXGroup;
 			children = (
 				342D83CB2278D5CF000D79DA /* EscWidget.swift */,
-				342D83CC2278D5CF000D79DA /* KeySender.swift */,
+				34E644F3227CB6CE003D0450 /* KeySender.swift */,
 			);
 			path = "Esc key";
 			sourceTree = "<group>";
@@ -382,6 +373,15 @@
 				348343D61F631B2E00CDA005 /* Pock.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		34E644F8227D7848003D0450 /* KeySenderHelper */ = {
+			isa = PBXGroup;
+			children = (
+				34E644F5227D783E003D0450 /* KeySenderHelper.h */,
+				34E644F6227D783E003D0450 /* KeySenderHelper.c */,
+			);
+			path = KeySenderHelper;
 			sourceTree = "<group>";
 		};
 		4ED8D081458713BE440562D3 /* Frameworks */ = {
@@ -576,12 +576,11 @@
 				342D83E92278D5CF000D79DA /* PockDockHelper.m in Sources */,
 				342D84042278D5CF000D79DA /* EventStream.swift in Sources */,
 				342D84022278D5CF000D79DA /* Constants.swift in Sources */,
-				342D83FF2278D5CF000D79DA /* KeySender.swift in Sources */,
 				342D83F12278D5CF000D79DA /* CCVolumeDownItem.swift in Sources */,
 				342D84032278D5CF000D79DA /* FileEvent.swift in Sources */,
+				34E644F4227CB6CE003D0450 /* KeySender.swift in Sources */,
 				342D840B2278D5CF000D79DA /* DockItemView.swift in Sources */,
 				342D840C2278D5CF000D79DA /* DockWidget.swift in Sources */,
-				342D83EA2278D5CF000D79DA /* ISSoundAdditions.m in Sources */,
 				342D83EE2278D5CF000D79DA /* ControlCenterWidget.swift in Sources */,
 				342D83EC2278D5CF000D79DA /* OSDUIHelper.swift in Sources */,
 				342D83FE2278D5CF000D79DA /* EscWidget.swift in Sources */,
@@ -600,6 +599,7 @@
 				342D83F42278D5CF000D79DA /* NowPlayingItemView.swift in Sources */,
 				342D83ED2278D5CF000D79DA /* AppDelegate.swift in Sources */,
 				342D84052278D5CF000D79DA /* Witness.swift in Sources */,
+				34E644F7227D783E003D0450 /* KeySenderHelper.c in Sources */,
 				342D84082278D5CF000D79DA /* DockItem.swift in Sources */,
 				342D83E42278D5CF000D79DA /* GeneralPreferencePane.swift in Sources */,
 				342D83FD2278D5CF000D79DA /* SClockItem.swift in Sources */,

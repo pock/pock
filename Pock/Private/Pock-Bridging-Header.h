@@ -8,5 +8,5 @@
 
 #import "./NSTouchBar.h"
 #import "./PockDockHelper/PockDockHelper.h"
-#import "./ISSoundAdditions/ISSoundAdditions.h"
 #import "./MRMediaRemote.h"
+#import "./KeySenderHelper/KeySenderHelper.h"

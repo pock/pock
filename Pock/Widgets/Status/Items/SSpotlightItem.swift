@@ -10,13 +10,6 @@ import Foundation
 import Defaults
 import Carbon.HIToolbox
 
-struct CommandKeySender: KeySender {
-    let keyCode: CGKeyCode = CGKeyCode(kVK_Command)
-}
-struct SpaceKeySender: KeySender {
-    let keyCode: CGKeyCode = CGKeyCode(kVK_Space)
-}
-
 class SSpotlightItem: StatusItem {
     
     /// UI
@@ -39,14 +32,7 @@ class SSpotlightItem: StatusItem {
     var view: NSView { return tappableView }
     
     func action() {
-        // TODO: Must find an alternative way since not everyone has CMD+SPACE shortcut for Spotlight!
-        let commandKey  = CommandKeySender()
-        let spaceKey    = SpaceKeySender()
-        commandKey.press()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05, execute: {
-            spaceKey.send()
-            commandKey.release()
-        })
+        // TODO: maybe...
     }
     
     func reload() { /* Nothing to do here... */ }
