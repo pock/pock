@@ -53,6 +53,8 @@
 		34BC3ECC2210B2EC00C1DD3C /* DFRFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34BC3ECB2210B2EC00C1DD3C /* DFRFoundation.framework */; };
 		34E644F4227CB6CE003D0450 /* KeySender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E644F3227CB6CE003D0450 /* KeySender.swift */; };
 		34E644F7227D783E003D0450 /* KeySenderHelper.c in Sources */ = {isa = PBXBuildFile; fileRef = 34E644F6227D783E003D0450 /* KeySenderHelper.c */; };
+		34E644FB227D9A69003D0450 /* DockWidgetPreferencePane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E644F9227D9A69003D0450 /* DockWidgetPreferencePane.swift */; };
+		34E644FC227D9A69003D0450 /* DockWidgetPreferencePane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34E644FA227D9A69003D0450 /* DockWidgetPreferencePane.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -112,6 +114,8 @@
 		34E644F3227CB6CE003D0450 /* KeySender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeySender.swift; sourceTree = "<group>"; };
 		34E644F5227D783E003D0450 /* KeySenderHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeySenderHelper.h; sourceTree = "<group>"; };
 		34E644F6227D783E003D0450 /* KeySenderHelper.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = KeySenderHelper.c; sourceTree = "<group>"; };
+		34E644F9227D9A69003D0450 /* DockWidgetPreferencePane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockWidgetPreferencePane.swift; sourceTree = "<group>"; };
+		34E644FA227D9A69003D0450 /* DockWidgetPreferencePane.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DockWidgetPreferencePane.xib; sourceTree = "<group>"; };
 		3BA42833BC69C895EB31DF93 /* Pods-Pock.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pock.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pock/Pods-Pock.debug.xcconfig"; sourceTree = "<group>"; };
 		716D62071D19174E56D6E33D /* Pods-Pock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pock.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pock/Pods-Pock.release.xcconfig"; sourceTree = "<group>"; };
 		863BE70CFBAC31BDBF35B1FD /* Pods_Pock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -185,6 +189,7 @@
 			children = (
 				342D839C2278D5CF000D79DA /* GeneralPreferencePane */,
 				342D839F2278D5CF000D79DA /* StatusWidgetPreferencePane */,
+				34E644FD227D9A6C003D0450 /* DockWidgetPreferencePane */,
 			);
 			path = Panes;
 			sourceTree = "<group>";
@@ -384,6 +389,15 @@
 			path = KeySenderHelper;
 			sourceTree = "<group>";
 		};
+		34E644FD227D9A6C003D0450 /* DockWidgetPreferencePane */ = {
+			isa = PBXGroup;
+			children = (
+				34E644FA227D9A69003D0450 /* DockWidgetPreferencePane.xib */,
+				34E644F9227D9A69003D0450 /* DockWidgetPreferencePane.swift */,
+			);
+			path = DockWidgetPreferencePane;
+			sourceTree = "<group>";
+		};
 		4ED8D081458713BE440562D3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -469,6 +483,7 @@
 				342D83DF2278D5CF000D79DA /* MainWindow.xib in Resources */,
 				342D83E32278D5CF000D79DA /* GeneralPreferencePane.xib in Resources */,
 				342D83E52278D5CF000D79DA /* StatusWidgetPreferencePane.xib in Resources */,
+				34E644FC227D9A69003D0450 /* DockWidgetPreferencePane.xib in Resources */,
 				342D83E72278D5CF000D79DA /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -581,6 +596,7 @@
 				34E644F4227CB6CE003D0450 /* KeySender.swift in Sources */,
 				342D840B2278D5CF000D79DA /* DockItemView.swift in Sources */,
 				342D840C2278D5CF000D79DA /* DockWidget.swift in Sources */,
+				34E644FB227D9A69003D0450 /* DockWidgetPreferencePane.swift in Sources */,
 				342D83EE2278D5CF000D79DA /* ControlCenterWidget.swift in Sources */,
 				342D83EC2278D5CF000D79DA /* OSDUIHelper.swift in Sources */,
 				342D83FE2278D5CF000D79DA /* EscWidget.swift in Sources */,
