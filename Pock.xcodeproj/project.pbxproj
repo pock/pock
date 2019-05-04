@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		009B0E12E317757741CE38C8 /* Pods_Pock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 863BE70CFBAC31BDBF35B1FD /* Pods_Pock.framework */; };
+		34064337227E224700981372 /* DockFolderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34064336227E224700981372 /* DockFolderController.swift */; };
+		34064339227E26F500981372 /* DockFolderController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34064338227E26F500981372 /* DockFolderController.xib */; };
 		342D83DF2278D5CF000D79DA /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 342D83952278D5CF000D79DA /* MainWindow.xib */; };
 		342D83E02278D5CF000D79DA /* PockTouchBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83972278D5CF000D79DA /* PockTouchBarController.swift */; };
 		342D83E12278D5CF000D79DA /* PockMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83982278D5CF000D79DA /* PockMainController.swift */; };
@@ -58,6 +60,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		34064336227E224700981372 /* DockFolderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockFolderController.swift; sourceTree = "<group>"; };
+		34064338227E26F500981372 /* DockFolderController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DockFolderController.xib; sourceTree = "<group>"; };
 		342D83952278D5CF000D79DA /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		342D83972278D5CF000D79DA /* PockTouchBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PockTouchBarController.swift; sourceTree = "<group>"; };
 		342D83982278D5CF000D79DA /* PockMainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PockMainController.swift; sourceTree = "<group>"; };
@@ -141,6 +145,15 @@
 				716D62071D19174E56D6E33D /* Pods-Pock.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		3406433A227E26FA00981372 /* DockFolderController */ = {
+			isa = PBXGroup;
+			children = (
+				34064338227E26F500981372 /* DockFolderController.xib */,
+				34064336227E224700981372 /* DockFolderController.swift */,
+			);
+			path = DockFolderController;
 			sourceTree = "<group>";
 		};
 		342D83932278D5CF000D79DA /* Pock */ = {
@@ -340,6 +353,7 @@
 			isa = PBXGroup;
 			children = (
 				342D83D22278D5CF000D79DA /* Witness */,
+				3406433A227E26FA00981372 /* DockFolderController */,
 				342D83D12278D5CF000D79DA /* Constants.swift */,
 				342D83D82278D5CF000D79DA /* DockRepository.swift */,
 				342D83D92278D5CF000D79DA /* DockItem.swift */,
@@ -478,6 +492,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34064339227E26F500981372 /* DockFolderController.xib in Resources */,
 				342D83DF2278D5CF000D79DA /* MainWindow.xib in Resources */,
 				342D83E32278D5CF000D79DA /* GeneralPreferencePane.xib in Resources */,
 				342D83E52278D5CF000D79DA /* StatusWidgetPreferencePane.xib in Resources */,
@@ -599,6 +614,7 @@
 				342D83EC2278D5CF000D79DA /* OSDUIHelper.swift in Sources */,
 				342D83FE2278D5CF000D79DA /* EscWidget.swift in Sources */,
 				342D83E02278D5CF000D79DA /* PockTouchBarController.swift in Sources */,
+				34064337227E224700981372 /* DockFolderController.swift in Sources */,
 				342D83F22278D5CF000D79DA /* CCBrightnessUpItem.swift in Sources */,
 				342D83F02278D5CF000D79DA /* CCBrightnessDownItem.swift in Sources */,
 				342D83F52278D5CF000D79DA /* NowPlayingItem.swift in Sources */,

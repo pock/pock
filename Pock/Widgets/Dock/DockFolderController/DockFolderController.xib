@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaDFRPlugin" version="14460.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <capability name="System colors introduced in macOS 10.14" minToolsVersion="10.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <capability name="the Touch Bar" minToolsVersion="8.1" minSystemVersion="10.12.2" requiredIntegratedClassName="NSTouchBar"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="DockFolderController" customModule="Pock" customModuleProvider="target">
+            <connections>
+                <outlet property="folderName" destination="Uhl-7R-VsA" id="BX9-3b-nae"/>
+                <outlet property="touchBar" destination="0ER-a6-6K6" id="IY0-kY-SZS"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <touchBar id="0ER-a6-6K6">
+            <touchBarItems>
+                <touchBarItem id="7fd-rS-lAm">
+                    <viewController key="viewController" id="72O-g3-prg">
+                        <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pSB-f1-hKM">
+                            <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="pSB-f1-hKM" secondAttribute="height" multiplier="1:1" id="Nwm-84-gEF"/>
+                                <constraint firstAttribute="width" constant="28" id="z1G-5u-10l"/>
+                            </constraints>
+                            <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="CloseButton" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="mrG-6w-xpg">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="willDismiss:" target="-2" id="Nts-ux-mME"/>
+                            </connections>
+                        </button>
+                    </viewController>
+                    <size key="designTimeSize" width="28" height="28"/>
+                </touchBarItem>
+                <touchBarItem id="wO1-oa-Vjh">
+                    <viewController key="viewController" id="cKq-iF-Ggi">
+                        <textField key="view" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Uhl-7R-VsA">
+                            <rect key="frame" x="0.0" y="0.0" width="42" height="19"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="KUf-Nr-1HO">
+                                <font key="font" usesAppearanceFont="YES"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                    </viewController>
+                </touchBarItem>
+                <touchBarItem id="oxw-Qn-rMD">
+                    <viewController key="viewController" id="HqF-wF-zsk">
+                        <scrubber key="view" translatesAutoresizingMaskIntoConstraints="NO" id="6Ry-8M-2Bw">
+                            <rect key="frame" x="0.0" y="0.0" width="523" height="30"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <scrubberProportionalLayout key="scrubberLayout"/>
+                        </scrubber>
+                    </viewController>
+                </touchBarItem>
+                <touchBarItem id="wnG-Bp-k9E">
+                    <viewController key="viewController" id="Ot2-Ek-gM4">
+                        <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="w3b-hX-6wx">
+                            <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <buttonCell key="cell" type="push" title="Open" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9UV-hx-aj8">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" usesAppearanceFont="YES"/>
+                            </buttonCell>
+                            <color key="bezelColor" name="controlAccentColor" catalog="System" colorSpace="catalog"/>
+                            <connections>
+                                <action selector="willOpen:" target="-2" id="Ohr-we-IJM"/>
+                            </connections>
+                        </button>
+                    </viewController>
+                    <size key="designTimeSize" width="72" height="30"/>
+                </touchBarItem>
+            </touchBarItems>
+            <point key="canvasLocation" x="139" y="9"/>
+        </touchBar>
+    </objects>
+    <resources>
+        <image name="CloseButton" width="64" height="64"/>
+    </resources>
+</document>

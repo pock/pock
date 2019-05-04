@@ -23,6 +23,7 @@ class DockRepository {
     private let delegate: DockDelegate
     private var notificationBadgeRefreshTimer: Timer!
     private var shouldShowNotificationBadge: Bool { return defaults[.notificationBadgeRefreshInterval] != .never }
+    private var dockFolderController: DockFolderController
     
     /// Running applications
     public  var dockItems:       [DockItem] = []
@@ -33,6 +34,7 @@ class DockRepository {
     /// Init
     init(delegate: DockDelegate) {
         self.delegate = delegate
+        self.dockFolderController = DockFolderController.load()
         self.registerForNotifications()
         self.setupNotificationBadgeRefreshTimer()
     }
@@ -295,7 +297,16 @@ extension DockRepository {
         /// Check if file path.
         if bundleIdentifier!.contains("file://") {
             /// Is path, continue as path.
-            returnable = NSWorkspace.shared.openFile(bundleIdentifier!.replacingOccurrences(of: "file://", with: ""))
+            var isDirectory: ObjCBool = true
+            var url:         URL      = URL(string: bundleIdentifier!)!
+            FileManager.default.fileExists(atPath: bundleIdentifier!, isDirectory: &isDirectory)
+            if isDirectory.boolValue {
+                dockFolderController.folderUrl = url
+                dockFolderController.present()
+            }else {
+                returnable = NSWorkspace.shared.open(url)
+            }
+            completion(true)
         }else {
             /// Launch app
             returnable = NSWorkspace.shared.launchApplication(withBundleIdentifier: bundleIdentifier!, options: [NSWorkspace.LaunchOptions.default], additionalEventParamDescriptor: nil, launchIdentifier: nil)

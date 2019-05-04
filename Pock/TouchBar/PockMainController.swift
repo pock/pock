@@ -23,6 +23,18 @@ extension NSTouchBarItem.Identifier {
 
 class PockMainController: PockTouchBarController {
     
+    override var systemTrayItemIdentifier: NSTouchBarItem.Identifier? { return .pockSystemIcon }
+    
+    required init() {
+        super.init()
+        self.showControlStripIcon()
+        self.registerForNotifications()
+    }
+    
+    deinit {
+        self.unregisterForNotifications()
+    }
+    
     override func awakeFromNib() {
         self.touchBar?.customizationIdentifier              = .pockTouchBar
         self.touchBar?.defaultItemIdentifiers               = [.escButton, .dockView]
@@ -63,5 +75,26 @@ class PockMainController: PockTouchBarController {
             return nil
         
         }
+    }
+    
+    /// Not in use right now.
+    private func showControlStripIcon() {
+        DFRSystemModalShowsCloseBoxWhenFrontMost(true)
+        let item = NSCustomTouchBarItem(identifier: .pockSystemIcon)
+        item.view = NSButton(image: #imageLiteral(resourceName: "pock-inner-icon"), target: self, action: #selector(present))
+        NSTouchBarItem.addSystemTrayItem(item)
+    }
+    
+    private func unregisterForNotifications() {
+        NSWorkspace.shared.notificationCenter.removeObserver(self)
+    }
+    
+    private func registerForNotifications() {
+        NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(reloadPock), name: .shouldReloadPock, object: nil)
+    }
+    
+    @objc func reloadPock() {
+        self.dismiss()
+        self.present()
     }
 }

@@ -11,29 +11,16 @@ import Defaults
 
 class PockTouchBarController: NSObject, NSTouchBarDelegate {
     
-    @IBOutlet weak var touchBar: NSTouchBar?
+    @IBOutlet var touchBar: NSTouchBar?
     
-    override init() {
-        super.init()
-        self.showControlStripIcon()
-        self.registerForNotifications()
-    }
+    var systemTrayItemIdentifier: NSTouchBarItem.Identifier? { return nil }
     
-    deinit {
-        self.unregisterForNotifications()
-    }
+    override required init() { super.init() }
     
-    private func unregisterForNotifications() {
-        NSWorkspace.shared.notificationCenter.removeObserver(self)
-    }
-    
-    private func registerForNotifications() {
-        NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(reloadPock), name: .shouldReloadPock, object: nil)
-    }
-    
-    @objc func reloadPock() {
-        self.dismiss()
-        self.present()
+    class func load<T: PockTouchBarController>(_ type: T.Type = T.self) -> T {
+        let controller = T()
+        Bundle.main.loadNibNamed(NSNib.Name(String(describing: self)), owner: controller, topLevelObjects: nil)
+        return controller
     }
     
     @objc func dismiss() {
@@ -51,18 +38,10 @@ class PockTouchBarController: NSObject, NSTouchBarDelegate {
     
     private func presentWithPlacement(placement: Int64) {
         if #available (macOS 10.14, *) {
-            NSTouchBar.presentSystemModalTouchBar(touchBar, placement: placement, systemTrayItemIdentifier: .pockSystemIcon)
+            NSTouchBar.presentSystemModalTouchBar(touchBar, placement: placement, systemTrayItemIdentifier: systemTrayItemIdentifier)
         } else {
-            NSTouchBar.presentSystemModalFunctionBar(touchBar, placement: placement, systemTrayItemIdentifier: .pockSystemIcon)
+            NSTouchBar.presentSystemModalFunctionBar(touchBar, placement: placement, systemTrayItemIdentifier: systemTrayItemIdentifier)
         }
-    }
-    
-    /// Not in use right now.
-    private func showControlStripIcon() {
-        DFRSystemModalShowsCloseBoxWhenFrontMost(true)
-        let item = NSCustomTouchBarItem(identifier: .pockSystemIcon)
-        item.view = NSButton(image: #imageLiteral(resourceName: "pock-inner-icon"), target: self, action: #selector(present))
-        NSTouchBarItem.addSystemTrayItem(item)
     }
     
 }
