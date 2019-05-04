@@ -22,6 +22,7 @@ class DockRepository {
     private var fileMonitor: FileMonitor?
     private let delegate: DockDelegate
     private var notificationBadgeRefreshTimer: Timer!
+    private var shouldShowNotificationBadge: Bool { return defaults[.notificationBadgeRefreshInterval] != .never }
     
     /// Running applications
     public  var dockItems:       [DockItem] = []
@@ -233,6 +234,7 @@ class DockRepository {
     
     /// Load notification badges
     private func updateNotificationBadges() {
+        guard shouldShowNotificationBadge else { return }
         for item in dockItems {
             item.badge = PockDockHelper.sharedInstance()?.getBadgeCountForItem(withName: item.name)
         }
