@@ -297,16 +297,17 @@ extension DockRepository {
         /// Check if file path.
         if bundleIdentifier!.contains("file://") {
             /// Is path, continue as path.
+            let path:        String   = bundleIdentifier!
             var isDirectory: ObjCBool = true
-            var url:         URL      = URL(string: bundleIdentifier!)!
-            FileManager.default.fileExists(atPath: bundleIdentifier!, isDirectory: &isDirectory)
+            let url:         URL      = URL(string: path)!
+            FileManager.default.fileExists(atPath: path, isDirectory: &isDirectory)
             if isDirectory.boolValue {
-                dockFolderController.folderUrl = url
+                dockFolderController.set(folderUrl: url)
                 dockFolderController.present()
+                returnable = true
             }else {
                 returnable = NSWorkspace.shared.open(url)
             }
-            completion(true)
         }else {
             /// Launch app
             returnable = NSWorkspace.shared.launchApplication(withBundleIdentifier: bundleIdentifier!, options: [NSWorkspace.LaunchOptions.default], additionalEventParamDescriptor: nil, launchIdentifier: nil)

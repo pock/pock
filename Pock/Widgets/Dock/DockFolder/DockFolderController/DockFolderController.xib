@@ -12,6 +12,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="DockFolderController" customModule="Pock" customModuleProvider="target">
             <connections>
                 <outlet property="folderName" destination="Uhl-7R-VsA" id="BX9-3b-nae"/>
+                <outlet property="scrubber" destination="6Ry-8M-2Bw" id="e7O-pb-Qwx"/>
                 <outlet property="touchBar" destination="0ER-a6-6K6" id="IY0-kY-SZS"/>
             </connections>
         </customObject>
@@ -41,22 +42,29 @@
                 <touchBarItem id="wO1-oa-Vjh">
                     <viewController key="viewController" id="cKq-iF-Ggi">
                         <textField key="view" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Uhl-7R-VsA">
-                            <rect key="frame" x="0.0" y="0.0" width="42" height="19"/>
+                            <rect key="frame" x="0.0" y="0.0" width="31" height="13"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="KUf-Nr-1HO">
-                                <font key="font" usesAppearanceFont="YES"/>
+                                <font key="font" metaFont="label"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
                     </viewController>
+                    <size key="designTimeSize" width="27" height="13"/>
                 </touchBarItem>
                 <touchBarItem id="oxw-Qn-rMD">
                     <viewController key="viewController" id="HqF-wF-zsk">
-                        <scrubber key="view" translatesAutoresizingMaskIntoConstraints="NO" id="6Ry-8M-2Bw">
-                            <rect key="frame" x="0.0" y="0.0" width="523" height="30"/>
+                        <scrubber key="view" mode="1" showsAdditionalContentIndicators="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Ry-8M-2Bw">
+                            <rect key="frame" x="0.0" y="0.0" width="534" height="30"/>
                             <autoresizingMask key="autoresizingMask"/>
-                            <scrubberProportionalLayout key="scrubberLayout"/>
+                            <scrubberFlowLayout key="scrubberLayout" itemSpacing="8">
+                                <size key="itemSize" width="120" height="30"/>
+                            </scrubberFlowLayout>
+                            <connections>
+                                <outlet property="dataSource" destination="-2" id="7cT-ot-nT3"/>
+                                <outlet property="delegate" destination="-2" id="OSc-ZG-bgR"/>
+                            </connections>
                         </scrubber>
                     </viewController>
                 </touchBarItem>

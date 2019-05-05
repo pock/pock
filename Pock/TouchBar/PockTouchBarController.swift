@@ -20,7 +20,12 @@ class PockTouchBarController: NSObject, NSTouchBarDelegate {
     class func load<T: PockTouchBarController>(_ type: T.Type = T.self) -> T {
         let controller = T()
         Bundle.main.loadNibNamed(NSNib.Name(String(describing: self)), owner: controller, topLevelObjects: nil)
+        controller.didLoad()
         return controller
+    }
+    
+    func didLoad() {
+        /// override in subclasses.
     }
     
     @objc func dismiss() {
