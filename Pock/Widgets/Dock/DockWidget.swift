@@ -15,10 +15,10 @@ class DockWidget: PockWidget {
     private var dockRepository: DockRepository!
     
     /// UI
-    private var stackView:          NSStackView = NSStackView(frame: .zero)
-    private var dockScrubber:       NSScrubber  = NSScrubber(frame: NSRect(x: 0, y: 0, width: 200,  height: 30))
-    private var separator:          NSView      = NSView(frame:     NSRect(x: 0, y: 0, width: 1,    height: 20))
-    private var persistentScrubber: NSScrubber  = NSScrubber(frame: NSRect(x: 0, y: 0, width: 50,   height: 30))
+    private var stackView:          NSStackView! = NSStackView(frame: .zero)
+    private var dockScrubber:       NSScrubber!  = NSScrubber(frame: NSRect(x: 0, y: 0, width: 200,  height: 30))
+    private var separator:          NSView!      = NSView(frame:     NSRect(x: 0, y: 0, width: 1,    height: 20))
+    private var persistentScrubber: NSScrubber!  = NSScrubber(frame: NSRect(x: 0, y: 0, width: 50,   height: 30))
     
     /// Data
     private var dockItems:       [DockItem] = []
@@ -39,6 +39,11 @@ class DockWidget: PockWidget {
     }
     
     deinit {
+        stackView           = nil
+        dockScrubber        = nil
+        separator           = nil
+        persistentScrubber  = nil
+        dockRepository      = nil
         NSWorkspace.shared.notificationCenter.removeObserver(self)
     }
     

@@ -17,6 +17,7 @@ struct SPowerStatus {
 class SPowerItem: StatusItem {
     
     /// Core
+    private weak var refreshTimer: Timer?
     private var powerStatus: SPowerStatus = SPowerStatus(isCharging: false, currentValue: 0)
     private var shouldShowBatteryIcon: Bool {
         return defaults[.shouldShowBatteryIcon]
@@ -36,7 +37,14 @@ class SPowerItem: StatusItem {
         configureValueLabel()
         configureStackView()
         reload()
-        Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(reload), userInfo: nil, repeats: true)
+        refreshTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self] _ in
+            self?.reload()
+        })
+    }
+    
+    deinit {
+        refreshTimer?.invalidate()
+        refreshTimer = nil
     }
     
     var enabled: Bool{ return defaults[.shouldShowPowerItem] }
@@ -46,7 +54,7 @@ class SPowerItem: StatusItem {
     var view: NSView { return stackView }
     
     func action() {
-        print("[Pock]: Power Status icon tapped!")
+        if !isProd { print("[Pock]: Power Status icon tapped!") }
     }
     
     private func configureValueLabel() {
@@ -66,7 +74,7 @@ class SPowerItem: StatusItem {
         stackView.addArrangedSubview(iconView)
     }
     
-    @objc func reload() {
+    func reload() {
         let snapshot = IOPSCopyPowerSourcesInfo().takeRetainedValue()
         let sources = IOPSCopyPowerSourcesList(snapshot).takeRetainedValue() as Array
         for ps in sources {

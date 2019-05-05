@@ -11,7 +11,7 @@ import Foundation
 class StatusWidget: PockWidget {
     
     /// Core
-    private let statusElements: [StatusItem] = [
+    private var statusElements: [StatusItem] = [
         SWifiItem(),
         SPowerItem(),
         SClockItem()
@@ -20,6 +20,11 @@ class StatusWidget: PockWidget {
     
     /// UI
     private var stackView: NSStackView!
+    
+    deinit {
+        statusElementViews.removeAll()
+        statusElements.removeAll()
+    }
     
     override func customInit() {
         self.customizationLabel = "Status"

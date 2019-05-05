@@ -19,19 +19,22 @@ class DockFolderController: PockTouchBarController {
     private var dockFolderRepository: DockFolderRepository!
     private var folderUrl: URL!
     private var elements: [DockFolderItem] = []
-    private var childControllers: [DockFolderController] = []
+    
+    deinit {
+        if !isProd { print("[DockFolderController]: Deinit controller for path: \(folderUrl.path)") }
+    }
     
     override func present() {
         guard folderUrl != nil else { return }
         self.loadElements()
         var defaultIdentifiers = touchBar?.defaultItemIdentifiers
-        if dockFolderRepository.rootDockFolderController.childControllers.isEmpty {
+        if !dockFolderRepository.shouldShowBackButton {
             defaultIdentifiers?.removeAll(where: { $0.rawValue == "BackButton" })
         }
         touchBar?.defaultItemIdentifiers = defaultIdentifiers ?? []
         super.present()
-        self.folderName.stringValue   = folderUrl?.lastPathComponent.truncate(length: 30) ?? "<missing name>"
-        self.folderDetail.stringValue = "\(elements.count) elements"
+        self.setCurrentFolder(name: folderUrl?.lastPathComponent ?? "<missing name>")
+        self.folderDetail.stringValue = "Loading..."
     }
     
     override func didLoad() {
@@ -39,16 +42,16 @@ class DockFolderController: PockTouchBarController {
     }
     
     @IBAction func willClose(_ button: NSButton?) {
-        dockFolderRepository.rootDockFolderController.popToRootDockFolderController(shouldDismiss: true)
+        dockFolderRepository.popToRootDockFolderController()
     }
     
     @IBAction func willDismiss(_ button: NSButton?) {
-        dockFolderRepository.rootDockFolderController.popDockFolderController()
+        dockFolderRepository.popDockFolderController()
     }
     
     @IBAction func willOpen(_ button: NSButton?) {
         NSWorkspace.shared.open(folderUrl)
-        willDismiss(nil)
+        willClose(nil)
     }
     
 }
@@ -60,31 +63,18 @@ extension DockFolderController {
     public func set(dockFolderRepository: DockFolderRepository) {
         self.dockFolderRepository = dockFolderRepository
     }
-    public func push(_ controller: DockFolderController) {
-        childControllers.append(controller)
-        controller.set(dockFolderRepository: dockFolderRepository)
-        controller.present()
-    }
-    public func popDockFolderController() {
-        guard let last = childControllers.popLast() else {
-            self.dismiss()
-            return
-        }
-        last.dismiss()
-    }
-    public func popToRootDockFolderController(shouldDismiss: Bool = false) {
-        childControllers.reversed().forEach({ $0.popDockFolderController() })
-        childControllers.removeAll()
-        if shouldDismiss {
-            self.dismiss()
-        }
-    }
 }
 
 extension DockFolderController {
     private func loadElements(reloadScrubber: Bool = true) {
-        elements = dockFolderRepository.getItems(in: folderUrl)
-        if reloadScrubber { scrubber.reloadData() }
+        dockFolderRepository.getItems(in: folderUrl) { [weak self] elements in
+            self?.elements = elements
+            self?.folderDetail.stringValue = "\(elements.count) elements"
+            if reloadScrubber { self?.scrubber.reloadData() }
+        }
+    }
+    private func setCurrentFolder(name: String) {
+        self.folderName.stringValue = name == ".Trash" ? "Trash" : name.truncate(length: 30)
     }
 }
 
@@ -119,7 +109,9 @@ extension DockFolderController: NSScrubberFlowLayoutDelegate {
 extension DockFolderController: NSScrubberDelegate {
     func scrubber(_ scrubber: NSScrubber, didSelectItemAt selectedIndex: Int) {
         let item = elements[selectedIndex]
-        dockFolderRepository.open(item: item)
+        dockFolderRepository.open(item: item) { success in
+            NSLog("[DockFolderController]: Did open: \(item.path?.path ?? "<unknown>") [success: \(success)]")
+        }
         scrubber.selectedIndex = -1
     }
 }

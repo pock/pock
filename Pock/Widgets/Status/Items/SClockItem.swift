@@ -11,8 +11,11 @@ import Defaults
 
 class SClockItem: StatusItem {
     
+    /// Core
+    private weak var refreshTimer: Timer?
+    
     /// UI
-    private let clockLabel: NSTextField!
+    private var clockLabel: NSTextField!
     
     init() {
         clockLabel = NSTextField()
@@ -23,7 +26,15 @@ class SClockItem: StatusItem {
         clockLabel.isEditable = false
         clockLabel.sizeToFit()
         reload()
-        Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(reload), userInfo: nil, repeats: true)
+        refreshTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self] _ in
+            self?.reload()
+        })
+    }
+    
+    deinit {
+        refreshTimer?.invalidate()
+        refreshTimer = nil
+        clockLabel = nil
     }
     
     var enabled: Bool{ return defaults[.shouldShowDateItem] }
@@ -33,10 +44,10 @@ class SClockItem: StatusItem {
     var view: NSView { return clockLabel }
     
     func action() {
-        print("[Pock]: Clock Status icon tapped!")
+        if !isProd { print("[Pock]: Clock Status icon tapped!") }
     }
     
-    @objc func reload() {
+    func reload() {
         let formatter = DateFormatter()
         formatter.dateFormat = "EE dd MMM HH:mm"
         formatter.locale = Locale(identifier: Locale.preferredLanguages.first ?? "en_US_POSIX")

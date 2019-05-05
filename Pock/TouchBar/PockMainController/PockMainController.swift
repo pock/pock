@@ -28,73 +28,49 @@ class PockMainController: PockTouchBarController {
     required init() {
         super.init()
         self.showControlStripIcon()
-        self.registerForNotifications()
     }
     
     deinit {
-        self.unregisterForNotifications()
+        if !isProd { print("[PockMainController]: Deinit Pock main controller") }
     }
     
     override func awakeFromNib() {
         self.touchBar?.customizationIdentifier              = .pockTouchBar
         self.touchBar?.defaultItemIdentifiers               = [.escButton, .dockView]
         self.touchBar?.customizationAllowedItemIdentifiers  = [.escButton, .dockView, .controlCenter, .nowPlaying, .status]
-        
         super.awakeFromNib()
     }
     
     func touchBar(_ touchBar: NSTouchBar, makeItemForIdentifier identifier: NSTouchBarItem.Identifier) -> NSTouchBarItem? {
+        var widget: PockWidget?
         switch identifier {
-            
         /// Esc button
         case .escButton:
-            let widget = EscWidget(identifier: identifier)
-            return widget
-            
+            widget = EscWidget(identifier: identifier)
         /// Dock widget
         case .dockView:
-            let widget = DockWidget(identifier: identifier)
-            return widget
-            
+            widget = DockWidget(identifier: identifier)
         /// ControlCenter widget
         case .controlCenter:
-            let widget = ControlCenterWidget(identifier: identifier)
-            return widget
-            
+            widget = ControlCenterWidget(identifier: identifier)
         /// NowPlaying widget
         case .nowPlaying:
-            let widget = NowPlayingWidget(identifier: identifier)
-            return widget
-            
+            widget = NowPlayingWidget(identifier: identifier)
         /// Status widget
         case .status:
-            let widget = StatusWidget(identifier: identifier)
-            return widget
-        
+            widget = StatusWidget(identifier: identifier)
         default:
             return nil
-        
         }
+        return widget
     }
     
     /// Not in use right now.
     private func showControlStripIcon() {
-        DFRSystemModalShowsCloseBoxWhenFrontMost(true)
-        let item = NSCustomTouchBarItem(identifier: .pockSystemIcon)
+        /* DFRSystemModalShowsCloseBoxWhenFrontMost(true)
+        weak var item = NSCustomTouchBarItem(identifier: .pockSystemIcon)
         item.view = NSButton(image: #imageLiteral(resourceName: "pock-inner-icon"), target: self, action: #selector(present))
-        NSTouchBarItem.addSystemTrayItem(item)
+        NSTouchBarItem.addSystemTrayItem(item) */
     }
     
-    private func unregisterForNotifications() {
-        NSWorkspace.shared.notificationCenter.removeObserver(self)
-    }
-    
-    private func registerForNotifications() {
-        NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(reloadPock), name: .shouldReloadPock, object: nil)
-    }
-    
-    @objc func reloadPock() {
-        self.dismiss()
-        self.present()
-    }
 }

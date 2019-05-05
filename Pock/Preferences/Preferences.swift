@@ -9,7 +9,7 @@
 import Foundation
 import Defaults
 
-let isProd: Bool = true
+let isProd: Bool = false
 
 extension NSNotification.Name {
     static let didChangeNotificationBadgeRefreshRate = NSNotification.Name("didSelectNotificationBadgeRefreshRate")

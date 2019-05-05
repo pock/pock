@@ -9,7 +9,7 @@
 import Foundation
 import Defaults
 
-protocol DockDelegate {
+protocol DockDelegate: class {
     func didUpdate(apps: [DockItem])
     func didUpdate(items: [DockItem])
     func didUpdateBadge(for apps: [DockItem])
@@ -19,8 +19,8 @@ protocol DockDelegate {
 class DockRepository {
     
     /// Core
+    private weak var delegate: DockDelegate?
     private var fileMonitor: FileMonitor?
-    private let delegate: DockDelegate
     private var notificationBadgeRefreshTimer: Timer!
     private var shouldShowNotificationBadge: Bool { return defaults[.notificationBadgeRefreshInterval] != .never }
     private var dockFolderRepository: DockFolderRepository?
@@ -34,6 +34,7 @@ class DockRepository {
     /// Init
     init(delegate: DockDelegate) {
         self.delegate = delegate
+        self.dockFolderRepository = DockFolderRepository()
         self.registerForNotifications()
         self.setupNotificationBadgeRefreshTimer()
     }
@@ -41,6 +42,12 @@ class DockRepository {
     /// Deinit
     deinit {
         self.unregisterForNotifications()
+        dockFolderRepository = nil
+        dockItems.removeAll()
+        runningItems.removeAll()
+        persistentApps.removeAll()
+        persistentItems.removeAll()
+        if !isProd { print("[DockRepository]: Deinit Dock Repository") }
     }
     
     /// Reload
@@ -52,7 +59,7 @@ class DockRepository {
         loadPersistentApps()
         loadRunningApplications(notification)
         loadPersistentItems()
-        delegate.didUpdate(apps: dockItems)
+        delegate?.didUpdate(apps: dockItems)
         updateNotificationBadges()
         updateRunningState()
     }
@@ -131,7 +138,7 @@ class DockRepository {
                 dockItems.append(item)
             }
         }
-        delegate.didUpdate(apps: dockItems)
+        delegate?.didUpdate(apps: dockItems)
         updateRunningState()
     }
     
@@ -204,24 +211,22 @@ class DockRepository {
             guard let fileData = dataTile["file-data"] as? [String: Any] else { NSLog("[Pock]: Can't get file data"); continue }
             /// Get app's bundle identifier
             guard let path = fileData["_CFURLString"] as? String else { NSLog("[Pock]: Can't get file path"); continue }
-            /// Get other's file type.
-            let tileType = app["tile-type"] as? String
             /// Create item
             let item = DockItem(index,
                                 nil,
                                 name: label,
                                 path: URL(string: path),
-                                icon: DockRepository.getIcon(orPath: path.replacingOccurrences(of: "file://", with: ""), orType: tileType),
+                                icon: DockRepository.getIcon(orPath: path.replacingOccurrences(of: "file://", with: "")),
                                 launching: false,
                                 persistentItem: true)
             persistentItems.append(item)
         }
         if !defaults[.hideTrash] && !persistentItems.contains(where: { $0.path?.absoluteString == Constants.trashPath }) {
-            let trashType = ((try? FileManager.default.contentsOfDirectory(atPath: Constants.trashPath).isEmpty) ?? true) ? "TrashIcon" : "FullTrashIcon"
-            let trashItem = DockItem(0, nil, name: "Trash", path: URL(string: "file://"+Constants.trashPath)!, icon: DockRepository.getIcon(orType: trashType), persistentItem: true)
+            let path      = URL(string: "file://"+Constants.trashPath)!
+            let trashItem = DockItem(0, nil, name: "Trash", path: path, icon: DockFolderRepository.icon(for: path), persistentItem: true)
             persistentItems.append(trashItem)
         }
-        delegate.didUpdate(items: persistentItems)
+        delegate?.didUpdate(items: persistentItems)
     }
     
     /// Load running dot
@@ -230,7 +235,7 @@ class DockRepository {
             item.pid_t = NSWorkspace.shared.runningApplications.first(where: { $0.bundleIdentifier == item.bundleIdentifier })?.processIdentifier ?? 0
         }
         let apps = dockItems.filter({ $0.isRunning })
-        delegate.didUpdateRunningState(for: apps)
+        delegate?.didUpdateRunningState(for: apps)
     }
     
     /// Load notification badges
@@ -240,7 +245,7 @@ class DockRepository {
             item.badge = PockDockHelper.sharedInstance()?.getBadgeCountForItem(withName: item.name)
         }
         let apps = dockItems.filter({ $0.hasBadge })
-        delegate.didUpdateBadge(for: apps)
+        delegate?.didUpdateBadge(for: apps)
     }
     
 }
@@ -249,7 +254,7 @@ extension DockRepository: FileMonitorDelegate {
     func didChange(fileMonitor: FileMonitor, paths: [String]) {
         DispatchQueue.main.async { [weak self] in
             for path in paths {
-                NSLog("[Pock]: [\(type(of: fileMonitor))] # Changes in path: \(path)")
+                if !isProd { NSLog("[Pock]: [\(type(of: fileMonitor))] # Changes in path: \(path)") }
             }
             self?.reload(nil)
         }
@@ -258,7 +263,7 @@ extension DockRepository: FileMonitorDelegate {
 
 extension DockRepository {
     /// Get icon
-    public class func getIcon(forBundleIdentifier bundleIdentifier: String? = nil, orPath path: String? = nil, orType type: String? = nil) -> NSImage {
+    public class func getIcon(forBundleIdentifier bundleIdentifier: String? = nil, orPath path: String? = nil) -> NSImage? {
         /// Check for bundle identifier first
         if bundleIdentifier != nil {
             /// Get app's absolute path
@@ -271,19 +276,7 @@ extension DockRepository {
         if path != nil {
             return NSWorkspace.shared.icon(forFile: path!)
         }
-        /// Last beach, manually check on type
-        var genericIconPath = "/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/GenericDocumentIcon.icns"
-        if type != nil {
-            if type == "directory-tile" {
-                genericIconPath = "/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/GenericFolderIcon.icns"
-            }else if type == "TrashIcon" || type == "FullTrashIcon" {
-                genericIconPath = "/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/\(type!).icns"
-            }
-        }
-        /// Load image
-        let genericIcon = NSImage(contentsOfFile: genericIconPath)
-        /// Return icon
-        return genericIcon ?? NSImage(size: .zero)
+        return nil
     }
     /// Launch app or open file/directory
     public func launch(bundleIdentifier: String?, completion: (Bool) -> ()) {
@@ -301,9 +294,8 @@ extension DockRepository {
             let url:         URL      = URL(string: path)!
             FileManager.default.fileExists(atPath: path, isDirectory: &isDirectory)
             if isDirectory.boolValue {
-                let controller: DockFolderController = DockFolderController.load()
-                controller.set(folderUrl: url)
-                dockFolderRepository = DockFolderRepository(rootDockFolderController: controller)
+                dockFolderRepository?.popToRootDockFolderController()
+                dockFolderRepository?.push(url)
                 returnable = true
             }else {
                 returnable = NSWorkspace.shared.open(url)
@@ -311,9 +303,8 @@ extension DockRepository {
         }else {
             /// Open Finder in Touch Bar
             if bundleIdentifier == "com.apple.finder" {
-                let controller: DockFolderController = DockFolderController.load()
-                controller.set(folderUrl: URL(string: NSHomeDirectory())!)
-                dockFolderRepository = DockFolderRepository(rootDockFolderController: controller)
+                dockFolderRepository?.popToRootDockFolderController()
+                dockFolderRepository?.push(URL(string: NSHomeDirectory())!)
                 returnable = true
             }else {
                 /// Launch app

@@ -9,22 +9,25 @@
 import Foundation
 
 class PockWidgetViewController: NSViewController {
-    var widget: PockWidget!
+    weak var widget: PockWidget?
     override func viewWillAppear() {
         super.viewWillAppear()
-        self.widget.viewWillAppear()
+        self.widget?.viewWillAppear()
     }
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.widget.viewDidAppear()
+        self.widget?.viewDidAppear()
     }
     override func viewWillDisappear() {
         super.viewWillDisappear()
-        self.widget.viewWillDisappear()
+        self.widget?.viewWillDisappear()
     }
     override func viewDidDisappear() {
         super.viewDidDisappear()
-        self.widget.viewDidDisappear()
+        self.widget?.viewDidDisappear()
+    }
+    deinit {
+        if !isProd { print("[\(type(of: self))]: Widget deinit called.") }
     }
 }
 
@@ -41,10 +44,15 @@ class PockWidget: NSCustomTouchBarItem {
     }
     
     private func initialize() {
-        let controller = PockWidgetViewController()
-        controller.widget = self
+        let controller      = PockWidgetViewController()
+        controller.widget   = self
         self.viewController = controller
         customInit()
+    }
+    
+    deinit {
+        viewController = nil
+        if !isProd { print("[PockWidget]: [\(type(of: self))] - deinit called.") }
     }
     
     func customInit() {

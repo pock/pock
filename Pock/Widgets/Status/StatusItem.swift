@@ -9,13 +9,13 @@
 import Foundation
 
 class StatusItemView: PockTappableView {
-    var item: StatusItem?
+    weak var item: StatusItem?
     override func didTapHandler() {
         item?.action()
     }
 }
 
-protocol StatusItem {
+protocol StatusItem: class {
     var enabled: Bool   { get }
     var title:   String { get }
     var view:    NSView { get }

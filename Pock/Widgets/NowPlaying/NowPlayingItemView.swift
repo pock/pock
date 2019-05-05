@@ -37,6 +37,12 @@ class NowPlayingItemView: PockTappableView {
         }
     }
     
+    deinit {
+        didTap = nil
+        didSwipeLeft = nil
+        didSwipeRight = nil
+    }
+    
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
         

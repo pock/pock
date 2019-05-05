@@ -15,8 +15,9 @@ import Crashlytics
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
-    /// IBOutlets
-    @IBOutlet weak var touchBarController: PockTouchBarController!
+    /// Core
+    fileprivate var _navController: PockTouchBarNavController?
+    var navController: PockTouchBarNavController? { return _navController }
     
     /// Timer
     fileprivate var automaticUpdatesTimer: Timer?
@@ -72,14 +73,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                                                           selector: #selector(toggleAutomaticUpdatesTimer),
                                                           name: .shouldEnableAutomaticUpdates,
                                                           object: nil)
+        NSWorkspace.shared.notificationCenter.addObserver(self,
+                                                          selector: #selector(reloadPock),
+                                                          name: .shouldReloadPock,
+                                                          object: nil)
         toggleAutomaticUpdatesTimer()
         
         /// Present Pock
-        self.touchBarController.present()
+        self.reloadPock()
         
         /// Set Pock inactive
         NSApp.deactivate()
         
+    }
+    
+    @objc func reloadPock() {
+        _navController?.dismiss()
+        _navController = nil
+        let mainController: PockMainController = PockMainController.load()
+        _navController = PockTouchBarNavController(rootController: mainController)
     }
     
     @objc private func toggleAutomaticUpdatesTimer() {
@@ -94,6 +106,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     /// Will terminate
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
+        _navController?.dismiss()
+        _navController = nil
     }
     
     /// Check for updates
@@ -122,7 +136,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @objc private func openCustomization() {
-        touchBarController.openCustomization()
+        (_navController?.rootController as? PockMainController)?.openCustomization()
     }
     
 }

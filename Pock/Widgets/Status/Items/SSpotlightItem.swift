@@ -13,8 +13,8 @@ import Carbon.HIToolbox
 class SSpotlightItem: StatusItem {
     
     /// UI
-    private let tappableView: StatusItemView = StatusItemView(frame: .zero)
-    private let iconView: NSImageView = NSImageView(frame: .zero)
+    private var tappableView: StatusItemView! = StatusItemView(frame: .zero)
+    private var iconView: NSImageView! = NSImageView(frame: .zero)
     
     init() {
         iconView.image      = NSImage(named: NSImage.touchBarSearchTemplateName)!
@@ -23,6 +23,13 @@ class SSpotlightItem: StatusItem {
         iconView.snp.makeConstraints({ maker in
             maker.edges.equalTo(tappableView).inset(2)
         })
+    }
+    
+    deinit {
+        iconView.image    = nil
+        iconView          = nil
+        tappableView.item = nil
+        tappableView      = nil
     }
     
     var enabled: Bool{ return defaults[.shouldShowSpotlightItem] }

@@ -34,7 +34,7 @@ class SWifiItem: StatusItem {
     var view: NSView { return iconView }
     
     func action() {
-        print("[Pock]: WiFi Status icon tapped!")
+        if !isProd { print("[Pock]: WiFi Status icon tapped!") }
     }
     
     func reload() {

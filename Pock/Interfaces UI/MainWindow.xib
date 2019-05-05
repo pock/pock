@@ -2,9 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaDFRPlugin" version="14460.1"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
-        <capability name="the Touch Bar" minToolsVersion="8.1" minSystemVersion="10.12.2" requiredIntegratedClassName="NSTouchBar"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -14,22 +12,6 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customObject id="Xp9-BN-PcC" userLabel="AppDelegate" customClass="AppDelegate" customModule="Pock" customModuleProvider="target">
-            <connections>
-                <outlet property="touchBarController" destination="7IK-q5-hfs" id="y4Z-gW-K0e"/>
-            </connections>
-        </customObject>
-        <customObject id="7IK-q5-hfs" userLabel="PockTouchBarController" customClass="PockMainController" customModule="Pock" customModuleProvider="target">
-            <connections>
-                <outlet property="touchBar" destination="WzL-AA-XcA" id="BsS-Fe-YNN"/>
-            </connections>
-        </customObject>
-        <touchBar id="WzL-AA-XcA">
-            <nil name="touchBarItems"/>
-            <connections>
-                <outlet property="delegate" destination="7IK-q5-hfs" id="sYx-BO-0Oo"/>
-            </connections>
-            <point key="canvasLocation" x="10" y="-120"/>
-        </touchBar>
+        <customObject id="Xp9-BN-PcC" userLabel="AppDelegate" customClass="AppDelegate" customModule="Pock" customModuleProvider="target"/>
     </objects>
 </document>

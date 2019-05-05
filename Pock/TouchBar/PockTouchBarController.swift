@@ -11,7 +11,9 @@ import Defaults
 
 class PockTouchBarController: NSObject, NSTouchBarDelegate {
     
-    @IBOutlet var touchBar: NSTouchBar?
+    @IBOutlet weak var touchBar: NSTouchBar?
+    
+    weak var navController: PockTouchBarNavController?
     
     var systemTrayItemIdentifier: NSTouchBarItem.Identifier? { return nil }
     
