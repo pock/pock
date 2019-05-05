@@ -11,7 +11,8 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="DockFolderController" customModule="Pock" customModuleProvider="target">
             <connections>
-                <outlet property="folderName" destination="Uhl-7R-VsA" id="BX9-3b-nae"/>
+                <outlet property="folderDetail" destination="ity-zH-1YM" id="1fL-oL-3xP"/>
+                <outlet property="folderName" destination="CkE-us-uZe" id="WZP-Ui-4Nr"/>
                 <outlet property="scrubber" destination="6Ry-8M-2Bw" id="e7O-pb-Qwx"/>
                 <outlet property="touchBar" destination="0ER-a6-6K6" id="IY0-kY-SZS"/>
             </connections>
@@ -33,30 +34,62 @@
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
                             <connections>
-                                <action selector="willDismiss:" target="-2" id="Nts-ux-mME"/>
+                                <action selector="willClose:" target="-2" id="3IE-U1-hJR"/>
                             </connections>
                         </button>
                     </viewController>
                     <size key="designTimeSize" width="28" height="28"/>
                 </touchBarItem>
-                <touchBarItem id="wO1-oa-Vjh">
-                    <viewController key="viewController" id="cKq-iF-Ggi">
-                        <textField key="view" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Uhl-7R-VsA">
-                            <rect key="frame" x="0.0" y="0.0" width="31" height="13"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                            <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="KUf-Nr-1HO">
-                                <font key="font" metaFont="label"/>
-                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                            </textFieldCell>
-                        </textField>
+                <touchBarItem id="Vwf-GI-9Hu">
+                    <viewController key="viewController" id="w1a-U7-jfK">
+                        <view key="view" translatesAutoresizingMaskIntoConstraints="NO" id="cya-TG-bzz">
+                            <rect key="frame" x="0.0" y="0.0" width="60" height="30"/>
+                            <subviews>
+                                <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zig-u0-MQR">
+                                    <rect key="frame" x="2" y="2" width="56" height="26"/>
+                                    <subviews>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CkE-us-uZe">
+                                            <rect key="frame" x="-2" y="13" width="31" height="13"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="Php-Rl-UIf">
+                                                <font key="font" metaFont="label"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ity-zH-1YM">
+                                            <rect key="frame" x="-2" y="0.0" width="31" height="13"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="JrJ-Ma-3oA">
+                                                <font key="font" metaFont="label"/>
+                                                <color key="textColor" white="0.54512737793465182" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                    </subviews>
+                                    <visibilityPriorities>
+                                        <integer value="1000"/>
+                                        <integer value="1000"/>
+                                    </visibilityPriorities>
+                                    <customSpacing>
+                                        <real value="3.4028234663852886e+38"/>
+                                        <real value="3.4028234663852886e+38"/>
+                                    </customSpacing>
+                                </stackView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="Zig-u0-MQR" firstAttribute="top" secondItem="cya-TG-bzz" secondAttribute="top" constant="2" id="7Vw-mR-5ZL"/>
+                                <constraint firstAttribute="trailing" secondItem="Zig-u0-MQR" secondAttribute="trailing" constant="2" id="BV9-jj-13B"/>
+                                <constraint firstAttribute="bottom" secondItem="Zig-u0-MQR" secondAttribute="bottom" constant="2" id="KHf-Ou-Gau"/>
+                                <constraint firstItem="Zig-u0-MQR" firstAttribute="leading" secondItem="cya-TG-bzz" secondAttribute="leading" constant="2" id="ofu-Ha-bGd"/>
+                            </constraints>
+                        </view>
                     </viewController>
-                    <size key="designTimeSize" width="27" height="13"/>
+                    <size key="designTimeSize" width="60" height="31"/>
                 </touchBarItem>
+                <touchBarSpacerItem identifier="NSTouchBarItemIdentifierFixedSpaceLarge" id="jPh-ro-Y7i"/>
                 <touchBarItem id="oxw-Qn-rMD">
                     <viewController key="viewController" id="HqF-wF-zsk">
                         <scrubber key="view" mode="1" showsAdditionalContentIndicators="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Ry-8M-2Bw">
-                            <rect key="frame" x="0.0" y="0.0" width="534" height="30"/>
+                            <rect key="frame" x="0.0" y="0.0" width="401" height="30"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <scrubberFlowLayout key="scrubberLayout" itemSpacing="8">
                                 <size key="itemSize" width="120" height="30"/>
@@ -68,10 +101,27 @@
                         </scrubber>
                     </viewController>
                 </touchBarItem>
+                <touchBarItem identifier="BackButton" id="Xui-xO-Sm5">
+                    <viewController key="viewController" id="eOe-kE-WKl">
+                        <button key="view" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Edq-Kc-xgh">
+                            <rect key="frame" x="0.0" y="0.0" width="70" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <buttonCell key="cell" type="push" title="Back" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="qHq-qc-N34">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" usesAppearanceFont="YES"/>
+                            </buttonCell>
+                            <color key="bezelColor" name="placeholderTextColor" catalog="System" colorSpace="catalog"/>
+                            <connections>
+                                <action selector="willDismiss:" target="-2" id="npD-kj-DpY"/>
+                            </connections>
+                        </button>
+                    </viewController>
+                    <size key="designTimeSize" width="70" height="30"/>
+                </touchBarItem>
                 <touchBarItem id="wnG-Bp-k9E">
                     <viewController key="viewController" id="Ot2-Ek-gM4">
-                        <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="w3b-hX-6wx">
-                            <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
+                        <button key="view" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w3b-hX-6wx">
+                            <rect key="frame" x="0.0" y="0.0" width="70" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <buttonCell key="cell" type="push" title="Open" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9UV-hx-aj8">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -83,10 +133,13 @@
                             </connections>
                         </button>
                     </viewController>
-                    <size key="designTimeSize" width="72" height="30"/>
+                    <size key="designTimeSize" width="70" height="30"/>
                 </touchBarItem>
             </touchBarItems>
-            <point key="canvasLocation" x="139" y="9"/>
+            <connections>
+                <outlet property="delegate" destination="-2" id="fI8-Ak-LlS"/>
+            </connections>
+            <point key="canvasLocation" x="138.5" y="9"/>
         </touchBar>
     </objects>
     <resources>

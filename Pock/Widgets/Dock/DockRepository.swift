@@ -23,7 +23,7 @@ class DockRepository {
     private let delegate: DockDelegate
     private var notificationBadgeRefreshTimer: Timer!
     private var shouldShowNotificationBadge: Bool { return defaults[.notificationBadgeRefreshInterval] != .never }
-    private var dockFolderController: DockFolderController
+    private var dockFolderRepository: DockFolderRepository?
     
     /// Running applications
     public  var dockItems:       [DockItem] = []
@@ -34,7 +34,6 @@ class DockRepository {
     /// Init
     init(delegate: DockDelegate) {
         self.delegate = delegate
-        self.dockFolderController = DockFolderController.load()
         self.registerForNotifications()
         self.setupNotificationBadgeRefreshTimer()
     }
@@ -302,15 +301,24 @@ extension DockRepository {
             let url:         URL      = URL(string: path)!
             FileManager.default.fileExists(atPath: path, isDirectory: &isDirectory)
             if isDirectory.boolValue {
-                dockFolderController.set(folderUrl: url)
-                dockFolderController.present()
+                let controller: DockFolderController = DockFolderController.load()
+                controller.set(folderUrl: url)
+                dockFolderRepository = DockFolderRepository(rootDockFolderController: controller)
                 returnable = true
             }else {
                 returnable = NSWorkspace.shared.open(url)
             }
         }else {
-            /// Launch app
-            returnable = NSWorkspace.shared.launchApplication(withBundleIdentifier: bundleIdentifier!, options: [NSWorkspace.LaunchOptions.default], additionalEventParamDescriptor: nil, launchIdentifier: nil)
+            /// Open Finder in Touch Bar
+            if bundleIdentifier == "com.apple.finder" {
+                let controller: DockFolderController = DockFolderController.load()
+                controller.set(folderUrl: URL(string: NSHomeDirectory())!)
+                dockFolderRepository = DockFolderRepository(rootDockFolderController: controller)
+                returnable = true
+            }else {
+                /// Launch app
+                returnable = NSWorkspace.shared.launchApplication(withBundleIdentifier: bundleIdentifier!, options: [NSWorkspace.LaunchOptions.default], additionalEventParamDescriptor: nil, launchIdentifier: nil)
+            }
         }
         /// Return status
         completion(returnable)

@@ -11,43 +11,80 @@ import Foundation
 class DockFolderController: PockTouchBarController {
     
     /// UI
-    @IBOutlet private weak var folderName: NSTextField!
-    @IBOutlet private weak var scrubber:   NSScrubber!
+    @IBOutlet private weak var folderName:   NSTextField!
+    @IBOutlet private weak var folderDetail: NSTextField!
+    @IBOutlet private weak var scrubber:     NSScrubber!
     
     /// Core
-    private let dockFolderRepository: DockFolderRepository = DockFolderRepository()
+    private var dockFolderRepository: DockFolderRepository!
     private var folderUrl: URL!
     private var elements: [DockFolderItem] = []
+    private var childControllers: [DockFolderController] = []
     
     override func present() {
         guard folderUrl != nil else { return }
         self.loadElements()
+        var defaultIdentifiers = touchBar?.defaultItemIdentifiers
+        if dockFolderRepository.rootDockFolderController.childControllers.isEmpty {
+            defaultIdentifiers?.removeAll(where: { $0.rawValue == "BackButton" })
+        }
+        touchBar?.defaultItemIdentifiers = defaultIdentifiers ?? []
         super.present()
-        self.folderName.stringValue = folderUrl?.lastPathComponent ?? "??"
+        self.folderName.stringValue   = folderUrl?.lastPathComponent.truncate(length: 30) ?? "<missing name>"
+        self.folderDetail.stringValue = "\(elements.count) elements"
     }
     
     override func didLoad() {
         scrubber.register(DockFolderItemView.self, forItemIdentifier: Constants.kDockFolterItemView)
     }
     
+    @IBAction func willClose(_ button: NSButton?) {
+        dockFolderRepository.rootDockFolderController.popToRootDockFolderController(shouldDismiss: true)
+    }
+    
     @IBAction func willDismiss(_ button: NSButton?) {
-        self.dismiss()
+        dockFolderRepository.rootDockFolderController.popDockFolderController()
     }
     
     @IBAction func willOpen(_ button: NSButton?) {
         NSWorkspace.shared.open(folderUrl)
-        self.dismiss()
+        willDismiss(nil)
     }
     
+}
+
+extension DockFolderController {
+    public func set(folderUrl: URL) {
+        self.folderUrl = folderUrl
+    }
+    public func set(dockFolderRepository: DockFolderRepository) {
+        self.dockFolderRepository = dockFolderRepository
+    }
+    public func push(_ controller: DockFolderController) {
+        childControllers.append(controller)
+        controller.set(dockFolderRepository: dockFolderRepository)
+        controller.present()
+    }
+    public func popDockFolderController() {
+        guard let last = childControllers.popLast() else {
+            self.dismiss()
+            return
+        }
+        last.dismiss()
+    }
+    public func popToRootDockFolderController(shouldDismiss: Bool = false) {
+        childControllers.reversed().forEach({ $0.popDockFolderController() })
+        childControllers.removeAll()
+        if shouldDismiss {
+            self.dismiss()
+        }
+    }
 }
 
 extension DockFolderController {
     private func loadElements(reloadScrubber: Bool = true) {
         elements = dockFolderRepository.getItems(in: folderUrl)
         if reloadScrubber { scrubber.reloadData() }
-    }
-    public func set(folderUrl: URL) {
-        self.folderUrl = folderUrl
     }
 }
 
@@ -81,6 +118,8 @@ extension DockFolderController: NSScrubberFlowLayoutDelegate {
 
 extension DockFolderController: NSScrubberDelegate {
     func scrubber(_ scrubber: NSScrubber, didSelectItemAt selectedIndex: Int) {
-        print("[DockFolderController]: Did select item at: \(selectedIndex)")
+        let item = elements[selectedIndex]
+        dockFolderRepository.open(item: item)
+        scrubber.selectedIndex = -1
     }
 }
