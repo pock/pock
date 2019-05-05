@@ -595,9 +595,9 @@
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PROJECT_DIR}/Pods/LaunchAtLogin/LaunchAtLogin/copy-helper.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/LaunchAtLogin/LaunchAtLogin/copy-helper.sh\"\n";
 		};
 		9C497126EC20FAC73A4D0299 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;

@@ -50,7 +50,6 @@ class NowPlayingWidget: PockWidget {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
-        NowPlayingHelper.shared.nowPlayingItem = nil
     }
     
 }

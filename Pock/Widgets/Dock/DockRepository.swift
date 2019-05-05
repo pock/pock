@@ -222,8 +222,8 @@ class DockRepository {
             persistentItems.append(item)
         }
         if !defaults[.hideTrash] && !persistentItems.contains(where: { $0.path?.absoluteString == Constants.trashPath }) {
-            let path      = URL(string: "file://"+Constants.trashPath)!
-            let trashItem = DockItem(0, nil, name: "Trash", path: path, icon: DockFolderRepository.icon(for: path), persistentItem: true)
+            let trashType = ((try? FileManager.default.contentsOfDirectory(atPath: Constants.trashPath).isEmpty) ?? true) ? "TrashIcon" : "FullTrashIcon"
+            let trashItem = DockItem(0, nil, name: "Trash", path: URL(string: "file://"+Constants.trashPath)!, icon: DockRepository.getIcon(orType: trashType), persistentItem: true)
             persistentItems.append(trashItem)
         }
         delegate?.didUpdate(items: persistentItems)
@@ -263,7 +263,7 @@ extension DockRepository: FileMonitorDelegate {
 
 extension DockRepository {
     /// Get icon
-    public class func getIcon(forBundleIdentifier bundleIdentifier: String? = nil, orPath path: String? = nil) -> NSImage? {
+    public class func getIcon(forBundleIdentifier bundleIdentifier: String? = nil, orPath path: String? = nil, orType type: String? = nil) -> NSImage? {
         /// Check for bundle identifier first
         if bundleIdentifier != nil {
             /// Get app's absolute path
@@ -276,7 +276,18 @@ extension DockRepository {
         if path != nil {
             return NSWorkspace.shared.icon(forFile: path!)
         }
-        return nil
+        var genericIconPath = "/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/GenericDocumentIcon.icns"
+        if type != nil {
+            if type == "directory-tile" {
+                genericIconPath = "/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/GenericFolderIcon.icns"
+            }else if type == "TrashIcon" || type == "FullTrashIcon" {
+                genericIconPath = "/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/\(type!).icns"
+            }
+        }
+        /// Load image
+        let genericIcon = NSImage(contentsOfFile: genericIconPath)
+        /// Return icon
+        return genericIcon ?? NSImage(size: .zero)
     }
     /// Launch app or open file/directory
     public func launch(bundleIdentifier: String?, completion: (Bool) -> ()) {

@@ -15,7 +15,7 @@ class NowPlayingHelper {
     public static let kNowPlayingItemDidChange: Notification.Name = Notification.Name(rawValue: "kNowPlayingItemDidChange")
     
     /// Data
-    public var nowPlayingItem: NowPlayingItem? = NowPlayingItem()
+    public let nowPlayingItem: NowPlayingItem = NowPlayingItem()
     
     private init() {
         MRMediaRemoteRegisterForNowPlayingNotifications(DispatchQueue.global(qos: .utility))
@@ -56,18 +56,19 @@ class NowPlayingHelper {
     @objc private func updateCurrentPlayingApp() {
         MRMediaRemoteGetNowPlayingClients(DispatchQueue.global(qos: .utility), { [weak self] clients in
             if let info = (clients as? [Any])?.last {
-                if self?.nowPlayingItem == nil {
-                    self?.nowPlayingItem = NowPlayingItem()
-                }
                 if let appBundleIdentifier = MRNowPlayingClientGetBundleIdentifier(info) {
-                    self?.nowPlayingItem?.appBundleIdentifier = appBundleIdentifier
+                    self?.nowPlayingItem.appBundleIdentifier = appBundleIdentifier
                 }else if let appBundleIdentifier = MRNowPlayingClientGetParentAppBundleIdentifier(info) {
-                    self?.nowPlayingItem?.appBundleIdentifier = appBundleIdentifier
+                    self?.nowPlayingItem.appBundleIdentifier = appBundleIdentifier
                 }else {
-                    self?.nowPlayingItem = nil
+                    self?.nowPlayingItem.appBundleIdentifier = nil
                 }
             }else {
-                self?.nowPlayingItem = nil
+                self?.nowPlayingItem.appBundleIdentifier = nil
+                self?.nowPlayingItem.isPlaying = false
+                self?.nowPlayingItem.album  = nil
+                self?.nowPlayingItem.artist = nil
+                self?.nowPlayingItem.title  = nil
             }
             NotificationCenter.default.post(name: NowPlayingHelper.kNowPlayingItemDidChange, object: nil)
         })
@@ -75,16 +76,16 @@ class NowPlayingHelper {
     
     @objc private func updateMediaContent() {
         MRMediaRemoteGetNowPlayingInfo(DispatchQueue.global(qos: .utility), { [weak self] info in
-            self?.nowPlayingItem?.title  = info?[kMRMediaRemoteNowPlayingInfoTitle]  as? String
-            self?.nowPlayingItem?.album  = info?[kMRMediaRemoteNowPlayingInfoAlbum]  as? String
-            self?.nowPlayingItem?.artist = info?[kMRMediaRemoteNowPlayingInfoArtist] as? String
+            self?.nowPlayingItem.title  = info?[kMRMediaRemoteNowPlayingInfoTitle]  as? String
+            self?.nowPlayingItem.album  = info?[kMRMediaRemoteNowPlayingInfoAlbum]  as? String
+            self?.nowPlayingItem.artist = info?[kMRMediaRemoteNowPlayingInfoArtist] as? String
             NotificationCenter.default.post(name: NowPlayingHelper.kNowPlayingItemDidChange, object: nil)
         })
     }
     
     @objc private func updateCurrentPlayingState() {
         MRMediaRemoteGetNowPlayingApplicationIsPlaying(DispatchQueue.global(qos: .utility), {[weak self] isPlaying in
-            self?.nowPlayingItem?.isPlaying = isPlaying
+            self?.nowPlayingItem.isPlaying = isPlaying
             NotificationCenter.default.post(name: NowPlayingHelper.kNowPlayingItemDidChange, object: nil)
         })
     }
