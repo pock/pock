@@ -241,11 +241,14 @@ class DockRepository {
     /// Load notification badges
     private func updateNotificationBadges() {
         guard shouldShowNotificationBadge else { return }
-        for item in dockItems {
-            item.badge = PockDockHelper.sharedInstance()?.getBadgeCountForItem(withName: item.name)
+        DispatchQueue.global(qos: .utility).async { [weak self] in
+            guard let s = self else { return }
+            for item in s.dockItems {
+                item.badge = PockDockHelper.sharedInstance()?.getBadgeCountForItem(withName: item.name)
+            }
+            let apps = s.dockItems.filter({ $0.hasBadge })
+            s.delegate?.didUpdateBadge(for: apps)
         }
-        let apps = dockItems.filter({ $0.hasBadge })
-        delegate?.didUpdateBadge(for: apps)
     }
     
 }

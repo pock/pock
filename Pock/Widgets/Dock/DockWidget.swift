@@ -154,8 +154,10 @@ extension DockWidget: DockDelegate {
     }
     func didUpdateBadge(for apps: [DockItem]) {
         for (index, item) in dockItems.enumerated() {
-            if let view = dockScrubber.itemViewForItem(at: index) as? DockItemView {
-                view.set(hasBadge: item.hasBadge)
+            DispatchQueue.main.async { [weak self] in
+                if let view = self?.dockScrubber.itemViewForItem(at: index) as? DockItemView {
+                    view.set(hasBadge: item.hasBadge)
+                }
             }
         }
     }
