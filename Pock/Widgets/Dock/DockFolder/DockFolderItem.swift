@@ -20,7 +20,7 @@ class DockFolderItem: Equatable {
     
     init(_ index: Int, name: String?, detail: String?, path: URL?, icon: NSImage?, isDirectory: Bool? = nil, isApplication: Bool? = nil) {
         self.index  = index
-        self.name   = name
+        self.name   = name?.hasSuffix(".app") ?? false ? name?.replacingOccurrences(of: ".app", with: "") : name
         self.detail = detail
         self.path   = path
         self.icon   = icon
