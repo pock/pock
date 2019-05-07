@@ -65,12 +65,11 @@ class PockMainController: PockTouchBarController {
         return widget
     }
     
-    /// Not in use right now.
     private func showControlStripIcon() {
-        /* DFRSystemModalShowsCloseBoxWhenFrontMost(true)
-        weak var item = NSCustomTouchBarItem(identifier: .pockSystemIcon)
+        DFRSystemModalShowsCloseBoxWhenFrontMost(true)
+        let item = NSCustomTouchBarItem(identifier: .pockSystemIcon)
         item.view = NSButton(image: #imageLiteral(resourceName: "pock-inner-icon"), target: self, action: #selector(present))
-        NSTouchBarItem.addSystemTrayItem(item) */
+        NSTouchBarItem.addSystemTrayItem(item)
     }
     
 }
