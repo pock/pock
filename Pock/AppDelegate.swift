@@ -11,6 +11,7 @@ import Defaults
 import Preferences
 import Fabric
 import Crashlytics
+import Magnet
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -78,6 +79,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                                                           name: .shouldReloadPock,
                                                           object: nil)
         toggleAutomaticUpdatesTimer()
+        registerGlobalHotKey()
         
         /// Present Pock
         self.reloadPock()
@@ -92,6 +94,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         _navController = nil
         let mainController: PockMainController = PockMainController.load()
         _navController = PockTouchBarNavController(rootController: mainController)
+    }
+    
+    private func registerGlobalHotKey() {
+        if let keyCombo = KeyCombo(doubledCocoaModifiers: .control) {
+            let hotKey = HotKey(identifier: "TogglePock", keyCombo: keyCombo) { [weak self] _ in
+                self?._navController?.toggle()
+            }
+            hotKey.register()
+        }
     }
     
     @objc private func toggleAutomaticUpdatesTimer() {

@@ -11,23 +11,50 @@ import Defaults
 
 class PockTouchBarController: NSObject, NSTouchBarDelegate {
     
-    @IBOutlet weak var touchBar: NSTouchBar?
+    @IBOutlet var touchBar: NSTouchBar?
+    
+    private(set) var isVisible: Bool = false
     
     weak var navController: PockTouchBarNavController?
     
+    var systemTrayItem:           NSCustomTouchBarItem?      { return nil }
     var systemTrayItemIdentifier: NSTouchBarItem.Identifier? { return nil }
     
     override required init() { super.init() }
     
     class func load<T: PockTouchBarController>(_ type: T.Type = T.self) -> T {
         let controller = T()
-        Bundle.main.loadNibNamed(NSNib.Name(String(describing: self)), owner: controller, topLevelObjects: nil)
-        controller.didLoad()
+        controller.reloadNib(type)
         return controller
+    }
+    
+    private func reloadNib<T: PockTouchBarController>(_ type: T.Type = T.self) {
+        Bundle.main.loadNibNamed(NSNib.Name(String(describing: type)), owner: self, topLevelObjects: nil)
+        if touchBar == nil {
+            touchBar = NSTouchBar()
+            touchBar?.delegate = self
+        }
+        self.didLoad()
+        self.showControlStripIcon()
     }
     
     func didLoad() {
         /// override in subclasses.
+    }
+    
+    func showControlStripIcon() {
+        DFRSystemModalShowsCloseBoxWhenFrontMost(false)
+        guard systemTrayItem != nil else { return }
+        NSTouchBarItem.removeSystemTrayItem(systemTrayItem!)
+        NSTouchBarItem.addSystemTrayItem(systemTrayItem!)
+    }
+    
+    @objc func toggle() {
+        if self.isVisible {
+            self.minimize()
+        }else {
+            self.present()
+        }
     }
     
     @objc func dismiss() {
@@ -36,11 +63,23 @@ class PockTouchBarController: NSObject, NSTouchBarDelegate {
         } else {
             NSTouchBar.dismissSystemModalFunctionBar(touchBar)
         }
+        self.isVisible = false
+    }
+    
+    @objc func minimize() {
+        if #available (macOS 10.14, *) {
+            NSTouchBar.minimizeSystemModalTouchBar(touchBar)
+        } else {
+            NSTouchBar.minimizeSystemModalFunctionBar(touchBar)
+        }
+        self.isVisible = false
     }
     
     @objc func present() {
+        self.reloadNib()
         let placement: Int64 = defaults[.hideControlStrip] ? 1 : 0
         self.presentWithPlacement(placement: placement)
+        self.isVisible = true
     }
     
     private func presentWithPlacement(placement: Int64) {

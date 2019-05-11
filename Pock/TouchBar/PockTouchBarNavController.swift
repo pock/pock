@@ -47,4 +47,20 @@ extension PockTouchBarNavController {
         rootController = nil
     }
     
+    func minimize() {
+        childControllers.forEach({ $0.minimize() })
+    }
+    
+    func deminimize() {
+        childControllers.forEach({ $0.present() })
+    }
+    
+    func toggle() {
+        if rootController?.isVisible ?? false {
+            minimize()
+        }else {
+            deminimize()
+        }
+    }
+    
 }

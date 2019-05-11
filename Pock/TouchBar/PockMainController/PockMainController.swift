@@ -23,6 +23,11 @@ extension NSTouchBarItem.Identifier {
 
 class PockMainController: PockTouchBarController {
     
+    override var systemTrayItem: NSCustomTouchBarItem? {
+        let item = NSCustomTouchBarItem(identifier: .pockSystemIcon)
+        item.view = NSButton(image: #imageLiteral(resourceName: "pock-inner-icon"), target: self, action: #selector(present))
+        return item
+    }
     override var systemTrayItemIdentifier: NSTouchBarItem.Identifier? { return .pockSystemIcon }
     
     required init() {
@@ -63,13 +68,6 @@ class PockMainController: PockTouchBarController {
             return nil
         }
         return widget
-    }
-    
-    private func showControlStripIcon() {
-        DFRSystemModalShowsCloseBoxWhenFrontMost(true)
-        let item = NSCustomTouchBarItem(identifier: .pockSystemIcon)
-        item.view = NSButton(image: #imageLiteral(resourceName: "pock-inner-icon"), target: self, action: #selector(present))
-        NSTouchBarItem.addSystemTrayItem(item)
     }
     
 }
