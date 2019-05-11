@@ -1,8 +1,8 @@
 PODS:
-  - Crashlytics (3.12.0):
-    - Fabric (~> 1.9.0)
+  - Crashlytics (3.13.0):
+    - Fabric (~> 1.10.0)
   - Defaults (2.0.0)
-  - Fabric (1.9.0)
+  - Fabric (1.10.0)
   - LaunchAtLogin (2.5.0)
   - Magnet (2.3.1)
   - Preferences (0.2.1)
@@ -28,9 +28,9 @@ SPEC REPOS:
     - SnapKit
 
 SPEC CHECKSUMS:
-  Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
+  Crashlytics: 1f5f752c7feac0add0cc1774756f96444fa3b1a7
   Defaults: 3ead9a1da67c4a23cfb3f0bd4d1941c1fd81468a
-  Fabric: f988e33c97f08930a413e08123064d2e5f68d655
+  Fabric: 09de1e053eb7dc415593166ad3e53d4c88123405
   LaunchAtLogin: 550b0cbbdaf1b13f87a0fab6a3f8e2fbafe067fe
   Magnet: f8dac2ffc845ffe68b2dd21c68a801f866f4a098
   Preferences: 5543bfd757a2485a310683da977d661c0ae509a9
