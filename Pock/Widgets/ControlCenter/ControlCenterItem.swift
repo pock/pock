@@ -25,4 +25,8 @@ class ControlCenterItem {
     func action() {
         fatalError("Function `action()` must be override in subclasses.")
     }
+    
+    func longPressAction() {
+        /* Function `longPressAction()` can be override in subclasses. */
+    }
 }

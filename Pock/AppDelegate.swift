@@ -16,6 +16,10 @@ import Magnet
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
+    static var `default`: AppDelegate {
+        return NSApp.delegate as! AppDelegate
+    }
+    
     /// Core
     fileprivate var _navController: PockTouchBarNavController?
     var navController: PockTouchBarNavController? { return _navController }
