@@ -28,11 +28,16 @@ class ControlCenterItem {
         }
     }
     
-    func action() {
+    @discardableResult
+    func action() -> Any? {
         fatalError("Function `action()` must be override in subclasses.")
     }
     
     func longPressAction() {
         /* Function `longPressAction()` can be override in subclasses. */
+    }
+    
+    func didSlide(at value: Double) {
+        /* Function `didSlide(at:Double)` can be override in subclasses. */
     }
 }

@@ -16,12 +16,18 @@ class CCVolumeUpItem: ControlCenterItem {
     
     override var icon:  NSImage { return NSImage(named: NSImage.touchBarVolumeUpTemplateName)! }
     
-    override func action() {
+    override func action() -> Any? {
         key.send()
+        return NSSound.systemVolume()
     }
     
     override func longPressAction() {
-        parentWidget?.showSlideableController(for: self)
+        parentWidget?.showSlideableController(for: self, currentValue: NSSound.systemVolume())
+    }
+    
+    override func didSlide(at value: Double) {
+        NSSound.setSystemVolume(Float(value))
+        // DK_OSDUIHelper.showHUD(type: NSSound.isMuted() ? .mute : .volume, filled: CUnsignedInt(NSSound.systemVolume() * 16))
     }
     
 }

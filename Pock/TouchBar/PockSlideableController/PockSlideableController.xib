@@ -40,7 +40,7 @@
                     </viewController>
                     <size key="designTimeSize" width="28" height="28"/>
                 </touchBarItem>
-                <touchBarItem id="xqj-lD-RLR">
+                <touchBarItem identifier="SliderItem" id="xqj-lD-RLR">
                     <viewController key="viewController" id="jDX-cY-gQw">
                         <view key="view" translatesAutoresizingMaskIntoConstraints="NO" id="Xmk-ht-dJb">
                             <rect key="frame" x="0.0" y="0.0" width="300" height="30"/>

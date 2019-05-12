@@ -10,3 +10,4 @@
 #import "./PockDockHelper/PockDockHelper.h"
 #import "./MRMediaRemote.h"
 #import "./KeySenderHelper/KeySenderHelper.h"
+#import "./ISSoundAdditions/ISSoundAdditions.h"

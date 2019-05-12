@@ -9,7 +9,7 @@
 import Foundation
 
 protocol PressableSegmentedControlDelegate: class {
-    func didMove(to location: NSPoint)
+    func didMove(with event: NSEvent, location: NSPoint)
 }
 
 class PressableSegmentedControl: NSSegmentedControl {
@@ -17,7 +17,7 @@ class PressableSegmentedControl: NSSegmentedControl {
     /// Public
     weak var delegate: PressableSegmentedControlDelegate?
     var didPressAt: ((NSPoint) -> Void)?
-    var minimumPressDuration: TimeInterval = 0.75
+    var minimumPressDuration: TimeInterval = 0.55
     
     /// Core
     private var location: NSPoint = .zero
@@ -38,8 +38,9 @@ class PressableSegmentedControl: NSSegmentedControl {
     override func touchesMoved(with event: NSEvent) {
         super.touchesMoved(with: event)
         location = event.allTouches().first?.location(in: self) ?? .zero
+        timer?.fire()
         if canMove {
-            delegate?.didMove(to: location)
+            delegate?.didMove(with: event, location: location)
         }
     }
     
@@ -100,6 +101,10 @@ class ControlCenterWidget: PockWidget {
         controls[sender.selectedSegment].action()
     }
     
+    override var preferredPopoverTransposerClass: AnyClass! {
+        return NSTouchBarSliderPopoverTransposer.self
+    }
+    
     @objc private func longTap(at location: CGPoint) {
         let index = Int(ceil(location.x / (segmentedControl.frame.width / 4))) - 1
         guard (0..<controls.count).contains(index) else { return }
@@ -109,7 +114,7 @@ class ControlCenterWidget: PockWidget {
 }
 
 extension ControlCenterWidget {
-    func showSlideableController(for item: ControlCenterItem?) {
+    func showSlideableController(for item: ControlCenterItem?, currentValue: Float = 0) {
         guard let item = item else { return }
         slideableController = PockSlideableController.load()
         switch item.self {
@@ -120,12 +125,16 @@ extension ControlCenterWidget {
         default:
             return
         }
+        slideableController?.set(currentValue: currentValue)
         AppDelegate.default.navController?.push(slideableController!)
     }
 }
 
 extension ControlCenterWidget: PressableSegmentedControlDelegate {
-    func didMove(to location: NSPoint) {
+    func didMove(with event: NSEvent, location: NSPoint) {
+        let slider = slideableController?.touchBar?.item(forIdentifier: NSTouchBarItem.Identifier(rawValue: "SlideItem"))
+        slider?.view?.touchesBegan(with: event)
+        slider?.view?.touchesMoved(with: event)
         slideableController?.set(initialLocation: location)
     }
 }
