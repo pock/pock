@@ -20,4 +20,8 @@ class CCBrightnessDownItem: ControlCenterItem {
         key.send()
     }
     
+    override func longPressAction() {
+        parentWidget?.showSlideableController(for: self)
+    }
+    
 }

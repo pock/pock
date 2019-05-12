@@ -21,11 +21,7 @@ class CCBrightnessUpItem: ControlCenterItem {
     }
     
     override func longPressAction() {
-        let c: DockFolderController = DockFolderController.load()
-        c.set(dockFolderRepository: DockFolderRepository())
-        c.set(folderUrl: URL(string: "file://~/")!)
-        AppDelegate.default.navController?.push(c)
-        print("Long press on Bright Up")
+        parentWidget?.showSlideableController(for: self)
     }
     
 }

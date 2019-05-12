@@ -15,6 +15,8 @@
 		34064345227EDCB900981372 /* DockFolderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34064344227EDCB900981372 /* DockFolderItem.swift */; };
 		3406434A227F323A00981372 /* PockTouchBarNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34064349227F323A00981372 /* PockTouchBarNavController.swift */; };
 		3406434D227F3FFF00981372 /* PockMainController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3406434C227F3FFF00981372 /* PockMainController.xib */; };
+		3418D9FF22882EC600E11E37 /* PockSlideableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3418D9FE22882EC600E11E37 /* PockSlideableController.swift */; };
+		3418DA022288318A00E11E37 /* PockSlideableController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3418DA012288318A00E11E37 /* PockSlideableController.xib */; };
 		342D83DF2278D5CF000D79DA /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 342D83952278D5CF000D79DA /* MainWindow.xib */; };
 		342D83E02278D5CF000D79DA /* PockTouchBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83972278D5CF000D79DA /* PockTouchBarController.swift */; };
 		342D83E12278D5CF000D79DA /* PockMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83982278D5CF000D79DA /* PockMainController.swift */; };
@@ -72,6 +74,8 @@
 		34064344227EDCB900981372 /* DockFolderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockFolderItem.swift; sourceTree = "<group>"; };
 		34064349227F323A00981372 /* PockTouchBarNavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PockTouchBarNavController.swift; sourceTree = "<group>"; };
 		3406434C227F3FFF00981372 /* PockMainController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PockMainController.xib; sourceTree = "<group>"; };
+		3418D9FE22882EC600E11E37 /* PockSlideableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PockSlideableController.swift; sourceTree = "<group>"; };
+		3418DA012288318A00E11E37 /* PockSlideableController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PockSlideableController.xib; sourceTree = "<group>"; };
 		342D83952278D5CF000D79DA /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		342D83972278D5CF000D79DA /* PockTouchBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PockTouchBarController.swift; sourceTree = "<group>"; };
 		342D83982278D5CF000D79DA /* PockMainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PockMainController.swift; sourceTree = "<group>"; };
@@ -194,6 +198,15 @@
 			path = PockMainController;
 			sourceTree = "<group>";
 		};
+		3418DA0022882ECF00E11E37 /* PockSlideableController */ = {
+			isa = PBXGroup;
+			children = (
+				3418D9FE22882EC600E11E37 /* PockSlideableController.swift */,
+				3418DA012288318A00E11E37 /* PockSlideableController.xib */,
+			);
+			path = PockSlideableController;
+			sourceTree = "<group>";
+		};
 		342D83932278D5CF000D79DA /* Pock */ = {
 			isa = PBXGroup;
 			children = (
@@ -220,6 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				3406434B227F3FE900981372 /* PockMainController */,
+				3418DA0022882ECF00E11E37 /* PockSlideableController */,
 				342D83972278D5CF000D79DA /* PockTouchBarController.swift */,
 				34064349227F323A00981372 /* PockTouchBarNavController.swift */,
 			);
@@ -533,6 +547,7 @@
 			files = (
 				34064339227E26F500981372 /* DockFolderController.xib in Resources */,
 				342D83DF2278D5CF000D79DA /* MainWindow.xib in Resources */,
+				3418DA022288318A00E11E37 /* PockSlideableController.xib in Resources */,
 				342D83E32278D5CF000D79DA /* GeneralPreferencePane.xib in Resources */,
 				3406434D227F3FFF00981372 /* PockMainController.xib in Resources */,
 				342D83E52278D5CF000D79DA /* StatusWidgetPreferencePane.xib in Resources */,
@@ -654,6 +669,7 @@
 				34E644FB227D9A69003D0450 /* DockWidgetPreferencePane.swift in Sources */,
 				342D83EE2278D5CF000D79DA /* ControlCenterWidget.swift in Sources */,
 				342D83EC2278D5CF000D79DA /* OSDUIHelper.swift in Sources */,
+				3418D9FF22882EC600E11E37 /* PockSlideableController.swift in Sources */,
 				342D83FE2278D5CF000D79DA /* EscWidget.swift in Sources */,
 				34064343227EDC2200981372 /* DockFolderRepository.swift in Sources */,
 				342D83E02278D5CF000D79DA /* PockTouchBarController.swift in Sources */,

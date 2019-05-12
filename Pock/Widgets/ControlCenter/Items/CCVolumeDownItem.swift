@@ -19,5 +19,9 @@ class CCVolumeDownItem: ControlCenterItem {
     override func action() {
         key.send()
     }
+    
+    override func longPressAction() {
+        parentWidget?.showSlideableController(for: self)
+    }
 
 }

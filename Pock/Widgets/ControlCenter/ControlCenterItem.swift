@@ -10,6 +10,12 @@ import Foundation
 
 class ControlCenterItem {
     
+    var parentWidget: ControlCenterWidget?
+    
+    init(parentWidget: ControlCenterWidget?) {
+        self.parentWidget = parentWidget
+    }
+    
     var title: String {
         get {
             fatalError("Property `title` must be override in subclasses.")
