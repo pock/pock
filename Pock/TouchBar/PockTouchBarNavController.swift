@@ -13,6 +13,10 @@ class PockTouchBarNavController {
     weak var rootController:   PockTouchBarController?
     var childControllers: [PockTouchBarController] = []
     
+    var visibleController: PockTouchBarController? {
+        return childControllers.last
+    }
+    
     init(rootController: PockTouchBarController) {
         self.rootController = rootController
         self.push(rootController)

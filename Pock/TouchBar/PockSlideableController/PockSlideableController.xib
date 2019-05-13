@@ -13,7 +13,7 @@
                 <outlet property="leftItemView" destination="bIR-Pt-ncq" id="dN5-jB-Gac"/>
                 <outlet property="rightItemView" destination="06m-4D-YbS" id="9vb-H7-som"/>
                 <outlet property="slider" destination="LNV-ND-NZg" id="eWv-Ic-pES"/>
-                <outlet property="touchBar" destination="6on-eN-Sjz" id="afc-Yx-cpc"/>
+                <outlet property="touchBar" destination="6on-eN-Sjz" id="ctN-aI-bfW"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
@@ -43,23 +43,23 @@
                 <touchBarItem identifier="SliderItem" id="xqj-lD-RLR">
                     <viewController key="viewController" id="jDX-cY-gQw">
                         <view key="view" translatesAutoresizingMaskIntoConstraints="NO" id="Xmk-ht-dJb">
-                            <rect key="frame" x="0.0" y="0.0" width="300" height="30"/>
+                            <rect key="frame" x="0.0" y="0.0" width="288" height="30"/>
                             <subviews>
                                 <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LNV-ND-NZg">
-                                    <rect key="frame" x="-6" y="0.0" width="312" height="30"/>
-                                    <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="EBz-Ix-xYC"/>
+                                    <rect key="frame" x="-6" y="0.0" width="300" height="30"/>
+                                    <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="EBz-Ix-xYC"/>
                                 </slider>
                             </subviews>
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="LNV-ND-NZg" secondAttribute="bottom" id="DhY-hB-mTx"/>
                                 <constraint firstItem="LNV-ND-NZg" firstAttribute="leading" secondItem="Xmk-ht-dJb" secondAttribute="leading" id="GHM-UF-TVG"/>
                                 <constraint firstItem="LNV-ND-NZg" firstAttribute="top" secondItem="Xmk-ht-dJb" secondAttribute="top" id="Tkd-Ga-Q3g"/>
-                                <constraint firstAttribute="width" constant="300" id="sIL-Ip-d0b"/>
+                                <constraint firstAttribute="width" constant="288" id="sIL-Ip-d0b"/>
                                 <constraint firstAttribute="trailing" secondItem="LNV-ND-NZg" secondAttribute="trailing" id="wcU-Ak-fjc"/>
                             </constraints>
                         </view>
                     </viewController>
-                    <size key="designTimeSize" width="300" height="30"/>
+                    <size key="designTimeSize" width="288" height="30"/>
                 </touchBarItem>
                 <touchBarItem identifier="RightItemView" id="bxH-Je-n2z">
                     <viewController key="viewController" id="zTI-hb-PJe">
