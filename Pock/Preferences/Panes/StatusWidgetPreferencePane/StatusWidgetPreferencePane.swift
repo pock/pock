@@ -21,8 +21,8 @@ class StatusWidgetPreferencePane: NSViewController, Preferenceable {
     // @IBOutlet weak var showSpotlightItem:           NSButton!
     
     /// Preferenceable
-    let toolbarItemTitle: String   = "Status Widget"
-    let toolbarItemIcon:  NSImage  = NSImage(named: NSImage.advancedName)!
+    let toolbarItemTitle: String  = "Status Widget"
+    let toolbarItemIcon:  NSImage = NSImage(named: NSImage.advancedName)!
     
     override var nibName: NSNib.Name? {
         return "StatusWidgetPreferencePane"

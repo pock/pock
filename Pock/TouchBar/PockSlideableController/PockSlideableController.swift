@@ -70,9 +70,10 @@ class PockSlideableController: PockTouchBarController {
     }
     
     func set(initialLocation location: NSPoint) {
-        let distance = self.location.x.distance(to: location.x)
+        /* WIP */
+        /* let distance = self.location.x.distance(to: location.x)
         self.location = location
-        print(distance)
+        print(distance) */
     }
     
     func set(currentValue: Float) {

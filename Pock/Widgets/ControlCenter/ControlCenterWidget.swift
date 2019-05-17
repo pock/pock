@@ -101,10 +101,6 @@ class ControlCenterWidget: PockWidget {
         controls[sender.selectedSegment].action()
     }
     
-    override var preferredPopoverTransposerClass: AnyClass! {
-        return NSTouchBarSliderPopoverTransposer.self
-    }
-    
     @objc private func longTap(at location: CGPoint) {
         let index = Int(ceil(location.x / (segmentedControl.frame.width / 4))) - 1
         guard (0..<controls.count).contains(index) else { return }

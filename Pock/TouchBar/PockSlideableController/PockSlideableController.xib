@@ -42,11 +42,11 @@
                 </touchBarItem>
                 <touchBarItem identifier="SliderItem" id="xqj-lD-RLR">
                     <viewController key="viewController" id="jDX-cY-gQw">
-                        <view key="view" translatesAutoresizingMaskIntoConstraints="NO" id="Xmk-ht-dJb">
-                            <rect key="frame" x="0.0" y="0.0" width="288" height="30"/>
+                        <view key="view" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xmk-ht-dJb">
+                            <rect key="frame" x="0.0" y="0.0" width="278" height="30"/>
                             <subviews>
                                 <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LNV-ND-NZg">
-                                    <rect key="frame" x="-6" y="0.0" width="300" height="30"/>
+                                    <rect key="frame" x="-6" y="0.0" width="290" height="30"/>
                                     <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="EBz-Ix-xYC"/>
                                 </slider>
                             </subviews>
@@ -54,12 +54,12 @@
                                 <constraint firstAttribute="bottom" secondItem="LNV-ND-NZg" secondAttribute="bottom" id="DhY-hB-mTx"/>
                                 <constraint firstItem="LNV-ND-NZg" firstAttribute="leading" secondItem="Xmk-ht-dJb" secondAttribute="leading" id="GHM-UF-TVG"/>
                                 <constraint firstItem="LNV-ND-NZg" firstAttribute="top" secondItem="Xmk-ht-dJb" secondAttribute="top" id="Tkd-Ga-Q3g"/>
-                                <constraint firstAttribute="width" constant="288" id="sIL-Ip-d0b"/>
+                                <constraint firstAttribute="width" constant="278" id="sIL-Ip-d0b"/>
                                 <constraint firstAttribute="trailing" secondItem="LNV-ND-NZg" secondAttribute="trailing" id="wcU-Ak-fjc"/>
                             </constraints>
                         </view>
                     </viewController>
-                    <size key="designTimeSize" width="288" height="30"/>
+                    <size key="designTimeSize" width="278" height="30"/>
                 </touchBarItem>
                 <touchBarItem identifier="RightItemView" id="bxH-Je-n2z">
                     <viewController key="viewController" id="zTI-hb-PJe">

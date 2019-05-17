@@ -18,8 +18,8 @@ class DockWidgetPreferencePane: NSViewController, Preferenceable {
     @IBOutlet weak var hidePersistentItemsCheckbox:        NSButton!
     
     /// Preferenceable
-    let toolbarItemTitle: String   = "Dock Widget"
-    let toolbarItemIcon:  NSImage  = NSImage(named: NSImage.applicationIconName)!
+    let toolbarItemTitle: String  = "Dock Widget"
+    let toolbarItemIcon: NSImage = NSWorkspace.shared.icon(forFile: NSWorkspace.shared.absolutePathForApplication(withBundleIdentifier: "com.apple.dock") ?? "")
     
     override var nibName: NSNib.Name? {
         return "DockWidgetPreferencePane"

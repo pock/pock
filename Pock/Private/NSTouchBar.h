@@ -13,25 +13,25 @@ extern void DFRSystemModalShowsCloseBoxWhenFrontMost(BOOL);
 
 @interface NSTouchBar ()
 /* macOS 10.13 */
-+ (void)presentSystemModalFunctionBar:(NSTouchBar *)touchBar placement:(long long)placement systemTrayItemIdentifier:(NSTouchBarItemIdentifier)identifier;
-+ (void)presentSystemModalFunctionBar:(NSTouchBar *)touchBar systemTrayItemIdentifier:(NSTouchBarItemIdentifier)identifier;
-+ (void)dismissSystemModalFunctionBar:(NSTouchBar *)touchBar;
-+ (void)minimizeSystemModalFunctionBar:(NSTouchBar *)touchBar;
++ (void)presentSystemModalFunctionBar:(nullable NSTouchBar *)touchBar placement:(long long)placement systemTrayItemIdentifier:(nullable NSTouchBarItemIdentifier)identifier;
++ (void)presentSystemModalFunctionBar:(nullable NSTouchBar *)touchBar systemTrayItemIdentifier:(nullable NSTouchBarItemIdentifier)identifier;
++ (void)dismissSystemModalFunctionBar:(nullable NSTouchBar *)touchBar;
++ (void)minimizeSystemModalFunctionBar:(nullable NSTouchBar *)touchBar;
 
 /* macOS 10.14 */
-+ (void)presentSystemModalTouchBar:(NSTouchBar *)touchBar placement:(long long)placement systemTrayItemIdentifier:(NSTouchBarItemIdentifier)identifier;
-+ (void)presentSystemModalTouchBar:(NSTouchBar *)touchBar systemTrayItemIdentifier:(NSTouchBarItemIdentifier)identifier;
-+ (void)dismissSystemModalTouchBar:(NSTouchBar *)touchBar;
-+ (void)minimizeSystemModalTouchBar:(NSTouchBar *)touchBar;
++ (void)presentSystemModalTouchBar:(nullable NSTouchBar *)touchBar placement:(long long)placement systemTrayItemIdentifier:(nullable NSTouchBarItemIdentifier)identifier;
++ (void)presentSystemModalTouchBar:(nullable NSTouchBar *)touchBar systemTrayItemIdentifier:(nullable NSTouchBarItemIdentifier)identifier;
++ (void)dismissSystemModalTouchBar:(nullable NSTouchBar *)touchBar;
++ (void)minimizeSystemModalTouchBar:(nullable NSTouchBar *)touchBar;
 @end
 
 @interface NSTouchBarItem ()
-+ (void)addSystemTrayItem:(NSTouchBarItem *)item;
-+ (void)removeSystemTrayItem:(NSTouchBarItem *)item;
++ (void)addSystemTrayItem:(nullable NSTouchBarItem *)item;
++ (void)removeSystemTrayItem:(nullable NSTouchBarItem *)item;
 @end
 
 @interface NSCustomTouchBarItem (Pock)
-@property (readwrite, strong) __kindof NSView *view;
+@property (readwrite, strong, nullable) __kindof NSView *view;
 @property (readwrite, strong, nullable) __kindof NSViewController *viewController;
 @property (readwrite, copy, null_resettable) NSString *customizationLabel;
 @end
