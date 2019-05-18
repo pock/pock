@@ -71,6 +71,7 @@ extension Defaults.Keys {
     static let showOnlyRunningApps              = Defaults.Key<Bool>("showOnlyRunningApps",    default: false)
     static let hideTrash                        = Defaults.Key<Bool>("hideTrash",              default: false)
     static let hidePersistentItems              = Defaults.Key<Bool>("hidePersistentItems",    default: false)
+    static let openFinderInsidePock             = Defaults.Key<Bool>("openFinderInsidePock",   default: true)
     /// Status widget
     static let shouldShowWifiItem               = Defaults.Key<Bool>("shouldShowWifiItem",          default: true)
     static let shouldShowPowerItem              = Defaults.Key<Bool>("shouldShowPowerItem",         default: true)

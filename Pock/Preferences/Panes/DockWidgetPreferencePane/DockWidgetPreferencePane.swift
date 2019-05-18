@@ -17,6 +17,7 @@ class DockWidgetPreferencePane: NSViewController, PreferencePane {
     @IBOutlet weak var showOnlyRunningApps:                NSButton!
     @IBOutlet weak var hideTrashCheckbox:                  NSButton!
     @IBOutlet weak var hidePersistentItemsCheckbox:        NSButton!
+    @IBOutlet weak var openFinderInsidePockCheckbox:       NSButton!
     @IBOutlet weak var itemSpacingTextField:               NSTextField!
     
     /// Preferenceable
@@ -47,10 +48,11 @@ class DockWidgetPreferencePane: NSViewController, PreferencePane {
     }
     
     private func setupCheckboxes() {
-        self.hideFinderCheckbox.state           = defaults[.hideFinder]          ? .on : .off
-        self.showOnlyRunningApps.state          = defaults[.showOnlyRunningApps] ? .on : .off
-        self.hideTrashCheckbox.state            = defaults[.hideTrash]           ? .on : .off
-        self.hidePersistentItemsCheckbox.state  = defaults[.hidePersistentItems] ? .on : .off
+        self.hideFinderCheckbox.state           = defaults[.hideFinder]           ? .on : .off
+        self.showOnlyRunningApps.state          = defaults[.showOnlyRunningApps]  ? .on : .off
+        self.hideTrashCheckbox.state            = defaults[.hideTrash]            ? .on : .off
+        self.hidePersistentItemsCheckbox.state  = defaults[.hidePersistentItems]  ? .on : .off
+        self.openFinderInsidePockCheckbox.state = defaults[.openFinderInsidePock] ? .on : .off
         self.hideTrashCheckbox.isEnabled        = !defaults[.hidePersistentItems]
     }
     
@@ -78,6 +80,10 @@ class DockWidgetPreferencePane: NSViewController, PreferencePane {
         defaults[.hidePersistentItems] = button.state == .on
         hideTrashCheckbox.isEnabled = !defaults[.hidePersistentItems]
         NSWorkspace.shared.notificationCenter.post(name: .shouldReloadPersistentItems, object: nil)
+    }
+    
+    @IBAction private func didChangeOpenFinderInsidePockValue(button: NSButton) {
+        defaults[.openFinderInsidePock] = button.state == .on
     }
     
 }

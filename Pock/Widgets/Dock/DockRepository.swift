@@ -24,6 +24,7 @@ class DockRepository {
     private var notificationBadgeRefreshTimer: Timer!
     private var shouldShowNotificationBadge: Bool { return defaults[.notificationBadgeRefreshInterval] != .never }
     private var showOnlyRunningApps: Bool { return defaults[.showOnlyRunningApps] }
+    private var openFinderInsidePock: Bool { return defaults[.openFinderInsidePock] }
     private var dockFolderRepository: DockFolderRepository?
     
     /// Running applications
@@ -326,7 +327,7 @@ extension DockRepository {
             var isDirectory: ObjCBool = true
             let url:         URL      = URL(string: path)!
             FileManager.default.fileExists(atPath: path, isDirectory: &isDirectory)
-            if isDirectory.boolValue {
+            if isDirectory.boolValue && openFinderInsidePock {
                 dockFolderRepository?.popToRootDockFolderController()
                 dockFolderRepository?.push(url)
                 returnable = true
@@ -335,7 +336,7 @@ extension DockRepository {
             }
         }else {
             /// Open Finder in Touch Bar
-            if bundleIdentifier == "com.apple.finder" {
+            if bundleIdentifier == "com.apple.finder" && openFinderInsidePock {
                 dockFolderRepository?.popToRootDockFolderController()
                 dockFolderRepository?.push(URL(string: NSHomeDirectory())!)
                 returnable = true
