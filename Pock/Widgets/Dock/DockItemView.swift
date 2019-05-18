@@ -117,12 +117,12 @@ class DockItemView: NSScrubberItemView {
     
     public func set(isRunning: Bool) {
         if dotView == nil { loadDotView() }
-        dotView.isHidden = !isRunning
+        dotView.layer?.opacity = isRunning ? 1 : 0
     }
     
     public func set(hasBadge: Bool) {
         if badgeView == nil { loadBadgeView() }
-        badgeView.isHidden = !hasBadge
+        badgeView.layer?.opacity = hasBadge ? 1 : 0
     }
     
 }

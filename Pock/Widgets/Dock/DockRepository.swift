@@ -62,6 +62,7 @@ class DockRepository {
                 self?.loadPersistentApps()
             }
             self?.loadRunningApplications(notification)
+            self?.updateRunningState()
         }
     }
     
@@ -162,7 +163,6 @@ class DockRepository {
             dockItems.insert(finderItem, at: 0)
         }
         delegate?.didUpdate(apps: dockItems)
-        updateRunningState()
     }
     
     /// Load persistent applications
@@ -251,11 +251,14 @@ class DockRepository {
     
     /// Load running dot
     @objc private func updateRunningState() {
-        for item in dockItems {
-            item.pid_t = NSWorkspace.shared.runningApplications.first(where: { $0.bundleIdentifier == item.bundleIdentifier })?.processIdentifier ?? 0
+        DispatchQueue.global(qos: .utility).async { [weak self] in
+            guard let s = self else { return }
+            for item in s.dockItems {
+                item.pid_t = NSWorkspace.shared.runningApplications.first(where: { $0.bundleIdentifier == item.bundleIdentifier })?.processIdentifier ?? 0
+            }
+            let apps = s.dockItems.filter({ $0.isRunning })
+            s.delegate?.didUpdateRunningState(for: apps)
         }
-        let apps = dockItems.filter({ $0.isRunning })
-        delegate?.didUpdateRunningState(for: apps)
     }
     
     /// Load notification badges

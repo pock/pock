@@ -200,13 +200,19 @@ extension DockWidget: DockDelegate {
     func didUpdateBadge(for apps: [DockItem]) {
         DispatchQueue.main.async { [weak self] in
             guard let s = self else { return }
-            apps.forEach({ s.updateView(for: $0) })
+            s.cachedItemViews.forEach({ key, view in
+                view.set(hasBadge: apps.first(where: { $0.diffId == key })?.hasBadge ?? false)
+            })
         }
     }
     func didUpdateRunningState(for apps: [DockItem]) {
         DispatchQueue.main.async { [weak self] in
             guard let s = self else { return }
-            apps.forEach({ s.updateView(for: $0) })
+            let ids = apps.map({ $0.diffId })
+            s.cachedItemViews.forEach({ key, view in
+                view.set(isRunning:   ids.contains(key))
+                view.set(isFrontmost: apps.first(where: { $0.diffId == key })?.isFrontmost ?? false)
+            })
         }
     }
 }
