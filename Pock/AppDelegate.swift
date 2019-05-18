@@ -51,7 +51,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         self.checkAccessibility()
         
         /// Preferences
-        self.preferencesWindowController = PreferencesWindowController(viewControllers: [generalPreferencePane,
+        self.preferencesWindowController = PreferencesWindowController(preferencePanes: [generalPreferencePane,
                                                                                          dockWidgetPreferencePane,
                                                                                          statusWidgetPreferencePane])
         
@@ -147,7 +147,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     /// Open preferences
     @objc private func openPreferences() {
-        preferencesWindowController.showWindow()
+        preferencesWindowController.show()
     }
     
     @objc private func openCustomization() {

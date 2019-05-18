@@ -10,15 +10,17 @@ import Foundation
 import Preferences
 import Defaults
 
-class DockWidgetPreferencePane: NSViewController, Preferenceable {
+class DockWidgetPreferencePane: NSViewController, PreferencePane {
     
     @IBOutlet weak var notificationBadgeRefreshRatePicker: NSPopUpButton!
     @IBOutlet weak var hideFinderCheckbox:                 NSButton!
+    @IBOutlet weak var showOnlyRunningApps:                NSButton!
     @IBOutlet weak var hideTrashCheckbox:                  NSButton!
     @IBOutlet weak var hidePersistentItemsCheckbox:        NSButton!
     
     /// Preferenceable
-    let toolbarItemTitle: String  = "Dock Widget"
+    var preferencePaneIdentifier: Identifier = Identifier.dock_widget
+    let preferencePaneTitle:      String     = "Dock Widget"
     let toolbarItemIcon: NSImage = NSWorkspace.shared.icon(forFile: NSWorkspace.shared.absolutePathForApplication(withBundleIdentifier: "com.apple.dock") ?? "")
     
     override var nibName: NSNib.Name? {
@@ -39,6 +41,7 @@ class DockWidgetPreferencePane: NSViewController, Preferenceable {
     
     private func setupCheckboxes() {
         self.hideFinderCheckbox.state           = defaults[.hideFinder]          ? .on : .off
+        self.showOnlyRunningApps.state          = defaults[.showOnlyRunningApps] ? .on : .off
         self.hideTrashCheckbox.state            = defaults[.hideTrash]           ? .on : .off
         self.hidePersistentItemsCheckbox.state  = defaults[.hidePersistentItems] ? .on : .off
         self.hideTrashCheckbox.isEnabled        = !defaults[.hidePersistentItems]
@@ -54,9 +57,14 @@ class DockWidgetPreferencePane: NSViewController, Preferenceable {
         NSWorkspace.shared.notificationCenter.post(name: .shouldReloadDock, object: nil)
     }
     
+    @IBAction private func didChangeShowOnlyRunningAppsValue(button: NSButton) {
+        defaults[.showOnlyRunningApps] = button.state == .on
+        NSWorkspace.shared.notificationCenter.post(name: .shouldReloadDock, object: nil)
+    }
+    
     @IBAction private func didChangeHideTrashValue(button: NSButton) {
         defaults[.hideTrash] = button.state == .on
-        NSWorkspace.shared.notificationCenter.post(name: .shouldReloadDock, object: nil)
+        NSWorkspace.shared.notificationCenter.post(name: .shouldReloadPersistentItems, object: nil)
     }
     
     @IBAction private func didChangeHidePersistentValue(button: NSButton) {

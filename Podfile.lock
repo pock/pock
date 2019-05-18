@@ -1,15 +1,17 @@
 PODS:
-  - Crashlytics (3.13.0):
-    - Fabric (~> 1.10.0)
+  - Crashlytics (3.13.1):
+    - Fabric (~> 1.10.1)
+  - DeepDiff (2.2.0)
   - Defaults (2.0.0)
-  - Fabric (1.10.0)
+  - Fabric (1.10.1)
   - LaunchAtLogin (2.5.0)
   - Magnet (2.3.1)
-  - Preferences (0.2.1)
+  - Preferences (0.3.0)
   - SnapKit (5.0.0)
 
 DEPENDENCIES:
   - Crashlytics
+  - DeepDiff
   - Defaults
   - Fabric
   - LaunchAtLogin
@@ -20,6 +22,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Crashlytics
+    - DeepDiff
     - Defaults
     - Fabric
     - LaunchAtLogin
@@ -28,14 +31,15 @@ SPEC REPOS:
     - SnapKit
 
 SPEC CHECKSUMS:
-  Crashlytics: 1f5f752c7feac0add0cc1774756f96444fa3b1a7
+  Crashlytics: 5aa8e90dcbf2f34898b4f5a0037787531246cca0
+  DeepDiff: e329bc46dd14ca788d8ec08d34420799ba1d77f2
   Defaults: 3ead9a1da67c4a23cfb3f0bd4d1941c1fd81468a
-  Fabric: 09de1e053eb7dc415593166ad3e53d4c88123405
+  Fabric: f6f21452846788bb44595d73e9909d79d328e617
   LaunchAtLogin: 550b0cbbdaf1b13f87a0fab6a3f8e2fbafe067fe
   Magnet: f8dac2ffc845ffe68b2dd21c68a801f866f4a098
-  Preferences: 5543bfd757a2485a310683da977d661c0ae509a9
+  Preferences: 517b5aa40e68f54a47c41ca3853ccd68e99c418b
   SnapKit: fd22d10eb9aff484d79a8724eab922c1ddf89bcf
 
-PODFILE CHECKSUM: d6500d3b3d7d94eba57a8dfe648ee2d971236f3b
+PODFILE CHECKSUM: 08535061a97c1c0feef9dcb8fb9d80a7eff152d9
 
 COCOAPODS: 1.6.0.beta.2

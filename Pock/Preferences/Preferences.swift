@@ -7,9 +7,16 @@
 //
 
 import Foundation
+import Preferences
 import Defaults
 
 let isProd: Bool = true
+
+extension PreferencePane.Identifier {
+    static let general       = Identifier("general")
+    static let dock_widget   = Identifier("dock_widget")
+    static let status_widget = Identifier("status_widget")
+}
 
 extension NSNotification.Name {
     static let didChangeNotificationBadgeRefreshRate = NSNotification.Name("didSelectNotificationBadgeRefreshRate")

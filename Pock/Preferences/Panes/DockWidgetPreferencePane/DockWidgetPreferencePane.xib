@@ -12,17 +12,18 @@
                 <outlet property="hidePersistentItemsCheckbox" destination="UBz-m6-oWX" id="hWf-bv-jPv"/>
                 <outlet property="hideTrashCheckbox" destination="NIc-hs-c8t" id="FIq-Ge-h8t"/>
                 <outlet property="notificationBadgeRefreshRatePicker" destination="QqZ-9r-WHQ" id="fEd-NZ-E49"/>
+                <outlet property="showOnlyRunningApps" destination="8qm-dH-CyJ" id="Qvi-6c-KIK"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="Hz6-mo-xeY">
-            <rect key="frame" x="0.0" y="0.0" width="340" height="169"/>
+            <rect key="frame" x="0.0" y="0.0" width="340" height="170"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gFt-UC-6tr">
-                    <rect key="frame" x="20" y="128" width="300" height="21"/>
+                    <rect key="frame" x="20" y="129" width="300" height="21"/>
                     <subviews>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9xL-NG-zId">
                             <rect key="frame" x="-2" y="4" width="194" height="17"/>
@@ -60,89 +61,84 @@
                     </customSpacing>
                 </stackView>
                 <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="P9E-R2-fFj">
-                    <rect key="frame" x="20" y="109" width="300" height="5"/>
+                    <rect key="frame" x="20" y="110" width="300" height="5"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="ISK-gi-A7b"/>
                     </constraints>
                 </box>
-                <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c4U-LI-rqB">
-                    <rect key="frame" x="20" y="20" width="300" height="78"/>
+                <stackView distribution="fillEqually" orientation="vertical" alignment="leading" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ltC-5f-Pcx">
+                    <rect key="frame" x="20" y="13" width="300" height="86"/>
                     <subviews>
-                        <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ltC-5f-Pcx">
-                            <rect key="frame" x="0.0" y="4" width="300" height="74"/>
-                            <subviews>
-                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="caE-kj-Dca">
-                                    <rect key="frame" x="-2" y="52" width="92" height="24"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="20" id="R5h-11-FPv"/>
-                                    </constraints>
-                                    <buttonCell key="cell" type="check" title="Hide Finder" bezelStyle="regularSquare" imagePosition="left" inset="2" id="PDB-GT-mUQ">
-                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                        <font key="font" metaFont="system"/>
-                                    </buttonCell>
-                                    <connections>
-                                        <action selector="didChangeHideFinderValueWithButton:" target="-2" id="eWF-7Y-Nax"/>
-                                    </connections>
-                                </button>
-                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UBz-m6-oWX">
-                                    <rect key="frame" x="-2" y="28" width="152" height="18"/>
-                                    <buttonCell key="cell" type="check" title="Hide Persistent Items" bezelStyle="regularSquare" imagePosition="left" inset="2" id="1qS-MJ-ICj">
-                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                        <font key="font" metaFont="system"/>
-                                    </buttonCell>
-                                    <connections>
-                                        <action selector="didChangeHidePersistentValueWithButton:" target="-2" id="e2B-ps-H3G"/>
-                                    </connections>
-                                </button>
-                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NIc-hs-c8t" userLabel="Hide Trash Checkbox">
-                                    <rect key="frame" x="18" y="-2" width="88" height="24"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="20" id="AmH-fD-YGL"/>
-                                    </constraints>
-                                    <buttonCell key="cell" type="check" title="Hide Trash" bezelStyle="regularSquare" imagePosition="left" inset="2" id="vFP-uA-jfm">
-                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                        <font key="font" metaFont="system"/>
-                                    </buttonCell>
-                                    <connections>
-                                        <action selector="didChangeHideTrashValueWithButton:" target="-2" id="QO5-ng-fTk"/>
-                                    </connections>
-                                </button>
-                            </subviews>
-                            <constraints>
-                                <constraint firstItem="NIc-hs-c8t" firstAttribute="leading" secondItem="ltC-5f-Pcx" secondAttribute="leading" constant="20" id="OhL-lv-wIw"/>
-                            </constraints>
-                            <visibilityPriorities>
-                                <integer value="1000"/>
-                                <integer value="1000"/>
-                                <integer value="1000"/>
-                            </visibilityPriorities>
-                            <customSpacing>
-                                <real value="3.4028234663852886e+38"/>
-                                <real value="3.4028234663852886e+38"/>
-                                <real value="3.4028234663852886e+38"/>
-                            </customSpacing>
-                        </stackView>
+                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="caE-kj-Dca">
+                            <rect key="frame" x="-2" y="70" width="92" height="18"/>
+                            <buttonCell key="cell" type="check" title="Hide Finder" bezelStyle="regularSquare" imagePosition="left" inset="2" id="PDB-GT-mUQ">
+                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="didChangeHideFinderValueWithButton:" target="-2" id="eWF-7Y-Nax"/>
+                            </connections>
+                        </button>
+                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8qm-dH-CyJ">
+                            <rect key="frame" x="-2" y="46" width="175" height="18"/>
+                            <buttonCell key="cell" type="check" title="Show Only Running Apps" bezelStyle="regularSquare" imagePosition="left" inset="2" id="qS6-8X-eGs">
+                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="didChangeShowOnlyRunningAppsValueWithButton:" target="-2" id="MNp-r0-kb1"/>
+                            </connections>
+                        </button>
+                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UBz-m6-oWX">
+                            <rect key="frame" x="-2" y="22" width="152" height="18"/>
+                            <buttonCell key="cell" type="check" title="Hide Persistent Items" bezelStyle="regularSquare" imagePosition="left" inset="2" id="1qS-MJ-ICj">
+                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="didChangeHidePersistentValueWithButton:" target="-2" id="e2B-ps-H3G"/>
+                            </connections>
+                        </button>
+                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NIc-hs-c8t" userLabel="Hide Trash Checkbox">
+                            <rect key="frame" x="18" y="-2" width="88" height="18"/>
+                            <buttonCell key="cell" type="check" title="Hide Trash" bezelStyle="regularSquare" imagePosition="left" inset="2" id="vFP-uA-jfm">
+                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="didChangeHideTrashValueWithButton:" target="-2" id="QO5-ng-fTk"/>
+                            </connections>
+                        </button>
                     </subviews>
+                    <constraints>
+                        <constraint firstItem="NIc-hs-c8t" firstAttribute="leading" secondItem="ltC-5f-Pcx" secondAttribute="leading" constant="20" id="OhL-lv-wIw"/>
+                    </constraints>
                     <visibilityPriorities>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
                         <integer value="1000"/>
                     </visibilityPriorities>
                     <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
                         <real value="3.4028234663852886e+38"/>
                     </customSpacing>
                 </stackView>
             </subviews>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="c4U-LI-rqB" secondAttribute="trailing" constant="20" id="6Ha-hs-Reb"/>
                 <constraint firstItem="P9E-R2-fFj" firstAttribute="leading" secondItem="gFt-UC-6tr" secondAttribute="leading" id="AZ0-tK-aoi"/>
                 <constraint firstItem="gFt-UC-6tr" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="O0J-T7-v5d"/>
-                <constraint firstItem="c4U-LI-rqB" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="Pgd-f3-0i1"/>
                 <constraint firstItem="P9E-R2-fFj" firstAttribute="trailing" secondItem="gFt-UC-6tr" secondAttribute="trailing" id="VUQ-os-mhp"/>
-                <constraint firstAttribute="bottom" secondItem="c4U-LI-rqB" secondAttribute="bottom" constant="20" id="cNb-Ol-R0q"/>
+                <constraint firstItem="ltC-5f-Pcx" firstAttribute="top" secondItem="P9E-R2-fFj" secondAttribute="bottom" constant="13" id="VbG-Vg-bI6"/>
+                <constraint firstAttribute="bottom" secondItem="ltC-5f-Pcx" secondAttribute="bottom" constant="13" id="Zzt-BV-2ie"/>
                 <constraint firstItem="gFt-UC-6tr" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="20" id="geg-4J-Qgb"/>
                 <constraint firstItem="P9E-R2-fFj" firstAttribute="top" secondItem="gFt-UC-6tr" secondAttribute="bottom" constant="16" id="jdJ-i5-lpa"/>
                 <constraint firstAttribute="trailing" secondItem="gFt-UC-6tr" secondAttribute="trailing" constant="20" id="kNk-X7-f8m"/>
+                <constraint firstAttribute="trailing" secondItem="ltC-5f-Pcx" secondAttribute="trailing" constant="20" id="lu2-6r-xhc"/>
                 <constraint firstItem="gFt-UC-6tr" firstAttribute="top" secondItem="P9E-R2-fFj" secondAttribute="bottom" constant="-38" id="nNN-xK-2AO"/>
-                <constraint firstItem="c4U-LI-rqB" firstAttribute="top" secondItem="P9E-R2-fFj" secondAttribute="bottom" constant="13" id="ngb-0t-be8"/>
+                <constraint firstItem="ltC-5f-Pcx" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="sec-Oo-6uV"/>
             </constraints>
             <point key="canvasLocation" x="69" y="95"/>
         </customView>

@@ -10,7 +10,7 @@ import Cocoa
 import Preferences
 import Defaults
 
-class StatusWidgetPreferencePane: NSViewController, Preferenceable {
+class StatusWidgetPreferencePane: NSViewController, PreferencePane {
 
     /// UI
     @IBOutlet weak var showWifiItem:                NSButton!
@@ -21,8 +21,9 @@ class StatusWidgetPreferencePane: NSViewController, Preferenceable {
     // @IBOutlet weak var showSpotlightItem:           NSButton!
     
     /// Preferenceable
-    let toolbarItemTitle: String  = "Status Widget"
-    let toolbarItemIcon:  NSImage = NSImage(named: NSImage.advancedName)!
+    var preferencePaneIdentifier: Identifier = Identifier.status_widget
+    let preferencePaneTitle:      String     = "Status Widget"
+    let toolbarItemIcon:          NSImage    = NSImage(named: NSImage.advancedName)!
     
     override var nibName: NSNib.Name? {
         return "StatusWidgetPreferencePane"

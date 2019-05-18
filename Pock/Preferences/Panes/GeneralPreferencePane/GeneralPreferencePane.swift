@@ -11,7 +11,7 @@ import Preferences
 import Defaults
 import LaunchAtLogin
 
-final class GeneralPreferencePane: NSViewController, Preferenceable {
+final class GeneralPreferencePane: NSViewController, PreferencePane {
     
     /// UI
     @IBOutlet weak var versionLabel:                       NSTextField!
@@ -34,8 +34,9 @@ final class GeneralPreferencePane: NSViewController, Preferenceable {
     private static let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String ?? "Unknown"
     
     /// Preferenceable
-    let toolbarItemTitle: String   = "General"
-    let toolbarItemIcon:  NSImage  = NSImage(named: NSImage.preferencesGeneralName)!
+    var preferencePaneIdentifier: Identifier = Identifier.general
+    let preferencePaneTitle:      String     = "General"
+    let toolbarItemIcon:          NSImage    = NSImage(named: NSImage.preferencesGeneralName)!
     
     override var nibName: NSNib.Name? {
         return "GeneralPreferencePane"
