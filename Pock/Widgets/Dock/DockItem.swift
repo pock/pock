@@ -7,8 +7,13 @@
 //
 
 import Foundation
+import DeepDiff
 
-class DockItem: Equatable {
+class DockItem: Equatable, DiffAware {
+
+    var diffId: Int {
+        return bundleIdentifier?.hashValue ?? path?.hashValue ?? 0
+    }
     
     var index:              Int
     let bundleIdentifier:   String?
@@ -40,12 +45,12 @@ class DockItem: Equatable {
         self.isPersistentItem   = persistentItem
     }
     
-    static func == (lhs: DockItem, rhs: DockItem) -> Bool {
-        if lhs.isPersistentItem && rhs.isPersistentItem {
-            return lhs.path == rhs.path
-        }else if !lhs.isPersistentItem && !rhs.isPersistentItem {
-            return lhs.bundleIdentifier == rhs.bundleIdentifier
-        }
-        return false
+    static func compareContent(_ a: DockItem, _ b: DockItem) -> Bool {
+        return a.diffId == b.diffId
     }
+    
+    static func == (_ lhs: DockItem, rhs: DockItem) -> Bool {
+        return compareContent(lhs, rhs)
+    }
+
 }

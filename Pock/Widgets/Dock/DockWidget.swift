@@ -8,11 +8,13 @@
 
 import Foundation
 import Defaults
+import DeepDiff
 
 class DockWidget: PockWidget {
     
     /// Core
     private var dockRepository: DockRepository!
+    private var operationQueue: OperationQueue?
     
     /// UI
     private var stackView:          NSStackView! = NSStackView(frame: .zero)
@@ -23,9 +25,14 @@ class DockWidget: PockWidget {
     /// Data
     private var dockItems:       [DockItem] = []
     private var persistentItems: [DockItem] = []
+    private var cachedItemViews: [Int: DockItemView] = [:]
     
     /// Custom init
     override func customInit() {
+        self.operationQueue = OperationQueue()
+        self.operationQueue?.maxConcurrentOperationCount = 1
+        self.operationQueue?.qualityOfService = .background
+        
         self.customizationLabel = "Dock"
         self.configureStackView()
         self.configureDockScrubber()
@@ -39,6 +46,8 @@ class DockWidget: PockWidget {
     }
     
     deinit {
+        operationQueue?.cancelAllOperations()
+        operationQueue      = nil
         stackView           = nil
         dockScrubber        = nil
         separator           = nil
@@ -109,65 +118,84 @@ class DockWidget: PockWidget {
 
 extension DockWidget: DockDelegate {
     func didUpdate(apps: [DockItem]) {
-        update(scrubber: dockScrubber, old_items: dockItems, new_items: apps, completion: { [weak self] items in
-            self?.dockItems = items
-            self?.dockScrubber.needsLayout = true
-        })
+        update(scrubber: dockScrubber, oldItems: dockItems, newItems: apps) { [weak self] apps in
+            self?.dockItems = apps
+        }
     }
     func didUpdate(items: [DockItem]) {
-        update(scrubber: persistentScrubber, old_items: persistentItems, new_items: items, canReload: true, completion: { [weak self] items in
+        update(scrubber: persistentScrubber, oldItems: persistentItems, newItems: items) { [weak self] items in
             self?.persistentItems = items
             self?.displayScrubbers()
-            persistentScrubber.snp.updateConstraints({ m in
-                m.width.equalTo((Constants.dockItemSize.width + 8) * CGFloat(persistentItems.count))
+            self?.persistentScrubber.snp.updateConstraints({ m in
+                m.width.equalTo((Constants.dockItemSize.width + 8) * CGFloat(self?.persistentItems.count ?? 0))
             })
-        })
+        }
     }
-    private func update(scrubber: NSScrubber?, old_items: [DockItem], new_items: [DockItem], canReload: Bool = false, completion: ([DockItem]) -> Void) {
+    
+    @discardableResult
+    private func updateView(for item: DockItem?) -> DockItemView? {
+        guard let item = item else { return nil }
+        var view: DockItemView! = cachedItemViews[item.diffId]
+        if view == nil {
+            view = DockItemView(frame: .zero)
+            cachedItemViews[item.diffId] = view
+        }
+        view.clear()
+        view.set(icon:        item.icon)
+        view.set(hasBadge:    item.hasBadge)
+        view.set(isRunning:   item.isRunning)
+        view.set(isFrontmost: item.isFrontmost)
+        return view
+    }
+    
+    private func update(scrubber: NSScrubber?, oldItems: [DockItem], newItems: [DockItem], completion: (([DockItem]) -> Void)? = nil) {
         guard let scrubber = scrubber else {
-            completion(new_items)
+            completion?(newItems)
             return
         }
-        scrubber.performSequentialBatchUpdates {
-            var count = scrubber.numberOfItems
-            for (index, old_item) in old_items.enumerated() {
-                if !new_items.contains(old_item) {
-                    scrubber.removeItems(at: IndexSet(integer: index))
-                    count -= 1
-                }else {
-                    if canReload {
-                        scrubber.reloadItems(at: IndexSet(integer: index))
-                    }
+        operationQueue?.addOperation {
+            let diffs = diff(old: oldItems, new: newItems)
+            DispatchQueue.main.async {
+                scrubber.performSequentialBatchUpdates {
+                    diffs.executeIfPresent({ changes in
+                        completion?(newItems)
+                        guard changes.count < 2 else {
+                            scrubber.reloadData()
+                            return
+                        }
+                        for change in changes {
+                            switch change {
+                            case let .delete(delete):
+                                scrubber.removeItems(at: IndexSet(integer: delete.index))
+                                print("[Pock]: Removed '\(delete.item.bundleIdentifier ?? delete.item.path?.absoluteString ?? "unknown")' from: \(delete.index)")
+                            case let .insert(insert):
+                                scrubber.insertItems(at: IndexSet(integer: insert.index))
+                                print("[Pock]: Inserted '\(insert.item.bundleIdentifier ?? insert.item.path?.absoluteString ?? "unknown")' at: \(insert.index)")
+                            case let .replace(replace):
+                                scrubber.reloadItems(at: IndexSet(integer: replace.index))
+                                let old_id = replace.oldItem.bundleIdentifier ?? replace.oldItem.path?.absoluteString ?? "unknown old"
+                                let new_id = replace.newItem.bundleIdentifier ?? replace.newItem.path?.absoluteString ?? "unknown new"
+                                print("[Pock]: Replace '\(old_id)' with '\(new_id)' at: \(replace.index)")
+                            case let .move(move):
+                                scrubber.moveItem(at: move.fromIndex, to: move.toIndex)
+                                print("[Pock]: Moved '\(move.item.bundleIdentifier ?? move.item.path?.absoluteString ?? "unknown")' from: '\(move.fromIndex)', to: \(move.toIndex)")
+                            }
+                        }
+                    })
                 }
             }
-            for new_item in new_items {
-                if !old_items.contains(new_item) {
-                    scrubber.insertItems(at: IndexSet(integer: count))
-                    if old_items.count > 0 {
-                        scrubber.scrollItem(at: count - 1, to: .leading)
-                    }
-                    count += 1
-                }
-            }
-            completion(new_items)
         }
     }
     func didUpdateBadge(for apps: [DockItem]) {
-        for (index, item) in dockItems.enumerated() {
-            DispatchQueue.main.async { [weak self] in
-                if let view = self?.dockScrubber.itemViewForItem(at: index) as? DockItemView {
-                    view.set(hasBadge: item.hasBadge)
-                }
-            }
+        DispatchQueue.main.async { [weak self] in
+            guard let s = self else { return }
+            apps.forEach({ s.updateView(for: $0) })
         }
     }
     func didUpdateRunningState(for apps: [DockItem]) {
-        for (index, item) in dockItems.enumerated() {
-            if let view = dockScrubber.itemViewForItem(at: index) as? DockItemView {
-                view.set(icon: item.icon)
-                view.set(isRunning: item.isRunning)
-                view.set(isFrontmost: item.isFrontmost)
-            }
+        DispatchQueue.main.async { [weak self] in
+            guard let s = self else { return }
+            apps.forEach({ s.updateView(for: $0) })
         }
     }
 }
@@ -182,12 +210,7 @@ extension DockWidget: NSScrubberDataSource {
     
     func scrubber(_ scrubber: NSScrubber, viewForItemAt index: Int) -> NSScrubberItemView {
         let item = scrubber == persistentScrubber ? persistentItems[index] : dockItems[index]
-        let view = scrubber.makeItem(withIdentifier: Constants.kDockItemView, owner: self) as! DockItemView
-        view.set(icon:         item.icon)
-        view.set(hasBadge:     item.hasBadge)
-        view.set(isRunning:    item.isRunning)
-        view.set(isFrontmost:  item.isFrontmost)
-        return view
+        return updateView(for: item)!
     }
 }
 

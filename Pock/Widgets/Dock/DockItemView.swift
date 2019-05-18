@@ -79,7 +79,6 @@ class DockItemView: NSScrubberItemView {
     override init(frame frameRect: NSRect) {
         super.init(frame: NSRect(origin: .zero, size: Constants.dockItemSize))
         self.contentView = NSView(frame: .zero)
-        self.loadIconView()
         self.addSubview(self.contentView)
         self.contentView.snp.makeConstraints({ m in
             m.edges.equalToSuperview()
@@ -90,12 +89,11 @@ class DockItemView: NSScrubberItemView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        self.set(icon:         nil)
-        self.set(hasBadge:     false)
-        self.set(isRunning:    false)
-        self.set(isFrontmost:  false)
+    func clear() {
+        self.set(icon:        nil)
+        self.set(hasBadge:    false)
+        self.set(isRunning:   false)
+        self.set(isFrontmost: false)
     }
     
     override func viewDidChangeBackingProperties() {
@@ -108,6 +106,7 @@ class DockItemView: NSScrubberItemView {
     }
     
     public func set(icon: NSImage?) {
+        if iconView == nil { loadIconView() }
         iconView.image = icon
     }
     

@@ -61,17 +61,19 @@ enum NotificationBadgeRefreshRateKeys: Double, Codable, CaseIterable {
 
 extension Defaults.Keys {
     static let launchAtLogin                    = Defaults.Key<Bool>("launchAtLogin",          default: false)
-    static let notificationBadgeRefreshInterval = Defaults.Key<NotificationBadgeRefreshRateKeys>("notificationBadgeRefreshInterval", default: .tenSeconds)
     static let hideControlStrip                 = Defaults.Key<Bool>("hideControlStrip",       default: false)
+    static let enableAutomaticUpdates           = Defaults.Key<Bool>("enableAutomaticUpdates", default: false)
+    /// Dock widget
+    static let notificationBadgeRefreshInterval = Defaults.Key<NotificationBadgeRefreshRateKeys>("notificationBadgeRefreshInterval", default: .tenSeconds)
     static let hideFinder                       = Defaults.Key<Bool>("hideFinder",             default: false)
+    static let showOnlyRunningApps              = Defaults.Key<Bool>("showOnlyRunningApps",    default: false)
     static let hideTrash                        = Defaults.Key<Bool>("hideTrash",              default: false)
     static let hidePersistentItems              = Defaults.Key<Bool>("hidePersistentItems",    default: false)
-    static let enableAutomaticUpdates           = Defaults.Key<Bool>("enableAutomaticUpdates", default: false)
     /// Status widget
-    static let shouldShowWifiItem           = Defaults.Key<Bool>("shouldShowWifiItem",          default: true)
-    static let shouldShowPowerItem          = Defaults.Key<Bool>("shouldShowPowerItem",         default: true)
-    static let shouldShowBatteryIcon        = Defaults.Key<Bool>("shouldShowBatteryIcon",       default: true)
-    static let shouldShowBatteryPercentage  = Defaults.Key<Bool>("shouldShowBatteryPercentage", default: true)
-    static let shouldShowDateItem           = Defaults.Key<Bool>("shouldShowDateItem",          default: true)
-    static let shouldShowSpotlightItem      = Defaults.Key<Bool>("shouldShowSpotlightItem",     default: true)
+    static let shouldShowWifiItem               = Defaults.Key<Bool>("shouldShowWifiItem",          default: true)
+    static let shouldShowPowerItem              = Defaults.Key<Bool>("shouldShowPowerItem",         default: true)
+    static let shouldShowBatteryIcon            = Defaults.Key<Bool>("shouldShowBatteryIcon",       default: true)
+    static let shouldShowBatteryPercentage      = Defaults.Key<Bool>("shouldShowBatteryPercentage", default: true)
+    static let shouldShowDateItem               = Defaults.Key<Bool>("shouldShowDateItem",          default: true)
+    static let shouldShowSpotlightItem          = Defaults.Key<Bool>("shouldShowSpotlightItem",     default: true)
 }

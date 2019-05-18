@@ -23,6 +23,7 @@ class DockRepository {
     private var fileMonitor: FileMonitor?
     private var notificationBadgeRefreshTimer: Timer!
     private var shouldShowNotificationBadge: Bool { return defaults[.notificationBadgeRefreshInterval] != .never }
+    private var showOnlyRunningApps: Bool { return defaults[.showOnlyRunningApps] }
     private var dockFolderRepository: DockFolderRepository?
     
     /// Running applications
@@ -51,17 +52,28 @@ class DockRepository {
     }
     
     /// Reload
-    @objc public func reload(_ notification: NSNotification?) {
+    @objc public func reloadDock(_ notification: NSNotification?) {
         dockItems.removeAll()
         runningItems.removeAll()
         persistentApps.removeAll()
+        DispatchQueue.global(qos: .background).async { [weak self] in
+            if !(self?.showOnlyRunningApps ?? false) {
+                self?.loadPersistentApps()
+            }
+            self?.loadRunningApplications(notification)
+        }
+    }
+    
+    @objc public func reloadPersistentItems(_ notification: NSNotification?) {
         persistentItems.removeAll()
-        loadPersistentApps()
-        loadRunningApplications(notification)
-        loadPersistentItems()
-        delegate?.didUpdate(apps: dockItems)
-        updateNotificationBadges()
-        updateRunningState()
+        DispatchQueue.global(qos: .background).async { [weak self] in
+            self?.loadPersistentItems()
+        }
+    }
+    
+    @objc public func reload(_ notification: NSNotification?) {
+        reloadDock(notification)
+        reloadPersistentItems(notification)
     }
     
     /// Unregister from notification
@@ -73,33 +85,38 @@ class DockRepository {
     /// Register for notification
     private func registerForNotifications() {
         NSWorkspace.shared.notificationCenter.addObserver(self,
-                                                          selector: #selector(loadRunningApplications(_:)),
+                                                          selector: #selector(reloadDock(_:)),
                                                           name: NSWorkspace.willLaunchApplicationNotification,
                                                           object: nil)
 
         NSWorkspace.shared.notificationCenter.addObserver(self,
-                                                          selector: #selector(loadRunningApplications(_:)),
+                                                          selector: #selector(updateRunningState),
                                                           name: NSWorkspace.didLaunchApplicationNotification,
                                                           object: nil)
 
         NSWorkspace.shared.notificationCenter.addObserver(self,
-                                                          selector: #selector(loadRunningApplications(_:)),
+                                                          selector: #selector(updateRunningState),
                                                           name: NSWorkspace.didActivateApplicationNotification,
                                                           object: nil)
 
         NSWorkspace.shared.notificationCenter.addObserver(self,
-                                                          selector: #selector(loadRunningApplications(_:)),
+                                                          selector: #selector(updateRunningState),
                                                           name: NSWorkspace.didDeactivateApplicationNotification,
                                                           object: nil)
 
         NSWorkspace.shared.notificationCenter.addObserver(self,
-                                                          selector: #selector(loadRunningApplications(_:)),
+                                                          selector: #selector(reloadDock(_:)),
                                                           name: NSWorkspace.didTerminateApplicationNotification,
                                                           object: nil)
         
         NSWorkspace.shared.notificationCenter.addObserver(self,
-                                                          selector: #selector(reload(_:)),
+                                                          selector: #selector(reloadDock(_:)),
                                                           name: .shouldReloadDock,
+                                                          object: nil)
+        
+        NSWorkspace.shared.notificationCenter.addObserver(self,
+                                                          selector: #selector(reloadPersistentItems(_:)),
+                                                          name: .shouldReloadPersistentItems,
                                                           object: nil)
 
         NSWorkspace.shared.notificationCenter.addObserver(self,
@@ -138,8 +155,12 @@ class DockRepository {
                 dockItems.append(item)
             }
         }
+        if !defaults[.hideFinder] && !dockItems.contains(where: { $0.bundleIdentifier == Constants.kFinderIdentifier }) {
+            let finderItem = DockItem(0, Constants.kFinderIdentifier, name: "Finder", path: nil, icon: DockRepository.getIcon(forBundleIdentifier: Constants.kFinderIdentifier), pid_t: 0)
+            runningItems.insert(finderItem, at: 0)
+            dockItems.insert(finderItem, at: 0)
+        }
         delegate?.didUpdate(apps: dockItems)
-        updateRunningState()
     }
     
     /// Load persistent applications
@@ -179,11 +200,6 @@ class DockRepository {
                 persistentApps.append(item)
                 dockItems.append(item)
             }
-        }
-        if !defaults[.hideFinder] && !dockItems.contains(where: { $0.bundleIdentifier == Constants.kFinderIdentifier }) {
-            let finderItem = DockItem(0, Constants.kFinderIdentifier, name: "Finder", path: nil, icon: DockRepository.getIcon(forBundleIdentifier: Constants.kFinderIdentifier), pid_t: 0)
-            persistentApps.insert(finderItem, at: 0)
-            dockItems.insert(finderItem, at: 0)
         }
     }
     
@@ -226,11 +242,13 @@ class DockRepository {
             let trashItem = DockItem(0, nil, name: "Trash", path: URL(string: "file://"+Constants.trashPath)!, icon: DockRepository.getIcon(orType: trashType), persistentItem: true)
             persistentItems.append(trashItem)
         }
-        delegate?.didUpdate(items: persistentItems)
+        DispatchQueue.main.async { [weak self] in
+            self?.delegate?.didUpdate(items: self?.persistentItems ?? [])
+        }
     }
     
     /// Load running dot
-    private func updateRunningState() {
+    @objc private func updateRunningState() {
         for item in dockItems {
             item.pid_t = NSWorkspace.shared.runningApplications.first(where: { $0.bundleIdentifier == item.bundleIdentifier })?.processIdentifier ?? 0
         }
