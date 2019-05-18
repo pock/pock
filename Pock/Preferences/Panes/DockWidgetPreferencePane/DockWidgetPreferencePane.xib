@@ -11,6 +11,7 @@
                 <outlet property="hideFinderCheckbox" destination="caE-kj-Dca" id="oxs-PD-8sv"/>
                 <outlet property="hidePersistentItemsCheckbox" destination="UBz-m6-oWX" id="hWf-bv-jPv"/>
                 <outlet property="hideTrashCheckbox" destination="NIc-hs-c8t" id="FIq-Ge-h8t"/>
+                <outlet property="itemSpacingTextField" destination="VVh-2X-SdG" id="r3n-BR-IQb"/>
                 <outlet property="notificationBadgeRefreshRatePicker" destination="QqZ-9r-WHQ" id="fEd-NZ-E49"/>
                 <outlet property="showOnlyRunningApps" destination="8qm-dH-CyJ" id="Qvi-6c-KIK"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
@@ -19,11 +20,11 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="Hz6-mo-xeY">
-            <rect key="frame" x="0.0" y="0.0" width="340" height="170"/>
+            <rect key="frame" x="0.0" y="0.0" width="340" height="220"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gFt-UC-6tr">
-                    <rect key="frame" x="20" y="129" width="300" height="21"/>
+                    <rect key="frame" x="20" y="179" width="300" height="21"/>
                     <subviews>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9xL-NG-zId">
                             <rect key="frame" x="-2" y="4" width="194" height="17"/>
@@ -61,16 +62,16 @@
                     </customSpacing>
                 </stackView>
                 <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="P9E-R2-fFj">
-                    <rect key="frame" x="20" y="110" width="300" height="5"/>
+                    <rect key="frame" x="20" y="160" width="300" height="5"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="ISK-gi-A7b"/>
                     </constraints>
                 </box>
-                <stackView distribution="fillEqually" orientation="vertical" alignment="leading" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ltC-5f-Pcx">
-                    <rect key="frame" x="20" y="13" width="300" height="86"/>
+                <stackView distribution="fillEqually" orientation="vertical" alignment="leading" spacing="13" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ltC-5f-Pcx">
+                    <rect key="frame" x="20" y="54" width="300" height="95"/>
                     <subviews>
                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="caE-kj-Dca">
-                            <rect key="frame" x="-2" y="70" width="92" height="18"/>
+                            <rect key="frame" x="-2" y="79" width="92" height="18"/>
                             <buttonCell key="cell" type="check" title="Hide Finder" bezelStyle="regularSquare" imagePosition="left" inset="2" id="PDB-GT-mUQ">
                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                 <font key="font" metaFont="system"/>
@@ -80,7 +81,7 @@
                             </connections>
                         </button>
                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8qm-dH-CyJ">
-                            <rect key="frame" x="-2" y="46" width="175" height="18"/>
+                            <rect key="frame" x="-2" y="52" width="175" height="18"/>
                             <buttonCell key="cell" type="check" title="Show Only Running Apps" bezelStyle="regularSquare" imagePosition="left" inset="2" id="qS6-8X-eGs">
                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                 <font key="font" metaFont="system"/>
@@ -90,7 +91,7 @@
                             </connections>
                         </button>
                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UBz-m6-oWX">
-                            <rect key="frame" x="-2" y="22" width="152" height="18"/>
+                            <rect key="frame" x="-2" y="25" width="152" height="18"/>
                             <buttonCell key="cell" type="check" title="Hide Persistent Items" bezelStyle="regularSquare" imagePosition="left" inset="2" id="1qS-MJ-ICj">
                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                 <font key="font" metaFont="system"/>
@@ -111,7 +112,7 @@
                         </button>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="NIc-hs-c8t" firstAttribute="leading" secondItem="ltC-5f-Pcx" secondAttribute="leading" constant="20" id="OhL-lv-wIw"/>
+                        <constraint firstItem="NIc-hs-c8t" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ltC-5f-Pcx" secondAttribute="leading" constant="20" id="OhL-lv-wIw"/>
                     </constraints>
                     <visibilityPriorities>
                         <integer value="1000"/>
@@ -126,21 +127,55 @@
                         <real value="3.4028234663852886e+38"/>
                     </customSpacing>
                 </stackView>
+                <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hrd-H5-paz">
+                    <rect key="frame" x="20" y="10" width="128" height="21"/>
+                    <subviews>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rdj-tL-R0L">
+                            <rect key="frame" x="-2" y="4" width="82" height="17"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="Item spacing" id="qJw-Vc-w0w">
+                                <font key="font" metaFont="system"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VVh-2X-SdG">
+                            <rect key="frame" x="88" y="0.0" width="40" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="jzh-nQ-SDe"/>
+                            </constraints>
+                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="border" placeholderString="8pt" drawsBackground="YES" id="aXg-gA-VhE">
+                                <font key="font" metaFont="system"/>
+                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                    </subviews>
+                    <visibilityPriorities>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                    </visibilityPriorities>
+                    <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                    </customSpacing>
+                </stackView>
             </subviews>
             <constraints>
                 <constraint firstItem="P9E-R2-fFj" firstAttribute="leading" secondItem="gFt-UC-6tr" secondAttribute="leading" id="AZ0-tK-aoi"/>
+                <constraint firstItem="Hrd-H5-paz" firstAttribute="top" relation="greaterThanOrEqual" secondItem="ltC-5f-Pcx" secondAttribute="bottom" constant="20" id="Fku-es-fPj"/>
                 <constraint firstItem="gFt-UC-6tr" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="O0J-T7-v5d"/>
                 <constraint firstItem="P9E-R2-fFj" firstAttribute="trailing" secondItem="gFt-UC-6tr" secondAttribute="trailing" id="VUQ-os-mhp"/>
                 <constraint firstItem="ltC-5f-Pcx" firstAttribute="top" secondItem="P9E-R2-fFj" secondAttribute="bottom" constant="13" id="VbG-Vg-bI6"/>
-                <constraint firstAttribute="bottom" secondItem="ltC-5f-Pcx" secondAttribute="bottom" constant="13" id="Zzt-BV-2ie"/>
+                <constraint firstAttribute="bottom" secondItem="Hrd-H5-paz" secondAttribute="bottom" constant="10" id="eYS-hX-tMd"/>
                 <constraint firstItem="gFt-UC-6tr" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="20" id="geg-4J-Qgb"/>
                 <constraint firstItem="P9E-R2-fFj" firstAttribute="top" secondItem="gFt-UC-6tr" secondAttribute="bottom" constant="16" id="jdJ-i5-lpa"/>
                 <constraint firstAttribute="trailing" secondItem="gFt-UC-6tr" secondAttribute="trailing" constant="20" id="kNk-X7-f8m"/>
                 <constraint firstAttribute="trailing" secondItem="ltC-5f-Pcx" secondAttribute="trailing" constant="20" id="lu2-6r-xhc"/>
+                <constraint firstItem="Hrd-H5-paz" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="n3h-oG-Lw8"/>
                 <constraint firstItem="gFt-UC-6tr" firstAttribute="top" secondItem="P9E-R2-fFj" secondAttribute="bottom" constant="-38" id="nNN-xK-2AO"/>
                 <constraint firstItem="ltC-5f-Pcx" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="sec-Oo-6uV"/>
             </constraints>
-            <point key="canvasLocation" x="69" y="95"/>
+            <point key="canvasLocation" x="69" y="139"/>
         </customView>
     </objects>
 </document>

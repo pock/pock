@@ -23,6 +23,7 @@ extension NSNotification.Name {
     static let shouldReloadPock                      = NSNotification.Name("shouldReloadPock")
     static let shouldReloadStatusWidget              = NSNotification.Name("shouldReloadStatusWidget")
     static let shouldReloadDock                      = NSNotification.Name("shouldReloadDock")
+    static let shouldReloadDockLayout                = NSNotification.Name("shouldReloadDockLayout")
     static let shouldReloadPersistentItems           = NSNotification.Name("shouldReloadPersistentItems")
     static let shouldEnableAutomaticUpdates          = NSNotification.Name("shouldEnableAutomaticUpdates")
 }
@@ -65,6 +66,7 @@ extension Defaults.Keys {
     static let enableAutomaticUpdates           = Defaults.Key<Bool>("enableAutomaticUpdates", default: false)
     /// Dock widget
     static let notificationBadgeRefreshInterval = Defaults.Key<NotificationBadgeRefreshRateKeys>("notificationBadgeRefreshInterval", default: .tenSeconds)
+    static let itemSpacing                      = Defaults.Key<Int>("itemSpacing",             default: 8)
     static let hideFinder                       = Defaults.Key<Bool>("hideFinder",             default: false)
     static let showOnlyRunningApps              = Defaults.Key<Bool>("showOnlyRunningApps",    default: false)
     static let hideTrash                        = Defaults.Key<Bool>("hideTrash",              default: false)

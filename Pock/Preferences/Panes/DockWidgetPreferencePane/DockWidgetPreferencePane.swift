@@ -17,6 +17,7 @@ class DockWidgetPreferencePane: NSViewController, PreferencePane {
     @IBOutlet weak var showOnlyRunningApps:                NSButton!
     @IBOutlet weak var hideTrashCheckbox:                  NSButton!
     @IBOutlet weak var hidePersistentItemsCheckbox:        NSButton!
+    @IBOutlet weak var itemSpacingTextField:               NSTextField!
     
     /// Preferenceable
     var preferencePaneIdentifier: Identifier = Identifier.dock_widget
@@ -31,6 +32,12 @@ class DockWidgetPreferencePane: NSViewController, PreferencePane {
         super.viewWillAppear()
         self.populatePopUpButton()
         self.setupCheckboxes()
+        self.setupItemSpacingTextField()
+    }
+    
+    private func setupItemSpacingTextField() {
+        self.itemSpacingTextField.delegate = self
+        self.itemSpacingTextField.placeholderString = "\(defaults[.itemSpacing])pt"
     }
     
     private func populatePopUpButton() {
@@ -73,4 +80,12 @@ class DockWidgetPreferencePane: NSViewController, PreferencePane {
         NSWorkspace.shared.notificationCenter.post(name: .shouldReloadPersistentItems, object: nil)
     }
     
+}
+
+extension DockWidgetPreferencePane: NSTextFieldDelegate {
+    func controlTextDidEndEditing(_ obj: Notification) {
+        let value = itemSpacingTextField.stringValue.replacingOccurrences(of: "pt", with: "")
+        defaults[.itemSpacing] = Int(value) ?? defaults[.itemSpacing]
+        NSWorkspace.shared.notificationCenter.post(name: .shouldReloadDockLayout, object: nil)
+    }
 }

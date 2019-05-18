@@ -43,6 +43,7 @@ class DockWidget: PockWidget {
         self.dockRepository = DockRepository(delegate: self)
         self.dockRepository.reload(nil)
         NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(displayScrubbers), name: .shouldReloadPersistentItems, object: nil)
+        NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(reloadDockScrubberLayout), name: .shouldReloadDockLayout, object: nil)
     }
     
     deinit {
@@ -68,11 +69,21 @@ class DockWidget: PockWidget {
         self.persistentScrubber.isHidden = defaults[.hidePersistentItems] || persistentItems.isEmpty
     }
     
+    @objc private func reloadDockScrubberLayout() {
+        let layout = NSScrubberFlowLayout()
+        layout.itemSize    = Constants.dockItemSize
+        layout.itemSpacing = CGFloat(defaults[.itemSpacing])
+        dockScrubber.scrubberLayout       = layout
+        persistentScrubber.scrubberLayout = layout
+        dockScrubber.reloadData()
+        persistentScrubber.reloadData()
+    }
+    
     /// Configure dock scrubber
     private func configureDockScrubber() {
         let layout = NSScrubberFlowLayout()
-        layout.itemSize = Constants.dockItemSize
-        layout.itemSpacing = 8
+        layout.itemSize    = Constants.dockItemSize
+        layout.itemSpacing = CGFloat(defaults[.itemSpacing])
         dockScrubber.dataSource = self
         dockScrubber.delegate = self
         dockScrubber.register(DockItemView.self, forItemIdentifier: Constants.kDockItemView)
@@ -98,8 +109,8 @@ class DockWidget: PockWidget {
     /// Configure persistent scrubber
     private func configurePersistentScrubber() {
         let layout = NSScrubberFlowLayout()
-        layout.itemSize = Constants.dockItemSize
-        layout.itemSpacing = 8
+        layout.itemSize    = Constants.dockItemSize
+        layout.itemSpacing = CGFloat(defaults[.itemSpacing])
         persistentScrubber.dataSource = self
         persistentScrubber.delegate = self
         persistentScrubber.register(DockItemView.self, forItemIdentifier: Constants.kDockItemView)
@@ -160,6 +171,7 @@ extension DockWidget: DockDelegate {
                     diffs.executeIfPresent({ changes in
                         completion?(newItems)
                         guard changes.count < 2 else {
+                            scrubber.scrubberLayout.invalidateLayout()
                             scrubber.reloadData()
                             return
                         }

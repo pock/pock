@@ -161,6 +161,7 @@ class DockRepository {
             dockItems.insert(finderItem, at: 0)
         }
         delegate?.didUpdate(apps: dockItems)
+        updateRunningState()
     }
     
     /// Load persistent applications
