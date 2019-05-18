@@ -82,8 +82,8 @@
                             </connections>
                         </button>
                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8qm-dH-CyJ">
-                            <rect key="frame" x="-2" y="79" width="175" height="18"/>
-                            <buttonCell key="cell" type="check" title="Show Only Running Apps" bezelStyle="regularSquare" imagePosition="left" inset="2" id="qS6-8X-eGs">
+                            <rect key="frame" x="-2" y="79" width="167" height="18"/>
+                            <buttonCell key="cell" type="check" title="Show only running apps" bezelStyle="regularSquare" imagePosition="left" inset="2" id="qS6-8X-eGs">
                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>

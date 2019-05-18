@@ -38,7 +38,7 @@ class DockWidgetPreferencePane: NSViewController, PreferencePane {
     
     private func setupItemSpacingTextField() {
         self.itemSpacingTextField.delegate = self
-        self.itemSpacingTextField.placeholderString = "\(defaults[.itemSpacing])pt"
+        self.itemSpacingTextField.placeholderString = "8pt"
     }
     
     private func populatePopUpButton() {
@@ -91,7 +91,7 @@ class DockWidgetPreferencePane: NSViewController, PreferencePane {
 extension DockWidgetPreferencePane: NSTextFieldDelegate {
     func controlTextDidEndEditing(_ obj: Notification) {
         let value = itemSpacingTextField.stringValue.replacingOccurrences(of: "pt", with: "")
-        defaults[.itemSpacing] = Int(value) ?? defaults[.itemSpacing]
+        defaults[.itemSpacing] = Int(value) ?? 8
         NSWorkspace.shared.notificationCenter.post(name: .shouldReloadDockLayout, object: nil)
     }
 }
