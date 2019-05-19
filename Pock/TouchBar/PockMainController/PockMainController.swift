@@ -43,13 +43,26 @@ class PockMainController: PockTouchBarController {
     }
     
     private func loadPluginsFromFilesystem(completion: ([PockWidget]) -> Void) {
-        let path       = FileManager.default.homeDirectoryForCurrentUser.path + "/Desktop"
-        let enumerator = FileManager.default.enumerator(atPath: path)
-        let widgetBundles = (enumerator?.allObjects as? [String] ?? []).filter{ $0.contains(".pock") && !$0.contains("/") }
         self.loadedWidgets.removeAll()
+        
+        let path = FileManager.default.homeDirectoryForCurrentUser.path + "/Library/Application Support/Pock"
+        let widgetsPath = path + "/Widgets"
+        var directoryExists: ObjCBool = false
+        if !FileManager.default.fileExists(atPath: path) {
+            try? FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: false, attributes: nil)
+            try? FileManager.default.createDirectory(atPath: widgetsPath, withIntermediateDirectories: false, attributes: nil)
+        }
+        FileManager.default.fileExists(atPath: path, isDirectory: &directoryExists)
+        FileManager.default.fileExists(atPath: widgetsPath, isDirectory: &directoryExists)
+        guard directoryExists.boolValue else {
+            completion([])
+            return
+        }
+        let enumerator = FileManager.default.enumerator(atPath: widgetsPath)
+        let widgetBundles = (enumerator?.allObjects as? [String] ?? []).filter{ $0.contains(".pock") && !$0.contains("/") }
         for widgetBundle in widgetBundles {
             /// load bundle
-            let bundlePath = "\(path)/\(widgetBundle)"
+            let bundlePath = "\(widgetsPath)/\(widgetBundle)"
             if let bundle = Bundle(path: bundlePath), bundle.load() {
                 if let clss = bundle.principalClass as? PockWidget.Type {
                     let plugin = clss.init()
