@@ -3,61 +3,61 @@
     {
       "size" : "16x16",
       "idiom" : "mac",
-      "filename" : "pock-icon-16.png",
+      "filename" : "icon-16.png",
       "scale" : "1x"
     },
     {
       "size" : "16x16",
       "idiom" : "mac",
-      "filename" : "pock-icon-32.png",
+      "filename" : "icon-32.png",
       "scale" : "2x"
     },
     {
       "size" : "32x32",
       "idiom" : "mac",
-      "filename" : "pock-icon-33.png",
+      "filename" : "icon-32.png",
       "scale" : "1x"
     },
     {
       "size" : "32x32",
       "idiom" : "mac",
-      "filename" : "pock-icon-64.png",
+      "filename" : "icon-64.png",
       "scale" : "2x"
     },
     {
       "size" : "128x128",
       "idiom" : "mac",
-      "filename" : "pock-icon-128.png",
+      "filename" : "icon-128.png",
       "scale" : "1x"
     },
     {
       "size" : "128x128",
       "idiom" : "mac",
-      "filename" : "pock-icon-256.png",
+      "filename" : "icon-256.png",
       "scale" : "2x"
     },
     {
       "size" : "256x256",
       "idiom" : "mac",
-      "filename" : "pock-icon-257.png",
+      "filename" : "icon-256.png",
       "scale" : "1x"
     },
     {
       "size" : "256x256",
       "idiom" : "mac",
-      "filename" : "pock-icon-512.png",
+      "filename" : "icon-512.png",
       "scale" : "2x"
     },
     {
       "size" : "512x512",
       "idiom" : "mac",
-      "filename" : "pock-icon-513.png",
+      "filename" : "icon-512.png",
       "scale" : "1x"
     },
     {
       "size" : "512x512",
       "idiom" : "mac",
-      "filename" : "pock-icon-1024.png",
+      "filename" : "icon-1024.png",
       "scale" : "2x"
     }
   ],

@@ -23,13 +23,13 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Jxs-rJ-hZ7">
-                    <rect key="frame" x="0.0" y="52" width="120" height="70"/>
+                    <rect key="frame" x="0.0" y="56" width="120" height="50"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="120" id="B43-2G-d8G"/>
-                        <constraint firstAttribute="height" constant="70" id="VbT-qn-k2e"/>
+                        <constraint firstAttribute="height" constant="50" id="VbT-qn-k2e"/>
                     </constraints>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="pock-icon" id="XoW-WB-C0h"/>
-                    <color key="contentTintColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="pock-app-icon" id="XoW-WB-C0h"/>
+                    <color key="contentTintColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                 </imageView>
                 <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="ebU-tb-qZd">
                     <rect key="frame" x="118" y="0.0" width="5" height="126"/>
@@ -38,7 +38,7 @@
                     </constraints>
                 </box>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dLe-Qb-BCd">
-                    <rect key="frame" x="18" y="40" width="84" height="18"/>
+                    <rect key="frame" x="18" y="34" width="84" height="18"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="18" id="BHW-qp-NN0"/>
                     </constraints>
@@ -49,7 +49,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p8O-cG-rIH">
-                    <rect key="frame" x="18" y="20" width="84" height="12"/>
+                    <rect key="frame" x="18" y="19" width="84" height="12"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="12" id="wrH-Fs-1Vo"/>
                     </constraints>
@@ -126,14 +126,14 @@
                 <constraint firstAttribute="bottom" secondItem="ebU-tb-qZd" secondAttribute="bottom" id="28x-tc-R6N"/>
                 <constraint firstItem="ebU-tb-qZd" firstAttribute="leading" secondItem="p8O-cG-rIH" secondAttribute="trailing" constant="20" id="7hk-YT-7m7"/>
                 <constraint firstItem="iOr-af-uPA" firstAttribute="top" secondItem="8bM-j0-g5L" secondAttribute="bottom" constant="8" id="Amb-5z-PAH"/>
-                <constraint firstItem="Jxs-rJ-hZ7" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="4" id="Cg0-7H-rn8"/>
+                <constraint firstItem="Jxs-rJ-hZ7" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="20" id="Cg0-7H-rn8"/>
                 <constraint firstItem="Gis-kK-TBu" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="16" id="KcI-Uu-nik"/>
                 <constraint firstAttribute="trailing" secondItem="iOr-af-uPA" secondAttribute="trailing" constant="20" id="PR4-6l-3zJ"/>
                 <constraint firstItem="8bM-j0-g5L" firstAttribute="trailing" secondItem="iOr-af-uPA" secondAttribute="trailing" id="RXg-gl-Bor"/>
                 <constraint firstItem="8bM-j0-g5L" firstAttribute="top" secondItem="Gis-kK-TBu" secondAttribute="bottom" constant="20" id="THW-al-f0n"/>
-                <constraint firstItem="dLe-Qb-BCd" firstAttribute="top" secondItem="Jxs-rJ-hZ7" secondAttribute="bottom" constant="-6" id="X3u-U4-KBd"/>
+                <constraint firstItem="dLe-Qb-BCd" firstAttribute="top" secondItem="Jxs-rJ-hZ7" secondAttribute="bottom" constant="4" id="X3u-U4-KBd"/>
                 <constraint firstItem="ebU-tb-qZd" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="Yrd-h1-hMm"/>
-                <constraint firstItem="p8O-cG-rIH" firstAttribute="top" secondItem="dLe-Qb-BCd" secondAttribute="bottom" constant="8" id="ap9-P9-4TO"/>
+                <constraint firstItem="p8O-cG-rIH" firstAttribute="top" secondItem="dLe-Qb-BCd" secondAttribute="bottom" constant="3" id="ap9-P9-4TO"/>
                 <constraint firstItem="Jxs-rJ-hZ7" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="gdZ-en-fho"/>
                 <constraint firstItem="ebU-tb-qZd" firstAttribute="leading" secondItem="Jxs-rJ-hZ7" secondAttribute="trailing" id="gzj-8E-LgF"/>
                 <constraint firstAttribute="trailing" secondItem="Gis-kK-TBu" secondAttribute="trailing" constant="20" id="jyr-5J-Pwo"/>
@@ -147,6 +147,6 @@
         </customView>
     </objects>
     <resources>
-        <image name="pock-icon" width="273.06668090820312" height="273.06668090820312"/>
+        <image name="pock-app-icon" width="80" height="80"/>
     </resources>
 </document>

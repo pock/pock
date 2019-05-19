@@ -301,7 +301,7 @@ extension DockRepository: FileMonitorDelegate {
             for path in paths {
                 if !isProd { NSLog("[Pock]: [\(type(of: fileMonitor))] # Changes in path: \(path)") }
             }
-            self?.reload(nil)
+            self?.reloadPersistentItems(nil)
         }
     }
 }

@@ -57,7 +57,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         /// Check for status bar icon
         if let button = pockStatusbarIcon.button {
-            button.image = #imageLiteral(resourceName: "pock-inner-icon")
+            button.image = NSImage(named: "pock-inner-icon")
             button.image?.isTemplate = true
             /// Create menu
             let menu = NSMenu(title: "Menu")
