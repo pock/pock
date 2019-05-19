@@ -47,7 +47,7 @@
 		342D83FC2278D5CF000D79DA /* SPowerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83C82278D5CF000D79DA /* SPowerItem.swift */; };
 		342D83FD2278D5CF000D79DA /* SClockItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83C92278D5CF000D79DA /* SClockItem.swift */; };
 		342D83FE2278D5CF000D79DA /* EscWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83CB2278D5CF000D79DA /* EscWidget.swift */; };
-		342D84002278D5CF000D79DA /* PockWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83CE2278D5CF000D79DA /* PockWidget.swift */; };
+		342D84002278D5CF000D79DA /* PockWidgetTouchBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83CE2278D5CF000D79DA /* PockWidgetTouchBarItem.swift */; };
 		342D84012278D5CF000D79DA /* PockTappableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83CF2278D5CF000D79DA /* PockTappableView.swift */; };
 		342D84022278D5CF000D79DA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83D12278D5CF000D79DA /* Constants.swift */; };
 		342D84032278D5CF000D79DA /* FileEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83D32278D5CF000D79DA /* FileEvent.swift */; };
@@ -58,6 +58,7 @@
 		342D840B2278D5CF000D79DA /* DockItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83DC2278D5CF000D79DA /* DockItemView.swift */; };
 		342D840C2278D5CF000D79DA /* DockWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83DD2278D5CF000D79DA /* DockWidget.swift */; };
 		342D840D2278D5CF000D79DA /* FileMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83DE2278D5CF000D79DA /* FileMonitor.swift */; };
+		3473256422915993001E57B2 /* PockWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3473256322915993001E57B2 /* PockWidget.swift */; };
 		349431ED22197485008622B1 /* MediaRemote.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 349431EC22197484008622B1 /* MediaRemote.framework */; };
 		349F93E8228865C400B8CFBE /* ISSoundAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 349F93E7228865C400B8CFBE /* ISSoundAdditions.m */; };
 		34BC3ECC2210B2EC00C1DD3C /* DFRFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34BC3ECB2210B2EC00C1DD3C /* DFRFoundation.framework */; };
@@ -113,7 +114,7 @@
 		342D83C82278D5CF000D79DA /* SPowerItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPowerItem.swift; sourceTree = "<group>"; };
 		342D83C92278D5CF000D79DA /* SClockItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SClockItem.swift; sourceTree = "<group>"; };
 		342D83CB2278D5CF000D79DA /* EscWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EscWidget.swift; sourceTree = "<group>"; };
-		342D83CE2278D5CF000D79DA /* PockWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PockWidget.swift; sourceTree = "<group>"; };
+		342D83CE2278D5CF000D79DA /* PockWidgetTouchBarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PockWidgetTouchBarItem.swift; sourceTree = "<group>"; };
 		342D83CF2278D5CF000D79DA /* PockTappableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PockTappableView.swift; sourceTree = "<group>"; };
 		342D83D12278D5CF000D79DA /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		342D83D32278D5CF000D79DA /* FileEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileEvent.swift; sourceTree = "<group>"; };
@@ -125,6 +126,7 @@
 		342D83DC2278D5CF000D79DA /* DockItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DockItemView.swift; sourceTree = "<group>"; };
 		342D83DD2278D5CF000D79DA /* DockWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DockWidget.swift; sourceTree = "<group>"; };
 		342D83DE2278D5CF000D79DA /* FileMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileMonitor.swift; sourceTree = "<group>"; };
+		3473256322915993001E57B2 /* PockWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PockWidget.swift; sourceTree = "<group>"; };
 		348343D61F631B2E00CDA005 /* Pock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		349431EC22197484008622B1 /* MediaRemote.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaRemote.framework; path = ../../../../../../../../../System/Library/PrivateFrameworks/MediaRemote.framework; sourceTree = "<group>"; };
 		3494320B222179D7008622B1 /* BatteryUIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BatteryUIKit.framework; path = ../../../../../../../../../System/Library/PrivateFrameworks/BatteryUIKit.framework; sourceTree = "<group>"; };
@@ -400,8 +402,9 @@
 		342D83CD2278D5CF000D79DA /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				342D83CE2278D5CF000D79DA /* PockWidget.swift */,
+				342D83CE2278D5CF000D79DA /* PockWidgetTouchBarItem.swift */,
 				342D83CF2278D5CF000D79DA /* PockTappableView.swift */,
+				3473256322915993001E57B2 /* PockWidget.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -700,13 +703,14 @@
 				342D83F72278D5CF000D79DA /* NowPlayingHelper.swift in Sources */,
 				342D83EF2278D5CF000D79DA /* ControlCenterItem.swift in Sources */,
 				342D83EB2278D5CF000D79DA /* DKBrightness.swift in Sources */,
-				342D84002278D5CF000D79DA /* PockWidget.swift in Sources */,
+				342D84002278D5CF000D79DA /* PockWidgetTouchBarItem.swift in Sources */,
 				342D83E22278D5CF000D79DA /* Preferences.swift in Sources */,
 				342D83F42278D5CF000D79DA /* NowPlayingItemView.swift in Sources */,
 				349F93E8228865C400B8CFBE /* ISSoundAdditions.m in Sources */,
 				342D83ED2278D5CF000D79DA /* AppDelegate.swift in Sources */,
 				342D84052278D5CF000D79DA /* Witness.swift in Sources */,
 				34E644F7227D783E003D0450 /* KeySenderHelper.c in Sources */,
+				3473256422915993001E57B2 /* PockWidget.swift in Sources */,
 				342D84082278D5CF000D79DA /* DockItem.swift in Sources */,
 				342D83E42278D5CF000D79DA /* GeneralPreferencePane.swift in Sources */,
 				342D83FD2278D5CF000D79DA /* SClockItem.swift in Sources */,
@@ -831,6 +835,7 @@
 			baseConfigurationReference = 3BA42833BC69C895EB31DF93 /* Pods-Pock.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Pock/Various/Pock.entitlements;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -857,6 +862,7 @@
 			baseConfigurationReference = 716D62071D19174E56D6E33D /* Pods-Pock.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Pock/Various/Pock.entitlements;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
