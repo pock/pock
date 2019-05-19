@@ -10,6 +10,10 @@ import Foundation
 
 class StatusWidget: PockWidget {
     
+    var identifier: NSTouchBarItem.Identifier = NSTouchBarItem.Identifier.status
+    var customizationLabel: String            = "Status"
+    var view: NSView!
+    
     /// Core
     private var statusElements: [StatusItem] = [
         SWifiItem(),
@@ -21,32 +25,30 @@ class StatusWidget: PockWidget {
     /// UI
     private var stackView: NSStackView!
     
+    required init() {
+        self.customizationLabel = "Status"
+        self.initStackView()
+        self.loadStatusElements()
+        self.view = stackView
+    }
+    
     deinit {
         statusElementViews.removeAll()
         statusElements.removeAll()
     }
     
-    override func customInit() {
-        self.customizationLabel = "Status"
-        self.initStackView()
-        self.loadStatusElements()
-        self.set(view: stackView)
-    }
-    
-    override func viewDidAppear() {
-        super.viewDidAppear()
+    func viewDidAppear() {
         NSWorkspace.shared.notificationCenter.addObserver(forName: .shouldReloadStatusWidget, object: nil, queue: .main, using: { [weak self] _ in
             self?.loadStatusElements()
         })
     }
     
-    override func viewWillDisappear() {
-        super.viewWillDisappear()
+    func viewWillDisappear() {
         NSWorkspace.shared.notificationCenter.removeObserver(self)
     }
     
     private func initStackView() {
-        stackView = NSStackView(frame: .zero)
+        stackView = NSStackView(frame: NSRect(x: 0, y: 0, width: 100, height: 30))
         stackView.orientation  = .horizontal
         stackView.alignment    = .centerY
         stackView.distribution = .fillProportionally

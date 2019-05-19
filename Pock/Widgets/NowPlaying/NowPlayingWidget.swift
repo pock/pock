@@ -10,15 +10,19 @@ import Foundation
 
 class NowPlayingWidget: PockWidget {
     
+    var identifier: NSTouchBarItem.Identifier = NSTouchBarItem.Identifier.nowPlaying
+    var customizationLabel: String            = "Now Playing"
+    var view: NSView!
+    
     /// UI
     private var nowPlayingItemView: NowPlayingItemView!
     
-    override func customInit() {
+    required init() {
         self.customizationLabel = "Now Playing"
         self.updateNowPLayingItemView()
         self.registerForNotifications()
         self.setGestureHandlers()
-        self.set(view: nowPlayingItemView)
+        self.view = nowPlayingItemView
     }
     
     private func registerForNotifications() {

@@ -54,6 +54,10 @@ class PressableSegmentedControl: NSSegmentedControl {
 
 class ControlCenterWidget: PockWidget {
     
+    var identifier: NSTouchBarItem.Identifier = NSTouchBarItem.Identifier.controlCenter
+    var customizationLabel: String            = "Control Center"
+    var view: NSView!
+    
     /// Core
     private(set) var controls: [ControlCenterItem] = []
     private var slideableController: PockSlideableController?
@@ -71,16 +75,15 @@ class ControlCenterWidget: PockWidget {
     /// UI
     fileprivate var segmentedControl: PressableSegmentedControl!
     
-    override func customInit() {
+    required init() {
         self.controls = [
             CCBrightnessDownItem(parentWidget: self),
             CCBrightnessUpItem(parentWidget: self),
             CCVolumeDownItem(parentWidget: self),
             CCVolumeUpItem(parentWidget: self)
         ]
-        self.customizationLabel = "Control Center"
         self.initializeSegmentedControl()
-        self.set(view: segmentedControl)
+        self.view = segmentedControl
     }
     
     private func initializeSegmentedControl() {

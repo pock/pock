@@ -10,7 +10,11 @@ import Foundation
 import Defaults
 import DeepDiff
 
-class DockWidget: PockWidget {
+class DockWidget: NSObject, PockWidget {
+    
+    var identifier: NSTouchBarItem.Identifier = NSTouchBarItem.Identifier.dockView
+    var customizationLabel: String            = "Dock"
+    var view: NSView!
     
     /// Core
     private var dockRepository: DockRepository!
@@ -27,19 +31,18 @@ class DockWidget: PockWidget {
     private var persistentItems: [DockItem] = []
     private var cachedItemViews: [Int: DockItemView] = [:]
     
-    /// Custom init
-    override func customInit() {
+    required override init() {
+        super.init()
         self.operationQueue = OperationQueue()
         self.operationQueue?.maxConcurrentOperationCount = 1
         self.operationQueue?.qualityOfService = .background
         
-        self.customizationLabel = "Dock"
         self.configureStackView()
         self.configureDockScrubber()
         self.configureSeparator()
         self.configurePersistentScrubber()
         self.displayScrubbers()
-        self.set(view: stackView)
+        self.view = stackView
         self.dockRepository = DockRepository(delegate: self)
         self.dockRepository.reload(nil)
         NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(displayScrubbers), name: .shouldReloadPersistentItems, object: nil)

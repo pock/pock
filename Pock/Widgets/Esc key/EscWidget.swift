@@ -20,9 +20,12 @@ class EscWidget: PockWidget {
     
     private let key: KeySender = KeySender(keyCode: Int32(0x35), isAux: false)
     
-    override func customInit() {
-        self.customizationLabel = "Esc Key"
-        self.view               = EscWidgetButton(title: "esc", target: self, action: #selector(tap))
+    var identifier: NSTouchBarItem.Identifier = NSTouchBarItem.Identifier.escButton
+    var customizationLabel: String = "Esc Key"
+    var view: NSView!
+    
+    required init() {
+        view = EscWidgetButton(title: "esc", target: self, action: #selector(tap))
     }
     
     @objc private func tap() {
