@@ -129,6 +129,9 @@ class DockWidget: PockWidget {
 extension DockWidget: DockDelegate {
     func didUpdate(apps: [DockItem]) {
         update(scrubber: dockScrubber, oldItems: dockItems, newItems: apps) { [weak self] apps in
+            apps.enumerated().forEach({ index, item in
+                item.index = index
+            })
             self?.dockItems = apps
         }
     }
@@ -208,10 +211,11 @@ extension DockWidget: DockDelegate {
     func didUpdateRunningState(for apps: [DockItem]) {
         DispatchQueue.main.async { [weak self] in
             guard let s = self else { return }
-            let ids = apps.map({ $0.diffId })
             s.cachedItemViews.forEach({ key, view in
-                view.set(isRunning:   ids.contains(key))
-                view.set(isFrontmost: apps.first(where: { $0.diffId == key })?.isFrontmost ?? false)
+                let item = apps.first(where: { $0.diffId == key })
+                view.set(isRunning:   item?.isRunning   ?? false)
+                view.set(isFrontmost: item?.isFrontmost ?? false)
+                view.set(isLaunching: item?.isLaunching ?? false)
             })
         }
     }

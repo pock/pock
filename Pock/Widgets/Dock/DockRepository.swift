@@ -62,7 +62,7 @@ class DockRepository {
                 self?.loadPersistentApps()
             }
             self?.loadRunningApplications(notification)
-            self?.updateRunningState()
+            self?.updateRunningState(notification)
         }
     }
     
@@ -92,17 +92,17 @@ class DockRepository {
                                                           object: nil)
 
         NSWorkspace.shared.notificationCenter.addObserver(self,
-                                                          selector: #selector(updateRunningState),
+                                                          selector: #selector(updateRunningState(_:)),
                                                           name: NSWorkspace.didLaunchApplicationNotification,
                                                           object: nil)
 
         NSWorkspace.shared.notificationCenter.addObserver(self,
-                                                          selector: #selector(updateRunningState),
+                                                          selector: #selector(updateRunningState(_:)),
                                                           name: NSWorkspace.didActivateApplicationNotification,
                                                           object: nil)
 
         NSWorkspace.shared.notificationCenter.addObserver(self,
-                                                          selector: #selector(updateRunningState),
+                                                          selector: #selector(updateRunningState(_:)),
                                                           name: NSWorkspace.didDeactivateApplicationNotification,
                                                           object: nil)
 
@@ -250,14 +250,34 @@ class DockRepository {
     }
     
     /// Load running dot
-    @objc private func updateRunningState() {
+    @objc private func updateRunningState(_ notification: NSNotification?) {
         DispatchQueue.global(qos: .utility).async { [weak self] in
             guard let s = self else { return }
             for item in s.dockItems {
                 item.pid_t = NSWorkspace.shared.runningApplications.first(where: { $0.bundleIdentifier == item.bundleIdentifier })?.processIdentifier ?? 0
             }
-            let apps = s.dockItems.filter({ $0.isRunning })
-            s.delegate?.didUpdateRunningState(for: apps)
+            s.delegate?.didUpdateRunningState(for: s.dockItems)
+            s.updateBouncing(for: notification)
+        }
+    }
+    
+    /// Update bouncing
+    private func updateBouncing(for notification: NSNotification?) {
+        if notification?.name == NSWorkspace.willLaunchApplicationNotification {
+            if let app = notification?.userInfo?[NSWorkspace.applicationUserInfoKey] as? NSRunningApplication {
+                if let item = dockItems.first(where: { $0.bundleIdentifier == app.bundleIdentifier }), !item.isLaunching {
+                    item.isLaunching = true
+                    delegate?.didUpdateRunningState(for: dockItems)
+                }
+            }
+        }else if notification?.name == NSWorkspace.didLaunchApplicationNotification ||
+                 notification?.name == NSWorkspace.didActivateApplicationNotification {
+            if let app = notification?.userInfo?[NSWorkspace.applicationUserInfoKey] as? NSRunningApplication {
+                if let item = dockItems.first(where: { $0.bundleIdentifier == app.bundleIdentifier }), item.isLaunching {
+                    item.isLaunching = false
+                    delegate?.didUpdateRunningState(for: dockItems)
+                }
+            }
         }
     }
     
@@ -269,8 +289,7 @@ class DockRepository {
             for item in s.dockItems {
                 item.badge = PockDockHelper.sharedInstance()?.getBadgeCountForItem(withName: item.name)
             }
-            let apps = s.dockItems.filter({ $0.hasBadge })
-            s.delegate?.didUpdateBadge(for: apps)
+            s.delegate?.didUpdateBadge(for: s.dockItems)
         }
     }
     
