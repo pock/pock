@@ -19,6 +19,7 @@ protocol DockDelegate: class {
 class DockRepository {
     
     /// Core
+    private var operationQueue: OperationQueue?
     private weak var delegate: DockDelegate?
     private var fileMonitor: FileMonitor?
     private var notificationBadgeRefreshTimer: Timer!
@@ -35,6 +36,9 @@ class DockRepository {
     
     /// Init
     init(delegate: DockDelegate) {
+        self.operationQueue = OperationQueue()
+        self.operationQueue?.maxConcurrentOperationCount = 1
+        self.operationQueue?.qualityOfService = .background
         self.delegate = delegate
         self.dockFolderRepository = DockFolderRepository()
         self.registerForNotifications()
@@ -297,11 +301,14 @@ class DockRepository {
 
 extension DockRepository: FileMonitorDelegate {
     func didChange(fileMonitor: FileMonitor, paths: [String]) {
-        DispatchQueue.main.async { [weak self] in
-            for path in paths {
-                if !isProd { NSLog("[Pock]: [\(type(of: fileMonitor))] # Changes in path: \(path)") }
+        operationQueue?.cancelAllOperations()
+        operationQueue?.addOperation {
+            DispatchQueue.main.async { [weak self] in
+                for path in paths {
+                    if !isProd { NSLog("[Pock]: [\(type(of: fileMonitor))] # Changes in path: \(path)") }
+                }
+                self?.reload(nil)
             }
-            self?.reloadPersistentItems(nil)
         }
     }
 }

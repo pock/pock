@@ -97,7 +97,7 @@ extension PockTouchBarController {
     func openCustomization() {
         NSApp.touchBar = self.touchBar
         self.addCustomizationObservers()
-        self.perform(#selector(delayedOpenCustomization), with: nil, afterDelay: 0)
+        self.perform(#selector(delayedOpenCustomization), with: nil, afterDelay: 0.3)
     }
     
     private func addCustomizationObservers() {
@@ -121,7 +121,7 @@ extension PockTouchBarController {
     }
     
     @objc private func delayedOpenCustomization() {
-        NSApp.toggleTouchBarCustomizationPalette(self)
+        NSApp.toggleTouchBarCustomizationPalette(nil)
     }
     
     @objc private func willEnterCustomization(_ sender: Any?) {

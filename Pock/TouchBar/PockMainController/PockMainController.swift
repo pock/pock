@@ -39,6 +39,7 @@ class PockMainController: PockTouchBarController {
     }
     
     deinit {
+        self.loadedWidgets.removeAll()
         if !isProd { print("[PockMainController]: Deinit Pock main controller") }
     }
     

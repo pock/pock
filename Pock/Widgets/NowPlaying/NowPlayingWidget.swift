@@ -18,7 +18,6 @@ class NowPlayingWidget: PockWidget {
     private var nowPlayingItemView: NowPlayingItemView!
     
     required init() {
-        self.customizationLabel = "Now Playing"
         self.updateNowPLayingItemView()
         self.registerForNotifications()
         self.setGestureHandlers()
