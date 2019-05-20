@@ -108,6 +108,7 @@ class PockMainController: PockTouchBarController {
         default:
             widget = loadedWidgets[identifier]
         }
+        guard widget != nil else { return nil }
         return PockWidgetTouchBarItem(widget: widget!)
     }
     
