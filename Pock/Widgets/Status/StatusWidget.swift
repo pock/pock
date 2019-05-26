@@ -8,7 +8,7 @@
 
 import Foundation
 
-class StatusWidget: PockWidget {
+class StatusWidget: PKWidget {
     
     var identifier: NSTouchBarItem.Identifier = NSTouchBarItem.Identifier.status
     var customizationLabel: String            = "Status"

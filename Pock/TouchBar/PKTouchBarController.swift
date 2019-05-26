@@ -9,26 +9,26 @@
 import Foundation
 import Defaults
 
-class PockTouchBarController: NSObject, NSTouchBarDelegate {
+class PKTouchBarController: NSObject, NSTouchBarDelegate {
     
     @IBOutlet var touchBar: NSTouchBar?
     
     private(set) var isVisible: Bool = false
     
-    weak var navController: PockTouchBarNavController?
+    weak var navController: PKTouchBarNavController?
     
     var systemTrayItem:           NSCustomTouchBarItem?      { return nil }
     var systemTrayItemIdentifier: NSTouchBarItem.Identifier? { return nil }
     
     override required init() { super.init() }
     
-    class func load<T: PockTouchBarController>(_ type: T.Type = T.self) -> T {
+    class func load<T: PKTouchBarController>(_ type: T.Type = T.self) -> T {
         let controller = T()
         controller.reloadNib(type)
         return controller
     }
     
-    private func reloadNib<T: PockTouchBarController>(_ type: T.Type = T.self) {
+    private func reloadNib<T: PKTouchBarController>(_ type: T.Type = T.self) {
         Bundle.main.loadNibNamed(NSNib.Name(String(describing: type)), owner: self, topLevelObjects: nil)
         if touchBar == nil {
             touchBar = NSTouchBar()
@@ -92,7 +92,7 @@ class PockTouchBarController: NSObject, NSTouchBarDelegate {
     
 }
 
-extension PockTouchBarController {
+extension PKTouchBarController {
     
     func openCustomization() {
         NSApp.touchBar = self.touchBar

@@ -12,6 +12,7 @@ import Preferences
 import Fabric
 import Crashlytics
 import Magnet
+@_exported import PockKit
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -21,8 +22,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     /// Core
-    fileprivate var _navController: PockTouchBarNavController?
-    var navController: PockTouchBarNavController? { return _navController }
+    fileprivate var _navController: PKTouchBarNavController?
+    var navController: PKTouchBarNavController? { return _navController }
     
     /// Timer
     fileprivate var automaticUpdatesTimer: Timer?
@@ -97,7 +98,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         _navController?.dismiss()
         _navController = nil
         let mainController: PockMainController = PockMainController.load()
-        _navController = PockTouchBarNavController(rootController: mainController)
+        _navController = PKTouchBarNavController(rootController: mainController)
     }
     
     private func registerGlobalHotKey() {

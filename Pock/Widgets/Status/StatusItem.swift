@@ -8,7 +8,7 @@
 
 import Foundation
 
-class StatusItemView: PockTappableView {
+class StatusItemView: PKView {
     weak var item: StatusItem?
     override func didTapHandler() {
         item?.action()

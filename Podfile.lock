@@ -6,6 +6,14 @@ PODS:
   - Fabric (1.10.1)
   - LaunchAtLogin (2.5.0)
   - Magnet (2.3.1)
+  - PockKit (0.1.0):
+    - PockKit/Protocols (= 0.1.0)
+    - PockKit/Sources (= 0.1.0)
+    - SnapKit
+  - PockKit/Protocols (0.1.0):
+    - SnapKit
+  - PockKit/Sources (0.1.0):
+    - SnapKit
   - Preferences (0.3.0)
   - SnapKit (5.0.0)
 
@@ -16,8 +24,8 @@ DEPENDENCIES:
   - Fabric
   - LaunchAtLogin
   - Magnet
+  - PockKit (from `../Pod/PockKit/`)
   - Preferences
-  - SnapKit
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -30,6 +38,10 @@ SPEC REPOS:
     - Preferences
     - SnapKit
 
+EXTERNAL SOURCES:
+  PockKit:
+    :path: "../Pod/PockKit/"
+
 SPEC CHECKSUMS:
   Crashlytics: 5aa8e90dcbf2f34898b4f5a0037787531246cca0
   DeepDiff: e329bc46dd14ca788d8ec08d34420799ba1d77f2
@@ -37,9 +49,10 @@ SPEC CHECKSUMS:
   Fabric: f6f21452846788bb44595d73e9909d79d328e617
   LaunchAtLogin: 550b0cbbdaf1b13f87a0fab6a3f8e2fbafe067fe
   Magnet: f8dac2ffc845ffe68b2dd21c68a801f866f4a098
+  PockKit: fdfdb57d270eb0aab35120fdff6758cc5e5358d8
   Preferences: 517b5aa40e68f54a47c41ca3853ccd68e99c418b
   SnapKit: fd22d10eb9aff484d79a8724eab922c1ddf89bcf
 
-PODFILE CHECKSUM: 08535061a97c1c0feef9dcb8fb9d80a7eff152d9
+PODFILE CHECKSUM: 54028168fb4811c500e51926a6d415aff93ff419
 
 COCOAPODS: 1.6.0.beta.2

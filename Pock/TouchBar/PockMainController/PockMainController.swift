@@ -21,10 +21,10 @@ extension NSTouchBarItem.Identifier {
     static let status         = NSTouchBarItem.Identifier("Status")
 }
 
-class PockMainController: PockTouchBarController {
+class PockMainController: PKTouchBarController {
     
     /// Core
-    private var loadedWidgets: [NSTouchBarItem.Identifier: PockWidget] = [:]
+    private var loadedWidgets: [NSTouchBarItem.Identifier: PKWidget] = [:]
     
     override var systemTrayItem: NSCustomTouchBarItem? {
         let item = NSCustomTouchBarItem(identifier: .pockSystemIcon)
@@ -43,7 +43,7 @@ class PockMainController: PockTouchBarController {
         if !isProd { print("[PockMainController]: Deinit Pock main controller") }
     }
     
-    private func loadPluginsFromFilesystem(completion: ([PockWidget]) -> Void) {
+    private func loadPluginsFromFilesystem(completion: ([PKWidget]) -> Void) {
         self.loadedWidgets.removeAll()
         
         let path = FileManager.default.homeDirectoryForCurrentUser.path + "/Library/Application Support/Pock"
@@ -65,7 +65,7 @@ class PockMainController: PockTouchBarController {
             /// load bundle
             let bundlePath = "\(widgetsPath)/\(widgetBundle)"
             if let bundle = Bundle(path: bundlePath), bundle.load() {
-                if let clss = bundle.principalClass as? PockWidget.Type {
+                if let clss = bundle.principalClass as? PKWidget.Type {
                     let plugin = clss.init()
                     self.loadedWidgets[plugin.identifier] = plugin
                 }
@@ -88,7 +88,7 @@ class PockMainController: PockTouchBarController {
     }
     
     func touchBar(_ touchBar: NSTouchBar, makeItemForIdentifier identifier: NSTouchBarItem.Identifier) -> NSTouchBarItem? {
-        var widget: PockWidget?
+        var widget: PKWidget?
         switch identifier {
         /// Esc button
         case .escButton:
@@ -109,7 +109,7 @@ class PockMainController: PockTouchBarController {
             widget = loadedWidgets[identifier]
         }
         guard widget != nil else { return nil }
-        return PockWidgetTouchBarItem(widget: widget!)
+        return PKWidgetTouchBarItem(widget: widget!)
     }
     
 }

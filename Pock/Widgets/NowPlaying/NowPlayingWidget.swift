@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import PockKit
 
-class NowPlayingWidget: PockWidget {
+class NowPlayingWidget: PKWidget {
     
     var identifier: NSTouchBarItem.Identifier = NSTouchBarItem.Identifier.nowPlaying
     var customizationLabel: String            = "Now Playing"
@@ -34,7 +35,7 @@ class NowPlayingWidget: PockWidget {
     
     @objc private func updateNowPLayingItemView() {
         if nowPlayingItemView == nil {
-            nowPlayingItemView = NowPlayingItemView(frame: .zero)
+            nowPlayingItemView = NowPlayingItemView(leftToRight: true)
         }
         nowPlayingItemView.nowPLayingItem = NowPlayingHelper.shared.nowPlayingItem
     }

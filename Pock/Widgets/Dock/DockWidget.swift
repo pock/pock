@@ -10,7 +10,7 @@ import Foundation
 import Defaults
 import DeepDiff
 
-class DockWidget: NSObject, PockWidget {
+class DockWidget: NSObject, PKWidget {
     
     var identifier: NSTouchBarItem.Identifier = NSTouchBarItem.Identifier.dockView
     var customizationLabel: String            = "Dock"

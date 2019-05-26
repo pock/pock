@@ -16,7 +16,7 @@ class EscWidgetButton: NSButton {
     }
 }
 
-class EscWidget: PockWidget {
+class EscWidget: PKWidget {
     
     private let key: KeySender = KeySender(keyCode: Int32(0x35), isAux: false)
     

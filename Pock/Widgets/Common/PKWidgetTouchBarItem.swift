@@ -8,9 +8,9 @@
 
 import Foundation
 
-class PockWidgetViewController: NSViewController {
-    private weak var widgetItem: PockWidgetTouchBarItem?
-    convenience init(widgetItem: PockWidgetTouchBarItem) {
+class PKWidgetViewController: NSViewController {
+    private weak var widgetItem: PKWidgetTouchBarItem?
+    convenience init(widgetItem: PKWidgetTouchBarItem) {
         self.init()
         self.widgetItem = widgetItem
     }
@@ -35,9 +35,9 @@ class PockWidgetViewController: NSViewController {
     }
 }
 
-class PockWidgetTouchBarItem: NSCustomTouchBarItem {
+class PKWidgetTouchBarItem: NSCustomTouchBarItem {
     
-    private var widget: PockWidget?
+    private var widget: PKWidget?
     
     override var customizationLabel: String! {
         get {
@@ -48,14 +48,14 @@ class PockWidgetTouchBarItem: NSCustomTouchBarItem {
         }
     }
     
-    convenience init(widget: PockWidget) {
+    convenience init(widget: PKWidget) {
         self.init(identifier: widget.identifier)
         self.widget = widget
         self.initialize(for: widget)
     }
     
-    private func initialize(for widget: PockWidget) {
-        let controller      = PockWidgetViewController(widgetItem: self)
+    private func initialize(for widget: PKWidget) {
+        let controller      = PKWidgetViewController(widgetItem: self)
         self.viewController = controller
         controller.view     = widget.view
     }
