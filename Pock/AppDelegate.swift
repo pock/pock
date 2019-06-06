@@ -33,6 +33,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to initialize your application
         NSApp.isAutomaticCustomizeTouchBarMenuItemEnabled = true
         
+        /// When in hideControlStrip mode hitting the function key will toggle it.
+        var isHoldingFunction = false;
+        NSEvent.addGlobalMonitorForEvents(matching: .flagsChanged) {
+            switch $0.modifierFlags.intersection(.deviceIndependentFlagsMask) {
+            case [.function]:
+                if (defaults[.hideControlStrip]) {
+                    isHoldingFunction = true;
+                    defaults[.hideControlStrip] = false
+                    NSWorkspace.shared.notificationCenter.post(name: .shouldReloadPock, object: nil)
+                }
+            default:
+                if (isHoldingFunction) {
+                    isHoldingFunction = false;
+                    defaults[.hideControlStrip] = true
+                    NSWorkspace.shared.notificationCenter.post(name: .shouldReloadPock, object: nil)
+                }
+            }
+        }
+        
         /// Initialize Crashlytics
         if isProd {
             UserDefaults.standard.register(defaults: ["NSApplicationCrashOnExceptions": true])
