@@ -61,9 +61,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             button.image = NSImage(named: "pock-inner-icon")
             button.image?.isTemplate = true
             /// Create menu
-            let menu = NSMenu(title: "Menu")
-            menu.addItem(withTitle: "Preferences…", action: #selector(openPreferences), keyEquivalent: ",")
+            let menu = NSMenu(title: "Pock Options")
+            menu.addItem(withTitle: "Preferences…", action: #selector(openPreferences),   keyEquivalent: ",")
             menu.addItem(withTitle: "Customize…",   action: #selector(openCustomization), keyEquivalent: "c")
+            menu.addItem(NSMenuItem.separator())
+            menu.addItem(withTitle: "Support this project", action: #selector(openDonateURL),  keyEquivalent: "s")
             menu.addItem(NSMenuItem.separator())
             menu.addItem(withTitle: "Quit Pock", action: #selector(NSApp.terminate), keyEquivalent: "q")
             pockStatusbarIcon.menu = menu
@@ -153,6 +155,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @objc private func openCustomization() {
         (_navController?.rootController as? PockMainController)?.openCustomization()
+    }
+    
+    @objc private func openDonateURL() {
+        guard let url = URL(string: "https://paypal.me/pigigaldi") else { return }
+        NSWorkspace.shared.open(url)
     }
     
 }
