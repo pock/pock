@@ -15,6 +15,12 @@ A handy ESC button is there, so you don't have to hide Pock to access the system
 ### Preferences
 From preference pane, you can decide if you want to launch Pock at login.
 
+## How To Enable
+
+1. Move Pock to your Applications folder
+2. Open Pock
+3. If you don't see Pock in your touch bar, go to the Keyboard pane in System Preferences and select "Touch Bar shows _App Controls_".
+
 ## Thank you!
 * [BrokenSt0rm](https://twitter.com/BrokenSt0rm) 🙅‍♂️
 * [SnapKit](https://github.com/SnapKit/SnapKit)
