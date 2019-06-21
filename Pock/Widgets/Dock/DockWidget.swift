@@ -171,7 +171,7 @@ extension DockWidget: DockDelegate {
             if toIndex >= scrubber.numberOfItems {
                 toIndex = scrubber.numberOfItems - 1
             }
-            scrubber.scrollItem(at: toIndex, to: .center)
+            scrubber.scrollItem(at: toIndex, to: .none)
         }
     }
     func didUpdateBadge(for apps: [DockItem]) {
