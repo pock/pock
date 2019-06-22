@@ -44,6 +44,7 @@ final class GeneralPreferencePane: NSViewController, PreferencePane {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.superview?.wantsLayer = true
         self.view.wantsLayer = true
     }
     

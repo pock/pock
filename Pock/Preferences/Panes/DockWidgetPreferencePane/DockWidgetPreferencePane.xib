@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14810.11" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14810.11"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -28,7 +28,7 @@
                     <rect key="frame" x="20" y="203" width="300" height="21"/>
                     <subviews>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9xL-NG-zId">
-                            <rect key="frame" x="-2" y="4" width="194" height="17"/>
+                            <rect key="frame" x="-2" y="5" width="194" height="16"/>
                             <textFieldCell key="cell" lineBreakMode="clipping" enabled="NO" alignment="left" title="Notification badge refresh rate:" id="ICj-g3-VIO">
                                 <font key="font" metaFont="system"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -141,10 +141,10 @@
                     </customSpacing>
                 </stackView>
                 <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hrd-H5-paz">
-                    <rect key="frame" x="20" y="10" width="128" height="21"/>
+                    <rect key="frame" x="20" y="10" width="128" height="20"/>
                     <subviews>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rdj-tL-R0L">
-                            <rect key="frame" x="-2" y="4" width="82" height="17"/>
+                            <rect key="frame" x="-2" y="4" width="82" height="16"/>
                             <textFieldCell key="cell" lineBreakMode="clipping" title="Item spacing" id="qJw-Vc-w0w">
                                 <font key="font" metaFont="system"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -152,7 +152,7 @@
                             </textFieldCell>
                         </textField>
                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VVh-2X-SdG">
-                            <rect key="frame" x="88" y="0.0" width="40" height="21"/>
+                            <rect key="frame" x="88" y="0.0" width="40" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="40" id="jzh-nQ-SDe"/>
                             </constraints>
@@ -185,8 +185,8 @@
                 <constraint firstAttribute="trailing" secondItem="gFt-UC-6tr" secondAttribute="trailing" constant="20" id="kNk-X7-f8m"/>
                 <constraint firstAttribute="trailing" secondItem="ltC-5f-Pcx" secondAttribute="trailing" constant="20" id="lu2-6r-xhc"/>
                 <constraint firstItem="Hrd-H5-paz" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="n3h-oG-Lw8"/>
-                <constraint firstItem="gFt-UC-6tr" firstAttribute="top" secondItem="P9E-R2-fFj" secondAttribute="bottom" constant="-38" id="nNN-xK-2AO"/>
                 <constraint firstItem="ltC-5f-Pcx" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="sec-Oo-6uV"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Hrd-H5-paz" secondAttribute="trailing" constant="20" id="vGZ-wv-kbJ"/>
             </constraints>
             <point key="canvasLocation" x="69" y="139"/>
         </customView>
