@@ -168,10 +168,10 @@ extension DockWidget: DockDelegate {
             completion?(newItems)
             scrubber.reloadData()
             var toIndex = self?.lastVisibleRange.upperBound ?? 0
-            if toIndex >= scrubber.numberOfItems {
-                toIndex = scrubber.numberOfItems - 1
+            if scrubber.numberOfItems > 0 {
+                toIndex = toIndex >= scrubber.numberOfItems ? (scrubber.numberOfItems - 1) : toIndex
+                scrubber.scrollItem(at: toIndex < 0 ? 0 : toIndex, to: .none)
             }
-            scrubber.scrollItem(at: toIndex, to: .none)
         }
     }
     func didUpdateBadge(for apps: [DockItem]) {
