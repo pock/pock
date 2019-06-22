@@ -21,4 +21,6 @@ protocol StatusItem: class {
     var view:    NSView { get }
     func action()
     func reload()
+    func didLoad()
+    func didUnload()
 }

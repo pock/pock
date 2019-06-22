@@ -44,6 +44,7 @@ class StatusWidget: PKWidget {
     }
     
     func viewWillDisappear() {
+        self.statusElements.forEach({ $0.didUnload() })
         NSWorkspace.shared.notificationCenter.removeObserver(self)
     }
     
@@ -64,6 +65,7 @@ class StatusWidget: PKWidget {
     private func loadStatusElements() {
         clearStackView()
         statusElements.filter({ $0.enabled }).forEach({ item in
+            item.didLoad()
             if let cachedView = statusElementViews[item.title] {
                 item.reload()
                 stackView.addArrangedSubview(cachedView)

@@ -19,12 +19,12 @@ class SWifiItem: StatusItem {
     private let iconView: NSImageView = NSImageView(frame: NSRect(x: 0, y: 0, width: 26, height: 26))
     
     init() {
-        self.wifiClient.delegate = self
-        try? wifiClient.startMonitoringEvent(with: .linkDidChange)
-        try? wifiClient.startMonitoringEvent(with: .ssidDidChange)
-        try? wifiClient.startMonitoringEvent(with: .powerDidChange)
-        try? wifiClient.startMonitoringEvent(with: .linkQualityDidChange)
+        didLoad()
         reload()
+    }
+    
+    deinit {
+        didUnload()
     }
     
     var enabled: Bool{ return defaults[.shouldShowWifiItem] }
@@ -35,6 +35,19 @@ class SWifiItem: StatusItem {
     
     func action() {
         if !isProd { print("[Pock]: WiFi Status icon tapped!") }
+    }
+    
+    func didLoad() {
+        self.wifiClient.delegate = self
+        try? wifiClient.startMonitoringEvent(with: .linkDidChange)
+        try? wifiClient.startMonitoringEvent(with: .ssidDidChange)
+        try? wifiClient.startMonitoringEvent(with: .powerDidChange)
+        try? wifiClient.startMonitoringEvent(with: .linkQualityDidChange)
+    }
+    
+    func didUnload() {
+        self.wifiClient.delegate = nil
+        try? wifiClient.stopMonitoringAllEvents()
     }
     
     func reload() {
