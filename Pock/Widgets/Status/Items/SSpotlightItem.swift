@@ -17,6 +17,14 @@ class SSpotlightItem: StatusItem {
     private var iconView: NSImageView! = NSImageView(frame: .zero)
     
     init() {
+        didLoad()
+    }
+    
+    deinit {
+        didUnload()
+    }
+    
+    func didLoad() {
         iconView.image      = NSImage(named: NSImage.touchBarSearchTemplateName)!
         tappableView.item   = self
         tappableView.addSubview(iconView)
@@ -25,7 +33,7 @@ class SSpotlightItem: StatusItem {
         })
     }
     
-    deinit {
+    func didUnload() {
         iconView.image    = nil
         iconView          = nil
         tappableView.item = nil

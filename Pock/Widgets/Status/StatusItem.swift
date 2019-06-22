@@ -24,3 +24,7 @@ protocol StatusItem: class {
     func didLoad()
     func didUnload()
 }
+
+extension StatusItem {
+    func didLoad() { /* ... */ }
+}
