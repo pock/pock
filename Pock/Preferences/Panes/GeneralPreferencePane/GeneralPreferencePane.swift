@@ -42,6 +42,11 @@ final class GeneralPreferencePane: NSViewController, PreferencePane {
         return "GeneralPreferencePane"
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.view.wantsLayer = true
+    }
+    
     override func viewWillAppear() {
         super.viewWillAppear()
         self.loadVersionNumber()

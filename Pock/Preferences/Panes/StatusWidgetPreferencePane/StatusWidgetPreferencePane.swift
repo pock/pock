@@ -34,6 +34,7 @@ class StatusWidgetPreferencePane: NSViewController, PreferencePane {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.wantsLayer = true
         self.loadCheckboxState()
     }
     

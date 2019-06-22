@@ -29,6 +29,11 @@ class DockWidgetPreferencePane: NSViewController, PreferencePane {
         return "DockWidgetPreferencePane"
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.view.wantsLayer = true
+    }
+    
     override func viewWillAppear() {
         super.viewWillAppear()
         self.populatePopUpButton()
