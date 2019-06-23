@@ -33,17 +33,21 @@ class SPowerItem: StatusItem {
     private let valueLabel: NSTextField = NSTextField(frame: .zero)
     
     init() {
-        bodyView.layer?.cornerRadius = 1
-        configureValueLabel()
-        configureStackView()
+        didLoad()
         reload()
-        refreshTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self] _ in
-            self?.reload()
-        })
     }
     
     deinit {
         didUnload()
+    }
+    
+    func didLoad() {
+        bodyView.layer?.cornerRadius = 1
+        configureValueLabel()
+        configureStackView()
+        refreshTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self] _ in
+            self?.reload()
+        })
     }
     
     func didUnload() {
