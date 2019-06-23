@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaDFRPlugin" version="14460.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <capability name="the Touch Bar" minToolsVersion="8.1" minSystemVersion="10.12.2" requiredIntegratedClassName="NSTouchBar"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="PKSlideableController" customModule="Pock" customModuleProvider="target">
+            <connections>
+                <outlet property="leftItemView" destination="bIR-Pt-ncq" id="dN5-jB-Gac"/>
+                <outlet property="rightItemView" destination="06m-4D-YbS" id="9vb-H7-som"/>
+                <outlet property="slider" destination="LNV-ND-NZg" id="eWv-Ic-pES"/>
+                <outlet property="touchBar" destination="6on-eN-Sjz" id="ctN-aI-bfW"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <touchBar id="6on-eN-Sjz">
+            <touchBarItems>
+                <touchBarSpacerItem identifier="NSTouchBarItemIdentifierFlexibleSpace" id="uMO-XX-Dcn"/>
+                <touchBarItem identifier="LeftItemView" id="bc6-AD-ghk">
+                    <viewController key="viewController" id="ctA-2C-Gqe">
+                        <button key="view" identifier="LeftItemView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bIR-Pt-ncq">
+                            <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="28" id="O2Y-2k-zPD"/>
+                                <constraint firstAttribute="height" constant="28" id="mib-FM-aud"/>
+                            </constraints>
+                            <buttonCell key="cell" type="bevel" bezelStyle="rounded" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="hdb-L1-PQd">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="itemAction:" target="-2" id="w25-wq-dIH"/>
+                            </connections>
+                        </button>
+                    </viewController>
+                    <size key="designTimeSize" width="28" height="28"/>
+                </touchBarItem>
+                <touchBarItem identifier="SliderItem" id="xqj-lD-RLR">
+                    <viewController key="viewController" id="jDX-cY-gQw">
+                        <view key="view" translatesAutoresizingMaskIntoConstraints="NO" id="Xmk-ht-dJb">
+                            <rect key="frame" x="0.0" y="0.0" width="278" height="30"/>
+                            <subviews>
+                                <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LNV-ND-NZg">
+                                    <rect key="frame" x="-2" y="-2" width="282" height="34"/>
+                                    <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="EBz-Ix-xYC"/>
+                                </slider>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="LNV-ND-NZg" secondAttribute="bottom" id="DhY-hB-mTx"/>
+                                <constraint firstItem="LNV-ND-NZg" firstAttribute="leading" secondItem="Xmk-ht-dJb" secondAttribute="leading" id="GHM-UF-TVG"/>
+                                <constraint firstItem="LNV-ND-NZg" firstAttribute="top" secondItem="Xmk-ht-dJb" secondAttribute="top" id="Tkd-Ga-Q3g"/>
+                                <constraint firstAttribute="width" constant="278" id="sIL-Ip-d0b"/>
+                                <constraint firstAttribute="trailing" secondItem="LNV-ND-NZg" secondAttribute="trailing" id="wcU-Ak-fjc"/>
+                            </constraints>
+                        </view>
+                    </viewController>
+                    <size key="designTimeSize" width="278" height="30"/>
+                </touchBarItem>
+                <touchBarItem identifier="RightItemView" id="bxH-Je-n2z">
+                    <viewController key="viewController" id="zTI-hb-PJe">
+                        <button key="view" identifier="RightItemView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="06m-4D-YbS">
+                            <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="28" id="Hl0-UB-MSu"/>
+                                <constraint firstAttribute="width" constant="28" id="VmV-6V-4Co"/>
+                            </constraints>
+                            <buttonCell key="cell" type="bevel" bezelStyle="rounded" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="V6D-d4-HDb">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="itemAction:" target="-2" id="rMI-Tm-f4F"/>
+                            </connections>
+                        </button>
+                    </viewController>
+                    <size key="designTimeSize" width="28" height="28"/>
+                </touchBarItem>
+                <touchBarSpacerItem identifier="NSTouchBarItemIdentifierFixedSpaceLarge" id="m32-Ni-G06"/>
+                <touchBarSpacerItem identifier="NSTouchBarItemIdentifierFixedSpaceLarge" id="phM-Ox-B4i"/>
+                <touchBarItem id="MWc-eY-kmm">
+                    <viewController key="viewController" id="jsP-L5-WRP">
+                        <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vFv-oG-okW">
+                            <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="28" id="arO-Z2-Kkm"/>
+                                <constraint firstAttribute="width" constant="28" id="pvo-bI-hGS"/>
+                            </constraints>
+                            <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="CloseButton" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="u3m-m9-byc">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="dismissAction:" target="-2" id="IvK-71-bae"/>
+                            </connections>
+                        </button>
+                    </viewController>
+                    <size key="designTimeSize" width="28" height="28"/>
+                </touchBarItem>
+            </touchBarItems>
+            <point key="canvasLocation" x="-71.5" y="-56"/>
+        </touchBar>
+    </objects>
+    <resources>
+        <image name="CloseButton" width="64" height="64"/>
+    </resources>
+</document>

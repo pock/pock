@@ -64,6 +64,7 @@ void SafeCFRelease(CFTypeRef cf) {
     CFTypeRef aChildren;
     AXUIElementCopyAttributeValue(aList, kAXChildrenAttribute, &aChildren);
     NSInteger itemIndex = -1;
+    if (aChildren == nil) return nil;
     for (NSInteger i = 0; i < CFArrayGetCount(aChildren); i++) {
         AXUIElementRef anElement = CFArrayGetValueAtIndex(aChildren, i);
         CFTypeRef aResult;

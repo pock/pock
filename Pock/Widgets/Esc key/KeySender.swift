@@ -8,30 +8,29 @@
 //
 import Foundation
 
-protocol KeySender {
-    var keyCode: CGKeyCode { get }
+protocol KeySenderProtocol {
+    var keyCode: Int32  { get }
+    var isAux:   Bool   { get }
     func send()
     func press()
     func release()
 }
 
-extension KeySender {
+struct KeySender: KeySenderProtocol {
+    let keyCode: Int32
+    let isAux:   Bool
+    init(keyCode: Int32, isAux: Bool) {
+        self.keyCode = keyCode
+        self.isAux   = isAux
+    }
     func send() {
-        press()
-        release()
+        self.press()
+        self.release()
     }
     func press() {
-        let eventSource = CGEventSource(stateID: .hidSystemState)
-        let downEvent   = CGEvent(keyboardEventSource: eventSource, virtualKey: keyCode, keyDown: true)
-        downEvent?.post(tap: .cgAnnotatedSessionEventTap)
+        KeySenderPress(UInt16(keyCode), isAux)
     }
     func release() {
-        let eventSource = CGEventSource(stateID: .hidSystemState)
-        let upEvent     = CGEvent(keyboardEventSource: eventSource, virtualKey: keyCode, keyDown: false)
-        upEvent?.post(tap: .cgAnnotatedSessionEventTap)
+        KeySenderRelease(UInt16(keyCode), isAux)
     }
-}
-
-struct ESCKeySender: KeySender {
-    let keyCode: CGKeyCode = 53
 }

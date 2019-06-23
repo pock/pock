@@ -9,7 +9,7 @@
 import Foundation
 import Defaults
 
-protocol DockDelegate {
+protocol DockDelegate: class {
     func didUpdate(apps: [DockItem])
     func didUpdate(items: [DockItem])
     func didUpdateBadge(for apps: [DockItem])
@@ -19,9 +19,13 @@ protocol DockDelegate {
 class DockRepository {
     
     /// Core
+    private weak var delegate: DockDelegate?
     private var fileMonitor: FileMonitor?
-    private let delegate: DockDelegate
     private var notificationBadgeRefreshTimer: Timer!
+    private var shouldShowNotificationBadge: Bool { return defaults[.notificationBadgeRefreshInterval] != .never }
+    private var showOnlyRunningApps: Bool { return defaults[.showOnlyRunningApps] }
+    private var openFinderInsidePock: Bool { return defaults[.openFinderInsidePock] }
+    private var dockFolderRepository: DockFolderRepository?
     
     /// Running applications
     public  var dockItems:       [DockItem] = []
@@ -32,6 +36,7 @@ class DockRepository {
     /// Init
     init(delegate: DockDelegate) {
         self.delegate = delegate
+        self.dockFolderRepository = DockFolderRepository()
         self.registerForNotifications()
         self.setupNotificationBadgeRefreshTimer()
     }
@@ -39,20 +44,34 @@ class DockRepository {
     /// Deinit
     deinit {
         self.unregisterForNotifications()
-    }
-    
-    /// Reload
-    @objc public func reload(_ notification: NSNotification?) {
+        dockFolderRepository = nil
         dockItems.removeAll()
         runningItems.removeAll()
         persistentApps.removeAll()
         persistentItems.removeAll()
-        loadPersistentApps()
+        if !isProd { print("[DockRepository]: Deinit Dock Repository") }
+    }
+    
+    /// Reload
+    @objc public func reloadDock(_ notification: NSNotification?) {
+        dockItems.removeAll()
+        runningItems.removeAll()
+        persistentApps.removeAll()
+        if !(showOnlyRunningApps) {
+            loadPersistentApps()
+        }
         loadRunningApplications(notification)
+        updateRunningState(notification)
+    }
+    
+    @objc public func reloadPersistentItems(_ notification: NSNotification?) {
+        persistentItems = []
         loadPersistentItems()
-        delegate.didUpdate(apps: dockItems)
-        updateNotificationBadges()
-        updateRunningState()
+    }
+    
+    @objc public func reload(_ notification: NSNotification?) {
+        reloadDock(notification)
+        reloadPersistentItems(notification)
     }
     
     /// Unregister from notification
@@ -64,33 +83,38 @@ class DockRepository {
     /// Register for notification
     private func registerForNotifications() {
         NSWorkspace.shared.notificationCenter.addObserver(self,
-                                                          selector: #selector(loadRunningApplications(_:)),
+                                                          selector: #selector(reloadDock(_:)),
                                                           name: NSWorkspace.willLaunchApplicationNotification,
                                                           object: nil)
 
         NSWorkspace.shared.notificationCenter.addObserver(self,
-                                                          selector: #selector(loadRunningApplications(_:)),
+                                                          selector: #selector(updateRunningState(_:)),
                                                           name: NSWorkspace.didLaunchApplicationNotification,
                                                           object: nil)
 
         NSWorkspace.shared.notificationCenter.addObserver(self,
-                                                          selector: #selector(loadRunningApplications(_:)),
+                                                          selector: #selector(updateRunningState(_:)),
                                                           name: NSWorkspace.didActivateApplicationNotification,
                                                           object: nil)
 
         NSWorkspace.shared.notificationCenter.addObserver(self,
-                                                          selector: #selector(loadRunningApplications(_:)),
+                                                          selector: #selector(updateRunningState(_:)),
                                                           name: NSWorkspace.didDeactivateApplicationNotification,
                                                           object: nil)
 
         NSWorkspace.shared.notificationCenter.addObserver(self,
-                                                          selector: #selector(loadRunningApplications(_:)),
+                                                          selector: #selector(reloadDock(_:)),
                                                           name: NSWorkspace.didTerminateApplicationNotification,
                                                           object: nil)
         
         NSWorkspace.shared.notificationCenter.addObserver(self,
-                                                          selector: #selector(reload(_:)),
+                                                          selector: #selector(reloadDock(_:)),
                                                           name: .shouldReloadDock,
+                                                          object: nil)
+        
+        NSWorkspace.shared.notificationCenter.addObserver(self,
+                                                          selector: #selector(reloadPersistentItems(_:)),
+                                                          name: .shouldReloadPersistentItems,
                                                           object: nil)
 
         NSWorkspace.shared.notificationCenter.addObserver(self,
@@ -103,13 +127,13 @@ class DockRepository {
     
     /// Check if item can be removed
     private func canRemove(item: DockItem) -> Bool {
-        return  !runningItems.contains(item) && !persistentApps.contains(item)
+        return !runningItems.contains(item) && !persistentApps.contains(item)
     }
     
     /// Load running applications
     @objc private func loadRunningApplications(_ notification: NSNotification?) {
         dockItems.removeAll(where: { canRemove(item: $0) })
-        runningItems.removeAll()
+        runningItems = []
         for app in NSWorkspace.shared.runningApplications {
             if let item = dockItems.first(where: { $0.bundleIdentifier == app.bundleIdentifier }) {
                 item.name        = app.localizedName ?? item.name
@@ -129,8 +153,12 @@ class DockRepository {
                 dockItems.append(item)
             }
         }
-        delegate.didUpdate(apps: dockItems)
-        updateRunningState()
+        if !defaults[.hideFinder] && !dockItems.contains(where: { $0.bundleIdentifier == Constants.kFinderIdentifier }) {
+            let finderItem = DockItem(0, Constants.kFinderIdentifier, name: "Finder", path: nil, icon: DockRepository.getIcon(forBundleIdentifier: Constants.kFinderIdentifier), pid_t: 0)
+            runningItems.insert(finderItem, at: 0)
+            dockItems.insert(finderItem, at: 0)
+        }
+        delegate?.didUpdate(apps: dockItems)
     }
     
     /// Load persistent applications
@@ -146,7 +174,7 @@ class DockRepository {
             return
         }
         /// Empty array
-        persistentApps.removeAll()
+        persistentApps = []
         /// Iterate on apps
         for (index,app) in apps.enumerated() {
             /// Get data tile
@@ -164,17 +192,12 @@ class DockRepository {
                                     bundleIdentifier,
                                     name: label,
                                     path: nil,
-                                    icon: getIcon(forBundleIdentifier: bundleIdentifier),
+                                    icon: DockRepository.getIcon(forBundleIdentifier: bundleIdentifier),
                                     pid_t: 0,
                                     launching: false)
                 persistentApps.append(item)
                 dockItems.append(item)
             }
-        }
-        if !defaults[.hideFinder] && !dockItems.contains(where: { $0.bundleIdentifier == Constants.kFinderIdentifier }) {
-            let finderItem = DockItem(0, Constants.kFinderIdentifier, name: "Finder", path: nil, icon: getIcon(forBundleIdentifier: Constants.kFinderIdentifier), pid_t: 0)
-            persistentApps.insert(finderItem, at: 0)
-            dockItems.insert(finderItem, at: 0)
         }
     }
     
@@ -191,7 +214,7 @@ class DockRepository {
             return
         }
         /// Empty array
-        persistentItems.removeAll()
+        persistentItems = []
         /// Iterate on apps
         for (index,app) in apps.enumerated() {
             /// Get data tile
@@ -202,60 +225,82 @@ class DockRepository {
             guard let fileData = dataTile["file-data"] as? [String: Any] else { NSLog("[Pock]: Can't get file data"); continue }
             /// Get app's bundle identifier
             guard let path = fileData["_CFURLString"] as? String else { NSLog("[Pock]: Can't get file path"); continue }
-            /// Get other's file type.
-            let tileType = app["tile-type"] as? String
             /// Create item
             let item = DockItem(index,
                                 nil,
                                 name: label,
                                 path: URL(string: path),
-                                icon: getIcon(orType: tileType),
+                                icon: DockRepository.getIcon(orPath: path.replacingOccurrences(of: "file://", with: "")),
                                 launching: false,
                                 persistentItem: true)
             persistentItems.append(item)
         }
         if !defaults[.hideTrash] && !persistentItems.contains(where: { $0.path?.absoluteString == Constants.trashPath }) {
             let trashType = ((try? FileManager.default.contentsOfDirectory(atPath: Constants.trashPath).isEmpty) ?? true) ? "TrashIcon" : "FullTrashIcon"
-            let trashItem = DockItem(0, nil, name: "Trash", path: URL(string: "file://"+Constants.trashPath)!, icon: getIcon(orType: trashType), persistentItem: true)
+            let trashItem = DockItem(0, nil, name: "Trash", path: URL(string: "file://"+Constants.trashPath)!, icon: DockRepository.getIcon(orType: trashType), persistentItem: true)
             persistentItems.append(trashItem)
         }
-        delegate.didUpdate(items: persistentItems)
+        delegate?.didUpdate(items: persistentItems)
     }
     
     /// Load running dot
-    private func updateRunningState() {
-        for item in dockItems {
-            item.pid_t = NSWorkspace.shared.runningApplications.first(where: { $0.bundleIdentifier == item.bundleIdentifier })?.processIdentifier ?? 0
+    @objc private func updateRunningState(_ notification: NSNotification?) {
+        DispatchQueue.global(qos: .utility).async { [weak self] in
+            guard let s = self else { return }
+            for item in s.dockItems {
+                item.pid_t = NSWorkspace.shared.runningApplications.first(where: { $0.bundleIdentifier == item.bundleIdentifier })?.processIdentifier ?? 0
+            }
+            s.delegate?.didUpdateRunningState(for: s.dockItems)
+            s.updateBouncing(for: notification)
         }
-        let apps = dockItems.filter({ $0.isRunning })
-        delegate.didUpdateRunningState(for: apps)
+    }
+    
+    /// Update bouncing
+    private func updateBouncing(for notification: NSNotification?) {
+        if notification?.name == NSWorkspace.willLaunchApplicationNotification {
+            if let app = notification?.userInfo?[NSWorkspace.applicationUserInfoKey] as? NSRunningApplication {
+                if let item = dockItems.first(where: { $0.bundleIdentifier == app.bundleIdentifier }), !item.isLaunching {
+                    item.isLaunching = true
+                    delegate?.didUpdateRunningState(for: dockItems)
+                }
+            }
+        }else if notification?.name == NSWorkspace.didLaunchApplicationNotification ||
+                 notification?.name == NSWorkspace.didActivateApplicationNotification {
+            if let app = notification?.userInfo?[NSWorkspace.applicationUserInfoKey] as? NSRunningApplication {
+                if let item = dockItems.first(where: { $0.bundleIdentifier == app.bundleIdentifier }), item.isLaunching {
+                    item.isLaunching = false
+                    delegate?.didUpdateRunningState(for: dockItems)
+                }
+            }
+        }
     }
     
     /// Load notification badges
     private func updateNotificationBadges() {
-        for item in dockItems {
-            item.badge = PockDockHelper.sharedInstance()?.getBadgeCountForItem(withName: item.name)
+        guard shouldShowNotificationBadge else { return }
+        DispatchQueue.global(qos: .utility).async { [weak self] in
+            guard let s = self else { return }
+            for item in s.dockItems {
+                item.badge = PockDockHelper.sharedInstance()?.getBadgeCountForItem(withName: item.name)
+            }
+            s.delegate?.didUpdateBadge(for: s.dockItems)
         }
-        let apps = dockItems.filter({ $0.hasBadge })
-        delegate.didUpdateBadge(for: apps)
     }
     
 }
 
 extension DockRepository: FileMonitorDelegate {
     func didChange(fileMonitor: FileMonitor, paths: [String]) {
-        DispatchQueue.main.async { [weak self] in
-            for path in paths {
-                NSLog("[Pock]: [\(type(of: fileMonitor))] # Changes in path: \(path)")
-            }
-            self?.reload(nil)
+        for path in paths {
+            if !isProd { NSLog("[Pock]: [\(type(of: fileMonitor))] # Changes in path: \(path)") }
         }
+        self.reload(nil)
     }
 }
 
 extension DockRepository {
     /// Get icon
-    private func getIcon(forBundleIdentifier bundleIdentifier: String? = nil, orPath path: String? = nil, orType type: String? = nil) -> NSImage {
+    public class func getIcon(forBundleIdentifier bundleIdentifier: String? = nil, orPath path: String? = nil, orType type: String? = nil) -> NSImage? {
         /// Check for bundle identifier first
         if bundleIdentifier != nil {
             /// Get app's absolute path
@@ -268,7 +313,6 @@ extension DockRepository {
         if path != nil {
             return NSWorkspace.shared.icon(forFile: path!)
         }
-        /// Last beach, manually check on type
         var genericIconPath = "/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/GenericDocumentIcon.icns"
         if type != nil {
             if type == "directory-tile" {
@@ -293,10 +337,27 @@ extension DockRepository {
         /// Check if file path.
         if bundleIdentifier!.contains("file://") {
             /// Is path, continue as path.
-            returnable = NSWorkspace.shared.openFile(bundleIdentifier!.replacingOccurrences(of: "file://", with: ""))
+            let path:        String   = bundleIdentifier!
+            var isDirectory: ObjCBool = true
+            let url:         URL      = URL(string: path)!
+            FileManager.default.fileExists(atPath: path, isDirectory: &isDirectory)
+            if isDirectory.boolValue && openFinderInsidePock {
+                dockFolderRepository?.popToRootDockFolderController()
+                dockFolderRepository?.push(url)
+                returnable = true
+            }else {
+                returnable = NSWorkspace.shared.open(url)
+            }
         }else {
-            /// Launch app
-            returnable = NSWorkspace.shared.launchApplication(withBundleIdentifier: bundleIdentifier!, options: [NSWorkspace.LaunchOptions.default], additionalEventParamDescriptor: nil, launchIdentifier: nil)
+            /// Open Finder in Touch Bar
+            if bundleIdentifier == "com.apple.finder" && openFinderInsidePock {
+                dockFolderRepository?.popToRootDockFolderController()
+                dockFolderRepository?.push(URL(string: NSHomeDirectory())!)
+                returnable = true
+            }else {
+                /// Launch app
+                returnable = NSWorkspace.shared.launchApplication(withBundleIdentifier: bundleIdentifier!, options: [NSWorkspace.LaunchOptions.default], additionalEventParamDescriptor: nil, launchIdentifier: nil)
+            }
         }
         /// Return status
         completion(returnable)
@@ -311,6 +372,8 @@ extension DockRepository {
         let refreshRate = defaults[.notificationBadgeRefreshInterval]
         /// Invalidate last timer
         self.notificationBadgeRefreshTimer?.invalidate()
+        /// Check if disabled
+        guard refreshRate.rawValue >= 0 else { return }
         /// Set timer
         self.notificationBadgeRefreshTimer = Timer.scheduledTimer(withTimeInterval: refreshRate.rawValue, repeats: true, block: {  [weak self] _ in
             /// Log

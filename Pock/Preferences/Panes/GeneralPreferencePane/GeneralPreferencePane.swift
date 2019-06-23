@@ -11,15 +11,11 @@ import Preferences
 import Defaults
 import LaunchAtLogin
 
-final class GeneralPreferencePane: NSViewController, Preferenceable {
+final class GeneralPreferencePane: NSViewController, PreferencePane {
     
     /// UI
     @IBOutlet weak var versionLabel:                       NSTextField!
-    @IBOutlet weak var notificationBadgeRefreshRatePicker: NSPopUpButton!
     @IBOutlet weak var hideControlStripCheckbox:           NSButton!
-    @IBOutlet weak var hideFinderCheckbox:                 NSButton!
-    @IBOutlet weak var hideTrashCheckbox:                  NSButton!
-    @IBOutlet weak var hidePersistentItemsCheckbox:        NSButton!
     @IBOutlet weak var launchAtLoginCheckbox:              NSButton!
     @IBOutlet weak var enableAutomaticUpdates:             NSButton!
     @IBOutlet weak var checkForUpdatesButton:              NSButton!
@@ -38,17 +34,23 @@ final class GeneralPreferencePane: NSViewController, Preferenceable {
     private static let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String ?? "Unknown"
     
     /// Preferenceable
-    let toolbarItemTitle: String   = "General"
-    let toolbarItemIcon:  NSImage  = NSImage(named: NSImage.Name("pock-icon"))!
+    var preferencePaneIdentifier: Identifier = Identifier.general
+    let preferencePaneTitle:      String     = "General"
+    let toolbarItemIcon:          NSImage    = NSImage(named: NSImage.preferencesGeneralName)!
     
     override var nibName: NSNib.Name? {
-        return NSNib.Name(rawValue: "GeneralPreferencePane")
+        return "GeneralPreferencePane"
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.view.superview?.wantsLayer = true
+        self.view.wantsLayer = true
     }
     
     override func viewWillAppear() {
         super.viewWillAppear()
         self.loadVersionNumber()
-        self.populatePopUpButton()
         self.setupCheckboxes()
         if let newVersionNumber = self.newVersionAvailable?.0, let newVersionDownloadURL = self.newVersionAvailable?.1 {
             self.showNewVersionAlert(versionNumber: newVersionNumber, downloadURL: newVersionDownloadURL)
@@ -60,29 +62,9 @@ final class GeneralPreferencePane: NSViewController, Preferenceable {
         self.versionLabel.stringValue = GeneralPreferencePane.appVersion
     }
     
-    private func populatePopUpButton() {
-        self.notificationBadgeRefreshRatePicker.removeAllItems()
-        self.notificationBadgeRefreshRatePicker.addItems(withTitles: NotificationBadgeRefreshRateKeys.allCases.map({ $0.toString() }))
-        self.notificationBadgeRefreshRatePicker.selectItem(withTitle: defaults[.notificationBadgeRefreshInterval].toString())
-    }
-    
     private func setupCheckboxes() {
-        self.launchAtLoginCheckbox.state        = LaunchAtLogin.isEnabled        ? .on : .off
-        self.hideControlStripCheckbox.state     = defaults[.hideControlStrip]    ? .on : .off
-        self.hideFinderCheckbox.state           = defaults[.hideFinder]          ? .on : .off
-        self.hideTrashCheckbox.state            = defaults[.hideTrash]           ? .on : .off
-        self.hidePersistentItemsCheckbox.state  = defaults[.hidePersistentItems] ? .on : .off
-        self.hideTrashCheckbox.isEnabled        = !defaults[.hidePersistentItems]
-        self.enableAutomaticUpdates.state       = defaults[.enableAutomaticUpdates] ? .on : .off
-    }
-    
-    @IBAction private func didSelectNotificationBadgeRefreshRate(_: NSButton) {
-        defaults[.notificationBadgeRefreshInterval] = NotificationBadgeRefreshRateKeys.allCases[self.notificationBadgeRefreshRatePicker.indexOfSelectedItem]
-        NSWorkspace.shared.notificationCenter.post(name: .didChangeNotificationBadgeRefreshRate, object: nil)
-    }
-    
-    @IBAction private func didChangeLaunchAtLoginValue(button: NSButton) {
-        LaunchAtLogin.isEnabled = button.state == .on
+        self.hideControlStripCheckbox.state = defaults[.hideControlStrip]       ? .on : .off
+        self.enableAutomaticUpdates.state   = defaults[.enableAutomaticUpdates] ? .on : .off
     }
     
     @IBAction private func didChangeHideControlStripValue(button: NSButton) {
@@ -90,20 +72,8 @@ final class GeneralPreferencePane: NSViewController, Preferenceable {
         NSWorkspace.shared.notificationCenter.post(name: .shouldReloadPock, object: nil)
     }
     
-    @IBAction private func didChangeHideFinderValue(button: NSButton) {
-        defaults[.hideFinder] = button.state == .on
-        NSWorkspace.shared.notificationCenter.post(name: .shouldReloadDock, object: nil)
-    }
-    
-    @IBAction private func didChangeHideTrashValue(button: NSButton) {
-        defaults[.hideTrash] = button.state == .on
-        NSWorkspace.shared.notificationCenter.post(name: .shouldReloadDock, object: nil)
-    }
-    
-    @IBAction private func didChangeHidePersistentValue(button: NSButton) {
-        defaults[.hidePersistentItems] = button.state == .on
-        hideTrashCheckbox.isEnabled = !defaults[.hidePersistentItems]
-        NSWorkspace.shared.notificationCenter.post(name: .shouldReloadPersistentItems, object: nil)
+    @IBAction private func didChangeLaunchAtLoginValue(button: NSButton) {
+        LaunchAtLogin.isEnabled = button.state == .on
     }
     
     @IBAction private func didChangeEnableAutomaticUpdates(button: NSButton) {
@@ -167,10 +137,12 @@ extension GeneralPreferencePane {
             let downloadURL = URL(string: apiResponse.download_link),
             GeneralPreferencePane.appVersion < apiResponse.version_number else {
                 NSLog("[Pock]: Already on latest version: \(GeneralPreferencePane.appVersion)")
+                URLSession.shared.finishTasksAndInvalidate()
                 completion(nil, nil)
                 return
             }
             NSLog("[Pock]: New version available: \(apiResponse.version_number)")
+            URLSession.shared.finishTasksAndInvalidate()
             completion(apiResponse.version_number, downloadURL)
         }).resume()
     }

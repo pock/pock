@@ -22,6 +22,7 @@ class Constants {
     static let dockItemCornerRadius:    CGFloat = 6
     static let dockItemBounceThreshold: CGFloat = 10
     /// Keys
-    static let kDockItemView:    NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier(rawValue: "kDockItemView")
-    static let kBounceAnimation: String = "kBounceAnimation"
+    static let kDockItemView:       NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier(rawValue: "kDockItemView")
+    static let kDockFolterItemView: NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier(rawValue: "kDockFolterItemView")
+    static let kBounceAnimation:    String = "kBounceAnimation"
 }

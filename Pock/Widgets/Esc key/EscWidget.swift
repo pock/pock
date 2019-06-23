@@ -16,13 +16,19 @@ class EscWidgetButton: NSButton {
     }
 }
 
-class EscWidget: PockWidget {
-    override func customInit() {
-        self.customizationLabel = "Esc Key"
-        self.view               = EscWidgetButton(title: "esc", target: self, action: #selector(tap))
+class EscWidget: PKWidget {
+    
+    private let key: KeySender = KeySender(keyCode: Int32(0x35), isAux: false)
+    
+    var identifier: NSTouchBarItem.Identifier = NSTouchBarItem.Identifier.escButton
+    var customizationLabel: String = "Esc Key"
+    var view: NSView!
+    
+    required init() {
+        view = EscWidgetButton(title: "esc", target: self, action: #selector(tap))
     }
     
     @objc private func tap() {
-        ESCKeySender().send()
+        key.send()
     }
 }

@@ -9,36 +9,48 @@
 import Foundation
 import Defaults
 
-class DockWidget: PockWidget {
+class DockWidget: NSObject, PKWidget {
+    
+    var identifier: NSTouchBarItem.Identifier = NSTouchBarItem.Identifier.dockView
+    var customizationLabel: String            = "Dock"
+    var view: NSView!
     
     /// Core
     private var dockRepository: DockRepository!
     
     /// UI
-    private var stackView:          NSStackView = NSStackView(frame: .zero)
-    private var dockScrubber:       NSScrubber  = NSScrubber(frame: NSRect(x: 0, y: 0, width: 200,  height: 30))
-    private var separator:          NSView      = NSView(frame:     NSRect(x: 0, y: 0, width: 1,    height: 20))
-    private var persistentScrubber: NSScrubber  = NSScrubber(frame: NSRect(x: 0, y: 0, width: 50,   height: 30))
+    private var stackView:           NSStackView! = NSStackView(frame: .zero)
+    private var dockScrubber:        NSScrubber! = NSScrubber(frame: NSRect(x: 0, y: 0, width: 200,  height: 30))
+    private var separator:           NSView! = NSView(frame:     NSRect(x: 0, y: 0, width: 1,    height: 20))
+    private var persistentScrubber: NSScrubber! = NSScrubber(frame: NSRect(x: 0, y: 0, width: 50,   height: 30))
+    private var lastVisibleRange:   NSRange! = NSRange(location: 0, length: 0)
     
     /// Data
     private var dockItems:       [DockItem] = []
     private var persistentItems: [DockItem] = []
+    private var cachedItemViews: [Int: DockItemView] = [:]
     
-    /// Custom init
-    override func customInit() {
-        self.customizationLabel = "Dock"
+    required override init() {
+        super.init()
+        
         self.configureStackView()
         self.configureDockScrubber()
         self.configureSeparator()
         self.configurePersistentScrubber()
         self.displayScrubbers()
-        self.set(view: stackView)
+        self.view = stackView
         self.dockRepository = DockRepository(delegate: self)
         self.dockRepository.reload(nil)
         NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(displayScrubbers), name: .shouldReloadPersistentItems, object: nil)
+        NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(reloadDockScrubberLayout), name: .shouldReloadDockLayout, object: nil)
     }
     
     deinit {
+        stackView           = nil
+        dockScrubber        = nil
+        separator           = nil
+        persistentScrubber  = nil
+        dockRepository      = nil
         NSWorkspace.shared.notificationCenter.removeObserver(self)
     }
     
@@ -54,14 +66,24 @@ class DockWidget: PockWidget {
         self.persistentScrubber.isHidden = defaults[.hidePersistentItems] || persistentItems.isEmpty
     }
     
+    @objc private func reloadDockScrubberLayout() {
+        let dockLayout              = NSScrubberFlowLayout()
+        dockLayout.itemSize         = Constants.dockItemSize
+        dockLayout.itemSpacing      = CGFloat(defaults[.itemSpacing])
+        dockScrubber.scrubberLayout = dockLayout
+        let persistentLayout              = NSScrubberFlowLayout()
+        persistentLayout.itemSize         = Constants.dockItemSize
+        persistentLayout.itemSpacing      = CGFloat(defaults[.itemSpacing])
+        persistentScrubber.scrubberLayout = persistentLayout
+    }
+    
     /// Configure dock scrubber
     private func configureDockScrubber() {
         let layout = NSScrubberFlowLayout()
-        layout.itemSize = Constants.dockItemSize
-        layout.itemSpacing = 8
+        layout.itemSize    = Constants.dockItemSize
+        layout.itemSpacing = CGFloat(defaults[.itemSpacing])
         dockScrubber.dataSource = self
         dockScrubber.delegate = self
-        dockScrubber.register(DockItemView.self, forItemIdentifier: Constants.kDockItemView)
         dockScrubber.showsAdditionalContentIndicators = true
         dockScrubber.mode = .free
         dockScrubber.isContinuous = false
@@ -84,11 +106,10 @@ class DockWidget: PockWidget {
     /// Configure persistent scrubber
     private func configurePersistentScrubber() {
         let layout = NSScrubberFlowLayout()
-        layout.itemSize = Constants.dockItemSize
-        layout.itemSpacing = 8
+        layout.itemSize    = Constants.dockItemSize
+        layout.itemSpacing = CGFloat(defaults[.itemSpacing])
         persistentScrubber.dataSource = self
         persistentScrubber.delegate = self
-        persistentScrubber.register(DockItemView.self, forItemIdentifier: Constants.kDockItemView)
         persistentScrubber.showsAdditionalContentIndicators = true
         persistentScrubber.mode = .free
         persistentScrubber.isContinuous = false
@@ -104,63 +125,71 @@ class DockWidget: PockWidget {
 
 extension DockWidget: DockDelegate {
     func didUpdate(apps: [DockItem]) {
-        update(scrubber: dockScrubber, old_items: dockItems, new_items: apps, completion: { [weak self] items in
-            self?.dockItems = items
-            self?.dockScrubber.needsLayout = true
-        })
+        update(scrubber: dockScrubber, oldItems: dockItems, newItems: apps) { [weak self] apps in
+            apps.enumerated().forEach({ index, item in
+                item.index = index
+            })
+            self?.dockItems = apps
+        }
     }
     func didUpdate(items: [DockItem]) {
-        update(scrubber: persistentScrubber, old_items: persistentItems, new_items: items, canReload: true, completion: { [weak self] items in
+        update(scrubber: persistentScrubber, oldItems: persistentItems, newItems: items) { [weak self] items in
             self?.persistentItems = items
             self?.displayScrubbers()
-            persistentScrubber.snp.updateConstraints({ m in
-                m.width.equalTo((Constants.dockItemSize.width + 8) * CGFloat(persistentItems.count))
+            self?.persistentScrubber.snp.updateConstraints({ m in
+                m.width.equalTo((Constants.dockItemSize.width + 8) * CGFloat(self?.persistentItems.count ?? 0))
             })
-        })
+        }
     }
-    private func update(scrubber: NSScrubber?, old_items: [DockItem], new_items: [DockItem], canReload: Bool = false, completion: ([DockItem]) -> Void) {
+    
+    @discardableResult
+    private func updateView(for item: DockItem?) -> DockItemView? {
+        guard let item = item else { return nil }
+        var view: DockItemView! = cachedItemViews[item.diffId]
+        if view == nil {
+            view = DockItemView(frame: .zero)
+            cachedItemViews[item.diffId] = view
+        }
+        view.clear()
+        view.set(icon:        item.icon)
+        view.set(hasBadge:    item.hasBadge)
+        view.set(isRunning:   item.isRunning)
+        view.set(isFrontmost: item.isFrontmost)
+        return view
+    }
+    
+    private func update(scrubber: NSScrubber?, oldItems: [DockItem], newItems: [DockItem], completion: (([DockItem]) -> Void)? = nil) {
         guard let scrubber = scrubber else {
-            completion(new_items)
+            completion?(newItems)
             return
         }
-        scrubber.performSequentialBatchUpdates {
-            var count = scrubber.numberOfItems
-            for (index, old_item) in old_items.enumerated() {
-                if !new_items.contains(old_item) {
-                    scrubber.removeItems(at: IndexSet(integer: index))
-                    count -= 1
-                }else {
-                    if canReload {
-                        scrubber.reloadItems(at: IndexSet(integer: index))
-                    }
-                }
+        DispatchQueue.main.async { [weak self] in
+            completion?(newItems)
+            scrubber.reloadData()
+            var toIndex = self?.lastVisibleRange.upperBound ?? 0
+            if scrubber.numberOfItems > 0 {
+                toIndex = toIndex >= scrubber.numberOfItems ? (scrubber.numberOfItems - 1) : toIndex
+                scrubber.scrollItem(at: toIndex < 0 ? 0 : toIndex, to: .none)
             }
-            for new_item in new_items {
-                if !old_items.contains(new_item) {
-                    scrubber.insertItems(at: IndexSet(integer: count))
-                    if old_items.count > 0 {
-                        scrubber.scrollItem(at: count - 1, to: .leading)
-                    }
-                    count += 1
-                }
-            }
-            completion(new_items)
         }
     }
     func didUpdateBadge(for apps: [DockItem]) {
-        for (index, item) in dockItems.enumerated() {
-            if let view = dockScrubber.itemViewForItem(at: index) as? DockItemView {
-                view.set(hasBadge: item.hasBadge)
-            }
+        DispatchQueue.main.async { [weak self] in
+            guard let s = self else { return }
+            s.cachedItemViews.forEach({ key, view in
+                view.set(hasBadge: apps.first(where: { $0.diffId == key })?.hasBadge ?? false)
+            })
         }
     }
     func didUpdateRunningState(for apps: [DockItem]) {
-        for (index, item) in dockItems.enumerated() {
-            if let view = dockScrubber.itemViewForItem(at: index) as? DockItemView {
-                view.set(icon: item.icon)
-                view.set(isRunning: item.isRunning)
-                view.set(isFrontmost: item.isFrontmost)
-            }
+        DispatchQueue.main.async { [weak self] in
+            guard let s = self else { return }
+            s.cachedItemViews.forEach({ key, view in
+                let item = apps.first(where: { $0.diffId == key })
+                view.set(isRunning:   item?.isRunning   ?? false)
+                view.set(isFrontmost: item?.isFrontmost ?? false)
+                view.set(isLaunching: item?.isLaunching ?? false)
+            })
         }
     }
 }
@@ -175,12 +204,7 @@ extension DockWidget: NSScrubberDataSource {
     
     func scrubber(_ scrubber: NSScrubber, viewForItemAt index: Int) -> NSScrubberItemView {
         let item = scrubber == persistentScrubber ? persistentItems[index] : dockItems[index]
-        let view = scrubber.makeItem(withIdentifier: Constants.kDockItemView, owner: self) as! DockItemView
-        view.set(icon:         item.icon)
-        view.set(hasBadge:     item.hasBadge)
-        view.set(isRunning:    item.isRunning)
-        view.set(isFrontmost:  item.isFrontmost)
-        return view
+        return updateView(for: item)!
     }
 }
 
@@ -191,5 +215,9 @@ extension DockWidget: NSScrubberDelegate {
             NSLog("[Pock]: Did open: \(item.bundleIdentifier ?? item.path?.absoluteString ?? "Unknown") [success: \(success)]")
         })
         scrubber.selectedIndex = -1
+    }
+    
+    func scrubber(_ scrubber: NSScrubber, didChangeVisibleRange visibleRange: NSRange) {
+        lastVisibleRange = visibleRange
     }
 }

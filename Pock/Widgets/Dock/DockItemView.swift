@@ -12,7 +12,8 @@ import SnapKit
 class DockItemView: NSScrubberItemView {
     
     /// Core
-    private var isBounching: Bool = false
+    private static let kBounceAnimationKey: String = "kBounceAnimationKey"
+    private var isAnimating: Bool = false
     
     /// UI
     private var contentView:    NSView!
@@ -38,6 +39,7 @@ class DockItemView: NSScrubberItemView {
     private func loadIconView() {
         self.iconView = NSImageView(frame: .zero)
         self.iconView.imageScaling = .scaleProportionallyDown
+        self.iconView.wantsLayer = true
         self.contentView.addSubview(self.iconView)
         self.iconView.snp.makeConstraints({ m in
             m.width.height.equalTo(Constants.dockItemIconSize)
@@ -78,7 +80,6 @@ class DockItemView: NSScrubberItemView {
     override init(frame frameRect: NSRect) {
         super.init(frame: NSRect(origin: .zero, size: Constants.dockItemSize))
         self.contentView = NSView(frame: .zero)
-        self.loadIconView()
         self.addSubview(self.contentView)
         self.contentView.snp.makeConstraints({ m in
             m.edges.equalToSuperview()
@@ -89,15 +90,29 @@ class DockItemView: NSScrubberItemView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        self.set(icon:         nil)
-        self.set(hasBadge:     false)
-        self.set(isRunning:    false)
-        self.set(isFrontmost:  false)
+    func clear() {
+        self.set(icon:        nil)
+        self.set(hasBadge:    false)
+        self.set(isRunning:   false)
+        self.set(isFrontmost: false)
     }
     
+    override func viewDidChangeBackingProperties() {
+        super.viewDidChangeBackingProperties()
+        layer?.contentsScale                = window?.backingScaleFactor ?? 1
+        iconView?.layer?.contentsScale      = window?.backingScaleFactor ?? 1
+        badgeView?.layer?.contentsScale     = window?.backingScaleFactor ?? 1
+        dotView?.layer?.contentsScale       = window?.backingScaleFactor ?? 1
+        frontmostView?.layer?.contentsScale = window?.backingScaleFactor ?? 1
+    }
+    
+    public func set(isLaunching: Bool) {
+        if isLaunching { startBounceAnimation() } else { stopBounceAnimation() }
+    }
+    public var isLaunching: Bool { return self.isAnimating }
+    
     public func set(icon: NSImage?) {
+        if iconView == nil { loadIconView() }
         iconView.image = icon
     }
     
@@ -105,15 +120,43 @@ class DockItemView: NSScrubberItemView {
         if frontmostView == nil { loadFrontmost() }
         frontmostView.layer?.backgroundColor = (isFrontmost ? NSColor.darkGray : NSColor.clear).cgColor
     }
+    public var isFrontmost: Bool { return frontmostView.layer?.backgroundColor == NSColor.darkGray.cgColor }
     
     public func set(isRunning: Bool) {
         if dotView == nil { loadDotView() }
-        dotView.isHidden = !isRunning
+        dotView.layer?.opacity = isRunning ? 1 : 0
     }
+    public var isRunning: Bool { return dotView.layer?.opacity == 1 }
     
     public func set(hasBadge: Bool) {
         if badgeView == nil { loadBadgeView() }
-        badgeView.isHidden = !hasBadge
+        badgeView.layer?.opacity = hasBadge ? 1 : 0
     }
+    public var hasBadge: Bool { return badgeView.layer?.opacity == 1 }
     
+}
+
+extension DockItemView {
+    func startBounceAnimation() {
+        if !isAnimating {
+            self.loadBounceAnimation()
+        }
+    }
+    private func loadBounceAnimation() {
+        isAnimating                  = true
+        let bounce                   = CABasicAnimation(keyPath: "position.y")
+        bounce.byValue               = NSNumber(floatLiteral: 10)
+        bounce.duration              = 0.3
+        bounce.autoreverses          = true
+        bounce.repeatCount           = Float.infinity
+        bounce.timingFunction        = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
+        let frame = self.iconView.layer?.frame
+        self.iconView.layer?.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        self.iconView.layer?.frame = frame ?? .zero
+        self.iconView.layer?.add(bounce, forKey: DockItemView.kBounceAnimationKey)
+    }
+    func stopBounceAnimation() {
+        self.iconView.layer?.removeAnimation(forKey: DockItemView.kBounceAnimationKey)
+        self.isAnimating = false
+    }
 }

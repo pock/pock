@@ -7,19 +7,29 @@
 //
 
 import Foundation
+import Preferences
 import Defaults
 
 let isProd: Bool = true
 
+extension PreferencePane.Identifier {
+    static let general       = Identifier("general")
+    static let dock_widget   = Identifier("dock_widget")
+    static let status_widget = Identifier("status_widget")
+}
+
 extension NSNotification.Name {
     static let didChangeNotificationBadgeRefreshRate = NSNotification.Name("didSelectNotificationBadgeRefreshRate")
     static let shouldReloadPock                      = NSNotification.Name("shouldReloadPock")
+    static let shouldReloadStatusWidget              = NSNotification.Name("shouldReloadStatusWidget")
     static let shouldReloadDock                      = NSNotification.Name("shouldReloadDock")
+    static let shouldReloadDockLayout                = NSNotification.Name("shouldReloadDockLayout")
     static let shouldReloadPersistentItems           = NSNotification.Name("shouldReloadPersistentItems")
     static let shouldEnableAutomaticUpdates          = NSNotification.Name("shouldEnableAutomaticUpdates")
 }
 
 enum NotificationBadgeRefreshRateKeys: Double, Codable, CaseIterable {
+    case never          = -1
     case instantly      = 0.25
     case oneSecond      = 1
     case fiveSeconds    = 5
@@ -30,6 +40,8 @@ enum NotificationBadgeRefreshRateKeys: Double, Codable, CaseIterable {
     
     func toString() -> String {
         switch self {
+        case .never:
+            return "Never"
         case .instantly:
             return "Instantly"
         case .oneSecond:
@@ -50,10 +62,21 @@ enum NotificationBadgeRefreshRateKeys: Double, Codable, CaseIterable {
 
 extension Defaults.Keys {
     static let launchAtLogin                    = Defaults.Key<Bool>("launchAtLogin",          default: false)
-    static let notificationBadgeRefreshInterval = Defaults.Key<NotificationBadgeRefreshRateKeys>("notificationBadgeRefreshInterval", default: .tenSeconds)
     static let hideControlStrip                 = Defaults.Key<Bool>("hideControlStrip",       default: false)
+    static let enableAutomaticUpdates           = Defaults.Key<Bool>("enableAutomaticUpdates", default: false)
+    /// Dock widget
+    static let notificationBadgeRefreshInterval = Defaults.Key<NotificationBadgeRefreshRateKeys>("notificationBadgeRefreshInterval", default: .tenSeconds)
+    static let itemSpacing                      = Defaults.Key<Int>("itemSpacing",             default: 8)
     static let hideFinder                       = Defaults.Key<Bool>("hideFinder",             default: false)
+    static let showOnlyRunningApps              = Defaults.Key<Bool>("showOnlyRunningApps",    default: false)
     static let hideTrash                        = Defaults.Key<Bool>("hideTrash",              default: false)
     static let hidePersistentItems              = Defaults.Key<Bool>("hidePersistentItems",    default: false)
-    static let enableAutomaticUpdates           = Defaults.Key<Bool>("enableAutomaticUpdates", default: false)
+    static let openFinderInsidePock             = Defaults.Key<Bool>("openFinderInsidePock",   default: true)
+    /// Status widget
+    static let shouldShowWifiItem               = Defaults.Key<Bool>("shouldShowWifiItem",          default: true)
+    static let shouldShowPowerItem              = Defaults.Key<Bool>("shouldShowPowerItem",         default: true)
+    static let shouldShowBatteryIcon            = Defaults.Key<Bool>("shouldShowBatteryIcon",       default: true)
+    static let shouldShowBatteryPercentage      = Defaults.Key<Bool>("shouldShowBatteryPercentage", default: true)
+    static let shouldShowDateItem               = Defaults.Key<Bool>("shouldShowDateItem",          default: true)
+    static let shouldShowSpotlightItem          = Defaults.Key<Bool>("shouldShowSpotlightItem",     default: true)
 }
