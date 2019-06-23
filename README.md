@@ -104,7 +104,7 @@ You can adjust Pock and widgets settings to reflects your specific needs. You ca
 
 ## Customize
 
-You can customize the widget position in TouchBar from the **Customize**menu item.
+You can customize the widget position in TouchBar from the **Customize** menu item.
 
 <div align="left">
   <img src="https://pock.dev/assets/img/preview/pock_customize.png"/>
