@@ -17,6 +17,14 @@ Pock will always be available as free software!
 
 
 
+## How To Enable
+
+1. Move Pock to your Applications folder
+2. Open Pock
+3. If you don't see Pock in your touch bar, go to the Keyboard pane in System Preferences and select "Touch Bar shows _App Controls_."
+
+
+
 ## Widgets
 
 <small>Includes five default widgets</small>
