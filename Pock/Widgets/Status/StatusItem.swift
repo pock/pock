@@ -8,7 +8,7 @@
 
 import Foundation
 
-class StatusItemView: PockTappableView {
+class StatusItemView: PKView {
     weak var item: StatusItem?
     override func didTapHandler() {
         item?.action()
@@ -21,4 +21,10 @@ protocol StatusItem: class {
     var view:    NSView { get }
     func action()
     func reload()
+    func didLoad()
+    func didUnload()
+}
+
+extension StatusItem {
+    func didLoad() { /* ... */ }
 }

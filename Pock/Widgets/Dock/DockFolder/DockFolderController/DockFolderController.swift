@@ -8,7 +8,7 @@
 
 import Foundation
 
-class DockFolderController: PockTouchBarController {
+class DockFolderController: PKTouchBarController {
     
     /// UI
     @IBOutlet private weak var folderName:   NSTextField!

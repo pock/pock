@@ -43,6 +43,10 @@ class SPowerItem: StatusItem {
     }
     
     deinit {
+        didUnload()
+    }
+    
+    func didUnload() {
         refreshTimer?.invalidate()
         refreshTimer = nil
     }

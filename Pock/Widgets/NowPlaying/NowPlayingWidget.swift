@@ -7,18 +7,22 @@
 //
 
 import Foundation
+import PockKit
 
-class NowPlayingWidget: PockWidget {
+class NowPlayingWidget: PKWidget {
+    
+    var identifier: NSTouchBarItem.Identifier = NSTouchBarItem.Identifier.nowPlaying
+    var customizationLabel: String            = "Now Playing"
+    var view: NSView!
     
     /// UI
     private var nowPlayingItemView: NowPlayingItemView!
     
-    override func customInit() {
-        self.customizationLabel = "Now Playing"
+    required init() {
         self.updateNowPLayingItemView()
         self.registerForNotifications()
         self.setGestureHandlers()
-        self.set(view: nowPlayingItemView)
+        self.view = nowPlayingItemView
     }
     
     private func registerForNotifications() {
@@ -31,7 +35,7 @@ class NowPlayingWidget: PockWidget {
     
     @objc private func updateNowPLayingItemView() {
         if nowPlayingItemView == nil {
-            nowPlayingItemView = NowPlayingItemView(frame: .zero)
+            nowPlayingItemView = NowPlayingItemView(leftToRight: true)
         }
         nowPlayingItemView.nowPLayingItem = NowPlayingHelper.shared.nowPlayingItem
     }

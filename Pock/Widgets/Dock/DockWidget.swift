@@ -8,38 +8,37 @@
 
 import Foundation
 import Defaults
-import DeepDiff
 
-class DockWidget: PockWidget {
+class DockWidget: NSObject, PKWidget {
+    
+    var identifier: NSTouchBarItem.Identifier = NSTouchBarItem.Identifier.dockView
+    var customizationLabel: String            = "Dock"
+    var view: NSView!
     
     /// Core
     private var dockRepository: DockRepository!
-    private var operationQueue: OperationQueue?
     
     /// UI
-    private var stackView:          NSStackView! = NSStackView(frame: .zero)
-    private var dockScrubber:       NSScrubber!  = NSScrubber(frame: NSRect(x: 0, y: 0, width: 200,  height: 30))
-    private var separator:          NSView!      = NSView(frame:     NSRect(x: 0, y: 0, width: 1,    height: 20))
-    private var persistentScrubber: NSScrubber!  = NSScrubber(frame: NSRect(x: 0, y: 0, width: 50,   height: 30))
+    private var stackView:           NSStackView! = NSStackView(frame: .zero)
+    private var dockScrubber:        NSScrubber! = NSScrubber(frame: NSRect(x: 0, y: 0, width: 200,  height: 30))
+    private var separator:           NSView! = NSView(frame:     NSRect(x: 0, y: 0, width: 1,    height: 20))
+    private var persistentScrubber: NSScrubber! = NSScrubber(frame: NSRect(x: 0, y: 0, width: 50,   height: 30))
+    private var lastVisibleRange:   NSRange! = NSRange(location: 0, length: 0)
     
     /// Data
     private var dockItems:       [DockItem] = []
     private var persistentItems: [DockItem] = []
     private var cachedItemViews: [Int: DockItemView] = [:]
     
-    /// Custom init
-    override func customInit() {
-        self.operationQueue = OperationQueue()
-        self.operationQueue?.maxConcurrentOperationCount = 1
-        self.operationQueue?.qualityOfService = .background
+    required override init() {
+        super.init()
         
-        self.customizationLabel = "Dock"
         self.configureStackView()
         self.configureDockScrubber()
         self.configureSeparator()
         self.configurePersistentScrubber()
         self.displayScrubbers()
-        self.set(view: stackView)
+        self.view = stackView
         self.dockRepository = DockRepository(delegate: self)
         self.dockRepository.reload(nil)
         NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(displayScrubbers), name: .shouldReloadPersistentItems, object: nil)
@@ -47,8 +46,6 @@ class DockWidget: PockWidget {
     }
     
     deinit {
-        operationQueue?.cancelAllOperations()
-        operationQueue      = nil
         stackView           = nil
         dockScrubber        = nil
         separator           = nil
@@ -166,37 +163,13 @@ extension DockWidget: DockDelegate {
             completion?(newItems)
             return
         }
-        operationQueue?.addOperation {
-            let diffs = diff(old: oldItems, new: newItems)
-            DispatchQueue.main.async {
-                scrubber.performSequentialBatchUpdates {
-                    diffs.executeIfPresent({ [weak self] changes in
-                        completion?(newItems)
-                        guard changes.count < 2 else {
-                            scrubber.reloadData()
-                            return
-                        }
-                        for change in changes {
-                            switch change {
-                            case let .delete(delete):
-                                self?.cachedItemViews.removeValue(forKey: delete.item.diffId)
-                                scrubber.removeItems(at: IndexSet(integer: delete.index))
-                                print("[Pock]: Removed '\(delete.item.bundleIdentifier ?? delete.item.path?.absoluteString ?? "unknown")' from: \(delete.index)")
-                            case let .insert(insert):
-                                scrubber.insertItems(at: IndexSet(integer: insert.index))
-                                print("[Pock]: Inserted '\(insert.item.bundleIdentifier ?? insert.item.path?.absoluteString ?? "unknown")' at: \(insert.index)")
-                            case let .replace(replace):
-                                scrubber.reloadItems(at: IndexSet(integer: replace.index))
-                                let old_id = replace.oldItem.bundleIdentifier ?? replace.oldItem.path?.absoluteString ?? "unknown old"
-                                let new_id = replace.newItem.bundleIdentifier ?? replace.newItem.path?.absoluteString ?? "unknown new"
-                                print("[Pock]: Replace '\(old_id)' with '\(new_id)' at: \(replace.index)")
-                            case let .move(move):
-                                scrubber.moveItem(at: move.fromIndex, to: move.toIndex)
-                                print("[Pock]: Moved '\(move.item.bundleIdentifier ?? move.item.path?.absoluteString ?? "unknown")' from: '\(move.fromIndex)', to: \(move.toIndex)")
-                            }
-                        }
-                    })
-                }
+        DispatchQueue.main.async { [weak self] in
+            completion?(newItems)
+            scrubber.reloadData()
+            var toIndex = self?.lastVisibleRange.upperBound ?? 0
+            if scrubber.numberOfItems > 0 {
+                toIndex = toIndex >= scrubber.numberOfItems ? (scrubber.numberOfItems - 1) : toIndex
+                scrubber.scrollItem(at: toIndex < 0 ? 0 : toIndex, to: .none)
             }
         }
     }
@@ -242,5 +215,9 @@ extension DockWidget: NSScrubberDelegate {
             NSLog("[Pock]: Did open: \(item.bundleIdentifier ?? item.path?.absoluteString ?? "Unknown") [success: \(success)]")
         })
         scrubber.selectedIndex = -1
+    }
+    
+    func scrubber(_ scrubber: NSScrubber, didChangeVisibleRange visibleRange: NSRange) {
+        lastVisibleRange = visibleRange
     }
 }

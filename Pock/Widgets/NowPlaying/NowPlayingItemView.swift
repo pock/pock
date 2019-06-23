@@ -15,58 +15,18 @@ extension String {
     }
 }
 
-class NowPlayingItemView: PockTappableView {
+class NowPlayingItemView: PKDetailView {
     
-    /// Core
-    private static let kBounceAnimationKey:   String = "kBounceAnimationKey"
-    private var isAnimating: Bool = false
-    
+    /// Overrideable
     public var didTap: (() -> Void)?
     public var didSwipeLeft: (() -> Void)?
     public var didSwipeRight: (() -> Void)?
-    
-    /// UI
-    private var imageView:    NSImageView!
-    private var titleView:    NSTextField!
-    private var subtitleView: NSTextField!
     
     /// Data
     public var nowPLayingItem: NowPlayingItem? {
         didSet {
             self.updateContent()
         }
-    }
-    
-    deinit {
-        didTap = nil
-        didSwipeLeft = nil
-        didSwipeRight = nil
-    }
-    
-    override init(frame frameRect: NSRect) {
-        super.init(frame: frameRect)
-        
-        imageView = NSImageView(frame: .zero)
-        imageView.autoresizingMask = .none
-        imageView.imageScaling = .scaleProportionallyDown
-        
-        titleView = NSTextField(labelWithString: "")
-        titleView.autoresizingMask = .none
-        titleView.alignment = .left
-        titleView.font = NSFont.systemFont(ofSize: 9)
-        
-        subtitleView = NSTextField(labelWithString: "")
-        subtitleView.autoresizingMask = .none
-        subtitleView.alignment = .left
-        subtitleView.font = NSFont.systemFont(ofSize: 9)
-        subtitleView.textColor = NSColor(calibratedRed: 124/255, green: 131/255, blue: 127/255, alpha: 1)
-        
-        addSubview(imageView)
-        addSubview(titleView)
-        addSubview(subtitleView)
-        
-        updateContent()
-        updateLayout()
     }
     
     private func updateContent() {
@@ -102,70 +62,16 @@ class NowPlayingItemView: PockTappableView {
         }
     }
     
-    private func updateLayout() {
-        imageView.snp.makeConstraints({ maker in
-            maker.width.equalTo(24)
-            maker.top.bottom.equalTo(self)
-            maker.left.equalTo(self)
-        })
-        titleView.sizeToFit()
-        titleView.snp.makeConstraints({ maker in
-            maker.height.equalTo(titleView.frame.height)
-            maker.left.equalTo(imageView.snp.right).offset(4)
-            maker.top.equalTo(imageView).inset(4)
-            maker.right.equalTo(self).inset(4)
-        })
-        subtitleView.sizeToFit()
-        subtitleView.snp.makeConstraints({ maker in
-            maker.left.equalTo(titleView)
-            maker.top.equalTo(titleView.snp.bottom)
-            maker.right.equalTo(titleView)
-            maker.bottom.equalTo(self)
-        })
-    }
-    
-    required init?(coder decoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override public func didTapHandler() {
+    override open func didTapHandler() {
         self.didTap?()
     }
     
-    override public func didSwipeLeftHandler() {
+    override open func didSwipeLeftHandler() {
         self.didSwipeLeft?()
     }
     
-    override public func didSwipeRightHandler() {
+    override open func didSwipeRightHandler() {
         self.didSwipeRight?()
     }
     
-}
-
-extension NowPlayingItemView {
-    func startBounceAnimation() {
-        if !isAnimating {
-            self.loadBounceAnimation()
-        }
-    }
-    private func loadBounceAnimation() {
-        isAnimating                   = true
-        
-        let bounce                   = CABasicAnimation(keyPath: "transform.scale")
-        bounce.fromValue             = 0.86
-        bounce.toValue               = 1
-        bounce.duration              = 1.2
-        bounce.autoreverses          = true
-        bounce.repeatCount           = Float.infinity
-        bounce.timingFunction        = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-        
-        let frame = self.imageView.layer?.frame
-        self.imageView.layer?.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        self.imageView.layer?.frame = frame ?? .zero
-        self.imageView.layer?.add(bounce, forKey: NowPlayingItemView.kBounceAnimationKey)
-    }
-    func stopBounceAnimation() {
-        self.imageView.layer?.removeAnimation(forKey: NowPlayingItemView.kBounceAnimationKey)
-        self.isAnimating = false
-    }
 }

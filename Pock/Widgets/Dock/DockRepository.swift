@@ -57,20 +57,16 @@ class DockRepository {
         dockItems.removeAll()
         runningItems.removeAll()
         persistentApps.removeAll()
-        DispatchQueue.global(qos: .background).async { [weak self] in
-            if !(self?.showOnlyRunningApps ?? false) {
-                self?.loadPersistentApps()
-            }
-            self?.loadRunningApplications(notification)
-            self?.updateRunningState(notification)
+        if !(showOnlyRunningApps) {
+            loadPersistentApps()
         }
+        loadRunningApplications(notification)
+        updateRunningState(notification)
     }
     
     @objc public func reloadPersistentItems(_ notification: NSNotification?) {
-        persistentItems.removeAll()
-        DispatchQueue.global(qos: .background).async { [weak self] in
-            self?.loadPersistentItems()
-        }
+        persistentItems = []
+        loadPersistentItems()
     }
     
     @objc public func reload(_ notification: NSNotification?) {
@@ -131,13 +127,13 @@ class DockRepository {
     
     /// Check if item can be removed
     private func canRemove(item: DockItem) -> Bool {
-        return  !runningItems.contains(item) && !persistentApps.contains(item)
+        return !runningItems.contains(item) && !persistentApps.contains(item)
     }
     
     /// Load running applications
     @objc private func loadRunningApplications(_ notification: NSNotification?) {
         dockItems.removeAll(where: { canRemove(item: $0) })
-        runningItems.removeAll()
+        runningItems = []
         for app in NSWorkspace.shared.runningApplications {
             if let item = dockItems.first(where: { $0.bundleIdentifier == app.bundleIdentifier }) {
                 item.name        = app.localizedName ?? item.name
@@ -178,7 +174,7 @@ class DockRepository {
             return
         }
         /// Empty array
-        persistentApps.removeAll()
+        persistentApps = []
         /// Iterate on apps
         for (index,app) in apps.enumerated() {
             /// Get data tile
@@ -218,7 +214,7 @@ class DockRepository {
             return
         }
         /// Empty array
-        persistentItems.removeAll()
+        persistentItems = []
         /// Iterate on apps
         for (index,app) in apps.enumerated() {
             /// Get data tile
@@ -244,9 +240,7 @@ class DockRepository {
             let trashItem = DockItem(0, nil, name: "Trash", path: URL(string: "file://"+Constants.trashPath)!, icon: DockRepository.getIcon(orType: trashType), persistentItem: true)
             persistentItems.append(trashItem)
         }
-        DispatchQueue.main.async { [weak self] in
-            self?.delegate?.didUpdate(items: self?.persistentItems ?? [])
-        }
+        delegate?.didUpdate(items: persistentItems)
     }
     
     /// Load running dot
@@ -297,12 +291,10 @@ class DockRepository {
 
 extension DockRepository: FileMonitorDelegate {
     func didChange(fileMonitor: FileMonitor, paths: [String]) {
-        DispatchQueue.main.async { [weak self] in
-            for path in paths {
-                if !isProd { NSLog("[Pock]: [\(type(of: fileMonitor))] # Changes in path: \(path)") }
-            }
-            self?.reload(nil)
+        for path in paths {
+            if !isProd { NSLog("[Pock]: [\(type(of: fileMonitor))] # Changes in path: \(path)") }
         }
+        self.reload(nil)
     }
 }
 

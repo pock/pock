@@ -11,7 +11,7 @@ import Quartz
 
 class DockFolderRepository {
     
-    private var navController: PockTouchBarNavController? { return (NSApp.delegate as? AppDelegate)?.navController }
+    private var navController: PKTouchBarNavController? { return (NSApp.delegate as? AppDelegate)?.navController }
     
     public var shouldShowBackButton: Bool {
         return navController?.childControllers.count ?? 0 > 2

@@ -8,25 +8,25 @@
 
 import Foundation
 
-class PockTouchBarNavController {
+class PKTouchBarNavController {
     
-    weak var rootController:   PockTouchBarController?
-    var childControllers: [PockTouchBarController] = []
+    weak var rootController:   PKTouchBarController?
+    var childControllers: [PKTouchBarController] = []
     
-    var visibleController: PockTouchBarController? {
+    var visibleController: PKTouchBarController? {
         return childControllers.last
     }
     
-    init(rootController: PockTouchBarController) {
+    init(rootController: PKTouchBarController) {
         self.rootController = rootController
         self.push(rootController)
     }
     
 }
 
-extension PockTouchBarNavController {
+extension PKTouchBarNavController {
     
-    func push(_ controller: PockTouchBarController) {
+    func push(_ controller: PKTouchBarController) {
         childControllers.append(controller)
         controller.navController = self
         controller.present()

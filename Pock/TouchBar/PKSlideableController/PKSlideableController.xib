@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaDFRPlugin" version="14490.12"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaDFRPlugin" version="14460.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
         <capability name="the Touch Bar" minToolsVersion="8.1" minSystemVersion="10.12.2" requiredIntegratedClassName="NSTouchBar"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="PockSlideableController" customModule="Pock" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="PKSlideableController" customModule="Pock" customModuleProvider="target">
             <connections>
                 <outlet property="leftItemView" destination="bIR-Pt-ncq" id="dN5-jB-Gac"/>
                 <outlet property="rightItemView" destination="06m-4D-YbS" id="9vb-H7-som"/>
@@ -42,11 +42,11 @@
                 </touchBarItem>
                 <touchBarItem identifier="SliderItem" id="xqj-lD-RLR">
                     <viewController key="viewController" id="jDX-cY-gQw">
-                        <view key="view" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xmk-ht-dJb">
+                        <view key="view" translatesAutoresizingMaskIntoConstraints="NO" id="Xmk-ht-dJb">
                             <rect key="frame" x="0.0" y="0.0" width="278" height="30"/>
                             <subviews>
                                 <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LNV-ND-NZg">
-                                    <rect key="frame" x="-6" y="0.0" width="290" height="30"/>
+                                    <rect key="frame" x="-2" y="-2" width="282" height="34"/>
                                     <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="EBz-Ix-xYC"/>
                                 </slider>
                             </subviews>

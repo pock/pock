@@ -8,7 +8,11 @@
 
 import Foundation
 
-class StatusWidget: PockWidget {
+class StatusWidget: PKWidget {
+    
+    var identifier: NSTouchBarItem.Identifier = NSTouchBarItem.Identifier.status
+    var customizationLabel: String            = "Status"
+    var view: NSView!
     
     /// Core
     private var statusElements: [StatusItem] = [
@@ -21,32 +25,31 @@ class StatusWidget: PockWidget {
     /// UI
     private var stackView: NSStackView!
     
+    required init() {
+        self.customizationLabel = "Status"
+        self.initStackView()
+        self.loadStatusElements()
+        self.view = stackView
+    }
+    
     deinit {
         statusElementViews.removeAll()
         statusElements.removeAll()
     }
     
-    override func customInit() {
-        self.customizationLabel = "Status"
-        self.initStackView()
-        self.loadStatusElements()
-        self.set(view: stackView)
-    }
-    
-    override func viewDidAppear() {
-        super.viewDidAppear()
+    func viewDidAppear() {
         NSWorkspace.shared.notificationCenter.addObserver(forName: .shouldReloadStatusWidget, object: nil, queue: .main, using: { [weak self] _ in
             self?.loadStatusElements()
         })
     }
     
-    override func viewWillDisappear() {
-        super.viewWillDisappear()
+    func viewWillDisappear() {
+        self.statusElements.forEach({ $0.didUnload() })
         NSWorkspace.shared.notificationCenter.removeObserver(self)
     }
     
     private func initStackView() {
-        stackView = NSStackView(frame: .zero)
+        stackView = NSStackView(frame: NSRect(x: 0, y: 0, width: 100, height: 30))
         stackView.orientation  = .horizontal
         stackView.alignment    = .centerY
         stackView.distribution = .fillProportionally
@@ -62,6 +65,7 @@ class StatusWidget: PockWidget {
     private func loadStatusElements() {
         clearStackView()
         statusElements.filter({ $0.enabled }).forEach({ item in
+            item.didLoad()
             if let cachedView = statusElementViews[item.title] {
                 item.reload()
                 stackView.addArrangedSubview(cachedView)

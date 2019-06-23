@@ -8,7 +8,7 @@
 
 import Foundation
 
-class PockSlideableController: PockTouchBarController {
+class PKSlideableController: PKTouchBarController {
     
     /// UI Elements
     @IBOutlet         weak var slider:        NSSlider!
