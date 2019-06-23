@@ -7,9 +7,8 @@
 //
 
 import Foundation
-import DeepDiff
 
-class DockItem: Equatable, DiffAware {
+class DockItem: Equatable {
 
     var diffId: Int {
         return bundleIdentifier?.hashValue ?? path?.hashValue ?? 0

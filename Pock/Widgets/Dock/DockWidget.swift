@@ -8,7 +8,6 @@
 
 import Foundation
 import Defaults
-import DeepDiff
 
 class DockWidget: NSObject, PKWidget {
     
