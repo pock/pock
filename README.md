@@ -21,7 +21,7 @@ Pock will always be available as free software!
 
 1. Move Pock to your Applications folder
 2. Open Pock
-3. If you don't see Pock in your touch bar, go to the Keyboard pane in System Preferences and select "Touch Bar shows _App Controls_."
+3. If you don't see Pock in your Touch Bar, go to the `Keyboard` pane in System Preferences and select "Touch Bar shows _App Controls_."
 
 
 
