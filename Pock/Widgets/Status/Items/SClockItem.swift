@@ -12,7 +12,7 @@ import Defaults
 class SClockItem: StatusItem {
     
     /// Core
-    private weak var refreshTimer: Timer?
+    private var refreshTimer: Timer?
     
     /// UI
     private var clockLabel: NSTextField!
