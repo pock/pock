@@ -36,7 +36,7 @@ class NowPlayingItemView: PKDetailView {
         switch (appBundleIdentifier) {
         case "com.apple.WebKit.WebContent":
             appBundleIdentifier = "com.apple.Safari"
-        case "com.spotify.client", "com.apple.iTunes", "com.apple.Safari":
+        case "com.spotify.client", "com.apple.iTunes", "com.apple.Safari","com.netease.163music":
             break
         default:
             appBundleIdentifier = "com.apple.iTunes"
