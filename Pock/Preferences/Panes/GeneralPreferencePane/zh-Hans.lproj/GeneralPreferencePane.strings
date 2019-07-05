@@ -1,0 +1,21 @@
+
+/* Class = "NSButtonCell"; title = "登录时启动"; ObjectID = "0Zd-e7-34p"; */
+"0Zd-e7-34p.title" = "登录时启动";
+
+/* Class = "NSButtonCell"; title = "隐藏系统触控栏"; ObjectID = "206-HT-yI6"; */
+"206-HT-yI6.title" = "隐藏系统触控栏";
+
+/* Class = "NSTextFieldCell"; title = "双击“control”键在Pock和系统触控栏之间切换。"; ObjectID = "5UW-Vr-bYf"; */
+"5UW-Vr-bYf.title" = "双击“control”键在Pock和系统触控栏之间切换。";
+
+/* Class = "NSTextFieldCell"; title = "VERSION"; ObjectID = "K9v-5R-z7Q"; */
+"K9v-5R-z7Q.title" = "VERSION";
+
+/* Class = "NSButtonCell"; title = "检查更新"; ObjectID = "MJG-ij-J6R"; */
+"MJG-ij-J6R.title" = "检查更新";
+
+/* Class = "NSTextFieldCell"; title = "Pock"; ObjectID = "aMA-Da-MZq"; */
+"aMA-Da-MZq.title" = "Pock";
+
+/* Class = "NSButtonCell"; title = "每天检查一次更新"; ObjectID = "wxD-tO-31t"; */
+"wxD-tO-31t.title" = "每天检查一次更新";
