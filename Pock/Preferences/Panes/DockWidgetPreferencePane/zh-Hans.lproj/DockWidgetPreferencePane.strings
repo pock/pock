@@ -23,8 +23,8 @@
 /* Class = "NSMenuItem"; title = "Item 1"; ObjectID = "fzh-TY-1IX"; */
 "fzh-TY-1IX.title" = "Item 1";
 
-/* Class = "NSTextFieldCell"; title = "项目间距"; ObjectID = "qJw-Vc-w0w"; */
-"qJw-Vc-w0w.title" = "组件间距";
+/* Class = "NSTextFieldCell"; title = "部件间距"; ObjectID = "qJw-Vc-w0w"; */
+"qJw-Vc-w0w.title" = "部件间距";
 
 /* Class = "NSButtonCell"; title = "仅显示正在运行的应用"; ObjectID = "qS6-8X-eGs"; */
 "qS6-8X-eGs.title" = "仅显示正在运行的应用";
