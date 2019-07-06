@@ -101,9 +101,9 @@ final class GeneralPreferencePane: NSViewController, PreferencePane {
 
 extension GeneralPreferencePane {
     func showNewVersionAlert(versionNumber: String, downloadURL: URL) {
-        self.showAlert(title:      "New version available!",
+        self.showAlert(title:      NSLocalizedString("New version available!", comment: "New version available!"),
                        message:    "Do you want to download version \"\(versionNumber)\" now?",
-            buttons:    ["Download", "Later"],
+            buttons:    [NSLocalizedString("Download", comment: "Download"), NSLocalizedString("Later", comment: "Later")],
             completion: { modalResponse in if modalResponse == .alertFirstButtonReturn { NSWorkspace.shared.open(downloadURL) }
         })
     }
