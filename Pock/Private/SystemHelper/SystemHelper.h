@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <AppKit/AppKit.h>
 
-extern void SACLockScreenImmediate();
+extern void SACLockScreenImmediate(void);
 
 @interface SystemHelper : NSObject
 + (void)lock;

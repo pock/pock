@@ -18,6 +18,7 @@ class CCSleepItem: ControlCenterItem {
     override var icon:  NSImage { return NSImage(named: title)!.resize(w: 30, h: 30) }
     
     override func action() -> Any? {
+        SystemHelper.lock()
         SystemHelper.sleep()
         return nil
     }
