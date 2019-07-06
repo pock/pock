@@ -532,6 +532,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 348343E51F631B2E00CDA005 /* Build configuration list for PBXNativeTarget "Pock" */;
 			buildPhases = (
+				3407F9DF22D102AC0072E742 /* [Pock]: Set Fabric API_KEY */,
 				2B2556069E62CDAC367ACF33 /* [CP] Check Pods Manifest.lock */,
 				348343D21F631B2E00CDA005 /* Sources */,
 				348343D31F631B2E00CDA005 /* Frameworks */,
@@ -628,6 +629,25 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		3407F9DF22D102AC0072E742 /* [Pock]: Set Fabric API_KEY */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "[Pock]: Set Fabric API_KEY";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "apiKey=$(sed -n '1p' < FabricEnv)\nsecretKey=$(sed -n '2p' < FabricEnv)\n\nINFO_PLIST=\"${SRCROOT}/Pock/Various/Info.plist\"\n\n/usr/libexec/PlistBuddy -c \"Set :Fabric:APIKey $apiKey\" \"$INFO_PLIST\"\n";
+		};
 		3413964E217B8B6200DCD2B0 /* [Fabric] Run */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 8;
@@ -645,7 +665,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
-			shellScript = "apiKey=$(sed -n '1p' < FabricEnv)\nsecretKey=$(sed -n '2p' < FabricEnv)\n\nINFO_PLIST=\"${SRCROOT}/Pock/Various/Info.plist\"\n\n/usr/libexec/PlistBuddy -c \"Set :Fabric:APIKey $apiKey\" \"$INFO_PLIST\"\n\n\"${PODS_ROOT}/Fabric/run\" $apiKey $secretKey\n";
+			shellScript = "apiKey=$(sed -n '1p' < FabricEnv)\nsecretKey=$(sed -n '2p' < FabricEnv)\n\n\"${PODS_ROOT}/Fabric/run\" $apiKey $secretKey\n";
 		};
 		34FBB7B721734E8F004D5BC0 /* [LaunchAtLogin] Copy helper */ = {
 			isa = PBXShellScriptBuildPhase;
