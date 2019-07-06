@@ -22,7 +22,7 @@ class DockWidgetPreferencePane: NSViewController, PreferencePane {
     
     /// Preferenceable
     var preferencePaneIdentifier: Identifier = Identifier.dock_widget
-    let preferencePaneTitle:      String     = "Dock Widget"
+    let preferencePaneTitle:      String     = NSLocalizedString("Dock Widget", comment: "Dock Widget")
     let toolbarItemIcon: NSImage = NSWorkspace.shared.icon(forFile: NSWorkspace.shared.absolutePathForApplication(withBundleIdentifier: "com.apple.dock") ?? "")
     
     override var nibName: NSNib.Name? {

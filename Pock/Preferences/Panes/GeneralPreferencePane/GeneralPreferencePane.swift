@@ -35,7 +35,7 @@ final class GeneralPreferencePane: NSViewController, PreferencePane {
     
     /// Preferenceable
     var preferencePaneIdentifier: Identifier = Identifier.general
-    let preferencePaneTitle:      String     = "General"
+    let preferencePaneTitle:      String     = NSLocalizedString("General", comment: "General")
     let toolbarItemIcon:          NSImage    = NSImage(named: NSImage.preferencesGeneralName)!
     
     override var nibName: NSNib.Name? {
@@ -83,13 +83,13 @@ final class GeneralPreferencePane: NSViewController, PreferencePane {
     
     @IBAction private func checkForUpdates(_ sender: NSButton) {
         self.checkForUpdatesButton.isEnabled = false
-        self.checkForUpdatesButton.title     = "Checking..."
+        self.checkForUpdatesButton.title     = NSLocalizedString("Checking…", comment: "Checking…")
         
         self.hasLatestVersion(completion: { [weak self] latestVersion, latestVersionDownloadURL in
             if let latestVersion = latestVersion, let latestVersionDownloadURL = latestVersionDownloadURL {
                 self?.showNewVersionAlert(versionNumber: latestVersion, downloadURL: latestVersionDownloadURL)
             }else {
-                self?.showAlert(title: "Installed version: \(GeneralPreferencePane.appVersion)", message: "Already on latest version")
+                self?.showAlert(title: NSLocalizedString("Installed version", comment: "Installed version") + ": \(GeneralPreferencePane.appVersion)", message: NSLocalizedString("Already on latest version", comment: "Already on latest version"))
             }
             DispatchQueue.main.async { [weak self] in
                 self?.checkForUpdatesButton.isEnabled = true

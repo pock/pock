@@ -64,6 +64,7 @@
 		9667AAF222CF192D00C22410 /* GeneralPreferencePane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9667AAF422CF192D00C22410 /* GeneralPreferencePane.xib */; };
 		9667AAFB22CF1A5700C22410 /* StatusWidgetPreferencePane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9667AAFD22CF1A5700C22410 /* StatusWidgetPreferencePane.xib */; };
 		9667AB0422CF1ABA00C22410 /* DockWidgetPreferencePane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9667AB0622CF1ABA00C22410 /* DockWidgetPreferencePane.xib */; };
+		96FE269F22D0C3810071645C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 96FE26A122D0C3810071645C /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -142,9 +143,11 @@
 		9667AAFA22CF1A4D00C22410 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/GeneralPreferencePane.strings"; sourceTree = "<group>"; };
 		9667AAFC22CF1A5700C22410 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/StatusWidgetPreferencePane.xib; sourceTree = "<group>"; };
 		9667AAFF22CF1A5C00C22410 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/StatusWidgetPreferencePane.strings; sourceTree = "<group>"; };
-		9667AB0322CF1AB300C22410 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/StatusWidgetPreferencePane.strings"; sourceTree = "<group>"; };
 		9667AB0522CF1ABA00C22410 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/DockWidgetPreferencePane.xib; sourceTree = "<group>"; };
 		9667AB0822CF1ABE00C22410 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/DockWidgetPreferencePane.strings; sourceTree = "<group>"; };
+		96FE26A022D0C3810071645C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		96FE26A322D0C4AC0071645C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		96FE26A722D0C8550071645C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/StatusWidgetPreferencePane.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,6 +229,7 @@
 				342D83992278D5CF000D79DA /* Preferences */,
 				342D83A22278D5CF000D79DA /* Various */,
 				342D83A62278D5CF000D79DA /* Private */,
+				96FE26A122D0C3810071645C /* Localizable.strings */,
 			);
 			path = Pock;
 			sourceTree = "<group>";
@@ -568,6 +572,7 @@
 				342D83DF2278D5CF000D79DA /* MainWindow.xib in Resources */,
 				3418DA022288318A00E11E37 /* PKSlideableController.xib in Resources */,
 				9667AAF222CF192D00C22410 /* GeneralPreferencePane.xib in Resources */,
+				96FE269F22D0C3810071645C /* Localizable.strings in Resources */,
 				3406434D227F3FFF00981372 /* PockMainController.xib in Resources */,
 				9667AAFB22CF1A5700C22410 /* StatusWidgetPreferencePane.xib in Resources */,
 				9667AB0422CF1ABA00C22410 /* DockWidgetPreferencePane.xib in Resources */,
@@ -745,7 +750,7 @@
 			children = (
 				9667AAFC22CF1A5700C22410 /* Base */,
 				9667AAFF22CF1A5C00C22410 /* en */,
-				9667AB0322CF1AB300C22410 /* zh-Hans */,
+				96FE26A722D0C8550071645C /* zh-Hans */,
 			);
 			name = StatusWidgetPreferencePane.xib;
 			sourceTree = "<group>";
@@ -758,6 +763,15 @@
 				962E0A5422CF1C7700567E20 /* zh-Hans */,
 			);
 			name = DockWidgetPreferencePane.xib;
+			sourceTree = "<group>";
+		};
+		96FE26A122D0C3810071645C /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				96FE26A022D0C3810071645C /* en */,
+				96FE26A322D0C4AC0071645C /* zh-Hans */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

@@ -1,6 +1,6 @@
 
-/* Class = "NSButtonCell"; title = "显示电量"; ObjectID = "OGc-Cn-VS5"; */
-"OGc-Cn-VS5.title" = "显示电量";
+/* Class = "NSButtonCell"; title = "显示电池"; ObjectID = "OGc-Cn-VS5"; */
+"OGc-Cn-VS5.title" = "显示电池";
 
 /* Class = "NSButtonCell"; title = "显示电池图标"; ObjectID = "S9t-Wy-9IV"; */
 "S9t-Wy-9IV.title" = "显示电池图标";

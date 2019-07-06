@@ -47,7 +47,7 @@ class NowPlayingItemView: PKDetailView {
         DispatchQueue.main.async { [weak self] in
             self?.imageView.image          = DockRepository.getIcon(forBundleIdentifier: appBundleIdentifier, orPath: path)
             self?.titleView.stringValue    = self?.nowPLayingItem?.title?.truncate(length: 20)  ?? "Pock"
-            self?.subtitleView.stringValue = self?.nowPLayingItem?.artist?.truncate(length: 20) ?? FileManager.default.displayName(atPath: path ?? "Unknown")
+            self?.subtitleView.stringValue = self?.nowPLayingItem?.artist?.truncate(length: 20) ?? FileManager.default.displayName(atPath: path ?? NSLocalizedString("Unknown", comment: "Unknown"))
             self?.updateForNowPlayingState()
         }
     }
