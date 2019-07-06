@@ -12,7 +12,7 @@ import Defaults
 class SClockItem: StatusItem {
     
     /// Core
-    private weak var refreshTimer: Timer?
+    private var refreshTimer: Timer?
     
     /// UI
     private var clockLabel: NSTextField!
@@ -42,7 +42,6 @@ class SClockItem: StatusItem {
     func didUnload() {
         refreshTimer?.invalidate()
         refreshTimer = nil
-        clockLabel = nil
     }
     
     var enabled: Bool{ return defaults[.shouldShowDateItem] }
