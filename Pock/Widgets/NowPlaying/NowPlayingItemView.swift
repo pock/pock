@@ -39,15 +39,15 @@ class NowPlayingItemView: PKDetailView {
         case "com.spotify.client", "com.apple.iTunes", "com.apple.Safari":
             break
         default:
-            appBundleIdentifier = "com.apple.iTunes"
+            appBundleIdentifier = "com.pigigaldi.pock"
         }
         
         let path = NSWorkspace.shared.absolutePathForApplication(withBundleIdentifier: appBundleIdentifier)
         
         DispatchQueue.main.async { [weak self] in
             self?.imageView.image          = DockRepository.getIcon(forBundleIdentifier: appBundleIdentifier, orPath: path)
-            self?.titleView.stringValue    = self?.nowPLayingItem?.title?.truncate(length: 20)  ?? "Pock"
-            self?.subtitleView.stringValue = self?.nowPLayingItem?.artist?.truncate(length: 20) ?? FileManager.default.displayName(atPath: path ?? "Unknown")
+            self?.titleView.stringValue    = self?.nowPLayingItem?.title?.truncate(length: 20)  ?? "No Playback"
+            self?.subtitleView.stringValue = self?.nowPLayingItem?.artist?.truncate(length: 20) ?? "Unknown"
             self?.updateForNowPlayingState()
         }
     }
