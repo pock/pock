@@ -77,6 +77,8 @@ class ControlCenterWidget: PKWidget {
     
     required init() {
         self.controls = [
+            CCSleepItem(parentWidget: self),
+            CCLockItem(parentWidget: self),
             CCBrightnessDownItem(parentWidget: self),
             CCBrightnessUpItem(parentWidget: self),
             CCVolumeDownItem(parentWidget: self),
