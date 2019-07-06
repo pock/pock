@@ -42,7 +42,6 @@ class SClockItem: StatusItem {
     func didUnload() {
         refreshTimer?.invalidate()
         refreshTimer = nil
-        clockLabel = nil
     }
     
     var enabled: Bool{ return defaults[.shouldShowDateItem] }
