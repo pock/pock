@@ -1,5 +1,12 @@
-<p align="center"><img src="https://raw.githubusercontent.com/pigigaldi/Pock/master/Resources/pock_logo_b.png" width="76"/></p>
+<p align="center"><img src="https://pock.dev/assets/img/brand/web-icon-black.png" width="96"/></p>
 <p align="center">Touch barにmacOS Dockを表示 - 無料・オープンソース</p>
+
+<p align="center">新しいPockアップデートがついに登場しました！
+それは多くのパフォーマンス改善をもたらします、それはあなたのタッチバーに最小限のウィジェットをもたらします！
+</p>
+<p align="center">
+ <img width="800" src="https://pock.dev/assets/img/preview/pock_widgets.png"/>
+</p>
 
 [🇺🇸English](README.md) | [🇨🇳中文](README.cn.md) | [🇯🇵日本語](README.ja.md) | [🇹🇷Türk dili](README.tr.md)
 
@@ -7,7 +14,9 @@
 
 PockはmacOS DockをMacBookのTouchBarの中に置き、スクリーンをフルサイズで楽しむことができます！
 
-<p align="center"><img src="https://raw.githubusercontent.com/pigigaldi/Pock/master/Resources/pock_preview.png"/></p>
+<div align="left">
+  <img width="500" src="https://pock.dev/assets/img/preview/widgets/pock_dock_widget.png"/>
+</div>
 
 ### バッジサポート
 
