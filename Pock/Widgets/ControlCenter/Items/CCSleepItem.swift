@@ -7,12 +7,15 @@
 //
 
 import Foundation
+import Defaults
 
 class CCSleepItem: ControlCenterItem {
     
+    override var enabled: Bool{ return defaults[.shouldShowSleepItem] }
+    
     override var title: String  { return "sleep" }
     
-    override var icon:  NSImage { return NSImage(named: title)! }
+    override var icon:  NSImage { return NSImage(named: title)!.resize(w: 30, h: 30) }
     
     override func action() -> Any? {
         SystemHelper.sleep()

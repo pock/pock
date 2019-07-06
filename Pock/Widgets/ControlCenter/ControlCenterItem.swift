@@ -12,6 +12,12 @@ class ControlCenterItem {
     
     var parentWidget: ControlCenterWidget?
     
+    var enabled: Bool {
+        get {
+            return false
+        }
+    }
+    
     init(parentWidget: ControlCenterWidget?) {
         self.parentWidget = parentWidget
     }

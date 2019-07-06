@@ -7,8 +7,11 @@
 //
 
 import Foundation
+import Defaults
 
 class CCLockItem: ControlCenterItem {
+    
+    override var enabled: Bool{ return defaults[.shouldShowLockItem] }
     
     override var title: String  { return "lock" }
     

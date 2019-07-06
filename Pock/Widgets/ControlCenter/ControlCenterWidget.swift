@@ -59,7 +59,16 @@ class ControlCenterWidget: PKWidget {
     var view: NSView!
     
     /// Core
-    private(set) var controls: [ControlCenterItem] = []
+    private var controls: [ControlCenterItem] {
+        return [
+            CCSleepItem(parentWidget: self),
+            CCLockItem(parentWidget: self),
+            CCBrightnessDownItem(parentWidget: self),
+            CCBrightnessUpItem(parentWidget: self),
+            CCVolumeDownItem(parentWidget: self),
+            CCVolumeUpItem(parentWidget: self)
+        ].filter({ $0.enabled })
+    }
     private var slideableController: PKSlideableController?
     
     /// Volume items
@@ -76,24 +85,34 @@ class ControlCenterWidget: PKWidget {
     fileprivate var segmentedControl: PressableSegmentedControl!
     
     required init() {
-        self.controls = [
-            CCSleepItem(parentWidget: self),
-            CCLockItem(parentWidget: self),
-            CCBrightnessDownItem(parentWidget: self),
-            CCBrightnessUpItem(parentWidget: self),
-            CCVolumeDownItem(parentWidget: self),
-            CCVolumeUpItem(parentWidget: self)
-        ]
+        self.load()
+    }
+    
+    func viewDidAppear() {
+        NSWorkspace.shared.notificationCenter.addObserver(forName: .shouldReloadControlCenterWidget, object: nil, queue: .main, using: { [weak self] _ in
+            self?.load()
+        })
+    }
+    
+    private func load() {
         self.initializeSegmentedControl()
         self.view = segmentedControl
     }
     
     private func initializeSegmentedControl() {
         let items = controls.map({ $0.icon }) as [NSImage]
+        guard segmentedControl == nil else {
+            segmentedControl.segmentCount = controls.count
+            items.enumerated().forEach({ index, item in
+                segmentedControl.setImage(item, forSegment: index)
+                segmentedControl.setWidth(50, forSegment: index)
+            })
+            return
+        }
         segmentedControl = PressableSegmentedControl(images: items, trackingMode: .momentary, target: self, action: #selector(tap(_:)))
         segmentedControl.delegate = self
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
-        segmentedControl.autoresizingMask = [.width, .height]
+        segmentedControl.autoresizingMask = .width
         controls.enumerated().forEach({ index, _ in
             segmentedControl.setWidth(50, forSegment: index)
         })
