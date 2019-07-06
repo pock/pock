@@ -7,8 +7,11 @@
 //
 
 import Foundation
+import Defaults
 
 class CCVolumeUpItem: ControlCenterItem {
+    
+    override var enabled: Bool{ return defaults[.shouldShowVolumeItem] && defaults[.shouldShowVolumeUpItem] }
     
     private let key: KeySender = KeySender(keyCode: NX_KEYTYPE_SOUND_UP, isAux: true)
     
