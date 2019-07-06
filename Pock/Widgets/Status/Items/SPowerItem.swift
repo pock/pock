@@ -17,7 +17,7 @@ struct SPowerStatus {
 class SPowerItem: StatusItem {
     
     /// Core
-    private weak var refreshTimer: Timer?
+    private var refreshTimer: Timer?
     private var powerStatus: SPowerStatus = SPowerStatus(isCharging: false, currentValue: 0)
     private var shouldShowBatteryIcon: Bool {
         return defaults[.shouldShowBatteryIcon]
