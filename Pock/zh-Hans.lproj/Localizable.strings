@@ -1,10 +1,10 @@
-/* 
-  Localizable.strings
-  Pock
-
-  Created by Licardo on 2019/7/6.
-  Copyright © 2019 Pierluigi Galdi. All rights reserved.
-*/
+/*
+ Localizable.strings
+ Pock
+ 
+ Created by Licardo on 2019/7/6.
+ Copyright © 2019 Pierluigi Galdi. All rights reserved.
+ */
 
 "General" = "通用";
 
@@ -64,4 +64,4 @@
 
 "Later" = "稍后";
 
-"No Playback" = "没有播放"；
+"No Playback" = "没有播放";
