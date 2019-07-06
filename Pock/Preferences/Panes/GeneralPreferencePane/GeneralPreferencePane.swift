@@ -93,7 +93,7 @@ final class GeneralPreferencePane: NSViewController, PreferencePane {
             }
             DispatchQueue.main.async { [weak self] in
                 self?.checkForUpdatesButton.isEnabled = true
-                self?.checkForUpdatesButton.title     = "Check for updates"
+                self?.checkForUpdatesButton.title     = NSLocalizedString("Check for updates", comment: "Check for updates")
             }
         })
     }
