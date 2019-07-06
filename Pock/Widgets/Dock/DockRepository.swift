@@ -326,7 +326,7 @@ extension DockRepository {
         /// Return icon
         return genericIcon ?? NSImage(size: .zero)
     }
-    /// Launch app or open file/directory
+    /// Launch app or open file/directory from bundle identifier
     public func launch(bundleIdentifier: String?, completion: (Bool) -> ()) {
         /// Check if bundle identifier is valid
         guard bundleIdentifier != nil else {
@@ -361,6 +361,53 @@ extension DockRepository {
         }
         /// Return status
         completion(returnable)
+    }
+    /// TO_IMPROVE: If app is already running, do some special things
+    public func launch(item: DockItem?, completion: (Bool) -> ()) {
+        guard let _item = item, let identifier = _item.bundleIdentifier else {
+            launch(bundleIdentifier: item?.path?.absoluteString, completion: completion)
+            return
+        }
+        let apps = NSRunningApplication.runningApplications(withBundleIdentifier: identifier)
+        guard apps.count > 0 else {
+            launch(bundleIdentifier: _item.bundleIdentifier ?? _item.path?.absoluteString, completion: completion)
+            return
+        }
+        if apps.count > 1 {
+            var result = false
+            for app in apps {
+                result = activate(app: app)
+                if result == false { break }
+            }
+            completion(result)
+        }else {
+            completion(activate(app: apps.first))
+        }
+    }
+    
+    @discardableResult
+    private func activate(app: NSRunningApplication?) -> Bool {
+        guard let app = app else { return false }
+        // TODO: Create preference option for this
+        let shouldOpenAppExpose: Bool = false
+        let windowsCount = PockDockHelper.sharedInstance()?.windowsCount(forApp: app) ?? 0
+        if windowsCount > 1 && shouldOpenAppExpose {
+            activateExpose(app: app)
+            return true
+        }else if windowsCount > 0 {
+            PockDockHelper.sharedInstance()?.activateWindow(atPosition: Int32(windowsCount - UInt(1)), forApp: app)
+            return true
+        }else {
+            if !app.unhide() {
+               return app.activate(options: .activateIgnoringOtherApps)
+            }
+            return true
+        }
+    }
+    
+    private func activateExpose(app: NSRunningApplication) {
+        print("[Pock]: Exposé requested for: \(app.localizedName ?? "Unknown")")
+        PockDockHelper.sharedInstance()?.activateWindow(atPosition: 0, forApp: app)
     }
 }
 
