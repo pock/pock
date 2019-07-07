@@ -13,6 +13,7 @@
 + (PockDockHelper *)sharedInstance;
 - (NSString *)getBadgeCountForItemWithName:(NSString *)name;
 - (CFArrayRef)getWindowsOfAppWithPid:(pid_t)pid;
+- (NSArray *)getRealWindowsOfAppWithPid:(pid_t)pid;
 - (NSUInteger)windowsCountForApp:(NSRunningApplication *)app;
 - (void)closeWindowAtPosition:(int)position forApp:(NSRunningApplication *)app;
 - (void)activateWindowAtPosition:(int)position forApp:(NSRunningApplication *)app;

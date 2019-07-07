@@ -389,7 +389,7 @@ extension DockRepository {
     private func activate(app: NSRunningApplication?) -> Bool {
         guard let app = app else { return false }
         // TODO: Create preference option for this
-        let shouldOpenAppExpose: Bool = false
+        let shouldOpenAppExpose: Bool = true
         let windowsCount = PockDockHelper.sharedInstance()?.windowsCount(forApp: app) ?? 0
         if windowsCount > 1 && shouldOpenAppExpose {
             activateExpose(app: app)
@@ -407,7 +407,13 @@ extension DockRepository {
     
     private func activateExpose(app: NSRunningApplication) {
         print("[Pock]: Exposé requested for: \(app.localizedName ?? "Unknown")")
-        PockDockHelper.sharedInstance()?.activateWindow(atPosition: 0, forApp: app)
+        guard let windows = PockDockHelper.sharedInstance()?.getRealWindowsOfApp(withPid: app.processIdentifier) as? [NSImage], windows.count > 0 else {
+            print("[Pock]: Can't load exposé items for: \(app.localizedName ?? "Unknown")")
+            return
+        }
+        for image in windows {
+            print(image.size)
+        }
     }
 }
 
