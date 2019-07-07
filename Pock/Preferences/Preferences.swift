@@ -13,15 +13,17 @@ import Defaults
 let isProd: Bool = true
 
 extension PreferencePane.Identifier {
-    static let general       = Identifier("general")
-    static let dock_widget   = Identifier("dock_widget")
-    static let status_widget = Identifier("status_widget")
+    static let general                 = Identifier("general")
+    static let dock_widget             = Identifier("dock_widget")
+    static let status_widget           = Identifier("status_widget")
+    static let controler_center_widget = Identifier("control_center_widget")
 }
 
 extension NSNotification.Name {
     static let didChangeNotificationBadgeRefreshRate = NSNotification.Name("didSelectNotificationBadgeRefreshRate")
     static let shouldReloadPock                      = NSNotification.Name("shouldReloadPock")
     static let shouldReloadStatusWidget              = NSNotification.Name("shouldReloadStatusWidget")
+    static let shouldReloadControlCenterWidget       = NSNotification.Name("shouldReloadControlCenterWidget")
     static let shouldReloadDock                      = NSNotification.Name("shouldReloadDock")
     static let shouldReloadDockLayout                = NSNotification.Name("shouldReloadDockLayout")
     static let shouldReloadPersistentItems           = NSNotification.Name("shouldReloadPersistentItems")
@@ -79,4 +81,13 @@ extension Defaults.Keys {
     static let shouldShowBatteryPercentage      = Defaults.Key<Bool>("shouldShowBatteryPercentage", default: true)
     static let shouldShowDateItem               = Defaults.Key<Bool>("shouldShowDateItem",          default: true)
     static let shouldShowSpotlightItem          = Defaults.Key<Bool>("shouldShowSpotlightItem",     default: true)
+    /// Control Center widget
+    static let shouldShowSleepItem          = Defaults.Key<Bool>("shouldShowSleepItem",             default: false)
+    static let shouldShowLockItem           = Defaults.Key<Bool>("shouldShowLockItem",              default: false)
+    static let shouldShowBrightnessItem     = Defaults.Key<Bool>("shouldShowBrightnessItem",        default: true)
+    static let shouldShowVolumeItem         = Defaults.Key<Bool>("shouldShowVolumeItem",            default: true)
+    static let shouldShowBrightnessDownItem = Defaults.Key<Bool>("shouldShowBrightnessDownItem",    default: true)
+    static let shouldShowBrightnessUpItem   = Defaults.Key<Bool>("shouldShowBrightnessUpItem",      default: true)
+    static let shouldShowVolumeDownItem     = Defaults.Key<Bool>("shouldShowVolumeDownItem",        default: true)
+    static let shouldShowVolumeUpItem       = Defaults.Key<Bool>("shouldShowVolumeUpItem",          default: true)
 }

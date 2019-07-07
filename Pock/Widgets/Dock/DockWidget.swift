@@ -211,9 +211,13 @@ extension DockWidget: NSScrubberDataSource {
 extension DockWidget: NSScrubberDelegate {
     func scrubber(_ scrubber: NSScrubber, didSelectItemAt selectedIndex: Int) {
         let item = scrubber == persistentScrubber ? persistentItems[selectedIndex] : dockItems[selectedIndex]
-        dockRepository.launch(bundleIdentifier: item.bundleIdentifier ?? item.path?.absoluteString, completion: { success in
-            NSLog("[Pock]: Did open: \(item.bundleIdentifier ?? item.path?.absoluteString ?? "Unknown") [success: \(success)]")
-        })
+        var result: Bool = false
+        if item.bundleIdentifier?.lowercased() == "com.apple.finder" {
+            dockRepository.launch(bundleIdentifier: item.bundleIdentifier, completion: { result = $0 })
+        }else {
+            dockRepository.launch(item: item, completion: { result = $0 })
+        }
+        NSLog("[Pock]: Did open: \(item.bundleIdentifier ?? item.path?.absoluteString ?? "Unknown") [success: \(result)]")
         scrubber.selectedIndex = -1
     }
     

@@ -7,14 +7,17 @@
 //
 
 import Foundation
+import Defaults
 
 class CCBrightnessDownItem: ControlCenterItem {
 
+    override var enabled: Bool{ return defaults[.shouldShowBrightnessItem] && defaults[.shouldShowBrightnessDownItem] }
+    
     private let key: KeySender = KeySender(keyCode: NX_KEYTYPE_BRIGHTNESS_DOWN, isAux: true)
     
     override var title: String  { return "brightness-down" }
     
-    override var icon:  NSImage { return NSImage(named: title)! }
+    override var icon:  NSImage { return NSImage(named: title)!.resize(w: 30, h: 30) }
     
     override func action() -> Any? {
         key.send()

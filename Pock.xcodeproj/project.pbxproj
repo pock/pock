@@ -14,6 +14,9 @@
 		34064345227EDCB900981372 /* DockFolderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34064344227EDCB900981372 /* DockFolderItem.swift */; };
 		3406434A227F323A00981372 /* PKTouchBarNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34064349227F323A00981372 /* PKTouchBarNavController.swift */; };
 		3406434D227F3FFF00981372 /* PockMainController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3406434C227F3FFF00981372 /* PockMainController.xib */; };
+		3407F9DB22D0E75E0072E742 /* ControlCenterWidgetPreferencePane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3407F9D922D0E75D0072E742 /* ControlCenterWidgetPreferencePane.xib */; };
+		3407F9DC22D0E75E0072E742 /* ControlCenterWidgetPreferencePane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3407F9DA22D0E75D0072E742 /* ControlCenterWidgetPreferencePane.swift */; };
+		3407F9DE22D0F0A60072E742 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3407F9DD22D0F0A60072E742 /* Extensions.swift */; };
 		3418D9FF22882EC600E11E37 /* PKSlideableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3418D9FE22882EC600E11E37 /* PKSlideableController.swift */; };
 		3418DA022288318A00E11E37 /* PKSlideableController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3418DA012288318A00E11E37 /* PKSlideableController.xib */; };
 		342D83DF2278D5CF000D79DA /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 342D83952278D5CF000D79DA /* MainWindow.xib */; };
@@ -54,6 +57,10 @@
 		342D840B2278D5CF000D79DA /* DockItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83DC2278D5CF000D79DA /* DockItemView.swift */; };
 		342D840C2278D5CF000D79DA /* DockWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83DD2278D5CF000D79DA /* DockWidget.swift */; };
 		342D840D2278D5CF000D79DA /* FileMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83DE2278D5CF000D79DA /* FileMonitor.swift */; };
+		347F335E22D0D5F600FA9805 /* login.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 347F335D22D0D5F600FA9805 /* login.framework */; };
+		347F336022D0D68400FA9805 /* CCLockItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347F335F22D0D68400FA9805 /* CCLockItem.swift */; };
+		347F336722D0DB9200FA9805 /* SystemHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 347F336622D0DB9100FA9805 /* SystemHelper.m */; };
+		347F336922D0DBD600FA9805 /* CCSleepItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347F336822D0DBD600FA9805 /* CCSleepItem.swift */; };
 		349431ED22197485008622B1 /* MediaRemote.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 349431EC22197484008622B1 /* MediaRemote.framework */; };
 		349F93E8228865C400B8CFBE /* ISSoundAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 349F93E7228865C400B8CFBE /* ISSoundAdditions.m */; };
 		34BC3ECC2210B2EC00C1DD3C /* DFRFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34BC3ECB2210B2EC00C1DD3C /* DFRFoundation.framework */; };
@@ -75,6 +82,9 @@
 		34064344227EDCB900981372 /* DockFolderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockFolderItem.swift; sourceTree = "<group>"; };
 		34064349227F323A00981372 /* PKTouchBarNavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKTouchBarNavController.swift; sourceTree = "<group>"; };
 		3406434C227F3FFF00981372 /* PockMainController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PockMainController.xib; sourceTree = "<group>"; };
+		3407F9D922D0E75D0072E742 /* ControlCenterWidgetPreferencePane.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ControlCenterWidgetPreferencePane.xib; sourceTree = "<group>"; };
+		3407F9DA22D0E75D0072E742 /* ControlCenterWidgetPreferencePane.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlCenterWidgetPreferencePane.swift; sourceTree = "<group>"; };
+		3407F9DD22D0F0A60072E742 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		3418D9FE22882EC600E11E37 /* PKSlideableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKSlideableController.swift; sourceTree = "<group>"; };
 		3418DA012288318A00E11E37 /* PKSlideableController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PKSlideableController.xib; sourceTree = "<group>"; };
 		342D83952278D5CF000D79DA /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
@@ -122,6 +132,11 @@
 		342D83DC2278D5CF000D79DA /* DockItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DockItemView.swift; sourceTree = "<group>"; };
 		342D83DD2278D5CF000D79DA /* DockWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DockWidget.swift; sourceTree = "<group>"; };
 		342D83DE2278D5CF000D79DA /* FileMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileMonitor.swift; sourceTree = "<group>"; };
+		347F335D22D0D5F600FA9805 /* login.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = login.framework; path = ../../../../../../../../../System/Library/PrivateFrameworks/login.framework; sourceTree = "<group>"; };
+		347F335F22D0D68400FA9805 /* CCLockItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CCLockItem.swift; sourceTree = "<group>"; };
+		347F336522D0DB9100FA9805 /* SystemHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemHelper.h; sourceTree = "<group>"; };
+		347F336622D0DB9100FA9805 /* SystemHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemHelper.m; sourceTree = "<group>"; };
+		347F336822D0DBD600FA9805 /* CCSleepItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCSleepItem.swift; sourceTree = "<group>"; };
 		348343D61F631B2E00CDA005 /* Pock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		349431EC22197484008622B1 /* MediaRemote.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaRemote.framework; path = ../../../../../../../../../System/Library/PrivateFrameworks/MediaRemote.framework; sourceTree = "<group>"; };
 		3494320B222179D7008622B1 /* BatteryUIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BatteryUIKit.framework; path = ../../../../../../../../../System/Library/PrivateFrameworks/BatteryUIKit.framework; sourceTree = "<group>"; };
@@ -157,6 +172,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				347F335E22D0D5F600FA9805 /* login.framework in Frameworks */,
 				349431ED22197485008622B1 /* MediaRemote.framework in Frameworks */,
 				34BC3ECC2210B2EC00C1DD3C /* DFRFoundation.framework in Frameworks */,
 				009B0E12E317757741CE38C8 /* Pods_Pock.framework in Frameworks */,
@@ -212,6 +228,15 @@
 			path = PockMainController;
 			sourceTree = "<group>";
 		};
+		3407F9D822D0E75D0072E742 /* ControlCenterWidgetPreferencePane */ = {
+			isa = PBXGroup;
+			children = (
+				3407F9D922D0E75D0072E742 /* ControlCenterWidgetPreferencePane.xib */,
+				3407F9DA22D0E75D0072E742 /* ControlCenterWidgetPreferencePane.swift */,
+			);
+			path = ControlCenterWidgetPreferencePane;
+			sourceTree = "<group>";
+		};
 		3418DA0022882ECF00E11E37 /* PKSlideableController */ = {
 			isa = PBXGroup;
 			children = (
@@ -225,6 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				342D83B32278D5CF000D79DA /* AppDelegate.swift */,
+				3407F9DD22D0F0A60072E742 /* Extensions.swift */,
 				342D83942278D5CF000D79DA /* Interfaces UI */,
 				342D83962278D5CF000D79DA /* TouchBar */,
 				342D83B42278D5CF000D79DA /* Widgets */,
@@ -270,6 +296,7 @@
 			children = (
 				342D839C2278D5CF000D79DA /* GeneralPreferencePane */,
 				342D839F2278D5CF000D79DA /* StatusWidgetPreferencePane */,
+				3407F9D822D0E75D0072E742 /* ControlCenterWidgetPreferencePane */,
 				34E644FD227D9A6C003D0450 /* DockWidgetPreferencePane */,
 			);
 			path = Panes;
@@ -313,6 +340,7 @@
 				349F93E5228865C400B8CFBE /* ISSoundAdditions */,
 				342D83A82278D5CF000D79DA /* PockDockHelper */,
 				342D83AF2278D5CF000D79DA /* DKBrightness */,
+				347F336422D0DB9100FA9805 /* SystemHelper */,
 				34E644F8227D7848003D0450 /* KeySenderHelper */,
 			);
 			path = Private;
@@ -361,6 +389,8 @@
 		342D83B82278D5CF000D79DA /* Items */ = {
 			isa = PBXGroup;
 			children = (
+				347F335F22D0D68400FA9805 /* CCLockItem.swift */,
+				347F336822D0DBD600FA9805 /* CCSleepItem.swift */,
 				342D83B92278D5CF000D79DA /* CCBrightnessDownItem.swift */,
 				342D83BA2278D5CF000D79DA /* CCVolumeDownItem.swift */,
 				342D83BB2278D5CF000D79DA /* CCBrightnessUpItem.swift */,
@@ -444,6 +474,15 @@
 			path = Witness;
 			sourceTree = "<group>";
 		};
+		347F336422D0DB9100FA9805 /* SystemHelper */ = {
+			isa = PBXGroup;
+			children = (
+				347F336522D0DB9100FA9805 /* SystemHelper.h */,
+				347F336622D0DB9100FA9805 /* SystemHelper.m */,
+			);
+			path = SystemHelper;
+			sourceTree = "<group>";
+		};
 		348343CD1F631B2E00CDA005 = {
 			isa = PBXGroup;
 			children = (
@@ -492,6 +531,7 @@
 		4ED8D081458713BE440562D3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				347F335D22D0D5F600FA9805 /* login.framework */,
 				3494320B222179D7008622B1 /* BatteryUIKit.framework */,
 				349431EC22197484008622B1 /* MediaRemote.framework */,
 				34BC3ECB2210B2EC00C1DD3C /* DFRFoundation.framework */,
@@ -507,6 +547,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 348343E51F631B2E00CDA005 /* Build configuration list for PBXNativeTarget "Pock" */;
 			buildPhases = (
+				3407F9DF22D102AC0072E742 /* [Pock]: Set Fabric API_KEY */,
 				2B2556069E62CDAC367ACF33 /* [CP] Check Pods Manifest.lock */,
 				348343D21F631B2E00CDA005 /* Sources */,
 				348343D31F631B2E00CDA005 /* Frameworks */,
@@ -604,6 +645,25 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		3407F9DF22D102AC0072E742 /* [Pock]: Set Fabric API_KEY */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "[Pock]: Set Fabric API_KEY";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "apiKey=$(sed -n '1p' < FabricEnv)\nsecretKey=$(sed -n '2p' < FabricEnv)\n\nINFO_PLIST=\"${SRCROOT}/Pock/Various/Info.plist\"\n\n/usr/libexec/PlistBuddy -c \"Set :Fabric:APIKey $apiKey\" \"$INFO_PLIST\"\n";
+		};
 		3413964E217B8B6200DCD2B0 /* [Fabric] Run */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 8;
@@ -621,7 +681,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
-			shellScript = "apiKey=$(sed -n '1p' < FabricEnv)\nsecretKey=$(sed -n '2p' < FabricEnv)\n\nINFO_PLIST=\"${SRCROOT}/Pock/Various/Info.plist\"\n\n/usr/libexec/PlistBuddy -c \"Set :Fabric:APIKey $apiKey\" \"$INFO_PLIST\"\n\n\"${PODS_ROOT}/Fabric/run\" $apiKey $secretKey\n";
+			shellScript = "apiKey=$(sed -n '1p' < FabricEnv)\nsecretKey=$(sed -n '2p' < FabricEnv)\n\n\"${PODS_ROOT}/Fabric/run\" $apiKey $secretKey\n";
 		};
 		34FBB7B721734E8F004D5BC0 /* [LaunchAtLogin] Copy helper */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -679,11 +739,13 @@
 				342D83FA2278D5CF000D79DA /* SSpotlightItem.swift in Sources */,
 				342D83F92278D5CF000D79DA /* StatusItem.swift in Sources */,
 				3406433E227ED8BC00981372 /* DockFolderItemView.swift in Sources */,
+				347F336022D0D68400FA9805 /* CCLockItem.swift in Sources */,
 				342D83E62278D5CF000D79DA /* StatusWidgetPreferencePane.swift in Sources */,
 				342D83FB2278D5CF000D79DA /* SWifiItem.swift in Sources */,
 				342D83FC2278D5CF000D79DA /* SPowerItem.swift in Sources */,
 				342D83F82278D5CF000D79DA /* StatusWidget.swift in Sources */,
 				342D83F32278D5CF000D79DA /* CCVolumeUpItem.swift in Sources */,
+				347F336922D0DBD600FA9805 /* CCSleepItem.swift in Sources */,
 				342D84072278D5CF000D79DA /* DockRepository.swift in Sources */,
 				342D83E92278D5CF000D79DA /* PockDockHelper.m in Sources */,
 				34064345227EDCB900981372 /* DockFolderItem.swift in Sources */,
@@ -695,6 +757,7 @@
 				342D840B2278D5CF000D79DA /* DockItemView.swift in Sources */,
 				342D840C2278D5CF000D79DA /* DockWidget.swift in Sources */,
 				34E644FB227D9A69003D0450 /* DockWidgetPreferencePane.swift in Sources */,
+				3407F9DC22D0E75E0072E742 /* ControlCenterWidgetPreferencePane.swift in Sources */,
 				342D83EE2278D5CF000D79DA /* ControlCenterWidget.swift in Sources */,
 				342D83EC2278D5CF000D79DA /* OSDUIHelper.swift in Sources */,
 				3418D9FF22882EC600E11E37 /* PKSlideableController.swift in Sources */,
@@ -704,7 +767,9 @@
 				3406434A227F323A00981372 /* PKTouchBarNavController.swift in Sources */,
 				34064337227E224700981372 /* DockFolderController.swift in Sources */,
 				342D83F22278D5CF000D79DA /* CCBrightnessUpItem.swift in Sources */,
+				3407F9DE22D0F0A60072E742 /* Extensions.swift in Sources */,
 				342D83F02278D5CF000D79DA /* CCBrightnessDownItem.swift in Sources */,
+				347F336722D0DB9200FA9805 /* SystemHelper.m in Sources */,
 				342D83F52278D5CF000D79DA /* NowPlayingItem.swift in Sources */,
 				342D83F62278D5CF000D79DA /* NowPlayingWidget.swift in Sources */,
 				342D840D2278D5CF000D79DA /* FileMonitor.swift in Sources */,
@@ -939,7 +1004,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Pock/Various/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12.2;
-				MARKETING_VERSION = 0.5.2;
+				MARKETING_VERSION = 0.5.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pigigaldi.pock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Pock (Distribution)";
