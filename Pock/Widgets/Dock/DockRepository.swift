@@ -391,11 +391,8 @@ extension DockRepository {
         // TODO: Create preference option for this
         let shouldOpenAppExpose: Bool = true
         let windowsCount = PockDockHelper.sharedInstance()?.windowsCount(forApp: app) ?? 0
-        if windowsCount > 1 && shouldOpenAppExpose {
+        if windowsCount > 0 && shouldOpenAppExpose {
             activateExpose(app: app)
-            return true
-        }else if windowsCount > 0 {
-            PockDockHelper.sharedInstance()?.activateWindow(atPosition: Int32(windowsCount - UInt(1)), forApp: app)
             return true
         }else {
             if !app.unhide() {
@@ -406,14 +403,27 @@ extension DockRepository {
     }
     
     private func activateExpose(app: NSRunningApplication) {
-        print("[Pock]: Exposé requested for: \(app.localizedName ?? "Unknown")")
-        guard let windows = PockDockHelper.sharedInstance()?.getRealWindowsOfApp(withPid: app.processIdentifier) as? [NSImage], windows.count > 0 else {
-            print("[Pock]: Can't load exposé items for: \(app.localizedName ?? "Unknown")")
+        if !isProd { print("[Pock]: Exposé requested for: \(app.localizedName ?? "Unknown")") }
+        guard let windows = PockDockHelper.sharedInstance()?.getWindowsOfApp(app.processIdentifier) as? [AppExposeItem], windows.count > 0 else {
+            if !isProd { print("[Pock]: Can't load exposé items for: \(app.localizedName ?? "Unknown")") }
             return
         }
-        for image in windows {
-            print(image.size)
+        guard windows.count > 1 else {
+            if !isProd { print("[Pock]: Abort exposé. Reason: not needed for single element") }
+            PockDockHelper.sharedInstance()?.activateWindow(withID: windows.first!.wid, forApp: app)
+            return
         }
+        if !isProd { print("[Pock]: Will open exposé for: \(app.localizedName ?? "Unknown")") }
+        openExpose(with: windows, for: app)
+    }
+}
+
+extension DockRepository {
+    public func openExpose(with images: [AppExposeItem], for app: NSRunningApplication) {
+        let controller: AppExposeController = AppExposeController.load()
+        controller.set(app: app)
+        controller.set(elements: images)
+        AppDelegate.default.navController?.push(controller)
     }
 }
 

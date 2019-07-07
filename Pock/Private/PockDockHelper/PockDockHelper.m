@@ -15,6 +15,20 @@ void SafeCFRelease(CFTypeRef cf) {
     if (cf) CFRelease(cf);
 }
 
+@implementation CGWindowItem
+- (CGWindowItem *)initWithID:(CGWindowID)wid pid:(pid_t)pid name:(NSString *)name preview:(NSImage *)preview {
+    self.wid = wid;
+    self.pid = pid;
+    self.name = name;
+    self.preview = preview;
+    return self;
+}
+@end
+
+@interface PockDockHelper ()
+@property (nonatomic, retain) NSMutableDictionary *windowPositions;
+@end
+
 @implementation PockDockHelper
 
 + (PockDockHelper *)sharedInstance {
@@ -22,6 +36,7 @@ void SafeCFRelease(CFTypeRef cf) {
     @synchronized(self) {
         if (sharedInstance == nil)
             sharedInstance = [[self alloc] init];
+        sharedInstance.windowPositions = [[NSMutableDictionary alloc] init];
     }
     return sharedInstance;
 }
@@ -105,10 +120,78 @@ void SafeCFRelease(CFTypeRef cf) {
     return statusLabel;
 }
 
-- (CFArrayRef)getWindowsOfAppWithPid:(pid_t)pid {
+// MARK: CGWindowID
+
+- (NSArray *)getWindowsOfAppWithPid:(pid_t)pid {
+    CFArrayRef windowList = CGWindowListCopyWindowInfo(kCGWindowListOptionOnScreenOnly, kCGNullWindowID);
+    NSArray *arr = (NSArray *)CFBridgingRelease(windowList);
+    NSMutableArray *returnable = [[NSMutableArray alloc] init];
+    for (NSObject *window in arr) {
+        NSString *pid_s = [NSString stringWithFormat:@"%ld", (long)pid];
+        NSNumber *owner = (NSNumber *)[window valueForKey:@"kCGWindowOwnerPID"];
+        if (![owner.stringValue isEqualToString:pid_s]) { continue; }
+        CGRect bounds;
+        CGRectMakeWithDictionaryRepresentation((CFDictionaryRef)[window valueForKey:@"kCGWindowBounds"], &bounds);
+        if (bounds.size.width > 1 && bounds.size.height > 1) {
+            [returnable addObject:window];
+        }
+    }
+    return returnable;
+}
+
+- (NSArray *)getWindowsOfApp:(pid_t)pid {
+    NSArray *arr = [self getWindowsOfAppWithPid:pid];
+    NSMutableArray *returnable = [[NSMutableArray alloc] init];
+    [arr enumerateObjectsUsingBlock:^(id  _Nonnull window, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSNumber *windowId     = (NSNumber *)[window valueForKey:@"kCGWindowNumber"];
+        NSString *windowName   = [self getTitleForWindow:window];
+        NSImage *windowImage   = [self getScreenshotOfWindow:window];
+        if (windowId != nil && windowId > 0 && windowName != nil && windowImage != nil) {
+            CGWindowItem *item = [[CGWindowItem alloc] initWithID:windowId.intValue pid:pid name:windowName preview:windowImage];
+            [returnable addObject:item];
+        }
+    }];
+    return returnable;
+}
+
+- (NSImage *)getScreenshotOfWindow:(NSObject *)window {
+    NSNumber *wid = (NSNumber *)[window valueForKey:@"kCGWindowNumber"];
+    // Create an image from the passed in windowID with the single window option selected by the user.
+    CGImageRef windowImage = CGWindowListCreateImage(CGRectNull, kCGWindowListOptionIncludingWindow, wid.unsignedIntValue, kCGWindowImageDefault);
+    Profile(windowImage);
+    // Create a bitmap rep from the image...
+    NSBitmapImageRep *bitmapRep = [[NSBitmapImageRep alloc] initWithCGImage:windowImage];
+    // Create an NSImage and add the bitmap rep to it...
+    NSImage *image = [[NSImage alloc] init];
+    [image addRepresentation:bitmapRep];
+    CGImageRelease(windowImage);
+    if (image == nil || (image.size.width <= 1 && image.size.height <= 1)) { return nil; }
+    return image;
+}
+
+- (NSString *)getTitleForWindow:(NSObject *)window {
+    NSString *title = (NSString *)[window valueForKey:@"kCGWindowName"];
+    if (title == nil || [title length] == 0) { return nil; }
+    return title;
+}
+
+- (NSUInteger)windowsCountForApp:(NSRunningApplication *)app {
+    return [self getWindowsOfAppWithPid:app.processIdentifier].count;
+}
+
+- (NSString *)getTitleForWindowAtPosition:(int)position forApp:(NSRunningApplication *)app {
+    NSArray *arr = [self getWindowsOfAppWithPid:app.processIdentifier];
+    NSObject *window = [arr objectAtIndex:position];
+    if (window == nil) { return nil; }
+    return [self getTitleForWindow:window];
+}
+
+// MARK: AXUIElementRef
+
+- (NSArray *)getWindowsRefOfAppWithPid:(pid_t)pid {
     if (pid <= 0) { return nil; }
     AXUIElementRef elementRef = AXUIElementCreateApplication(pid);
-    CFArrayRef windowArray = nil;
+    CFMutableArrayRef windowArray = nil;
     AXUIElementCopyAttributeValue(elementRef, kAXWindowsAttribute, (CFTypeRef*)&windowArray);
     SafeCFRelease(elementRef);
     if (windowArray == nil) {
@@ -119,46 +202,22 @@ void SafeCFRelease(CFTypeRef cf) {
         SafeCFRelease(windowArray);
         return nil;
     }
-    return windowArray;
+    return (__bridge NSMutableArray *)windowArray;
 }
 
-- (NSArray *)getRealWindowsOfAppWithPid:(pid_t)pid {
-    CFArrayRef windowList = CGWindowListCopyWindowInfo(kCGWindowListOptionAll, kCGNullWindowID);
-    NSArray *arr = (NSArray *)CFBridgingRelease(windowList);
-    NSMutableArray *returnable = [[NSMutableArray alloc] init];
-    for (NSObject *window in arr) {
-        NSString *pid_s = [NSString stringWithFormat:@"%ld", (long)pid];
-        NSNumber *owner = (NSNumber *)[window valueForKey:@"kCGWindowOwnerPID"];
-        if (![owner.stringValue isEqualToString:pid_s]) { continue; }
-        NSNumber *wid = (NSNumber *)[window valueForKey:@"kCGWindowNumber"];
-        NSImage *windowImage = [self createSingleWindowShot:wid.unsignedIntValue];
-        if (windowImage == nil || (windowImage.size.width <= 1 && windowImage.size.height <= 1)) { continue; }
-        [returnable addObject:windowImage];
+- (AXUIElementRef)windowForId:(CGWindowID)wid pid:(pid_t)pid {
+    NSArray *windows = [self getWindowsRefOfAppWithPid:pid];
+    AXUIElementRef result = nil;
+    for (NSObject *window in windows) {
+        AXUIElementRef itemRef = (__bridge AXUIElementRef)window;
+        CGWindowID winid;
+        AXError err = _AXUIElementGetWindow(itemRef, &winid);
+        if (err) continue;
+        if (wid == winid) {
+            result = itemRef;
+        }
     }
-    return returnable;
-}
-
-- (NSImage *)createSingleWindowShot:(CGWindowID)windowID {
-    // Create an image from the passed in windowID with the single window option selected by the user.
-    CGImageRef windowImage = CGWindowListCreateImage(CGRectNull, kCGWindowListOptionIncludingWindow, windowID, kCGWindowImageDefault);
-    Profile(windowImage);
-    // Create a bitmap rep from the image...
-    NSBitmapImageRep *bitmapRep = [[NSBitmapImageRep alloc] initWithCGImage:windowImage];
-    // Create an NSImage and add the bitmap rep to it...
-    NSImage *image = [[NSImage alloc] init];
-    [image addRepresentation:bitmapRep];
-    CGImageRelease(windowImage);
-    return image;
-}
-
-- (NSUInteger)windowsCountForApp:(NSRunningApplication *)app {
-    CFArrayRef array = [self getWindowsOfAppWithPid:app.processIdentifier];
-    if (array == nil) { return 0; }
-    NSArray *arr = (NSArray *)CFBridgingRelease(array);
-//  CFArrayRef windowList = CGWindowListCopyWindowInfo(kCGWindowListOptionAll, kCGNullWindowID);
-//  NSArray *_arr = (NSArray *)CFBridgingRelease(windowList);
-//  return _arr.count;
-    return arr.count;
+    return result;
 }
 
 - (id)getValueForKey:(_Nonnull CFStringRef)key in:(AXUIElementRef)element {
@@ -167,30 +226,22 @@ void SafeCFRelease(CFTypeRef cf) {
     return (id)CFBridgingRelease(value);
 }
 
-- (NSWindow *)getRealWindowForElement:(AXUIElementRef)element {
-    NSWindow *result = [self getValueForKey:kAXWindowAttribute in:element];
-    return result;
-}
-
-- (NSString *)getTitleForElement:(AXUIElementRef)element {
-    NSString *result = [self getValueForKey:kAXTitleAttribute in:element];
-    return result;
-}
-
-- (void)closeWindowAtPosition:(int)position forApp:(NSRunningApplication *)app {
-    CFArrayRef windows = [self getWindowsOfAppWithPid:app.processIdentifier];
-    AXUIElementRef itemRef = (AXUIElementRef) CFArrayGetValueAtIndex(windows, position);
-    AXUIElementRef buttonRef = (__bridge AXUIElementRef)([self getValueForKey:kAXCloseButtonAttribute in:itemRef]);
-    AXUIElementPerformAction(buttonRef, kAXPressAction);
+- (void)closeWindowWithID:(CGWindowID)wid forApp:(NSRunningApplication *)app {
+    AXUIElementRef itemRef = [self windowForId:wid pid:app.processIdentifier];
+    if (itemRef) {
+        AXUIElementRef buttonRef = (__bridge AXUIElementRef)([self getValueForKey:kAXCloseButtonAttribute in:itemRef]);
+        AXUIElementPerformAction(buttonRef, kAXPressAction);
+    }
     SafeCFRelease(itemRef);
 }
 
-- (void)activateWindowAtPosition:(int)position forApp:(NSRunningApplication *)app {
-    CFArrayRef windows = [self getWindowsOfAppWithPid:app.processIdentifier];
-    AXUIElementRef itemRef = (AXUIElementRef)CFArrayGetValueAtIndex(windows, position);
-    AXUIElementPerformAction(itemRef, kAXRaiseAction);
-    [app activateWithOptions:NSApplicationActivateIgnoringOtherApps];
-    AXUIElementSetAttributeValue(itemRef, kAXMainWindowAttribute, kCFBooleanTrue);
+- (void)activateWindowWithID:(CGWindowID)wid forApp:(NSRunningApplication *)app {
+    AXUIElementRef itemRef = [self windowForId:wid pid:app.processIdentifier];
+    if (itemRef) {
+        AXUIElementPerformAction(itemRef, kAXRaiseAction);
+        [app activateWithOptions:NSApplicationActivateIgnoringOtherApps];
+        AXUIElementSetAttributeValue(itemRef, kAXMainWindowAttribute, kCFBooleanTrue);
+    }
     SafeCFRelease(itemRef);
 }
 

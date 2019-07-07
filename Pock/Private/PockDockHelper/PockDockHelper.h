@@ -9,12 +9,22 @@
 #import <Foundation/Foundation.h>
 #import <AppKit/AppKit.h>
 
+extern AXError _AXUIElementGetWindow(AXUIElementRef window, CGWindowID *windowID);
+
+@interface CGWindowItem : NSObject
+@property(nonatomic) CGWindowID wid;
+@property(nonatomic) pid_t pid;
+@property(nonatomic) NSString *name;
+@property(nonatomic) NSImage *preview;
+- (CGWindowItem *)initWithID:(CGWindowID)wid pid:(pid_t)pid name:(NSString *)name preview:(NSImage *)preview;
+@end
+
 @interface PockDockHelper : NSObject
 + (PockDockHelper *)sharedInstance;
 - (NSString *)getBadgeCountForItemWithName:(NSString *)name;
-- (CFArrayRef)getWindowsOfAppWithPid:(pid_t)pid;
-- (NSArray *)getRealWindowsOfAppWithPid:(pid_t)pid;
+- (NSArray *)getWindowsOfAppWithPid:(pid_t)pid;
+- (NSArray *)getWindowsOfApp:(pid_t)pid;
 - (NSUInteger)windowsCountForApp:(NSRunningApplication *)app;
-- (void)closeWindowAtPosition:(int)position forApp:(NSRunningApplication *)app;
-- (void)activateWindowAtPosition:(int)position forApp:(NSRunningApplication *)app;
+- (void)closeWindowWithID:(CGWindowID)wid forApp:(NSRunningApplication *)app;
+- (void)activateWindowWithID:(CGWindowID)wid forApp:(NSRunningApplication *)app;
 @end
