@@ -46,8 +46,8 @@ class NowPlayingItemView: PKDetailView {
         
         DispatchQueue.main.async { [weak self] in
             self?.imageView.image          = DockRepository.getIcon(forBundleIdentifier: appBundleIdentifier, orPath: path)
-            self?.titleView.stringValue    = self?.nowPLayingItem?.title?.truncate(length: 20)  ?? NSLocalizedString("No Playback", comment: "No Playback")
-            self?.subtitleView.stringValue = self?.nowPLayingItem?.artist?.truncate(length: 20) ?? NSLocalizedString("Unknown", comment: "Unknown")
+            self?.titleView.stringValue    = self?.nowPLayingItem?.title?.truncate(length: 20)  ?? "No Playback".localized
+            self?.subtitleView.stringValue = self?.nowPLayingItem?.artist?.truncate(length: 20) ?? "Unknown".localized
             self?.updateForNowPlayingState()
         }
     }

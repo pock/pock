@@ -22,7 +22,7 @@ class StatusWidgetPreferencePane: NSViewController, PreferencePane {
     
     /// Preferenceable
     var preferencePaneIdentifier: Identifier = Identifier.status_widget
-    let preferencePaneTitle:      String     = NSLocalizedString("Status Widget", comment: "Status Widget")
+    let preferencePaneTitle:      String     = "Status Widget".localized
     var toolbarItemIcon:          NSImage {
         let path = NSWorkspace.shared.absolutePathForApplication(withBundleIdentifier: "com.apple.systempreferences")!
         return NSWorkspace.shared.icon(forFile: path)

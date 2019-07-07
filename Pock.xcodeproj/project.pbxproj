@@ -61,6 +61,7 @@
 		34E644F7227D783E003D0450 /* KeySenderHelper.c in Sources */ = {isa = PBXBuildFile; fileRef = 34E644F6227D783E003D0450 /* KeySenderHelper.c */; };
 		34E644FB227D9A69003D0450 /* DockWidgetPreferencePane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E644F9227D9A69003D0450 /* DockWidgetPreferencePane.swift */; };
 		962E0A5522CF1D1D00567E20 /* DockFolderController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 962E0A5722CF1D1D00567E20 /* DockFolderController.xib */; };
+		964435B722D18F91002FA1CB /* LocalizedUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964435B622D18F91002FA1CB /* LocalizedUtils.swift */; };
 		9667AAF222CF192D00C22410 /* GeneralPreferencePane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9667AAF422CF192D00C22410 /* GeneralPreferencePane.xib */; };
 		9667AAFB22CF1A5700C22410 /* StatusWidgetPreferencePane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9667AAFD22CF1A5700C22410 /* StatusWidgetPreferencePane.xib */; };
 		9667AB0422CF1ABA00C22410 /* DockWidgetPreferencePane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9667AB0622CF1ABA00C22410 /* DockWidgetPreferencePane.xib */; };
@@ -138,6 +139,7 @@
 		962E0A5622CF1D1D00567E20 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/DockFolderController.xib; sourceTree = "<group>"; };
 		962E0A5922CF1D1E00567E20 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/DockFolderController.strings; sourceTree = "<group>"; };
 		962E0A5B22CF1D1F00567E20 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/DockFolderController.strings"; sourceTree = "<group>"; };
+		964435B622D18F91002FA1CB /* LocalizedUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedUtils.swift; sourceTree = "<group>"; };
 		9667AAF322CF192D00C22410 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/GeneralPreferencePane.xib; sourceTree = "<group>"; };
 		9667AAF622CF193500C22410 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/GeneralPreferencePane.strings; sourceTree = "<group>"; };
 		9667AAFA22CF1A4D00C22410 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/GeneralPreferencePane.strings"; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 				342D83A22278D5CF000D79DA /* Various */,
 				342D83A62278D5CF000D79DA /* Private */,
 				96FE26A122D0C3810071645C /* Localizable.strings */,
+				964435B622D18F91002FA1CB /* LocalizedUtils.swift */,
 			);
 			path = Pock;
 			sourceTree = "<group>";
@@ -708,6 +711,7 @@
 				342D83E12278D5CF000D79DA /* PockMainController.swift in Sources */,
 				342D83F72278D5CF000D79DA /* NowPlayingHelper.swift in Sources */,
 				342D83EF2278D5CF000D79DA /* ControlCenterItem.swift in Sources */,
+				964435B722D18F91002FA1CB /* LocalizedUtils.swift in Sources */,
 				342D83EB2278D5CF000D79DA /* DKBrightness.swift in Sources */,
 				342D84002278D5CF000D79DA /* PKWidgetTouchBarItem.swift in Sources */,
 				342D83E22278D5CF000D79DA /* Preferences.swift in Sources */,

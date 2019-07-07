@@ -41,21 +41,21 @@ enum NotificationBadgeRefreshRateKeys: Double, Codable, CaseIterable {
     func toString() -> String {
         switch self {
         case .never:
-            return NSLocalizedString("Never", comment: "Never")
+            return "Never".localized
         case .instantly:
-            return NSLocalizedString("Instantly", comment: "Instantly")
+            return "Instantly".localized
         case .oneSecond:
-            return NSLocalizedString("1 second", comment: "1 second")
+            return "1 second".localized
         case .fiveSeconds:
-            return NSLocalizedString("5 seconds", comment: "5 seconds")
+            return "5 seconds".localized
         case .tenSeconds:
-            return NSLocalizedString("10 seconds", comment: "10 seconds")
+            return "10 seconds".localized
         case .thirtySeconds:
-            return NSLocalizedString("30 seconds", comment: "30 seconds")
+            return "30 seconds".localized
         case .oneMinute:
-            return NSLocalizedString("1 minute", comment: "1 minute")
+            return "1 minute".localized
         case .threeMinutes:
-            return NSLocalizedString("3 minutes", comment: "3 minutes")
+            return "3 minutes".localized
         }
     }
 }

@@ -12,7 +12,7 @@ import Defaults
 class DockWidget: NSObject, PKWidget {
     
     var identifier: NSTouchBarItem.Identifier = NSTouchBarItem.Identifier.dockView
-    var customizationLabel: String            = NSLocalizedString("Dock", comment: "Dock")
+    var customizationLabel: String            = "Dock".localized
     var view: NSView!
     
     /// Core

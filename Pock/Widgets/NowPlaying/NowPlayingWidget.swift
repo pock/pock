@@ -12,7 +12,7 @@ import PockKit
 class NowPlayingWidget: PKWidget {
     
     var identifier: NSTouchBarItem.Identifier = NSTouchBarItem.Identifier.nowPlaying
-    var customizationLabel: String            = NSLocalizedString("Now Playing", comment: "Now Playing")
+    var customizationLabel: String            = "Now Playing".localized
     var view: NSView!
     
     /// UI

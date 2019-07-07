@@ -61,13 +61,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             button.image = NSImage(named: "pock-inner-icon")
             button.image?.isTemplate = true
             /// Create menu
-            let menu = NSMenu(title: NSLocalizedString("Pock Options", comment: "Pock Options"))
-            menu.addItem(withTitle: NSLocalizedString("Preferences…", comment: "Preferences…"), action: #selector(openPreferences),   keyEquivalent: ",")
-            menu.addItem(withTitle: NSLocalizedString("Customize…", comment: "Customize…"),   action: #selector(openCustomization), keyEquivalent: "c")
+            let menu = NSMenu(title: "Pock Options")
+            menu.addItem(withTitle: "Preferences…".localized, action: #selector(openPreferences),   keyEquivalent: ",")
+            menu.addItem(withTitle: "Customize…".localized,   action: #selector(openCustomization), keyEquivalent: "c")
             menu.addItem(NSMenuItem.separator())
-            menu.addItem(withTitle: NSLocalizedString("Support this project", comment: "Support this project"), action: #selector(openDonateURL),  keyEquivalent: "s")
+            menu.addItem(withTitle: "Support this project".localized, action: #selector(openDonateURL),  keyEquivalent: "s")
             menu.addItem(NSMenuItem.separator())
-            menu.addItem(withTitle: NSLocalizedString("Quit Pock", comment: "Quit Pock"), action: #selector(NSApp.terminate), keyEquivalent: "q")
+            menu.addItem(withTitle: "Quit Pock".localized, action: #selector(NSApp.terminate), keyEquivalent: "q")
             pockStatusbarIcon.menu = menu
         }
         
