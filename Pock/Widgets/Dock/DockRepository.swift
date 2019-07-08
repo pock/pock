@@ -278,10 +278,12 @@ class DockRepository {
     /// Load notification badges
     private func updateNotificationBadges() {
         guard shouldShowNotificationBadge else { return }
-        DispatchQueue.global(qos: .utility).async { [weak self] in
+        DispatchQueue.main.async { [weak self] in
             guard let s = self else { return }
             for item in s.dockItems {
-                item.badge = PockDockHelper.sharedInstance()?.getBadgeCountForItem(withName: item.name)
+                var badge: NSString? = PockDockHelper.sharedInstance()?.getBadgeCountForItem(withName: item.name) as NSString?
+                item.badge = badge?.copy() as? String
+                badge = nil
             }
             s.delegate?.didUpdateBadge(for: s.dockItems)
         }
@@ -389,32 +391,34 @@ extension DockRepository {
     private func activate(app: NSRunningApplication?) -> Bool {
         guard let app = app else { return false }
         // TODO: Create preference option for this
-        let shouldOpenAppExpose: Bool = true
+        let shouldAlwaysOpenAppExpose: Bool = true
         let windowsCount = PockDockHelper.sharedInstance()?.windowsCount(forApp: app) ?? 0
-        if windowsCount > 0 && shouldOpenAppExpose {
-            activateExpose(app: app)
+        if (windowsCount > 0 || shouldAlwaysOpenAppExpose) && activateExpose(app: app) {
             return true
         }else {
             if !app.unhide() {
-               return app.activate(options: .activateIgnoringOtherApps)
+                if !NSWorkspace.shared.launchApplication(withBundleIdentifier: app.bundleIdentifier!, options: .default, additionalEventParamDescriptor: nil, launchIdentifier: nil) {
+                    return app.activate(options: .activateIgnoringOtherApps)
+                }
             }
             return true
         }
     }
     
-    private func activateExpose(app: NSRunningApplication) {
+    private func activateExpose(app: NSRunningApplication) -> Bool {
         if !isProd { print("[Pock]: Exposé requested for: \(app.localizedName ?? "Unknown")") }
         guard let windows = PockDockHelper.sharedInstance()?.getWindowsOfApp(app.processIdentifier) as? [AppExposeItem], windows.count > 0 else {
             if !isProd { print("[Pock]: Can't load exposé items for: \(app.localizedName ?? "Unknown")") }
-            return
+            return false
         }
         guard windows.count > 1 else {
             if !isProd { print("[Pock]: Abort exposé. Reason: not needed for single element") }
-            PockDockHelper.sharedInstance()?.activateWindow(withID: windows.first!.wid, forApp: app)
-            return
+            PockDockHelper.sharedInstance()?.activate(windows.first, in: app)
+            return false
         }
         if !isProd { print("[Pock]: Will open exposé for: \(app.localizedName ?? "Unknown")") }
         openExpose(with: windows, for: app)
+        return true
     }
 }
 

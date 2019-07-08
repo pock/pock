@@ -64,8 +64,9 @@ extension AppExposeController: NSScrubberDataSource {
     func scrubber(_ scrubber: NSScrubber, viewForItemAt index: Int) -> NSScrubberItemView {
         let item = elements[index]
         let view = scrubber.makeItem(withIdentifier: Constants.kAppExposeItemView, owner: self) as! AppExposeItemView
-        view.set(preview:   item.preview)
-        view.set(name:   item.name)
+        view.set(preview: item.preview)
+        view.set(name: item.name)
+        view.set(minimized: item.minimized)
         return view
     }
 }
@@ -79,7 +80,12 @@ extension AppExposeController: NSScrubberFlowLayoutDelegate {
 extension AppExposeController: NSScrubberDelegate {
     func scrubber(_ scrubber: NSScrubber, didSelectItemAt selectedIndex: Int) {
         let item = elements[selectedIndex]
-        PockDockHelper.sharedInstance()?.activateWindow(withID: item.wid, forApp: app)
+        let isFrontmost = NSWorkspace.shared.frontmostApplication?.bundleIdentifier == app.bundleIdentifier
+        if isFrontmost && PockDockHelper.sharedInstance()?.windowIsFrontmost(item.wid, forApp: app) ?? false {
+            PockDockHelper.sharedInstance()?.close(item)
+        }else {
+            PockDockHelper.sharedInstance()?.activate(item, in: app)
+        }
         willClose(nil)
     }
 }

@@ -16,15 +16,18 @@ extern AXError _AXUIElementGetWindow(AXUIElementRef window, CGWindowID *windowID
 @property(nonatomic) pid_t pid;
 @property(nonatomic) NSString *name;
 @property(nonatomic) NSImage *preview;
-- (CGWindowItem *)initWithID:(CGWindowID)wid pid:(pid_t)pid name:(NSString *)name preview:(NSImage *)preview;
+@property(nonatomic) BOOL minimized;
+- (CGWindowItem *)initWithID:(CGWindowID)wid pid:(pid_t)pid name:(NSString *)name preview:(NSImage *)preview minimized:(BOOL)minimized;
 @end
 
 @interface PockDockHelper : NSObject
+@property (nonatomic, retain) NSDictionary *dockItems;
+
 + (PockDockHelper *)sharedInstance;
 - (NSString *)getBadgeCountForItemWithName:(NSString *)name;
-- (NSArray *)getWindowsOfAppWithPid:(pid_t)pid;
 - (NSArray *)getWindowsOfApp:(pid_t)pid;
 - (NSUInteger)windowsCountForApp:(NSRunningApplication *)app;
-- (void)closeWindowWithID:(CGWindowID)wid forApp:(NSRunningApplication *)app;
-- (void)activateWindowWithID:(CGWindowID)wid forApp:(NSRunningApplication *)app;
+- (BOOL)windowIsFrontmost:(CGWindowID)wid forApp:(NSRunningApplication *)app;
+- (void)closeWindowItem:(CGWindowItem *)item;
+- (void)activateWindowItem:(CGWindowItem *)item in:(NSRunningApplication *)app;
 @end

@@ -12,31 +12,28 @@
 #define Profile(img) CFRelease(CGDataProviderCopyData(CGImageGetDataProvider(img)))
 
 void SafeCFRelease(CFTypeRef cf) {
-    if (cf) CFRelease(cf);
+    if (cf != NULL)
+        CFRelease(cf);
 }
 
 @implementation CGWindowItem
-- (CGWindowItem *)initWithID:(CGWindowID)wid pid:(pid_t)pid name:(NSString *)name preview:(NSImage *)preview {
+- (CGWindowItem *)initWithID:(CGWindowID)wid pid:(pid_t)pid name:(NSString *)name preview:(NSImage *)preview minimized:(BOOL)minimized {
     self.wid = wid;
     self.pid = pid;
     self.name = name;
     self.preview = preview;
+    self.minimized = minimized;
     return self;
 }
-@end
-
-@interface PockDockHelper ()
-@property (nonatomic, retain) NSMutableDictionary *windowPositions;
 @end
 
 @implementation PockDockHelper
 
 + (PockDockHelper *)sharedInstance {
-    static PockDockHelper *sharedInstance = nil;
+    static PockDockHelper *sharedInstance = NULL;
     @synchronized(self) {
-        if (sharedInstance == nil)
+        if (sharedInstance == NULL)
             sharedInstance = [[self alloc] init];
-        sharedInstance.windowPositions = [[NSMutableDictionary alloc] init];
     }
     return sharedInstance;
 }
@@ -45,30 +42,28 @@ void SafeCFRelease(CFTypeRef cf) {
 //  Ref:       https://stackoverflow.com/a/36115210
 //
 - (AXUIElementRef)copyAXUIElementFrom:(AXUIElementRef)theContainer role:(CFStringRef)theRole atIndex:(NSInteger)theIndex {
+    
+    CFTypeRef _list = [self getValueForKey:kAXChildrenAttribute in:theContainer];
+    NSArray *list = [(NSArray *)CFBridgingRelease(_list) copy];
+    
     AXUIElementRef aResultElement = NULL;
-    CFTypeRef aChildren;
-    AXError anAXError = AXUIElementCopyAttributeValue(theContainer, kAXChildrenAttribute, &aChildren);
-    if (anAXError == kAXErrorSuccess) {
-        NSUInteger anIndex = -1;
-        for (id anElement in (__bridge NSArray *)aChildren) {
-            if (theRole) {
-                CFTypeRef aRole;
-                anAXError = AXUIElementCopyAttributeValue((__bridge AXUIElementRef)anElement, kAXRoleAttribute, &aRole);
-                if (anAXError == kAXErrorSuccess) {
-                    if (CFStringCompare(aRole, theRole, 0) == kCFCompareEqualTo)
-                        anIndex++;
-                    SafeCFRelease(aRole);
-                }
-            }
-            else
+    NSUInteger anIndex = -1;
+    for (id anElement in list) {
+        if (theRole) {
+            CFStringRef role = [self getValueForKey:kAXRoleAttribute in:(__bridge AXUIElementRef)(anElement)];
+            if (role && (CFStringCompare(role, theRole, 0) == kCFCompareEqualTo)) {
                 anIndex++;
-            if (anIndex == theIndex) {
-                aResultElement = (AXUIElementRef)CFRetain((__bridge CFTypeRef)(anElement));
-                break;
             }
+            SafeCFRelease(role);
+        }else {
+            anIndex++;
         }
-        SafeCFRelease(aChildren);
+        if (anIndex == theIndex) {
+            aResultElement = (AXUIElementRef)CFBridgingRetain(anElement);
+            break;
+        }
     }
+    list = NULL;
     return aResultElement;
 }
 
@@ -76,86 +71,116 @@ void SafeCFRelease(CFTypeRef cf) {
 //  Ref:       https://stackoverflow.com/a/36115210
 //
 - (AXUIElementRef)getDockItemWithName:(NSString *)name {
+    NSLock *locker = [NSLock new];
+    [locker lock];
+    
     NSArray *anArray = [NSRunningApplication runningApplicationsWithBundleIdentifier:@"com.apple.dock"];
-    if (anArray.count == 0) return nil;
+    if (anArray.count == 0) {
+        [locker unlock];
+        return NULL;
+    }
+    
     AXUIElementRef anAXDockApp = AXUIElementCreateApplication([[anArray objectAtIndex:0] processIdentifier]);
     AXUIElementRef aList = [self copyAXUIElementFrom:anAXDockApp role:kAXListRole atIndex:0];
-    if (aList == nil) return nil;
-    CFTypeRef aChildren;
-    AXUIElementCopyAttributeValue(aList, kAXChildrenAttribute, &aChildren);
+    if (aList == NULL) {
+        SafeCFRelease(anAXDockApp);
+        [locker unlock];
+        return NULL;
+    }
+    
+    CFTypeRef _list = [self getValueForKey:kAXChildrenAttribute in:aList];
+    if (_list == NULL) {
+        SafeCFRelease(aList);
+        SafeCFRelease(anAXDockApp);
+        [locker unlock];
+        return NULL;
+    }
+    NSArray *aChildren = [(NSArray *)CFBridgingRelease(_list) copy];
+    
     NSInteger itemIndex = -1;
-    if (aChildren == nil) return nil;
-    for (NSInteger i = 0; i < CFArrayGetCount(aChildren); i++) {
-        AXUIElementRef anElement = CFArrayGetValueAtIndex(aChildren, i);
-        CFTypeRef aResult;
-        AXUIElementCopyAttributeValue(anElement, kAXTitleAttribute, &aResult);
-        if ([(__bridge NSString *)aResult isEqualToString:name]) {
+    if (aChildren == NULL) {
+        SafeCFRelease(aList);
+        SafeCFRelease(anAXDockApp);
+        [locker unlock];
+        return NULL;
+    }
+    
+    for (NSInteger i = 0; i < aChildren.count; i++) {
+        AXUIElementRef anElement = (AXUIElementRef)CFBridgingRetain([aChildren objectAtIndex:i]);
+        NSString *title = (NSString *)CFBridgingRelease([self getValueForKey:kAXTitleAttribute in:anElement]);
+        SafeCFRelease(anElement);
+        if ([title isEqualToString:name]) {
             itemIndex = i;
         }
-        SafeCFRelease(aResult);
+        title = NULL;
     }
-    SafeCFRelease(aChildren);
-    SafeCFRelease(anAXDockApp);
+    
     if (itemIndex == -1) {
         SafeCFRelease(aList);
-        return nil;
+        SafeCFRelease(anAXDockApp);
+        [locker unlock];
+        return NULL;
     }
+    
     AXUIElementRef aReturnItem = [self copyAXUIElementFrom:aList role:kAXDockItemRole atIndex:itemIndex];
-    if (aReturnItem == nil) {
-        SafeCFRelease(aList);
-        return nil;
-    }
+    
     SafeCFRelease(aList);
-    return  aReturnItem;
+    SafeCFRelease(anAXDockApp);
+    [locker unlock];
+    
+    if (aReturnItem == NULL) {
+        return NULL;
+    }
+    
+    return aReturnItem;
 }
 
 - (NSString *)getBadgeCountForItemWithName:(NSString *)name {
     AXUIElementRef dockItem = [self getDockItemWithName:name];
-    if (dockItem == nil) return nil;
-    CFTypeRef aStatusLabel;
-    AXUIElementCopyAttributeValue(dockItem, kAXStatusLabelAttribute, &aStatusLabel);
+    if (dockItem == NULL) {
+        SafeCFRelease(dockItem);
+        return NULL;
+    }
+    NSString *statusLabel = [(NSString *)CFBridgingRelease([self getValueForKey:kAXStatusLabelAttribute in:dockItem]) copy];
     SafeCFRelease(dockItem);
-    NSString *statusLabel = (__bridge NSString *)aStatusLabel;
-    SafeCFRelease(aStatusLabel);
     return statusLabel;
 }
 
 // MARK: CGWindowID
 
-- (NSArray *)getWindowsOfAppWithPid:(pid_t)pid {
-    CFArrayRef windowList = CGWindowListCopyWindowInfo(kCGWindowListOptionOnScreenOnly, kCGNullWindowID);
-    NSArray *arr = (NSArray *)CFBridgingRelease(windowList);
-    NSMutableArray *returnable = [[NSMutableArray alloc] init];
-    for (NSObject *window in arr) {
-        NSString *pid_s = [NSString stringWithFormat:@"%ld", (long)pid];
-        NSNumber *owner = (NSNumber *)[window valueForKey:@"kCGWindowOwnerPID"];
-        if (![owner.stringValue isEqualToString:pid_s]) { continue; }
-        CGRect bounds;
-        CGRectMakeWithDictionaryRepresentation((CFDictionaryRef)[window valueForKey:@"kCGWindowBounds"], &bounds);
-        if (bounds.size.width > 1 && bounds.size.height > 1) {
-            [returnable addObject:window];
-        }
-    }
-    return returnable;
-}
-
 - (NSArray *)getWindowsOfApp:(pid_t)pid {
-    NSArray *arr = [self getWindowsOfAppWithPid:pid];
+    NSArray *arr = [self getWindowsRefOfAppWithPid:pid];
     NSMutableArray *returnable = [[NSMutableArray alloc] init];
+    
     [arr enumerateObjectsUsingBlock:^(id  _Nonnull window, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSNumber *windowId     = (NSNumber *)[window valueForKey:@"kCGWindowNumber"];
-        NSString *windowName   = [self getTitleForWindow:window];
-        NSImage *windowImage   = [self getScreenshotOfWindow:window];
-        if (windowId != nil && windowId > 0 && windowName != nil && windowImage != nil) {
-            CGWindowItem *item = [[CGWindowItem alloc] initWithID:windowId.intValue pid:pid name:windowName preview:windowImage];
-            [returnable addObject:item];
+        NSString *windowName = (NSString *)CFBridgingRelease([self getValueForKey:kAXTitleAttribute in:CFBridgingRetain(window)]);
+    
+        if (windowName != NULL && windowName.length > 0) {
+        
+            CGWindowID windowId = 0;
+            AXError error = _AXUIElementGetWindow((AXUIElementRef)CFBridgingRetain(window), &windowId);
+            CGWindowItem *item;
+            
+            if (error == kAXErrorSuccess && windowId > 0) {
+            
+                NSImage *windowImage = [self getScreenshotOfWindowId:[[NSNumber alloc] initWithUnsignedLong:windowId]];
+                
+                if (windowImage != NULL && windowImage.size.width > 1 && windowImage.size.height > 1) {
+                    item = [[CGWindowItem alloc] initWithID:windowId pid:pid name:windowName preview:windowImage minimized:false];
+                }else {
+                    item = [[CGWindowItem alloc] initWithID:windowId pid:pid name:windowName preview:NULL minimized:true];
+                }
+            
+            }
+            if (item)
+                [returnable addObject:item];
         }
     }];
+    
     return returnable;
 }
 
-- (NSImage *)getScreenshotOfWindow:(NSObject *)window {
-    NSNumber *wid = (NSNumber *)[window valueForKey:@"kCGWindowNumber"];
+- (NSImage *)getScreenshotOfWindowId:(NSNumber *)wid {
     // Create an image from the passed in windowID with the single window option selected by the user.
     CGImageRef windowImage = CGWindowListCreateImage(CGRectNull, kCGWindowListOptionIncludingWindow, wid.unsignedIntValue, kCGWindowImageDefault);
     Profile(windowImage);
@@ -165,51 +190,40 @@ void SafeCFRelease(CFTypeRef cf) {
     NSImage *image = [[NSImage alloc] init];
     [image addRepresentation:bitmapRep];
     CGImageRelease(windowImage);
-    if (image == nil || (image.size.width <= 1 && image.size.height <= 1)) { return nil; }
+    if (image == NULL || (image.size.width <= 1 && image.size.height <= 1)) { return NULL; }
     return image;
 }
 
-- (NSString *)getTitleForWindow:(NSObject *)window {
-    NSString *title = (NSString *)[window valueForKey:@"kCGWindowName"];
-    if (title == nil || [title length] == 0) { return nil; }
-    return title;
-}
-
 - (NSUInteger)windowsCountForApp:(NSRunningApplication *)app {
-    return [self getWindowsOfAppWithPid:app.processIdentifier].count;
-}
-
-- (NSString *)getTitleForWindowAtPosition:(int)position forApp:(NSRunningApplication *)app {
-    NSArray *arr = [self getWindowsOfAppWithPid:app.processIdentifier];
-    NSObject *window = [arr objectAtIndex:position];
-    if (window == nil) { return nil; }
-    return [self getTitleForWindow:window];
+    return [self getWindowsRefOfAppWithPid:app.processIdentifier].count;
 }
 
 // MARK: AXUIElementRef
 
 - (NSArray *)getWindowsRefOfAppWithPid:(pid_t)pid {
-    if (pid <= 0) { return nil; }
+    if (pid <= 0) { return NULL; }
     AXUIElementRef elementRef = AXUIElementCreateApplication(pid);
-    CFMutableArrayRef windowArray = nil;
-    AXUIElementCopyAttributeValue(elementRef, kAXWindowsAttribute, (CFTypeRef*)&windowArray);
+    
+    CFTypeRef _list = [self getValueForKey:kAXWindowsAttribute in:elementRef];
+    NSArray *windowArray = [(NSArray *)CFBridgingRelease(_list) copy];
+    SafeCFRelease(_list);
     SafeCFRelease(elementRef);
-    if (windowArray == nil) {
-        return nil;
+    
+    if (windowArray == NULL) {
+        return NULL;
     }
-    CFIndex nItems = CFArrayGetCount(windowArray);
+    NSUInteger nItems = windowArray.count;
     if (nItems < 1) {
-        SafeCFRelease(windowArray);
-        return nil;
+        return NULL;
     }
-    return (__bridge NSMutableArray *)windowArray;
+    return windowArray;
 }
 
 - (AXUIElementRef)windowForId:(CGWindowID)wid pid:(pid_t)pid {
     NSArray *windows = [self getWindowsRefOfAppWithPid:pid];
-    AXUIElementRef result = nil;
+    AXUIElementRef result = NULL;
     for (NSObject *window in windows) {
-        AXUIElementRef itemRef = (__bridge AXUIElementRef)window;
+        AXUIElementRef itemRef = (AXUIElementRef)CFBridgingRetain(window);
         CGWindowID winid;
         AXError err = _AXUIElementGetWindow(itemRef, &winid);
         if (err) continue;
@@ -220,29 +234,41 @@ void SafeCFRelease(CFTypeRef cf) {
     return result;
 }
 
-- (id)getValueForKey:(_Nonnull CFStringRef)key in:(AXUIElementRef)element {
-    AXUIElementRef value = nil;
-    AXUIElementCopyAttributeValue(element, key, (CFTypeRef*)&value);
-    return (id)CFBridgingRelease(value);
+- (CFTypeRef)getValueForKey:(_Nonnull CFStringRef)key in:(AXUIElementRef)element {
+    CFTypeRef value;
+    AXUIElementCopyAttributeValue(element, key, &value);
+    return value;
 }
 
-- (void)closeWindowWithID:(CGWindowID)wid forApp:(NSRunningApplication *)app {
+- (BOOL)windowIsFrontmost:(CGWindowID)wid forApp:(NSRunningApplication *)app {
     AXUIElementRef itemRef = [self windowForId:wid pid:app.processIdentifier];
     if (itemRef) {
-        AXUIElementRef buttonRef = (__bridge AXUIElementRef)([self getValueForKey:kAXCloseButtonAttribute in:itemRef]);
-        AXUIElementPerformAction(buttonRef, kAXPressAction);
+        CFBooleanRef isMain = [self getValueForKey:kAXFrontmostAttribute in:itemRef];
+        BOOL returnable = isMain == kCFBooleanFalse;
+        SafeCFRelease(isMain);
+        return returnable;
     }
-    SafeCFRelease(itemRef);
+    return false;
 }
 
-- (void)activateWindowWithID:(CGWindowID)wid forApp:(NSRunningApplication *)app {
-    AXUIElementRef itemRef = [self windowForId:wid pid:app.processIdentifier];
+- (void)closeWindowItem:(CGWindowItem *)item {
+    AXUIElementRef itemRef = [self windowForId:item.wid pid:item.pid];
+    if (itemRef) {
+        AXUIElementRef buttonRef = [self getValueForKey:kAXMinimizeButtonAttribute in:itemRef];
+        AXUIElementPerformAction(buttonRef, kAXPressAction);
+        AXUIElementSetAttributeValue(itemRef, kAXMinimizedAttribute, kCFBooleanTrue);
+        SafeCFRelease(buttonRef);
+    }
+}
+
+- (void)activateWindowItem:(CGWindowItem *)item in:(NSRunningApplication *)app {
+    AXUIElementRef itemRef = [self windowForId:item.wid pid:item.pid];
     if (itemRef) {
         AXUIElementPerformAction(itemRef, kAXRaiseAction);
         [app activateWithOptions:NSApplicationActivateIgnoringOtherApps];
+        AXUIElementSetAttributeValue(itemRef, kAXMinimizedAttribute, kCFBooleanFalse);
         AXUIElementSetAttributeValue(itemRef, kAXMainWindowAttribute, kCFBooleanTrue);
     }
-    SafeCFRelease(itemRef);
 }
 
 @end

@@ -79,4 +79,8 @@ class AppExposeItemView: NSScrubberItemView {
         //nameLabel.stringValue = name?.truncate(length: 20) ?? ""
     }
     
+    public func set(minimized: Bool) {
+        self.layer?.backgroundColor = minimized ? NSColor.red.cgColor : NSColor.clear.cgColor
+    }
+    
 }
