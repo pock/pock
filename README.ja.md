@@ -1,10 +1,10 @@
-<p align="center"><img src="https://raw.githubusercontent.com/pigigaldi/Pock/master/Resources/pock_logo_b.png" width="76"/></p>
+<p align="center"><img src="https://pock.dev/assets/img/brand/web-icon-black.png" width="96"/></p>
 <p align="center">Touch barにmacOS Dockを表示 - 無料・オープンソース</p>
 
 ### 機能
 PockはmacOS DockをMacBookのTouchBarの中に置き、スクリーンをフルサイズで楽しむことができます！
 
-<p align="center"><img src="https://raw.githubusercontent.com/pigigaldi/Pock/master/Resources/pock_preview.png"/></p>
+<p align="center">  <img width="800" src="https://pock.dev/assets/img/preview/pock_widgets.png"/></p>
 
 ### バッジサポート
 あなたが少しの通知も見逃すことがないようにバッジサポート機能が付属しています。 
