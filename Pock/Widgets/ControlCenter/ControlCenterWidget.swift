@@ -66,15 +66,12 @@ class ControlCenterWidget: PKWidget {
             CCBrightnessDownItem(parentWidget: self),
             CCBrightnessUpItem(parentWidget: self),
             CCVolumeDownItem(parentWidget: self),
-            CCVolumeUpItem(parentWidget: self)
+            CCVolumeUpItem(parentWidget: self),
+            CCToggleMuteItem(parentWidget: self)
         ].filter({ $0.enabled })
     }
     private var slideableController: PKSlideableController?
-    
-    /// Volume items
-    public var volumeItems: [ControlCenterItem] {
-        return controls.filter({ $0 is CCVolumeUpItem || $0 is CCVolumeDownItem })
-    }
+
     
     /// Brightness items
     public var brightnessItems: [ControlCenterItem] {
@@ -126,7 +123,7 @@ class ControlCenterWidget: PKWidget {
     }
     
     @objc private func longTap(at location: CGPoint) {
-        let index = Int(ceil(location.x / (segmentedControl.frame.width / 4))) - 1
+        let index = Int(ceil(location.x / (segmentedControl.frame.width / CGFloat(controls.count)))) - 1
         guard (0..<controls.count).contains(index) else { return }
         segmentedControl.selectedSegment = index
         controls[index].longPressAction()
@@ -138,8 +135,8 @@ extension ControlCenterWidget {
         guard let item = item else { return }
         slideableController = PKSlideableController.load()
         switch item.self {
-        case is CCVolumeUpItem, is CCVolumeDownItem:
-            slideableController?.set(downItem: volumeItems.first, upItem: volumeItems.last)
+        case is CCVolumeUpItem, is CCVolumeDownItem, is CCToggleMuteItem:
+            slideableController?.set(downItem: CCVolumeUpItem(parentWidget: self), upItem: CCVolumeDownItem(parentWidget: self))
         case is CCBrightnessUpItem, is CCBrightnessDownItem:
             slideableController?.set(downItem: brightnessItems.first, upItem: brightnessItems.last)
         default:
