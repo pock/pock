@@ -118,6 +118,17 @@ You can customize the widget position in TouchBar from the **Customize** menu it
   <img src="https://pock.dev/assets/img/preview/pock_customize.png"/>
 </div>
 
+## To-do
+* Change time format
+* Add system like slider for brightness and volume
+* Slider icons are wrong for both
+* Add custom buttons
+* Button to show app specific Touch Bar (+ better icons)
+* Music widget doesn’t handle multiple sources well enough
+* Change order of icon in system group
+* Auto open in window if app is only open in top bar
+
+
 
 
 ## Developers
