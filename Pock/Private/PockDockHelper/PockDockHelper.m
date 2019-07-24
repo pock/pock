@@ -48,24 +48,24 @@ void SafeCFRelease(CFTypeRef cf) {
 //  Ref:       https://stackoverflow.com/a/36115210
 //
 - (AXUIElementRef)copyAXUIElementFrom:(AXUIElementRef)theContainer role:(NSString *)theRole atIndex:(NSInteger)theIndex {
-    
-    CFTypeRef _list = [self getValueForKey:kAXChildrenAttribute in:theContainer];
-    NSArray *list = [(NSArray *)CFBridgingRelease(_list) copy];
-    
+    NSArray *list = [(NSArray *)CFBridgingRelease([self getValueForKey:kAXChildrenAttribute in:theContainer]) copy];
+    if (list == NULL) {
+        return NULL;
+    }
     AXUIElementRef aResultElement = NULL;
     NSUInteger anIndex = -1;
-    for (id anElement in list) {
-        if (theRole) {
-            NSString *role = (NSString *)CFBridgingRelease([self getValueForKey:kAXRoleAttribute in:(__bridge AXUIElementRef)(anElement)]);
-            if (role && [role isEqualToString:theRole]) {
-                anIndex++;
-            }
-        }else {
+    __weak PockDockHelper *weakSelf = self;
+    for (int i = 0; i < [list count]; i++) {
+        CFTypeRef elem = CFBridgingRetain(list[i]);
+        NSString *role = (NSString *)CFBridgingRelease([weakSelf getValueForKey:kAXRoleAttribute in:elem]);
+        if (role && [role isEqualToString:theRole]) {
             anIndex++;
         }
         if (anIndex == theIndex) {
-            aResultElement = (__bridge AXUIElementRef)(anElement);
+            aResultElement = elem;
             break;
+        }else {
+            SafeCFRelease(elem);
         }
     }
     list = NULL;
@@ -76,67 +76,41 @@ void SafeCFRelease(CFTypeRef cf) {
 //  Ref:       https://stackoverflow.com/a/36115210
 //
 - (AXUIElementRef)getDockItemWithName:(NSString *)name {
-    NSLock *locker = [NSLock new];
-    [locker lock];
-    
     NSArray *anArray = [NSRunningApplication runningApplicationsWithBundleIdentifier:@"com.apple.dock"];
     if (anArray.count == 0) {
-        [locker unlock];
         return NULL;
     }
-    
     AXUIElementRef anAXDockApp = AXUIElementCreateApplication([[anArray objectAtIndex:0] processIdentifier]);
-    AXUIElementRef aList = [self copyAXUIElementFrom:anAXDockApp role:@"kAXListRole" atIndex:0];
+    AXUIElementRef aList = [self copyAXUIElementFrom:anAXDockApp role:@"AXList" atIndex:0];
     if (aList == NULL) {
         SafeCFRelease(anAXDockApp);
-        [locker unlock];
         return NULL;
     }
-    
-    CFTypeRef _list = [self getValueForKey:kAXChildrenAttribute in:aList];
-    if (_list == NULL) {
-        SafeCFRelease(aList);
-        SafeCFRelease(anAXDockApp);
-        [locker unlock];
-        return NULL;
-    }
-    NSArray *aChildren = [(NSArray *)CFBridgingRelease(_list) copy];
-    
-    NSInteger itemIndex = -1;
+    NSArray *aChildren = [(NSArray *)CFBridgingRelease([self getValueForKey:kAXChildrenAttribute in:aList]) copy];
     if (aChildren == NULL) {
         SafeCFRelease(aList);
         SafeCFRelease(anAXDockApp);
-        [locker unlock];
         return NULL;
     }
-    
-    for (NSInteger i = 0; i < aChildren.count; i++) {
-        AXUIElementRef anElement = (AXUIElementRef)CFBridgingRetain([aChildren objectAtIndex:i]);
-        NSString *title = (NSString *)CFBridgingRelease([self getValueForKey:kAXTitleAttribute in:anElement]);
+    NSInteger itemIndex = -1;
+    __weak PockDockHelper *weakSelf = self;
+    for (int i = 0; i < [aChildren count]; i++) {
+        CFTypeRef anElement = CFBridgingRetain(aChildren[i]);
+        NSString *title = (NSString *)CFBridgingRelease([weakSelf getValueForKey:kAXTitleAttribute in:anElement]);
         SafeCFRelease(anElement);
         if ([title isEqualToString:name]) {
             itemIndex = i;
+            break;
         }
-        title = NULL;
     }
-    
     if (itemIndex == -1) {
         SafeCFRelease(aList);
         SafeCFRelease(anAXDockApp);
-        [locker unlock];
         return NULL;
     }
-    
-    AXUIElementRef aReturnItem = [self copyAXUIElementFrom:aList role:@"kAXDockItemRole" atIndex:itemIndex];
-    
+    AXUIElementRef aReturnItem = [self copyAXUIElementFrom:aList role:@"AXDockItem" atIndex:itemIndex];
     SafeCFRelease(aList);
     SafeCFRelease(anAXDockApp);
-    [locker unlock];
-    
-    if (aReturnItem == NULL) {
-        return NULL;
-    }
-    
     return aReturnItem;
 }
 
@@ -193,12 +167,9 @@ void SafeCFRelease(CFTypeRef cf) {
 }
 
 - (NSImage *)getScreenshotOfWindowId:(NSNumber *)wid {
-    // Create an image from the passed in windowID with the single window option selected by the user.
     CGImageRef windowImage = CGWindowListCreateImage(CGRectNull, kCGWindowListOptionIncludingWindow, wid.unsignedIntValue, kCGWindowImageDefault);
     Profile(windowImage);
-    // Create a bitmap rep from the image...
     NSBitmapImageRep *bitmapRep = [[NSBitmapImageRep alloc] initWithCGImage:windowImage];
-    // Create an NSImage and add the bitmap rep to it...
     NSImage *image = [[NSImage alloc] init];
     [image addRepresentation:bitmapRep];
     CGImageRelease(windowImage);
