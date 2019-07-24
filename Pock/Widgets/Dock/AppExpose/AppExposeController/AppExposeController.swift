@@ -81,7 +81,8 @@ extension AppExposeController: NSScrubberDelegate {
     func scrubber(_ scrubber: NSScrubber, didSelectItemAt selectedIndex: Int) {
         let item = elements[selectedIndex]
         let isFrontmost = NSWorkspace.shared.frontmostApplication?.bundleIdentifier == app.bundleIdentifier
-        if isFrontmost && PockDockHelper.sharedInstance()?.windowIsFrontmost(item.wid, forApp: app) ?? false {
+        let windowIsFrontmost = PockDockHelper.sharedInstance()?.windowIsFrontmost(item.wid, forApp: app) ?? false
+        if isFrontmost && windowIsFrontmost {
             PockDockHelper.sharedInstance()?.close(item)
         }else {
             PockDockHelper.sharedInstance()?.activate(item, in: app)

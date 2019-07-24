@@ -331,15 +331,15 @@ extension DockRepository {
     /// Launch app or open file/directory from bundle identifier
     public func launch(bundleIdentifier: String?, completion: (Bool) -> ()) {
         /// Check if bundle identifier is valid
-        guard bundleIdentifier != nil else {
+        guard let bundleIdentifier = bundleIdentifier else {
             completion(false)
             return
         }
         var returnable: Bool = false
         /// Check if file path.
-        if bundleIdentifier!.contains("file://") {
+        if bundleIdentifier.contains("file://") {
             /// Is path, continue as path.
-            let path:        String   = bundleIdentifier!
+            let path:        String   = bundleIdentifier
             var isDirectory: ObjCBool = true
             let url:         URL      = URL(string: path)!
             FileManager.default.fileExists(atPath: path, isDirectory: &isDirectory)
@@ -358,7 +358,7 @@ extension DockRepository {
                 returnable = true
             }else {
                 /// Launch app
-                returnable = NSWorkspace.shared.launchApplication(withBundleIdentifier: bundleIdentifier!, options: [NSWorkspace.LaunchOptions.default], additionalEventParamDescriptor: nil, launchIdentifier: nil)
+                returnable = NSWorkspace.shared.launchApplication(withBundleIdentifier: bundleIdentifier, options: [NSWorkspace.LaunchOptions.default], additionalEventParamDescriptor: nil, launchIdentifier: nil)
             }
         }
         /// Return status
