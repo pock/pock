@@ -71,7 +71,7 @@ extension AppExposeController: NSScrubberDataSource {
 
 extension AppExposeController: NSScrubberFlowLayoutDelegate {
     func scrubber(_ scrubber: NSScrubber, layout: NSScrubberFlowLayout, sizeForItemAt itemIndex: Int) -> NSSize {
-        return NSSize(width: 100, height: 30)
+        return NSSize(width: 80, height: 30)
     }
 }
 
@@ -79,8 +79,7 @@ extension AppExposeController: NSScrubberDelegate {
     func scrubber(_ scrubber: NSScrubber, didSelectItemAt selectedIndex: Int) {
         let item = elements[selectedIndex]
         let isFrontmost = NSWorkspace.shared.frontmostApplication?.bundleIdentifier == app.bundleIdentifier
-        let windowIsFrontmost = PockDockHelper.sharedInstance()?.windowIsFrontmost(item.wid, forApp: app) ?? false
-        if isFrontmost && windowIsFrontmost {
+        if isFrontmost && !item.minimized {
             PockDockHelper.sharedInstance()?.close(item)
         }else {
             PockDockHelper.sharedInstance()?.activate(item, in: app)
