@@ -28,7 +28,6 @@ class AppExposeController: PKTouchBarController {
         guard app != nil else { return }
         super.present()
         self.setAppName(name: app.localizedName ?? "<missing name>")
-        self.windowsCount.stringValue = "Loading..."
     }
     
     override func didLoad() {
@@ -50,7 +49,6 @@ extension AppExposeController {
     }
     public func set(app: NSRunningApplication) {
         self.app = app
-        self.set(elements: elements)
     }
     private func setAppName(name: String?) {
         self.appName.stringValue = name ?? "Unknown"
