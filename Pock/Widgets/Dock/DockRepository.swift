@@ -390,10 +390,9 @@ extension DockRepository {
     @discardableResult
     private func activate(app: NSRunningApplication?) -> Bool {
         guard let app = app else { return false }
-        // TODO: Create preference option for this
-        let shouldAlwaysOpenAppExpose: Bool = true
-        let windowsCount = PockDockHelper.sharedInstance()?.windowsCount(forApp: app) ?? 0
-        if (windowsCount > 0 || shouldAlwaysOpenAppExpose) && activateExpose(app: app) {
+        let _windows = PockDockHelper.sharedInstance()?.getWindowsOfApp(app.processIdentifier) as NSArray?
+        
+        if let windows = _windows as? [AppExposeItem], activateExpose(with: windows, app: app) {
             return true
         }else {
             if !app.unhide() {
@@ -405,9 +404,13 @@ extension DockRepository {
         }
     }
     
-    private func activateExpose(app: NSRunningApplication) -> Bool {
+    private func activateExpose(with windows: [AppExposeItem], app: NSRunningApplication) -> Bool {
+        
+        // TODO: Create preference option for this
+        let shouldAlwaysOpenAppExpose: Bool = true
+        
         if !isProd { print("[Pock]: Exposé requested for: \(app.localizedName ?? "Unknown")") }
-        guard let windows = PockDockHelper.sharedInstance()?.getWindowsOfApp(app.processIdentifier) as? [AppExposeItem], windows.count > 0 else {
+        guard shouldAlwaysOpenAppExpose || windows.count > 0 else {
             if !isProd { print("[Pock]: Can't load exposé items for: \(app.localizedName ?? "Unknown")") }
             return false
         }
@@ -423,10 +426,10 @@ extension DockRepository {
 }
 
 extension DockRepository {
-    public func openExpose(with images: [AppExposeItem], for app: NSRunningApplication) {
+    public func openExpose(with windows: [AppExposeItem], for app: NSRunningApplication) {
         let controller: AppExposeController = AppExposeController.load()
         controller.set(app: app)
-        controller.set(elements: images)
+        controller.set(elements: windows)
         AppDelegate.default.navController?.push(controller)
     }
 }
