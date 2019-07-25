@@ -149,9 +149,9 @@
 		34E644F6227D783E003D0450 /* KeySenderHelper.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = KeySenderHelper.c; sourceTree = "<group>"; };
 		34E644F9227D9A69003D0450 /* DockWidgetPreferencePane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockWidgetPreferencePane.swift; sourceTree = "<group>"; };
 		34E644FA227D9A69003D0450 /* DockWidgetPreferencePane.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DockWidgetPreferencePane.xib; sourceTree = "<group>"; };
-		3BA42833BC69C895EB31DF93 /* Pods-Pock.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pock.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pock/Pods-Pock.debug.xcconfig"; sourceTree = "<group>"; };
-		716D62071D19174E56D6E33D /* Pods-Pock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pock.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pock/Pods-Pock.release.xcconfig"; sourceTree = "<group>"; };
+		77EEE6F8AC08D9E6CB045232 /* Pods-Pock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pock.release.xcconfig"; path = "Target Support Files/Pods-Pock/Pods-Pock.release.xcconfig"; sourceTree = "<group>"; };
 		863BE70CFBAC31BDBF35B1FD /* Pods_Pock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC473A3ED8AB94F293FF61B5 /* Pods-Pock.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pock.debug.xcconfig"; path = "Target Support Files/Pods-Pock/Pods-Pock.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,15 +169,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2F31B7DC05EFA1E8090C87AE /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				3BA42833BC69C895EB31DF93 /* Pods-Pock.debug.xcconfig */,
-				716D62071D19174E56D6E33D /* Pods-Pock.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		3406433A227E26FA00981372 /* DockFolder */ = {
 			isa = PBXGroup;
 			children = (
@@ -473,8 +464,8 @@
 			children = (
 				342D83932278D5CF000D79DA /* Pock */,
 				348343D71F631B2E00CDA005 /* Products */,
-				2F31B7DC05EFA1E8090C87AE /* Pods */,
 				4ED8D081458713BE440562D3 /* Frameworks */,
+				D8A96EBD00E431131522013C /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -525,6 +516,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D8A96EBD00E431131522013C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FC473A3ED8AB94F293FF61B5 /* Pods-Pock.debug.xcconfig */,
+				77EEE6F8AC08D9E6CB045232 /* Pods-Pock.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -532,14 +533,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 348343E51F631B2E00CDA005 /* Build configuration list for PBXNativeTarget "Pock" */;
 			buildPhases = (
-				3407F9DF22D102AC0072E742 /* [Pock]: Set Fabric API_KEY */,
 				2B2556069E62CDAC367ACF33 /* [CP] Check Pods Manifest.lock */,
+				3407F9DF22D102AC0072E742 /* [Pock]: Set Fabric API_KEY */,
 				348343D21F631B2E00CDA005 /* Sources */,
 				348343D31F631B2E00CDA005 /* Frameworks */,
 				348343D41F631B2E00CDA005 /* Resources */,
-				9C497126EC20FAC73A4D0299 /* [CP] Embed Pods Frameworks */,
 				34FBB7B721734E8F004D5BC0 /* [LaunchAtLogin] Copy helper */,
 				3413964E217B8B6200DCD2B0 /* [Fabric] Run */,
+				10560DFD1A3A410BC93BF7FB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -562,9 +563,9 @@
 				TargetAttributes = {
 					348343D51F631B2E00CDA005 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 788D9WZ9Z3;
+						DevelopmentTeam = 838PD4BXZV;
 						LastSwiftMigration = 1100;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.HardenedRuntime = {
 								enabled = 1;
@@ -611,6 +612,34 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		10560DFD1A3A410BC93BF7FB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Pock/Pods-Pock-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Defaults/Defaults.framework",
+				"${BUILT_PRODUCTS_DIR}/LaunchAtLogin/LaunchAtLogin.framework",
+				"${BUILT_PRODUCTS_DIR}/Magnet/Magnet.framework",
+				"${BUILT_PRODUCTS_DIR}/PockKit/PockKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Preferences/Preferences.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Defaults.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LaunchAtLogin.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Magnet.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PockKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Preferences.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Pock/Pods-Pock-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		2B2556069E62CDAC367ACF33 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -684,34 +713,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PROJECT_DIR}/Pods/LaunchAtLogin/LaunchAtLogin/copy-helper.sh\"\n";
-		};
-		9C497126EC20FAC73A4D0299 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Pock/Pods-Pock-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Defaults/Defaults.framework",
-				"${BUILT_PRODUCTS_DIR}/LaunchAtLogin/LaunchAtLogin.framework",
-				"${BUILT_PRODUCTS_DIR}/Magnet/Magnet.framework",
-				"${BUILT_PRODUCTS_DIR}/PockKit/PockKit.framework",
-				"${BUILT_PRODUCTS_DIR}/Preferences/Preferences.framework",
-				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Defaults.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LaunchAtLogin.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Magnet.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PockKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Preferences.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Pock/Pods-Pock-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -889,16 +890,16 @@
 		};
 		348343E61F631B2E00CDA005 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3BA42833BC69C895EB31DF93 /* Pods-Pock.debug.xcconfig */;
+			baseConfigurationReference = FC473A3ED8AB94F293FF61B5 /* Pods-Pock.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Pock/Various/Pock.entitlements;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 788D9WZ9Z3;
+				DEVELOPMENT_TEAM = 838PD4BXZV;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -910,7 +911,7 @@
 				MARKETING_VERSION = 0.5.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pigigaldi.pock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Pock (Distribution)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/Pock/Private/Pock-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
@@ -918,15 +919,15 @@
 		};
 		348343E71F631B2E00CDA005 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 716D62071D19174E56D6E33D /* Pods-Pock.release.xcconfig */;
+			baseConfigurationReference = 77EEE6F8AC08D9E6CB045232 /* Pods-Pock.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Pock/Various/Pock.entitlements;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 788D9WZ9Z3;
+				DEVELOPMENT_TEAM = 838PD4BXZV;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -938,7 +939,7 @@
 				MARKETING_VERSION = 0.5.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pigigaldi.pock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Pock (Distribution)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = PROD;
 				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/Pock/Private/Pock-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
