@@ -136,7 +136,7 @@ extension ControlCenterWidget {
         slideableController = PKSlideableController.load()
         switch item.self {
         case is CCVolumeUpItem, is CCVolumeDownItem, is CCToggleMuteItem:
-            slideableController?.set(downItem: CCVolumeUpItem(parentWidget: self), upItem: CCVolumeDownItem(parentWidget: self))
+            slideableController?.set(downItem: CCVolumeDownItem(parentWidget: self), upItem: CCVolumeUpItem(parentWidget: self))
         case is CCBrightnessUpItem, is CCBrightnessDownItem:
             slideableController?.set(downItem: brightnessItems.first, upItem: brightnessItems.last)
         default:
