@@ -50,7 +50,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         /// Check for accessibility (needed for badges to work)
-//        self.checkAccessibility()
+        self.checkAccessibility()
         
         /// Preferences
         self.preferencesWindowController = PreferencesWindowController(preferencePanes: [generalPreferencePane,
