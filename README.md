@@ -120,6 +120,7 @@ You can customize the widget position in TouchBar from the **Customize** menu it
 
 ## To-do
 * Change time format [Done]
+* Incorrect Long tap zone for Control Center buttons [Done]
 * Add system like slider for brightness and volume
 * Slider icons are wrong for both
 * Add custom buttons
