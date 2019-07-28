@@ -522,7 +522,6 @@
 				FC473A3ED8AB94F293FF61B5 /* Pods-Pock.debug.xcconfig */,
 				77EEE6F8AC08D9E6CB045232 /* Pods-Pock.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -908,7 +907,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Pock/Various/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12.2;
-				MARKETING_VERSION = 0.5.2;
+				MARKETING_VERSION = 0.5.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pigigaldi.pock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

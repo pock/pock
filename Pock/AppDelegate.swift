@@ -74,9 +74,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         /// Check for updates
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: { [weak self] in
-//            self?.checkForUpdates()
-//        })
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: { [weak self] in
+            self?.checkForUpdates()
+        })
         
         /// Register for notification
         NSWorkspace.shared.notificationCenter.addObserver(self,
