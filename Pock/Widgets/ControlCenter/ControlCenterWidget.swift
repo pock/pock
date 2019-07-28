@@ -59,7 +59,8 @@ class ControlCenterWidget: PKWidget {
     var view: NSView!
     
     /// Core
-    private var controls: [ControlCenterItem] {
+    // Use controlsRaw to find volume and brightness items. Using control will show same icon for both vol(and brightness) up and down in slideableController when only 1 of up/down is enabled
+    private var controlsRaw: [ControlCenterItem] {
         return [
             CCSleepItem(parentWidget: self),
             CCLockItem(parentWidget: self),
@@ -67,18 +68,22 @@ class ControlCenterWidget: PKWidget {
             CCBrightnessUpItem(parentWidget: self),
             CCVolumeDownItem(parentWidget: self),
             CCVolumeUpItem(parentWidget: self)
-        ].filter({ $0.enabled })
+        ]
+    }
+    
+    private var controls: [ControlCenterItem] {
+        return controlsRaw.filter({ $0.enabled })
     }
     private var slideableController: PKSlideableController?
     
     /// Volume items
     public var volumeItems: [ControlCenterItem] {
-        return controls.filter({ $0 is CCVolumeUpItem || $0 is CCVolumeDownItem })
+        return controlsRaw.filter({ $0 is CCVolumeUpItem || $0 is CCVolumeDownItem })
     }
     
     /// Brightness items
     public var brightnessItems: [ControlCenterItem] {
-        return controls.filter({ $0 is CCBrightnessUpItem || $0 is CCBrightnessDownItem })
+        return controlsRaw.filter({ $0 is CCBrightnessUpItem || $0 is CCBrightnessDownItem })
     }
     
     /// UI
