@@ -119,7 +119,7 @@ You can customize the widget position in TouchBar from the **Customize** menu it
 </div>
 
 ## To-do
-* Change time format
+* Change time format [Done]
 * Add system like slider for brightness and volume
 * Slider icons are wrong for both
 * Add custom buttons

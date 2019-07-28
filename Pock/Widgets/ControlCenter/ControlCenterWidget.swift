@@ -69,6 +69,11 @@ class ControlCenterWidget: PKWidget {
             CCVolumeUpItem(parentWidget: self)
         ].filter({ $0.enabled })
     }
+    
+    private var countOfItems: Int {
+        return controls.count
+    }
+    
     private var slideableController: PKSlideableController?
     
     /// Volume items
@@ -125,8 +130,10 @@ class ControlCenterWidget: PKWidget {
         controls[sender.selectedSegment].action()
     }
     
+    // Hard Coded integer causes issue on long tap area when number of items change 
     @objc private func longTap(at location: CGPoint) {
-        let index = Int(ceil(location.x / (segmentedControl.frame.width / 4))) - 1
+        print (countOfItems)
+        let index = Int(ceil(location.x / (segmentedControl.frame.width / CGFloat(countOfItems)))) - 1
         guard (0..<controls.count).contains(index) else { return }
         segmentedControl.selectedSegment = index
         controls[index].longPressAction()
