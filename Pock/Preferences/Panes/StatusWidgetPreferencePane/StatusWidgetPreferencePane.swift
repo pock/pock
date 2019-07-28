@@ -18,6 +18,7 @@ class StatusWidgetPreferencePane: NSViewController, PreferencePane {
     @IBOutlet weak var showBatteryIconItem:         NSButton!
     @IBOutlet weak var showBatteryPercentageItem:   NSButton!
     @IBOutlet weak var showDateItem:                NSButton!
+    @IBOutlet weak var show24TimeItem:              NSButton!
     // @IBOutlet weak var showSpotlightItem:           NSButton!
     
     /// Preferenceable
@@ -45,6 +46,7 @@ class StatusWidgetPreferencePane: NSViewController, PreferencePane {
         self.showBatteryIconItem.state       = defaults[.shouldShowBatteryIcon]       ? .on : .off
         self.showBatteryPercentageItem.state = defaults[.shouldShowBatteryPercentage] ? .on : .off
         self.showDateItem.state              = defaults[.shouldShowDateItem]          ? .on : .off
+        self.show24TimeItem.state            = defaults[.shouldShow24TimeItem]        ? .on : .off
         // self.showSpotlightItem.state         = defaults[.shouldShowSpotlightItem]     ? .on : .off
     }
     
@@ -61,6 +63,8 @@ class StatusWidgetPreferencePane: NSViewController, PreferencePane {
             key = .shouldShowBatteryPercentage
         case 3:
             key = .shouldShowDateItem
+        case 31:
+            key = .shouldShow24TimeItem
         /* case 4:
             key = .shouldShowSpotlightItem */
         default:

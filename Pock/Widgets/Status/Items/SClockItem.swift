@@ -56,7 +56,12 @@ class SClockItem: StatusItem {
     
     func reload() {
         let formatter = DateFormatter()
-        formatter.dateFormat = "EE dd MMM HH:mm"
+        if defaults[.shouldShow24TimeItem] {
+            formatter.dateFormat = "EE dd MMM HH:mm "
+        }
+        else {
+            formatter.dateFormat = "EE dd MMM h:mm a"
+        }
         formatter.locale = Locale(identifier: Locale.preferredLanguages.first ?? "en_US_POSIX")
         clockLabel?.stringValue = formatter.string(from: Date())
         clockLabel?.sizeToFit()

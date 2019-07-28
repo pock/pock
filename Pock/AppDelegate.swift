@@ -50,7 +50,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         /// Check for accessibility (needed for badges to work)
-        self.checkAccessibility()
+//        self.checkAccessibility()
         
         /// Preferences
         self.preferencesWindowController = PreferencesWindowController(preferencePanes: [generalPreferencePane,
@@ -74,9 +74,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         /// Check for updates
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: { [weak self] in
-            self?.checkForUpdates()
-        })
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: { [weak self] in
+//            self?.checkForUpdates()
+//        })
         
         /// Register for notification
         NSWorkspace.shared.notificationCenter.addObserver(self,
