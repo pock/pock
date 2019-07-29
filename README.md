@@ -123,6 +123,7 @@ You can customize the widget position in TouchBar from the **Customize** menu it
 * Incorrect Long tap zone for Control Center buttons [Done]
 * Add system like slider for brightness and volume [Requires rewriting PKSlideableController]
 * Slider icons are wrong for both [Done]
+* Brightness resets
 * Add custom buttons
 * Button to show app specific Touch Bar (+ better icons)
 * Music widget doesn’t handle multiple sources well enough
