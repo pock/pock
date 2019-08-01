@@ -1,7 +1,7 @@
 <p align="center"><img src="https://pock.dev/assets/img/brand/web-icon-black.png" width="96"/></p>
 <p align="center">MacOS Dock’u Touch Bar üzerinde gösterir. Ücretsiz ve açık kaynak proje!</p>
 
-<p align="center">Pock, yeni güncelleme ile sonunda karşınızda! Birçok performans geliştirmesi ve Touch Bar üzerine minimalist widget ile birlikte gelir!
+<p align="center">Pock, yeni güncelleme ile artık karşınızda! Birçok performans geliştirmesi ve Touch Bar üzerine minimalist widget eklentisi ile birlikte gelir!
 </p>
 <p align="center">
 <img width="800" src="https://pock.dev/assets/img/preview/pock_widgets.png"/>
@@ -26,8 +26,8 @@ Pock, her zaman özgür yazılım olarak sunulacak!
 
 ##### Dock widget
 
-Dock’u TouchBar'ın içine konumlandırın. Tamamen işlevsel bir bildirim pinleme desteği ile geliyor ve böylece herhangi bir bildirimi kaçırmayacaksanız! Widget ayarlarında, diğer tercihler ile birlikte daha fazla özellik yapılandırabilirsiniz.
-*Uygulamalarda tam ekran boyutunun tadını çıkarın!*
+Dock’u TouchBar'ın içine konumlandırın. Tamamen işlevsel bir bildirim pinleme desteği sunuluyor ve böylece herhangi bir uygulama bildirimini kaçırmayacaksanız! Widget ayarlarında, diğer tercihler ile birlikte daha fazla özellik yapılandırabilirsiniz.
+*Uygulamaların tam ekran boyutunun tadını çıkarın!*
 
 <div align="left">
 <img width="500" src="https://pock.dev/assets/img/preview/widgets/pock_dock_widget.png"/>

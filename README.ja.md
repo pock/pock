@@ -14,9 +14,7 @@
 
 PockはmacOS DockをMacBookのTouchBarの中に置き、スクリーンをフルサイズで楽しむことができます！
 
-<div align="left">
-  <img width="500" src="https://pock.dev/assets/img/preview/widgets/pock_dock_widget.png"/>
-</div>
+<p align="center">  <img width="800" src="https://pock.dev/assets/img/preview/pock_widgets.png"/></p>
 
 ### バッジサポート
 

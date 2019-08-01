@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Create a report to help me improve Pock
+about: Something that Pock should do, but it tragically fails in doing it
 title: ''
 labels: 'bug'
 assignees: ''
@@ -10,7 +10,7 @@ assignees: ''
 **Describe the bug**
 A clear description of what the bug is.
 
-**To Reproduce**
+**How to reproduce**
 Steps to reproduce the behavior:
 ```
 1. Go to '...'
