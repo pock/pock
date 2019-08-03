@@ -21,6 +21,7 @@ class ControlCenterWidgetPreferencePane: NSViewController, PreferencePane {
     @IBOutlet weak var showBrightnessUpItem:    NSButton!
     @IBOutlet weak var showVolumeDownItem:      NSButton!
     @IBOutlet weak var showVolumeUpItem:        NSButton!
+    @IBOutlet weak var showToggleMuteItem:      NSButton!
     
     /// Preferenceable
     var preferencePaneIdentifier: Identifier = Identifier.controler_center_widget
@@ -47,10 +48,13 @@ class ControlCenterWidgetPreferencePane: NSViewController, PreferencePane {
         self.showBrightnessUpItem.state   = defaults[.shouldShowBrightnessUpItem]   ? .on : .off
         self.showVolumeDownItem.state     = defaults[.shouldShowVolumeDownItem]     ? .on : .off
         self.showVolumeUpItem.state       = defaults[.shouldShowVolumeUpItem]       ? .on : .off
+        self.showToggleMuteItem.state     = defaults[.shouldShowToggleMuteItem]     ? .on : .off
+      
         self.showBrightnessDownItem.isEnabled = defaults[.shouldShowBrightnessItem]
         self.showBrightnessUpItem.isEnabled = defaults[.shouldShowBrightnessItem]
         self.showVolumeDownItem.isEnabled = defaults[.shouldShowVolumeItem]
         self.showVolumeUpItem.isEnabled = defaults[.shouldShowVolumeItem]
+        self.showToggleMuteItem.isEnabled = defaults[.shouldShowVolumeItem]
     }
     
     @IBAction func didChangeCheckboxValue(_ checkbox: NSButton) {
@@ -72,6 +76,8 @@ class ControlCenterWidgetPreferencePane: NSViewController, PreferencePane {
             key = .shouldShowVolumeDownItem
         case 42:
             key = .shouldShowVolumeUpItem
+        case 43:
+            key = .shouldShowToggleMuteItem
         default:
             return
         }
