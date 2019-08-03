@@ -31,7 +31,7 @@ class AppExposeController: PKTouchBarController {
     }
     
     override func didLoad() {
-        scrubber.register(AppExposeItemView.self, forItemIdentifier: Constants.kAppExposeItemView)
+        scrubber?.register(AppExposeItemView.self, forItemIdentifier: Constants.kAppExposeItemView)
     }
     
     @IBAction func willClose(_ button: NSButton?) {
