@@ -27,16 +27,19 @@ class SClockItem: StatusItem {
     }
     
     func didLoad() {
-        clockLabel = NSTextField()
-        clockLabel.frame = CGRect(origin: .zero, size: CGSize(width: 100, height: 44))
-        clockLabel.font = NSFont.systemFont(ofSize: 13)
-        clockLabel.backgroundColor = .clear
-        clockLabel.isBezeled = false
-        clockLabel.isEditable = false
-        clockLabel.sizeToFit()
-        refreshTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self] _ in
-            self?.reload()
-        })
+        // Required else it will lose reference to button currently being displayed
+        if clockLabel == nil {
+            clockLabel = NSTextField()
+            clockLabel.frame = CGRect(origin: .zero, size: CGSize(width: 100, height: 44))
+            clockLabel.font = NSFont.systemFont(ofSize: 13)
+            clockLabel.backgroundColor = .clear
+            clockLabel.isBezeled = false
+            clockLabel.isEditable = false
+            clockLabel.sizeToFit()
+            refreshTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self] _ in
+                self?.reload()
+            })
+        }
     }
     
     func didUnload() {
@@ -56,7 +59,12 @@ class SClockItem: StatusItem {
     
     func reload() {
         let formatter = DateFormatter()
-        formatter.dateFormat = "EE dd MMM HH:mm"
+        if defaults[.shouldShow24TimeItem] {
+            formatter.dateFormat = "EE dd MMM HH:mm "
+        }
+        else {
+            formatter.dateFormat = "EE dd MMM h:mm a"
+        }
         formatter.locale = Locale(identifier: Locale.preferredLanguages.first ?? "en_US_POSIX")
         clockLabel?.stringValue = formatter.string(from: Date())
         clockLabel?.sizeToFit()
