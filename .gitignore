@@ -6,6 +6,8 @@ Podfile.lock
 Pods/
 
 ## Userdata
+Pock.xcodeproj/project.pbxproj/
+Pock.xcodeproj/xcshareddata/xcschemes/Pock.xcscheme
 Pock.xcodeproj/xcuserdata/
 Pock.xcworkspace/xcuserdata/
 
