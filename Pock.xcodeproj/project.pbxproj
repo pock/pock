@@ -71,6 +71,7 @@
 		34E644F7227D783E003D0450 /* KeySenderHelper.c in Sources */ = {isa = PBXBuildFile; fileRef = 34E644F6227D783E003D0450 /* KeySenderHelper.c */; };
 		34E644FB227D9A69003D0450 /* DockWidgetPreferencePane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E644F9227D9A69003D0450 /* DockWidgetPreferencePane.swift */; };
 		34E644FC227D9A69003D0450 /* DockWidgetPreferencePane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34E644FA227D9A69003D0450 /* DockWidgetPreferencePane.xib */; };
+		9955665222DC668500EFFE6D /* CCToggleMuteItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9955665122DC668500EFFE6D /* CCToggleMuteItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -152,6 +153,7 @@
 		3BA42833BC69C895EB31DF93 /* Pods-Pock.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pock.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pock/Pods-Pock.debug.xcconfig"; sourceTree = "<group>"; };
 		716D62071D19174E56D6E33D /* Pods-Pock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pock.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pock/Pods-Pock.release.xcconfig"; sourceTree = "<group>"; };
 		863BE70CFBAC31BDBF35B1FD /* Pods_Pock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9955665122DC668500EFFE6D /* CCToggleMuteItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCToggleMuteItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -380,6 +382,7 @@
 				342D83BA2278D5CF000D79DA /* CCVolumeDownItem.swift */,
 				342D83BB2278D5CF000D79DA /* CCBrightnessUpItem.swift */,
 				342D83BC2278D5CF000D79DA /* CCVolumeUpItem.swift */,
+				9955665122DC668500EFFE6D /* CCToggleMuteItem.swift */,
 			);
 			path = Items;
 			sourceTree = "<group>";
@@ -532,8 +535,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 348343E51F631B2E00CDA005 /* Build configuration list for PBXNativeTarget "Pock" */;
 			buildPhases = (
-				3407F9DF22D102AC0072E742 /* [Pock]: Set Fabric API_KEY */,
 				2B2556069E62CDAC367ACF33 /* [CP] Check Pods Manifest.lock */,
+				3407F9DF22D102AC0072E742 /* [Pock]: Set Fabric API_KEY */,
 				348343D21F631B2E00CDA005 /* Sources */,
 				348343D31F631B2E00CDA005 /* Frameworks */,
 				348343D41F631B2E00CDA005 /* Resources */,
@@ -763,6 +766,7 @@
 				342D83EB2278D5CF000D79DA /* DKBrightness.swift in Sources */,
 				342D84002278D5CF000D79DA /* PKWidgetTouchBarItem.swift in Sources */,
 				342D83E22278D5CF000D79DA /* Preferences.swift in Sources */,
+				9955665222DC668500EFFE6D /* CCToggleMuteItem.swift in Sources */,
 				342D83F42278D5CF000D79DA /* NowPlayingItemView.swift in Sources */,
 				349F93E8228865C400B8CFBE /* ISSoundAdditions.m in Sources */,
 				342D83ED2278D5CF000D79DA /* AppDelegate.swift in Sources */,
