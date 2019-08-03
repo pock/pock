@@ -1,13 +1,13 @@
 ---
-name: Feature request
-about: Something that Pock should learn to do
+name: Enhancement request
+about: Something that Pock can do, but it could do it better
 title: ''
-labels: 'request'
+labels: 'enhancement'
 assignees: ''
 
 ---
 
-**Describe the feature you'd like to have in Pock**
+**Describe the feature you'd like to improve in Pock**
 A clear description of what you want to happen.
 
 **Describe alternatives you've considered**

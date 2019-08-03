@@ -80,6 +80,7 @@ extension Defaults.Keys {
     static let shouldShowBatteryIcon            = Defaults.Key<Bool>("shouldShowBatteryIcon",       default: true)
     static let shouldShowBatteryPercentage      = Defaults.Key<Bool>("shouldShowBatteryPercentage", default: true)
     static let shouldShowDateItem               = Defaults.Key<Bool>("shouldShowDateItem",          default: true)
+    static let shouldShow24TimeItem             = Defaults.Key<Bool>("shouldShow24TimeItem",        default: true)
     static let shouldShowSpotlightItem          = Defaults.Key<Bool>("shouldShowSpotlightItem",     default: true)
     /// Control Center widget
     static let shouldShowSleepItem          = Defaults.Key<Bool>("shouldShowSleepItem",             default: false)
@@ -90,4 +91,5 @@ extension Defaults.Keys {
     static let shouldShowBrightnessUpItem   = Defaults.Key<Bool>("shouldShowBrightnessUpItem",      default: true)
     static let shouldShowVolumeDownItem     = Defaults.Key<Bool>("shouldShowVolumeDownItem",        default: true)
     static let shouldShowVolumeUpItem       = Defaults.Key<Bool>("shouldShowVolumeUpItem",          default: true)
+    static let shouldShowToggleMuteItem     = Defaults.Key<Bool>("shouldShowToggleMuteItem",        default: false)
 }
