@@ -21,7 +21,7 @@ class EscWidget: PKWidget {
     private let key: KeySender = KeySender(keyCode: Int32(0x35), isAux: false)
     
     var identifier: NSTouchBarItem.Identifier = NSTouchBarItem.Identifier.escButton
-    var customizationLabel: String = "Esc Key"
+    var customizationLabel: String = "Esc key".localized
     var view: NSView!
     
     required init() {

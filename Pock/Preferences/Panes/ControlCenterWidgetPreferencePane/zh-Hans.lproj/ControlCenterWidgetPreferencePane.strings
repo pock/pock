@@ -1,0 +1,24 @@
+
+/* Class = "NSButtonCell"; title = "显示音量"; ObjectID = "A1L-D1-Jwj"; */
+"A1L-D1-Jwj.title" = "显示音量";
+
+/* Class = "NSButtonCell"; title = "显示音量降低"; ObjectID = "AJ4-PK-Oid"; */
+"AJ4-PK-Oid.title" = "显示音量降低";
+
+/* Class = "NSButtonCell"; title = "显示锁屏"; ObjectID = "OGc-Cn-VS5"; */
+"OGc-Cn-VS5.title" = "显示锁屏";
+
+/* Class = "NSButtonCell"; title = "显示亮度提高"; ObjectID = "S9t-Wy-9IV"; */
+"S9t-Wy-9IV.title" = "显示亮度提高";
+
+/* Class = "NSButtonCell"; title = "显示音量提高"; ObjectID = "Zze-FZ-vdx"; */
+"Zze-FZ-vdx.title" = "显示音量提高";
+
+/* Class = "NSButtonCell"; title = "显示睡眠"; ObjectID = "c9g-yA-umL"; */
+"c9g-yA-umL.title" = "显示睡眠";
+
+/* Class = "NSButtonCell"; title = "显示亮度降低"; ObjectID = "zlO-nx-U7P"; */
+"zlO-nx-U7P.title" = "显示亮度降低";
+
+/* Class = "NSButtonCell"; title = "显示亮度"; ObjectID = "zt4-Gu-yzF"; */
+"zt4-Gu-yzF.title" = "显示亮度";

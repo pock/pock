@@ -1,0 +1,27 @@
+
+/* Class = "NSButtonCell"; title = "Show Toggle Mute Item"; ObjectID = "0cO-cp-q0P"; */
+"0cO-cp-q0P.title" = "Mostra pulsante muto";
+
+/* Class = "NSButtonCell"; title = "Show Volume items"; ObjectID = "A1L-D1-Jwj"; */
+"A1L-D1-Jwj.title" = "Mostra pulsanti volume";
+
+/* Class = "NSButtonCell"; title = "Show Volume Up Item"; ObjectID = "AJ4-PK-Oid"; */
+"AJ4-PK-Oid.title" = "Mostra pulsante volume su";
+
+/* Class = "NSButtonCell"; title = "Show Lock item"; ObjectID = "OGc-Cn-VS5"; */
+"OGc-Cn-VS5.title" = "Mostra pulsante blocca schermo";
+
+/* Class = "NSButtonCell"; title = "Show Brightness Down item"; ObjectID = "S9t-Wy-9IV"; */
+"S9t-Wy-9IV.title" = "Mostra pulsante luminosità giù";
+
+/* Class = "NSButtonCell"; title = "Show Volume Down Item"; ObjectID = "Zze-FZ-vdx"; */
+"Zze-FZ-vdx.title" = "Mostra pulsante volume giù";
+
+/* Class = "NSButtonCell"; title = "Show Sleep item"; ObjectID = "c9g-yA-umL"; */
+"c9g-yA-umL.title" = "Mostra pulsante sospendi";
+
+/* Class = "NSButtonCell"; title = "Show Brightness Up Item"; ObjectID = "zlO-nx-U7P"; */
+"zlO-nx-U7P.title" = "Mostra pulsante luminosità su";
+
+/* Class = "NSButtonCell"; title = "Show Brightness items"; ObjectID = "zt4-Gu-yzF"; */
+"zt4-Gu-yzF.title" = "Mostra pulsanti luminosità schermo";

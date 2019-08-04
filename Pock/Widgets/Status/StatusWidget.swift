@@ -11,7 +11,7 @@ import Foundation
 class StatusWidget: PKWidget {
     
     var identifier: NSTouchBarItem.Identifier = NSTouchBarItem.Identifier.status
-    var customizationLabel: String            = "Status"
+    var customizationLabel: String            = "Status".localized
     var view: NSView!
     
     /// Core
@@ -26,7 +26,7 @@ class StatusWidget: PKWidget {
     private var stackView: NSStackView!
     
     required init() {
-        self.customizationLabel = "Status"
+        self.customizationLabel = "Status".localized
         self.initStackView()
         self.loadStatusElements()
         self.view = stackView

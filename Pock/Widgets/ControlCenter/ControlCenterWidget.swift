@@ -55,7 +55,7 @@ class PressableSegmentedControl: NSSegmentedControl {
 class ControlCenterWidget: PKWidget {
     
     var identifier: NSTouchBarItem.Identifier = NSTouchBarItem.Identifier.controlCenter
-    var customizationLabel: String            = "Control Center"
+    var customizationLabel: String            = "Control Center".localized
     var view: NSView!
     
     /// Core
