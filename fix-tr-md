@@ -1,8 +1,8 @@
 
 <p align="center"><img src="https://pock.dev/assets/img/brand/web-icon-black.png" width="96"/></p>
-<p align="center">MacOS Dock’u Touch Bar üzerinde gösterir. Ücretsiz ve açık kaynak proje!</p>
+<p align="center">Dock’u Touch Bar üzerinde gösterir. Ücretsiz ve açık kaynak proje!</p>
 
-<p align="center">Pock, yeni güncelleme ile artık karşınızda! Birçok performans geliştirmesi ve Touch Bar üzerine minimalist widget eklentisi ile birlikte gelir!
+<p align="center">Pock, yeni güncelleme ile artık yayında! Birçok performans geliştirmesi ve Touch Bar üzerine minimalist widget eklentisi ile birlikte gelir!
 </p>
 <p align="center">
 <img width="800" src="https://pock.dev/assets/img/preview/pock_widgets.png"/>
@@ -13,14 +13,14 @@
 ## Teşekkürler!
 
 Bu projeye destek olmak istiyorsanız [buraya tıklayabilirsiniz](https://paypal.me/pigigaldi)!
-Pock, her zaman özgür yazılım olarak sunulacak!
+Pock, daima özgür yazılım olarak sunulacak!
 
 
 
 ## Nasıl Etkinleştirilir?
 
 1. Pock’u Uygulamalar klasörüne taşıyın
-2. Pock’u açın
+2. Pock’u başlatın
 3. Touch Bar üzerinde Pock’u görmüyorsanız, Sistem Tercihleri’nden `Klavye` paneline gidin ve Touch Bar’da gösterilenler seçeneğinden "Uygulama Denetimlerini" seçin
 
 
@@ -31,7 +31,7 @@ Pock, her zaman özgür yazılım olarak sunulacak!
 
 ##### Dock widget
 
-Dock’u TouchBar'ın içine konumlandırın. Tamamen işlevsel bir bildirim pinleme desteği sunuluyor ve böylece herhangi bir uygulama bildirimini kaçırmayacaksanız! Widget ayarlarında, diğer tercihler ile birlikte daha fazla özellik yapılandırabilirsiniz.
+Dock’u TouchBar'ın içine konumlandırın. Tamamen işlevsel bir bildirim pinleme desteği sunuluyor ve böylece herhangi bir uygulama bildirimini kaçırmayacaksınız! Widget ayarlarında, diğer tercihler ile birlikte daha fazla özellik yapılandırabilirsiniz.
 *Uygulamaların tam ekran boyutunun tadını çıkarın!*
 
 <div align="left">
@@ -109,7 +109,7 @@ Sosyal medya üzerinden #pock hashtag’ini takip ederek tüm güncellemelerden 
 
 ## Özelleştir
 
-TouchBar'daki widget konumunu **Customize**(özelleştir) menü öğesinden özelleştirebilirsiniz.
+Touch Bar'daki widget konumunu **Customize**(özelleştir) menü öğesinden özelleştirebilirsiniz.
 
 <div align="left">
 <img src="https://pock.dev/assets/img/preview/pock_customize.png"/>
