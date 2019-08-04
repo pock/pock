@@ -27,6 +27,6 @@ extern AXError _AXUIElementGetWindow(AXUIElementRef window, CGWindowID *windowID
 - (NSString *)getBadgeCountForItemWithName:(NSString *)name;
 - (NSArray *)getWindowsOfApp:(pid_t)pid;
 - (BOOL)windowIsFrontmost:(CGWindowID)wid forApp:(NSRunningApplication *)app;
-- (void)closeWindowItem:(CGWindowItem *)item;
+- (void)minimizeWindowItem:(CGWindowItem *)item;
 - (void)activateWindowItem:(CGWindowItem *)item in:(NSRunningApplication *)app;
 @end

@@ -78,11 +78,10 @@ extension AppExposeController: NSScrubberFlowLayoutDelegate {
 extension AppExposeController: NSScrubberDelegate {
     func scrubber(_ scrubber: NSScrubber, didSelectItemAt selectedIndex: Int) {
         let item = elements[selectedIndex]
-        let isFrontmost = NSWorkspace.shared.frontmostApplication?.bundleIdentifier == app.bundleIdentifier
-        if isFrontmost && !item.minimized {
-            PockDockHelper.sharedInstance()?.close(item)
-        }else {
+        if item.minimized {
             PockDockHelper.sharedInstance()?.activate(item, in: app)
+        }else {
+            PockDockHelper.sharedInstance()?.minimizeWindowItem(item)
         }
         willClose(nil)
     }

@@ -214,7 +214,7 @@ void SafeCFRelease(CFTypeRef cf) {
     return false;
 }
 
-- (void)closeWindowItem:(CGWindowItem *)item {
+- (void)minimizeWindowItem:(CGWindowItem *)item {
     AXUIElementRef itemRef = [self windowForId:item.wid pid:item.pid];
     if (itemRef) {
         AXUIElementRef buttonRef = [self getValueForKey:kAXMinimizeButtonAttribute in:itemRef];
