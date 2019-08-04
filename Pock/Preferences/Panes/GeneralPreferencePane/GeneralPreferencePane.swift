@@ -35,7 +35,7 @@ final class GeneralPreferencePane: NSViewController, PreferencePane {
     
     /// Preferenceable
     var preferencePaneIdentifier: Identifier = Identifier.general
-    let preferencePaneTitle:      String     = "General"
+    let preferencePaneTitle:      String     = "General".localized
     let toolbarItemIcon:          NSImage    = NSImage(named: NSImage.preferencesGeneralName)!
     
     override var nibName: NSNib.Name? {
@@ -83,17 +83,17 @@ final class GeneralPreferencePane: NSViewController, PreferencePane {
     
     @IBAction private func checkForUpdates(_ sender: NSButton) {
         self.checkForUpdatesButton.isEnabled = false
-        self.checkForUpdatesButton.title     = "Checking..."
+        self.checkForUpdatesButton.title     = "Checking…".localized
         
         self.hasLatestVersion(completion: { [weak self] latestVersion, latestVersionDownloadURL in
             if let latestVersion = latestVersion, let latestVersionDownloadURL = latestVersionDownloadURL {
                 self?.showNewVersionAlert(versionNumber: latestVersion, downloadURL: latestVersionDownloadURL)
             }else {
-                self?.showAlert(title: "Installed version: \(GeneralPreferencePane.appVersion)", message: "Already on latest version")
+                self?.showAlert(title: "Installed version".localized + ": \(GeneralPreferencePane.appVersion)", message: "Already on latest version".localized)
             }
             DispatchQueue.main.async { [weak self] in
                 self?.checkForUpdatesButton.isEnabled = true
-                self?.checkForUpdatesButton.title     = "Check for updates"
+                self?.checkForUpdatesButton.title     = "Check for updates".localized
             }
         })
     }
@@ -101,9 +101,9 @@ final class GeneralPreferencePane: NSViewController, PreferencePane {
 
 extension GeneralPreferencePane {
     func showNewVersionAlert(versionNumber: String, downloadURL: URL) {
-        self.showAlert(title:      "New version available!",
-                       message:    "Do you want to download version \"\(versionNumber)\" now?",
-            buttons:    ["Download", "Later"],
+        self.showAlert(title:      "New version available!".localized,
+                       message:    "Do you want to download version".localized + " \"\(versionNumber)\" " + "now?".localized,
+            buttons:    ["Download".localized, "Later".localized],
             completion: { modalResponse in if modalResponse == .alertFirstButtonReturn { NSWorkspace.shared.open(downloadURL) }
         })
     }

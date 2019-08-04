@@ -1,0 +1,15 @@
+
+/* Class = "NSButtonCell"; title = "显示电池"; ObjectID = "OGc-Cn-VS5"; */
+"OGc-Cn-VS5.title" = "显示电池";
+
+/* Class = "NSButtonCell"; title = "显示电池图标"; ObjectID = "S9t-Wy-9IV"; */
+"S9t-Wy-9IV.title" = "显示电池图标";
+
+/* Class = "NSButtonCell"; title = "显示时间"; ObjectID = "Zze-FZ-vdx"; */
+"Zze-FZ-vdx.title" = "显示时间";
+
+/* Class = "NSButtonCell"; title = "显示Wifi"; ObjectID = "c9g-yA-umL"; */
+"c9g-yA-umL.title" = "显示Wifi";
+
+/* Class = "NSButtonCell"; title = "显示电池百分比"; ObjectID = "zlO-nx-U7P"; */
+"zlO-nx-U7P.title" = "显示电池百分比";

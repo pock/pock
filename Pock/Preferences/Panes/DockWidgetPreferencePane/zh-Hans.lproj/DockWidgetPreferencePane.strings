@@ -1,0 +1,33 @@
+
+/* Class = "NSButtonCell"; title = "隐藏持久性项目"; ObjectID = "1qS-MJ-ICj"; */
+"1qS-MJ-ICj.title" = "隐藏持久性项目";
+
+/* Class = "NSTextFieldCell"; title = "通知徽章刷新率："; ObjectID = "ICj-g3-VIO"; */
+"ICj-g3-VIO.title" = "通知角标刷新率：";
+
+/* Class = "NSButtonCell"; title = "隐藏访达"; ObjectID = "PDB-GT-mUQ"; */
+"PDB-GT-mUQ.title" = "隐藏访达";
+
+/* Class = "NSMenuItem"; title = "Item 2"; ObjectID = "UnW-lx-nml"; */
+"UnW-lx-nml.title" = "Item 2";
+
+/* Class = "NSMenuItem"; title = "Item 3"; ObjectID = "Yra-28-ozo"; */
+"Yra-28-ozo.title" = "Item 3";
+
+/* Class = "NSTextFieldCell"; placeholderString = "8pt"; ObjectID = "aXg-gA-VhE"; */
+"aXg-gA-VhE.placeholderString" = "8pt";
+
+/* Class = "NSButtonCell"; title = "在Pock中打开访达和目录"; ObjectID = "ckK-v4-yvT"; */
+"ckK-v4-yvT.title" = "在Pock中打开访达和目录";
+
+/* Class = "NSMenuItem"; title = "Item 1"; ObjectID = "fzh-TY-1IX"; */
+"fzh-TY-1IX.title" = "Item 1";
+
+/* Class = "NSTextFieldCell"; title = "部件间距"; ObjectID = "qJw-Vc-w0w"; */
+"qJw-Vc-w0w.title" = "部件间距";
+
+/* Class = "NSButtonCell"; title = "仅显示正在运行的应用"; ObjectID = "qS6-8X-eGs"; */
+"qS6-8X-eGs.title" = "仅显示正在运行的应用";
+
+/* Class = "NSButtonCell"; title = "隐藏废纸篓"; ObjectID = "vFP-uA-jfm"; */
+"vFP-uA-jfm.title" = "隐藏废纸篓";
