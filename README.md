@@ -125,7 +125,7 @@ You can customize the widget position in TouchBar from the **Customize** menu it
 * Brightness resets
 * Add system like slider for brightness and volume and also two/three finger scroll [Requires rewriting PKSlideableController]
 * Music widget doesn’t handle multiple sources well enough
-* Auto open in window if app is only open in top bar
+* Auto open in window if app is only open in top bar [Done]
 * Add custom buttons
 
 

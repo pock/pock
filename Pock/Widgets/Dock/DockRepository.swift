@@ -369,19 +369,21 @@ extension DockRepository {
             return
         }
         let apps = NSRunningApplication.runningApplications(withBundleIdentifier: identifier)
-        guard apps.count > 0 else {
+        if (apps.count == 0 || apps.first?.isActive == false) {
+            print ("Not Active")
             launch(bundleIdentifier: _item.bundleIdentifier ?? _item.path?.absoluteString, completion: completion)
-            return
-        }
-        if apps.count > 1 {
-            var result = false
-            for app in apps {
-                result = activate(app: app)
-                if result == false { break }
+        } else {
+            // When exactly is the count greater than 1
+            if apps.count > 1 {
+                var result = false
+                for app in apps {
+                    result = activate(app: app)
+                    if result == false { break }
+                }
+                completion(result)
+            }else {
+                completion(activate(app: apps.first))
             }
-            completion(result)
-        }else {
-            completion(activate(app: apps.first))
         }
     }
     

@@ -23,7 +23,7 @@
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
-		<string>***REMOVED***</string>
+		<string></string>
 		<key>Kits</key>
 		<array>
 			<dict>
