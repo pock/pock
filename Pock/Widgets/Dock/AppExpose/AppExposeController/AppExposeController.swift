@@ -51,7 +51,7 @@ extension AppExposeController {
         self.app = app
     }
     private func setAppName(name: String?) {
-        self.appName.stringValue = name ?? "Unknown"
+        self.appName.stringValue = name ?? "Unknown".localized
     }
 }
 

@@ -59,13 +59,13 @@
 		342D840B2278D5CF000D79DA /* DockItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83DC2278D5CF000D79DA /* DockItemView.swift */; };
 		342D840C2278D5CF000D79DA /* DockWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83DD2278D5CF000D79DA /* DockWidget.swift */; };
 		342D840D2278D5CF000D79DA /* FileMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83DE2278D5CF000D79DA /* FileMonitor.swift */; };
+		347D7EE7230874A800BA9200 /* ControlCenterWidgetPreferencePane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9686B4F922D2216400C7A08C /* ControlCenterWidgetPreferencePane.xib */; };
 		347F335E22D0D5F600FA9805 /* login.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 347F335D22D0D5F600FA9805 /* login.framework */; };
 		347F336022D0D68400FA9805 /* CCLockItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347F335F22D0D68400FA9805 /* CCLockItem.swift */; };
 		347F336722D0DB9200FA9805 /* SystemHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 347F336622D0DB9100FA9805 /* SystemHelper.m */; };
 		347F336922D0DBD600FA9805 /* CCSleepItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347F336822D0DBD600FA9805 /* CCSleepItem.swift */; };
 		349431ED22197485008622B1 /* MediaRemote.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 349431EC22197484008622B1 /* MediaRemote.framework */; };
 		349F93E8228865C400B8CFBE /* ISSoundAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 349F93E7228865C400B8CFBE /* ISSoundAdditions.m */; };
-		34A8060A22F6BBC600621235 /* ControlCenterWidgetPreferencePane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9686B4F922D2216400C7A08C /* ControlCenterWidgetPreferencePane.xib */; };
 		34BC3ECC2210B2EC00C1DD3C /* DFRFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34BC3ECB2210B2EC00C1DD3C /* DFRFoundation.framework */; };
 		34E644F4227CB6CE003D0450 /* KeySender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E644F3227CB6CE003D0450 /* KeySender.swift */; };
 		34E644F7227D783E003D0450 /* KeySenderHelper.c in Sources */ = {isa = PBXBuildFile; fileRef = 34E644F6227D783E003D0450 /* KeySenderHelper.c */; };
@@ -658,10 +658,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				962E0A5522CF1D1D00567E20 /* DockFolderController.xib in Resources */,
+				347D7EE7230874A800BA9200 /* ControlCenterWidgetPreferencePane.xib in Resources */,
 				342D83DF2278D5CF000D79DA /* MainWindow.xib in Resources */,
 				3418DA022288318A00E11E37 /* PKSlideableController.xib in Resources */,
 				3407F9EF22D1C9970072E742 /* AppExposeController.xib in Resources */,
-				3407F9DB22D0E75E0072E742 /* ControlCenterWidgetPreferencePane.xib in Resources */,
 				9667AAF222CF192D00C22410 /* GeneralPreferencePane.xib in Resources */,
 				96FE269F22D0C3810071645C /* Localizable.strings in Resources */,
 				3406434D227F3FFF00981372 /* PockMainController.xib in Resources */,
