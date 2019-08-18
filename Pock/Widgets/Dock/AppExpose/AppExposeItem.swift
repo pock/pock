@@ -16,7 +16,7 @@ class AppExposeItemView: NSScrubberItemView {
     /// UI
     private var contentView:    NSView!
     private var preview:        NSImageView!
-    private var nameLabel:      NSTextField!
+    private var nameLabel:      ScrollingTextView!
     
     /// Load icon view
     private func loadPreviewView() {
@@ -25,19 +25,19 @@ class AppExposeItemView: NSScrubberItemView {
         self.preview.wantsLayer = true
         self.contentView.addSubview(self.preview)
         self.preview.snp.makeConstraints({ m in
-            m.top.left.right.bottom.equalToSuperview()
+            m.top.left.right.equalToSuperview()
         })
     }
     
     /// Load name label
     private func loadNameLabel() {
-        nameLabel = NSTextField(labelWithString: "")
+        nameLabel = ScrollingTextView(frame: .zero)
         nameLabel.autoresizingMask = .none
-        nameLabel.alignment = .center
         nameLabel.font = NSFont.systemFont(ofSize: 6)
         contentView.addSubview(nameLabel)
         nameLabel.snp.makeConstraints({ m in
-            m.left.bottom.right.equalToSuperview()
+            m.left.right.equalToSuperview().inset(4)
+            m.bottom.equalToSuperview()
             m.top.equalTo(preview.snp.bottom)
             m.height.equalTo(6)
         })
@@ -48,7 +48,7 @@ class AppExposeItemView: NSScrubberItemView {
         super.init(frame: NSRect(origin: .zero, size: Constants.dockItemSize))
         self.contentView = NSView(frame: .zero)
         self.loadPreviewView()
-        //self.loadNameLabel()
+        self.loadNameLabel()
         self.addSubview(self.contentView)
         self.contentView.snp.makeConstraints({ m in
             m.edges.equalToSuperview()
@@ -76,7 +76,7 @@ class AppExposeItemView: NSScrubberItemView {
     }
     
     public func set(name: String?) {
-        //nameLabel.stringValue = name?.truncate(length: 20) ?? ""
+        nameLabel.setup(string: name ?? "")
     }
     
     public func set(minimized: Bool) {

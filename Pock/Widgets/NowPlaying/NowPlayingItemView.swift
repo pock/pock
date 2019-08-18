@@ -29,6 +29,12 @@ class NowPlayingItemView: PKDetailView {
         }
     }
     
+    override func didLoad() {
+        titleView.numberOfLoop    = 3
+        subtitleView.numberOfLoop = 1
+        super.didLoad()
+    }
+    
     private func updateContent() {
         
         var appBundleIdentifier: String = self.nowPLayingItem?.appBundleIdentifier ?? ""
@@ -45,10 +51,28 @@ class NowPlayingItemView: PKDetailView {
         let path = NSWorkspace.shared.absolutePathForApplication(withBundleIdentifier: appBundleIdentifier)
         
         DispatchQueue.main.async { [weak self] in
-            self?.imageView.image          = DockRepository.getIcon(forBundleIdentifier: appBundleIdentifier, orPath: path)
-            self?.titleView.stringValue    = self?.nowPLayingItem?.title?.truncate(length: 20)  ?? "No Playback".localized
-            self?.subtitleView.stringValue = self?.nowPLayingItem?.artist?.truncate(length: 20) ?? "Unknown".localized
+            self?.imageView.image = DockRepository.getIcon(forBundleIdentifier: appBundleIdentifier, orPath: path)
+            
+            let isPlaying = self?.nowPLayingItem?.isPlaying ?? false
+            let title     = self?.nowPLayingItem?.title     ?? ""
+            let artist    = self?.nowPLayingItem?.artist    ?? ""
+            
+            let titleWidth    = (title  as NSString).size(withAttributes: self?.titleView.textFontAttributes    ?? [:]).width
+            let subtitleWidth = (artist as NSString).size(withAttributes: self?.subtitleView.textFontAttributes ?? [:]).width
+            self?.maxWidth = min(80, max(titleWidth, subtitleWidth))
+            
+            self?.titleView.setup(string:    title)
+            self?.subtitleView.setup(string: artist)
+            
+            if isPlaying {
+                let speedValue: Double = (self?.maxWidth ?? 0 >= 80) && isPlaying ? 4 : 0
+                self?.titleView.speed = speedValue
+                self?.subtitleView.speed = speedValue
+            }
+            
             self?.updateForNowPlayingState()
+            self?.updateConstraint()
+            self?.layoutSubtreeIfNeeded()
         }
     }
     
