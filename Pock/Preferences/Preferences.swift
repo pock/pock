@@ -10,7 +10,7 @@ import Foundation
 import Preferences
 import Defaults
 
-let isProd: Bool = true
+let isProd: Bool = false
 
 extension PreferencePane.Identifier {
     static let general                 = Identifier("general")

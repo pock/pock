@@ -29,6 +29,12 @@ class NowPlayingItemView: PKDetailView {
         }
     }
     
+    override func didLoad() {
+        titleView.numberOfLoop    = 3
+        subtitleView.numberOfLoop = 1
+        super.didLoad()
+    }
+    
     private func updateContent() {
         
         var appBundleIdentifier: String = self.nowPLayingItem?.appBundleIdentifier ?? ""
@@ -39,16 +45,37 @@ class NowPlayingItemView: PKDetailView {
         case "com.spotify.client", "com.apple.iTunes", "com.apple.Safari", "com.netease.163music", "com.tencent.QQMusicMac", "com.apple.Music":
             break
         default:
-            appBundleIdentifier = "com.pigigaldi.pock"
+            if #available(macOS 13, *) {
+                appBundleIdentifier = "com.apple.Music"
+            }else {
+                appBundleIdentifier = "com.apple.iTunes"
+            }
         }
         
         let path = NSWorkspace.shared.absolutePathForApplication(withBundleIdentifier: appBundleIdentifier)
         
         DispatchQueue.main.async { [weak self] in
-            self?.imageView.image          = DockRepository.getIcon(forBundleIdentifier: appBundleIdentifier, orPath: path)
-            self?.titleView.stringValue    = self?.nowPLayingItem?.title?.truncate(length: 20)  ?? "No Playback".localized
-            self?.subtitleView.stringValue = self?.nowPLayingItem?.artist?.truncate(length: 20) ?? "Unknown".localized
+            self?.imageView.image = DockRepository.getIcon(forBundleIdentifier: appBundleIdentifier, orPath: path)
+            
+            let isPlaying = self?.nowPLayingItem?.isPlaying ?? false
+            let title     = self?.nowPLayingItem?.title     ?? ""
+            let artist    = self?.nowPLayingItem?.artist    ?? ""
+            
+            self?.shouldHideIcon = title.count < 1 && artist.count < 1
+            
+            let titleWidth    = (title  as NSString).size(withAttributes: self?.titleView.textFontAttributes    ?? [:]).width
+            let subtitleWidth = (artist as NSString).size(withAttributes: self?.subtitleView.textFontAttributes ?? [:]).width
+            self?.maxWidth = min(80, max(max(titleWidth, subtitleWidth), 1))
+            
+            self?.titleView.setup(string:    title)
+            self?.subtitleView.setup(string: artist)
+            
+            self?.titleView.speed    = titleWidth    > 80 && isPlaying ? 4 : 0
+            self?.subtitleView.speed = subtitleWidth > 80 && isPlaying ? 4 : 0
+            
             self?.updateForNowPlayingState()
+            self?.updateConstraint()
+            self?.layoutSubtreeIfNeeded()
         }
     }
     

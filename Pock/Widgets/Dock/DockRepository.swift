@@ -278,10 +278,12 @@ class DockRepository {
     /// Load notification badges
     private func updateNotificationBadges() {
         guard shouldShowNotificationBadge else { return }
-        DispatchQueue.global(qos: .utility).async { [weak self] in
+        DispatchQueue.main.async { [weak self] in
             guard let s = self else { return }
             for item in s.dockItems {
-                item.badge = PockDockHelper.sharedInstance()?.getBadgeCountForItem(withName: item.name)
+                var badge: NSString? = PockDockHelper.sharedInstance()?.getBadgeCountForItem(withName: item.name) as NSString?
+                item.badge = badge?.copy() as? String
+                badge = nil
             }
             s.delegate?.didUpdateBadge(for: s.dockItems)
         }
@@ -329,15 +331,15 @@ extension DockRepository {
     /// Launch app or open file/directory from bundle identifier
     public func launch(bundleIdentifier: String?, completion: (Bool) -> ()) {
         /// Check if bundle identifier is valid
-        guard bundleIdentifier != nil else {
+        guard let bundleIdentifier = bundleIdentifier else {
             completion(false)
             return
         }
         var returnable: Bool = false
         /// Check if file path.
-        if bundleIdentifier!.contains("file://") {
+        if bundleIdentifier.contains("file://") {
             /// Is path, continue as path.
-            let path:        String   = bundleIdentifier!
+            let path:        String   = bundleIdentifier
             var isDirectory: ObjCBool = true
             let url:         URL      = URL(string: path)!
             FileManager.default.fileExists(atPath: path, isDirectory: &isDirectory)
@@ -356,7 +358,7 @@ extension DockRepository {
                 returnable = true
             }else {
                 /// Launch app
-                returnable = NSWorkspace.shared.launchApplication(withBundleIdentifier: bundleIdentifier!, options: [NSWorkspace.LaunchOptions.default], additionalEventParamDescriptor: nil, launchIdentifier: nil)
+                returnable = NSWorkspace.shared.launchApplication(withBundleIdentifier: bundleIdentifier, options: [NSWorkspace.LaunchOptions.default], additionalEventParamDescriptor: nil, launchIdentifier: nil)
             }
         }
         /// Return status
@@ -388,26 +390,47 @@ extension DockRepository {
     @discardableResult
     private func activate(app: NSRunningApplication?) -> Bool {
         guard let app = app else { return false }
-        // TODO: Create preference option for this
-        let shouldOpenAppExpose: Bool = false
-        let windowsCount = PockDockHelper.sharedInstance()?.windowsCount(forApp: app) ?? 0
-        if windowsCount > 1 && shouldOpenAppExpose {
-            activateExpose(app: app)
-            return true
-        }else if windowsCount > 0 {
-            PockDockHelper.sharedInstance()?.activateWindow(atPosition: Int32(windowsCount - UInt(1)), forApp: app)
+        let _windows = PockDockHelper.sharedInstance()?.getWindowsOfApp(app.processIdentifier) as NSArray?
+        
+        if let windows = _windows as? [AppExposeItem], activateExpose(with: windows, app: app) {
             return true
         }else {
             if !app.unhide() {
-               return app.activate(options: .activateIgnoringOtherApps)
+                if !NSWorkspace.shared.launchApplication(withBundleIdentifier: app.bundleIdentifier!, options: .default, additionalEventParamDescriptor: nil, launchIdentifier: nil) {
+                    return app.activate(options: .activateIgnoringOtherApps)
+                }
             }
             return true
         }
     }
     
-    private func activateExpose(app: NSRunningApplication) {
-        print("[Pock]: Exposé requested for: \(app.localizedName ?? "Unknown")")
-        PockDockHelper.sharedInstance()?.activateWindow(atPosition: 0, forApp: app)
+    private func activateExpose(with windows: [AppExposeItem], app: NSRunningApplication) -> Bool {
+        
+        // TODO: Create preference option for this
+        let shouldAlwaysOpenAppExpose: Bool = true
+        
+        if !isProd { print("[Pock]: Exposé requested for: \(app.localizedName ?? "Unknown")") }
+        guard windows.count > 0 else {
+            if !isProd { print("[Pock]: Can't load exposé items for: \(app.localizedName ?? "Unknown")") }
+            return false
+        }
+        guard shouldAlwaysOpenAppExpose || windows.count > 1 else {
+            if !isProd { print("[Pock]: Abort exposé. Reason: not needed for single element") }
+            PockDockHelper.sharedInstance()?.activate(windows.first, in: app)
+            return false
+        }
+        if !isProd { print("[Pock]: Will open exposé for: \(app.localizedName ?? "Unknown")") }
+        openExpose(with: windows, for: app)
+        return true
+    }
+}
+
+extension DockRepository {
+    public func openExpose(with windows: [AppExposeItem], for app: NSRunningApplication) {
+        let controller: AppExposeController = AppExposeController.load()
+        controller.set(app: app)
+        controller.set(elements: windows)
+        AppDelegate.default.navController?.push(controller)
     }
 }
 

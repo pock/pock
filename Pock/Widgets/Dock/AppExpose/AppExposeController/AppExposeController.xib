@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaDFRPlugin" version="14490.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <capability name="the Touch Bar" minToolsVersion="8.1" minSystemVersion="10.12.2" requiredIntegratedClassName="NSTouchBar"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="AppExposeController" customModule="Pock" customModuleProvider="target">
+            <connections>
+                <outlet property="appName" destination="CkE-us-uZe" id="eDN-SE-RIw"/>
+                <outlet property="scrubber" destination="6Ry-8M-2Bw" id="e7O-pb-Qwx"/>
+                <outlet property="touchBar" destination="0ER-a6-6K6" id="IY0-kY-SZS"/>
+                <outlet property="windowsCount" destination="ity-zH-1YM" id="Ras-eM-fL3"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <touchBar id="0ER-a6-6K6">
+            <touchBarItems>
+                <touchBarItem id="7fd-rS-lAm">
+                    <viewController key="viewController" id="72O-g3-prg">
+                        <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pSB-f1-hKM">
+                            <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="28" id="El8-WZ-8aK"/>
+                                <constraint firstAttribute="width" constant="28" id="fw8-jm-6zd"/>
+                            </constraints>
+                            <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="CloseButton" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="mrG-6w-xpg">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="willClose:" target="-2" id="3IE-U1-hJR"/>
+                            </connections>
+                        </button>
+                    </viewController>
+                    <size key="designTimeSize" width="28" height="28"/>
+                </touchBarItem>
+                <touchBarItem id="Vwf-GI-9Hu">
+                    <viewController key="viewController" id="w1a-U7-jfK">
+                        <view key="view" translatesAutoresizingMaskIntoConstraints="NO" id="cya-TG-bzz">
+                            <rect key="frame" x="0.0" y="0.0" width="60" height="30"/>
+                            <subviews>
+                                <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zig-u0-MQR">
+                                    <rect key="frame" x="2" y="2" width="56" height="26"/>
+                                    <subviews>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CkE-us-uZe">
+                                            <rect key="frame" x="-2" y="13" width="31" height="13"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="Php-Rl-UIf">
+                                                <font key="font" metaFont="label"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4kK-IY-f0c">
+                                            <rect key="frame" x="0.0" y="0.0" width="27" height="13"/>
+                                            <subviews>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ity-zH-1YM">
+                                                    <rect key="frame" x="-2" y="0.0" width="31" height="13"/>
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="JrJ-Ma-3oA">
+                                                        <font key="font" metaFont="label"/>
+                                                        <color key="textColor" white="0.54512737793465182" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                            </subviews>
+                                            <visibilityPriorities>
+                                                <integer value="1000"/>
+                                            </visibilityPriorities>
+                                            <customSpacing>
+                                                <real value="3.4028234663852886e+38"/>
+                                            </customSpacing>
+                                        </stackView>
+                                    </subviews>
+                                    <visibilityPriorities>
+                                        <integer value="1000"/>
+                                        <integer value="1000"/>
+                                    </visibilityPriorities>
+                                    <customSpacing>
+                                        <real value="3.4028234663852886e+38"/>
+                                        <real value="3.4028234663852886e+38"/>
+                                    </customSpacing>
+                                </stackView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="Zig-u0-MQR" firstAttribute="top" secondItem="cya-TG-bzz" secondAttribute="top" constant="2" id="7Vw-mR-5ZL"/>
+                                <constraint firstAttribute="trailing" secondItem="Zig-u0-MQR" secondAttribute="trailing" constant="2" id="BV9-jj-13B"/>
+                                <constraint firstAttribute="bottom" secondItem="Zig-u0-MQR" secondAttribute="bottom" constant="2" id="KHf-Ou-Gau"/>
+                                <constraint firstItem="Zig-u0-MQR" firstAttribute="leading" secondItem="cya-TG-bzz" secondAttribute="leading" constant="2" id="ofu-Ha-bGd"/>
+                            </constraints>
+                        </view>
+                    </viewController>
+                    <size key="designTimeSize" width="60" height="30"/>
+                </touchBarItem>
+                <touchBarSpacerItem identifier="NSTouchBarItemIdentifierFlexibleSpace" id="jPh-ro-Y7i"/>
+                <touchBarItem id="oxw-Qn-rMD">
+                    <viewController key="viewController" id="HqF-wF-zsk">
+                        <scrubber key="view" mode="1" itemAlignment="3" showsAdditionalContentIndicators="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Ry-8M-2Bw">
+                            <rect key="frame" x="0.0" y="0.0" width="401" height="30"/>
+                            <scrubberFlowLayout key="scrubberLayout" itemSpacing="2">
+                                <size key="itemSize" width="80" height="30"/>
+                            </scrubberFlowLayout>
+                            <connections>
+                                <outlet property="dataSource" destination="-2" id="7cT-ot-nT3"/>
+                                <outlet property="delegate" destination="-2" id="OSc-ZG-bgR"/>
+                            </connections>
+                        </scrubber>
+                    </viewController>
+                    <size key="designTimeSize" width="401" height="30"/>
+                </touchBarItem>
+                <touchBarSpacerItem identifier="NSTouchBarItemIdentifierFlexibleSpace" id="YbU-T5-i8a"/>
+            </touchBarItems>
+            <connections>
+                <outlet property="delegate" destination="-2" id="fI8-Ak-LlS"/>
+            </connections>
+            <point key="canvasLocation" x="138.5" y="9"/>
+        </touchBar>
+    </objects>
+    <resources>
+        <image name="CloseButton" width="64" height="64"/>
+    </resources>
+</document>

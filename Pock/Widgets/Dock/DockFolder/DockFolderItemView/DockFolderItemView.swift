@@ -14,7 +14,7 @@ class DockFolderItemView: NSScrubberItemView {
     private var contentView:    NSView!
     private var frontmostView:  NSView!
     private var iconView:       NSImageView!
-    private var nameLabel:      NSTextField!
+    private var nameLabel:      ScrollingTextView!
     private var detailLabel:    NSTextField!
     
     /// Load frontmost
@@ -45,9 +45,9 @@ class DockFolderItemView: NSScrubberItemView {
     
     /// Load name label
     private func loadNameLabel() {
-        nameLabel = NSTextField(labelWithString: "")
+        nameLabel = ScrollingTextView(frame: .zero)
+        nameLabel.numberOfLoop     = 1
         nameLabel.autoresizingMask = .none
-        nameLabel.alignment = .left
         nameLabel.font = NSFont.systemFont(ofSize: 9)
         contentView.addSubview(nameLabel)
         nameLabel.snp.makeConstraints({ m in
@@ -117,7 +117,8 @@ class DockFolderItemView: NSScrubberItemView {
     }
     
     public func set(name: String?) {
-        nameLabel.stringValue = name?.truncate(length: 20) ?? ""
+        nameLabel.speed = (name?.count ?? 0) <= 23 ? 0 : 4
+        nameLabel.setup(string: name ?? "")
     }
     
     public func set(detail: String?) {

@@ -6,7 +6,7 @@ target 'Pock' do
   use_frameworks!
 
   # PockKit
-  pod 'PockKit'
+  pod 'PockKit', :path => '../Pod/PockKit/'
   
   # Pods for Pock
   pod 'Fabric'

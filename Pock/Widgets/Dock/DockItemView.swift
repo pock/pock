@@ -148,15 +148,17 @@ extension DockItemView {
         bounce.byValue               = NSNumber(floatLiteral: 10)
         bounce.duration              = 0.3
         bounce.autoreverses          = true
-        bounce.repeatCount           = Float.infinity
+        bounce.repeatCount           = 10
         bounce.timingFunction        = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
         let frame = self.iconView.layer?.frame
         self.iconView.layer?.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         self.iconView.layer?.frame = frame ?? .zero
         self.iconView.layer?.add(bounce, forKey: DockItemView.kBounceAnimationKey)
+        self.badgeView?.layer?.add(bounce, forKey: DockItemView.kBounceAnimationKey)
     }
     func stopBounceAnimation() {
         self.iconView.layer?.removeAnimation(forKey: DockItemView.kBounceAnimationKey)
+        self.badgeView?.layer?.removeAnimation(forKey: DockItemView.kBounceAnimationKey)
         self.isAnimating = false
     }
 }
