@@ -18,6 +18,7 @@ class DockWidgetPreferencePane: NSViewController, PreferencePane {
     @IBOutlet weak var hideTrashCheckbox:                  NSButton!
     @IBOutlet weak var hidePersistentItemsCheckbox:        NSButton!
     @IBOutlet weak var openFinderInsidePockCheckbox:       NSButton!
+    @IBOutlet weak var alwaysOpenAppExposeCheckbox:        NSButton!
     @IBOutlet weak var itemSpacingTextField:               NSTextField!
     
     /// Preferenceable
@@ -63,6 +64,7 @@ class DockWidgetPreferencePane: NSViewController, PreferencePane {
         self.hideTrashCheckbox.state            = defaults[.hideTrash]            ? .on : .off
         self.hidePersistentItemsCheckbox.state  = defaults[.hidePersistentItems]  ? .on : .off
         self.openFinderInsidePockCheckbox.state = defaults[.openFinderInsidePock] ? .on : .off
+        self.alwaysOpenAppExposeCheckbox.state  = defaults[.alwaysOpenAppExpose]  ? .on : .off
         self.hideTrashCheckbox.isEnabled        = !defaults[.hidePersistentItems]
     }
     
@@ -94,6 +96,10 @@ class DockWidgetPreferencePane: NSViewController, PreferencePane {
     
     @IBAction private func didChangeOpenFinderInsidePockValue(button: NSButton) {
         defaults[.openFinderInsidePock] = button.state == .on
+    }
+    
+    @IBAction private func didChangeAlwaysOpenAppExposeValue(button: NSButton) {
+        defaults[.alwaysOpenAppExpose] = button.state == .on
     }
     
 }

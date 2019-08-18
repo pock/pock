@@ -406,15 +406,12 @@ extension DockRepository {
     
     private func activateExpose(with windows: [AppExposeItem], app: NSRunningApplication) -> Bool {
         
-        // TODO: Create preference option for this
-        let shouldAlwaysOpenAppExpose: Bool = true
-        
         if !isProd { print("[Pock]: Exposé requested for: \(app.localizedName ?? "Unknown")") }
         guard windows.count > 0 else {
             if !isProd { print("[Pock]: Can't load exposé items for: \(app.localizedName ?? "Unknown")") }
             return false
         }
-        guard shouldAlwaysOpenAppExpose || windows.count > 1 else {
+        guard defaults[.alwaysOpenAppExpose] || windows.count > 1 else {
             if !isProd { print("[Pock]: Abort exposé. Reason: not needed for single element") }
             PockDockHelper.sharedInstance()?.activate(windows.first, in: app)
             return false
