@@ -45,7 +45,11 @@ class NowPlayingItemView: PKDetailView {
         case "com.spotify.client", "com.apple.iTunes", "com.apple.Safari", "com.netease.163music", "com.tencent.QQMusicMac", "com.apple.Music":
             break
         default:
-            appBundleIdentifier = "com.pigigaldi.pock"
+            if #available(macOS 13, *) {
+                appBundleIdentifier = "com.apple.Music"
+            }else {
+                appBundleIdentifier = "com.apple.iTunes"
+            }
         }
         
         let path = NSWorkspace.shared.absolutePathForApplication(withBundleIdentifier: appBundleIdentifier)
@@ -57,9 +61,11 @@ class NowPlayingItemView: PKDetailView {
             let title     = self?.nowPLayingItem?.title     ?? ""
             let artist    = self?.nowPLayingItem?.artist    ?? ""
             
+            self?.shouldHideIcon = title.count < 1 && artist.count < 1
+            
             let titleWidth    = (title  as NSString).size(withAttributes: self?.titleView.textFontAttributes    ?? [:]).width
             let subtitleWidth = (artist as NSString).size(withAttributes: self?.subtitleView.textFontAttributes ?? [:]).width
-            self?.maxWidth = min(80, max(titleWidth, subtitleWidth))
+            self?.maxWidth = min(80, max(max(titleWidth, subtitleWidth), 1))
             
             self?.titleView.setup(string:    title)
             self?.subtitleView.setup(string: artist)
