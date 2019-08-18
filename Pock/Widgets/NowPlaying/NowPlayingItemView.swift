@@ -64,11 +64,8 @@ class NowPlayingItemView: PKDetailView {
             self?.titleView.setup(string:    title)
             self?.subtitleView.setup(string: artist)
             
-            if isPlaying {
-                let speedValue: Double = (self?.maxWidth ?? 0 >= 80) && isPlaying ? 4 : 0
-                self?.titleView.speed = speedValue
-                self?.subtitleView.speed = speedValue
-            }
+            self?.titleView.speed    = titleWidth    > 80 && isPlaying ? 4 : 0
+            self?.subtitleView.speed = subtitleWidth > 80 && isPlaying ? 4 : 0
             
             self?.updateForNowPlayingState()
             self?.updateConstraint()
