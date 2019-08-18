@@ -410,7 +410,7 @@ extension DockRepository {
         let shouldAlwaysOpenAppExpose: Bool = true
         
         if !isProd { print("[Pock]: Exposé requested for: \(app.localizedName ?? "Unknown")") }
-        guard shouldAlwaysOpenAppExpose || windows.count > 0 else {
+        guard windows.count > 0 else {
             if !isProd { print("[Pock]: Can't load exposé items for: \(app.localizedName ?? "Unknown")") }
             return false
         }
