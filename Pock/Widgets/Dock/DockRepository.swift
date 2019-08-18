@@ -414,7 +414,7 @@ extension DockRepository {
             if !isProd { print("[Pock]: Can't load exposé items for: \(app.localizedName ?? "Unknown")") }
             return false
         }
-        guard windows.count > 1 else {
+        guard shouldAlwaysOpenAppExpose || windows.count > 1 else {
             if !isProd { print("[Pock]: Abort exposé. Reason: not needed for single element") }
             PockDockHelper.sharedInstance()?.activate(windows.first, in: app)
             return false

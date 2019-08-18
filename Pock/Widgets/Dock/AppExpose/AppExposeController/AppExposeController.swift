@@ -80,11 +80,12 @@ extension AppExposeController: NSScrubberFlowLayoutDelegate {
 extension AppExposeController: NSScrubberDelegate {
     func scrubber(_ scrubber: NSScrubber, didSelectItemAt selectedIndex: Int) {
         let item = elements[selectedIndex]
-        if item.minimized {
-            PockDockHelper.sharedInstance()?.activate(item, in: app)
-        }else {
-            PockDockHelper.sharedInstance()?.minimizeWindowItem(item)
-        }
+        PockDockHelper.sharedInstance()?.activate(item, in: app)
+//        if item.minimized {
+//            PockDockHelper.sharedInstance()?.activate(item, in: app)
+//        }else if PockDockHelper.sharedInstance()?.windowIsFrontmost(item.wid, forApp: app) ?? false {
+//            PockDockHelper.sharedInstance()?.minimizeWindowItem(item)
+//        }
         willClose(nil)
     }
 }

@@ -205,7 +205,8 @@ void SafeCFRelease(CFTypeRef cf) {
 - (BOOL)windowIsFrontmost:(CGWindowID)wid forApp:(NSRunningApplication *)app {
     AXUIElementRef itemRef = [self windowForId:wid pid:app.processIdentifier];
     if (itemRef) {
-        CFBooleanRef isMain = [self getValueForKey:kAXFrontmostAttribute in:itemRef];
+        CFBooleanRef isMain = [self getValueForKey:kAXMainAttribute in:itemRef];
+        NSLog(@"Window for app: %@ is focused: %@", app.bundleIdentifier, isMain);
         BOOL returnable = isMain == kCFBooleanTrue;
         SafeCFRelease(isMain);
         SafeCFRelease(itemRef);
@@ -231,7 +232,6 @@ void SafeCFRelease(CFTypeRef cf) {
         AXUIElementPerformAction(itemRef, kAXRaiseAction);
         [app activateWithOptions:NSApplicationActivateIgnoringOtherApps];
         AXUIElementSetAttributeValue(itemRef, kAXMinimizedAttribute, kCFBooleanFalse);
-        AXUIElementSetAttributeValue(itemRef, kAXMainWindowAttribute, kCFBooleanTrue);
         SafeCFRelease(itemRef);
     }
 }
