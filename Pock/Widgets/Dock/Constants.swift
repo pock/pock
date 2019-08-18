@@ -24,5 +24,6 @@ class Constants {
     /// Keys
     static let kDockItemView:       NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier(rawValue: "kDockItemView")
     static let kDockFolterItemView: NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier(rawValue: "kDockFolterItemView")
+    static let kAppExposeItemView:  NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier(rawValue: "kAppExposeItemView")
     static let kBounceAnimation:    String = "kBounceAnimation"
 }

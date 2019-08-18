@@ -9,11 +9,24 @@
 #import <Foundation/Foundation.h>
 #import <AppKit/AppKit.h>
 
+extern AXError _AXUIElementGetWindow(AXUIElementRef window, CGWindowID *windowID);
+
+@interface CGWindowItem : NSObject
+@property(nonatomic) CGWindowID wid;
+@property(nonatomic) pid_t pid;
+@property(nonatomic) NSString *name;
+@property(nonatomic) NSImage *preview;
+@property(nonatomic) BOOL minimized;
+- (CGWindowItem *)initWithID:(CGWindowID)wid pid:(pid_t)pid name:(NSString *)name preview:(NSImage *)preview minimized:(BOOL)minimized;
+@end
+
 @interface PockDockHelper : NSObject
+@property (nonatomic, retain) NSDictionary *dockItems;
+
 + (PockDockHelper *)sharedInstance;
 - (NSString *)getBadgeCountForItemWithName:(NSString *)name;
-- (CFArrayRef)getWindowsOfAppWithPid:(pid_t)pid;
-- (NSUInteger)windowsCountForApp:(NSRunningApplication *)app;
-- (void)closeWindowAtPosition:(int)position forApp:(NSRunningApplication *)app;
-- (void)activateWindowAtPosition:(int)position forApp:(NSRunningApplication *)app;
+- (NSArray *)getWindowsOfApp:(pid_t)pid;
+- (BOOL)windowIsFrontmost:(CGWindowID)wid forApp:(NSRunningApplication *)app;
+- (void)minimizeWindowItem:(CGWindowItem *)item;
+- (void)activateWindowItem:(CGWindowItem *)item in:(NSRunningApplication *)app;
 @end
