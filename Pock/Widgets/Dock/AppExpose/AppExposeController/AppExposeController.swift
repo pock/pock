@@ -61,8 +61,10 @@ extension AppExposeController: NSScrubberDataSource {
     }
     func scrubber(_ scrubber: NSScrubber, viewForItemAt index: Int) -> NSScrubberItemView {
         let item = elements[index]
+        let icon = item.minimized ? app.icon : item.preview
+        let scaling: NSImageScaling = item.minimized ? .scaleProportionallyUpOrDown : .scaleAxesIndependently
         let view = scrubber.makeItem(withIdentifier: Constants.kAppExposeItemView, owner: self) as! AppExposeItemView
-        view.set(preview: item.preview)
+        view.set(preview: icon, imageScaling: scaling)
         view.set(name: item.name)
         view.set(minimized: item.minimized)
         return view

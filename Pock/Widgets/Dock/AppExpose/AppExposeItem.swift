@@ -21,7 +21,6 @@ class AppExposeItemView: NSScrubberItemView {
     /// Load icon view
     private func loadPreviewView() {
         self.preview = NSImageView(frame: .zero)
-        self.preview.imageScaling = .scaleAxesIndependently
         self.preview.wantsLayer = true
         self.contentView.addSubview(self.preview)
         self.preview.snp.makeConstraints({ m in
@@ -32,10 +31,12 @@ class AppExposeItemView: NSScrubberItemView {
     /// Load name label
     private func loadNameLabel() {
         nameLabel = ScrollingTextView(frame: .zero)
+        nameLabel.numberOfLoop = 1
         nameLabel.autoresizingMask = .none
         nameLabel.font = NSFont.systemFont(ofSize: 6)
         contentView.addSubview(nameLabel)
         nameLabel.snp.makeConstraints({ m in
+            m.width.equalTo(72)
             m.left.right.equalToSuperview().inset(4)
             m.bottom.equalToSuperview()
             m.top.equalTo(preview.snp.bottom)
@@ -61,8 +62,8 @@ class AppExposeItemView: NSScrubberItemView {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        self.set(preview:   nil)
-        self.set(name:   nil)
+        self.set(preview: nil, imageScaling: .scaleAxesIndependently)
+        self.set(name:    nil)
     }
     
     override func viewDidChangeBackingProperties() {
@@ -71,16 +72,19 @@ class AppExposeItemView: NSScrubberItemView {
         preview?.layer?.contentsScale      = window?.backingScaleFactor ?? 1
     }
     
-    public func set(preview: NSImage?) {
+    public func set(preview: NSImage?, imageScaling: NSImageScaling) {
+        self.preview.imageScaling = imageScaling
         self.preview.image = preview
     }
     
     public func set(name: String?) {
+        let size = ((name ?? "") as NSString).size(withAttributes: nameLabel.textFontAttributes).width
+        nameLabel.speed = size > 80 ? 4 : 0
         nameLabel.setup(string: name ?? "")
     }
     
     public func set(minimized: Bool) {
-        self.layer?.backgroundColor = minimized ? NSColor.red.cgColor : NSColor.clear.cgColor
+        preview.layer?.opacity = minimized ? 0.4 : 1
     }
     
 }
