@@ -1,0 +1,28 @@
+default_platform(:mac)
+
+platform :mac do
+
+	before_all do
+    	setup_circle_ci
+  		prepare_certificates
+  	end
+
+	lane :prepare_certificates do |options|
+    	sh("base64 -D -o MacDeveloperCertificate.p12 <<< \"#{ENV['MacDeveloperCertificate']}\"", log: false)
+    	create_keychain(
+        	name: "default_keychain",
+        	default_keychain: true,
+        	unlock: true,
+        	password: "default"
+    	)
+    	import_certificate(
+      		certificate_path: "fastlane/MacDeveloperCertificate.p12",
+      		certificate_password: ENV['CERTIFICATE_PASSWORD'],
+      		keychain_name: "default_keychain",
+      		keychain_password: "default"
+    	)
+    	unlock_keychain(path:"default_keychain", password:"default")
+    	sh "security set-keychain-settings -t 3600 -l ~/Library/Keychains/default_keychain-db"
+	end
+
+end

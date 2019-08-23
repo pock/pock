@@ -9,5 +9,8 @@ jobs:
           name: Installing Pods...
           command: pod install
       - run:
+          name: Decoding Mac Developer Certificate...
+          command: fastlane prepare_certificates  
+      - run:
           name: Building Pock...
-          command: xcodebuild
+          command: xcodebuild -workspace Pock.xcworkspace -scheme Pock
