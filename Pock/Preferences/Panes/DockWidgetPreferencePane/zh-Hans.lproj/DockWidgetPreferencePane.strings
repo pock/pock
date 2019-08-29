@@ -1,11 +1,14 @@
 
-/* Class = "NSButtonCell"; title = "隐藏持久性项目"; ObjectID = "1qS-MJ-ICj"; */
-"1qS-MJ-ICj.title" = "隐藏持久性项目";
+/* Class = "NSButtonCell"; title = "Hide Persistent Items"; ObjectID = "1qS-MJ-ICj"; */
+"1qS-MJ-ICj.title" = "隐藏常驻性项目";
 
-/* Class = "NSTextFieldCell"; title = "通知徽章刷新率："; ObjectID = "ICj-g3-VIO"; */
+/* Class = "NSButtonCell"; title = "Always open App Exposé"; ObjectID = "CHW-JM-8Bk"; */
+"CHW-JM-8Bk.title" = "始终打开 App Exposé";
+
+/* Class = "NSTextFieldCell"; title = "Notification badge refresh rate:"; ObjectID = "ICj-g3-VIO"; */
 "ICj-g3-VIO.title" = "通知角标刷新率：";
 
-/* Class = "NSButtonCell"; title = "隐藏访达"; ObjectID = "PDB-GT-mUQ"; */
+/* Class = "NSButtonCell"; title = "Hide Finder"; ObjectID = "PDB-GT-mUQ"; */
 "PDB-GT-mUQ.title" = "隐藏访达";
 
 /* Class = "NSMenuItem"; title = "Item 2"; ObjectID = "UnW-lx-nml"; */
@@ -17,17 +20,17 @@
 /* Class = "NSTextFieldCell"; placeholderString = "8pt"; ObjectID = "aXg-gA-VhE"; */
 "aXg-gA-VhE.placeholderString" = "8pt";
 
-/* Class = "NSButtonCell"; title = "在Pock中打开访达和目录"; ObjectID = "ckK-v4-yvT"; */
+/* Class = "NSButtonCell"; title = "Opens Finder and directories inside Pock"; ObjectID = "ckK-v4-yvT"; */
 "ckK-v4-yvT.title" = "在Pock中打开访达和目录";
 
 /* Class = "NSMenuItem"; title = "Item 1"; ObjectID = "fzh-TY-1IX"; */
 "fzh-TY-1IX.title" = "Item 1";
 
-/* Class = "NSTextFieldCell"; title = "部件间距"; ObjectID = "qJw-Vc-w0w"; */
-"qJw-Vc-w0w.title" = "部件间距";
+/* Class = "NSTextFieldCell"; title = "Item spacing"; ObjectID = "qJw-Vc-w0w"; */
+"qJw-Vc-w0w.title" = "项目间距";
 
-/* Class = "NSButtonCell"; title = "仅显示正在运行的应用"; ObjectID = "qS6-8X-eGs"; */
+/* Class = "NSButtonCell"; title = "Show only running apps"; ObjectID = "qS6-8X-eGs"; */
 "qS6-8X-eGs.title" = "仅显示正在运行的应用";
 
-/* Class = "NSButtonCell"; title = "隐藏废纸篓"; ObjectID = "vFP-uA-jfm"; */
+/* Class = "NSButtonCell"; title = "Hide Trash"; ObjectID = "vFP-uA-jfm"; */
 "vFP-uA-jfm.title" = "隐藏废纸篓";
