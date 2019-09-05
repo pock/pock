@@ -13,12 +13,12 @@ import Defaults
 class DockWidgetPreferencePane: NSViewController, PreferencePane {
     
     @IBOutlet weak var notificationBadgeRefreshRatePicker: NSPopUpButton!
+    @IBOutlet weak var appExposeSettingsPicker:            NSPopUpButton!
     @IBOutlet weak var hideFinderCheckbox:                 NSButton!
     @IBOutlet weak var showOnlyRunningApps:                NSButton!
     @IBOutlet weak var hideTrashCheckbox:                  NSButton!
     @IBOutlet weak var hidePersistentItemsCheckbox:        NSButton!
     @IBOutlet weak var openFinderInsidePockCheckbox:       NSButton!
-    @IBOutlet weak var alwaysOpenAppExposeCheckbox:        NSButton!
     @IBOutlet weak var itemSpacingTextField:               NSTextField!
     
     /// Preferenceable
@@ -42,7 +42,7 @@ class DockWidgetPreferencePane: NSViewController, PreferencePane {
     
     override func viewWillAppear() {
         super.viewWillAppear()
-        self.populatePopUpButton()
+        self.populatePopUpButtons()
         self.setupCheckboxes()
         self.setupItemSpacingTextField()
     }
@@ -52,10 +52,14 @@ class DockWidgetPreferencePane: NSViewController, PreferencePane {
         self.itemSpacingTextField.placeholderString = "8pt"
     }
     
-    private func populatePopUpButton() {
+    private func populatePopUpButtons() {
         self.notificationBadgeRefreshRatePicker.removeAllItems()
         self.notificationBadgeRefreshRatePicker.addItems(withTitles: NotificationBadgeRefreshRateKeys.allCases.map({ $0.toString() }))
         self.notificationBadgeRefreshRatePicker.selectItem(withTitle: defaults[.notificationBadgeRefreshInterval].toString())
+
+        self.appExposeSettingsPicker.removeAllItems()
+        self.appExposeSettingsPicker.addItems(withTitles: AppExposeSettings.allCases.map { $0.title })
+        self.appExposeSettingsPicker.selectItem(withTitle: defaults[.appExposeSettings].title)
     }
     
     private func setupCheckboxes() {
@@ -64,13 +68,16 @@ class DockWidgetPreferencePane: NSViewController, PreferencePane {
         self.hideTrashCheckbox.state            = defaults[.hideTrash]            ? .on : .off
         self.hidePersistentItemsCheckbox.state  = defaults[.hidePersistentItems]  ? .on : .off
         self.openFinderInsidePockCheckbox.state = defaults[.openFinderInsidePock] ? .on : .off
-        self.alwaysOpenAppExposeCheckbox.state  = defaults[.alwaysOpenAppExpose]  ? .on : .off
         self.hideTrashCheckbox.isEnabled        = !defaults[.hidePersistentItems]
     }
-    
+
     @IBAction private func didSelectNotificationBadgeRefreshRate(_: NSButton) {
         defaults[.notificationBadgeRefreshInterval] = NotificationBadgeRefreshRateKeys.allCases[self.notificationBadgeRefreshRatePicker.indexOfSelectedItem]
         NSWorkspace.shared.notificationCenter.post(name: .didChangeNotificationBadgeRefreshRate, object: nil)
+    }
+
+    @IBAction func didSelectAppExposeSettings(_: NSButton) {
+        defaults[.appExposeSettings] = AppExposeSettings.allCases[self.appExposeSettingsPicker.indexOfSelectedItem]
     }
     
     @IBAction private func didChangeHideFinderValue(button: NSButton) {
@@ -97,11 +104,6 @@ class DockWidgetPreferencePane: NSViewController, PreferencePane {
     @IBAction private func didChangeOpenFinderInsidePockValue(button: NSButton) {
         defaults[.openFinderInsidePock] = button.state == .on
     }
-    
-    @IBAction private func didChangeAlwaysOpenAppExposeValue(button: NSButton) {
-        defaults[.alwaysOpenAppExpose] = button.state == .on
-    }
-    
 }
 
 extension DockWidgetPreferencePane: NSTextFieldDelegate {
