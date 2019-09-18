@@ -127,6 +127,7 @@ You can customize the widget position in TouchBar from the **Customize** menu it
 * Music widget doesn’t handle multiple sources well enough
 * Auto open in window if app is only open in top bar [Done]
 * Add custom buttons
+* Tap to switch does not work for maximized window
 
 
 
