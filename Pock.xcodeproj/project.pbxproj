@@ -173,19 +173,26 @@
 		962E0A5B22CF1D1F00567E20 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/DockFolderController.strings"; sourceTree = "<group>"; };
 		964435B622D18F91002FA1CB /* LocalizedUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedUtils.swift; sourceTree = "<group>"; };
 		9667AAF322CF192D00C22410 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/GeneralPreferencePane.xib; sourceTree = "<group>"; };
-		9667AAF622CF193500C22410 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/GeneralPreferencePane.strings; sourceTree = "<group>"; };
 		9667AAFA22CF1A4D00C22410 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/GeneralPreferencePane.strings"; sourceTree = "<group>"; };
 		9667AAFC22CF1A5700C22410 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/StatusWidgetPreferencePane.xib; sourceTree = "<group>"; };
-		9667AAFF22CF1A5C00C22410 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/StatusWidgetPreferencePane.strings; sourceTree = "<group>"; };
 		9667AB0522CF1ABA00C22410 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/DockWidgetPreferencePane.xib; sourceTree = "<group>"; };
 		9667AB0822CF1ABE00C22410 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/DockWidgetPreferencePane.strings; sourceTree = "<group>"; };
 		9686B4F822D2216400C7A08C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ControlCenterWidgetPreferencePane.xib; sourceTree = "<group>"; };
-		9686B4FB22D2216B00C7A08C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ControlCenterWidgetPreferencePane.strings; sourceTree = "<group>"; };
-		9686B4FF22D2220700C7A08C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ControlCenterWidgetPreferencePane.strings"; sourceTree = "<group>"; };
 		969439E922D0FCA20022E67D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		96F2998E231795730055DA26 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/DockWidgetPreferencePane.strings"; sourceTree = "<group>"; };
+		96F29990231797060055DA26 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/StatusWidgetPreferencePane.strings"; sourceTree = "<group>"; };
+		96F299922317979D0055DA26 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/StatusWidgetPreferencePane.strings; sourceTree = "<group>"; };
+		96F29996231797C00055DA26 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/GeneralPreferencePane.strings; sourceTree = "<group>"; };
+		96F29998231798090055DA26 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ControlCenterWidgetPreferencePane.strings; sourceTree = "<group>"; };
+		96F2999A2317980B0055DA26 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ControlCenterWidgetPreferencePane.strings"; sourceTree = "<group>"; };
 		96FE26A022D0C3810071645C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		96FE26A722D0C8550071645C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/StatusWidgetPreferencePane.strings"; sourceTree = "<group>"; };
 		9955665122DC668500EFFE6D /* CCToggleMuteItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCToggleMuteItem.swift; sourceTree = "<group>"; };
+		AAA3636F2333699C0016267D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/DockFolderController.strings"; sourceTree = "<group>"; };
+		AAA363702333699C0016267D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/GeneralPreferencePane.strings"; sourceTree = "<group>"; };
+		AAA363712333699C0016267D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/StatusWidgetPreferencePane.strings"; sourceTree = "<group>"; };
+		AAA363722333699C0016267D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/ControlCenterWidgetPreferencePane.strings"; sourceTree = "<group>"; };
+		AAA363732333699C0016267D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/DockWidgetPreferencePane.strings"; sourceTree = "<group>"; };
+		AAA363742333699C0016267D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -647,6 +654,7 @@
 				"zh-Hans",
 				it,
 				tr,
+				"zh-Hant",
 			);
 			mainGroup = 348343CD1F631B2E00CDA005;
 			productRefGroup = 348343D71F631B2E00CDA005 /* Products */;
@@ -858,6 +866,7 @@
 				962E0A5B22CF1D1F00567E20 /* zh-Hans */,
 				34A8060422F6B97000621235 /* it */,
 				881719822334CAFA00CEFF2B /* tr */,
+				AAA3636F2333699C0016267D /* zh-Hant */,
 			);
 			name = DockFolderController.xib;
 			sourceTree = "<group>";
@@ -866,10 +875,11 @@
 			isa = PBXVariantGroup;
 			children = (
 				9667AAF322CF192D00C22410 /* Base */,
-				9667AAF622CF193500C22410 /* en */,
 				9667AAFA22CF1A4D00C22410 /* zh-Hans */,
 				34A8060522F6B97000621235 /* it */,
 				881719832334CAFA00CEFF2B /* tr */,
+				AAA363702333699C0016267D /* zh-Hant */,
+				96F29996231797C00055DA26 /* en */,
 			);
 			name = GeneralPreferencePane.xib;
 			sourceTree = "<group>";
@@ -878,10 +888,11 @@
 			isa = PBXVariantGroup;
 			children = (
 				9667AAFC22CF1A5700C22410 /* Base */,
-				9667AAFF22CF1A5C00C22410 /* en */,
-				96FE26A722D0C8550071645C /* zh-Hans */,
 				34A8060E22F6C57700621235 /* it */,
 				881719842334CAFA00CEFF2B /* tr */,
+				AAA363712333699C0016267D /* zh-Hant */,
+				96F29990231797060055DA26 /* zh-Hans */,
+				96F299922317979D0055DA26 /* en */,
 			);
 			name = StatusWidgetPreferencePane.xib;
 			sourceTree = "<group>";
@@ -893,6 +904,8 @@
 				9667AB0822CF1ABE00C22410 /* en */,
 				34B7C2EC2309A78400B106DD /* it */,
 				881719862334CAFA00CEFF2B /* tr */,
+				AAA363732333699C0016267D /* zh-Hant */,
+				96F2998E231795730055DA26 /* zh-Hans */,
 			);
 			name = DockWidgetPreferencePane.xib;
 			sourceTree = "<group>";
@@ -901,10 +914,11 @@
 			isa = PBXVariantGroup;
 			children = (
 				9686B4F822D2216400C7A08C /* Base */,
-				9686B4FB22D2216B00C7A08C /* en */,
-				9686B4FF22D2220700C7A08C /* zh-Hans */,
 				34A8061122F6C83000621235 /* it */,
 				881719852334CAFA00CEFF2B /* tr */,
+				AAA363722333699C0016267D /* zh-Hant */,
+				96F29998231798090055DA26 /* en */,
+				96F2999A2317980B0055DA26 /* zh-Hans */,
 			);
 			name = ControlCenterWidgetPreferencePane.xib;
 			sourceTree = "<group>";
@@ -916,6 +930,7 @@
 				969439E922D0FCA20022E67D /* zh-Hans */,
 				34A8060922F6B97000621235 /* it */,
 				881719872334CAFA00CEFF2B /* tr */,
+				AAA363742333699C0016267D /* zh-Hant */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

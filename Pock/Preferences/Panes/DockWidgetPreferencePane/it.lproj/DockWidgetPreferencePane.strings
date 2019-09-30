@@ -32,5 +32,5 @@
 /* Class = "NSButtonCell"; title = "Hide Trash"; ObjectID = "vFP-uA-jfm"; */
 "vFP-uA-jfm.title" = "Nascondi Cestino";
 
-/* Class = "NSButtonCell"; title = "Always open App Exposé"; ObjectID = "CHW-JM-8Bk"; */
-"CHW-JM-8Bk.title" = "Apri sempre in App Exposé";
+/* Class = "NSTextFieldCell"; title = "Open app exposé:"; ObjectID = "r6d-m5-Q8l"; */
+"r6d-m5-Q8l.title" = "Apri app exposé:";
