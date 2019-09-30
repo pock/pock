@@ -1,0 +1,21 @@
+
+/* Class = "NSButtonCell"; title = "Launch at login"; ObjectID = "0Zd-e7-34p"; */
+"0Zd-e7-34p.title" = "登入時開起";
+
+/* Class = "NSButtonCell"; title = "Hide Control Strip"; ObjectID = "206-HT-yI6"; */
+"206-HT-yI6.title" = "隱藏功能列";
+
+/* Class = "NSTextFieldCell"; title = "Double press `control` key to toggle between Pock and System Touch Bar."; ObjectID = "5UW-Vr-bYf"; */
+"5UW-Vr-bYf.title" = "按兩下 `control` 鍵在 Pock 和系統觸控列之間切換";
+
+/* Class = "NSTextFieldCell"; title = "VERSION"; ObjectID = "K9v-5R-z7Q"; */
+"K9v-5R-z7Q.title" = "VERSION";
+
+/* Class = "NSButtonCell"; title = "Check for updates"; ObjectID = "MJG-ij-J6R"; */
+"MJG-ij-J6R.title" = "檢查更新";
+
+/* Class = "NSTextFieldCell"; title = "Pock"; ObjectID = "aMA-Da-MZq"; */
+"aMA-Da-MZq.title" = "Pock";
+
+/* Class = "NSButtonCell"; title = "Check for updates once a day"; ObjectID = "wxD-tO-31t"; */
+"wxD-tO-31t.title" = "每天檢查一次更新";

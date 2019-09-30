@@ -62,19 +62,31 @@ enum NotificationBadgeRefreshRateKeys: Double, Codable, CaseIterable {
     }
 }
 
+enum AppExposeSettings : String, Codable, CaseIterable {
+    case never, ifNeeded, always
+
+    var title: String {
+        switch self {
+        case .never: return "Never".localized
+        case .ifNeeded: return "More Than 1 Window".localized
+        case .always: return "Always".localized
+        }
+    }
+}
+
 extension Defaults.Keys {
     static let launchAtLogin                    = Defaults.Key<Bool>("launchAtLogin",          default: false)
     static let hideControlStrip                 = Defaults.Key<Bool>("hideControlStrip",       default: false)
     static let enableAutomaticUpdates           = Defaults.Key<Bool>("enableAutomaticUpdates", default: false)
     /// Dock widget
     static let notificationBadgeRefreshInterval = Defaults.Key<NotificationBadgeRefreshRateKeys>("notificationBadgeRefreshInterval", default: .tenSeconds)
+    static let appExposeSettings                = Defaults.Key<AppExposeSettings>("appExposeSettings", default: .ifNeeded)
     static let itemSpacing                      = Defaults.Key<Int>("itemSpacing",             default: 8)
     static let hideFinder                       = Defaults.Key<Bool>("hideFinder",             default: false)
     static let showOnlyRunningApps              = Defaults.Key<Bool>("showOnlyRunningApps",    default: false)
     static let hideTrash                        = Defaults.Key<Bool>("hideTrash",              default: false)
     static let hidePersistentItems              = Defaults.Key<Bool>("hidePersistentItems",    default: false)
     static let openFinderInsidePock             = Defaults.Key<Bool>("openFinderInsidePock",   default: true)
-    static let alwaysOpenAppExpose              = Defaults.Key<Bool>("alwaysOpenAppExpose",    default: false)
     /// Status widget
     static let shouldShowWifiItem               = Defaults.Key<Bool>("shouldShowWifiItem",          default: true)
     static let shouldShowPowerItem              = Defaults.Key<Bool>("shouldShowPowerItem",         default: true)
