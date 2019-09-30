@@ -41,12 +41,12 @@ class StatusWidgetPreferencePane: NSViewController, PreferencePane {
     }
     
     private func loadCheckboxState() {
-        self.showWifiItem.state              = defaults[.shouldShowWifiItem]          ? .on : .off
-        self.showPowerItem.state             = defaults[.shouldShowPowerItem]         ? .on : .off
-        self.showBatteryIconItem.state       = defaults[.shouldShowBatteryIcon]       ? .on : .off
-        self.showBatteryPercentageItem.state = defaults[.shouldShowBatteryPercentage] ? .on : .off
-        self.showDateItem.state              = defaults[.shouldShowDateItem]          ? .on : .off
-        self.show24TimeItem.state            = defaults[.shouldShow24TimeItem]        ? .on : .off
+        self.showWifiItem.state              = Defaults[.shouldShowWifiItem]          ? .on : .off
+        self.showPowerItem.state             = Defaults[.shouldShowPowerItem]         ? .on : .off
+        self.showBatteryIconItem.state       = Defaults[.shouldShowBatteryIcon]       ? .on : .off
+        self.showBatteryPercentageItem.state = Defaults[.shouldShowBatteryPercentage] ? .on : .off
+        self.showDateItem.state              = Defaults[.shouldShowDateItem]          ? .on : .off
+        self.show24TimeItem.state            = Defaults[.shouldShow24TimeItem]        ? .on : .off
         // self.showSpotlightItem.state         = defaults[.shouldShowSpotlightItem]     ? .on : .off
     }
     
@@ -70,7 +70,7 @@ class StatusWidgetPreferencePane: NSViewController, PreferencePane {
         default:
             return
         }
-        defaults[key] = checkbox.state == .on
+        Defaults[key] = checkbox.state == .on
         NSWorkspace.shared.notificationCenter.post(name: .shouldReloadStatusWidget, object: nil)
     }
     

@@ -11,7 +11,7 @@ import Defaults
 
 class CCVolumeDownItem: ControlCenterItem {
     
-    override var enabled: Bool{ return defaults[.shouldShowVolumeItem] && defaults[.shouldShowVolumeDownItem] }
+    override var enabled: Bool{ return Defaults[.shouldShowVolumeItem] && Defaults[.shouldShowVolumeDownItem] }
     
     private let key: KeySender = KeySender(keyCode: NX_KEYTYPE_SOUND_DOWN, isAux: true)
     

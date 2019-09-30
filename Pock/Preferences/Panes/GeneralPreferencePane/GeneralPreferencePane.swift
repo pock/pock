@@ -63,12 +63,12 @@ final class GeneralPreferencePane: NSViewController, PreferencePane {
     }
     
     private func setupCheckboxes() {
-        self.hideControlStripCheckbox.state = defaults[.hideControlStrip]       ? .on : .off
-        self.enableAutomaticUpdates.state   = defaults[.enableAutomaticUpdates] ? .on : .off
+        self.hideControlStripCheckbox.state = Defaults[.hideControlStrip]       ? .on : .off
+        self.enableAutomaticUpdates.state   = Defaults[.enableAutomaticUpdates] ? .on : .off
     }
     
     @IBAction private func didChangeHideControlStripValue(button: NSButton) {
-        defaults[.hideControlStrip] = button.state == .on
+        Defaults[.hideControlStrip] = button.state == .on
         NSWorkspace.shared.notificationCenter.post(name: .shouldReloadPock, object: nil)
     }
     
@@ -77,7 +77,7 @@ final class GeneralPreferencePane: NSViewController, PreferencePane {
     }
     
     @IBAction private func didChangeEnableAutomaticUpdates(button: NSButton) {
-        defaults[.enableAutomaticUpdates] = button.state == .on
+        Defaults[.enableAutomaticUpdates] = button.state == .on
         NSWorkspace.shared.notificationCenter.post(name: .shouldEnableAutomaticUpdates, object: nil)
     }
     
