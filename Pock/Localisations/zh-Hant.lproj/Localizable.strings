@@ -1,0 +1,41 @@
+/*
+ Localizable.strings
+ Pock
+ 
+ Created by Licardo on 2019/7/6.
+ Copyright © 2019 Pierluigi Galdi. All rights reserved.
+ */
+
+"General" = "一般";
+"Status Widget" = "狀態小工具";
+"Dock Widget" = "Dock 小工具";
+"Esc key" = "Esc 鍵";
+"Dock" = "Dock";
+"Unknown" = "未知";
+"Now Playing" = "現正播放";
+"Control Center" = "控制中心";
+"Status" = "狀態";
+"Never" = "永不";
+"Instantly" = "立即";
+"1 second" = "1 秒";
+"5 seconds" = "5 秒";
+"10 seconds" = "10 秒";
+"30 seconds" = "30 秒";
+"1 minute" = "1 分鐘";
+"3 minutes" = "3 分鐘";
+"Pock Options" = "Pock 選項";
+"Preferences…" = "偏好設定…";
+"Customize…" = "自訂觸控列…";
+"Support this project" = "支持這項專案";
+"Quit Pock" = "結束 Pock";
+"Checking…"= "檢查中…";
+"Installed version" = "已安裝的版本";
+"Already on latest version" = "已是最新版本";
+"Check for updates" = "檢查更新";
+"New version available!" = "已推出新版本！";
+"Download" = "下載";
+"Later" = "晚點";
+"No Playback" = "沒有播放";
+"Do you want to download version" = "你想要立即下載版本";
+"now?" = "嗎？";
+"Control Center Widget" = "控制中心小工具";

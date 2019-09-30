@@ -1,0 +1,27 @@
+
+/* Class = "NSButtonCell"; title = "Show Toggle Mute Item"; ObjectID = "0cO-cp-q0P"; */
+"0cO-cp-q0P.title" = "靜音鍵";
+
+/* Class = "NSButtonCell"; title = "Show Volume items"; ObjectID = "A1L-D1-Jwj"; */
+"A1L-D1-Jwj.title" = "顯示音量調整鍵";
+
+/* Class = "NSButtonCell"; title = "Show Volume Up Item"; ObjectID = "AJ4-PK-Oid"; */
+"AJ4-PK-Oid.title" = "調高音量鍵";
+
+/* Class = "NSButtonCell"; title = "Show Lock item"; ObjectID = "OGc-Cn-VS5"; */
+"OGc-Cn-VS5.title" = "顯示鎖定螢幕鍵";
+
+/* Class = "NSButtonCell"; title = "Show Brightness Down item"; ObjectID = "S9t-Wy-9IV"; */
+"S9t-Wy-9IV.title" = "調低亮度鍵";
+
+/* Class = "NSButtonCell"; title = "Show Volume Down Item"; ObjectID = "Zze-FZ-vdx"; */
+"Zze-FZ-vdx.title" = "調低音量鍵";
+
+/* Class = "NSButtonCell"; title = "Show Sleep item"; ObjectID = "c9g-yA-umL"; */
+"c9g-yA-umL.title" = "顯示睡眠鍵";
+
+/* Class = "NSButtonCell"; title = "Show Brightness Up Item"; ObjectID = "zlO-nx-U7P"; */
+"zlO-nx-U7P.title" = "調高亮度鍵";
+
+/* Class = "NSButtonCell"; title = "Show Brightness items"; ObjectID = "zt4-Gu-yzF"; */
+"zt4-Gu-yzF.title" = "顯示亮度調整鍵";
