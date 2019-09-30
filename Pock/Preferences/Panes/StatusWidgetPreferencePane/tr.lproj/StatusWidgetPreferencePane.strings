@@ -1,0 +1,15 @@
+
+/* Class = "NSButtonCell"; title = "Show Power item"; ObjectID = "OGc-Cn-VS5"; */
+"OGc-Cn-VS5.title" = "Güç Ögelerini Göster";
+
+/* Class = "NSButtonCell"; title = "Show Battery Icon"; ObjectID = "S9t-Wy-9IV"; */
+"S9t-Wy-9IV.title" = "Batarya İkonunu Göster";
+
+/* Class = "NSButtonCell"; title = "Show Date item"; ObjectID = "Zze-FZ-vdx"; */
+"Zze-FZ-vdx.title" = "Tarihi Göster";
+
+/* Class = "NSButtonCell"; title = "Show Wifi item"; ObjectID = "c9g-yA-umL"; */
+"c9g-yA-umL.title" = "Wi-Fi'ı Göster";
+
+/* Class = "NSButtonCell"; title = "Show Battery Percentage"; ObjectID = "zlO-nx-U7P"; */
+"zlO-nx-U7P.title" = "Batarya Yüzdesini Göster";

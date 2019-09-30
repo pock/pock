@@ -1,0 +1,24 @@
+
+/* Class = "NSButtonCell"; title = "Show Volume items"; ObjectID = "A1L-D1-Jwj"; */
+"A1L-D1-Jwj.title" = "Ses Ögelerini Göster";
+
+/* Class = "NSButtonCell"; title = "Show Volume Up Item"; ObjectID = "AJ4-PK-Oid"; */
+"AJ4-PK-Oid.title" = "Ses Açmayı Göster";
+
+/* Class = "NSButtonCell"; title = "Show Lock item"; ObjectID = "OGc-Cn-VS5"; */
+"OGc-Cn-VS5.title" = "Kilitlemeyi Göster";
+
+/* Class = "NSButtonCell"; title = "Show Brightness Down item"; ObjectID = "S9t-Wy-9IV"; */
+"S9t-Wy-9IV.title" = "Parlaklık Azaltmayı Göster";
+
+/* Class = "NSButtonCell"; title = "Show Volume Down Item"; ObjectID = "Zze-FZ-vdx"; */
+"Zze-FZ-vdx.title" = "Ses Azaltmayı Göster";
+
+/* Class = "NSButtonCell"; title = "Show Sleep item"; ObjectID = "c9g-yA-umL"; */
+"c9g-yA-umL.title" = "Uyku Ögesini Göster";
+
+/* Class = "NSButtonCell"; title = "Show Brightness Up Item"; ObjectID = "zlO-nx-U7P"; */
+"zlO-nx-U7P.title" = "Parlaklık Arttırmayı Göster";
+
+/* Class = "NSButtonCell"; title = "Show Brightness items"; ObjectID = "zt4-Gu-yzF"; */
+"zt4-Gu-yzF.title" = "Parlaklık Ögelerini Göster";

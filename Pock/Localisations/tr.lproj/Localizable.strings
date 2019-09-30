@@ -1,0 +1,42 @@
+/*
+ Localizable.strings
+ Pock
+ 
+ Created by Licardo on 2019/7/6.
+ Copyright © 2019 Pierluigi Galdi. All rights reserved.
+ */
+
+"General" = "Genel";
+"Status Widget" = "Durum Widget";
+"Dock Widget" = "Dock Widget";
+"Esc key" = "Esc tuşu";
+"Dock" = "Dock";
+"Unknown" = "Bilinmeyen";
+"Now Playing" = "Şu an Çalıyor";
+"Control Center" = "Control Center";
+"Status" = "Durum";
+"Never" = "Asla";
+"Instantly" = "Anında";
+"1 second" = "1 saniye";
+"5 seconds" = "5 saniye";
+"10 seconds" = "10 saniye";
+"30 seconds" = "30 saniye";
+"1 minute" = "1 dakika";
+"3 minutes" = "3 dakika";
+"Pock Options" = "Pock Seçenekleri";
+"Preferences…" = "Tercihler…";
+"Customize…" = "Özelleştir…";
+"Support this project" = "Bu projeye katkıda bulun";
+"Quit Pock" = "Pock'tan Çık";
+"Checking…"= "Kontrol ediliyor…";
+"Installed version" = "Yüklü versiyon";
+"Already on latest version" = "Zaten son sürümü kullanıyorsunuz";
+"Check for updates" = "Güncellemeleri denetle";
+"New version available!" = "Yeni versiyon indirilebilir!";
+"Download" = "İndir";
+"Later" = "Sonra";
+"No Playback" = "Oynatılan yok";
+"Do you want to download version" = "Sürümünü indirmek ister misiniz";
+"now?" = "şimdi?";
+"Control Center Widget" = "Control Center Widget";
+
