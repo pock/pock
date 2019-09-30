@@ -22,9 +22,9 @@ final class GeneralPreferencePane: NSViewController, PreferencePane {
     
     /// Endpoint
     #if DEBUG
-    private let latestVersionURLString: String = "https://pock.pigigaldi.com/api/dev/latestRelease.json"
+    private let latestVersionURLString: String = "https://pock.dev/api/dev/latestRelease.json"
     #else
-    private let latestVersionURLString: String = "https://pock.pigigaldi.com/api/latestRelease.json"
+    private let latestVersionURLString: String = "https://pock.dev/api/latestRelease.json"
     #endif
     
     /// Updates
