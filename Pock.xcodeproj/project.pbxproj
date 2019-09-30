@@ -623,6 +623,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 348343E51F631B2E00CDA005 /* Build configuration list for PBXNativeTarget "Pock" */;
 			buildPhases = (
+				34F27F2D234281C7001EBB6B /* Embed Frameworks */,
 				2B2556069E62CDAC367ACF33 /* [CP] Check Pods Manifest.lock */,
 				3407F9DF22D102AC0072E742 /* [Pock]: Set Fabric API_KEY */,
 				348343D21F631B2E00CDA005 /* Sources */,
@@ -631,7 +632,6 @@
 				9C497126EC20FAC73A4D0299 /* [CP] Embed Pods Frameworks */,
 				34FBB7B721734E8F004D5BC0 /* [LaunchAtLogin] Copy helper */,
 				3413964E217B8B6200DCD2B0 /* [Fabric] Run */,
-				34F27F2D234281C7001EBB6B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
