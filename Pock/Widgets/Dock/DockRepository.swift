@@ -22,9 +22,9 @@ class DockRepository {
     private weak var delegate: DockDelegate?
     private var fileMonitor: FileMonitor?
     private var notificationBadgeRefreshTimer: Timer!
-    private var shouldShowNotificationBadge: Bool { return defaults[.notificationBadgeRefreshInterval] != .never }
-    private var showOnlyRunningApps: Bool { return defaults[.showOnlyRunningApps] }
-    private var openFinderInsidePock: Bool { return defaults[.openFinderInsidePock] }
+    private var shouldShowNotificationBadge: Bool { return Defaults[.notificationBadgeRefreshInterval] != .never }
+    private var showOnlyRunningApps: Bool { return Defaults[.showOnlyRunningApps] }
+    private var openFinderInsidePock: Bool { return Defaults[.openFinderInsidePock] }
     private var dockFolderRepository: DockFolderRepository?
     
     /// Running applications
@@ -153,7 +153,7 @@ class DockRepository {
                 dockItems.append(item)
             }
         }
-        if !defaults[.hideFinder] && !dockItems.contains(where: { $0.bundleIdentifier == Constants.kFinderIdentifier }) {
+        if !Defaults[.hideFinder] && !dockItems.contains(where: { $0.bundleIdentifier == Constants.kFinderIdentifier }) {
             let finderItem = DockItem(0, Constants.kFinderIdentifier, name: "Finder", path: nil, icon: DockRepository.getIcon(forBundleIdentifier: Constants.kFinderIdentifier), pid_t: 0)
             runningItems.insert(finderItem, at: 0)
             dockItems.insert(finderItem, at: 0)
@@ -235,7 +235,7 @@ class DockRepository {
                                 persistentItem: true)
             persistentItems.append(item)
         }
-        if !defaults[.hideTrash] && !persistentItems.contains(where: { $0.path?.absoluteString == Constants.trashPath }) {
+        if !Defaults[.hideTrash] && !persistentItems.contains(where: { $0.path?.absoluteString == Constants.trashPath }) {
             let trashType = ((try? FileManager.default.contentsOfDirectory(atPath: Constants.trashPath).isEmpty) ?? true) ? "TrashIcon" : "FullTrashIcon"
             let trashItem = DockItem(0, nil, name: "Trash", path: URL(string: "file://"+Constants.trashPath)!, icon: DockRepository.getIcon(orType: trashType), persistentItem: true)
             persistentItems.append(trashItem)
@@ -411,7 +411,7 @@ extension DockRepository {
             if !isProd { print("[Pock]: Can't load exposé items for: \(app.localizedName ?? "Unknown")") }
             return false
         }
-        let settings = defaults[.appExposeSettings]
+        let settings = Defaults[.appExposeSettings]
         guard settings == .always || (settings == .ifNeeded && windows.count > 1) else {
             if !isProd { print("[Pock]: Abort exposé. Reason: not needed for single element") }
             PockDockHelper.sharedInstance()?.activate(windows.first, in: app)
@@ -437,7 +437,7 @@ extension DockRepository {
     /// Update notification badge refresh timer
     @objc private func setupNotificationBadgeRefreshTimer() {
         /// Get refresh rate
-        let refreshRate = defaults[.notificationBadgeRefreshInterval]
+        let refreshRate = Defaults[.notificationBadgeRefreshInterval]
         /// Invalidate last timer
         self.notificationBadgeRefreshTimer?.invalidate()
         /// Check if disabled

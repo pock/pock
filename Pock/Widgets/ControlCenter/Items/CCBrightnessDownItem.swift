@@ -11,7 +11,7 @@ import Defaults
 
 class CCBrightnessDownItem: ControlCenterItem {
 
-    override var enabled: Bool{ return defaults[.shouldShowBrightnessItem] && defaults[.shouldShowBrightnessDownItem] }
+    override var enabled: Bool{ return Defaults[.shouldShowBrightnessItem] && Defaults[.shouldShowBrightnessDownItem] }
     
     private let key: KeySender = KeySender(keyCode: NX_KEYTYPE_BRIGHTNESS_DOWN, isAux: true)
     

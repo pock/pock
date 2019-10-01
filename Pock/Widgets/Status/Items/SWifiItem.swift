@@ -27,7 +27,7 @@ class SWifiItem: StatusItem {
         didUnload()
     }
     
-    var enabled: Bool{ return defaults[.shouldShowWifiItem] }
+    var enabled: Bool{ return Defaults[.shouldShowWifiItem] }
     
     var title: String  { return "wifi" }
     

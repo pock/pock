@@ -167,7 +167,9 @@ void SafeCFRelease(CFTypeRef cf) {
 }
 
 - (NSImage *)getScreenshotOfWindowId:(NSNumber *)wid {
-    CGImageRef windowImage = CGWindowListCreateImage(CGRectNull, kCGWindowListOptionIncludingWindow, wid.unsignedIntValue, kCGWindowImageDefault);
+    CGWindowListOption option = kCGWindowListOptionIncludingWindow;
+    CGImageRef windowImage = CGWindowListCreateImage(CGRectNull, option, wid.unsignedIntValue, kCGWindowImageDefault);
+    if (windowImage == NULL) { return NULL; }
     Profile(windowImage);
     NSBitmapImageRep *bitmapRep = [[NSBitmapImageRep alloc] initWithCGImage:windowImage];
     NSImage *image = [[NSImage alloc] init];

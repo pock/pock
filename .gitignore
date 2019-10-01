@@ -5,6 +5,10 @@
 Podfile.lock
 Pods/
 
+## No Carthage folder
+Cartfile.resolved
+Carthage/
+
 ## Userdata
 Pock.xcodeproj/xcuserdata/
 Pock.xcworkspace/xcuserdata/

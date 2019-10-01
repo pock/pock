@@ -62,18 +62,18 @@ class DockWidget: NSObject, PKWidget {
     }
     
     @objc private func displayScrubbers() {
-        self.separator.isHidden          = defaults[.hidePersistentItems] || persistentItems.isEmpty
-        self.persistentScrubber.isHidden = defaults[.hidePersistentItems] || persistentItems.isEmpty
+        self.separator.isHidden          = Defaults[.hidePersistentItems] || persistentItems.isEmpty
+        self.persistentScrubber.isHidden = Defaults[.hidePersistentItems] || persistentItems.isEmpty
     }
     
     @objc private func reloadDockScrubberLayout() {
         let dockLayout              = NSScrubberFlowLayout()
         dockLayout.itemSize         = Constants.dockItemSize
-        dockLayout.itemSpacing      = CGFloat(defaults[.itemSpacing])
+        dockLayout.itemSpacing      = CGFloat(Defaults[.itemSpacing])
         dockScrubber.scrubberLayout = dockLayout
         let persistentLayout              = NSScrubberFlowLayout()
         persistentLayout.itemSize         = Constants.dockItemSize
-        persistentLayout.itemSpacing      = CGFloat(defaults[.itemSpacing])
+        persistentLayout.itemSpacing      = CGFloat(Defaults[.itemSpacing])
         persistentScrubber.scrubberLayout = persistentLayout
     }
     
@@ -81,7 +81,7 @@ class DockWidget: NSObject, PKWidget {
     private func configureDockScrubber() {
         let layout = NSScrubberFlowLayout()
         layout.itemSize    = Constants.dockItemSize
-        layout.itemSpacing = CGFloat(defaults[.itemSpacing])
+        layout.itemSpacing = CGFloat(Defaults[.itemSpacing])
         dockScrubber.dataSource = self
         dockScrubber.delegate = self
         dockScrubber.showsAdditionalContentIndicators = true
@@ -107,7 +107,7 @@ class DockWidget: NSObject, PKWidget {
     private func configurePersistentScrubber() {
         let layout = NSScrubberFlowLayout()
         layout.itemSize    = Constants.dockItemSize
-        layout.itemSpacing = CGFloat(defaults[.itemSpacing])
+        layout.itemSpacing = CGFloat(Defaults[.itemSpacing])
         persistentScrubber.dataSource = self
         persistentScrubber.delegate = self
         persistentScrubber.showsAdditionalContentIndicators = true

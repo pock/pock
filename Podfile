@@ -14,6 +14,5 @@ target 'Pock' do
   pod 'Magnet'
   pod 'Defaults'
   pod 'Preferences'
-  pod 'LaunchAtLogin'
   
 end
