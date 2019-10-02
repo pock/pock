@@ -2,6 +2,12 @@
 /* Class = "NSButtonCell"; title = "Hide Persistent Items"; ObjectID = "1qS-MJ-ICj"; */
 "1qS-MJ-ICj.title" = "Nascondi elementi fissi";
 
+/* Class = "NSMenuItem"; title = "Item 3"; ObjectID = "2At-Ch-OCx"; */
+"2At-Ch-OCx.title" = "Item 3";
+
+/* Class = "NSMenuItem"; title = "Item 2"; ObjectID = "HIz-zB-e7Z"; */
+"HIz-zB-e7Z.title" = "Item 2";
+
 /* Class = "NSTextFieldCell"; title = "Notification badge refresh rate:"; ObjectID = "ICj-g3-VIO"; */
 "ICj-g3-VIO.title" = "Frequenza di aggiornamento del badge di notifica:";
 
@@ -23,6 +29,9 @@
 /* Class = "NSMenuItem"; title = "Item 1"; ObjectID = "fzh-TY-1IX"; */
 "fzh-TY-1IX.title" = "Item 1";
 
+/* Class = "NSMenuItem"; title = "Item 1"; ObjectID = "pRj-TS-f3F"; */
+"pRj-TS-f3F.title" = "Item 1";
+
 /* Class = "NSTextFieldCell"; title = "Item spacing"; ObjectID = "qJw-Vc-w0w"; */
 "qJw-Vc-w0w.title" = "Spazio tra le icone";
 
@@ -32,5 +41,5 @@
 /* Class = "NSButtonCell"; title = "Hide Trash"; ObjectID = "vFP-uA-jfm"; */
 "vFP-uA-jfm.title" = "Nascondi Cestino";
 
-/* Class = "NSTextFieldCell"; title = "Open app exposé:"; ObjectID = "r6d-m5-Q8l"; */
-"r6d-m5-Q8l.title" = "Apri app exposé:";
+/* Class = "NSTextFieldCell"; title = "Open App Exposé:"; ObjectID = "r6d-m5-Q8l"; */
+"r6d-m5-Q8l.title" = "Apri App Exposé:";

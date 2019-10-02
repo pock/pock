@@ -5,14 +5,20 @@
 /* Class = "NSTextFieldCell"; title = "Notification badge refresh rate:"; ObjectID = "ICj-g3-VIO"; */
 "ICj-g3-VIO.title" = "Bildirim rozeti yenileme sıklığı:";
 
+/* Class = "NSMenuItem"; title = "Item 3"; ObjectID = "2At-Ch-OCx"; */
+"2At-Ch-OCx.title" = "Item 3";
+
+/* Class = "NSMenuItem"; title = "Item 2"; ObjectID = "HIz-zB-e7Z"; */
+"HIz-zB-e7Z.title" = "Item 2";
+
 /* Class = "NSButtonCell"; title = "Hide Finder"; ObjectID = "PDB-GT-mUQ"; */
 "PDB-GT-mUQ.title" = "Finder'ı Gizle";
 
 /* Class = "NSMenuItem"; title = "Item 2"; ObjectID = "UnW-lx-nml"; */
-"UnW-lx-nml.title" = "Öge 2";
+"UnW-lx-nml.title" = "Item 2";
 
 /* Class = "NSMenuItem"; title = "Item 3"; ObjectID = "Yra-28-ozo"; */
-"Yra-28-ozo.title" = "Öge 3";
+"Yra-28-ozo.title" = "Item 3";
 
 /* Class = "NSTextFieldCell"; placeholderString = "8pt"; ObjectID = "aXg-gA-VhE"; */
 "aXg-gA-VhE.placeholderString" = "8pt";
@@ -21,13 +27,19 @@
 "ckK-v4-yvT.title" = "Pock içindeki Finder ve dizinleri açar";
 
 /* Class = "NSMenuItem"; title = "Item 1"; ObjectID = "fzh-TY-1IX"; */
-"fzh-TY-1IX.title" = "Öge 1";
+"fzh-TY-1IX.title" = "Item 1";
+
+/* Class = "NSMenuItem"; title = "Item 1"; ObjectID = "pRj-TS-f3F"; */
+"pRj-TS-f3F.title" = "Item 1";
 
 /* Class = "NSTextFieldCell"; title = "Item spacing"; ObjectID = "qJw-Vc-w0w"; */
 "qJw-Vc-w0w.title" = "Ögeler arası boşluk";
 
 /* Class = "NSButtonCell"; title = "Show only running apps"; ObjectID = "qS6-8X-eGs"; */
 "qS6-8X-eGs.title" = "Sadece çalışan uygulamaları göster";
+
+/* Class = "NSTextFieldCell"; title = "Open App Exposé:"; ObjectID = "r6d-m5-Q8l"; */
+"r6d-m5-Q8l.title" = "Open App Exposé:";
 
 /* Class = "NSButtonCell"; title = "Hide Trash"; ObjectID = "vFP-uA-jfm"; */
 "vFP-uA-jfm.title" = "Çöp Sepetini gizle";
