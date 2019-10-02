@@ -24,7 +24,7 @@
 "aXg-gA-VhE.placeholderString" = "8pt";
 
 /* Class = "NSButtonCell"; title = "Opens Finder and directories inside Pock"; ObjectID = "ckK-v4-yvT"; */
-"ckK-v4-yvT.title" = "Otwiera Finder'a oraz foldery w Pocku";
+"ckK-v4-yvT.title" = "Otwiera Finder'a w Pocku";
 
 /* Class = "NSMenuItem"; title = "Item 1"; ObjectID = "fzh-TY-1IX"; */
 "fzh-TY-1IX.title" = "Element 1";
@@ -39,7 +39,7 @@
 "qS6-8X-eGs.title" = "Pokaż tylko działające aplikacje";
 
 /* Class = "NSTextFieldCell"; title = "Open app exposé:"; ObjectID = "r6d-m5-Q8l"; */
-"r6d-m5-Q8l.title" = "Open app exposé:";
+"r6d-m5-Q8l.title" = "Pozwól wybrać okno:";
 
 /* Class = "NSButtonCell"; title = "Hide Trash"; ObjectID = "vFP-uA-jfm"; */
 "vFP-uA-jfm.title" = "Ukryj Kosz";

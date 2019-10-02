@@ -6,7 +6,7 @@
 "206-HT-yI6.title" = "Ukryj Control Strip";
 
 /* Class = "NSTextFieldCell"; title = "Double press `control` key to toggle between Pock and System Touch Bar."; ObjectID = "5UW-Vr-bYf"; */
-"5UW-Vr-bYf.title" = "Dwuktrotnie naciśnij klawisz `control`, aby przełączyć pomiędzy Pock i systemowym Touch Bar'em.";
+"5UW-Vr-bYf.title" = "Dwuktrotnie naciśnij klawisz `control`, aby przełączyć pomiędzy Pock, a systemowym Touch Bar'em.";
 
 /* Class = "NSTextFieldCell"; title = "VERSION"; ObjectID = "K9v-5R-z7Q"; */
 "K9v-5R-z7Q.title" = "WERSJA";
