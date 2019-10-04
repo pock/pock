@@ -13,3 +13,9 @@
 
 /* Class = "NSButtonCell"; title = "Show Battery Percentage"; ObjectID = "zlO-nx-U7P"; */
 "zlO-nx-U7P.title" = "Batarya Yüzdesini Göster";
+
+/* Class = "NSButtonCell"; title = "Show Battery Percentage"; ObjectID = "gkd-eI-Tju"; */
+"gkd-eI-Tju.title" = "Hava Durumunu Göster";
+
+/* Class = "NSButtonCell"; title = "Show Battery Percentage"; ObjectID = "YWa-UY-MZk"; */
+"YWa-UY-MZk.title" = "Selsiyus kullan ( °C )";

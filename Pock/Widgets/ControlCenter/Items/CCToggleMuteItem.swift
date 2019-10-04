@@ -3,7 +3,7 @@ import Defaults
 
 class CCToggleMuteItem: ControlCenterItem {
   
-  override var enabled: Bool{ return defaults[.shouldShowVolumeItem] && defaults[.shouldShowToggleMuteItem] }
+  override var enabled: Bool{ return Defaults[.shouldShowVolumeItem] && Defaults[.shouldShowToggleMuteItem] }
   
   private let key: KeySender = KeySender(keyCode: NX_KEYTYPE_MUTE, isAux: true)
   

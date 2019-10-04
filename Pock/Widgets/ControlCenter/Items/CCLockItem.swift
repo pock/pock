@@ -11,7 +11,7 @@ import Defaults
 
 class CCLockItem: ControlCenterItem {
     
-    override var enabled: Bool{ return defaults[.shouldShowLockItem] }
+    override var enabled: Bool{ return Defaults[.shouldShowLockItem] }
     
     override var title: String  { return "lock" }
     

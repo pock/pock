@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14810.11" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14868" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14810.11"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14868"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -146,7 +146,7 @@
                     </textFieldCell>
                 </textField>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8bM-j0-g5L" userLabel="Hide Trash Checkbox">
-                    <rect key="frame" x="197" y="44" width="203" height="18"/>
+                    <rect key="frame" x="197" y="-29" width="203" height="18"/>
                     <buttonCell key="cell" type="check" title="Check for updates once a day" bezelStyle="regularSquare" imagePosition="left" inset="2" id="wxD-tO-31t">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -176,7 +176,7 @@
                 <constraint firstItem="8bM-j0-g5L" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ebU-tb-qZd" secondAttribute="trailing" constant="20" id="r14-eB-jGM"/>
                 <constraint firstAttribute="bottom" secondItem="iOr-af-uPA" secondAttribute="bottom" constant="16" id="u9Z-By-JKO"/>
             </constraints>
-            <point key="canvasLocation" x="-22" y="-107.5"/>
+            <point key="canvasLocation" x="-40" y="36"/>
         </customView>
     </objects>
     <resources>

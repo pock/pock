@@ -61,5 +61,11 @@
 	<string>NSApplication</string>
 	<key>SUFeedURL</key>
 	<string>https://pock.pigigaldi.com/builds/appcast.xml</string>
+    
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>This application requires location services to work</string>
+
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>This application requires location services to work</string>
 </dict>
 </plist>

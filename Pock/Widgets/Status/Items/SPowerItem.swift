@@ -20,10 +20,10 @@ class SPowerItem: StatusItem {
     private var refreshTimer: Timer?
     private var powerStatus: SPowerStatus = SPowerStatus(isCharging: false, currentValue: 0)
     private var shouldShowBatteryIcon: Bool {
-        return defaults[.shouldShowBatteryIcon]
+        return Defaults[.shouldShowBatteryIcon]
     }
     private var shouldShowBatteryPercentage: Bool {
-        return defaults[.shouldShowBatteryPercentage]
+        return Defaults[.shouldShowBatteryPercentage]
     }
     
     /// UI
@@ -55,7 +55,7 @@ class SPowerItem: StatusItem {
         refreshTimer = nil
     }
     
-    var enabled: Bool{ return defaults[.shouldShowPowerItem] }
+    var enabled: Bool{ return Defaults[.shouldShowPowerItem] }
     
     var title: String  { return "power" }
     

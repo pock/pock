@@ -40,7 +40,7 @@ class SSpotlightItem: StatusItem {
         tappableView      = nil
     }
     
-    var enabled: Bool{ return defaults[.shouldShowSpotlightItem] }
+    var enabled: Bool{ return Defaults[.shouldShowSpotlightItem] }
     
     var title: String  { return "spotlight" }
     

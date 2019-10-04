@@ -28,6 +28,7 @@ extension NSNotification.Name {
     static let shouldReloadDockLayout                = NSNotification.Name("shouldReloadDockLayout")
     static let shouldReloadPersistentItems           = NSNotification.Name("shouldReloadPersistentItems")
     static let shouldEnableAutomaticUpdates          = NSNotification.Name("shouldEnableAutomaticUpdates")
+    static let useSystemTrayIcon                  = NSNotification.Name("useSystemTrayIcon")
 }
 
 enum NotificationBadgeRefreshRateKeys: Double, Codable, CaseIterable {
@@ -95,6 +96,8 @@ extension Defaults.Keys {
     static let shouldShowDateItem               = Defaults.Key<Bool>("shouldShowDateItem",          default: true)
     static let shouldShow24TimeItem             = Defaults.Key<Bool>("shouldShow24TimeItem",        default: true)
     static let shouldShowSpotlightItem          = Defaults.Key<Bool>("shouldShowSpotlightItem",     default: true)
+    static let showWeatherItem                  = Defaults.Key<Bool>("showWeatherItem",             default: true)
+    static let weatherUseCelcius                = Defaults.Key<Bool>("weatherUseCelcius",          default: true)
     /// Control Center widget
     static let shouldShowSleepItem          = Defaults.Key<Bool>("shouldShowSleepItem",             default: false)
     static let shouldShowLockItem           = Defaults.Key<Bool>("shouldShowLockItem",              default: false)

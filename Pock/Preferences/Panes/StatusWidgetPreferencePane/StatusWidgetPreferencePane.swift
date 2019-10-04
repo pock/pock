@@ -19,6 +19,9 @@ class StatusWidgetPreferencePane: NSViewController, PreferencePane {
     @IBOutlet weak var showBatteryPercentageItem:   NSButton!
     @IBOutlet weak var showDateItem:                NSButton!
     @IBOutlet weak var show24TimeItem:              NSButton!
+    @IBOutlet weak var showWeather:                 NSButton!
+    @IBOutlet weak var useCelcius:                  NSButton!
+    
     // @IBOutlet weak var showSpotlightItem:           NSButton!
     
     /// Preferenceable
@@ -41,12 +44,16 @@ class StatusWidgetPreferencePane: NSViewController, PreferencePane {
     }
     
     private func loadCheckboxState() {
-        self.showWifiItem.state              = defaults[.shouldShowWifiItem]          ? .on : .off
-        self.showPowerItem.state             = defaults[.shouldShowPowerItem]         ? .on : .off
-        self.showBatteryIconItem.state       = defaults[.shouldShowBatteryIcon]       ? .on : .off
-        self.showBatteryPercentageItem.state = defaults[.shouldShowBatteryPercentage] ? .on : .off
-        self.showDateItem.state              = defaults[.shouldShowDateItem]          ? .on : .off
-        self.show24TimeItem.state            = defaults[.shouldShow24TimeItem]        ? .on : .off
+        self.showWifiItem.state              = Defaults[.shouldShowWifiItem]          ? .on : .off
+        self.showPowerItem.state             = Defaults[.shouldShowPowerItem]         ? .on : .off
+        self.showBatteryIconItem.state       = Defaults[.shouldShowBatteryIcon]       ? .on : .off
+        self.showBatteryPercentageItem.state = Defaults[.shouldShowBatteryPercentage] ? .on : .off
+        self.showDateItem.state              = Defaults[.shouldShowDateItem]          ? .on : .off
+        self.show24TimeItem.state            = Defaults[.shouldShow24TimeItem]        ? .on : .off
+        self.showWeather.state               = Defaults[.showWeatherItem]
+            ? .on : .off
+        self.useCelcius.state                = Defaults[.weatherUseCelcius]
+            ? .on : .off
         // self.showSpotlightItem.state         = defaults[.shouldShowSpotlightItem]     ? .on : .off
     }
     
@@ -65,12 +72,16 @@ class StatusWidgetPreferencePane: NSViewController, PreferencePane {
             key = .shouldShowDateItem
         case 31:
             key = .shouldShow24TimeItem
+        case 45:
+            key = .showWeatherItem
+        case 46:
+            key = .weatherUseCelcius
         /* case 4:
             key = .shouldShowSpotlightItem */
         default:
             return
         }
-        defaults[key] = checkbox.state == .on
+        Defaults[key] = checkbox.state == .on
         NSWorkspace.shared.notificationCenter.post(name: .shouldReloadStatusWidget, object: nil)
     }
     

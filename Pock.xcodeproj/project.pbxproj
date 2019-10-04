@@ -70,6 +70,8 @@
 		34E644F4227CB6CE003D0450 /* KeySender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E644F3227CB6CE003D0450 /* KeySender.swift */; };
 		34E644F7227D783E003D0450 /* KeySenderHelper.c in Sources */ = {isa = PBXBuildFile; fileRef = 34E644F6227D783E003D0450 /* KeySenderHelper.c */; };
 		34E644FB227D9A69003D0450 /* DockWidgetPreferencePane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E644F9227D9A69003D0450 /* DockWidgetPreferencePane.swift */; };
+		883075EF2346369B00163E33 /* WeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883075EE2346369B00163E33 /* WeatherResponse.swift */; };
+		88C04DCD2345385A00D1C27F /* SWeatherItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C04DCC2345385A00D1C27F /* SWeatherItem.swift */; };
 		962E0A5522CF1D1D00567E20 /* DockFolderController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 962E0A5722CF1D1D00567E20 /* DockFolderController.xib */; };
 		964435B722D18F91002FA1CB /* LocalizedUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964435B622D18F91002FA1CB /* LocalizedUtils.swift */; };
 		9667AAF222CF192D00C22410 /* GeneralPreferencePane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9667AAF422CF192D00C22410 /* GeneralPreferencePane.xib */; };
@@ -168,6 +170,8 @@
 		881719852334CAFA00CEFF2B /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/ControlCenterWidgetPreferencePane.strings; sourceTree = "<group>"; };
 		881719862334CAFA00CEFF2B /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/DockWidgetPreferencePane.strings; sourceTree = "<group>"; };
 		881719872334CAFA00CEFF2B /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		883075EE2346369B00163E33 /* WeatherResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherResponse.swift; sourceTree = "<group>"; };
+		88C04DCC2345385A00D1C27F /* SWeatherItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWeatherItem.swift; sourceTree = "<group>"; };
 		962E0A5622CF1D1D00567E20 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/DockFolderController.xib; sourceTree = "<group>"; };
 		962E0A5922CF1D1E00567E20 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/DockFolderController.strings; sourceTree = "<group>"; };
 		962E0A5B22CF1D1F00567E20 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/DockFolderController.strings"; sourceTree = "<group>"; };
@@ -388,6 +392,7 @@
 				342D83AF2278D5CF000D79DA /* DKBrightness */,
 				347F336422D0DB9100FA9805 /* SystemHelper */,
 				34E644F8227D7848003D0450 /* KeySenderHelper */,
+				883075EE2346369B00163E33 /* WeatherResponse.swift */,
 			);
 			path = Private;
 			sourceTree = "<group>";
@@ -474,6 +479,7 @@
 				342D83C72278D5CF000D79DA /* SWifiItem.swift */,
 				342D83C82278D5CF000D79DA /* SPowerItem.swift */,
 				342D83C92278D5CF000D79DA /* SClockItem.swift */,
+				88C04DCC2345385A00D1C27F /* SWeatherItem.swift */,
 			);
 			path = Items;
 			sourceTree = "<group>";
@@ -769,6 +775,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Pock/Pods-Pock-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Defaults/Defaults.framework",
 				"${BUILT_PRODUCTS_DIR}/LaunchAtLogin/LaunchAtLogin.framework",
 				"${BUILT_PRODUCTS_DIR}/Magnet/Magnet.framework",
@@ -778,6 +785,7 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Defaults.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LaunchAtLogin.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Magnet.framework",
@@ -836,6 +844,7 @@
 				342D83F62278D5CF000D79DA /* NowPlayingWidget.swift in Sources */,
 				342D840D2278D5CF000D79DA /* FileMonitor.swift in Sources */,
 				3407F9E722D1C5170072E742 /* AppExposeController.swift in Sources */,
+				88C04DCD2345385A00D1C27F /* SWeatherItem.swift in Sources */,
 				342D83E12278D5CF000D79DA /* PockMainController.swift in Sources */,
 				342D83F72278D5CF000D79DA /* NowPlayingHelper.swift in Sources */,
 				342D83EF2278D5CF000D79DA /* ControlCenterItem.swift in Sources */,
@@ -848,6 +857,7 @@
 				349F93E8228865C400B8CFBE /* ISSoundAdditions.m in Sources */,
 				342D83ED2278D5CF000D79DA /* AppDelegate.swift in Sources */,
 				342D84052278D5CF000D79DA /* Witness.swift in Sources */,
+				883075EF2346369B00163E33 /* WeatherResponse.swift in Sources */,
 				34E644F7227D783E003D0450 /* KeySenderHelper.c in Sources */,
 				342D84082278D5CF000D79DA /* DockItem.swift in Sources */,
 				342D83E42278D5CF000D79DA /* GeneralPreferencePane.swift in Sources */,

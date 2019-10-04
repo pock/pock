@@ -47,7 +47,7 @@ class SClockItem: StatusItem {
         refreshTimer = nil
     }
     
-    var enabled: Bool{ return defaults[.shouldShowDateItem] }
+    var enabled: Bool{ return Defaults[.shouldShowDateItem] }
     
     var title: String  { return "clock" }
     
@@ -59,7 +59,7 @@ class SClockItem: StatusItem {
     
     func reload() {
         let formatter = DateFormatter()
-        if defaults[.shouldShow24TimeItem] {
+        if Defaults[.shouldShow24TimeItem] {
             formatter.dateFormat = "EE dd MMM HH:mm "
         }
         else {

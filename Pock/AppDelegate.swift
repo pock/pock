@@ -115,7 +115,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @objc private func toggleAutomaticUpdatesTimer() {
-        if defaults[.enableAutomaticUpdates] {
+        if Defaults[.enableAutomaticUpdates] {
             automaticUpdatesTimer = Timer.scheduledTimer(timeInterval: 86400 /*24h*/, target: self, selector: #selector(checkForUpdates), userInfo: nil, repeats: true)
         }else {
             automaticUpdatesTimer?.invalidate()

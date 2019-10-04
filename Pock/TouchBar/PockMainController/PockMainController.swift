@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Defaults
 
 /// Custom identifiers
 extension NSTouchBar.CustomizationIdentifier {
