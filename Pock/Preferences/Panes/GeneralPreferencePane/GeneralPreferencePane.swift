@@ -22,9 +22,9 @@ final class GeneralPreferencePane: NSViewController, PreferencePane {
     
     /// Endpoint
     #if DEBUG
-    private let latestVersionURLString: String = "https://pock.pigigaldi.com/api/dev/latestRelease.json"
+    private let latestVersionURLString: String = "https://pock.dev/api/dev/latestRelease.json"
     #else
-    private let latestVersionURLString: String = "https://pock.pigigaldi.com/api/latestRelease.json"
+    private let latestVersionURLString: String = "https://pock.dev/api/latestRelease.json"
     #endif
     
     /// Updates
@@ -65,6 +65,7 @@ final class GeneralPreferencePane: NSViewController, PreferencePane {
     private func setupCheckboxes() {
         self.hideControlStripCheckbox.state = Defaults[.hideControlStrip]       ? .on : .off
         self.enableAutomaticUpdates.state   = Defaults[.enableAutomaticUpdates] ? .on : .off
+        self.launchAtLoginCheckbox.state    = LaunchAtLogin.isEnabled           ? .on : .off
     }
     
     @IBAction private func didChangeHideControlStripValue(button: NSButton) {

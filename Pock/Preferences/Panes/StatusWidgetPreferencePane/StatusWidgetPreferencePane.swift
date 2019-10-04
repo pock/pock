@@ -50,10 +50,8 @@ class StatusWidgetPreferencePane: NSViewController, PreferencePane {
         self.showBatteryPercentageItem.state = Defaults[.shouldShowBatteryPercentage] ? .on : .off
         self.showDateItem.state              = Defaults[.shouldShowDateItem]          ? .on : .off
         self.show24TimeItem.state            = Defaults[.shouldShow24TimeItem]        ? .on : .off
-        self.showWeather.state               = Defaults[.showWeatherItem]
-            ? .on : .off
-        self.useCelcius.state                = Defaults[.weatherUseCelcius]
-            ? .on : .off
+        self.showWeather.state               = Defaults[.showWeatherItem]             ? .on : .off
+        self.useCelcius.state                = Defaults[.weatherUseCelcius]           ? .on : .off
         // self.showSpotlightItem.state         = defaults[.shouldShowSpotlightItem]     ? .on : .off
     }
     
