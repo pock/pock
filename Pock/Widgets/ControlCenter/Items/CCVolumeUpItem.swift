@@ -21,6 +21,7 @@ class CCVolumeUpItem: ControlCenterItem {
     
     override func action() -> Any? {
         key.send()
+        parentWidget?.reloadItemsIcon()
         return NSSound.systemVolume()
     }
     

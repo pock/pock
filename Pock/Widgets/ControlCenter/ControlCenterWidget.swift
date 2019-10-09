@@ -106,16 +106,10 @@ class ControlCenterWidget: PKWidget {
     }
     
     private func initializeSegmentedControl() {
-        let items = controls.map({ $0.icon }) as [NSImage]
         guard segmentedControl == nil else {
-            segmentedControl.segmentCount = controls.count
-            items.enumerated().forEach({ index, item in
-                segmentedControl.setImage(item, forSegment: index)
-                segmentedControl.setWidth(50, forSegment: index)
-            })
             return
         }
-        segmentedControl = PressableSegmentedControl(images: items, trackingMode: .momentary, target: self, action: #selector(tap(_:)))
+        segmentedControl = PressableSegmentedControl(images: reloadItemsIcon(), trackingMode: .momentary, target: self, action: #selector(tap(_:)))
         segmentedControl.delegate = self
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
         segmentedControl.autoresizingMask = .width
@@ -125,6 +119,18 @@ class ControlCenterWidget: PKWidget {
         segmentedControl.didPressAt = { [unowned self] location in
             self.longTap(at: location)
         }
+    }
+    
+    @discardableResult func reloadItemsIcon() -> [NSImage] {
+        let icons = controls.map({ $0.icon }) as [NSImage]
+        if segmentedControl != nil {
+            segmentedControl.segmentCount = controls.count
+            icons.enumerated().forEach({ index, item in
+                segmentedControl.setImage(item, forSegment: index)
+                segmentedControl.setWidth(50, forSegment: index)
+            })
+        }
+        return icons
     }
     
     @objc private func tap(_ sender: NSSegmentedControl) {
