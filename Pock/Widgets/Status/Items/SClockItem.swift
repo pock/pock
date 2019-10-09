@@ -36,8 +36,8 @@ class SClockItem: StatusItem {
             clockLabel.isBezeled = false
             clockLabel.isEditable = false
             clockLabel.sizeToFit()
-            refreshTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self] _ in
-                self?.reload()
+            refreshTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [ self] _ in
+                self.reload()
             })
         }
     }
