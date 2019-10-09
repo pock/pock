@@ -28,15 +28,10 @@ class PockMainController: PKTouchBarController {
     
     override var systemTrayItem: NSCustomTouchBarItem? {
         let item = NSCustomTouchBarItem(identifier: .pockSystemIcon)
-        item.view = NSButton(image: #imageLiteral(resourceName: "pock-inner-icon"), target: self, action: #selector(present))
+        item.view = NSButton(image: #imageLiteral(resourceName: "pock-inner-icon"), target: self, action: #selector(presentFromSystemTrayItem))
         return item
     }
     override var systemTrayItemIdentifier: NSTouchBarItem.Identifier? { return .pockSystemIcon }
-    
-    required init() {
-        super.init()
-        self.showControlStripIcon()
-    }
     
     deinit {
         self.loadedWidgets.removeAll()
