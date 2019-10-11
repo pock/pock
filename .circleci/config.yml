@@ -6,6 +6,10 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Fetching CocoaPods Specs...
+          command: |
+            curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
+      - run:
           name: Installing Pods...
           command: pod install
       - run:
@@ -13,4 +17,13 @@ jobs:
           command: fastlane prepare_certificates  
       - run:
           name: Building Pock...
-          command: xcodebuild -workspace Pock.xcworkspace -scheme Pock
+          command: xcodebuild -workspace Pock.xcworkspace -scheme Pock -configuration Debug -derivedDataPath Artifacts
+      - run:
+          name: Moving Pock...
+          command: mv ./Artifacts/Build/Products/Debug/Pock.app ./Pock.app
+      - run:
+          name: Compressing Pock....
+          command: zip -r pock.zip ./Pock.app
+      - store_artifacts:
+          path: pock.zip
+          destination: pock

@@ -21,6 +21,7 @@ class CCVolumeUpItem: ControlCenterItem {
     
     override func action() -> Any? {
         key.send()
+        NSWorkspace.shared.notificationCenter.post(name: .shouldReloadControlCenterWidget, object: nil)
         return NSSound.systemVolume()
     }
     
@@ -30,6 +31,7 @@ class CCVolumeUpItem: ControlCenterItem {
     
     override func didSlide(at value: Double) {
         NSSound.setSystemVolume(Float(value))
+        NSWorkspace.shared.notificationCenter.post(name: .shouldReloadControlCenterWidget, object: nil)
         // DK_OSDUIHelper.showHUD(type: NSSound.isMuted() ? .mute : .volume, filled: CUnsignedInt(NSSound.systemVolume() * 16))
     }
     

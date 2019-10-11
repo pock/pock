@@ -26,6 +26,9 @@ class DockFolderController: PKTouchBarController {
     
     override func present() {
         guard folderUrl != nil else { return }
+        if !folderUrl.absoluteString.contains("file://") {
+            folderUrl = URL(string: "file://\(folderUrl.absoluteString)")
+        }
         self.loadElements()
         var defaultIdentifiers = touchBar?.defaultItemIdentifiers
         if !dockFolderRepository.shouldShowBackButton {
