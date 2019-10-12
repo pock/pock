@@ -1,9 +1,15 @@
 
-/* Class = "NSButtonCell"; title = "Show in 24hr format"; ObjectID = "EeR-gT-koZ"; */
-"EeR-gT-koZ.title" = "以24小时格式显示";
+/* Class = "NSTextFieldCell"; title = "EE dd MMM HH:mm"; ObjectID = "6HU-p8-WWc"; */
+"6HU-p8-WWc.title" = "EE dd MMM HH:mm";
+
+/* Class = "NSTextFieldCell"; title = "Time Format:"; ObjectID = "6tU-S4-ovU"; */
+"6tU-S4-ovU.title" = "时间格式:";
 
 /* Class = "NSButtonCell"; title = "Show Power item"; ObjectID = "OGc-Cn-VS5"; */
 "OGc-Cn-VS5.title" = "显示电池";
+
+/* Class = "NSButtonCell"; title = "OK"; ObjectID = "QDc-qV-z51"; */
+"QDc-qV-z51.title" = "完成";
 
 /* Class = "NSButtonCell"; title = "Show Battery Icon"; ObjectID = "S9t-Wy-9IV"; */
 "S9t-Wy-9IV.title" = "显示电池图标";

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14868" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15400" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14868"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15400"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -31,7 +31,7 @@
                         <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gFt-UC-6tr">
                             <rect key="frame" x="0.0" y="247" width="300" height="30"/>
                             <subviews>
-                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="752" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9xL-NG-zId">
+                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="752" ambiguous="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9xL-NG-zId">
                                     <rect key="frame" x="-2" y="14" width="224" height="16"/>
                                     <textFieldCell key="cell" lineBreakMode="clipping" enabled="NO" alignment="left" title="Notification badge refresh rate:" id="ICj-g3-VIO">
                                         <font key="font" metaFont="system"/>
@@ -39,7 +39,7 @@
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
-                                <popUpButton horizontalHuggingPriority="252" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QqZ-9r-WHQ">
+                                <popUpButton verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QqZ-9r-WHQ">
                                     <rect key="frame" x="226" y="6" width="77" height="25"/>
                                     <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="fzh-TY-1IX" id="xk2-Vv-60X">
                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -69,7 +69,7 @@
                         <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xCL-Ye-myT">
                             <rect key="frame" x="0.0" y="201" width="300" height="30"/>
                             <subviews>
-                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="752" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jrg-4f-dhp">
+                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="752" ambiguous="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jrg-4f-dhp">
                                     <rect key="frame" x="-2" y="14" width="224" height="16"/>
                                     <textFieldCell key="cell" lineBreakMode="clipping" enabled="NO" alignment="left" title="Open App Exposé:" id="r6d-m5-Q8l">
                                         <font key="font" metaFont="system"/>
@@ -77,7 +77,7 @@
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
-                                <popUpButton horizontalHuggingPriority="252" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Zlx-Ef-hb0">
+                                <popUpButton verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zlx-Ef-hb0">
                                     <rect key="frame" x="226" y="6" width="77" height="25"/>
                                     <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="pRj-TS-f3F" id="xoa-68-y75">
                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -183,22 +183,22 @@
                             </customSpacing>
                         </stackView>
                         <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hrd-H5-paz">
-                            <rect key="frame" x="0.0" y="0.0" width="128" height="30"/>
+                            <rect key="frame" x="0.0" y="0.0" width="137" height="30"/>
                             <subviews>
-                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rdj-tL-R0L">
-                                    <rect key="frame" x="-2" y="14" width="82" height="16"/>
-                                    <textFieldCell key="cell" lineBreakMode="clipping" title="Item spacing" id="qJw-Vc-w0w">
+                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rdj-tL-R0L">
+                                    <rect key="frame" x="-2" y="14" width="86" height="16"/>
+                                    <textFieldCell key="cell" lineBreakMode="clipping" title="Item spacing:" id="qJw-Vc-w0w">
                                         <font key="font" metaFont="system"/>
                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
                                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VVh-2X-SdG">
-                                    <rect key="frame" x="88" y="10" width="40" height="20"/>
+                                    <rect key="frame" x="92" y="8" width="45" height="22"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="40" id="jzh-nQ-SDe"/>
+                                        <constraint firstAttribute="width" constant="45" id="jzh-nQ-SDe"/>
                                     </constraints>
-                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="border" placeholderString="8pt" drawsBackground="YES" id="aXg-gA-VhE">
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="8pt" bezelStyle="round" id="aXg-gA-VhE">
                                         <font key="font" metaFont="system"/>
                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>

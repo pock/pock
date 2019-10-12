@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15400" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15400"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="StatusWidgetPreferencePane" customModule="Pock" customModuleProvider="target">
             <connections>
-                <outlet property="show24TimeItem" destination="1i9-uU-TEf" id="raP-KA-fq5"/>
                 <outlet property="showBatteryIconItem" destination="0iY-fD-cWj" id="cg2-Aa-j8W"/>
                 <outlet property="showBatteryPercentageItem" destination="UIv-xe-fLQ" id="hAs-38-djl"/>
                 <outlet property="showDateItem" destination="XAw-dt-3HD" id="Z4g-va-feY"/>
                 <outlet property="showPowerItem" destination="P4F-Aq-avh" id="GQA-CU-urZ"/>
                 <outlet property="showWifiItem" destination="2QA-fb-vdC" id="wvf-Iq-9Ka"/>
+                <outlet property="timeFormatTextField" destination="fXD-5d-Dqf" id="wQw-2w-3mb"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="Hz6-mo-xeY">
-            <rect key="frame" x="0.0" y="0.0" width="480" height="204"/>
+            <rect key="frame" x="0.0" y="0.0" width="480" height="220"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <stackView distribution="fillEqually" orientation="vertical" alignment="leading" spacing="16" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oAr-3p-C2k">
-                    <rect key="frame" x="20" y="20" width="440" height="164"/>
+                    <rect key="frame" x="20" y="20" width="440" height="180"/>
                     <subviews>
                         <button verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="2QA-fb-vdC">
-                            <rect key="frame" x="-2" y="148" width="113" height="18"/>
+                            <rect key="frame" x="-2" y="164" width="113" height="18"/>
                             <buttonCell key="cell" type="check" title="Show Wifi item" bezelStyle="regularSquare" imagePosition="left" inset="2" id="c9g-yA-umL">
                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                 <font key="font" metaFont="system"/>
@@ -37,7 +37,7 @@
                             </connections>
                         </button>
                         <button verticalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="P4F-Aq-avh">
-                            <rect key="frame" x="-2" y="118" width="126" height="18"/>
+                            <rect key="frame" x="-2" y="134" width="126" height="18"/>
                             <buttonCell key="cell" type="check" title="Show Power item" bezelStyle="regularSquare" imagePosition="left" inset="2" id="OGc-Cn-VS5">
                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                 <font key="font" metaFont="system"/>
@@ -47,7 +47,7 @@
                             </connections>
                         </button>
                         <button verticalHuggingPriority="750" tag="21" translatesAutoresizingMaskIntoConstraints="NO" id="0iY-fD-cWj">
-                            <rect key="frame" x="18" y="88" width="133" height="18"/>
+                            <rect key="frame" x="18" y="104" width="133" height="18"/>
                             <buttonCell key="cell" type="check" title="Show Battery Icon" bezelStyle="regularSquare" imagePosition="left" inset="2" id="S9t-Wy-9IV">
                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                 <font key="font" metaFont="system"/>
@@ -57,7 +57,7 @@
                             </connections>
                         </button>
                         <button verticalHuggingPriority="750" tag="22" translatesAutoresizingMaskIntoConstraints="NO" id="UIv-xe-fLQ">
-                            <rect key="frame" x="18" y="58" width="176" height="18"/>
+                            <rect key="frame" x="18" y="74" width="176" height="18"/>
                             <buttonCell key="cell" type="check" title="Show Battery Percentage" bezelStyle="regularSquare" imagePosition="left" inset="2" id="zlO-nx-U7P">
                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                 <font key="font" metaFont="system"/>
@@ -67,7 +67,7 @@
                             </connections>
                         </button>
                         <button verticalHuggingPriority="750" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="XAw-dt-3HD">
-                            <rect key="frame" x="-2" y="28" width="118" height="18"/>
+                            <rect key="frame" x="-2" y="44" width="118" height="18"/>
                             <buttonCell key="cell" type="check" title="Show Date item" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Zze-FZ-vdx">
                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                 <font key="font" metaFont="system"/>
@@ -76,20 +76,69 @@
                                 <action selector="didChangeCheckboxValue:" target="-2" id="ohQ-Ac-EbR"/>
                             </connections>
                         </button>
-                        <button verticalHuggingPriority="750" tag="31" translatesAutoresizingMaskIntoConstraints="NO" id="1i9-uU-TEf">
-                            <rect key="frame" x="18" y="-2" width="145" height="18"/>
-                            <buttonCell key="cell" type="check" title="Show in 24hr format" bezelStyle="regularSquare" imagePosition="left" inset="2" id="EeR-gT-koZ">
-                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                            <connections>
-                                <action selector="didChangeCheckboxValue:" target="-2" id="TRE-BO-EJZ"/>
-                            </connections>
-                        </button>
+                        <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="5" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HHj-jt-7nm">
+                            <rect key="frame" x="20" y="0.0" width="364" height="30"/>
+                            <subviews>
+                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kgu-2N-5Rz">
+                                    <rect key="frame" x="-2" y="7" width="85" height="16"/>
+                                    <textFieldCell key="cell" title="Time Format:" id="6tU-S4-ovU">
+                                        <font key="font" metaFont="system"/>
+                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fXD-5d-Dqf">
+                                    <rect key="frame" x="86" y="4" width="200" height="22"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="200" id="SDv-wE-iM4"/>
+                                    </constraints>
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="EE dd MMM HH:mm" bezelStyle="round" id="6HU-p8-WWc">
+                                        <font key="font" metaFont="system"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <button horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QDl-u9-yz3">
+                                    <rect key="frame" x="289" y="1" width="25" height="25"/>
+                                    <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uHI-Pg-M2K">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="help:" target="-2" id="kAT-rQ-aur"/>
+                                    </connections>
+                                </button>
+                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wRy-ur-kTb">
+                                    <rect key="frame" x="311" y="-2" width="59" height="32"/>
+                                    <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="QDc-qV-z51">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                        <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="OK:" target="-2" id="p31-r5-yBo"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <visibilityPriorities>
+                                <integer value="1000"/>
+                                <integer value="1000"/>
+                                <integer value="1000"/>
+                                <integer value="1000"/>
+                            </visibilityPriorities>
+                            <customSpacing>
+                                <real value="3.4028234663852886e+38"/>
+                                <real value="3.4028234663852886e+38"/>
+                                <real value="3.4028234663852886e+38"/>
+                                <real value="3.4028234663852886e+38"/>
+                            </customSpacing>
+                        </stackView>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="1i9-uU-TEf" firstAttribute="leading" secondItem="UIv-xe-fLQ" secondAttribute="leading" id="GJg-id-PDX"/>
                         <constraint firstItem="UIv-xe-fLQ" firstAttribute="leading" secondItem="oAr-3p-C2k" secondAttribute="leading" constant="20" id="Vmn-Lt-3Jg"/>
+                        <constraint firstItem="HHj-jt-7nm" firstAttribute="leading" secondItem="oAr-3p-C2k" secondAttribute="leading" constant="20" id="aq8-dn-fLJ"/>
                         <constraint firstItem="0iY-fD-cWj" firstAttribute="leading" secondItem="oAr-3p-C2k" secondAttribute="leading" constant="20" id="muY-gT-4J6"/>
                     </constraints>
                     <visibilityPriorities>
@@ -116,6 +165,7 @@
                 <constraint firstItem="oAr-3p-C2k" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="d6Z-Rz-Hj6"/>
                 <constraint firstAttribute="trailing" secondItem="oAr-3p-C2k" secondAttribute="trailing" constant="20" id="zeI-g2-vP9"/>
             </constraints>
+            <point key="canvasLocation" x="147" y="71"/>
         </customView>
     </objects>
 </document>

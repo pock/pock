@@ -18,8 +18,8 @@ class StatusWidgetPreferencePane: NSViewController, PreferencePane {
     @IBOutlet weak var showBatteryIconItem:         NSButton!
     @IBOutlet weak var showBatteryPercentageItem:   NSButton!
     @IBOutlet weak var showDateItem:                NSButton!
-    @IBOutlet weak var show24TimeItem:              NSButton!
     // @IBOutlet weak var showSpotlightItem:           NSButton!
+    @IBOutlet weak var timeFormatTextField:         NSTextField!
     
     /// Preferenceable
     var preferencePaneIdentifier: Identifier = Identifier.status_widget
@@ -46,7 +46,6 @@ class StatusWidgetPreferencePane: NSViewController, PreferencePane {
         self.showBatteryIconItem.state       = Defaults[.shouldShowBatteryIcon]       ? .on : .off
         self.showBatteryPercentageItem.state = Defaults[.shouldShowBatteryPercentage] ? .on : .off
         self.showDateItem.state              = Defaults[.shouldShowDateItem]          ? .on : .off
-        self.show24TimeItem.state            = Defaults[.shouldShow24TimeItem]        ? .on : .off
         // self.showSpotlightItem.state         = defaults[.shouldShowSpotlightItem]     ? .on : .off
     }
     
@@ -63,8 +62,6 @@ class StatusWidgetPreferencePane: NSViewController, PreferencePane {
             key = .shouldShowBatteryPercentage
         case 3:
             key = .shouldShowDateItem
-        case 31:
-            key = .shouldShow24TimeItem
         /* case 4:
             key = .shouldShowSpotlightItem */
         default:
@@ -73,5 +70,12 @@ class StatusWidgetPreferencePane: NSViewController, PreferencePane {
         Defaults[key] = checkbox.state == .on
         NSWorkspace.shared.notificationCenter.post(name: .shouldReloadStatusWidget, object: nil)
     }
+    @IBAction func help(_ sender: NSButton) {
+        let helpUrl = URL(string: "https://www.mowglii.com/itsycal/datetime.html")
+        NSWorkspace.shared.open(helpUrl!)
+    }
     
+    @IBAction func OK(_ sender: NSButton) {
+        Defaults[.timeFormatTextField] = timeFormatTextField.stringValue
+    }
 }

@@ -32,8 +32,8 @@
 /* Class = "NSMenuItem"; title = "Item 1"; ObjectID = "pRj-TS-f3F"; */
 "pRj-TS-f3F.title" = "Item 1";
 
-/* Class = "NSTextFieldCell"; title = "Item spacing"; ObjectID = "qJw-Vc-w0w"; */
-"qJw-Vc-w0w.title" = "Ögeler arası boşluk";
+/* Class = "NSTextFieldCell"; title = "Item spacing:"; ObjectID = "qJw-Vc-w0w"; */
+"qJw-Vc-w0w.title" = "Ögeler arası boşluk:";
 
 /* Class = "NSButtonCell"; title = "Show only running apps"; ObjectID = "qS6-8X-eGs"; */
 "qS6-8X-eGs.title" = "Sadece çalışan uygulamaları göster";
