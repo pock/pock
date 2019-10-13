@@ -90,7 +90,7 @@
                                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fXD-5d-Dqf">
                                     <rect key="frame" x="86" y="4" width="200" height="22"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="200" id="SDv-wE-iM4"/>
+                                        <constraint firstAttribute="width" constant="200" id="5Tm-SO-Ozn"/>
                                     </constraints>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="EE dd MMM HH:mm" bezelStyle="round" id="6HU-p8-WWc">
                                         <font key="font" metaFont="system"/>
@@ -105,7 +105,7 @@
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
                                     <connections>
-                                        <action selector="help:" target="-2" id="kAT-rQ-aur"/>
+                                        <action selector="openTimeFormatHelpURL:" target="-2" id="jiz-ir-dGK"/>
                                     </connections>
                                 </button>
                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wRy-ur-kTb">
@@ -118,7 +118,7 @@ DQ
 </string>
                                     </buttonCell>
                                     <connections>
-                                        <action selector="OK:" target="-2" id="p31-r5-yBo"/>
+                                        <action selector="timeFormatOK:" target="-2" id="Ct8-Gc-bjH"/>
                                     </connections>
                                 </button>
                             </subviews>

@@ -70,12 +70,13 @@ class StatusWidgetPreferencePane: NSViewController, PreferencePane {
         Defaults[key] = checkbox.state == .on
         NSWorkspace.shared.notificationCenter.post(name: .shouldReloadStatusWidget, object: nil)
     }
-    @IBAction func help(_ sender: NSButton) {
-        let helpUrl = URL(string: "https://www.mowglii.com/itsycal/datetime.html")
-        NSWorkspace.shared.open(helpUrl!)
+    
+    @IBAction func openTimeFormatHelpURL(_ sender: NSButton) {
+        guard let url = URL(string: "https://www.mowglii.com/itsycal/datetime.html") else { return }
+        NSWorkspace.shared.open(url)
     }
     
-    @IBAction func OK(_ sender: NSButton) {
+    @IBAction func timeFormatOK(_ sender: NSButton) {
         Defaults[.timeFormatTextField] = timeFormatTextField.stringValue
     }
 }
