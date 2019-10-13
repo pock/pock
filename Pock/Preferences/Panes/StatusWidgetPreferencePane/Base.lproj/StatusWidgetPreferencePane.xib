@@ -90,7 +90,7 @@
                                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fXD-5d-Dqf">
                                     <rect key="frame" x="86" y="4" width="200" height="22"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="200" id="5Tm-SO-Ozn"/>
+                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="5Tm-SO-Ozn"/>
                                     </constraints>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="EE dd MMM HH:mm" bezelStyle="round" id="6HU-p8-WWc">
                                         <font key="font" metaFont="system"/>
