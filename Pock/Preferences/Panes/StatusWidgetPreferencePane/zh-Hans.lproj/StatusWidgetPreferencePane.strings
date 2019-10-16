@@ -11,6 +11,9 @@
 /* Class = "NSButtonCell"; title = "OK"; ObjectID = "QDc-qV-z51"; */
 "QDc-qV-z51.title" = "完成";
 
+/* Class = "NSButton"; ibShadowedToolTip = "Time Format Help"; ObjectID = "QDl-u9-yz3"; */
+"QDl-u9-yz3.ibShadowedToolTip" = "时间格式帮助";
+
 /* Class = "NSButtonCell"; title = "Show Battery Icon"; ObjectID = "S9t-Wy-9IV"; */
 "S9t-Wy-9IV.title" = "显示电池图标";
 
