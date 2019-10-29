@@ -8,9 +8,6 @@
 /* Class = "NSButtonCell"; title = "Show Power item"; ObjectID = "OGc-Cn-VS5"; */
 "OGc-Cn-VS5.title" = "Güç Ögelerini Göster";
 
-/* Class = "NSButtonCell"; title = "OK"; ObjectID = "QDc-qV-z51"; */
-"QDc-qV-z51.title" = "OK";
-
 /* Class = "NSButton"; ibShadowedToolTip = "Time Format Help"; ObjectID = "QDl-u9-yz3"; */
 "QDl-u9-yz3.ibShadowedToolTip" = "Time Format Help";
 

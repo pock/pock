@@ -77,7 +77,7 @@
                             </connections>
                         </button>
                         <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="5" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HHj-jt-7nm">
-                            <rect key="frame" x="20" y="0.0" width="364" height="30"/>
+                            <rect key="frame" x="20" y="0.0" width="332" height="30"/>
                             <subviews>
                                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kgu-2N-5Rz">
                                     <rect key="frame" x="-2" y="7" width="85" height="16"/>
@@ -88,9 +88,9 @@
                                     </textFieldCell>
                                 </textField>
                                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fXD-5d-Dqf">
-                                    <rect key="frame" x="86" y="4" width="200" height="22"/>
+                                    <rect key="frame" x="86" y="4" width="220" height="22"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="5Tm-SO-Ozn"/>
+                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="220" id="5Tm-SO-Ozn"/>
                                     </constraints>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="EE dd MMM HH:mm" bezelStyle="round" id="6HU-p8-WWc">
                                         <font key="font" metaFont="system"/>
@@ -99,7 +99,7 @@
                                     </textFieldCell>
                                 </textField>
                                 <button toolTip="Time Format Help" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QDl-u9-yz3">
-                                    <rect key="frame" x="289" y="1" width="25" height="25"/>
+                                    <rect key="frame" x="309" y="1" width="25" height="25"/>
                                     <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uHI-Pg-M2K">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
@@ -108,28 +108,13 @@
                                         <action selector="openTimeFormatHelpURL:" target="-2" id="jiz-ir-dGK"/>
                                     </connections>
                                 </button>
-                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wRy-ur-kTb">
-                                    <rect key="frame" x="311" y="-2" width="59" height="32"/>
-                                    <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="QDc-qV-z51">
-                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                        <font key="font" metaFont="system"/>
-                                        <string key="keyEquivalent" base64-UTF8="YES">
-DQ
-</string>
-                                    </buttonCell>
-                                    <connections>
-                                        <action selector="timeFormatOK:" target="-2" id="Ct8-Gc-bjH"/>
-                                    </connections>
-                                </button>
                             </subviews>
                             <visibilityPriorities>
                                 <integer value="1000"/>
                                 <integer value="1000"/>
                                 <integer value="1000"/>
-                                <integer value="1000"/>
                             </visibilityPriorities>
                             <customSpacing>
-                                <real value="3.4028234663852886e+38"/>
                                 <real value="3.4028234663852886e+38"/>
                                 <real value="3.4028234663852886e+38"/>
                                 <real value="3.4028234663852886e+38"/>

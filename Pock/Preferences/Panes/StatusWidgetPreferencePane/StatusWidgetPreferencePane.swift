@@ -10,7 +10,7 @@ import Cocoa
 import Preferences
 import Defaults
 
-class StatusWidgetPreferencePane: NSViewController, PreferencePane {
+class StatusWidgetPreferencePane: NSViewController, NSTextFieldDelegate, PreferencePane {
 
     /// UI
     @IBOutlet weak var showWifiItem:                NSButton!
@@ -38,6 +38,7 @@ class StatusWidgetPreferencePane: NSViewController, PreferencePane {
         self.view.superview?.wantsLayer = true
         self.view.wantsLayer = true
         self.loadCheckboxState()
+        self.timeFormatTextField.delegate = self
     }
     
     private func loadCheckboxState() {
@@ -76,7 +77,7 @@ class StatusWidgetPreferencePane: NSViewController, PreferencePane {
         NSWorkspace.shared.open(url)
     }
     
-    @IBAction func timeFormatOK(_ sender: NSButton) {
+    func controlTextDidChange(_ obj: Notification) {
         Defaults[.timeFormatTextField] = timeFormatTextField.stringValue
     }
 }
