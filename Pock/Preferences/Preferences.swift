@@ -75,7 +75,6 @@ enum AppExposeSettings : String, Codable, CaseIterable {
 }
 
 extension Defaults.Keys {
-    static let launchAtLogin                    = Defaults.Key<Bool>("launchAtLogin",          default: false)
     static let hideControlStrip                 = Defaults.Key<Bool>("hideControlStrip",       default: true)
     static let enableAutomaticUpdates           = Defaults.Key<Bool>("enableAutomaticUpdates", default: false)
     /// Dock widget
