@@ -70,8 +70,6 @@
 		34E644F7227D783E003D0450 /* KeySenderHelper.c in Sources */ = {isa = PBXBuildFile; fileRef = 34E644F6227D783E003D0450 /* KeySenderHelper.c */; };
 		34E644FB227D9A69003D0450 /* DockWidgetPreferencePane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E644F9227D9A69003D0450 /* DockWidgetPreferencePane.swift */; };
 		34F27F2923428174001EBB6B /* login.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 347F335D22D0D5F600FA9805 /* login.framework */; };
-		34F27F2B234281C7001EBB6B /* LaunchAtLogin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34F27F2523428108001EBB6B /* LaunchAtLogin.framework */; };
-		34F27F2C234281C7001EBB6B /* LaunchAtLogin.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 34F27F2523428108001EBB6B /* LaunchAtLogin.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		962E0A5522CF1D1D00567E20 /* DockFolderController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 962E0A5722CF1D1D00567E20 /* DockFolderController.xib */; };
 		964435B722D18F91002FA1CB /* LocalizedUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964435B622D18F91002FA1CB /* LocalizedUtils.swift */; };
 		9667AAF222CF192D00C22410 /* GeneralPreferencePane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9667AAF422CF192D00C22410 /* GeneralPreferencePane.xib */; };
@@ -80,20 +78,6 @@
 		96FE269F22D0C3810071645C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 96FE26A122D0C3810071645C /* Localizable.strings */; };
 		9955665222DC668500EFFE6D /* CCToggleMuteItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9955665122DC668500EFFE6D /* CCToggleMuteItem.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		34F27F2D234281C7001EBB6B /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				34F27F2C234281C7001EBB6B /* LaunchAtLogin.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		34064336227E224700981372 /* DockFolderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockFolderController.swift; sourceTree = "<group>"; };
@@ -219,7 +203,6 @@
 			files = (
 				34F27F2923428174001EBB6B /* login.framework in Frameworks */,
 				349431ED22197485008622B1 /* MediaRemote.framework in Frameworks */,
-				34F27F2B234281C7001EBB6B /* LaunchAtLogin.framework in Frameworks */,
 				34BC3ECC2210B2EC00C1DD3C /* DFRFoundation.framework in Frameworks */,
 				009B0E12E317757741CE38C8 /* Pods_Pock.framework in Frameworks */,
 			);
@@ -624,13 +607,11 @@
 			buildConfigurationList = 348343E51F631B2E00CDA005 /* Build configuration list for PBXNativeTarget "Pock" */;
 			buildPhases = (
 				2B2556069E62CDAC367ACF33 /* [CP] Check Pods Manifest.lock */,
-				34F27F2D234281C7001EBB6B /* Embed Frameworks */,
 				3407F9DF22D102AC0072E742 /* [Pock]: Set Fabric API_KEY */,
 				348343D21F631B2E00CDA005 /* Sources */,
 				348343D31F631B2E00CDA005 /* Frameworks */,
 				348343D41F631B2E00CDA005 /* Resources */,
 				9C497126EC20FAC73A4D0299 /* [CP] Embed Pods Frameworks */,
-				34FBB7B721734E8F004D5BC0 /* [LaunchAtLogin] Copy helper */,
 				3413964E217B8B6200DCD2B0 /* [Fabric] Run */,
 			);
 			buildRules = (
@@ -765,24 +746,6 @@
 			shellPath = /bin/sh;
 			shellScript = "apiKey=$(sed -n '1p' < FabricEnv)\nsecretKey=$(sed -n '2p' < FabricEnv)\n\n\"${PODS_ROOT}/Fabric/run\" $apiKey $secretKey\n";
 		};
-		34FBB7B721734E8F004D5BC0 /* [LaunchAtLogin] Copy helper */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "[LaunchAtLogin] Copy helper";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PROJECT_DIR}/Carthage/Build/Mac/LaunchAtLogin.framework/Resources/copy-helper.sh\"\n";
-		};
 		9C497126EC20FAC73A4D0299 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -791,6 +754,7 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Pock/Pods-Pock-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Defaults/Defaults.framework",
+				"${BUILT_PRODUCTS_DIR}/LoginServiceKit/LoginServiceKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Magnet/Magnet.framework",
 				"${BUILT_PRODUCTS_DIR}/PockKit/PockKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Preferences/Preferences.framework",
@@ -799,6 +763,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Defaults.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LoginServiceKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Magnet.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PockKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Preferences.framework",
@@ -1073,7 +1038,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Pock/Various/Pock.entitlements;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1083,7 +1048,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Pock/Various/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @executable_path/../Frameworks";
@@ -1103,7 +1067,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Pock/Various/Pock.entitlements;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1112,7 +1076,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Pock/Various/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @executable_path/../Frameworks";

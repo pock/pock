@@ -9,7 +9,7 @@
 import Foundation
 import Preferences
 import Defaults
-import LaunchAtLogin
+import LoginServiceKit
 
 final class GeneralPreferencePane: NSViewController, PreferencePane {
     
@@ -63,9 +63,9 @@ final class GeneralPreferencePane: NSViewController, PreferencePane {
     }
     
     private func setupCheckboxes() {
-        self.hideControlStripCheckbox.state = Defaults[.hideControlStrip]       ? .on : .off
-        self.enableAutomaticUpdates.state   = Defaults[.enableAutomaticUpdates] ? .on : .off
-        self.launchAtLoginCheckbox.state    = LaunchAtLogin.isEnabled           ? .on : .off
+        self.hideControlStripCheckbox.state = Defaults[.hideControlStrip]         ? .on : .off
+        self.enableAutomaticUpdates.state   = Defaults[.enableAutomaticUpdates]   ? .on : .off
+        self.launchAtLoginCheckbox.state    = Defaults[.launchAtLogin]            ? .on : .off
     }
     
     @IBAction private func didChangeHideControlStripValue(button: NSButton) {
@@ -74,7 +74,14 @@ final class GeneralPreferencePane: NSViewController, PreferencePane {
     }
     
     @IBAction private func didChangeLaunchAtLoginValue(button: NSButton) {
-        LaunchAtLogin.isEnabled = button.state == .on
+        switch button.state {
+        case .on:
+            LoginServiceKit.addLoginItems()
+        case .off:
+            LoginServiceKit.removeLoginItems()
+        default:
+            return
+        }
     }
     
     @IBAction private func didChangeEnableAutomaticUpdates(button: NSButton) {
