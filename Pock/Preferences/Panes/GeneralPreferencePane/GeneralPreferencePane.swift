@@ -63,9 +63,9 @@ final class GeneralPreferencePane: NSViewController, PreferencePane {
     }
     
     private func setupCheckboxes() {
-        self.hideControlStripCheckbox.state = Defaults[.hideControlStrip]         ? .on : .off
-        self.enableAutomaticUpdates.state   = Defaults[.enableAutomaticUpdates]   ? .on : .off
-        self.launchAtLoginCheckbox.state    = Defaults[.launchAtLogin]            ? .on : .off
+        self.hideControlStripCheckbox.state = Defaults[.hideControlStrip]              ? .on : .off
+        self.enableAutomaticUpdates.state   = Defaults[.enableAutomaticUpdates]        ? .on : .off
+        self.launchAtLoginCheckbox.state    = LoginServiceKit.isExistLoginItems()      ? .on : .off
     }
     
     @IBAction private func didChangeHideControlStripValue(button: NSButton) {
