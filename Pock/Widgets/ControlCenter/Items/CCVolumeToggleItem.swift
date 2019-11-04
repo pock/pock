@@ -20,11 +20,11 @@ class CCVolumeToggleItem: ControlCenterItem {
             return NSImage(named: NSImage.touchBarAudioOutputVolumeOffTemplateName)!
         } else {
             switch NSSound.systemVolume() {
-            case 0.01..<0.3:
+            case 0.01..<0.375:
                 return NSImage(named: NSImage.touchBarAudioOutputVolumeLowTemplateName)!
-            case 0.3..<0.6:
+            case 0.375..<0.6875:
                 return NSImage(named: NSImage.touchBarAudioOutputVolumeMediumTemplateName)!
-            case 0.6...1.0:
+            case 0.6875...1.0:
                 return NSImage(named: NSImage.touchBarAudioOutputVolumeHighTemplateName)!
             default:
                 return NSImage(named: NSImage.touchBarAudioOutputVolumeOffTemplateName)!
