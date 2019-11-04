@@ -1,0 +1,45 @@
+//
+//  CCVolumeToggleItem.swift
+//  Pock
+//
+//  Created by Licardo on 2019/11/4.
+//  Copyright © 2019 Pierluigi Galdi. All rights reserved.
+//
+
+import Foundation
+import Defaults
+
+class CCVolumeToggleItem: ControlCenterItem {
+    
+    override var enabled: Bool{ return Defaults[.shouldShowVolumeItem] && Defaults[.shouldShowVolumeToggleItem] }
+    
+    override var title: String  { return "volume-toggle" }
+    
+    override var icon: NSImage {
+        if NSSound.isMuted() {
+            return NSImage(named: NSImage.touchBarAudioOutputVolumeOffTemplateName)!
+        } else {
+            switch NSSound.systemVolume() {
+            case 0.01..<0.3:
+                return NSImage(named: NSImage.touchBarAudioOutputVolumeLowTemplateName)!
+            case 0.3..<0.6:
+                return NSImage(named: NSImage.touchBarAudioOutputVolumeMediumTemplateName)!
+            case 0.6...1.0:
+                return NSImage(named: NSImage.touchBarAudioOutputVolumeHighTemplateName)!
+            default:
+                return NSImage(named: NSImage.touchBarAudioOutputVolumeOffTemplateName)!
+            }
+        }
+    }
+    
+    override func action() -> Any? {
+        parentWidget?.showSlideableController(for: self, currentValue: NSSound.systemVolume())
+    }
+    
+    override func didSlide(at value: Double) {
+        NSSound.setSystemVolume(Float(value))
+        NSWorkspace.shared.notificationCenter.post(name: .shouldReloadControlCenterWidget, object: nil)
+        // DK_OSDUIHelper.showHUD(type: NSSound.isMuted() ? .mute : .volume, filled: CUnsignedInt(NSSound.systemVolume() * 16))
+    }
+    
+}

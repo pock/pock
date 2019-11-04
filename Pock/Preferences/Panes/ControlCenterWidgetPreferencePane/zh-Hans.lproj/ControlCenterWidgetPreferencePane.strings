@@ -1,27 +1,33 @@
 
-/* Class = "NSButtonCell"; title = "Show Toggle Mute Item"; ObjectID = "0cO-cp-q0P"; */
+/* Class = "NSButtonCell"; title = "Show Volume Mute Item"; ObjectID = "0cO-cp-q0P"; */
 "0cO-cp-q0P.title" = "显示静音";
 
-/* Class = "NSButtonCell"; title = "Show Volume items"; ObjectID = "A1L-D1-Jwj"; */
-"A1L-D1-Jwj.title" = "显示音量";
+/* Class = "NSButtonCell"; title = "Show Volume Items"; ObjectID = "A1L-D1-Jwj"; */
+"A1L-D1-Jwj.title" = "显示音量选项";
 
 /* Class = "NSButtonCell"; title = "Show Volume Up Item"; ObjectID = "AJ4-PK-Oid"; */
 "AJ4-PK-Oid.title" = "显示音量提高";
 
-/* Class = "NSButtonCell"; title = "Show Lock item"; ObjectID = "OGc-Cn-VS5"; */
+/* Class = "NSButtonCell"; title = "Show Lock Item"; ObjectID = "OGc-Cn-VS5"; */
 "OGc-Cn-VS5.title" = "显示锁屏";
 
-/* Class = "NSButtonCell"; title = "Show Brightness Down item"; ObjectID = "S9t-Wy-9IV"; */
+/* Class = "NSButtonCell"; title = "Show Brightness Down Item"; ObjectID = "S9t-Wy-9IV"; */
 "S9t-Wy-9IV.title" = "显示亮度降低";
 
 /* Class = "NSButtonCell"; title = "Show Volume Down Item"; ObjectID = "Zze-FZ-vdx"; */
 "Zze-FZ-vdx.title" = "显示音量降低";
 
-/* Class = "NSButtonCell"; title = "Show Sleep item"; ObjectID = "c9g-yA-umL"; */
+/* Class = "NSButtonCell"; title = "Show Sleep Item"; ObjectID = "c9g-yA-umL"; */
 "c9g-yA-umL.title" = "显示睡眠";
+
+/* Class = "NSButtonCell"; title = "Show Volume Toggle Item"; ObjectID = "oTc-dK-63V"; */
+"oTc-dK-63V.title" = "显示音量调节";
+
+/* Class = "NSButtonCell"; title = "Show Brightness Toggle Item"; ObjectID = "po1-9a-abU"; */
+"po1-9a-abU.title" = "显示亮度调节";
 
 /* Class = "NSButtonCell"; title = "Show Brightness Up Item"; ObjectID = "zlO-nx-U7P"; */
 "zlO-nx-U7P.title" = "显示亮度提高";
 
-/* Class = "NSButtonCell"; title = "Show Brightness items"; ObjectID = "zt4-Gu-yzF"; */
-"zt4-Gu-yzF.title" = "显示亮度";
+/* Class = "NSButtonCell"; title = "Show Brightness Items"; ObjectID = "zt4-Gu-yzF"; */
+"zt4-Gu-yzF.title" = "显示亮度选项";

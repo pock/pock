@@ -66,9 +66,11 @@ class ControlCenterWidget: PKWidget {
             CCLockItem(parentWidget: self),
             CCBrightnessDownItem(parentWidget: self),
             CCBrightnessUpItem(parentWidget: self),
+            CCBrightnessToggleItem(parentWidget: self),
             CCVolumeDownItem(parentWidget: self),
             CCVolumeUpItem(parentWidget: self),
-            CCToggleMuteItem(parentWidget: self)
+            CCVolumeToggleItem(parentWidget: self),
+            CCVolumeMuteItem(parentWidget: self)
         ]
     }
     
@@ -79,7 +81,7 @@ class ControlCenterWidget: PKWidget {
     
     /// Volume items
     public var volumeItems: [ControlCenterItem] {
-        return controlsRaw.filter({ $0 is CCVolumeUpItem || $0 is CCVolumeDownItem || $0 is CCToggleMuteItem })
+        return controlsRaw.filter({ $0 is CCVolumeUpItem || $0 is CCVolumeDownItem || $0 is CCVolumeMuteItem || $0 is CCVolumeToggleItem })
     }
     
     /// Brightness items
@@ -145,9 +147,9 @@ extension ControlCenterWidget {
         guard let item = item else { return }
         slideableController = PKSlideableController.load()
         switch item.self {
-        case is CCVolumeUpItem, is CCVolumeDownItem, is CCToggleMuteItem:
+        case is CCVolumeUpItem, is CCVolumeDownItem, is CCVolumeMuteItem, is CCVolumeToggleItem:
             slideableController?.set(downItem: CCVolumeDownItem(parentWidget: self), upItem: CCVolumeUpItem(parentWidget: self))
-        case is CCBrightnessUpItem, is CCBrightnessDownItem:
+        case is CCBrightnessUpItem, is CCBrightnessDownItem, is CCBrightnessToggleItem:
             slideableController?.set(downItem: CCBrightnessDownItem(parentWidget: self), upItem: CCBrightnessUpItem(parentWidget: self))
         default:
             return

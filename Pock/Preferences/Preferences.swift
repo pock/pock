@@ -101,7 +101,9 @@ extension Defaults.Keys {
     static let shouldShowVolumeItem         = Defaults.Key<Bool>("shouldShowVolumeItem",            default: true)
     static let shouldShowBrightnessDownItem = Defaults.Key<Bool>("shouldShowBrightnessDownItem",    default: true)
     static let shouldShowBrightnessUpItem   = Defaults.Key<Bool>("shouldShowBrightnessUpItem",      default: true)
+    static let shouldShowBrightnessToggleItem = Defaults.Key<Bool>("shouldShowBrightnessToggleItem",    default: false)
     static let shouldShowVolumeDownItem     = Defaults.Key<Bool>("shouldShowVolumeDownItem",        default: true)
     static let shouldShowVolumeUpItem       = Defaults.Key<Bool>("shouldShowVolumeUpItem",          default: true)
-    static let shouldShowToggleMuteItem     = Defaults.Key<Bool>("shouldShowToggleMuteItem",        default: false)
+    static let shouldShowVolumeMuteItem     = Defaults.Key<Bool>("shouldShowVolumeMuteItem",        default: false)
+    static let shouldShowVolumeToggleItem     = Defaults.Key<Bool>("shouldShowVolumeToggleItem",        default: false)
 }
