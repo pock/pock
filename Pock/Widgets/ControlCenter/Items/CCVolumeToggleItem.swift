@@ -16,7 +16,7 @@ class CCVolumeToggleItem: ControlCenterItem {
     override var title: String { return "volume-toggle" }
     
     override var icon: NSImage {
-        if NSSound.isMuted() == false {
+        if NSSound.isMuted() {
             return NSImage(named: NSImage.touchBarAudioOutputVolumeOffTemplateName)!
         } else {
             switch NSSound.systemVolume() {
