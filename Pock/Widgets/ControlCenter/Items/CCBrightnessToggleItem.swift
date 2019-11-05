@@ -21,6 +21,10 @@ class CCBrightnessToggleItem: ControlCenterItem {
         parentWidget?.showSlideableController(for: self, currentValue: DKBrightness.getBrightnessLevel())
     }
     
+    override func longPressAction() {
+           parentWidget?.showSlideableController(for: self, currentValue: DKBrightness.getBrightnessLevel())
+    }
+    
     override func didSlide(at value: Double) {
         DKBrightness.setBrightnessLevel(level: Float(value))
         DK_OSDUIHelper.showHUD(type: .brightness, filled: CUnsignedInt(DKBrightness.getBrightnessLevel() * 16))

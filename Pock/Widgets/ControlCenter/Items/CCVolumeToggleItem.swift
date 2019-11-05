@@ -36,6 +36,10 @@ class CCVolumeToggleItem: ControlCenterItem {
         parentWidget?.showSlideableController(for: self, currentValue: NSSound.systemVolume())
     }
     
+    override func longPressAction() {
+        parentWidget?.showSlideableController(for: self, currentValue: NSSound.systemVolume())
+    }
+    
     override func didSlide(at value: Double) {
         NSSound.setSystemVolume(Float(value))
         NSWorkspace.shared.notificationCenter.post(name: .shouldReloadControlCenterWidget, object: nil)
