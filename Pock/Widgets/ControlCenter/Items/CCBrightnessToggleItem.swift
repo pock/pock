@@ -22,7 +22,7 @@ class CCBrightnessToggleItem: ControlCenterItem {
     }
     
     override func longPressAction() {
-           parentWidget?.showSlideableController(for: self, currentValue: DKBrightness.getBrightnessLevel())
+        parentWidget?.showSlideableController(for: self, currentValue: DKBrightness.getBrightnessLevel())
     }
     
     override func didSlide(at value: Double) {

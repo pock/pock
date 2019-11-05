@@ -2,6 +2,9 @@
 /* Class = "NSButtonCell"; title = "Show Volume Mute Item"; ObjectID = "0cO-cp-q0P"; */
 "0cO-cp-q0P.title" = "Show Volume Mute Item";
 
+/* Class = "NSButtonCell"; title = "Show Screensaver Item"; ObjectID = "2xh-EW-PL2"; */
+"2xh-EW-PL2.title" = "Show Screensaver Item";
+
 /* Class = "NSButtonCell"; title = "Show Volume Items"; ObjectID = "A1L-D1-Jwj"; */
 "A1L-D1-Jwj.title" = "Ses Ögelerini Göster";
 

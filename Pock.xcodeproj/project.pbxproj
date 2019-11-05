@@ -77,6 +77,7 @@
 		9667AB0422CF1ABA00C22410 /* DockWidgetPreferencePane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9667AB0622CF1ABA00C22410 /* DockWidgetPreferencePane.xib */; };
 		9675D6D1237003DC00C36234 /* CCVolumeToggleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9675D6D0237003DC00C36234 /* CCVolumeToggleItem.swift */; };
 		9675D6D323701BC900C36234 /* CCBrightnessToggleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9675D6D223701BC900C36234 /* CCBrightnessToggleItem.swift */; };
+		96BE2701237171DC0031B31F /* CCScreensaverItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BE2700237171DC0031B31F /* CCScreensaverItem.swift */; };
 		96FE269F22D0C3810071645C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 96FE26A122D0C3810071645C /* Localizable.strings */; };
 		9955665222DC668500EFFE6D /* CCVolumeMuteItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9955665122DC668500EFFE6D /* CCVolumeMuteItem.swift */; };
 /* End PBXBuildFile section */
@@ -179,9 +180,10 @@
 		9667AB0522CF1ABA00C22410 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/DockWidgetPreferencePane.xib; sourceTree = "<group>"; };
 		9675D6D0237003DC00C36234 /* CCVolumeToggleItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCVolumeToggleItem.swift; sourceTree = "<group>"; };
 		9675D6D223701BC900C36234 /* CCBrightnessToggleItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCBrightnessToggleItem.swift; sourceTree = "<group>"; };
-		9675D6D923703A4600C36234 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ControlCenterWidgetPreferencePane.strings; sourceTree = "<group>"; };
+		967C32BD2371C8CF009A8FFD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ControlCenterWidgetPreferencePane.strings; sourceTree = "<group>"; };
 		9686B4F822D2216400C7A08C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ControlCenterWidgetPreferencePane.xib; sourceTree = "<group>"; };
 		969439E922D0FCA20022E67D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		96BE2700237171DC0031B31F /* CCScreensaverItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCScreensaverItem.swift; sourceTree = "<group>"; };
 		96E3DD8C2357258600AA719D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/StatusWidgetPreferencePane.strings; sourceTree = "<group>"; };
 		96E468B12351BC7200A20E56 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/DockWidgetPreferencePane.strings; sourceTree = "<group>"; };
 		96E468B22351BC7500A20E56 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/DockWidgetPreferencePane.strings"; sourceTree = "<group>"; };
@@ -449,6 +451,7 @@
 				9955665122DC668500EFFE6D /* CCVolumeMuteItem.swift */,
 				9675D6D0237003DC00C36234 /* CCVolumeToggleItem.swift */,
 				9675D6D223701BC900C36234 /* CCBrightnessToggleItem.swift */,
+				96BE2700237171DC0031B31F /* CCScreensaverItem.swift */,
 			);
 			path = Items;
 			sourceTree = "<group>";
@@ -829,6 +832,7 @@
 				342D840D2278D5CF000D79DA /* FileMonitor.swift in Sources */,
 				3407F9E722D1C5170072E742 /* AppExposeController.swift in Sources */,
 				342D83E12278D5CF000D79DA /* PockMainController.swift in Sources */,
+				96BE2701237171DC0031B31F /* CCScreensaverItem.swift in Sources */,
 				342D83F72278D5CF000D79DA /* NowPlayingHelper.swift in Sources */,
 				342D83EF2278D5CF000D79DA /* ControlCenterItem.swift in Sources */,
 				964435B722D18F91002FA1CB /* LocalizedUtils.swift in Sources */,
@@ -910,7 +914,7 @@
 				881719852334CAFA00CEFF2B /* tr */,
 				AAA363722333699C0016267D /* zh-Hant */,
 				96F2999A2317980B0055DA26 /* zh-Hans */,
-				9675D6D923703A4600C36234 /* en */,
+				967C32BD2371C8CF009A8FFD /* en */,
 			);
 			name = ControlCenterWidgetPreferencePane.xib;
 			sourceTree = "<group>";

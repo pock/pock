@@ -2,6 +2,9 @@
 /* Class = "NSButtonCell"; title = "Show Volume Mute Item"; ObjectID = "0cO-cp-q0P"; */
 "0cO-cp-q0P.title" = "靜音鍵";
 
+/* Class = "NSButtonCell"; title = "Show Screensaver Item"; ObjectID = "2xh-EW-PL2"; */
+"2xh-EW-PL2.title" = "顯示屏保鍵";
+
 /* Class = "NSButtonCell"; title = "Show Volume Items"; ObjectID = "A1L-D1-Jwj"; */
 "A1L-D1-Jwj.title" = "顯示音量調整鍵";
 

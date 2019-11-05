@@ -15,6 +15,7 @@ class ControlCenterWidgetPreferencePane: NSViewController, PreferencePane {
     /// UI
     @IBOutlet weak var showSleepItem:             NSButton!
     @IBOutlet weak var showLockItem:              NSButton!
+    @IBOutlet weak var showScreensaverItem:       NSButton!
     @IBOutlet weak var showBrightnessItem:        NSButton!
     @IBOutlet weak var showVolumeItem:            NSButton!
     @IBOutlet weak var showBrightnessDownItem:    NSButton!
@@ -44,6 +45,7 @@ class ControlCenterWidgetPreferencePane: NSViewController, PreferencePane {
     private func loadCheckboxState() {
         self.showSleepItem.state            = Defaults[.shouldShowSleepItem]          ? .on : .off
         self.showLockItem.state             = Defaults[.shouldShowLockItem]           ? .on : .off
+        self.showScreensaverItem.state      = Defaults[.shouldShowScreensaverItem]    ? .on : .off
         self.showBrightnessItem.state       = Defaults[.shouldShowBrightnessItem]     ? .on : .off
         self.showVolumeItem.state           = Defaults[.shouldShowVolumeItem]         ? .on : .off
         self.showBrightnessDownItem.state   = Defaults[.shouldShowBrightnessDownItem] ? .on : .off
@@ -71,22 +73,24 @@ class ControlCenterWidgetPreferencePane: NSViewController, PreferencePane {
         case 2:
             key = .shouldShowLockItem
         case 3:
-            key = .shouldShowBrightnessItem
-        case 31:
-            key = .shouldShowBrightnessDownItem
-        case 32:
-            key = .shouldShowBrightnessUpItem
-        case 33:
-            key = .shouldShowBrightnessToggleItem
+            key = .shouldShowScreensaverItem
         case 4:
-            key = .shouldShowVolumeItem
+            key = .shouldShowBrightnessItem
         case 41:
-            key = .shouldShowVolumeDownItem
+            key = .shouldShowBrightnessDownItem
         case 42:
-            key = .shouldShowVolumeUpItem
+            key = .shouldShowBrightnessUpItem
         case 43:
+            key = .shouldShowBrightnessToggleItem
+        case 5:
+            key = .shouldShowVolumeItem
+        case 51:
+            key = .shouldShowVolumeDownItem
+        case 52:
+            key = .shouldShowVolumeUpItem
+        case 53:
             key = .shouldShowVolumeToggleItem
-        case 44:
+        case 54:
             key = .shouldShowVolumeMuteItem
         default:
             return
