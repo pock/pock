@@ -11,12 +11,12 @@ import Defaults
 
 class CCVolumeToggleItem: ControlCenterItem {
     
-    override var enabled: Bool{ return Defaults[.shouldShowVolumeItem] && Defaults[.shouldShowVolumeToggleItem] }
+    override var enabled: Bool { return Defaults[.shouldShowVolumeItem] && Defaults[.shouldShowVolumeToggleItem] }
     
-    override var title: String  { return "volume-toggle" }
+    override var title: String { return "volume-toggle" }
     
     override var icon: NSImage {
-        if NSSound.isMuted() {
+        if NSSound.isMuted() == false {
             return NSImage(named: NSImage.touchBarAudioOutputVolumeOffTemplateName)!
         } else {
             switch NSSound.systemVolume() {

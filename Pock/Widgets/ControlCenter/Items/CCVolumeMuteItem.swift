@@ -3,14 +3,14 @@ import Defaults
 
 class CCVolumeMuteItem: ControlCenterItem {
     
-    override var enabled: Bool{ return Defaults[.shouldShowVolumeItem] && Defaults[.shouldShowVolumeMuteItem] }
+    override var enabled: Bool { return Defaults[.shouldShowVolumeItem] && Defaults[.shouldShowVolumeMuteItem] }
     
     private let key: KeySender = KeySender(keyCode: NX_KEYTYPE_MUTE, isAux: true)
     
-    override var title: String  { return "volume-mute" }
+    override var title: String { return "volume-mute" }
     
     override var icon: NSImage {
-        return NSImage(named: NSSound.isMuted() ? title : NSImage.touchBarAudioOutputMuteTemplateName)!
+        return NSImage(named: NSSound.isMuted() ? NSImage.touchBarAudioOutputMuteTemplateName : title)!
     }
     
     override func action() -> Any? {

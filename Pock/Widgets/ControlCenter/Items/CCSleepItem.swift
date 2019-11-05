@@ -11,9 +11,9 @@ import Defaults
 
 class CCSleepItem: ControlCenterItem {
     
-    override var enabled: Bool{ return Defaults[.shouldShowSleepItem] }
+    override var enabled: Bool { return Defaults[.shouldShowSleepItem] }
     
-    override var title: String  { return "sleep" }
+    override var title: String { return "sleep" }
     
     override var icon:  NSImage { return NSImage(named: title)! }
     

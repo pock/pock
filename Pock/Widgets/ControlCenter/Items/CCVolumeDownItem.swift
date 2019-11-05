@@ -11,11 +11,11 @@ import Defaults
 
 class CCVolumeDownItem: ControlCenterItem {
     
-    override var enabled: Bool{ return Defaults[.shouldShowVolumeItem] && Defaults[.shouldShowVolumeDownItem] }
+    override var enabled: Bool { return Defaults[.shouldShowVolumeItem] && Defaults[.shouldShowVolumeDownItem] }
     
     private let key: KeySender = KeySender(keyCode: NX_KEYTYPE_SOUND_DOWN, isAux: true)
     
-    override var title: String  { return "volume-down" }
+    override var title: String { return "volume-down" }
     
     override var icon:  NSImage { return NSImage(named: NSImage.touchBarVolumeDownTemplateName)! }
     

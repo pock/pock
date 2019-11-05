@@ -11,9 +11,9 @@ import Defaults
 
 class CCLockItem: ControlCenterItem {
     
-    override var enabled: Bool{ return Defaults[.shouldShowLockItem] }
+    override var enabled: Bool { return Defaults[.shouldShowLockItem] }
     
-    override var title: String  { return "lock" }
+    override var title: String { return "lock" }
     
     override var icon:  NSImage { return NSImage(named: NSImage.lockLockedTemplateName)! }
     

@@ -11,11 +11,11 @@ import Defaults
 
 class CCVolumeUpItem: ControlCenterItem {
     
-    override var enabled: Bool{ return Defaults[.shouldShowVolumeItem] && Defaults[.shouldShowVolumeUpItem] }
+    override var enabled: Bool { return Defaults[.shouldShowVolumeItem] && Defaults[.shouldShowVolumeUpItem] }
     
     private let key: KeySender = KeySender(keyCode: NX_KEYTYPE_SOUND_UP, isAux: true)
     
-    override var title: String  { return "volume-up" }
+    override var title: String { return "volume-up" }
     
     override var icon:  NSImage { return NSImage(named: NSImage.touchBarVolumeUpTemplateName)! }
     

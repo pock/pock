@@ -11,11 +11,11 @@ import Defaults
 
 class CCBrightnessUpItem: ControlCenterItem {
     
-    override var enabled: Bool{ return Defaults[.shouldShowBrightnessItem] && Defaults[.shouldShowBrightnessUpItem] }
+    override var enabled: Bool { return Defaults[.shouldShowBrightnessItem] && Defaults[.shouldShowBrightnessUpItem] }
     
     private let key: KeySender = KeySender(keyCode: NX_KEYTYPE_BRIGHTNESS_UP, isAux: true)
     
-    override var title: String  { return "brightness-up" }
+    override var title: String { return "brightness-up" }
     
     override var icon:  NSImage { return NSImage(named: title)! }
     

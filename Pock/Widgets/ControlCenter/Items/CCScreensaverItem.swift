@@ -11,9 +11,9 @@ import Defaults
 
 class CCScreensaverItem: ControlCenterItem {
     
-    override var enabled: Bool{ return Defaults[.shouldShowScreensaverItem] }
+    override var enabled: Bool { return Defaults[.shouldShowScreensaverItem] }
     
-    override var title: String  { return "screensaver" }
+    override var title: String { return "screensaver" }
     
     override var icon:  NSImage { return NSImage(named: NSImage.touchBarSlideshowTemplateName)! }
     

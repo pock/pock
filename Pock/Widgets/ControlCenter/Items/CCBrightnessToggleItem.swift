@@ -11,9 +11,9 @@ import Defaults
 
 class CCBrightnessToggleItem: ControlCenterItem {
 
-    override var enabled: Bool{ return Defaults[.shouldShowBrightnessItem] && Defaults[.shouldShowBrightnessToggleItem] }
+    override var enabled: Bool { return Defaults[.shouldShowBrightnessItem] && Defaults[.shouldShowBrightnessToggleItem] }
     
-    override var title: String  { return "brightness-toggle" }
+    override var title: String { return "brightness-toggle" }
     
     override var icon:  NSImage { return NSImage(named: title)! }
     
