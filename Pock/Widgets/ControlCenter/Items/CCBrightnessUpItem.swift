@@ -17,7 +17,7 @@ class CCBrightnessUpItem: ControlCenterItem {
     
     override var title: String  { return "brightness-up" }
     
-    override var icon:  NSImage { return NSImage(named: title)!.resize(w: 30, h: 30) }
+    override var icon:  NSImage { return NSImage(named: title)! }
     
     override func action() -> Any? {
         key.send()
