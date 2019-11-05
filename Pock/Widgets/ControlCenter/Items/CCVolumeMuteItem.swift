@@ -10,7 +10,7 @@ class CCVolumeMuteItem: ControlCenterItem {
     override var title: String  { return "volume-mute" }
     
     override var icon: NSImage {
-        return NSImage(named: NSSound.isMuted() ? NSImage.touchBarAudioOutputVolumeOffTemplateName : NSImage.touchBarAudioOutputMuteTemplateName)!
+        return NSImage(named: NSSound.isMuted() ? title : NSImage.touchBarAudioOutputMuteTemplateName)!
     }
     
     override func action() -> Any? {
