@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "mac",
-      "filename" : "AirPort2.png",
+      "filename" : "screensaver.png",
       "scale" : "1x"
     },
     {
       "idiom" : "mac",
-      "filename" : "AirPort2@2x.png",
+      "filename" : "screensaver@2x.png",
       "scale" : "2x"
     }
   ],
