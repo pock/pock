@@ -143,11 +143,11 @@
                                     </customSpacing>
                                 </stackView>
                                 <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="16" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N4t-4q-BYZ">
-                                    <rect key="frame" x="245" y="0.0" width="195" height="136"/>
+                                    <rect key="frame" x="245" y="2" width="195" height="134"/>
                                     <subviews>
                                         <button verticalHuggingPriority="750" tag="5" translatesAutoresizingMaskIntoConstraints="NO" id="vKF-NW-wSS">
-                                            <rect key="frame" x="0.0" y="120" width="123" height="16"/>
-                                            <buttonCell key="cell" type="bevel" title="Show Volume Items" bezelStyle="regularSquare" imagePosition="left" inset="2" id="A1L-D1-Jwj">
+                                            <rect key="frame" x="-2" y="118" width="141" height="18"/>
+                                            <buttonCell key="cell" type="check" title="Show Volume Items" bezelStyle="regularSquare" imagePosition="left" inset="2" id="A1L-D1-Jwj">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
