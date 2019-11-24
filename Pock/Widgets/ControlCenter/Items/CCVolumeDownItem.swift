@@ -20,6 +20,7 @@ class CCVolumeDownItem: ControlCenterItem {
     override var icon:  NSImage { return NSImage(named: NSImage.touchBarVolumeDownTemplateName)! }
     
     override func action() -> Any? {
+        Defaults[.isVolumeMute] = false
         key.send()
         NSWorkspace.shared.notificationCenter.post(name: .shouldReloadControlCenterWidget, object: nil)
         return NSSound.systemVolume()
@@ -30,6 +31,7 @@ class CCVolumeDownItem: ControlCenterItem {
     }
     
     override func didSlide(at value: Double) {
+        Defaults[.isVolumeMute] = false
         NSSound.setSystemVolume(Float(value))
         NSWorkspace.shared.notificationCenter.post(name: .shouldReloadControlCenterWidget, object: nil)
         // DK_OSDUIHelper.showHUD(type: NSSound.isMuted() ? .mute : .volume, filled: CUnsignedInt(NSSound.systemVolume() * 16))

@@ -16,7 +16,7 @@ class CCVolumeToggleItem: ControlCenterItem {
     override var title: String { return "volume-toggle" }
     
     override var icon: NSImage {
-        if NSSound.isMuted() {
+        if Defaults[.isVolumeMute] {
             return NSImage(named: NSImage.touchBarAudioOutputVolumeOffTemplateName)!
         } else {
             switch NSSound.systemVolume() {
@@ -41,6 +41,7 @@ class CCVolumeToggleItem: ControlCenterItem {
     }
     
     override func didSlide(at value: Double) {
+        Defaults[.isVolumeMute] = false
         NSSound.setSystemVolume(Float(value))
         NSWorkspace.shared.notificationCenter.post(name: .shouldReloadControlCenterWidget, object: nil)
         // DK_OSDUIHelper.showHUD(type: NSSound.isMuted() ? .mute : .volume, filled: CUnsignedInt(NSSound.systemVolume() * 16))

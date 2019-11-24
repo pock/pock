@@ -10,10 +10,11 @@ class CCVolumeMuteItem: ControlCenterItem {
     override var title: String { return "volume-mute" }
     
     override var icon: NSImage {
-        return NSImage(named: NSSound.isMuted() ? NSImage.touchBarAudioOutputMuteTemplateName : title)!
+        return NSImage(named: Defaults[.isVolumeMute] ? title : NSImage.touchBarAudioOutputMuteTemplateName)!
     }
     
     override func action() -> Any? {
+        Defaults[.isVolumeMute] = !Defaults[.isVolumeMute]
         key.send()
         NSWorkspace.shared.notificationCenter.post(name: .shouldReloadControlCenterWidget, object: nil)
         return NSSound.systemVolume()
