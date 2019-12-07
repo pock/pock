@@ -95,9 +95,11 @@ extension Defaults.Keys {
     static let timeFormatTextField              = Defaults.Key<String>("timeFormatTextField",       default: "EE dd MMM HH:mm")
     static let shouldShowSpotlightItem          = Defaults.Key<Bool>("shouldShowSpotlightItem",     default: true)
     /// Control Center widget
-    static let shouldShowScreensaverItem        = Defaults.Key<Bool>("shouldShowScreensaverItem",       default: false)
     static let shouldShowSleepItem              = Defaults.Key<Bool>("shouldShowSleepItem",             default: false)
     static let shouldShowLockItem               = Defaults.Key<Bool>("shouldShowLockItem",              default: false)
+    static let shouldShowScreensaverItem        = Defaults.Key<Bool>("shouldShowScreensaverItem",       default: false)
+    static let shouldShowDoNotDisturbItem       = Defaults.Key<Bool>("shouldShowDoNotDisturbItem",      default: false)
+    static let isEnabledDoNotDisturb            = Defaults.Key<Bool>("isEnabledDoNotDisturb",           default: false)
     static let shouldShowBrightnessItem         = Defaults.Key<Bool>("shouldShowBrightnessItem",        default: true)
     static let shouldShowVolumeItem             = Defaults.Key<Bool>("shouldShowVolumeItem",            default: true)
     static let shouldShowBrightnessDownItem     = Defaults.Key<Bool>("shouldShowBrightnessDownItem",    default: true)

@@ -65,6 +65,7 @@ class ControlCenterWidget: PKWidget {
             CCSleepItem(parentWidget: self),
             CCLockItem(parentWidget: self),
             CCScreensaverItem(parentWidget: self),
+            CCDoNotDisturbItem(parentWidget: self),
             CCBrightnessDownItem(parentWidget: self),
             CCBrightnessUpItem(parentWidget: self),
             CCBrightnessToggleItem(parentWidget: self),

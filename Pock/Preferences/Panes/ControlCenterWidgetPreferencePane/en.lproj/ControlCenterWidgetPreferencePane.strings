@@ -11,6 +11,9 @@
 /* Class = "NSButtonCell"; title = "Show Volume Up Item"; ObjectID = "AJ4-PK-Oid"; */
 "AJ4-PK-Oid.title" = "Show Volume Up Item";
 
+/* Class = "NSButtonCell"; title = "Show Do Not Disturb Item"; ObjectID = "BRS-Qc-kaR"; */
+"BRS-Qc-kaR.title" = "Show Do Not Disturb Item";
+
 /* Class = "NSButtonCell"; title = "Show Lock Item"; ObjectID = "OGc-Cn-VS5"; */
 "OGc-Cn-VS5.title" = "Show Lock Item";
 

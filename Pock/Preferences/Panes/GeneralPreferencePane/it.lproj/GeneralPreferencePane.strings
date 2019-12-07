@@ -5,8 +5,8 @@
 /* Class = "NSButtonCell"; title = "Hide Control Strip"; ObjectID = "206-HT-yI6"; */
 "206-HT-yI6.title" = "Nascondi Control Strip";
 
-/* Class = "NSTextFieldCell"; title = "Double press `control` key to toggle between Pock and System Touch Bar."; ObjectID = "5UW-Vr-bYf"; */
-"5UW-Vr-bYf.title" = "Premi due volte il pulsante `control` per spostarti tra Pock e la Touch Bar di sistema.";
+/* Class = "NSTextFieldCell"; title = "Double press `⌃ Control` key to toggle between Pock and System Touch Bar."; ObjectID = "5UW-Vr-bYf"; */
+"5UW-Vr-bYf.title" = "Premi due volte il pulsante `⌃ Control` per spostarti tra Pock e la Touch Bar di sistema.";
 
 /* Class = "NSTextFieldCell"; title = "VERSION"; ObjectID = "K9v-5R-z7Q"; */
 "K9v-5R-z7Q.title" = "VERSION";

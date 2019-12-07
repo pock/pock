@@ -75,22 +75,24 @@ class ControlCenterWidgetPreferencePane: NSViewController, PreferencePane {
         case 3:
             key = .shouldShowScreensaverItem
         case 4:
-            key = .shouldShowBrightnessItem
-        case 41:
-            key = .shouldShowBrightnessDownItem
-        case 42:
-            key = .shouldShowBrightnessUpItem
-        case 43:
-            key = .shouldShowBrightnessToggleItem
+            key = .shouldShowDoNotDisturbItem
         case 5:
-            key = .shouldShowVolumeItem
+            key = .shouldShowBrightnessItem
         case 51:
-            key = .shouldShowVolumeDownItem
+            key = .shouldShowBrightnessDownItem
         case 52:
-            key = .shouldShowVolumeUpItem
+            key = .shouldShowBrightnessUpItem
         case 53:
+            key = .shouldShowBrightnessToggleItem
+        case 6:
+            key = .shouldShowVolumeItem
+        case 61:
+            key = .shouldShowVolumeDownItem
+        case 62:
+            key = .shouldShowVolumeUpItem
+        case 63:
             key = .shouldShowVolumeToggleItem
-        case 54:
+        case 64:
             key = .shouldShowVolumeMuteItem
         default:
             return
