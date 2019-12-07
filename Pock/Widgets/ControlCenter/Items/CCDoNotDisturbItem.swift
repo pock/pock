@@ -17,12 +17,12 @@ class CCDoNotDisturbItem: ControlCenterItem {
     override var icon:  NSImage { return NSImage(named: title)! }
     
     override func action() -> Any? {
-        if !Defaults[.isEnabledDoNotDisturb] {
+        if !Defaults[.isDoNotDisturb] {
             enableDND()
-            Defaults[.isEnabledDoNotDisturb] = true
+            Defaults[.isDoNotDisturb] = true
         } else {
             disableDND()
-            Defaults[.isEnabledDoNotDisturb] = false
+            Defaults[.isDoNotDisturb] = false
         }
         return nil
     }
