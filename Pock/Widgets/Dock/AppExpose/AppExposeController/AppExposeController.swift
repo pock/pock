@@ -44,7 +44,7 @@ class AppExposeController: PKTouchBarController {
 extension AppExposeController {
     public func set(elements: [AppExposeItem]) {
         self.elements = elements
-        self.windowsCount.stringValue = "\(elements.count) windows"
+        self.windowsCount.stringValue = "\(elements.count) " + "windows".localized
         self.scrubber.reloadData()
     }
     public func set(app: NSRunningApplication) {
