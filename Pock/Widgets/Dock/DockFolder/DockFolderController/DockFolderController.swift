@@ -37,7 +37,7 @@ class DockFolderController: PKTouchBarController {
         touchBar?.defaultItemIdentifiers = defaultIdentifiers ?? []
         super.present()
         self.setCurrentFolder(name: folderUrl?.lastPathComponent ?? "<missing name>")
-        self.folderDetail.stringValue = "Loading..."
+        self.folderDetail.stringValue = "Loading...".localized
     }
     
     override func didLoad() {
@@ -72,12 +72,12 @@ extension DockFolderController {
     private func loadElements(reloadScrubber: Bool = true) {
         dockFolderRepository.getItems(in: folderUrl) { [weak self] elements in
             self?.elements = elements
-            self?.folderDetail.stringValue = "\(elements.count) elements"
+            self?.folderDetail.stringValue = "\(elements.count) " + "elements".localized
             if reloadScrubber { self?.scrubber.reloadData() }
         }
     }
     private func setCurrentFolder(name: String) {
-        self.folderName.stringValue = name == ".Trash" ? "Trash" : name.truncate(length: 30)
+        self.folderName.stringValue = name == ".Trash" ? "Trash".localized : name.truncate(length: 30)
     }
 }
 
