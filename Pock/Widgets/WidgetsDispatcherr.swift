@@ -69,7 +69,7 @@ public final class WidgetsDispatcher {
             return []
         }
         let enumerator = FileManager.default.enumerator(atPath: widgetsPath)
-        let widgetBundles = (enumerator?.allObjects as? [String] ?? []).filter{ $0.contains(".pock") && !$0.contains("/") }
+        let widgetBundles = (enumerator?.allObjects as? [String] ?? []).filter{ $0.contains(".pock") && !$0.contains("disabled") && !$0.contains("/") }
         return widgetBundles.map({ widgetBundle in
             return URL(fileURLWithPath: "\(widgetsPath)/\(widgetBundle)")
         })
