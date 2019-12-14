@@ -27,6 +27,7 @@ class NowPlayingPreferencePane: NSViewController, PreferencePane {
     }
     
     /// UI Elements
+    @IBOutlet private weak var imagesStackView:      NSStackView!
     @IBOutlet private weak var defaultRadioButton:   NSButton!
     @IBOutlet private weak var onlyInfoRadioButton:  NSButton!
     @IBOutlet private weak var playPauseRadioButton: NSButton!
@@ -45,22 +46,33 @@ class NowPlayingPreferencePane: NSViewController, PreferencePane {
         case .playPause:
             playPauseRadioButton.state = .on
         }
+        setupImageViewClickGesture()
     }
     
-    @IBAction private func didSelectRadioButton(_ control: NSControl) {
-        switch control.tag {
+    private func setupImageViewClickGesture() {
+        imagesStackView.arrangedSubviews.forEach({
+            $0.addGestureRecognizer(NSClickGestureRecognizer(target: self, action: #selector(didSelectRadioButton(_:))))
+        })
+    }
+    
+    @IBAction private func didSelectRadioButton(_ control: AnyObject) {
+        let view = (control as? NSGestureRecognizer)?.view ?? control
+        switch view.tag {
         case 0:
             Defaults[.nowPlayingWidgetStyle] = .default
+            defaultRadioButton.state   = .on
             onlyInfoRadioButton.state  = .off
             playPauseRadioButton.state = .off
         case 1:
             Defaults[.nowPlayingWidgetStyle] = .onlyInfo
             defaultRadioButton.state   = .off
+            onlyInfoRadioButton.state  = .on
             playPauseRadioButton.state = .off
         case 2:
             Defaults[.nowPlayingWidgetStyle] = .playPause
             defaultRadioButton.state   = .off
             onlyInfoRadioButton.state  = .off
+            playPauseRadioButton.state = .on
         default:
             return
         }

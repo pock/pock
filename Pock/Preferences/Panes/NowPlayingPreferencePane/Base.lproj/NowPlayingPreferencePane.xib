@@ -9,6 +9,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="NowPlayingPreferencePane" customModule="Pock" customModuleProvider="target">
             <connections>
                 <outlet property="defaultRadioButton" destination="hjN-rN-Bz7" id="DuT-sv-3ur"/>
+                <outlet property="imagesStackView" destination="6vs-1x-7qT" id="xRb-qe-4M9"/>
                 <outlet property="onlyInfoRadioButton" destination="SWC-PR-hvh" id="OBq-Mb-hey"/>
                 <outlet property="playPauseRadioButton" destination="z1t-VA-Pez" id="Pyl-fj-gnH"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
