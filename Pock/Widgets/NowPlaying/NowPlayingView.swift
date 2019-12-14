@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Defaults
 
 fileprivate let playIconName  = NSImage.touchBarPlayTemplateName
 fileprivate let pauseIconName = NSImage.touchBarPauseTemplateName
@@ -15,16 +16,12 @@ fileprivate let nextIcon     = NSImage(named: NSImage.touchBarFastForwardTemplat
 
 class NowPlayingView: PKView {
     
-    enum Style {
-        case `default`, playPause, onlyInfo
-    }
-    
     public  let itemView: NowPlayingItemView = NowPlayingItemView(frame: .zero, leftToRight: true)
     private var playPauseButton: NSButton? = nil
     private var previousButton:  NSButton!
     private var nextButton:      NSButton!
     
-    public var style: Style = .default {
+    public var style: NowPlayingWidgetStyle = Defaults[.nowPlayingWidgetStyle] {
         didSet {
             configureUIElements()
         }
@@ -54,6 +51,9 @@ class NowPlayingView: PKView {
     
     public func updateWithItem(_ item: NowPlayingItem?) {
         itemView.nowPLayingItem = item
+        DispatchQueue.main.async { [weak self, weak item] in
+            self?.playPauseButton?.image = NSImage(named: item?.isPlaying ?? false ? pauseIconName : playIconName)
+        }
     }
     
     private func configureUIElements() {
@@ -70,7 +70,8 @@ class NowPlayingView: PKView {
         })
         switch style {
         case .playPause:
-            playPauseButton = NSButton(image: NSImage(named: playIconName)!, target: self, action: #selector(togglePlayPause))
+            let icon = NSImage(named: itemView.nowPLayingItem?.isPlaying ?? false ? pauseIconName : playIconName)!
+            playPauseButton = NSButton(image: icon, target: self, action: #selector(togglePlayPause))
             playPauseButton?.bezelColor = .black
             playPauseButton?.snp.makeConstraints({ m in
                 m.width.equalTo(32)
@@ -92,7 +93,7 @@ class NowPlayingView: PKView {
         case .default:
             views = [previousButton, itemView, nextButton]
         case .playPause:
-            views = [itemView, previousButton, playPauseButton!, nextButton]
+            views = [previousButton, playPauseButton!, nextButton]
         case .onlyInfo:
             views = [itemView]
         }
@@ -109,17 +110,7 @@ class NowPlayingView: PKView {
     private func setupGestureHandlers() {
         switch self.style {
         case .playPause:
-            itemView.didTap = { [unowned self] in
-                guard let id = self.itemView.nowPLayingItem?.appBundleIdentifier else {
-                    return
-                }
-                NSWorkspace.shared.launchApplication(
-                    withBundleIdentifier: id,
-                    options: [],
-                    additionalEventParamDescriptor: nil,
-                    launchIdentifier: nil
-                )
-            }
+            itemView.didTap        = nil
             itemView.didSwipeLeft  = nil
             itemView.didSwipeRight = nil
         
@@ -134,6 +125,18 @@ class NowPlayingView: PKView {
                 self.skipToNextItem()
             }
         }
+    }
+    
+    override func didLongPressHandler() {
+        guard let id = self.itemView.nowPLayingItem?.appBundleIdentifier else {
+            return
+        }
+        NSWorkspace.shared.launchApplication(
+            withBundleIdentifier: id,
+            options: [],
+            additionalEventParamDescriptor: nil,
+            launchIdentifier: nil
+        )
     }
     
 }

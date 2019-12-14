@@ -17,6 +17,7 @@ extension PreferencePane.Identifier {
     static let dock_widget             = Identifier("dock_widget")
     static let status_widget           = Identifier("status_widget")
     static let controler_center_widget = Identifier("control_center_widget")
+    static let now_playing_widget      = Identifier("now_playing_widget")
 }
 
 extension NSNotification.Name {
@@ -28,6 +29,7 @@ extension NSNotification.Name {
     static let shouldReloadDockLayout                = NSNotification.Name("shouldReloadDockLayout")
     static let shouldReloadPersistentItems           = NSNotification.Name("shouldReloadPersistentItems")
     static let shouldEnableAutomaticUpdates          = NSNotification.Name("shouldEnableAutomaticUpdates")
+    static let didChangeNowPlayingWidgetStyle        = NSNotification.Name("didChangeNowPlayingWidgetStyle")
 }
 
 enum NotificationBadgeRefreshRateKeys: Double, Codable, CaseIterable {
@@ -74,6 +76,10 @@ enum AppExposeSettings : String, Codable, CaseIterable {
     }
 }
 
+enum NowPlayingWidgetStyle: String, Codable {
+    case `default`, playPause, onlyInfo
+}
+
 extension Defaults.Keys {
     static let hideControlStrip                 = Defaults.Key<Bool>("hideControlStrip",       default: true)
     static let enableAutomaticUpdates           = Defaults.Key<Bool>("enableAutomaticUpdates", default: false)
@@ -110,4 +116,6 @@ extension Defaults.Keys {
     static let shouldShowVolumeMuteItem         = Defaults.Key<Bool>("shouldShowVolumeMuteItem",        default: false)
     static let isVolumeMute                     = Defaults.Key<Bool>("isVolumeMute",                    default: false)
     static let shouldShowVolumeToggleItem       = Defaults.Key<Bool>("shouldShowVolumeToggleItem",      default: false)
+    /// Now Playing widget
+    static let nowPlayingWidgetStyle            = Defaults.Key<NowPlayingWidgetStyle>("nowPlayingWidgetStyle", default: .default)
 }

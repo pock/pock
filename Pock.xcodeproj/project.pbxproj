@@ -61,6 +61,8 @@
 		342D840D2278D5CF000D79DA /* FileMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83DE2278D5CF000D79DA /* FileMonitor.swift */; };
 		3435675B2381666F00E408EF /* WidgetsDispatcherr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3435675A2381666F00E408EF /* WidgetsDispatcherr.swift */; };
 		345C955123A5230000E1AC53 /* NowPlayingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345C955023A522FF00E1AC53 /* NowPlayingView.swift */; };
+		345C955423A53D4D00E1AC53 /* NowPlayingPreferencePane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345C955223A53D4D00E1AC53 /* NowPlayingPreferencePane.swift */; };
+		345C955523A53D4D00E1AC53 /* NowPlayingPreferencePane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 345C955323A53D4D00E1AC53 /* NowPlayingPreferencePane.xib */; };
 		347D7EE7230874A800BA9200 /* ControlCenterWidgetPreferencePane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9686B4F922D2216400C7A08C /* ControlCenterWidgetPreferencePane.xib */; };
 		347F336022D0D68400FA9805 /* CCLockItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347F335F22D0D68400FA9805 /* CCLockItem.swift */; };
 		347F336722D0DB9200FA9805 /* SystemHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 347F336622D0DB9100FA9805 /* SystemHelper.m */; };
@@ -146,6 +148,8 @@
 		342D83DE2278D5CF000D79DA /* FileMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileMonitor.swift; sourceTree = "<group>"; };
 		3435675A2381666F00E408EF /* WidgetsDispatcherr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetsDispatcherr.swift; sourceTree = "<group>"; };
 		345C955023A522FF00E1AC53 /* NowPlayingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingView.swift; sourceTree = "<group>"; };
+		345C955223A53D4D00E1AC53 /* NowPlayingPreferencePane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingPreferencePane.swift; sourceTree = "<group>"; };
+		345C955323A53D4D00E1AC53 /* NowPlayingPreferencePane.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NowPlayingPreferencePane.xib; sourceTree = "<group>"; };
 		347F335D22D0D5F600FA9805 /* login.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = login.framework; path = ../../../../../../../../../System/Library/PrivateFrameworks/login.framework; sourceTree = "<group>"; };
 		347F335F22D0D68400FA9805 /* CCLockItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CCLockItem.swift; sourceTree = "<group>"; };
 		347F336522D0DB9100FA9805 /* SystemHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemHelper.h; sourceTree = "<group>"; };
@@ -357,6 +361,7 @@
 				342D839F2278D5CF000D79DA /* StatusWidgetPreferencePane */,
 				3407F9D822D0E75D0072E742 /* ControlCenterWidgetPreferencePane */,
 				34E644FD227D9A6C003D0450 /* DockWidgetPreferencePane */,
+				345C955623A53D5200E1AC53 /* NowPlayingPreferencePane */,
 			);
 			path = Panes;
 			sourceTree = "<group>";
@@ -541,6 +546,15 @@
 			path = Witness;
 			sourceTree = "<group>";
 		};
+		345C955623A53D5200E1AC53 /* NowPlayingPreferencePane */ = {
+			isa = PBXGroup;
+			children = (
+				345C955323A53D4D00E1AC53 /* NowPlayingPreferencePane.xib */,
+				345C955223A53D4D00E1AC53 /* NowPlayingPreferencePane.swift */,
+			);
+			path = NowPlayingPreferencePane;
+			sourceTree = "<group>";
+		};
 		347F336422D0DB9100FA9805 /* SystemHelper */ = {
 			isa = PBXGroup;
 			children = (
@@ -694,6 +708,7 @@
 				347D7EE7230874A800BA9200 /* ControlCenterWidgetPreferencePane.xib in Resources */,
 				342D83DF2278D5CF000D79DA /* MainWindow.xib in Resources */,
 				3418DA022288318A00E11E37 /* PKSlideableController.xib in Resources */,
+				345C955523A53D4D00E1AC53 /* NowPlayingPreferencePane.xib in Resources */,
 				3407F9EF22D1C9970072E742 /* AppExposeController.xib in Resources */,
 				9667AAF222CF192D00C22410 /* GeneralPreferencePane.xib in Resources */,
 				96FE269F22D0C3810071645C /* Localizable.strings in Resources */,
@@ -828,6 +843,7 @@
 				342D83EC2278D5CF000D79DA /* OSDUIHelper.swift in Sources */,
 				3418D9FF22882EC600E11E37 /* PKSlideableController.swift in Sources */,
 				342D83FE2278D5CF000D79DA /* EscWidget.swift in Sources */,
+				345C955423A53D4D00E1AC53 /* NowPlayingPreferencePane.swift in Sources */,
 				34064343227EDC2200981372 /* DockFolderRepository.swift in Sources */,
 				342D83E02278D5CF000D79DA /* PKTouchBarController.swift in Sources */,
 				3406434A227F323A00981372 /* PKTouchBarNavController.swift in Sources */,
