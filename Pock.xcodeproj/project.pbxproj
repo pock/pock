@@ -60,6 +60,7 @@
 		342D840C2278D5CF000D79DA /* DockWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83DD2278D5CF000D79DA /* DockWidget.swift */; };
 		342D840D2278D5CF000D79DA /* FileMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83DE2278D5CF000D79DA /* FileMonitor.swift */; };
 		3435675B2381666F00E408EF /* WidgetsDispatcherr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3435675A2381666F00E408EF /* WidgetsDispatcherr.swift */; };
+		345C955123A5230000E1AC53 /* NowPlayingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345C955023A522FF00E1AC53 /* NowPlayingView.swift */; };
 		347D7EE7230874A800BA9200 /* ControlCenterWidgetPreferencePane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9686B4F922D2216400C7A08C /* ControlCenterWidgetPreferencePane.xib */; };
 		347F336022D0D68400FA9805 /* CCLockItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347F335F22D0D68400FA9805 /* CCLockItem.swift */; };
 		347F336722D0DB9200FA9805 /* SystemHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 347F336622D0DB9100FA9805 /* SystemHelper.m */; };
@@ -144,6 +145,7 @@
 		342D83DD2278D5CF000D79DA /* DockWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DockWidget.swift; sourceTree = "<group>"; };
 		342D83DE2278D5CF000D79DA /* FileMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileMonitor.swift; sourceTree = "<group>"; };
 		3435675A2381666F00E408EF /* WidgetsDispatcherr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetsDispatcherr.swift; sourceTree = "<group>"; };
+		345C955023A522FF00E1AC53 /* NowPlayingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingView.swift; sourceTree = "<group>"; };
 		347F335D22D0D5F600FA9805 /* login.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = login.framework; path = ../../../../../../../../../System/Library/PrivateFrameworks/login.framework; sourceTree = "<group>"; };
 		347F335F22D0D68400FA9805 /* CCLockItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CCLockItem.swift; sourceTree = "<group>"; };
 		347F336522D0DB9100FA9805 /* SystemHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemHelper.h; sourceTree = "<group>"; };
@@ -465,6 +467,7 @@
 		342D83BD2278D5CF000D79DA /* NowPlaying */ = {
 			isa = PBXGroup;
 			children = (
+				345C955023A522FF00E1AC53 /* NowPlayingView.swift */,
 				342D83BE2278D5CF000D79DA /* NowPlayingItemView.swift */,
 				342D83BF2278D5CF000D79DA /* NowPlayingItem.swift */,
 				342D83C02278D5CF000D79DA /* NowPlayingWidget.swift */,
@@ -848,6 +851,7 @@
 				342D83E22278D5CF000D79DA /* Preferences.swift in Sources */,
 				9955665222DC668500EFFE6D /* CCVolumeMuteItem.swift in Sources */,
 				342D83F42278D5CF000D79DA /* NowPlayingItemView.swift in Sources */,
+				345C955123A5230000E1AC53 /* NowPlayingView.swift in Sources */,
 				349F93E8228865C400B8CFBE /* ISSoundAdditions.m in Sources */,
 				342D83ED2278D5CF000D79DA /* AppDelegate.swift in Sources */,
 				342D84052278D5CF000D79DA /* Witness.swift in Sources */,

@@ -16,13 +16,12 @@ class NowPlayingWidget: PKWidget {
     var view: NSView!
     
     /// UI
-    private var nowPlayingItemView: NowPlayingItemView!
+    private var nowPlayingView: NowPlayingView = NowPlayingView(frame: .zero)
     
     required init() {
         self.updateNowPLayingItemView()
         self.registerForNotifications()
-        self.setGestureHandlers()
-        self.view = nowPlayingItemView
+        self.view = nowPlayingView
     }
     
     private func registerForNotifications() {
@@ -34,22 +33,7 @@ class NowPlayingWidget: PKWidget {
     }
     
     @objc private func updateNowPLayingItemView() {
-        if nowPlayingItemView == nil {
-            nowPlayingItemView = NowPlayingItemView(leftToRight: true)
-        }
-        nowPlayingItemView.nowPLayingItem = NowPlayingHelper.shared.nowPlayingItem
-    }
-    
-    private func setGestureHandlers() {
-        nowPlayingItemView.didTap = {
-            NowPlayingHelper.shared.togglePlayingState()
-        }
-        nowPlayingItemView.didSwipeLeft = {
-            NowPlayingHelper.shared.skipToPreviousTrack()
-        }
-        nowPlayingItemView.didSwipeRight = {
-            NowPlayingHelper.shared.skipToNextTrack()
-        }
+        nowPlayingView.updateWithItem(NowPlayingHelper.shared.nowPlayingItem)
     }
     
     deinit {

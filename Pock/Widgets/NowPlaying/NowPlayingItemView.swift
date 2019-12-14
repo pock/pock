@@ -21,6 +21,7 @@ class NowPlayingItemView: PKDetailView {
     public var didTap: (() -> Void)?
     public var didSwipeLeft: (() -> Void)?
     public var didSwipeRight: (() -> Void)?
+    public var didLongPress: (() -> Void)?
     
     /// Data
     public var nowPLayingItem: NowPlayingItem? {
@@ -59,14 +60,12 @@ class NowPlayingItemView: PKDetailView {
             self?.imageView.image = DockRepository.getIcon(forBundleIdentifier: appBundleIdentifier, orPath: path)
             
             let isPlaying = self?.nowPLayingItem?.isPlaying ?? false
-            let title     = self?.nowPLayingItem?.title     ?? ""
-            let artist    = self?.nowPLayingItem?.artist    ?? ""
-            
-            self?.shouldHideIcon = title.count < 1 && artist.count < 1
+            let title     = self?.nowPLayingItem?.title     ?? "Tap here"
+            let artist    = self?.nowPLayingItem?.artist    ?? "to play music"
             
             let titleWidth    = (title  as NSString).size(withAttributes: self?.titleView.textFontAttributes    ?? [:]).width
             let subtitleWidth = (artist as NSString).size(withAttributes: self?.subtitleView.textFontAttributes ?? [:]).width
-            self?.maxWidth = min(80, max(max(titleWidth, subtitleWidth), 1))
+            self?.maxWidth = min(max(titleWidth, subtitleWidth), 80)
             
             self?.titleView.setup(string:    title)
             self?.subtitleView.setup(string: artist)
@@ -100,6 +99,10 @@ class NowPlayingItemView: PKDetailView {
     
     override open func didSwipeRightHandler() {
         self.didSwipeRight?()
+    }
+    
+    override func didLongPressHandler() {
+        self.didLongPress?()
     }
     
 }
