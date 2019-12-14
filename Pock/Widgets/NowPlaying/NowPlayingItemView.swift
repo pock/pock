@@ -45,7 +45,7 @@ class NowPlayingItemView: PKDetailView {
         case "com.spotify.client", "com.apple.iTunes", "com.apple.Safari", "com.google.Chrome", "com.netease.163music", "com.tencent.QQMusicMac", "com.apple.Music":
             break
         default:
-            if #available(macOS 13, *) {
+            if #available(macOS 10.15, *) {
                 appBundleIdentifier = "com.apple.Music"
             }else {
                 appBundleIdentifier = "com.apple.iTunes"
