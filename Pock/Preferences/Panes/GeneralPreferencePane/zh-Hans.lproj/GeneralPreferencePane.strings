@@ -5,8 +5,8 @@
 /* Class = "NSButtonCell"; title = "隐藏系统触控栏"; ObjectID = "206-HT-yI6"; */
 "206-HT-yI6.title" = "隐藏系统触控栏";
 
-/* Class = "NSTextFieldCell"; title = "双击“control”键在Pock和系统触控栏之间切换。"; ObjectID = "5UW-Vr-bYf"; */
-"5UW-Vr-bYf.title" = "双击“control”键在Pock和系统触控栏之间切换。";
+/* Class = "NSTextFieldCell"; title = "双击`⌃ Control`键在Pock和系统触控栏之间切换。"; ObjectID = "5UW-Vr-bYf"; */
+"5UW-Vr-bYf.title" = "双击`⌃ Control`键在Pock和系统触控栏之间切换.";
 
 /* Class = "NSTextFieldCell"; title = "VERSION"; ObjectID = "K9v-5R-z7Q"; */
 "K9v-5R-z7Q.title" = "VERSION";

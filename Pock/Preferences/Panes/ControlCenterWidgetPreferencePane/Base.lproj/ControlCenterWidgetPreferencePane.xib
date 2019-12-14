@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -9,12 +10,15 @@
             <connections>
                 <outlet property="showBrightnessDownItem" destination="0iY-fD-cWj" id="bjI-LB-rVR"/>
                 <outlet property="showBrightnessItem" destination="rEy-Lh-73f" id="Sq1-a2-0CV"/>
+                <outlet property="showBrightnessToggleItem" destination="QFf-nm-x3a" id="tbv-cQ-h4J"/>
                 <outlet property="showBrightnessUpItem" destination="UIv-xe-fLQ" id="GJA-1a-it8"/>
                 <outlet property="showLockItem" destination="P4F-Aq-avh" id="I5y-EH-9qZ"/>
+                <outlet property="showScreensaverItem" destination="wve-KC-kBU" id="ajI-3V-b8m"/>
                 <outlet property="showSleepItem" destination="2QA-fb-vdC" id="TJD-4n-b6m"/>
-                <outlet property="showToggleMuteItem" destination="MDV-NR-QE4" id="3Xx-F8-Ckd"/>
                 <outlet property="showVolumeDownItem" destination="XAw-dt-3HD" id="bpC-L1-MGA"/>
                 <outlet property="showVolumeItem" destination="vKF-NW-wSS" id="TmY-bO-BCY"/>
+                <outlet property="showVolumeMuteItem" destination="MDV-NR-QE4" id="h9L-Vn-gPV"/>
+                <outlet property="showVolumeToggleItem" destination="jaV-jD-ux3" id="cKz-Of-hwl"/>
                 <outlet property="showVolumeUpItem" destination="pVf-yn-64e" id="grV-Za-waB"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
@@ -22,149 +26,38 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="Hz6-mo-xeY">
-            <rect key="frame" x="0.0" y="0.0" width="480" height="204"/>
+            <rect key="frame" x="0.0" y="0.0" width="466" height="239"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <stackView distribution="fillEqually" orientation="vertical" alignment="leading" spacing="16" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oAr-3p-C2k">
-                    <rect key="frame" x="20" y="20" width="440" height="164"/>
+                    <rect key="frame" x="20" y="20" width="426" height="199"/>
                     <subviews>
-                        <button verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="2QA-fb-vdC">
-                            <rect key="frame" x="-2" y="148" width="123" height="18"/>
-                            <buttonCell key="cell" type="check" title="Show Sleep item" bezelStyle="regularSquare" imagePosition="left" inset="2" id="c9g-yA-umL">
-                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                            <connections>
-                                <action selector="didChangeCheckboxValue:" target="-2" id="QAa-Dq-N5S"/>
-                            </connections>
-                        </button>
-                        <button verticalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="P4F-Aq-avh">
-                            <rect key="frame" x="-2" y="118" width="118" height="18"/>
-                            <buttonCell key="cell" type="check" title="Show Lock item" bezelStyle="regularSquare" imagePosition="left" inset="2" id="OGc-Cn-VS5">
-                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                            <connections>
-                                <action selector="didChangeCheckboxValue:" target="-2" id="xJv-jy-AT8"/>
-                            </connections>
-                        </button>
-                        <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="16" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kCg-kM-2Ua">
-                            <rect key="frame" x="0.0" y="0.0" width="440" height="104"/>
+                        <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="16" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aGd-iC-GDS">
+                            <rect key="frame" x="0.0" y="185" width="345" height="14"/>
                             <subviews>
-                                <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="16" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d3E-sv-RH6">
-                                    <rect key="frame" x="0.0" y="30" width="208" height="74"/>
-                                    <subviews>
-                                        <button verticalHuggingPriority="750" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="rEy-Lh-73f">
-                                            <rect key="frame" x="-2" y="58" width="161" height="18"/>
-                                            <buttonCell key="cell" type="check" title="Show Brightness items" bezelStyle="regularSquare" imagePosition="left" inset="2" id="zt4-Gu-yzF">
-                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="didChangeCheckboxValue:" target="-2" id="XmN-KC-0xs"/>
-                                            </connections>
-                                        </button>
-                                        <button verticalHuggingPriority="750" tag="31" translatesAutoresizingMaskIntoConstraints="NO" id="0iY-fD-cWj">
-                                            <rect key="frame" x="18" y="28" width="192" height="18"/>
-                                            <buttonCell key="cell" type="check" title="Show Brightness Down item" bezelStyle="regularSquare" imagePosition="left" inset="2" id="S9t-Wy-9IV">
-                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="didChangeCheckboxValue:" target="-2" id="gW6-p7-8yC"/>
-                                            </connections>
-                                        </button>
-                                        <button verticalHuggingPriority="750" tag="32" translatesAutoresizingMaskIntoConstraints="NO" id="UIv-xe-fLQ">
-                                            <rect key="frame" x="18" y="-2" width="175" height="18"/>
-                                            <buttonCell key="cell" type="check" title="Show Brightness Up Item" bezelStyle="regularSquare" imagePosition="left" inset="2" id="zlO-nx-U7P">
-                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="didChangeCheckboxValue:" target="-2" id="8R2-Ul-YqP"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="UIv-xe-fLQ" firstAttribute="leading" secondItem="d3E-sv-RH6" secondAttribute="leading" constant="20" id="Niu-06-kIZ"/>
-                                        <constraint firstItem="0iY-fD-cWj" firstAttribute="leading" secondItem="d3E-sv-RH6" secondAttribute="leading" constant="20" id="soA-JD-mbS"/>
-                                    </constraints>
-                                    <visibilityPriorities>
-                                        <integer value="1000"/>
-                                        <integer value="1000"/>
-                                        <integer value="1000"/>
-                                    </visibilityPriorities>
-                                    <customSpacing>
-                                        <real value="3.4028234663852886e+38"/>
-                                        <real value="3.4028234663852886e+38"/>
-                                        <real value="3.4028234663852886e+38"/>
-                                    </customSpacing>
-                                </stackView>
-                                <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="16" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N4t-4q-BYZ">
-                                    <rect key="frame" x="252" y="0.0" width="188" height="104"/>
-                                    <subviews>
-                                        <button verticalHuggingPriority="750" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="vKF-NW-wSS">
-                                            <rect key="frame" x="-2" y="88" width="141" height="18"/>
-                                            <buttonCell key="cell" type="check" title="Show Volume items" bezelStyle="regularSquare" imagePosition="left" inset="2" id="A1L-D1-Jwj">
-                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="didChangeCheckboxValue:" target="-2" id="9mr-ON-Tqf"/>
-                                            </connections>
-                                        </button>
-                                        <button verticalHuggingPriority="750" tag="41" translatesAutoresizingMaskIntoConstraints="NO" id="XAw-dt-3HD">
-                                            <rect key="frame" x="18" y="58" width="172" height="18"/>
-                                            <buttonCell key="cell" type="check" title="Show Volume Down Item" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Zze-FZ-vdx">
-                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="didChangeCheckboxValue:" target="-2" id="ohQ-Ac-EbR"/>
-                                            </connections>
-                                        </button>
-                                        <button verticalHuggingPriority="750" tag="42" translatesAutoresizingMaskIntoConstraints="NO" id="pVf-yn-64e">
-                                            <rect key="frame" x="18" y="28" width="155" height="18"/>
-                                            <buttonCell key="cell" type="check" title="Show Volume Up Item" bezelStyle="regularSquare" imagePosition="left" inset="2" id="AJ4-PK-Oid">
-                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="didChangeCheckboxValue:" target="-2" id="Zg3-nW-0aZ"/>
-                                            </connections>
-                                        </button>
-                                        <button verticalHuggingPriority="750" tag="43" translatesAutoresizingMaskIntoConstraints="NO" id="MDV-NR-QE4">
-                                            <rect key="frame" x="18" y="-2" width="164" height="18"/>
-                                            <buttonCell key="cell" type="check" title="Show Toggle Mute Item" bezelStyle="regularSquare" imagePosition="left" inset="2" id="0cO-cp-q0P">
-                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="didChangeCheckboxValue:" target="-2" id="Fdz-cb-da1"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="MDV-NR-QE4" firstAttribute="leading" secondItem="N4t-4q-BYZ" secondAttribute="leading" constant="20" id="8v4-8d-gJ5"/>
-                                        <constraint firstItem="XAw-dt-3HD" firstAttribute="leading" secondItem="N4t-4q-BYZ" secondAttribute="leading" constant="20" id="eTs-sL-5Um"/>
-                                        <constraint firstItem="pVf-yn-64e" firstAttribute="leading" secondItem="N4t-4q-BYZ" secondAttribute="leading" constant="20" id="pSL-rj-uY4"/>
-                                    </constraints>
-                                    <visibilityPriorities>
-                                        <integer value="1000"/>
-                                        <integer value="1000"/>
-                                        <integer value="1000"/>
-                                        <integer value="1000"/>
-                                    </visibilityPriorities>
-                                    <customSpacing>
-                                        <real value="3.4028234663852886e+38"/>
-                                        <real value="3.4028234663852886e+38"/>
-                                        <real value="3.4028234663852886e+38"/>
-                                        <real value="3.4028234663852886e+38"/>
-                                    </customSpacing>
-                                </stackView>
+                                <button verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="2QA-fb-vdC">
+                                    <rect key="frame" x="-2" y="-2" width="219" height="18"/>
+                                    <buttonCell key="cell" type="check" title="Show Sleep Item" bezelStyle="regularSquare" imagePosition="left" inset="2" id="c9g-yA-umL">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="didChangeCheckboxValue:" target="-2" id="ZMg-0y-1WK"/>
+                                    </connections>
+                                </button>
+                                <button verticalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="P4F-Aq-avh">
+                                    <rect key="frame" x="229" y="-2" width="118" height="18"/>
+                                    <buttonCell key="cell" type="check" title="Show Lock Item" bezelStyle="regularSquare" imagePosition="left" inset="2" id="OGc-Cn-VS5">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="didChangeCheckboxValue:" target="-2" id="0dc-kR-w5t"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <constraints>
-                                <constraint firstItem="N4t-4q-BYZ" firstAttribute="leading" secondItem="d3E-sv-RH6" secondAttribute="trailing" constant="20" id="U5H-bi-MFn"/>
+                                <constraint firstAttribute="height" constant="14" id="nBy-IQ-DY2"/>
                             </constraints>
                             <visibilityPriorities>
                                 <integer value="1000"/>
@@ -175,7 +68,194 @@
                                 <real value="3.4028234663852886e+38"/>
                             </customSpacing>
                         </stackView>
+                        <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="16" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="blL-rO-hLt">
+                            <rect key="frame" x="0.0" y="150" width="407" height="19"/>
+                            <subviews>
+                                <button verticalHuggingPriority="750" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="wve-KC-kBU">
+                                    <rect key="frame" x="-2" y="3" width="219" height="18"/>
+                                    <buttonCell key="cell" type="check" title="Show Screensaver Item" bezelStyle="regularSquare" imagePosition="left" inset="2" id="2xh-EW-PL2">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="didChangeCheckboxValue:" target="-2" id="o01-IG-HM2"/>
+                                    </connections>
+                                </button>
+                                <button verticalHuggingPriority="750" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="vjR-1a-mOn">
+                                    <rect key="frame" x="229" y="3" width="180" height="18"/>
+                                    <buttonCell key="cell" type="check" title="Show Do Not Disturb Item" bezelStyle="regularSquare" imagePosition="left" inset="2" id="BRS-Qc-kaR">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="didChangeCheckboxValue:" target="-2" id="5Mb-YJ-VXR"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <visibilityPriorities>
+                                <integer value="1000"/>
+                                <integer value="1000"/>
+                            </visibilityPriorities>
+                            <customSpacing>
+                                <real value="3.4028234663852886e+38"/>
+                                <real value="3.4028234663852886e+38"/>
+                            </customSpacing>
+                        </stackView>
+                        <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="16" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kCg-kM-2Ua">
+                            <rect key="frame" x="0.0" y="0.0" width="426" height="134"/>
+                            <subviews>
+                                <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="16" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d3E-sv-RH6">
+                                    <rect key="frame" x="0.0" y="30" width="215" height="104"/>
+                                    <subviews>
+                                        <button verticalHuggingPriority="750" tag="5" translatesAutoresizingMaskIntoConstraints="NO" id="rEy-Lh-73f">
+                                            <rect key="frame" x="-2" y="88" width="161" height="18"/>
+                                            <buttonCell key="cell" type="check" title="Show Brightness Items" bezelStyle="regularSquare" imagePosition="left" inset="2" id="zt4-Gu-yzF">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="didChangeCheckboxValue:" target="-2" id="e7e-fg-1mc"/>
+                                            </connections>
+                                        </button>
+                                        <button verticalHuggingPriority="750" tag="51" translatesAutoresizingMaskIntoConstraints="NO" id="0iY-fD-cWj">
+                                            <rect key="frame" x="18" y="58" width="192" height="18"/>
+                                            <buttonCell key="cell" type="check" title="Show Brightness Down Item" bezelStyle="regularSquare" imagePosition="left" inset="2" id="S9t-Wy-9IV">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="didChangeCheckboxValue:" target="-2" id="Xbx-g7-eIw"/>
+                                            </connections>
+                                        </button>
+                                        <button verticalHuggingPriority="750" tag="52" translatesAutoresizingMaskIntoConstraints="NO" id="UIv-xe-fLQ">
+                                            <rect key="frame" x="18" y="28" width="175" height="18"/>
+                                            <buttonCell key="cell" type="check" title="Show Brightness Up Item" bezelStyle="regularSquare" imagePosition="left" inset="2" id="zlO-nx-U7P">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="didChangeCheckboxValue:" target="-2" id="VCF-Qm-h54"/>
+                                            </connections>
+                                        </button>
+                                        <button verticalHuggingPriority="750" tag="53" translatesAutoresizingMaskIntoConstraints="NO" id="QFf-nm-x3a">
+                                            <rect key="frame" x="18" y="-2" width="199" height="18"/>
+                                            <buttonCell key="cell" type="check" title="Show Brightness Toggle Item" bezelStyle="regularSquare" imagePosition="left" inset="2" id="po1-9a-abU">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="didChangeCheckboxValue:" target="-2" id="Hq0-ee-AfH"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="UIv-xe-fLQ" firstAttribute="leading" secondItem="d3E-sv-RH6" secondAttribute="leading" constant="20" id="Niu-06-kIZ"/>
+                                        <constraint firstItem="QFf-nm-x3a" firstAttribute="leading" secondItem="d3E-sv-RH6" secondAttribute="leading" constant="20" id="W8u-Cg-DYR"/>
+                                        <constraint firstItem="0iY-fD-cWj" firstAttribute="leading" secondItem="d3E-sv-RH6" secondAttribute="leading" constant="20" id="soA-JD-mbS"/>
+                                    </constraints>
+                                    <visibilityPriorities>
+                                        <integer value="1000"/>
+                                        <integer value="1000"/>
+                                        <integer value="1000"/>
+                                        <integer value="1000"/>
+                                    </visibilityPriorities>
+                                    <customSpacing>
+                                        <real value="3.4028234663852886e+38"/>
+                                        <real value="3.4028234663852886e+38"/>
+                                        <real value="3.4028234663852886e+38"/>
+                                        <real value="3.4028234663852886e+38"/>
+                                    </customSpacing>
+                                </stackView>
+                                <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="16" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N4t-4q-BYZ">
+                                    <rect key="frame" x="231" y="0.0" width="195" height="134"/>
+                                    <subviews>
+                                        <button verticalHuggingPriority="750" tag="6" translatesAutoresizingMaskIntoConstraints="NO" id="vKF-NW-wSS">
+                                            <rect key="frame" x="-2" y="118" width="141" height="18"/>
+                                            <buttonCell key="cell" type="check" title="Show Volume Items" bezelStyle="regularSquare" imagePosition="left" inset="2" id="A1L-D1-Jwj">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="didChangeCheckboxValue:" target="-2" id="15I-9e-6ut"/>
+                                            </connections>
+                                        </button>
+                                        <button verticalHuggingPriority="750" tag="61" translatesAutoresizingMaskIntoConstraints="NO" id="XAw-dt-3HD">
+                                            <rect key="frame" x="18" y="88" width="172" height="18"/>
+                                            <buttonCell key="cell" type="check" title="Show Volume Down Item" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Zze-FZ-vdx">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="didChangeCheckboxValue:" target="-2" id="KWW-4j-6XW"/>
+                                            </connections>
+                                        </button>
+                                        <button verticalHuggingPriority="750" tag="62" translatesAutoresizingMaskIntoConstraints="NO" id="pVf-yn-64e">
+                                            <rect key="frame" x="18" y="58" width="155" height="18"/>
+                                            <buttonCell key="cell" type="check" title="Show Volume Up Item" bezelStyle="regularSquare" imagePosition="left" inset="2" id="AJ4-PK-Oid">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="didChangeCheckboxValue:" target="-2" id="Jqg-56-1VS"/>
+                                            </connections>
+                                        </button>
+                                        <button verticalHuggingPriority="750" tag="63" translatesAutoresizingMaskIntoConstraints="NO" id="jaV-jD-ux3">
+                                            <rect key="frame" x="18" y="28" width="179" height="18"/>
+                                            <buttonCell key="cell" type="check" title="Show Volume Toggle Item" bezelStyle="regularSquare" imagePosition="left" inset="2" id="oTc-dK-63V">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="didChangeCheckboxValue:" target="-2" id="k3u-tx-ieh"/>
+                                            </connections>
+                                        </button>
+                                        <button verticalHuggingPriority="750" tag="64" translatesAutoresizingMaskIntoConstraints="NO" id="MDV-NR-QE4">
+                                            <rect key="frame" x="18" y="-2" width="169" height="18"/>
+                                            <buttonCell key="cell" type="check" title="Show Volume Mute Item" bezelStyle="regularSquare" imagePosition="left" inset="2" id="0cO-cp-q0P">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="didChangeCheckboxValue:" target="-2" id="vmr-4E-LUi"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="MDV-NR-QE4" firstAttribute="leading" secondItem="N4t-4q-BYZ" secondAttribute="leading" constant="20" id="8v4-8d-gJ5"/>
+                                        <constraint firstItem="XAw-dt-3HD" firstAttribute="leading" secondItem="N4t-4q-BYZ" secondAttribute="leading" constant="20" id="eTs-sL-5Um"/>
+                                        <constraint firstItem="jaV-jD-ux3" firstAttribute="leading" secondItem="N4t-4q-BYZ" secondAttribute="leading" constant="20" id="hva-ij-r4C"/>
+                                        <constraint firstItem="pVf-yn-64e" firstAttribute="leading" secondItem="N4t-4q-BYZ" secondAttribute="leading" constant="20" id="pSL-rj-uY4"/>
+                                    </constraints>
+                                    <visibilityPriorities>
+                                        <integer value="1000"/>
+                                        <integer value="1000"/>
+                                        <integer value="1000"/>
+                                        <integer value="1000"/>
+                                        <integer value="1000"/>
+                                    </visibilityPriorities>
+                                    <customSpacing>
+                                        <real value="3.4028234663852886e+38"/>
+                                        <real value="3.4028234663852886e+38"/>
+                                        <real value="3.4028234663852886e+38"/>
+                                        <real value="3.4028234663852886e+38"/>
+                                        <real value="3.4028234663852886e+38"/>
+                                    </customSpacing>
+                                </stackView>
+                            </subviews>
+                            <visibilityPriorities>
+                                <integer value="1000"/>
+                                <integer value="1000"/>
+                            </visibilityPriorities>
+                            <customSpacing>
+                                <real value="3.4028234663852886e+38"/>
+                                <real value="3.4028234663852886e+38"/>
+                            </customSpacing>
+                        </stackView>
                     </subviews>
+                    <constraints>
+                        <constraint firstItem="P4F-Aq-avh" firstAttribute="leading" secondItem="vjR-1a-mOn" secondAttribute="leading" id="ejf-LH-JHq"/>
+                        <constraint firstItem="vjR-1a-mOn" firstAttribute="leading" secondItem="vKF-NW-wSS" secondAttribute="leading" id="skR-CK-gvN"/>
+                    </constraints>
                     <visibilityPriorities>
                         <integer value="1000"/>
                         <integer value="1000"/>
@@ -194,7 +274,7 @@
                 <constraint firstItem="oAr-3p-C2k" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="d6Z-Rz-Hj6"/>
                 <constraint firstAttribute="trailing" secondItem="oAr-3p-C2k" secondAttribute="trailing" constant="20" id="zeI-g2-vP9"/>
             </constraints>
-            <point key="canvasLocation" x="139" y="120.5"/>
+            <point key="canvasLocation" x="141" y="49.5"/>
         </customView>
     </objects>
 </document>

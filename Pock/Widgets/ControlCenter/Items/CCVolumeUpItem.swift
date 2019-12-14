@@ -11,15 +11,16 @@ import Defaults
 
 class CCVolumeUpItem: ControlCenterItem {
     
-    override var enabled: Bool{ return Defaults[.shouldShowVolumeItem] && Defaults[.shouldShowVolumeUpItem] }
+    override var enabled: Bool { return Defaults[.shouldShowVolumeItem] && Defaults[.shouldShowVolumeUpItem] }
     
     private let key: KeySender = KeySender(keyCode: NX_KEYTYPE_SOUND_UP, isAux: true)
     
-    override var title: String  { return "volume-up" }
+    override var title: String { return "volume-up" }
     
     override var icon:  NSImage { return NSImage(named: NSImage.touchBarVolumeUpTemplateName)! }
     
     override func action() -> Any? {
+        Defaults[.isVolumeMute] = false
         key.send()
         NSWorkspace.shared.notificationCenter.post(name: .shouldReloadControlCenterWidget, object: nil)
         return NSSound.systemVolume()
@@ -30,6 +31,7 @@ class CCVolumeUpItem: ControlCenterItem {
     }
     
     override func didSlide(at value: Double) {
+        Defaults[.isVolumeMute] = false
         NSSound.setSystemVolume(Float(value))
         NSWorkspace.shared.notificationCenter.post(name: .shouldReloadControlCenterWidget, object: nil)
         // DK_OSDUIHelper.showHUD(type: NSSound.isMuted() ? .mute : .volume, filled: CUnsignedInt(NSSound.systemVolume() * 16))

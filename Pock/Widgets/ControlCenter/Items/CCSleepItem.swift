@@ -11,11 +11,11 @@ import Defaults
 
 class CCSleepItem: ControlCenterItem {
     
-    override var enabled: Bool{ return Defaults[.shouldShowSleepItem] }
+    override var enabled: Bool { return Defaults[.shouldShowSleepItem] }
     
-    override var title: String  { return "sleep" }
+    override var title: String { return "sleep" }
     
-    override var icon:  NSImage { return NSImage(named: title)!.resize(w: 30, h: 30) }
+    override var icon:  NSImage { return NSImage(named: title)! }
     
     override func action() -> Any? {
         SystemHelper.lock()

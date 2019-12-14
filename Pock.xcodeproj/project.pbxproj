@@ -59,6 +59,7 @@
 		342D840B2278D5CF000D79DA /* DockItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83DC2278D5CF000D79DA /* DockItemView.swift */; };
 		342D840C2278D5CF000D79DA /* DockWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83DD2278D5CF000D79DA /* DockWidget.swift */; };
 		342D840D2278D5CF000D79DA /* FileMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83DE2278D5CF000D79DA /* FileMonitor.swift */; };
+		3435675B2381666F00E408EF /* WidgetsDispatcherr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3435675A2381666F00E408EF /* WidgetsDispatcherr.swift */; };
 		347D7EE7230874A800BA9200 /* ControlCenterWidgetPreferencePane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9686B4F922D2216400C7A08C /* ControlCenterWidgetPreferencePane.xib */; };
 		347F336022D0D68400FA9805 /* CCLockItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347F335F22D0D68400FA9805 /* CCLockItem.swift */; };
 		347F336722D0DB9200FA9805 /* SystemHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 347F336622D0DB9100FA9805 /* SystemHelper.m */; };
@@ -75,8 +76,12 @@
 		9667AAF222CF192D00C22410 /* GeneralPreferencePane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9667AAF422CF192D00C22410 /* GeneralPreferencePane.xib */; };
 		9667AAFB22CF1A5700C22410 /* StatusWidgetPreferencePane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9667AAFD22CF1A5700C22410 /* StatusWidgetPreferencePane.xib */; };
 		9667AB0422CF1ABA00C22410 /* DockWidgetPreferencePane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9667AB0622CF1ABA00C22410 /* DockWidgetPreferencePane.xib */; };
+		9675D6D1237003DC00C36234 /* CCVolumeToggleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9675D6D0237003DC00C36234 /* CCVolumeToggleItem.swift */; };
+		9675D6D323701BC900C36234 /* CCBrightnessToggleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9675D6D223701BC900C36234 /* CCBrightnessToggleItem.swift */; };
+		96BE2701237171DC0031B31F /* CCScreensaverItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BE2700237171DC0031B31F /* CCScreensaverItem.swift */; };
+		96E7A152239B99F700CB4C4C /* CCDoNotDisturbItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E7A151239B99F700CB4C4C /* CCDoNotDisturbItem.swift */; };
 		96FE269F22D0C3810071645C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 96FE26A122D0C3810071645C /* Localizable.strings */; };
-		9955665222DC668500EFFE6D /* CCToggleMuteItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9955665122DC668500EFFE6D /* CCToggleMuteItem.swift */; };
+		9955665222DC668500EFFE6D /* CCVolumeMuteItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9955665122DC668500EFFE6D /* CCVolumeMuteItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -138,6 +143,7 @@
 		342D83DC2278D5CF000D79DA /* DockItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DockItemView.swift; sourceTree = "<group>"; };
 		342D83DD2278D5CF000D79DA /* DockWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DockWidget.swift; sourceTree = "<group>"; };
 		342D83DE2278D5CF000D79DA /* FileMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileMonitor.swift; sourceTree = "<group>"; };
+		3435675A2381666F00E408EF /* WidgetsDispatcherr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetsDispatcherr.swift; sourceTree = "<group>"; };
 		347F335D22D0D5F600FA9805 /* login.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = login.framework; path = ../../../../../../../../../System/Library/PrivateFrameworks/login.framework; sourceTree = "<group>"; };
 		347F335F22D0D68400FA9805 /* CCLockItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CCLockItem.swift; sourceTree = "<group>"; };
 		347F336522D0DB9100FA9805 /* SystemHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemHelper.h; sourceTree = "<group>"; };
@@ -175,20 +181,24 @@
 		9667AAFA22CF1A4D00C22410 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/GeneralPreferencePane.strings"; sourceTree = "<group>"; };
 		9667AAFC22CF1A5700C22410 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/StatusWidgetPreferencePane.xib; sourceTree = "<group>"; };
 		9667AB0522CF1ABA00C22410 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/DockWidgetPreferencePane.xib; sourceTree = "<group>"; };
+		9675D6D0237003DC00C36234 /* CCVolumeToggleItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCVolumeToggleItem.swift; sourceTree = "<group>"; };
+		9675D6D223701BC900C36234 /* CCBrightnessToggleItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCBrightnessToggleItem.swift; sourceTree = "<group>"; };
 		9686B4F822D2216400C7A08C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ControlCenterWidgetPreferencePane.xib; sourceTree = "<group>"; };
 		969439E922D0FCA20022E67D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		96BE2700237171DC0031B31F /* CCScreensaverItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCScreensaverItem.swift; sourceTree = "<group>"; };
 		96E3DD8C2357258600AA719D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/StatusWidgetPreferencePane.strings; sourceTree = "<group>"; };
 		96E468B12351BC7200A20E56 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/DockWidgetPreferencePane.strings; sourceTree = "<group>"; };
 		96E468B22351BC7500A20E56 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/DockWidgetPreferencePane.strings"; sourceTree = "<group>"; };
 		96E468B32351BC7900A20E56 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/DockWidgetPreferencePane.strings"; sourceTree = "<group>"; };
 		96E468B42351BC7B00A20E56 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/DockWidgetPreferencePane.strings; sourceTree = "<group>"; };
 		96E468B52351BC7F00A20E56 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/DockWidgetPreferencePane.strings; sourceTree = "<group>"; };
+		96E7A151239B99F700CB4C4C /* CCDoNotDisturbItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCDoNotDisturbItem.swift; sourceTree = "<group>"; };
+		96E7A15A239BA74E00CB4C4C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ControlCenterWidgetPreferencePane.strings; sourceTree = "<group>"; };
 		96F29990231797060055DA26 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/StatusWidgetPreferencePane.strings"; sourceTree = "<group>"; };
 		96F29996231797C00055DA26 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/GeneralPreferencePane.strings; sourceTree = "<group>"; };
-		96F29998231798090055DA26 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ControlCenterWidgetPreferencePane.strings; sourceTree = "<group>"; };
 		96F2999A2317980B0055DA26 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ControlCenterWidgetPreferencePane.strings"; sourceTree = "<group>"; };
 		96FE26A022D0C3810071645C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		9955665122DC668500EFFE6D /* CCToggleMuteItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCToggleMuteItem.swift; sourceTree = "<group>"; };
+		9955665122DC668500EFFE6D /* CCVolumeMuteItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCVolumeMuteItem.swift; sourceTree = "<group>"; };
 		AAA3636F2333699C0016267D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/DockFolderController.strings"; sourceTree = "<group>"; };
 		AAA363702333699C0016267D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/GeneralPreferencePane.strings"; sourceTree = "<group>"; };
 		AAA363712333699C0016267D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/StatusWidgetPreferencePane.strings"; sourceTree = "<group>"; };
@@ -413,6 +423,7 @@
 		342D83B42278D5CF000D79DA /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
+				3435675A2381666F00E408EF /* WidgetsDispatcherr.swift */,
 				342D83CD2278D5CF000D79DA /* Common */,
 				342D83CA2278D5CF000D79DA /* Esc key */,
 				342D83D02278D5CF000D79DA /* Dock */,
@@ -442,7 +453,11 @@
 				342D83BA2278D5CF000D79DA /* CCVolumeDownItem.swift */,
 				342D83BB2278D5CF000D79DA /* CCBrightnessUpItem.swift */,
 				342D83BC2278D5CF000D79DA /* CCVolumeUpItem.swift */,
-				9955665122DC668500EFFE6D /* CCToggleMuteItem.swift */,
+				9955665122DC668500EFFE6D /* CCVolumeMuteItem.swift */,
+				9675D6D0237003DC00C36234 /* CCVolumeToggleItem.swift */,
+				9675D6D223701BC900C36234 /* CCBrightnessToggleItem.swift */,
+				96BE2700237171DC0031B31F /* CCScreensaverItem.swift */,
+				96E7A151239B99F700CB4C4C /* CCDoNotDisturbItem.swift */,
 			);
 			path = Items;
 			sourceTree = "<group>";
@@ -790,13 +805,16 @@
 				342D83F82278D5CF000D79DA /* StatusWidget.swift in Sources */,
 				342D83F32278D5CF000D79DA /* CCVolumeUpItem.swift in Sources */,
 				347F336922D0DBD600FA9805 /* CCSleepItem.swift in Sources */,
+				9675D6D1237003DC00C36234 /* CCVolumeToggleItem.swift in Sources */,
 				342D84072278D5CF000D79DA /* DockRepository.swift in Sources */,
+				3435675B2381666F00E408EF /* WidgetsDispatcherr.swift in Sources */,
 				342D83E92278D5CF000D79DA /* PockDockHelper.m in Sources */,
 				34064345227EDCB900981372 /* DockFolderItem.swift in Sources */,
 				342D84042278D5CF000D79DA /* EventStream.swift in Sources */,
 				342D84022278D5CF000D79DA /* Constants.swift in Sources */,
 				342D83F12278D5CF000D79DA /* CCVolumeDownItem.swift in Sources */,
 				342D84032278D5CF000D79DA /* FileEvent.swift in Sources */,
+				9675D6D323701BC900C36234 /* CCBrightnessToggleItem.swift in Sources */,
 				3407F9EB22D1C7F40072E742 /* AppExposeItem.swift in Sources */,
 				34E644F4227CB6CE003D0450 /* KeySender.swift in Sources */,
 				342D840B2278D5CF000D79DA /* DockItemView.swift in Sources */,
@@ -820,13 +838,15 @@
 				342D840D2278D5CF000D79DA /* FileMonitor.swift in Sources */,
 				3407F9E722D1C5170072E742 /* AppExposeController.swift in Sources */,
 				342D83E12278D5CF000D79DA /* PockMainController.swift in Sources */,
+				96BE2701237171DC0031B31F /* CCScreensaverItem.swift in Sources */,
 				342D83F72278D5CF000D79DA /* NowPlayingHelper.swift in Sources */,
+				96E7A152239B99F700CB4C4C /* CCDoNotDisturbItem.swift in Sources */,
 				342D83EF2278D5CF000D79DA /* ControlCenterItem.swift in Sources */,
 				964435B722D18F91002FA1CB /* LocalizedUtils.swift in Sources */,
 				342D83EB2278D5CF000D79DA /* DKBrightness.swift in Sources */,
 				342D84002278D5CF000D79DA /* PKWidgetTouchBarItem.swift in Sources */,
 				342D83E22278D5CF000D79DA /* Preferences.swift in Sources */,
-				9955665222DC668500EFFE6D /* CCToggleMuteItem.swift in Sources */,
+				9955665222DC668500EFFE6D /* CCVolumeMuteItem.swift in Sources */,
 				342D83F42278D5CF000D79DA /* NowPlayingItemView.swift in Sources */,
 				349F93E8228865C400B8CFBE /* ISSoundAdditions.m in Sources */,
 				342D83ED2278D5CF000D79DA /* AppDelegate.swift in Sources */,
@@ -900,8 +920,8 @@
 				34A8061122F6C83000621235 /* it */,
 				881719852334CAFA00CEFF2B /* tr */,
 				AAA363722333699C0016267D /* zh-Hant */,
-				96F29998231798090055DA26 /* en */,
 				96F2999A2317980B0055DA26 /* zh-Hans */,
+				96E7A15A239BA74E00CB4C4C /* en */,
 			);
 			name = ControlCenterWidgetPreferencePane.xib;
 			sourceTree = "<group>";

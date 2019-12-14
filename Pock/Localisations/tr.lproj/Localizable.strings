@@ -1,108 +1,47 @@
+/*
+Localizable.strings
+Pock
 
+Created by Licardo on 2019/7/6.
+Copyright © 2019 Pierluigi Galdi. All rights reserved.
+*/
 
 "1 minute" = "1 dakika";
-
-
 "1 second" = "1 saniye";
-
-
 "10 seconds" = "10 saniye";
-
-
 "3 minutes" = "3 dakika";
-
-
 "30 seconds" = "30 saniye";
-
-
 "5 seconds" = "5 saniye";
-
-
 "Already on latest version" = "Zaten son sürümü kullanıyorsunuz";
-
-/*  */
-"Always" = "";
-
-
+"Always" = "Hep";
 "Check for updates" = "Güncellemeleri denetle";
-
-
 "Checking…" = "Kontrol ediliyor…";
-
-
 "Control Center" = "Control Center";
-
-
 "Control Center Widget" = "Control Center Widget";
-
-
 "Customize…" = "Özelleştir…";
-
-
 "Do you want to download version" = "Sürümünü indirmek ister misiniz";
-
-
 "Dock" = "Dock";
-
-
 "Dock Widget" = "Dock Widget";
-
-
 "Download" = "İndir";
-
-
 "Esc key" = "Esc tuşu";
-
-/* 
- Localizable.strings
- Pock
- 
- Created by Licardo on 2019/7/6.
- Copyright © 2019 Pierluigi Galdi. All rights reserved.
- */
 "General" = "Genel";
-
-
 "Installed version" = "Yüklü versiyon";
-
-
 "Instantly" = "Anında";
-
-
 "Later" = "Sonra";
-
-
 "Never" = "Asla";
-
-
 "New version available!" = "Yeni versiyon indirilebilir!";
-
-
 "No Playback" = "Oynatılan yok";
-
-
 "Now Playing" = "Şu an Çalıyor";
-
-
 "Pock Options" = "Pock Seçenekleri";
-
-
 "Preferences…" = "Tercihler…";
-
-
 "Quit Pock" = "Pock'tan Çık";
-
-
 "Status" = "Durum";
-
-
 "Status Widget" = "Durum Widget";
-
-
 "Support this project" = "Bu projeye katkıda bulun";
-
-
 "Unknown" = "Bilinmeyen";
-
-
 "now?" = "şimdi?";
+"windows" = "windows";
+"Control Center Widget" = "Control Center Widget";
+"Loading..." = "Loading...";
+"elements" = "elements";
+"Trash" = "Trash";

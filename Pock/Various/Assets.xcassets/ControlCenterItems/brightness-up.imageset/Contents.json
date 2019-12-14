@@ -1,8 +1,14 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
-      "filename" : "brightness-up.png"
+      "idiom" : "mac",
+      "filename" : "brightness-up.png",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "mac",
+      "filename" : "brightness-up@2x.png",
+      "scale" : "2x"
     }
   ],
   "info" : {

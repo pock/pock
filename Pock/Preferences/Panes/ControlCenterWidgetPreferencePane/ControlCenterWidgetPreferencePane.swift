@@ -13,15 +13,18 @@ import Defaults
 class ControlCenterWidgetPreferencePane: NSViewController, PreferencePane {
 
     /// UI
-    @IBOutlet weak var showSleepItem:           NSButton!
-    @IBOutlet weak var showLockItem:            NSButton!
-    @IBOutlet weak var showBrightnessItem:      NSButton!
-    @IBOutlet weak var showVolumeItem:          NSButton!
-    @IBOutlet weak var showBrightnessDownItem:  NSButton!
-    @IBOutlet weak var showBrightnessUpItem:    NSButton!
-    @IBOutlet weak var showVolumeDownItem:      NSButton!
-    @IBOutlet weak var showVolumeUpItem:        NSButton!
-    @IBOutlet weak var showToggleMuteItem:      NSButton!
+    @IBOutlet weak var showSleepItem:             NSButton!
+    @IBOutlet weak var showLockItem:              NSButton!
+    @IBOutlet weak var showScreensaverItem:       NSButton!
+    @IBOutlet weak var showBrightnessItem:        NSButton!
+    @IBOutlet weak var showVolumeItem:            NSButton!
+    @IBOutlet weak var showBrightnessDownItem:    NSButton!
+    @IBOutlet weak var showBrightnessUpItem:      NSButton!
+    @IBOutlet weak var showBrightnessToggleItem:  NSButton!
+    @IBOutlet weak var showVolumeDownItem:        NSButton!
+    @IBOutlet weak var showVolumeUpItem:          NSButton!
+    @IBOutlet weak var showVolumeMuteItem:        NSButton!
+    @IBOutlet weak var showVolumeToggleItem:      NSButton!
     
     /// Preferenceable
     var preferencePaneIdentifier: Identifier = Identifier.controler_center_widget
@@ -40,21 +43,26 @@ class ControlCenterWidgetPreferencePane: NSViewController, PreferencePane {
     }
     
     private func loadCheckboxState() {
-        self.showSleepItem.state          = Defaults[.shouldShowSleepItem]          ? .on : .off
-        self.showLockItem.state           = Defaults[.shouldShowLockItem]           ? .on : .off
-        self.showBrightnessItem.state     = Defaults[.shouldShowBrightnessItem]     ? .on : .off
-        self.showVolumeItem.state         = Defaults[.shouldShowVolumeItem]         ? .on : .off
-        self.showBrightnessDownItem.state = Defaults[.shouldShowBrightnessDownItem] ? .on : .off
-        self.showBrightnessUpItem.state   = Defaults[.shouldShowBrightnessUpItem]   ? .on : .off
-        self.showVolumeDownItem.state     = Defaults[.shouldShowVolumeDownItem]     ? .on : .off
-        self.showVolumeUpItem.state       = Defaults[.shouldShowVolumeUpItem]       ? .on : .off
-        self.showToggleMuteItem.state     = Defaults[.shouldShowToggleMuteItem]     ? .on : .off
+        self.showSleepItem.state            = Defaults[.shouldShowSleepItem]          ? .on : .off
+        self.showLockItem.state             = Defaults[.shouldShowLockItem]           ? .on : .off
+        self.showScreensaverItem.state      = Defaults[.shouldShowScreensaverItem]    ? .on : .off
+        self.showBrightnessItem.state       = Defaults[.shouldShowBrightnessItem]     ? .on : .off
+        self.showVolumeItem.state           = Defaults[.shouldShowVolumeItem]         ? .on : .off
+        self.showBrightnessDownItem.state   = Defaults[.shouldShowBrightnessDownItem] ? .on : .off
+        self.showBrightnessUpItem.state     = Defaults[.shouldShowBrightnessUpItem]   ? .on : .off
+        self.showBrightnessToggleItem.state = Defaults[.shouldShowBrightnessToggleItem] ? .on : .off
+        self.showVolumeDownItem.state       = Defaults[.shouldShowVolumeDownItem]     ? .on : .off
+        self.showVolumeUpItem.state         = Defaults[.shouldShowVolumeUpItem]       ? .on : .off
+        self.showVolumeMuteItem.state       = Defaults[.shouldShowVolumeMuteItem]     ? .on : .off
+        self.showVolumeToggleItem.state     = Defaults[.shouldShowVolumeToggleItem]     ? .on : .off
       
-        self.showBrightnessDownItem.isEnabled = Defaults[.shouldShowBrightnessItem]
-        self.showBrightnessUpItem.isEnabled = Defaults[.shouldShowBrightnessItem]
-        self.showVolumeDownItem.isEnabled = Defaults[.shouldShowVolumeItem]
-        self.showVolumeUpItem.isEnabled = Defaults[.shouldShowVolumeItem]
-        self.showToggleMuteItem.isEnabled = Defaults[.shouldShowVolumeItem]
+        self.showBrightnessDownItem.isEnabled   = Defaults[.shouldShowBrightnessItem]
+        self.showBrightnessUpItem.isEnabled     = Defaults[.shouldShowBrightnessItem]
+        self.showBrightnessToggleItem.isEnabled = Defaults[.shouldShowBrightnessItem]
+        self.showVolumeDownItem.isEnabled       = Defaults[.shouldShowVolumeItem]
+        self.showVolumeUpItem.isEnabled         = Defaults[.shouldShowVolumeItem]
+        self.showVolumeMuteItem.isEnabled       = Defaults[.shouldShowVolumeItem]
+        self.showVolumeToggleItem.isEnabled     = Defaults[.shouldShowVolumeItem]
     }
     
     @IBAction func didChangeCheckboxValue(_ checkbox: NSButton) {
@@ -65,19 +73,27 @@ class ControlCenterWidgetPreferencePane: NSViewController, PreferencePane {
         case 2:
             key = .shouldShowLockItem
         case 3:
-            key = .shouldShowBrightnessItem
-        case 31:
-            key = .shouldShowBrightnessDownItem
-        case 32:
-            key = .shouldShowBrightnessUpItem
+            key = .shouldShowScreensaverItem
         case 4:
+            key = .shouldShowDoNotDisturbItem
+        case 5:
+            key = .shouldShowBrightnessItem
+        case 51:
+            key = .shouldShowBrightnessDownItem
+        case 52:
+            key = .shouldShowBrightnessUpItem
+        case 53:
+            key = .shouldShowBrightnessToggleItem
+        case 6:
             key = .shouldShowVolumeItem
-        case 41:
+        case 61:
             key = .shouldShowVolumeDownItem
-        case 42:
+        case 62:
             key = .shouldShowVolumeUpItem
-        case 43:
-            key = .shouldShowToggleMuteItem
+        case 63:
+            key = .shouldShowVolumeToggleItem
+        case 64:
+            key = .shouldShowVolumeMuteItem
         default:
             return
         }

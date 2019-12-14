@@ -39,6 +39,7 @@ class StatusWidgetPreferencePane: NSViewController, NSTextFieldDelegate, Prefere
         self.view.wantsLayer = true
         self.loadCheckboxState()
         self.timeFormatTextField.delegate = self
+        self.timeFormatTextField.stringValue = Defaults[.timeFormatTextField]
     }
     
     private func loadCheckboxState() {

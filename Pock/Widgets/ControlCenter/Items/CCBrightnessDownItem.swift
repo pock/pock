@@ -11,13 +11,13 @@ import Defaults
 
 class CCBrightnessDownItem: ControlCenterItem {
 
-    override var enabled: Bool{ return Defaults[.shouldShowBrightnessItem] && Defaults[.shouldShowBrightnessDownItem] }
+    override var enabled: Bool { return Defaults[.shouldShowBrightnessItem] && Defaults[.shouldShowBrightnessDownItem] }
     
     private let key: KeySender = KeySender(keyCode: NX_KEYTYPE_BRIGHTNESS_DOWN, isAux: true)
     
-    override var title: String  { return "brightness-down" }
+    override var title: String { return "brightness-down" }
     
-    override var icon:  NSImage { return NSImage(named: title)!.resize(w: 30, h: 30) }
+    override var icon:  NSImage { return NSImage(named: title)! }
     
     override func action() -> Any? {
         key.send()

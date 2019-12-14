@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14810.11" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14810.11"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -54,7 +54,7 @@
                                         <constraint firstAttribute="height" constant="12" id="wrH-Fs-1Vo"/>
                                     </constraints>
                                     <textFieldCell key="cell" controlSize="mini" lineBreakMode="clipping" enabled="NO" alignment="center" title="VERSION" id="K9v-5R-z7Q">
-                                        <font key="font" metaFont="miniSystem"/>
+                                        <font key="font" metaFont="label" size="9"/>
                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
@@ -139,8 +139,8 @@
                 </stackView>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="dg5-6U-vPP">
                     <rect key="frame" x="139" y="72" width="140" height="33"/>
-                    <textFieldCell key="cell" selectable="YES" title="Double press `control` key to toggle between Pock and System Touch Bar." id="5UW-Vr-bYf">
-                        <font key="font" metaFont="miniSystem"/>
+                    <textFieldCell key="cell" selectable="YES" title="Double press `⌃ Control` key to toggle between Pock and System Touch Bar." id="5UW-Vr-bYf">
+                        <font key="font" metaFont="label" size="9"/>
                         <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>

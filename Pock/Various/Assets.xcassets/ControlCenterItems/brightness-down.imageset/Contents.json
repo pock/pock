@@ -1,8 +1,14 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
-      "filename" : "birhgntess-down.png"
+      "idiom" : "mac",
+      "filename" : "brightness-down.png",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "mac",
+      "filename" : "brightness-down@2x.png",
+      "scale" : "2x"
     }
   ],
   "info" : {

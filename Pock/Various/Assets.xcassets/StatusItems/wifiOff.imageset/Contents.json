@@ -1,19 +1,14 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
+      "idiom" : "mac",
       "filename" : "AirPortOff.png",
       "scale" : "1x"
     },
     {
-      "idiom" : "universal",
+      "idiom" : "mac",
       "filename" : "AirPortOff@2x.png",
       "scale" : "2x"
-    },
-    {
-      "idiom" : "universal",
-      "filename" : "AirPortOff@2x-1.png",
-      "scale" : "3x"
     }
   ],
   "info" : {

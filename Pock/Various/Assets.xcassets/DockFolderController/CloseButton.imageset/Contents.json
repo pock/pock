@@ -1,8 +1,14 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
-      "filename" : "CloseButton.png"
+      "idiom" : "mac",
+      "filename" : "CloseButton.png",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "mac",
+      "filename" : "CloseButton@2x.png",
+      "scale" : "2x"
     }
   ],
   "info" : {
