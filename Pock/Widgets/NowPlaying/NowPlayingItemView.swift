@@ -61,14 +61,14 @@ class NowPlayingItemView: PKDetailView {
             self?.imageView.image = DockRepository.getIcon(forBundleIdentifier: appBundleIdentifier, orPath: path)
             
             let isPlaying = self?.nowPLayingItem?.isPlaying ?? false
-            var title     = self?.nowPLayingItem?.title     ?? "Tap here"
-            var artist    = self?.nowPLayingItem?.artist    ?? "to play music"
+            var title     = self?.nowPLayingItem?.title     ?? "Tap here".localized
+            var artist    = self?.nowPLayingItem?.artist    ?? "to play music".localized
             
             if title.isEmpty {
-                title = "Missing title"
+                title = "Missing title".localized
             }
             if artist.isEmpty {
-                artist = "Unknown artist"
+                artist = "Unknown artist".localized
             }
             
             let titleWidth    = (title  as NSString).size(withAttributes: self?.titleView.textFontAttributes    ?? [:]).width
