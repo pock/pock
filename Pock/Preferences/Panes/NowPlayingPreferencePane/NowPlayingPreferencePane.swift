@@ -31,6 +31,7 @@ class NowPlayingPreferencePane: NSViewController, PreferencePane {
     @IBOutlet private weak var defaultRadioButton:   NSButton!
     @IBOutlet private weak var onlyInfoRadioButton:  NSButton!
     @IBOutlet private weak var playPauseRadioButton: NSButton!
+    @IBOutlet private weak var hideWidgetIfNoMedia:  NSButton!
     
     override var nibName: NSNib.Name? {
         return "NowPlayingPreferencePane"
@@ -46,6 +47,7 @@ class NowPlayingPreferencePane: NSViewController, PreferencePane {
         case .playPause:
             playPauseRadioButton.state = .on
         }
+        hideWidgetIfNoMedia.state = Defaults[.hideNowPlayingIfNoMedia] ? .on : .off
         setupImageViewClickGesture()
     }
     
@@ -73,6 +75,19 @@ class NowPlayingPreferencePane: NSViewController, PreferencePane {
             defaultRadioButton.state   = .off
             onlyInfoRadioButton.state  = .off
             playPauseRadioButton.state = .on
+        default:
+            return
+        }
+        NSWorkspace.shared.notificationCenter.post(name: .didChangeNowPlayingWidgetStyle, object: nil)
+    }
+    
+    @IBAction private func didChangeCheckboxState(_ button: NSButton?) {
+        guard let button = button else {
+            return
+        }
+        switch button.tag {
+        case 0:
+            Defaults[.hideNowPlayingIfNoMedia] = button.state == .on
         default:
             return
         }

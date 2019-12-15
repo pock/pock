@@ -39,6 +39,14 @@ class NowPlayingView: PKView {
         return button
     }
     
+    /// Core
+    private var shouldHideWidget: Bool {
+        if Defaults[.hideNowPlayingIfNoMedia] {
+            return item?.appBundleIdentifier == nil
+        }
+        return false
+    }
+    
     /// Styles
     public var style: NowPlayingWidgetStyle = Defaults[.nowPlayingWidgetStyle] {
         didSet {
@@ -109,7 +117,7 @@ class NowPlayingView: PKView {
     }
     
     private func addArrangesSubviews() {
-        guard item?.appBundleIdentifier != nil else {
+        guard !shouldHideWidget else {
             return
         }
         let views: [NSView]
@@ -141,7 +149,7 @@ class NowPlayingView: PKView {
     
     /// Update
     private func updateContentViews() {
-        guard item?.appBundleIdentifier != nil else {
+        guard !shouldHideWidget else {
             removeArrangedSubviews()
             return
         }

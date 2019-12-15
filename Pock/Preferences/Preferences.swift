@@ -118,4 +118,5 @@ extension Defaults.Keys {
     static let shouldShowVolumeToggleItem       = Defaults.Key<Bool>("shouldShowVolumeToggleItem",      default: false)
     /// Now Playing widget
     static let nowPlayingWidgetStyle            = Defaults.Key<NowPlayingWidgetStyle>("nowPlayingWidgetStyle", default: .default)
+    static let hideNowPlayingIfNoMedia          = Defaults.Key<Bool>("hideNowPlayingIfNoMedia", default: false)
 }

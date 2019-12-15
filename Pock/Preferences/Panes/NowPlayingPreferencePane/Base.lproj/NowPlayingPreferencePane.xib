@@ -9,6 +9,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="NowPlayingPreferencePane" customModule="Pock" customModuleProvider="target">
             <connections>
                 <outlet property="defaultRadioButton" destination="hjN-rN-Bz7" id="DuT-sv-3ur"/>
+                <outlet property="hideWidgetIfNoMedia" destination="o7u-jf-oUS" id="l0H-jI-rKk"/>
                 <outlet property="imagesStackView" destination="6vs-1x-7qT" id="xRb-qe-4M9"/>
                 <outlet property="onlyInfoRadioButton" destination="SWC-PR-hvh" id="OBq-Mb-hey"/>
                 <outlet property="playPauseRadioButton" destination="z1t-VA-Pez" id="Pyl-fj-gnH"/>
@@ -18,11 +19,11 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="Hz6-mo-xeY">
-            <rect key="frame" x="0.0" y="0.0" width="584" height="212"/>
+            <rect key="frame" x="0.0" y="0.0" width="584" height="246"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <stackView distribution="fillEqually" orientation="horizontal" alignment="centerY" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6vs-1x-7qT">
-                    <rect key="frame" x="20" y="56" width="544" height="100"/>
+                    <rect key="frame" x="20" y="90" width="544" height="100"/>
                     <subviews>
                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lVi-bn-Iha">
                             <rect key="frame" x="-3" y="-3" width="174" height="106"/>
@@ -70,7 +71,7 @@
                     </customSpacing>
                 </stackView>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lc0-ND-UTy">
-                    <rect key="frame" x="18" y="176" width="548" height="16"/>
+                    <rect key="frame" x="18" y="210" width="548" height="16"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="Choose the widget style:" id="ooI-7i-Wfp">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -78,7 +79,7 @@
                     </textFieldCell>
                 </textField>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hjN-rN-Bz7">
-                    <rect key="frame" x="94" y="19" width="22" height="18"/>
+                    <rect key="frame" x="94" y="53" width="22" height="18"/>
                     <buttonCell key="cell" type="radio" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="aEQ-zE-ACK">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -88,7 +89,7 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="SWC-PR-hvh">
-                    <rect key="frame" x="282" y="19" width="22" height="18"/>
+                    <rect key="frame" x="282" y="53" width="22" height="18"/>
                     <buttonCell key="cell" type="radio" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="8v9-US-mJe">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -98,7 +99,7 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="z1t-VA-Pez">
-                    <rect key="frame" x="470" y="19" width="22" height="18"/>
+                    <rect key="frame" x="470" y="53" width="22" height="18"/>
                     <buttonCell key="cell" type="radio" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="ey0-xf-jXW">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -107,23 +108,36 @@
                         <action selector="didSelectRadioButton:" target="-2" id="ePh-Ui-paA"/>
                     </connections>
                 </button>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="o7u-jf-oUS" userLabel="Hide Trash Checkbox">
+                    <rect key="frame" x="18" y="18" width="548" height="18"/>
+                    <buttonCell key="cell" type="check" title="Hide the widget when there is no item playing." bezelStyle="regularSquare" imagePosition="left" inset="2" id="krA-nL-skn">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="didChangeCheckboxState:" target="-2" id="Fp2-R4-Oh4"/>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
                 <constraint firstItem="hjN-rN-Bz7" firstAttribute="top" secondItem="lVi-bn-Iha" secondAttribute="bottom" constant="20" id="269-6A-VP7"/>
                 <constraint firstItem="6vs-1x-7qT" firstAttribute="top" secondItem="lc0-ND-UTy" secondAttribute="bottom" constant="20" id="4mV-G5-lRh"/>
-                <constraint firstAttribute="bottom" secondItem="hjN-rN-Bz7" secondAttribute="bottom" constant="20" id="6Cz-19-nov"/>
                 <constraint firstAttribute="trailing" secondItem="6vs-1x-7qT" secondAttribute="trailing" constant="20" id="8fY-Nj-8mF"/>
                 <constraint firstItem="SWC-PR-hvh" firstAttribute="centerY" secondItem="hjN-rN-Bz7" secondAttribute="centerY" id="Ckl-Bx-HUu"/>
                 <constraint firstItem="6vs-1x-7qT" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="Du3-mO-Hkb"/>
+                <constraint firstAttribute="bottom" secondItem="o7u-jf-oUS" secondAttribute="bottom" constant="20" id="FEf-AD-R49"/>
                 <constraint firstAttribute="trailing" secondItem="lc0-ND-UTy" secondAttribute="trailing" constant="20" id="HQa-XS-CuX"/>
                 <constraint firstItem="hjN-rN-Bz7" firstAttribute="centerX" secondItem="lVi-bn-Iha" secondAttribute="centerX" id="NP0-bT-vS5"/>
                 <constraint firstItem="lc0-ND-UTy" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="20" id="RBM-IH-48E"/>
                 <constraint firstItem="SWC-PR-hvh" firstAttribute="centerX" secondItem="snB-Zn-Rwi" secondAttribute="centerX" id="UTZ-PO-CXZ"/>
                 <constraint firstItem="z1t-VA-Pez" firstAttribute="centerY" secondItem="SWC-PR-hvh" secondAttribute="centerY" id="VIU-bk-Bos"/>
+                <constraint firstItem="o7u-jf-oUS" firstAttribute="top" secondItem="hjN-rN-Bz7" secondAttribute="bottom" constant="20" id="Xdl-9f-CLY"/>
+                <constraint firstItem="o7u-jf-oUS" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="ant-tk-EIG"/>
+                <constraint firstAttribute="trailing" secondItem="o7u-jf-oUS" secondAttribute="trailing" constant="20" id="dQF-cU-No0"/>
                 <constraint firstItem="lc0-ND-UTy" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="j3V-HR-bGb"/>
                 <constraint firstItem="z1t-VA-Pez" firstAttribute="centerX" secondItem="KwY-XY-FbA" secondAttribute="centerX" id="uge-uf-D9Q"/>
             </constraints>
-            <point key="canvasLocation" x="3" y="115.5"/>
+            <point key="canvasLocation" x="3" y="162"/>
         </customView>
     </objects>
     <resources>
