@@ -39,7 +39,7 @@ class NowPlayingWidget: PKWidget {
     }
     
     @objc private func updateNowPLayingItemView() {
-        nowPlayingView.updateWithItem(NowPlayingHelper.shared.nowPlayingItem)
+        nowPlayingView.item = NowPlayingHelper.shared.nowPlayingItem
     }
     
     @objc private func updateNowPlayingStyle() {
