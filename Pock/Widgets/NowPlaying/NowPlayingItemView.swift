@@ -8,6 +8,7 @@
 
 import Foundation
 import AppKit
+import Defaults
 
 extension String {
     func truncate(length: Int, trailing: String = "…") -> String {
@@ -80,7 +81,7 @@ class NowPlayingItemView: PKDetailView {
     }
     
     private func updateForNowPlayingState() {
-        if self.nowPLayingItem?.isPlaying ?? false {
+        if Defaults[.animateIconWhilePlaying], self.nowPLayingItem?.isPlaying ?? false {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25, execute: { [weak self] in
                 self?.startBounceAnimation()
             })

@@ -27,11 +27,12 @@ class NowPlayingPreferencePane: NSViewController, PreferencePane {
     }
     
     /// UI Elements
-    @IBOutlet private weak var imagesStackView:      NSStackView!
-    @IBOutlet private weak var defaultRadioButton:   NSButton!
-    @IBOutlet private weak var onlyInfoRadioButton:  NSButton!
-    @IBOutlet private weak var playPauseRadioButton: NSButton!
-    @IBOutlet private weak var hideWidgetIfNoMedia:  NSButton!
+    @IBOutlet private weak var imagesStackView:         NSStackView!
+    @IBOutlet private weak var defaultRadioButton:      NSButton!
+    @IBOutlet private weak var onlyInfoRadioButton:     NSButton!
+    @IBOutlet private weak var playPauseRadioButton:    NSButton!
+    @IBOutlet private weak var hideWidgetIfNoMedia:     NSButton!
+    @IBOutlet private weak var animateIconWhilePlaying: NSButton!
     
     override var nibName: NSNib.Name? {
         return "NowPlayingPreferencePane"
@@ -47,7 +48,8 @@ class NowPlayingPreferencePane: NSViewController, PreferencePane {
         case .playPause:
             playPauseRadioButton.state = .on
         }
-        hideWidgetIfNoMedia.state = Defaults[.hideNowPlayingIfNoMedia] ? .on : .off
+        hideWidgetIfNoMedia.state     = Defaults[.hideNowPlayingIfNoMedia] ? .on : .off
+        animateIconWhilePlaying.state = Defaults[.animateIconWhilePlaying] ? .on : .off
         setupImageViewClickGesture()
     }
     
@@ -88,6 +90,8 @@ class NowPlayingPreferencePane: NSViewController, PreferencePane {
         switch button.tag {
         case 0:
             Defaults[.hideNowPlayingIfNoMedia] = button.state == .on
+        case 1:
+            Defaults[.animateIconWhilePlaying] = button.state == .on
         default:
             return
         }

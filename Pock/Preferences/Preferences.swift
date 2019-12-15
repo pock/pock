@@ -119,4 +119,5 @@ extension Defaults.Keys {
     /// Now Playing widget
     static let nowPlayingWidgetStyle            = Defaults.Key<NowPlayingWidgetStyle>("nowPlayingWidgetStyle", default: .default)
     static let hideNowPlayingIfNoMedia          = Defaults.Key<Bool>("hideNowPlayingIfNoMedia", default: false)
+    static let animateIconWhilePlaying          = Defaults.Key<Bool>("animateIconWhilePlaying", default: true)
 }
