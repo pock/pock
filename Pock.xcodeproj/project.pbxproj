@@ -59,6 +59,10 @@
 		342D840B2278D5CF000D79DA /* DockItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83DC2278D5CF000D79DA /* DockItemView.swift */; };
 		342D840C2278D5CF000D79DA /* DockWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83DD2278D5CF000D79DA /* DockWidget.swift */; };
 		342D840D2278D5CF000D79DA /* FileMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83DE2278D5CF000D79DA /* FileMonitor.swift */; };
+		343291DC23A5775000B0FF62 /* NowPlayingPreferencePane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 343291DE23A5775000B0FF62 /* NowPlayingPreferencePane.xib */; };
+		3435675B2381666F00E408EF /* WidgetsDispatcherr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3435675A2381666F00E408EF /* WidgetsDispatcherr.swift */; };
+		345C955123A5230000E1AC53 /* NowPlayingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345C955023A522FF00E1AC53 /* NowPlayingView.swift */; };
+		345C955423A53D4D00E1AC53 /* NowPlayingPreferencePane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345C955223A53D4D00E1AC53 /* NowPlayingPreferencePane.swift */; };
 		347D7EE7230874A800BA9200 /* ControlCenterWidgetPreferencePane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9686B4F922D2216400C7A08C /* ControlCenterWidgetPreferencePane.xib */; };
 		347F336022D0D68400FA9805 /* CCLockItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347F335F22D0D68400FA9805 /* CCLockItem.swift */; };
 		347F336722D0DB9200FA9805 /* SystemHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 347F336622D0DB9100FA9805 /* SystemHelper.m */; };
@@ -142,6 +146,15 @@
 		342D83DC2278D5CF000D79DA /* DockItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DockItemView.swift; sourceTree = "<group>"; };
 		342D83DD2278D5CF000D79DA /* DockWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DockWidget.swift; sourceTree = "<group>"; };
 		342D83DE2278D5CF000D79DA /* FileMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileMonitor.swift; sourceTree = "<group>"; };
+		343291DD23A5775000B0FF62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NowPlayingPreferencePane.xib; sourceTree = "<group>"; };
+		343291E023A5775400B0FF62 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/NowPlayingPreferencePane.strings; sourceTree = "<group>"; };
+		343291E223A5775700B0FF62 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/NowPlayingPreferencePane.strings"; sourceTree = "<group>"; };
+		343291E423A5775700B0FF62 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/NowPlayingPreferencePane.strings"; sourceTree = "<group>"; };
+		343291E623A5775800B0FF62 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/NowPlayingPreferencePane.strings; sourceTree = "<group>"; };
+		343291E823A5775800B0FF62 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/NowPlayingPreferencePane.strings; sourceTree = "<group>"; };
+		3435675A2381666F00E408EF /* WidgetsDispatcherr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetsDispatcherr.swift; sourceTree = "<group>"; };
+		345C955023A522FF00E1AC53 /* NowPlayingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingView.swift; sourceTree = "<group>"; };
+		345C955223A53D4D00E1AC53 /* NowPlayingPreferencePane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingPreferencePane.swift; sourceTree = "<group>"; };
 		347F335D22D0D5F600FA9805 /* login.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = login.framework; path = ../../../../../../../../../System/Library/PrivateFrameworks/login.framework; sourceTree = "<group>"; };
 		347F335F22D0D68400FA9805 /* CCLockItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CCLockItem.swift; sourceTree = "<group>"; };
 		347F336522D0DB9100FA9805 /* SystemHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemHelper.h; sourceTree = "<group>"; };
@@ -353,6 +366,7 @@
 				342D839F2278D5CF000D79DA /* StatusWidgetPreferencePane */,
 				3407F9D822D0E75D0072E742 /* ControlCenterWidgetPreferencePane */,
 				34E644FD227D9A6C003D0450 /* DockWidgetPreferencePane */,
+				345C955623A53D5200E1AC53 /* NowPlayingPreferencePane */,
 			);
 			path = Panes;
 			sourceTree = "<group>";
@@ -421,6 +435,7 @@
 		342D83B42278D5CF000D79DA /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
+				3435675A2381666F00E408EF /* WidgetsDispatcherr.swift */,
 				342D83CD2278D5CF000D79DA /* Common */,
 				342D83CA2278D5CF000D79DA /* Esc key */,
 				342D83D02278D5CF000D79DA /* Dock */,
@@ -462,6 +477,7 @@
 		342D83BD2278D5CF000D79DA /* NowPlaying */ = {
 			isa = PBXGroup;
 			children = (
+				345C955023A522FF00E1AC53 /* NowPlayingView.swift */,
 				342D83BE2278D5CF000D79DA /* NowPlayingItemView.swift */,
 				342D83BF2278D5CF000D79DA /* NowPlayingItem.swift */,
 				342D83C02278D5CF000D79DA /* NowPlayingWidget.swift */,
@@ -533,6 +549,15 @@
 				342D83D62278D5CF000D79DA /* Witness.h */,
 			);
 			path = Witness;
+			sourceTree = "<group>";
+		};
+		345C955623A53D5200E1AC53 /* NowPlayingPreferencePane */ = {
+			isa = PBXGroup;
+			children = (
+				343291DE23A5775000B0FF62 /* NowPlayingPreferencePane.xib */,
+				345C955223A53D4D00E1AC53 /* NowPlayingPreferencePane.swift */,
+			);
+			path = NowPlayingPreferencePane;
 			sourceTree = "<group>";
 		};
 		347F336422D0DB9100FA9805 /* SystemHelper */ = {
@@ -647,7 +672,6 @@
 				TargetAttributes = {
 					348343D51F631B2E00CDA005 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 2U23P5CPX2;
 						LastSwiftMigration = 1100;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -689,6 +713,7 @@
 				347D7EE7230874A800BA9200 /* ControlCenterWidgetPreferencePane.xib in Resources */,
 				342D83DF2278D5CF000D79DA /* MainWindow.xib in Resources */,
 				3418DA022288318A00E11E37 /* PKSlideableController.xib in Resources */,
+				343291DC23A5775000B0FF62 /* NowPlayingPreferencePane.xib in Resources */,
 				3407F9EF22D1C9970072E742 /* AppExposeController.xib in Resources */,
 				9667AAF222CF192D00C22410 /* GeneralPreferencePane.xib in Resources */,
 				96FE269F22D0C3810071645C /* Localizable.strings in Resources */,
@@ -805,6 +830,7 @@
 				347F336922D0DBD600FA9805 /* CCSleepItem.swift in Sources */,
 				9675D6D1237003DC00C36234 /* CCVolumeToggleItem.swift in Sources */,
 				342D84072278D5CF000D79DA /* DockRepository.swift in Sources */,
+				3435675B2381666F00E408EF /* WidgetsDispatcherr.swift in Sources */,
 				342D83E92278D5CF000D79DA /* PockDockHelper.m in Sources */,
 				34064345227EDCB900981372 /* DockFolderItem.swift in Sources */,
 				342D84042278D5CF000D79DA /* EventStream.swift in Sources */,
@@ -822,6 +848,7 @@
 				342D83EC2278D5CF000D79DA /* OSDUIHelper.swift in Sources */,
 				3418D9FF22882EC600E11E37 /* PKSlideableController.swift in Sources */,
 				342D83FE2278D5CF000D79DA /* EscWidget.swift in Sources */,
+				345C955423A53D4D00E1AC53 /* NowPlayingPreferencePane.swift in Sources */,
 				34064343227EDC2200981372 /* DockFolderRepository.swift in Sources */,
 				342D83E02278D5CF000D79DA /* PKTouchBarController.swift in Sources */,
 				3406434A227F323A00981372 /* PKTouchBarNavController.swift in Sources */,
@@ -845,6 +872,7 @@
 				342D83E22278D5CF000D79DA /* Preferences.swift in Sources */,
 				9955665222DC668500EFFE6D /* CCVolumeMuteItem.swift in Sources */,
 				342D83F42278D5CF000D79DA /* NowPlayingItemView.swift in Sources */,
+				345C955123A5230000E1AC53 /* NowPlayingView.swift in Sources */,
 				349F93E8228865C400B8CFBE /* ISSoundAdditions.m in Sources */,
 				342D83ED2278D5CF000D79DA /* AppDelegate.swift in Sources */,
 				342D84052278D5CF000D79DA /* Witness.swift in Sources */,
@@ -858,6 +886,19 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		343291DE23A5775000B0FF62 /* NowPlayingPreferencePane.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				343291DD23A5775000B0FF62 /* Base */,
+				343291E023A5775400B0FF62 /* en */,
+				343291E223A5775700B0FF62 /* zh-Hans */,
+				343291E423A5775700B0FF62 /* zh-Hant */,
+				343291E623A5775800B0FF62 /* it */,
+				343291E823A5775800B0FF62 /* tr */,
+			);
+			name = NowPlayingPreferencePane.xib;
+			sourceTree = "<group>";
+		};
 		962E0A5722CF1D1D00567E20 /* DockFolderController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1054,12 +1095,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Pock/Various/Pock.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 2U23P5CPX2;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1068,7 +1109,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Pock/Various/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12.2;
-				MARKETING_VERSION = 0.6.3;
+				MARKETING_VERSION = 0.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pigigaldi.pock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1083,11 +1124,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Pock/Various/Pock.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2U23P5CPX2;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1096,7 +1137,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Pock/Various/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12.2;
-				MARKETING_VERSION = 0.6.3;
+				MARKETING_VERSION = 0.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pigigaldi.pock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

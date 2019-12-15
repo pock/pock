@@ -36,6 +36,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     fileprivate let dockWidgetPreferencePane: DockWidgetPreferencePane = DockWidgetPreferencePane()
     fileprivate let statusWidgetPreferencePane: StatusWidgetPreferencePane = StatusWidgetPreferencePane()
     fileprivate let controlCenterWidgetPreferencePane: ControlCenterWidgetPreferencePane = ControlCenterWidgetPreferencePane()
+    fileprivate let nowPlayingWidgetPreferencePane: NowPlayingPreferencePane = NowPlayingPreferencePane()
     fileprivate var preferencesWindowController: PreferencesWindowController!
     
     /// Finish launching
@@ -53,10 +54,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         self.checkAccessibility()
         
         /// Preferences
-        self.preferencesWindowController = PreferencesWindowController(preferencePanes: [generalPreferencePane,
-                                                                                         dockWidgetPreferencePane,
-                                                                                         statusWidgetPreferencePane,
-                                                                                         controlCenterWidgetPreferencePane])
+        self.preferencesWindowController = PreferencesWindowController(preferencePanes: [
+            generalPreferencePane,
+            dockWidgetPreferencePane,
+            statusWidgetPreferencePane,
+            controlCenterWidgetPreferencePane,
+            nowPlayingWidgetPreferencePane
+        ])
         
         /// Check for status bar icon
         if let button = pockStatusbarIcon.button {

@@ -8,6 +8,7 @@
 
 import Foundation
 import PockKit
+import Defaults
 
 class NowPlayingWidget: PKWidget {
     
@@ -16,13 +17,12 @@ class NowPlayingWidget: PKWidget {
     var view: NSView!
     
     /// UI
-    private var nowPlayingItemView: NowPlayingItemView!
+    private var nowPlayingView: NowPlayingView = NowPlayingView(frame: .zero)
     
     required init() {
         self.updateNowPLayingItemView()
         self.registerForNotifications()
-        self.setGestureHandlers()
-        self.view = nowPlayingItemView
+        self.view = nowPlayingView
     }
     
     private func registerForNotifications() {
@@ -31,25 +31,19 @@ class NowPlayingWidget: PKWidget {
                                                name: NowPlayingHelper.kNowPlayingItemDidChange,
                                                object: nil
         )
+        NSWorkspace.shared.notificationCenter.addObserver(self,
+                                               selector: #selector(updateNowPlayingStyle),
+                                               name: .didChangeNowPlayingWidgetStyle,
+                                               object: nil
+        )
     }
     
     @objc private func updateNowPLayingItemView() {
-        if nowPlayingItemView == nil {
-            nowPlayingItemView = NowPlayingItemView(leftToRight: true)
-        }
-        nowPlayingItemView.nowPLayingItem = NowPlayingHelper.shared.nowPlayingItem
+        nowPlayingView.updateWithItem(NowPlayingHelper.shared.nowPlayingItem)
     }
     
-    private func setGestureHandlers() {
-        nowPlayingItemView.didTap = {
-            NowPlayingHelper.shared.togglePlayingState()
-        }
-        nowPlayingItemView.didSwipeLeft = {
-            NowPlayingHelper.shared.skipToPreviousTrack()
-        }
-        nowPlayingItemView.didSwipeRight = {
-            NowPlayingHelper.shared.skipToNextTrack()
-        }
+    @objc private func updateNowPlayingStyle() {
+        nowPlayingView.style = Defaults[.nowPlayingWidgetStyle]
     }
     
     deinit {
