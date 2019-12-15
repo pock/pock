@@ -22,7 +22,7 @@ brew cask install pock
 ```
 
 Manually:
-- Go to the [latest release](https://github.com/pigigaldi/Pock/releases) and download the zip file.
+- Go to the [latest release](https://pock.dev) and click Download.
 - Unzip the archive by running `unzip` or double-clicking on the file.
 - Move the file to `/Applications`
 
