@@ -8,6 +8,7 @@
 
 import Foundation
 import AppKit
+import Defaults
 
 extension String {
     func truncate(length: Int, trailing: String = "…") -> String {
@@ -60,8 +61,15 @@ class NowPlayingItemView: PKDetailView {
             self?.imageView.image = DockRepository.getIcon(forBundleIdentifier: appBundleIdentifier, orPath: path)
             
             let isPlaying = self?.nowPLayingItem?.isPlaying ?? false
-            let title     = self?.nowPLayingItem?.title     ?? "Tap here"
-            let artist    = self?.nowPLayingItem?.artist    ?? "to play music"
+            var title     = self?.nowPLayingItem?.title     ?? "Tap here".localized
+            var artist    = self?.nowPLayingItem?.artist    ?? "to play music".localized
+            
+            if title.isEmpty {
+                title = "Missing title".localized
+            }
+            if artist.isEmpty {
+                artist = "Unknown artist".localized
+            }
             
             let titleWidth    = (title  as NSString).size(withAttributes: self?.titleView.textFontAttributes    ?? [:]).width
             let subtitleWidth = (artist as NSString).size(withAttributes: self?.subtitleView.textFontAttributes ?? [:]).width
@@ -80,7 +88,7 @@ class NowPlayingItemView: PKDetailView {
     }
     
     private func updateForNowPlayingState() {
-        if self.nowPLayingItem?.isPlaying ?? false {
+        if Defaults[.animateIconWhilePlaying], self.nowPLayingItem?.isPlaying ?? false {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25, execute: { [weak self] in
                 self?.startBounceAnimation()
             })

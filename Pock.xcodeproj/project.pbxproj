@@ -59,7 +59,6 @@
 		342D840B2278D5CF000D79DA /* DockItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83DC2278D5CF000D79DA /* DockItemView.swift */; };
 		342D840C2278D5CF000D79DA /* DockWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83DD2278D5CF000D79DA /* DockWidget.swift */; };
 		342D840D2278D5CF000D79DA /* FileMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83DE2278D5CF000D79DA /* FileMonitor.swift */; };
-		343291DC23A5775000B0FF62 /* NowPlayingPreferencePane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 343291DE23A5775000B0FF62 /* NowPlayingPreferencePane.xib */; };
 		3435675B2381666F00E408EF /* WidgetsDispatcherr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3435675A2381666F00E408EF /* WidgetsDispatcherr.swift */; };
 		345C955123A5230000E1AC53 /* NowPlayingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345C955023A522FF00E1AC53 /* NowPlayingView.swift */; };
 		345C955423A53D4D00E1AC53 /* NowPlayingPreferencePane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345C955223A53D4D00E1AC53 /* NowPlayingPreferencePane.swift */; };
@@ -67,6 +66,7 @@
 		347F336022D0D68400FA9805 /* CCLockItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347F335F22D0D68400FA9805 /* CCLockItem.swift */; };
 		347F336722D0DB9200FA9805 /* SystemHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 347F336622D0DB9100FA9805 /* SystemHelper.m */; };
 		347F336922D0DBD600FA9805 /* CCSleepItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347F336822D0DBD600FA9805 /* CCSleepItem.swift */; };
+		3482609723A687770053432B /* NowPlayingPreferencePane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3482609923A687770053432B /* NowPlayingPreferencePane.xib */; };
 		349431ED22197485008622B1 /* MediaRemote.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 349431EC22197484008622B1 /* MediaRemote.framework */; };
 		349F93E8228865C400B8CFBE /* ISSoundAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 349F93E7228865C400B8CFBE /* ISSoundAdditions.m */; };
 		34BC3ECC2210B2EC00C1DD3C /* DFRFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34BC3ECB2210B2EC00C1DD3C /* DFRFoundation.framework */; };
@@ -146,12 +146,6 @@
 		342D83DC2278D5CF000D79DA /* DockItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DockItemView.swift; sourceTree = "<group>"; };
 		342D83DD2278D5CF000D79DA /* DockWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DockWidget.swift; sourceTree = "<group>"; };
 		342D83DE2278D5CF000D79DA /* FileMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileMonitor.swift; sourceTree = "<group>"; };
-		343291DD23A5775000B0FF62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NowPlayingPreferencePane.xib; sourceTree = "<group>"; };
-		343291E023A5775400B0FF62 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/NowPlayingPreferencePane.strings; sourceTree = "<group>"; };
-		343291E223A5775700B0FF62 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/NowPlayingPreferencePane.strings"; sourceTree = "<group>"; };
-		343291E423A5775700B0FF62 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/NowPlayingPreferencePane.strings"; sourceTree = "<group>"; };
-		343291E623A5775800B0FF62 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/NowPlayingPreferencePane.strings; sourceTree = "<group>"; };
-		343291E823A5775800B0FF62 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/NowPlayingPreferencePane.strings; sourceTree = "<group>"; };
 		3435675A2381666F00E408EF /* WidgetsDispatcherr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetsDispatcherr.swift; sourceTree = "<group>"; };
 		345C955023A522FF00E1AC53 /* NowPlayingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingView.swift; sourceTree = "<group>"; };
 		345C955223A53D4D00E1AC53 /* NowPlayingPreferencePane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingPreferencePane.swift; sourceTree = "<group>"; };
@@ -160,6 +154,12 @@
 		347F336522D0DB9100FA9805 /* SystemHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemHelper.h; sourceTree = "<group>"; };
 		347F336622D0DB9100FA9805 /* SystemHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemHelper.m; sourceTree = "<group>"; };
 		347F336822D0DBD600FA9805 /* CCSleepItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCSleepItem.swift; sourceTree = "<group>"; };
+		3482609823A687770053432B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NowPlayingPreferencePane.xib; sourceTree = "<group>"; };
+		3482609B23A687800053432B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/NowPlayingPreferencePane.strings; sourceTree = "<group>"; };
+		3482609D23A687810053432B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/NowPlayingPreferencePane.strings"; sourceTree = "<group>"; };
+		3482609F23A687820053432B /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/NowPlayingPreferencePane.strings"; sourceTree = "<group>"; };
+		348260A123A687820053432B /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/NowPlayingPreferencePane.strings; sourceTree = "<group>"; };
+		348260A323A687830053432B /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/NowPlayingPreferencePane.strings; sourceTree = "<group>"; };
 		348343D61F631B2E00CDA005 /* Pock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		349431EC22197484008622B1 /* MediaRemote.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaRemote.framework; path = ../../../../../../../../../System/Library/PrivateFrameworks/MediaRemote.framework; sourceTree = "<group>"; };
 		3494320B222179D7008622B1 /* BatteryUIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BatteryUIKit.framework; path = ../../../../../../../../../System/Library/PrivateFrameworks/BatteryUIKit.framework; sourceTree = "<group>"; };
@@ -554,7 +554,7 @@
 		345C955623A53D5200E1AC53 /* NowPlayingPreferencePane */ = {
 			isa = PBXGroup;
 			children = (
-				343291DE23A5775000B0FF62 /* NowPlayingPreferencePane.xib */,
+				3482609923A687770053432B /* NowPlayingPreferencePane.xib */,
 				345C955223A53D4D00E1AC53 /* NowPlayingPreferencePane.swift */,
 			);
 			path = NowPlayingPreferencePane;
@@ -713,7 +713,7 @@
 				347D7EE7230874A800BA9200 /* ControlCenterWidgetPreferencePane.xib in Resources */,
 				342D83DF2278D5CF000D79DA /* MainWindow.xib in Resources */,
 				3418DA022288318A00E11E37 /* PKSlideableController.xib in Resources */,
-				343291DC23A5775000B0FF62 /* NowPlayingPreferencePane.xib in Resources */,
+				3482609723A687770053432B /* NowPlayingPreferencePane.xib in Resources */,
 				3407F9EF22D1C9970072E742 /* AppExposeController.xib in Resources */,
 				9667AAF222CF192D00C22410 /* GeneralPreferencePane.xib in Resources */,
 				96FE269F22D0C3810071645C /* Localizable.strings in Resources */,
@@ -886,15 +886,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		343291DE23A5775000B0FF62 /* NowPlayingPreferencePane.xib */ = {
+		3482609923A687770053432B /* NowPlayingPreferencePane.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				343291DD23A5775000B0FF62 /* Base */,
-				343291E023A5775400B0FF62 /* en */,
-				343291E223A5775700B0FF62 /* zh-Hans */,
-				343291E423A5775700B0FF62 /* zh-Hant */,
-				343291E623A5775800B0FF62 /* it */,
-				343291E823A5775800B0FF62 /* tr */,
+				3482609823A687770053432B /* Base */,
+				3482609B23A687800053432B /* en */,
+				3482609D23A687810053432B /* zh-Hans */,
+				3482609F23A687820053432B /* zh-Hant */,
+				348260A123A687820053432B /* it */,
+				348260A323A687830053432B /* tr */,
 			);
 			name = NowPlayingPreferencePane.xib;
 			sourceTree = "<group>";
@@ -1109,7 +1109,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Pock/Various/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12.2;
-				MARKETING_VERSION = 0.7;
+				MARKETING_VERSION = 0.7.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pigigaldi.pock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1137,7 +1137,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Pock/Various/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12.2;
-				MARKETING_VERSION = 0.7;
+				MARKETING_VERSION = 0.7.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pigigaldi.pock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
