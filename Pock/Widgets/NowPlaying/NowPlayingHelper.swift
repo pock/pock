@@ -79,13 +79,20 @@ class NowPlayingHelper {
             self?.nowPlayingItem.title  = info?[kMRMediaRemoteNowPlayingInfoTitle]  as? String
             self?.nowPlayingItem.album  = info?[kMRMediaRemoteNowPlayingInfoAlbum]  as? String
             self?.nowPlayingItem.artist = info?[kMRMediaRemoteNowPlayingInfoArtist] as? String
+            if info == nil {
+                self?.nowPlayingItem.isPlaying = false
+            }
             NotificationCenter.default.post(name: NowPlayingHelper.kNowPlayingItemDidChange, object: nil)
         })
     }
     
     @objc private func updateCurrentPlayingState() {
         MRMediaRemoteGetNowPlayingApplicationIsPlaying(DispatchQueue.global(qos: .utility), {[weak self] isPlaying in
-            self?.nowPlayingItem.isPlaying = isPlaying
+            if self?.nowPlayingItem.appBundleIdentifier == nil {
+                self?.nowPlayingItem.isPlaying = false
+            }else {
+                self?.nowPlayingItem.isPlaying = isPlaying
+            }
             NotificationCenter.default.post(name: NowPlayingHelper.kNowPlayingItemDidChange, object: nil)
         })
     }

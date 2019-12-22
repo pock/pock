@@ -104,7 +104,7 @@ class NowPlayingView: PKView {
                 m.width.equalTo(32)
             })
         }
-        addArrangesSubviews()
+        addArrangedSubviews()
     }
     
     private func removeArrangedSubviews() {
@@ -116,7 +116,7 @@ class NowPlayingView: PKView {
         itemView        = nil
     }
     
-    private func addArrangesSubviews() {
+    private func addArrangedSubviews() {
         guard !shouldHideWidget else {
             return
         }
@@ -154,7 +154,7 @@ class NowPlayingView: PKView {
             return
         }
         if stackView.arrangedSubviews.isEmpty {
-            addArrangesSubviews()
+            configureUIElements()
         }
         switch style {
         case .default, .onlyInfo:
