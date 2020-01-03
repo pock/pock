@@ -56,27 +56,30 @@ class NowPlayingPreferencePane: NSViewController, PreferencePane {
         updateDefaultMusicPlayer()
     }
     
-    @IBAction func didClickChooseDefaultMusicPlayerButton(_ sender: NSButton) {
+    @IBAction func didClickChooseDefaultMusicPlayerButton(_ sender: NSButton?) {
+        guard let window = view.window,
+              let applicationDirectoryUrl = FileManager.default.urls(for: .applicationDirectory, in: .localDomainMask).first else {
+            return
+        }
         let openPanel = NSOpenPanel()
-        openPanel.directoryURL = FileManager.default.urls(for: .applicationDirectory, in: .localDomainMask).first!
-        openPanel.canChooseDirectories = false
-        openPanel.canChooseFiles = true
+        openPanel.directoryURL            = applicationDirectoryUrl
+        openPanel.canChooseDirectories    = false
+        openPanel.canChooseFiles          = true
         openPanel.allowsMultipleSelection = false
-        openPanel.allowedFileTypes = ["app", "App", "APP"]
-        openPanel.beginSheetModal(for: view.window!, completionHandler: { result in
+        openPanel.allowedFileTypes        = ["app", "App", "APP"]
+        openPanel.beginSheetModal(for: window, completionHandler: { [weak self] result in
             if result.rawValue == NSFileHandlingPanelOKButton && result == NSApplication.ModalResponse.OK {
-                if let applicationPath = openPanel.url?.path, let applicationBundleId = Bundle(url: openPanel.url!)?.bundleIdentifier {
-                    
-                    guard let bundle = Bundle.init(url: URL.init(fileURLWithPath: applicationPath)) else { return }
-                    let CFBundleDisplayName = bundle.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String
-                    let CFBundleName = bundle.object(forInfoDictionaryKey: "CFBundleName") as? String
-                    
-                    Defaults[.defaultMusicPlayerName] = CFBundleDisplayName ?? CFBundleName ?? ""
-                    Defaults[.defaultMusicPlayerBundleID] = applicationBundleId
-                    Defaults[.defaultMusicPlayerPath] = applicationPath
-                    
-                    self.updateDefaultMusicPlayer()
+                guard let applicationPath = openPanel.url?.path,
+                      let applicationBundleId = Bundle(url: openPanel.url!)?.bundleIdentifier,
+                      let bundle = Bundle.init(url: URL.init(fileURLWithPath: applicationPath)) else {
+                    return
                 }
+                let displayName = bundle.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String
+                let bundleName  = bundle.object(forInfoDictionaryKey: "CFBundleName") as? String
+                Defaults[.defaultMusicPlayerName]     = displayName ?? bundleName ?? ""
+                Defaults[.defaultMusicPlayerBundleID] = applicationBundleId
+                Defaults[.defaultMusicPlayerPath]     = applicationPath
+                self?.updateDefaultMusicPlayer()
             }
         })
     }
