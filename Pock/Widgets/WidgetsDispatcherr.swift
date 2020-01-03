@@ -27,7 +27,7 @@ public final class WidgetsDispatcher {
     private var configuration: Configuration
     
     /// Data
-    public private(set) var loadedWidgets: [NSTouchBarItem.Identifier: PKWidget] = [:]
+    public private(set) var loadedWidgets: [NSTouchBarItem.Identifier: PKWidget.Type] = [:]
     
     /// Getters
     private var applicationSupportPockFolder: String {
@@ -76,12 +76,12 @@ public final class WidgetsDispatcher {
     }
     
     /// Load widgets from widgets directory
-    public func loadInstalledWidget(_ completion: ([PKWidget]) -> Void) {
+    public func loadInstalledWidget(_ completion: ([NSTouchBarItem.Identifier]) -> Void) {
         self.loadedWidgets.removeAll()
         for widgetBundleURL in installedWidgetsPaths {
             try? loadWidgetAt(path: widgetBundleURL)
         }
-        completion(Array(loadedWidgets.values))
+        completion(Array(loadedWidgets.keys))
     }
     
 }
@@ -92,8 +92,9 @@ extension WidgetsDispatcher {
     internal func loadWidgetAt(path: URL) throws {
         if let widgetBundle = Bundle(url: path), widgetBundle.load() {
             if let clss = widgetBundle.principalClass as? PKWidget.Type {
-                let plugin = clss.init()
-                self.loadedWidgets[plugin.identifier] = plugin
+                var plugin: PKWidget? = clss.init()
+                self.loadedWidgets[plugin!.identifier] = clss
+                plugin = nil
                 return
             }
         }

@@ -20,7 +20,9 @@ class PKTouchBarController: NSObject, NSTouchBarDelegate {
     var systemTrayItem:           NSCustomTouchBarItem?      { return nil }
     var systemTrayItemIdentifier: NSTouchBarItem.Identifier? { return nil }
     
-    override required init() { super.init() }
+    override required init() {
+        super.init()
+    }
     
     class func load<T: PKTouchBarController>(_ type: T.Type = T.self) -> T {
         let controller = T()

@@ -24,6 +24,8 @@ extension NSTouchBarItem.Identifier {
 
 class PockMainController: PKTouchBarController {
     
+    private var items: [NSTouchBarItem.Identifier: NSTouchBarItem] = [:]
+    
     override var systemTrayItem: NSCustomTouchBarItem? {
         let item = NSCustomTouchBarItem(identifier: .pockSystemIcon)
         item.view = NSButton(image: #imageLiteral(resourceName: "pock-inner-icon"), target: self, action: #selector(presentFromSystemTrayItem))
@@ -37,19 +39,21 @@ class PockMainController: PKTouchBarController {
     }
     
     override func didLoad() {
-        WidgetsDispatcher.default.loadInstalledWidget() { widgets in
+        WidgetsDispatcher.default.loadInstalledWidget() { identifiers in
             self.touchBar?.customizationIdentifier              = .pockTouchBar
             self.touchBar?.defaultItemIdentifiers               = [.escButton, .dockView]
             self.touchBar?.customizationAllowedItemIdentifiers  = [.escButton, .dockView, .controlCenter, .nowPlaying, .status]
-
-            let customizableIds: [NSTouchBarItem.Identifier] = widgets.map({ $0.identifier })
-            self.touchBar?.customizationAllowedItemIdentifiers.append(contentsOf: customizableIds)
-
+            self.touchBar?.customizationAllowedItemIdentifiers.append(contentsOf: identifiers)
             super.awakeFromNib()
         }
     }
     
     func touchBar(_ touchBar: NSTouchBar, makeItemForIdentifier identifier: NSTouchBarItem.Identifier) -> NSTouchBarItem? {
+        
+        if let item = items[identifier] {
+            return item
+        }
+        
         var widget: PKWidget?
         switch identifier {
         /// Esc button
@@ -68,10 +72,15 @@ class PockMainController: PKTouchBarController {
         case .status:
             widget = StatusWidget()
         default:
-            widget = WidgetsDispatcher.default.loadedWidgets[identifier]
+            widget = WidgetsDispatcher.default.loadedWidgets[identifier]?.init()
         }
-        guard widget != nil else { return nil }
-        return PKWidgetTouchBarItem(widget: widget!)
+        guard widget != nil else {
+            return nil
+        }
+        
+        let item = PKWidgetTouchBarItem(widget: widget!)
+        items[identifier] = item
+        return item
     }
     
 }
