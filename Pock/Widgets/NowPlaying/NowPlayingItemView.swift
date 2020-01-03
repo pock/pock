@@ -92,26 +92,8 @@ class NowPlayingItemView: PKDetailView {
         }
     }
     
-    private func isRunningDefaultMusicPlayer() -> Bool {
-        for app in NSWorkspace.shared.runningApplications {
-            if app.bundleIdentifier == Defaults[.defaultMusicPlayerBundleID] {
-                return true
-            }
-        }
-        return false
-    }
-    
     override open func didTapHandler() {
-        if isRunningDefaultMusicPlayer() {
-            self.didTap?()
-        } else {
-            NSWorkspace.shared.launchApplication(
-                withBundleIdentifier: Defaults[.defaultMusicPlayerBundleID],
-                options: [],
-                additionalEventParamDescriptor: nil,
-                launchIdentifier: nil
-            )
-        }
+        self.didTap?()
     }
     
     override open func didSwipeLeftHandler() {
