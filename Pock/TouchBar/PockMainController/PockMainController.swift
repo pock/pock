@@ -71,6 +71,7 @@ class PockMainController: PKTouchBarController {
         /// Status widget
         case .status:
             widget = StatusWidget()
+        /// 3rd widgets
         default:
             widget = WidgetsDispatcher.default.loadedWidgets[identifier]?.init()
         }

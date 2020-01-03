@@ -55,9 +55,8 @@ class NowPlayingItemView: PKDetailView {
         DispatchQueue.main.async { [weak self] in
             self?.imageView.image = DockRepository.getIcon(forBundleIdentifier: appBundleIdentifier, orPath: path)
             
-            let isPlaying = self?.nowPLayingItem?.isPlaying ?? false
-            var title     = self?.nowPLayingItem?.title     ?? "Tap here".localized
-            var artist    = self?.nowPLayingItem?.artist    ?? "to play music".localized
+            var title  = self?.nowPLayingItem?.title  ?? "Tap here".localized
+            var artist = self?.nowPLayingItem?.artist ?? "to play music".localized
             
             if title.isEmpty {
                 title = "Missing title".localized
@@ -70,15 +69,10 @@ class NowPlayingItemView: PKDetailView {
             let subtitleWidth = (artist as NSString).size(withAttributes: self?.subtitleView.textFontAttributes ?? [:]).width
             self?.maxWidth = min(max(titleWidth, subtitleWidth), 80)
             
-            self?.titleView.setup(string:    title)
-            self?.subtitleView.setup(string: artist)
-            
-            self?.titleView.speed    = titleWidth    > 80 && isPlaying ? 4 : 0
-            self?.subtitleView.speed = subtitleWidth > 80 && isPlaying ? 4 : 0
+            self?.set(title: title)
+            self?.set(subtitle: artist)
             
             self?.updateForNowPlayingState()
-            self?.updateConstraint()
-            self?.layoutSubtreeIfNeeded()
         }
     }
     
