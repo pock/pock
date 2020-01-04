@@ -31,6 +31,29 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     /// Status bar Pock icon
     fileprivate let pockStatusbarIcon = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
     
+    /// Main Pock menu
+    private lazy var mainPockMenu: NSMenu = {
+        let menu = NSMenu(title: "Pock Options")
+        menu.addItem(withTitle: "Preferences…".localized, action: #selector(openPreferences), keyEquivalent: ",")
+        menu.addItem(withTitle: "Customize…".localized, action: #selector(openCustomization), keyEquivalent: "c")
+        menu.addItem(NSMenuItem.separator())
+        let advancedMenuItem = NSMenuItem(title: "Advanced".localized, action: nil, keyEquivalent: "")
+        advancedMenuItem.submenu = advancedPockMenu
+        menu.addItem(advancedMenuItem)
+        menu.addItem(NSMenuItem.separator())
+        menu.addItem(withTitle: "Support this project".localized, action: #selector(openDonateURL),  keyEquivalent: "s")
+        menu.addItem(NSMenuItem.separator())
+        menu.addItem(withTitle: "Quit Pock".localized, action: #selector(NSApp.terminate), keyEquivalent: "q")
+        return menu
+    }()
+    
+    private lazy var advancedPockMenu: NSMenu = {
+        let menu = NSMenu(title: "Advanced")
+        menu.addItem(withTitle: "Reload Pock".localized, action: #selector(reloadPock), keyEquivalent: "r")
+        menu.addItem(withTitle: "Reload System Touch Bar".localized, action: #selector(reloadTouchBarServer), keyEquivalent: "a")
+        return menu
+    }()
+    
     /// Preferences
     fileprivate let generalPreferencePane: GeneralPreferencePane = GeneralPreferencePane()
     fileprivate let dockWidgetPreferencePane: DockWidgetPreferencePane = DockWidgetPreferencePane()
@@ -65,16 +88,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             button.image = NSImage(named: "pock-inner-icon")
             button.image?.isTemplate = true
             /// Create menu
-            let menu = NSMenu(title: "Pock Options")
-            menu.addItem(withTitle: "Preferences…".localized, action: #selector(openPreferences), keyEquivalent: ",")
-            menu.addItem(withTitle: "Customize…".localized, action: #selector(openCustomization), keyEquivalent: "c")
-            menu.addItem(NSMenuItem.separator())
-            menu.addItem(withTitle: "Reload".localized, action: #selector(reloadPock), keyEquivalent: "r")
-            menu.addItem(NSMenuItem.separator())
-            menu.addItem(withTitle: "Support this project".localized, action: #selector(openDonateURL),  keyEquivalent: "s")
-            menu.addItem(NSMenuItem.separator())
-            menu.addItem(withTitle: "Quit Pock".localized, action: #selector(NSApp.terminate), keyEquivalent: "q")
-            pockStatusbarIcon.menu = menu
+            pockStatusbarIcon.menu = mainPockMenu
         }
         
         /// Check for updates
@@ -87,6 +101,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                                                           selector: #selector(toggleAutomaticUpdatesTimer),
                                                           name: .shouldEnableAutomaticUpdates,
                                                           object: nil)
+        
         NSWorkspace.shared.notificationCenter.addObserver(self,
                                                           selector: #selector(reloadPock),
                                                           name: .shouldReloadPock,
@@ -107,6 +122,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         _navController = nil
         let mainController: PockMainController = PockMainController.load()
         _navController = PKTouchBarNavController(rootController: mainController)
+    }
+    
+    @objc func reloadTouchBarServer() {
+        TouchBarHelper.reloadTouchBarServer { [weak self] success in
+            if success {
+                self?.reloadPock()
+            }
+        }
     }
     
     private func registerGlobalHotKey() {
