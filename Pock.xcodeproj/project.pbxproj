@@ -70,6 +70,8 @@
 		349431ED22197485008622B1 /* MediaRemote.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 349431EC22197484008622B1 /* MediaRemote.framework */; };
 		349F93E8228865C400B8CFBE /* ISSoundAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 349F93E7228865C400B8CFBE /* ISSoundAdditions.m */; };
 		34BC3ECC2210B2EC00C1DD3C /* DFRFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34BC3ECB2210B2EC00C1DD3C /* DFRFoundation.framework */; };
+		34CA451D23C0C98A00C45B0D /* STPrivilegedTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 34CA451B23C0C98A00C45B0D /* STPrivilegedTask.m */; };
+		34CA452023C0C9C500C45B0D /* TouchBarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CA451F23C0C9C500C45B0D /* TouchBarHelper.swift */; };
 		34E644F4227CB6CE003D0450 /* KeySender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E644F3227CB6CE003D0450 /* KeySender.swift */; };
 		34E644F7227D783E003D0450 /* KeySenderHelper.c in Sources */ = {isa = PBXBuildFile; fileRef = 34E644F6227D783E003D0450 /* KeySenderHelper.c */; };
 		34E644FB227D9A69003D0450 /* DockWidgetPreferencePane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E644F9227D9A69003D0450 /* DockWidgetPreferencePane.swift */; };
@@ -170,6 +172,9 @@
 		34A8060E22F6C57700621235 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/StatusWidgetPreferencePane.strings; sourceTree = "<group>"; };
 		34A8061122F6C83000621235 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/ControlCenterWidgetPreferencePane.strings; sourceTree = "<group>"; };
 		34BC3ECB2210B2EC00C1DD3C /* DFRFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DFRFoundation.framework; path = ../../../../../../../../../System/Library/PrivateFrameworks/DFRFoundation.framework; sourceTree = "<group>"; };
+		34CA451B23C0C98A00C45B0D /* STPrivilegedTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPrivilegedTask.m; sourceTree = "<group>"; };
+		34CA451C23C0C98A00C45B0D /* STPrivilegedTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPrivilegedTask.h; sourceTree = "<group>"; };
+		34CA451F23C0C9C500C45B0D /* TouchBarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchBarHelper.swift; sourceTree = "<group>"; };
 		34E644F3227CB6CE003D0450 /* KeySender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeySender.swift; sourceTree = "<group>"; };
 		34E644F5227D783E003D0450 /* KeySenderHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeySenderHelper.h; sourceTree = "<group>"; };
 		34E644F6227D783E003D0450 /* KeySenderHelper.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = KeySenderHelper.c; sourceTree = "<group>"; };
@@ -409,6 +414,7 @@
 				349F93E5228865C400B8CFBE /* ISSoundAdditions */,
 				342D83A82278D5CF000D79DA /* PockDockHelper */,
 				342D83AF2278D5CF000D79DA /* DKBrightness */,
+				34CA452123C0C9C900C45B0D /* TouchBarHelper */,
 				347F336422D0DB9100FA9805 /* SystemHelper */,
 				34E644F8227D7848003D0450 /* KeySenderHelper */,
 			);
@@ -563,6 +569,7 @@
 		347F336422D0DB9100FA9805 /* SystemHelper */ = {
 			isa = PBXGroup;
 			children = (
+				34CA451E23C0C99200C45B0D /* STPrivilegedTask */,
 				347F336522D0DB9100FA9805 /* SystemHelper.h */,
 				347F336622D0DB9100FA9805 /* SystemHelper.m */,
 			);
@@ -603,6 +610,23 @@
 				964435B622D18F91002FA1CB /* LocalizedUtils.swift */,
 			);
 			path = Localisations;
+			sourceTree = "<group>";
+		};
+		34CA451E23C0C99200C45B0D /* STPrivilegedTask */ = {
+			isa = PBXGroup;
+			children = (
+				34CA451C23C0C98A00C45B0D /* STPrivilegedTask.h */,
+				34CA451B23C0C98A00C45B0D /* STPrivilegedTask.m */,
+			);
+			path = STPrivilegedTask;
+			sourceTree = "<group>";
+		};
+		34CA452123C0C9C900C45B0D /* TouchBarHelper */ = {
+			isa = PBXGroup;
+			children = (
+				34CA451F23C0C9C500C45B0D /* TouchBarHelper.swift */,
+			);
+			path = TouchBarHelper;
 			sourceTree = "<group>";
 		};
 		34E644F8227D7848003D0450 /* KeySenderHelper */ = {
@@ -844,6 +868,7 @@
 				342D840C2278D5CF000D79DA /* DockWidget.swift in Sources */,
 				34E644FB227D9A69003D0450 /* DockWidgetPreferencePane.swift in Sources */,
 				3407F9DC22D0E75E0072E742 /* ControlCenterWidgetPreferencePane.swift in Sources */,
+				34CA451D23C0C98A00C45B0D /* STPrivilegedTask.m in Sources */,
 				342D83EE2278D5CF000D79DA /* ControlCenterWidget.swift in Sources */,
 				342D83EC2278D5CF000D79DA /* OSDUIHelper.swift in Sources */,
 				3418D9FF22882EC600E11E37 /* PKSlideableController.swift in Sources */,
@@ -856,6 +881,7 @@
 				342D83F22278D5CF000D79DA /* CCBrightnessUpItem.swift in Sources */,
 				3407F9DE22D0F0A60072E742 /* Extensions.swift in Sources */,
 				342D83F02278D5CF000D79DA /* CCBrightnessDownItem.swift in Sources */,
+				34CA452023C0C9C500C45B0D /* TouchBarHelper.swift in Sources */,
 				347F336722D0DB9200FA9805 /* SystemHelper.m in Sources */,
 				342D83F52278D5CF000D79DA /* NowPlayingItem.swift in Sources */,
 				342D83F62278D5CF000D79DA /* NowPlayingWidget.swift in Sources */,
