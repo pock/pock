@@ -86,7 +86,7 @@ class PKTouchBarController: NSObject, NSTouchBarDelegate {
     }
     
     @objc func presentFromSystemTrayItem() {
-        let placement: Int64 = Defaults[.hideControlStrip] ? 1 : 0
+        let placement: Int64 = TouchBarHelper.isSystemControlStripVisible ? 0 : 1
         self.presentWithPlacement(placement: placement)
         self.isVisible = true
     }

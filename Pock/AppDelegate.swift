@@ -41,8 +41,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     /// Finish launching
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Insert code here to initialize your application
-        NSApp.isAutomaticCustomizeTouchBarMenuItemEnabled = true
         
         /// Initialize Crashlytics
         if isProd {
@@ -101,14 +99,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         /// Set Pock inactive
         NSApp.deactivate()
-        
-        ///Reload Control Center Widget every 1 second in order to sync volume item icon with system
-        Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(reloadControlCenterWidget), userInfo: nil, repeats: true)
 
-    }
-    
-    @objc func reloadControlCenterWidget() {
-        NSWorkspace.shared.notificationCenter.post(name: .shouldReloadControlCenterWidget, object: nil)
     }
     
     @objc func reloadPock() {
@@ -139,6 +130,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     /// Will terminate
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
+        NotificationCenter.default.removeObserver(self)
         _navController?.dismiss()
         _navController = nil
     }
