@@ -22,8 +22,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     /// Core
-    fileprivate var _navController: PKTouchBarNavController?
-    var navController: PKTouchBarNavController? { return _navController }
+    public private(set) var alertWindow:   AlertWindow?
+    public private(set) var navController: PKTouchBarNavController?
     
     /// Timer
     fileprivate var automaticUpdatesTimer: Timer?
@@ -71,6 +71,37 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             Fabric.with([Crashlytics.self])
         }
         
+        /// Check for legacy hideControlStrip option
+        if let shouldHideControlStrip = Defaults[.hideControlStrip] {
+            if shouldHideControlStrip && TouchBarHelper.isSystemControlStripVisible {
+                alertWindow = AlertWindow(
+                    title:   "Hide Control Strip".localized,
+                    message: "Hide_Control_Strip_Message".localized,
+                    action: AlertAction(
+                        title: "Continue".localized,
+                        action: {
+                            TouchBarHelper.hideSystemControlStrip({ [weak self] success in
+                                if success {
+                                    Defaults[.hideControlStrip] = nil
+                                }
+                                self?.initialize()
+                                self?.alertWindow = nil
+                            })
+                        }
+                    )
+                )
+                alertWindow?.showWindow(self)
+            }
+        }else {
+            self.initialize()
+        }
+        
+        /// Set Pock inactive
+        NSApp.deactivate()
+
+    }
+    
+    private func initialize() {
         /// Check for accessibility (needed for badges to work)
         self.checkAccessibility()
         
@@ -111,17 +142,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         /// Present Pock
         self.reloadPock()
-        
-        /// Set Pock inactive
-        NSApp.deactivate()
-
     }
     
     @objc func reloadPock() {
-        _navController?.dismiss()
-        _navController = nil
+        navController?.dismiss()
+        navController = nil
         let mainController: PockMainController = PockMainController.load()
-        _navController = PKTouchBarNavController(rootController: mainController)
+        navController = PKTouchBarNavController(rootController: mainController)
     }
     
     @objc func reloadTouchBarServer() {
@@ -135,7 +162,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private func registerGlobalHotKey() {
         if let keyCombo = KeyCombo(doubledCocoaModifiers: .control) {
             let hotKey = HotKey(identifier: "TogglePock", keyCombo: keyCombo) { [weak self] _ in
-                self?._navController?.toggle()
+                self?.navController?.toggle()
             }
             hotKey.register()
         }
@@ -154,8 +181,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
         NotificationCenter.default.removeObserver(self)
-        _navController?.dismiss()
-        _navController = nil
+        navController?.dismiss()
+        navController = nil
     }
     
     /// Check for updates
@@ -184,7 +211,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @objc private func openCustomization() {
-        (_navController?.rootController as? PockMainController)?.openCustomization()
+        (navController?.rootController as? PockMainController)?.openCustomization()
     }
     
     @objc private func openDonateURL() {

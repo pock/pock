@@ -81,7 +81,7 @@ enum NowPlayingWidgetStyle: String, Codable {
 }
 
 extension Defaults.Keys {
-    static let hideControlStrip                 = Defaults.Key<Bool>("hideControlStrip",       default: true)
+    static let hideControlStrip                 = Defaults.Key<Bool?>("hideControlStrip",      default: true)
     static let enableAutomaticUpdates           = Defaults.Key<Bool>("enableAutomaticUpdates", default: false)
     /// Dock widget
     static let notificationBadgeRefreshInterval = Defaults.Key<NotificationBadgeRefreshRateKeys>("notificationBadgeRefreshInterval", default: .tenSeconds)

@@ -45,3 +45,5 @@
 "to play music" = "to play music";
 "Missing title" = "Missing title";
 "Unknown artist" = "Unknown artist";
+
+"Hide_Control_Strip_Message" = "Pock now uses a more reliable way to hide the system Touch Bar Control Strip.\n\nSince you had the option to hide Control Strip checked, please click on the `Reload` button below and enter your account password for changes to affect.\n\nIf you want to know why Pock asks for your account password, please visit the link below:\n\nhttps://pock.dev/faq";
