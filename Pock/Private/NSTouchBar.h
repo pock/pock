@@ -8,6 +8,8 @@
 
 #import <AppKit/AppKit.h>
 
+extern int _DFRGetServerPID();
+extern int _DFRGetTouchBarAgentPID();
 extern void DFRElementSetControlStripPresenceForIdentifier(_Nonnull NSTouchBarItemIdentifier, BOOL);
 extern void DFRSystemModalShowsCloseBoxWhenFrontMost(BOOL);
 
