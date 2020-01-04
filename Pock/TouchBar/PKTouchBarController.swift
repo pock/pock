@@ -59,13 +59,16 @@ class PKTouchBarController: NSObject, NSTouchBarDelegate {
         }
     }
     
-    @objc func dismiss() {
+    @objc func dismiss(touchBar: NSTouchBar? = nil) {
+        let _touchBar = touchBar ?? self.touchBar
         if #available (macOS 10.14, *) {
-            NSTouchBar.dismissSystemModalTouchBar(touchBar)
+            NSTouchBar.dismissSystemModalTouchBar(_touchBar)
         } else {
-            NSTouchBar.dismissSystemModalFunctionBar(touchBar)
+            NSTouchBar.dismissSystemModalFunctionBar(_touchBar)
         }
-        self.isVisible = false
+        if _touchBar === self.touchBar {
+            self.isVisible = false
+        }
     }
     
     @objc func minimize() {
@@ -135,7 +138,7 @@ extension PKTouchBarController {
     }
     
     @objc private func didExitCustomization(_ sender: Any?) {
-        NSApp.touchBar = nil
+        self.dismiss(touchBar: NSApp.touchBar)
         self.removeCustomizationObservers()
         self.present()
     }

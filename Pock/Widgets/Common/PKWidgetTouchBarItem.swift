@@ -61,8 +61,9 @@ class PKWidgetTouchBarItem: NSCustomTouchBarItem {
     }
     
     deinit {
+        if !isProd { print("[PockWidget]: [\(widget?.identifier.rawValue ?? "Unknown widget")] - deinit called.") }
         viewController = nil
-        if !isProd { print("[PockWidget]: [\(type(of: self))] - deinit called.") }
+        widget         = nil
     }
     
     func viewWillAppear() {

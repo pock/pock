@@ -34,17 +34,18 @@ class PockMainController: PKTouchBarController {
     override var systemTrayItemIdentifier: NSTouchBarItem.Identifier? { return .pockSystemIcon }
     
     deinit {
+        items.removeAll()
         WidgetsDispatcher.default.clearLoadedWidgets()
         if !isProd { print("[PockMainController]: Deinit Pock main controller") }
     }
     
     override func didLoad() {
-        WidgetsDispatcher.default.loadInstalledWidget() { identifiers in
-            self.touchBar?.customizationIdentifier              = .pockTouchBar
-            self.touchBar?.defaultItemIdentifiers               = [.escButton, .dockView]
-            self.touchBar?.customizationAllowedItemIdentifiers  = [.escButton, .dockView, .controlCenter, .nowPlaying, .status]
-            self.touchBar?.customizationAllowedItemIdentifiers.append(contentsOf: identifiers)
-            super.awakeFromNib()
+        WidgetsDispatcher.default.loadInstalledWidget() { [weak self] identifiers in
+            self?.touchBar?.customizationIdentifier              = .pockTouchBar
+            self?.touchBar?.defaultItemIdentifiers               = [.escButton, .dockView]
+            self?.touchBar?.customizationAllowedItemIdentifiers  = [.escButton, .dockView, .controlCenter, .nowPlaying, .status]
+            self?.touchBar?.customizationAllowedItemIdentifiers.append(contentsOf: identifiers)
+            self?.awakeFromNib()
         }
     }
     
