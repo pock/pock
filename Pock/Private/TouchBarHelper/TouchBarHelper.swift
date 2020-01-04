@@ -44,7 +44,11 @@ public class TouchBarHelper {
     
     public static func reloadTouchBarServer(_ completion: ((Bool) -> Void)? = nil) {
         let touchBarServerPid = _DFRGetServerPID().description
-        let task = STPrivilegedTask(launchPath: "/bin/kill", arguments: [touchBarServerPid])
+        var task = STPrivilegedTask(launchPath: "/bin/kill", arguments: [touchBarServerPid])
+        defer {
+            task?.terminate()
+            task = nil
+        }
         guard let error = task?.launch() else {
             completion?(false)
             return
