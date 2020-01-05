@@ -46,7 +46,7 @@ public class AlertWindowController: NSWindowController {
         super.windowDidLoad()
         self.window?.title           = self.alertTitle         ?? "Unknown"
         self.actionButton.title      = self.alertAction?.title ?? "Close"
-        self.messageView.stringValue = self.alertMessage ?? "Unknown"
+        self.messageView.stringValue = self.alertMessage       ?? "Unknown"
         self.actionButton.isHidden   = alertAction == nil
     }
     

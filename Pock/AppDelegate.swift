@@ -22,8 +22,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     /// Core
-    public private(set) var alertWindow:   AlertWindowController?
-    public private(set) var navController: PKTouchBarNavController?
+    public private(set) var alertWindowController: AlertWindowController?
+    public private(set) var navController:         PKTouchBarNavController?
     
     /// Timer
     fileprivate var automaticUpdatesTimer: Timer?
@@ -37,6 +37,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         menu.addItem(withTitle: "Preferences…".localized, action: #selector(openPreferences), keyEquivalent: ",")
         menu.addItem(withTitle: "Customize…".localized, action: #selector(openCustomization), keyEquivalent: "c")
         menu.addItem(NSMenuItem.separator())
+        menu.addItem(withTitle: "Widgets Manager".localized, action: #selector(openWidgetsManager), keyEquivalent: "w")
         let advancedMenuItem = NSMenuItem(title: "Advanced".localized, action: nil, keyEquivalent: "")
         advancedMenuItem.submenu = advancedPockMenu
         menu.addItem(advancedMenuItem)
@@ -55,12 +56,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }()
     
     /// Preferences
-    fileprivate let generalPreferencePane: GeneralPreferencePane = GeneralPreferencePane()
-    fileprivate let dockWidgetPreferencePane: DockWidgetPreferencePane = DockWidgetPreferencePane()
-    fileprivate let statusWidgetPreferencePane: StatusWidgetPreferencePane = StatusWidgetPreferencePane()
-    fileprivate let controlCenterWidgetPreferencePane: ControlCenterWidgetPreferencePane = ControlCenterWidgetPreferencePane()
-    fileprivate let nowPlayingWidgetPreferencePane: NowPlayingPreferencePane = NowPlayingPreferencePane()
-    fileprivate var preferencesWindowController: PreferencesWindowController!
+    private let generalPreferencePane: GeneralPreferencePane = GeneralPreferencePane()
+    private var preferencesWindowController: PreferencesWindowController!
     
     /// Finish launching
     func applicationDidFinishLaunching(_ aNotification: Notification) {
@@ -74,7 +71,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         /// Check for legacy hideControlStrip option
         if let shouldHideControlStrip = Defaults[.hideControlStrip] {
             if shouldHideControlStrip && TouchBarHelper.isSystemControlStripVisible {
-                alertWindow = AlertWindowController(
+                alertWindowController = AlertWindowController(
                     title:   "Hide Control Strip".localized,
                     message: "Hide_Control_Strip_Message".localized,
                     action: AlertAction(
@@ -85,12 +82,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                                     Defaults[.hideControlStrip] = nil
                                 }
                                 self?.initialize()
-                                self?.alertWindow = nil
+                                self?.alertWindowController = nil
                             })
                         }
                     )
                 )
-                alertWindow?.showWindow(self)
+                alertWindowController?.showWindow(nil)
             }
         }else {
             self.initialize()
@@ -108,10 +105,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         /// Preferences
         self.preferencesWindowController = PreferencesWindowController(preferencePanes: [
             generalPreferencePane,
-            dockWidgetPreferencePane,
-            statusWidgetPreferencePane,
-            controlCenterWidgetPreferencePane,
-            nowPlayingWidgetPreferencePane
+            DockWidgetPreferencePane(),
+            StatusWidgetPreferencePane(),
+            ControlCenterWidgetPreferencePane(),
+            NowPlayingPreferencePane()
         ])
         
         /// Check for status bar icon
@@ -210,10 +207,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         preferencesWindowController.show()
     }
     
+    /// Open customization
     @objc private func openCustomization() {
         (navController?.rootController as? PockMainController)?.openCustomization()
     }
     
+    /// Open widgets manager
+    @objc private func openWidgetsManager() {
+        
+    }
+    
+    /// Open donate url
     @objc private func openDonateURL() {
         guard let url = URL(string: "https://paypal.me/pigigaldi") else { return }
         NSWorkspace.shared.open(url)
