@@ -470,15 +470,10 @@
 		342D83B82278D5CF000D79DA /* Items */ = {
 			isa = PBXGroup;
 			children = (
+				346B76C523C20A4600A20735 /* Brightness */,
+				346B76C423C20A3B00A20735 /* Volume */,
 				347F335F22D0D68400FA9805 /* CCLockItem.swift */,
 				347F336822D0DBD600FA9805 /* CCSleepItem.swift */,
-				342D83B92278D5CF000D79DA /* CCBrightnessDownItem.swift */,
-				342D83BA2278D5CF000D79DA /* CCVolumeDownItem.swift */,
-				342D83BB2278D5CF000D79DA /* CCBrightnessUpItem.swift */,
-				342D83BC2278D5CF000D79DA /* CCVolumeUpItem.swift */,
-				9955665122DC668500EFFE6D /* CCVolumeMuteItem.swift */,
-				9675D6D0237003DC00C36234 /* CCVolumeToggleItem.swift */,
-				9675D6D223701BC900C36234 /* CCBrightnessToggleItem.swift */,
 				96BE2700237171DC0031B31F /* CCScreensaverItem.swift */,
 				96E7A151239B99F700CB4C4C /* CCDoNotDisturbItem.swift */,
 			);
@@ -569,6 +564,27 @@
 				345C955223A53D4D00E1AC53 /* NowPlayingPreferencePane.swift */,
 			);
 			path = NowPlayingPreferencePane;
+			sourceTree = "<group>";
+		};
+		346B76C423C20A3B00A20735 /* Volume */ = {
+			isa = PBXGroup;
+			children = (
+				342D83BA2278D5CF000D79DA /* CCVolumeDownItem.swift */,
+				342D83BC2278D5CF000D79DA /* CCVolumeUpItem.swift */,
+				9955665122DC668500EFFE6D /* CCVolumeMuteItem.swift */,
+				9675D6D0237003DC00C36234 /* CCVolumeToggleItem.swift */,
+			);
+			path = Volume;
+			sourceTree = "<group>";
+		};
+		346B76C523C20A4600A20735 /* Brightness */ = {
+			isa = PBXGroup;
+			children = (
+				342D83B92278D5CF000D79DA /* CCBrightnessDownItem.swift */,
+				342D83BB2278D5CF000D79DA /* CCBrightnessUpItem.swift */,
+				9675D6D223701BC900C36234 /* CCBrightnessToggleItem.swift */,
+			);
+			path = Brightness;
 			sourceTree = "<group>";
 		};
 		347F336422D0DB9100FA9805 /* SystemHelper */ = {
