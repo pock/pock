@@ -9,14 +9,6 @@
 import AppKit
 import Preferences
 
-fileprivate struct WidgetInfo {
-    let path:    URL?
-    let id:      String
-    let name:    String
-    let version: String
-    let loaded:  Bool
-}
-
 internal class WidgetsManagerListPane: NSViewController, PreferencePane {
 
     // MARK: Preferenceable
@@ -26,9 +18,10 @@ internal class WidgetsManagerListPane: NSViewController, PreferencePane {
     
     // MARK: Cell Identifiers
     private enum CellIdentifiers {
-        static let nameCellIdentifier:    NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier(rawValue: "nameCellIdentifier")
-        static let versionCellIdentifier: NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier(rawValue: "versionCellIdentifier")
-        static let statusCellIdentifier:  NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier(rawValue: "statusCellIdentifier")
+        static let nameCellIdentifier:    NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("nameCellIdentifier")
+        static let authorCellIdentifier:  NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("authorCellIdentifier")
+        static let versionCellIdentifier: NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("versionCellIdentifier")
+        static let statusCellIdentifier:  NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("statusCellIdentifier")
     }
     
     // MARK: UI Elements
@@ -67,17 +60,7 @@ extension WidgetsManagerListPane {
     /// Fetch installed widgets
     private func fetchInstalledWidgets(_ completion: @escaping ([WidgetInfo]) -> Void) {
         DispatchQueue.global(qos: .background).async {
-            let paths = WidgetsDispatcher.default.installedWidgetsPaths
-            let widgets = paths.map({ path in
-                /// TODO: Fetch proper widget information (id, version, status, etc...)
-                WidgetInfo(
-                    path:    path,
-                    id:      "dev.pock.weather",
-                    name:    path.lastPathComponent,
-                    version: "0.1",
-                    loaded:  false
-                )
-            })
+            let widgets = WidgetsDispatcher.default.installedWidgets
             completion(widgets)
         }
     }
@@ -130,6 +113,10 @@ extension WidgetsManagerListPane: NSTableViewDelegate {
         switch tableColumn?.identifier {
         case CellIdentifiers.nameCellIdentifier:
             cellText  = widget.name
+            cellImage = nil
+            
+        case CellIdentifiers.authorCellIdentifier:
+            cellText  = widget.author
             cellImage = nil
             
         case CellIdentifiers.versionCellIdentifier:
