@@ -22,7 +22,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     /// Core
-    public private(set) var alertWindow:   AlertWindow?
+    public private(set) var alertWindow:   AlertWindowController?
     public private(set) var navController: PKTouchBarNavController?
     
     /// Timer
@@ -74,7 +74,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         /// Check for legacy hideControlStrip option
         if let shouldHideControlStrip = Defaults[.hideControlStrip] {
             if shouldHideControlStrip && TouchBarHelper.isSystemControlStripVisible {
-                alertWindow = AlertWindow(
+                alertWindow = AlertWindowController(
                     title:   "Hide Control Strip".localized,
                     message: "Hide_Control_Strip_Message".localized,
                     action: AlertAction(

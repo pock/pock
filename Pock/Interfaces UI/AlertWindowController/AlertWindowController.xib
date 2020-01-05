@@ -6,7 +6,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="AlertWindow" customModule="Pock" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="AlertWindowController" customModule="Pock" customModuleProvider="target">
             <connections>
                 <outlet property="actionButton" destination="MuU-JK-C9L" id="3Yh-Lo-qF4"/>
                 <outlet property="messageView" destination="lqI-aN-XHg" id="tsW-Wf-i0V"/>

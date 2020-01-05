@@ -1,5 +1,5 @@
 //
-//  AlertWindow.swift
+//  AlertWindowController.swift
 //  Pock
 //
 //  Created by Pierluigi Galdi on 04/01/2020.
@@ -14,11 +14,11 @@ public struct AlertAction {
     public static let `default` = AlertAction(title: "Close".localized, action: nil)
 }
 
-public class AlertWindow: NSWindowController {
+public class AlertWindowController: NSWindowController {
 
     /// Core
     public override var windowNibName: NSNib.Name? {
-        return NSNib.Name("AlertWindow")
+        return NSNib.Name("AlertWindowController")
     }
     
     /// UI Elements
