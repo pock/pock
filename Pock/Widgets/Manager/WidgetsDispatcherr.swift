@@ -9,6 +9,15 @@
 import Foundation
 import PockKit
 
+internal struct WidgetInfo {
+    let path:    URL?
+    let id:      String
+    let name:    String
+    let version: String
+    let author:  String
+    let loaded:  Bool
+}
+
 public final class WidgetsDispatcher {
     
     /// Configuration
@@ -60,7 +69,7 @@ public final class WidgetsDispatcher {
         return widgetsPath + "/\(name).pock"
     }
     
-    public var installedWidgetsPaths: [URL] {
+    private var installedWidgetsPaths: [URL] {
         if !fileExists(at: applicationSupportPockFolder, isDirectory: true) {
             try? FileManager.default.createDirectory(atPath: applicationSupportPockFolder, withIntermediateDirectories: false, attributes: nil)
             try? FileManager.default.createDirectory(atPath: widgetsPath, withIntermediateDirectories: false, attributes: nil)
@@ -73,6 +82,17 @@ public final class WidgetsDispatcher {
         return widgetBundles.map({ widgetBundle in
             return URL(fileURLWithPath: "\(widgetsPath)/\(widgetBundle)")
         })
+    }
+    
+    /// Get iinstalled widgets
+    internal var installedWidgets: [WidgetInfo] {
+        var returnable: [WidgetInfo] = []
+        for path in installedWidgetsPaths {
+            if let info = try? loadInfoForWidgetAt(path: path) {
+                returnable.append(info)
+            }
+        }
+        return returnable.sorted(by: { $0.name < $1.name })
     }
     
     /// Load widgets from widgets directory
@@ -89,7 +109,28 @@ public final class WidgetsDispatcher {
 // MARK: Utilities
 extension WidgetsDispatcher {
     
-    internal func loadWidgetAt(path: URL) throws {
+    private func loadInfoForWidgetAt(path: URL) throws -> WidgetInfo {
+        if let widgetBundle = Bundle(url: path) {
+            let id      = widgetBundle.object(forInfoDictionaryKey: "CFBundleIdentifier")         as? String
+            let name    = widgetBundle.object(forInfoDictionaryKey: "CFBundleName")               as? String
+            let version = widgetBundle.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
+            let author  = widgetBundle.object(forInfoDictionaryKey: "PKWidgetAuthor")             as? String
+            let clss    = widgetBundle.object(forInfoDictionaryKey: "NSPrincipalClass")           as? String
+            return WidgetInfo(
+                path:    path,
+                id:      id      ?? "Unknown",
+                name:    name    ?? "Unknown",
+                version: version ?? "Unknown",
+                author:  author  ?? "Unknown",
+                loaded:  loadedWidgets.values.contains(where: {
+                    NSStringFromClass($0) == clss
+                })
+            )
+        }
+        throw NSError(domain: "WidgetDispatcher:loadInfoForWidgetAt", code: 999, userInfo: ["description": "Can't load widget at: \"\(path.absoluteString)\""])
+    }
+    
+    private func loadWidgetAt(path: URL) throws {
         if let widgetBundle = Bundle(url: path), widgetBundle.load() {
             if let clss = widgetBundle.principalClass as? PKWidget.Type {
                 var plugin: PKWidget? = clss.init()
@@ -98,7 +139,7 @@ extension WidgetsDispatcher {
                 return
             }
         }
-        throw NSError(domain: "WidgetDispatcher:loadWidget", code: 999, userInfo: ["description": "Can't load widget at: \"\(path.absoluteString)\""])
+        throw NSError(domain: "WidgetDispatcher:loadWidgetAt", code: 999, userInfo: ["description": "Can't load widget at: \"\(path.absoluteString)\""])
     }
     
     internal func installWidget(at directory: String?) throws {
