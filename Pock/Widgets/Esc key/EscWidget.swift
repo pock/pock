@@ -8,14 +8,6 @@
 
 import Foundation
 
-class EscWidgetButton: NSButton {
-    override open var intrinsicContentSize: NSSize {
-        var size = super.intrinsicContentSize
-        size.width = min(size.width, 64)
-        return size
-    }
-}
-
 class EscWidget: PKWidget {
     
     private let key: KeySender = KeySender(keyCode: Int32(0x35), isAux: false)
@@ -25,7 +17,7 @@ class EscWidget: PKWidget {
     var view: NSView!
     
     required init() {
-        view = EscWidgetButton(title: "esc", target: self, action: #selector(tap))
+        view = PKButton(title: "esc", maxWidth: 64, target: self, action: #selector(tap))
     }
     
     @objc private func tap() {
