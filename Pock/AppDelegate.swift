@@ -48,7 +48,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }()
     
     private lazy var advancedPockMenu: NSMenu = {
-        let menu = NSMenu(title: "Advanced")
+        let menu = NSMenu(title: "Advanced".localized)
         menu.addItem(withTitle: "Reload Pock".localized, action: #selector(reloadPock), keyEquivalent: "r")
         menu.addItem(withTitle: "Reload System Touch Bar".localized, action: #selector(reloadTouchBarServer), keyEquivalent: "a")
         return menu
