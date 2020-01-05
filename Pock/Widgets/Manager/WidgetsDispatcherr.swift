@@ -60,7 +60,7 @@ public final class WidgetsDispatcher {
         return widgetsPath + "/\(name).pock"
     }
     
-    private var installedWidgetsPaths: [URL] {
+    public var installedWidgetsPaths: [URL] {
         if !fileExists(at: applicationSupportPockFolder, isDirectory: true) {
             try? FileManager.default.createDirectory(atPath: applicationSupportPockFolder, withIntermediateDirectories: false, attributes: nil)
             try? FileManager.default.createDirectory(atPath: widgetsPath, withIntermediateDirectories: false, attributes: nil)
