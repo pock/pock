@@ -34,12 +34,21 @@ internal class WidgetsManagerListPane: NSViewController, PreferencePane {
     // MARK: Overrides
     override func viewWillAppear() {
         super.viewWillAppear()
-        
+        self.reloadData()
+    }
+    
+}
+
+// MARK: Methods
+
+extension WidgetsManagerListPane {
+    
+    /// Reload data
+    @IBAction private func reloadData(_ sender: Any? = nil) {
         /// Clear UI
         widgets = []
         tableView.reloadData()
         updateStatusLabel()
-        
         /// Fetch installed widgets
         fetchInstalledWidgets() { [weak self] widgets in
             self?.widgets = widgets
@@ -50,12 +59,6 @@ internal class WidgetsManagerListPane: NSViewController, PreferencePane {
             }
         }
     }
-    
-}
-
-// MARK: Methods
-
-extension WidgetsManagerListPane {
     
     /// Fetch installed widgets
     private func fetchInstalledWidgets(_ completion: @escaping ([WidgetInfo]) -> Void) {
