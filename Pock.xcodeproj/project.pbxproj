@@ -62,6 +62,8 @@
 		3435675B2381666F00E408EF /* WidgetsDispatcherr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3435675A2381666F00E408EF /* WidgetsDispatcherr.swift */; };
 		345C955123A5230000E1AC53 /* NowPlayingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345C955023A522FF00E1AC53 /* NowPlayingView.swift */; };
 		345C955423A53D4D00E1AC53 /* NowPlayingPreferencePane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345C955223A53D4D00E1AC53 /* NowPlayingPreferencePane.swift */; };
+		345E2EC723C2691900A947FC /* WidgetsManagerListPane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345E2EC523C2691900A947FC /* WidgetsManagerListPane.swift */; };
+		345E2EC823C2691900A947FC /* WidgetsManagerListPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 345E2EC623C2691900A947FC /* WidgetsManagerListPane.xib */; };
 		347D7EE7230874A800BA9200 /* ControlCenterWidgetPreferencePane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9686B4F922D2216400C7A08C /* ControlCenterWidgetPreferencePane.xib */; };
 		347F336022D0D68400FA9805 /* CCLockItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347F335F22D0D68400FA9805 /* CCLockItem.swift */; };
 		347F336722D0DB9200FA9805 /* SystemHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 347F336622D0DB9100FA9805 /* SystemHelper.m */; };
@@ -153,6 +155,8 @@
 		3435675A2381666F00E408EF /* WidgetsDispatcherr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetsDispatcherr.swift; sourceTree = "<group>"; };
 		345C955023A522FF00E1AC53 /* NowPlayingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingView.swift; sourceTree = "<group>"; };
 		345C955223A53D4D00E1AC53 /* NowPlayingPreferencePane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingPreferencePane.swift; sourceTree = "<group>"; };
+		345E2EC523C2691900A947FC /* WidgetsManagerListPane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetsManagerListPane.swift; sourceTree = "<group>"; };
+		345E2EC623C2691900A947FC /* WidgetsManagerListPane.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WidgetsManagerListPane.xib; sourceTree = "<group>"; };
 		347F335D22D0D5F600FA9805 /* login.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = login.framework; path = ../../../../../../../../../System/Library/PrivateFrameworks/login.framework; sourceTree = "<group>"; };
 		347F335F22D0D68400FA9805 /* CCLockItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CCLockItem.swift; sourceTree = "<group>"; };
 		347F336522D0DB9100FA9805 /* SystemHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemHelper.h; sourceTree = "<group>"; };
@@ -446,7 +450,7 @@
 		342D83B42278D5CF000D79DA /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
-				3435675A2381666F00E408EF /* WidgetsDispatcherr.swift */,
+				345E2ECA23C2692900A947FC /* Manager */,
 				342D83CD2278D5CF000D79DA /* Common */,
 				342D83CA2278D5CF000D79DA /* Esc key */,
 				342D83D02278D5CF000D79DA /* Dock */,
@@ -564,6 +568,24 @@
 				345C955223A53D4D00E1AC53 /* NowPlayingPreferencePane.swift */,
 			);
 			path = NowPlayingPreferencePane;
+			sourceTree = "<group>";
+		};
+		345E2EC923C2692300A947FC /* WidgetsManagerListPane */ = {
+			isa = PBXGroup;
+			children = (
+				345E2EC523C2691900A947FC /* WidgetsManagerListPane.swift */,
+				345E2EC623C2691900A947FC /* WidgetsManagerListPane.xib */,
+			);
+			path = WidgetsManagerListPane;
+			sourceTree = "<group>";
+		};
+		345E2ECA23C2692900A947FC /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				3435675A2381666F00E408EF /* WidgetsDispatcherr.swift */,
+				345E2EC923C2692300A947FC /* WidgetsManagerListPane */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 		346B76C423C20A3B00A20735 /* Volume */ = {
@@ -770,6 +792,7 @@
 				3482609723A687770053432B /* NowPlayingPreferencePane.xib in Resources */,
 				3407F9EF22D1C9970072E742 /* AppExposeController.xib in Resources */,
 				9667AAF222CF192D00C22410 /* GeneralPreferencePane.xib in Resources */,
+				345E2EC823C2691900A947FC /* WidgetsManagerListPane.xib in Resources */,
 				34EF604B23C12E1300FBE9E7 /* AlertWindowController.xib in Resources */,
 				96FE269F22D0C3810071645C /* Localizable.strings in Resources */,
 				3406434D227F3FFF00981372 /* PockMainController.xib in Resources */,
@@ -876,6 +899,7 @@
 				342D83FA2278D5CF000D79DA /* SSpotlightItem.swift in Sources */,
 				342D83F92278D5CF000D79DA /* StatusItem.swift in Sources */,
 				3406433E227ED8BC00981372 /* DockFolderItemView.swift in Sources */,
+				345E2EC723C2691900A947FC /* WidgetsManagerListPane.swift in Sources */,
 				347F336022D0D68400FA9805 /* CCLockItem.swift in Sources */,
 				342D83E62278D5CF000D79DA /* StatusWidgetPreferencePane.swift in Sources */,
 				342D83FB2278D5CF000D79DA /* SWifiItem.swift in Sources */,

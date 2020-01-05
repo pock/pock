@@ -57,7 +57,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     /// Preferences
     private let generalPreferencePane: GeneralPreferencePane = GeneralPreferencePane()
-    private var preferencesWindowController: PreferencesWindowController!
+    private lazy var preferencesWindowController: PreferencesWindowController = {
+        return PreferencesWindowController(preferencePanes: [
+            generalPreferencePane,
+            DockWidgetPreferencePane(),
+            StatusWidgetPreferencePane(),
+            ControlCenterWidgetPreferencePane(),
+            NowPlayingPreferencePane()
+        ])
+    }()
+    
+    /// Widgets Manager
+    private lazy var widgetsManagerWindowController: PreferencesWindowController = {
+        return PreferencesWindowController(
+            preferencePanes: [
+                WidgetsManagerListPane()
+            ],
+            hidesToolbarForSingleItem: false
+        )
+    }()
     
     /// Finish launching
     func applicationDidFinishLaunching(_ aNotification: Notification) {
@@ -101,15 +119,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private func initialize() {
         /// Check for accessibility (needed for badges to work)
         self.checkAccessibility()
-        
-        /// Preferences
-        self.preferencesWindowController = PreferencesWindowController(preferencePanes: [
-            generalPreferencePane,
-            DockWidgetPreferencePane(),
-            StatusWidgetPreferencePane(),
-            ControlCenterWidgetPreferencePane(),
-            NowPlayingPreferencePane()
-        ])
         
         /// Check for status bar icon
         if let button = pockStatusbarIcon.button {
@@ -214,7 +223,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     /// Open widgets manager
     @objc private func openWidgetsManager() {
-        
+        widgetsManagerWindowController.show()
     }
     
     /// Open donate url

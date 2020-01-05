@@ -12,12 +12,18 @@ import Defaults
 
 let isProd: Bool = false
 
+// MARK: Preferences
 extension PreferencePane.Identifier {
     static let general                 = Identifier("general")
     static let dock_widget             = Identifier("dock_widget")
     static let status_widget           = Identifier("status_widget")
     static let controler_center_widget = Identifier("control_center_widget")
     static let now_playing_widget      = Identifier("now_playing_widget")
+}
+
+// MARK: Widgets Manager
+extension PreferencePane.Identifier {
+    static let widgets_manager_list = Identifier("widgets_manager_list")
 }
 
 extension NSNotification.Name {
