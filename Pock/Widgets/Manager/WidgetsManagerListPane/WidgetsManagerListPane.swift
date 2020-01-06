@@ -114,7 +114,8 @@ extension WidgetsManagerListPane {
     private func updateUIElements() {
         guard let widget = selectedWidget else {
             self.uninstallButton.isEnabled = false
-            self.statusLabel.stringValue   = "\(numberOfRows(in: tableView)) widgets installed"
+            let count = widgets.count
+            self.statusLabel.stringValue   = "\(count) widget\(count == 1 ? "" : "s") installed"
             return
         }
         self.statusLabel.stringValue   = "\(widget.name) (\(widget.version)) selected"
