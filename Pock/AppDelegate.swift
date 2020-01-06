@@ -222,7 +222,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     /// Open widgets manager
-    @objc private func openWidgetsManager() {
+    @objc internal func openWidgetsManager() {
         widgetsManagerWindowController.show()
     }
     

@@ -40,6 +40,12 @@ internal class WidgetsManagerListPane: NSViewController, PreferencePane {
                                                selector: #selector(reloadData(_:)),
                                                name: .didLoadInstalledWidgets,
                                                object: nil)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(reloadData(_:)),
+                                               name: .didInstallWidget,
+                                               object: nil)
+        
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(reloadData(_:)),
                                                name: .didUninstallWidget,

@@ -122,14 +122,21 @@ extension WidgetsDispatcher {
         throw NSError(domain: "WidgetDispatcher:loadWidgetAt", code: 999, userInfo: ["description": "Can't load widget at: \"\(path.absoluteString)\""])
     }
     
-    internal func installWidget(at directory: String?) throws {
-        guard let directory = directory else {
+    internal func installWidget(at path: URL?) throws {
+        guard let path = path else {
+            throw NSError(domain: "WidgetDispatcher:installWidget", code: 404, userInfo: ["description": "Can't read widget path."])
+        }
+        try installWidget(at: path.path, name: path.lastPathComponent)
+    }
+    
+    internal func installWidget(at directory: String?, name: String?) throws {
+        guard let directory = directory, let name = name else {
             throw NSError(domain: "WidgetDispatcher:installWidget", code: 404, userInfo: ["description": "Can't read widgets bundle URL."])
         }
         if configuration.shouldDeleteAfterInstall {
-            try FileManager.default.moveItem(atPath: directory, toPath: widgetsPath)
+            try FileManager.default.moveItem(atPath: directory, toPath: "\(widgetsPath)/\(name)")
         }else {
-            try FileManager.default.copyItem(atPath: directory, toPath: widgetsPath)
+            try FileManager.default.copyItem(atPath: directory, toPath: "\(widgetsPath)/\(name)")
         }
     }
     
