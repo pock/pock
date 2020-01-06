@@ -16,7 +16,6 @@ extension NSTouchBar.CustomizationIdentifier {
 extension NSTouchBarItem.Identifier {
     static let pockSystemIcon = NSTouchBarItem.Identifier("Pock")
     static let dockView       = NSTouchBarItem.Identifier("Dock")
-    static let escButton      = NSTouchBarItem.Identifier("Esc")
     static let controlCenter  = NSTouchBarItem.Identifier("ControlCenter")
     static let nowPlaying     = NSTouchBarItem.Identifier("NowPlaying")
     static let status         = NSTouchBarItem.Identifier("Status")
@@ -41,9 +40,8 @@ class PockMainController: PKTouchBarController {
     
     override func didLoad() {
         WidgetsDispatcher.default.loadInstalledWidget() { [weak self] identifiers in
-            self?.touchBar?.customizationIdentifier              = .pockTouchBar
-            self?.touchBar?.defaultItemIdentifiers               = [.escButton, .dockView]
-            self?.touchBar?.customizationAllowedItemIdentifiers  = [.escButton, .dockView, .controlCenter, .nowPlaying, .status]
+            self?.touchBar?.customizationIdentifier             = .pockTouchBar
+            self?.touchBar?.customizationAllowedItemIdentifiers = [.dockView, .controlCenter, .nowPlaying, .status]
             self?.touchBar?.customizationAllowedItemIdentifiers.append(contentsOf: identifiers)
             self?.awakeFromNib()
         }
@@ -57,9 +55,6 @@ class PockMainController: PKTouchBarController {
         
         var widget: PKWidget?
         switch identifier {
-        /// Esc button
-        case .escButton:
-            widget = EscWidget()
         /// Dock widget
         case .dockView:
             widget = DockWidget()

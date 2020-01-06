@@ -48,7 +48,6 @@
 		342D83FB2278D5CF000D79DA /* SWifiItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83C72278D5CF000D79DA /* SWifiItem.swift */; };
 		342D83FC2278D5CF000D79DA /* SPowerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83C82278D5CF000D79DA /* SPowerItem.swift */; };
 		342D83FD2278D5CF000D79DA /* SClockItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83C92278D5CF000D79DA /* SClockItem.swift */; };
-		342D83FE2278D5CF000D79DA /* EscWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83CB2278D5CF000D79DA /* EscWidget.swift */; };
 		342D84002278D5CF000D79DA /* PKWidgetTouchBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83CE2278D5CF000D79DA /* PKWidgetTouchBarItem.swift */; };
 		342D84022278D5CF000D79DA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83D12278D5CF000D79DA /* Constants.swift */; };
 		342D84032278D5CF000D79DA /* FileEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83D32278D5CF000D79DA /* FileEvent.swift */; };
@@ -173,7 +172,6 @@
 		342D83C72278D5CF000D79DA /* SWifiItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SWifiItem.swift; sourceTree = "<group>"; };
 		342D83C82278D5CF000D79DA /* SPowerItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPowerItem.swift; sourceTree = "<group>"; };
 		342D83C92278D5CF000D79DA /* SClockItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SClockItem.swift; sourceTree = "<group>"; };
-		342D83CB2278D5CF000D79DA /* EscWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EscWidget.swift; sourceTree = "<group>"; };
 		342D83CE2278D5CF000D79DA /* PKWidgetTouchBarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKWidgetTouchBarItem.swift; sourceTree = "<group>"; };
 		342D83D12278D5CF000D79DA /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		342D83D32278D5CF000D79DA /* FileEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileEvent.swift; sourceTree = "<group>"; };
@@ -504,7 +502,6 @@
 			children = (
 				345E2ECA23C2692900A947FC /* Manager */,
 				342D83CD2278D5CF000D79DA /* Common */,
-				342D83CA2278D5CF000D79DA /* Esc key */,
 				342D83D02278D5CF000D79DA /* Dock */,
 				342D83BD2278D5CF000D79DA /* NowPlaying */,
 				342D83B52278D5CF000D79DA /* ControlCenter */,
@@ -516,6 +513,7 @@
 		342D83B52278D5CF000D79DA /* ControlCenter */ = {
 			isa = PBXGroup;
 			children = (
+				34E644F3227CB6CE003D0450 /* KeySender.swift */,
 				342D83B62278D5CF000D79DA /* ControlCenterWidget.swift */,
 				342D83B72278D5CF000D79DA /* ControlCenterItem.swift */,
 				342D83B82278D5CF000D79DA /* Items */,
@@ -567,15 +565,6 @@
 				342D83C92278D5CF000D79DA /* SClockItem.swift */,
 			);
 			path = Items;
-			sourceTree = "<group>";
-		};
-		342D83CA2278D5CF000D79DA /* Esc key */ = {
-			isa = PBXGroup;
-			children = (
-				342D83CB2278D5CF000D79DA /* EscWidget.swift */,
-				34E644F3227CB6CE003D0450 /* KeySender.swift */,
-			);
-			path = "Esc key";
 			sourceTree = "<group>";
 		};
 		342D83CD2278D5CF000D79DA /* Common */ = {
@@ -1031,7 +1020,6 @@
 				342D83EE2278D5CF000D79DA /* ControlCenterWidget.swift in Sources */,
 				342D83EC2278D5CF000D79DA /* OSDUIHelper.swift in Sources */,
 				3418D9FF22882EC600E11E37 /* PKSlideableController.swift in Sources */,
-				342D83FE2278D5CF000D79DA /* EscWidget.swift in Sources */,
 				345C955423A53D4D00E1AC53 /* NowPlayingPreferencePane.swift in Sources */,
 				34064343227EDC2200981372 /* DockFolderRepository.swift in Sources */,
 				342D83E02278D5CF000D79DA /* PKTouchBarController.swift in Sources */,
