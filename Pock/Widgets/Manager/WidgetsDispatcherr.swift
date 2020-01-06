@@ -154,11 +154,15 @@ extension WidgetsDispatcher {
     }
     
     internal func removeWidget(withName name: String?) throws {
-        guard let _name = name, let widgetPath = getWidgetPath(for: name) else {
+        guard let widgetPath = getWidgetPath(for: name) else {
             throw NSError(domain: "WidgetDispatcher:removeWidget", code: 500, userInfo: ["description": "Invalid passed name: `\(name ?? "nil")`"])
         }
-        guard fileExists(at: widgetPath, isDirectory: true) else {
-            throw NSError(domain: "WidgetDispatcher:removeWidget", code: 404, userInfo: ["description": "Can't find bundle for widget: \"\(_name)\""])
+        try removeWidget(atPath: widgetPath)
+    }
+    
+    internal func removeWidget(atPath path: String?) throws {
+        guard let widgetPath = path, fileExists(at: widgetPath, isDirectory: true) else {
+            throw NSError(domain: "WidgetDispatcher:removeWidget", code: 404, userInfo: ["description": "Can't find bundle for widget at path: \"\(path ?? "Unknown")\""])
         }
         try FileManager.default.removeItem(atPath: widgetPath)
     }

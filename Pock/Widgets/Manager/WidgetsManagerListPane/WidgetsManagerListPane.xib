@@ -10,6 +10,7 @@
             <connections>
                 <outlet property="statusLabel" destination="6kc-nR-owD" id="mcu-3s-7I3"/>
                 <outlet property="tableView" destination="e7c-EJ-TU7" id="6sk-HR-e9b"/>
+                <outlet property="uninstallButton" destination="7gd-ex-myd" id="PvG-00-Nkd"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
@@ -34,7 +35,7 @@
                                 <tableColumns>
                                     <tableColumn identifier="nameCellIdentifier" width="200" minWidth="200" maxWidth="200" id="MED-7Z-xbu">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Name">
-                                            <font key="font" metaFont="label" size="11"/>
+                                            <font key="font" metaFont="message" size="11"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                         </tableHeaderCell>
@@ -67,7 +68,7 @@
                                     </tableColumn>
                                     <tableColumn identifier="authorCellIdentifier" width="200" minWidth="200" maxWidth="200" id="9Qx-Tm-UPH">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Author">
-                                            <font key="font" metaFont="label" size="11"/>
+                                            <font key="font" metaFont="message" size="11"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </tableHeaderCell>
@@ -100,7 +101,7 @@
                                     </tableColumn>
                                     <tableColumn identifier="versionCellIdentifier" width="80" minWidth="80" maxWidth="80" id="zrk-x6-ZhV">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Version">
-                                            <font key="font" metaFont="label" size="11"/>
+                                            <font key="font" metaFont="message" size="11"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                         </tableHeaderCell>
@@ -133,7 +134,7 @@
                                     </tableColumn>
                                     <tableColumn identifier="statusCellIdentifier" width="80" minWidth="80" maxWidth="80" id="eOk-m0-nNE">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Status">
-                                            <font key="font" metaFont="label" size="11"/>
+                                            <font key="font" metaFont="message" size="11"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </tableHeaderCell>
@@ -195,11 +196,8 @@
                 <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="16" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vyy-e8-cfj">
                     <rect key="frame" x="16" y="8" width="528" height="21"/>
                     <subviews>
-                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="60P-6U-yLy">
-                            <rect key="frame" x="-6" y="-7" width="38" height="32"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="26" id="DKm-nR-Owt"/>
-                            </constraints>
+                        <button horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="60P-6U-yLy">
+                            <rect key="frame" x="-6" y="-7" width="47" height="32"/>
                             <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSRefreshTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="MuW-2p-aw7">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
@@ -208,8 +206,8 @@
                                 <action selector="reloadData:" target="-2" id="1ew-NU-zsj"/>
                             </connections>
                         </button>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6kc-nR-owD">
-                            <rect key="frame" x="40" y="3" width="490" height="16"/>
+                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="6kc-nR-owD">
+                            <rect key="frame" x="49" y="3" width="433" height="16"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="16" id="MwB-Zk-AVC"/>
                             </constraints>
@@ -219,12 +217,24 @@
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
+                        <button horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7gd-ex-myd">
+                            <rect key="frame" x="490" y="-7" width="44" height="32"/>
+                            <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSTouchBarDeleteTemplate" imagePosition="only" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Z0w-lE-KOM">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="uninstallSelectedWidget:" target="-2" id="0oH-5k-PNU"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <visibilityPriorities>
                         <integer value="1000"/>
                         <integer value="1000"/>
+                        <integer value="1000"/>
                     </visibilityPriorities>
                     <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
                         <real value="3.4028234663852886e+38"/>
                         <real value="3.4028234663852886e+38"/>
                     </customSpacing>
@@ -245,5 +255,6 @@
     <resources>
         <image name="NSActionTemplate" width="14" height="14"/>
         <image name="NSRefreshTemplate" width="11" height="15"/>
+        <image name="NSTouchBarDeleteTemplate" width="15" height="30"/>
     </resources>
 </document>

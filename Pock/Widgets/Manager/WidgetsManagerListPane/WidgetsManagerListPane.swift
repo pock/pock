@@ -25,11 +25,13 @@ internal class WidgetsManagerListPane: NSViewController, PreferencePane {
     }
     
     // MARK: UI Elements
-    @IBOutlet private weak var tableView:   NSTableView!
-    @IBOutlet private weak var statusLabel: NSTextField!
+    @IBOutlet private weak var tableView:       NSTableView!
+    @IBOutlet private weak var statusLabel:     NSTextField!
+    @IBOutlet private weak var uninstallButton: NSButton!
     
     // MARK: Data
     private var widgets: [WidgetInfo] = []
+    private var selectedWidget: WidgetInfo?
     
     // MARK: Overrides
     override func viewWillAppear() {
@@ -47,16 +49,32 @@ extension WidgetsManagerListPane {
     @IBAction private func reloadData(_ sender: Any? = nil) {
         /// Clear UI
         widgets = []
+        selectedWidget = nil
         tableView.reloadData()
-        updateStatusLabel()
+        updateUIElements()
         /// Fetch installed widgets
         fetchInstalledWidgets() { [weak self] widgets in
             self?.widgets = widgets
             /// Update UI on main thread
             DispatchQueue.main.async { [weak self] in
                 self?.tableView.reloadData()
-                self?.updateStatusLabel()
+                self?.updateUIElements()
             }
+        }
+    }
+    
+    /// Uninstall widget
+    @IBAction private func uninstallSelectedWidget(_ sender: Any? = nil) {
+        defer {
+            reloadData()
+        }
+        guard let widget = selectedWidget else {
+            return
+        }
+        do {
+            try WidgetsDispatcher.default.removeWidget(atPath: widget.path?.path)
+        } catch {
+            print("[WidgetsManagerListPane]: Can't uninstall widget. Reason: \(error.localizedDescription)")
         }
     }
     
@@ -73,13 +91,14 @@ extension WidgetsManagerListPane {
 extension WidgetsManagerListPane {
 
     /// Update status label
-    private func updateStatusLabel() {
-        guard tableView.selectedRow > -1 else {
-            self.statusLabel.stringValue = "\(numberOfRows(in: tableView)) widgets installed"
+    private func updateUIElements() {
+        guard let widget = selectedWidget else {
+            self.uninstallButton.isEnabled = false
+            self.statusLabel.stringValue   = "\(numberOfRows(in: tableView)) widgets installed"
             return
         }
-        let widget = widgets[tableView.selectedRow]
-        self.statusLabel.stringValue = widget.id
+        self.statusLabel.stringValue   = "\(widget.name) (\(widget.version)) selected"
+        self.uninstallButton.isEnabled = true
     }
 
 }
@@ -145,7 +164,8 @@ extension WidgetsManagerListPane: NSTableViewDelegate {
     
     /// Did select row
     func tableViewSelectionDidChange(_ notification: Notification) {
-        self.updateStatusLabel()
+        self.selectedWidget = tableView.selectedRow > -1 ? widgets[tableView.selectedRow] : nil
+        self.updateUIElements()
     }
     
 }
