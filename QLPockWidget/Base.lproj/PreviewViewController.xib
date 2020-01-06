@@ -30,7 +30,7 @@
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="WidgetsManagerList" id="CYr-Ri-mVA"/>
                 </imageView>
                 <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k7A-Ij-mFw">
-                    <rect key="frame" x="190" y="76" width="270" height="94"/>
+                    <rect key="frame" x="196" y="68" width="264" height="94"/>
                     <subviews>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4fB-Rl-anS">
                             <rect key="frame" x="-2" y="75" width="107" height="19"/>
@@ -81,11 +81,11 @@
             </subviews>
             <constraints>
                 <constraint firstItem="MUX-pE-NUa" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="20" id="1SH-kv-w4j"/>
+                <constraint firstItem="k7A-Ij-mFw" firstAttribute="top" secondItem="MUX-pE-NUa" secondAttribute="top" constant="8" id="8P4-CV-ivf"/>
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="k7A-Ij-mFw" secondAttribute="bottom" constant="20" id="Bbe-Wo-vhR"/>
                 <constraint firstAttribute="trailing" secondItem="k7A-Ij-mFw" secondAttribute="trailing" constant="20" id="T8X-iE-DTg"/>
                 <constraint firstItem="MUX-pE-NUa" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="20" id="bvd-i2-8dz"/>
-                <constraint firstItem="k7A-Ij-mFw" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="20" id="fzm-qM-pDF"/>
-                <constraint firstItem="k7A-Ij-mFw" firstAttribute="leading" secondItem="MUX-pE-NUa" secondAttribute="trailing" constant="20" id="gvH-Ks-awg"/>
+                <constraint firstItem="k7A-Ij-mFw" firstAttribute="leading" secondItem="MUX-pE-NUa" secondAttribute="trailing" constant="26" id="gvH-Ks-awg"/>
                 <constraint firstAttribute="bottom" secondItem="MUX-pE-NUa" secondAttribute="bottom" constant="20" id="ufB-mS-aKM"/>
             </constraints>
             <point key="canvasLocation" x="139" y="154"/>
