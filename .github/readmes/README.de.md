@@ -9,7 +9,7 @@
 
 
 ## macOS Catalina (10.15)
-Wenn Sie auf macOS Catalina (10.15) sind, klicken Sie bitte [hier] (https://pock.dev/docs/catalina.html) und lesen Sie die Vorschläge sorgfältig durch, um eine einwandfreie Erfahrung zu machen.
+Wenn Sie auf macOS Catalina (10.15) sind, klicken Sie bitte [hier](https://pock.dev/docs/catalina.html) und lesen Sie die Vorschläge sorgfältig durch, um eine einwandfreie Erfahrung zu machen.
 
 
 
