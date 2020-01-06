@@ -34,9 +34,25 @@ internal class WidgetsManagerListPane: NSViewController, PreferencePane {
     private var selectedWidget: WidgetInfo?
     
     // MARK: Overrides
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(reloadData(_:)),
+                                               name: .didLoadInstalledWidgets,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(reloadData(_:)),
+                                               name: .didUninstallWidget,
+                                               object: nil)
+    }
+    
     override func viewWillAppear() {
         super.viewWillAppear()
         self.reloadData()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
 }
@@ -65,15 +81,13 @@ extension WidgetsManagerListPane {
     
     /// Uninstall widget
     @IBAction private func uninstallSelectedWidget(_ sender: Any? = nil) {
-        defer {
-            reloadData()
-        }
         guard let widget = selectedWidget else {
             return
         }
         do {
             try WidgetsDispatcher.default.removeWidget(atPath: widget.path?.path)
         } catch {
+            /// TODO: Show alert to inform user.
             print("[WidgetsManagerListPane]: Can't uninstall widget. Reason: \(error.localizedDescription)")
         }
     }

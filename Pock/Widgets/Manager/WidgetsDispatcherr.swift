@@ -18,6 +18,12 @@ internal struct WidgetInfo {
     let loaded:  Bool
 }
 
+extension NSNotification.Name {
+    static let didLoadInstalledWidgets = NSNotification.Name("didLoadInstalledWidgets")
+    static let didInstallWidget        = NSNotification.Name("didInstallWidget")
+    static let didUninstallWidget      = NSNotification.Name("didUninstallWidget")
+}
+
 public final class WidgetsDispatcher {
     
     /// Configuration
@@ -102,6 +108,7 @@ public final class WidgetsDispatcher {
             try? loadWidgetAt(path: widgetBundleURL)
         }
         completion(Array(loadedWidgets.keys))
+        NotificationCenter.default.post(name: .didLoadInstalledWidgets, object: nil)
     }
     
 }
@@ -165,6 +172,7 @@ extension WidgetsDispatcher {
             throw NSError(domain: "WidgetDispatcher:removeWidget", code: 404, userInfo: ["description": "Can't find bundle for widget at path: \"\(path ?? "Unknown")\""])
         }
         try FileManager.default.removeItem(atPath: widgetPath)
+        NotificationCenter.default.post(name: .didUninstallWidget, object: nil)
     }
     
     @discardableResult
