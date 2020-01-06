@@ -9,15 +9,6 @@
 import Foundation
 import PockKit
 
-internal struct WidgetInfo {
-    let path:    URL?
-    let id:      String
-    let name:    String
-    let version: String
-    let author:  String
-    let loaded:  Bool
-}
-
 extension NSNotification.Name {
     static let didLoadInstalledWidgets = NSNotification.Name("didLoadInstalledWidgets")
     static let didInstallWidget        = NSNotification.Name("didInstallWidget")
@@ -94,7 +85,10 @@ public final class WidgetsDispatcher {
     internal var installedWidgets: [WidgetInfo] {
         var returnable: [WidgetInfo] = []
         for path in installedWidgetsPaths {
-            if let info = try? loadInfoForWidgetAt(path: path) {
+            if var info = try? WidgetInfo(path: path) {
+                info.loaded = loadedWidgets.values.contains(where: {
+                    NSStringFromClass($0) == info.className
+                })
                 returnable.append(info)
             }
         }
@@ -115,27 +109,6 @@ public final class WidgetsDispatcher {
 
 // MARK: Utilities
 extension WidgetsDispatcher {
-    
-    private func loadInfoForWidgetAt(path: URL) throws -> WidgetInfo {
-        if let widgetBundle = Bundle(url: path) {
-            let id      = widgetBundle.object(forInfoDictionaryKey: "CFBundleIdentifier")         as? String
-            let name    = widgetBundle.object(forInfoDictionaryKey: "CFBundleName")               as? String
-            let version = widgetBundle.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
-            let author  = widgetBundle.object(forInfoDictionaryKey: "PKWidgetAuthor")             as? String
-            let clss    = widgetBundle.object(forInfoDictionaryKey: "NSPrincipalClass")           as? String
-            return WidgetInfo(
-                path:    path,
-                id:      id      ?? "Unknown",
-                name:    name    ?? "Unknown",
-                version: version ?? "Unknown",
-                author:  author  ?? "Unknown",
-                loaded:  loadedWidgets.values.contains(where: {
-                    NSStringFromClass($0) == clss
-                })
-            )
-        }
-        throw NSError(domain: "WidgetDispatcher:loadInfoForWidgetAt", code: 999, userInfo: ["description": "Can't load widget at: \"\(path.absoluteString)\""])
-    }
     
     private func loadWidgetAt(path: URL) throws {
         if let widgetBundle = Bundle(url: path), widgetBundle.load() {
