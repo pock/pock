@@ -177,6 +177,13 @@
 		34E644F9227D9A69003D0450 /* DockWidgetPreferencePane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockWidgetPreferencePane.swift; sourceTree = "<group>"; };
 		34F27F2523428108001EBB6B /* LaunchAtLogin.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LaunchAtLogin.framework; path = Carthage/Build/Mac/LaunchAtLogin.framework; sourceTree = "<group>"; };
 		3BA42833BC69C895EB31DF93 /* Pods-Pock.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pock.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pock/Pods-Pock.debug.xcconfig"; sourceTree = "<group>"; };
+		6997E4EE23CA215E00CB61F6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/DockFolderController.strings; sourceTree = "<group>"; };
+		6997E4EF23CA215E00CB61F6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/GeneralPreferencePane.strings; sourceTree = "<group>"; };
+		6997E4F023CA215E00CB61F6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/StatusWidgetPreferencePane.strings; sourceTree = "<group>"; };
+		6997E4F123CA215E00CB61F6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/ControlCenterWidgetPreferencePane.strings; sourceTree = "<group>"; };
+		6997E4F223CA215E00CB61F6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/DockWidgetPreferencePane.strings; sourceTree = "<group>"; };
+		6997E4F323CA215E00CB61F6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/NowPlayingPreferencePane.strings; sourceTree = "<group>"; };
+		6997E4F423CA215E00CB61F6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		716D62071D19174E56D6E33D /* Pods-Pock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pock.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pock/Pods-Pock.release.xcconfig"; sourceTree = "<group>"; };
 		863BE70CFBAC31BDBF35B1FD /* Pods_Pock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		881719822334CAFA00CEFF2B /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/DockFolderController.strings; sourceTree = "<group>"; };
@@ -693,6 +700,7 @@
 				it,
 				tr,
 				"zh-Hant",
+				es,
 			);
 			mainGroup = 348343CD1F631B2E00CDA005;
 			productRefGroup = 348343D71F631B2E00CDA005 /* Products */;
@@ -895,6 +903,7 @@
 				3482609F23A687820053432B /* zh-Hant */,
 				348260A123A687820053432B /* it */,
 				348260A323A687830053432B /* tr */,
+				6997E4F323CA215E00CB61F6 /* es */,
 			);
 			name = NowPlayingPreferencePane.xib;
 			sourceTree = "<group>";
@@ -908,6 +917,7 @@
 				34A8060422F6B97000621235 /* it */,
 				881719822334CAFA00CEFF2B /* tr */,
 				AAA3636F2333699C0016267D /* zh-Hant */,
+				6997E4EE23CA215E00CB61F6 /* es */,
 			);
 			name = DockFolderController.xib;
 			sourceTree = "<group>";
@@ -921,6 +931,7 @@
 				881719832334CAFA00CEFF2B /* tr */,
 				AAA363702333699C0016267D /* zh-Hant */,
 				96F29996231797C00055DA26 /* en */,
+				6997E4EF23CA215E00CB61F6 /* es */,
 			);
 			name = GeneralPreferencePane.xib;
 			sourceTree = "<group>";
@@ -934,6 +945,7 @@
 				AAA363712333699C0016267D /* zh-Hant */,
 				96F29990231797060055DA26 /* zh-Hans */,
 				96E3DD8C2357258600AA719D /* en */,
+				6997E4F023CA215E00CB61F6 /* es */,
 			);
 			name = StatusWidgetPreferencePane.xib;
 			sourceTree = "<group>";
@@ -947,6 +959,7 @@
 				96E468B32351BC7900A20E56 /* zh-Hant */,
 				96E468B42351BC7B00A20E56 /* it */,
 				96E468B52351BC7F00A20E56 /* tr */,
+				6997E4F223CA215E00CB61F6 /* es */,
 			);
 			name = DockWidgetPreferencePane.xib;
 			sourceTree = "<group>";
@@ -960,6 +973,7 @@
 				AAA363722333699C0016267D /* zh-Hant */,
 				96F2999A2317980B0055DA26 /* zh-Hans */,
 				96E7A15A239BA74E00CB4C4C /* en */,
+				6997E4F123CA215E00CB61F6 /* es */,
 			);
 			name = ControlCenterWidgetPreferencePane.xib;
 			sourceTree = "<group>";
@@ -972,6 +986,7 @@
 				34A8060922F6B97000621235 /* it */,
 				881719872334CAFA00CEFF2B /* tr */,
 				AAA363742333699C0016267D /* zh-Hant */,
+				6997E4F423CA215E00CB61F6 /* es */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
