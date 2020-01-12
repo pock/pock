@@ -61,7 +61,6 @@
 		347F336022D0D68400FA9805 /* CCLockItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347F335F22D0D68400FA9805 /* CCLockItem.swift */; };
 		347F336722D0DB9200FA9805 /* SystemHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 347F336622D0DB9100FA9805 /* SystemHelper.m */; };
 		347F336922D0DBD600FA9805 /* CCSleepItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347F336822D0DBD600FA9805 /* CCSleepItem.swift */; };
-		349431ED22197485008622B1 /* MediaRemote.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 349431EC22197484008622B1 /* MediaRemote.framework */; };
 		349F93E8228865C400B8CFBE /* ISSoundAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 349F93E7228865C400B8CFBE /* ISSoundAdditions.m */; };
 		349F9C1C23C36BCA002CEC1E /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 349F9C1B23C36BCA002CEC1E /* Quartz.framework */; };
 		349F9C1F23C36BCA002CEC1E /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349F9C1E23C36BCA002CEC1E /* PreviewViewController.swift */; };
@@ -146,7 +145,6 @@
 		342D83AA2278D5CF000D79DA /* PockDockHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PockDockHelper.m; sourceTree = "<group>"; };
 		342D83AE2278D5CF000D79DA /* Pock-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Pock-Bridging-Header.h"; sourceTree = "<group>"; };
 		342D83B02278D5CF000D79DA /* DKBrightness.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DKBrightness.swift; sourceTree = "<group>"; };
-		342D83B12278D5CF000D79DA /* MRMediaRemote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRMediaRemote.h; sourceTree = "<group>"; };
 		342D83B22278D5CF000D79DA /* OSDUIHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSDUIHelper.swift; sourceTree = "<group>"; };
 		342D83B32278D5CF000D79DA /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		342D83B62278D5CF000D79DA /* ControlCenterWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlCenterWidget.swift; sourceTree = "<group>"; };
@@ -258,7 +256,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				34F27F2923428174001EBB6B /* login.framework in Frameworks */,
-				349431ED22197485008622B1 /* MediaRemote.framework in Frameworks */,
 				34BC3ECC2210B2EC00C1DD3C /* DFRFoundation.framework in Frameworks */,
 				009B0E12E317757741CE38C8 /* Pods_Pock.framework in Frameworks */,
 			);
@@ -448,7 +445,6 @@
 			children = (
 				342D83AE2278D5CF000D79DA /* Pock-Bridging-Header.h */,
 				342D83A72278D5CF000D79DA /* NSTouchBar.h */,
-				342D83B12278D5CF000D79DA /* MRMediaRemote.h */,
 				342D83B22278D5CF000D79DA /* OSDUIHelper.swift */,
 				349F93E5228865C400B8CFBE /* ISSoundAdditions */,
 				342D83A82278D5CF000D79DA /* PockDockHelper */,
