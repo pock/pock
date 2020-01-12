@@ -9,6 +9,7 @@
 import Foundation
 
 public struct WidgetInfo {
+    /// Data
     let path:      URL?
     let id:        String
     let name:      String
@@ -17,9 +18,13 @@ public struct WidgetInfo {
     let className: String
     var loaded:    Bool
     
+    /// Preference
+    let preferenceClass: AnyClass?
+    
     /// Load info for widget at given path.
     public init(path: URL) throws {
         if let widgetBundle = Bundle(url: path), let className = widgetBundle.object(forInfoDictionaryKey: "NSPrincipalClass") as? String {
+            /// Data
             self.path      = path
             self.id        = widgetBundle.object(forInfoDictionaryKey: "CFBundleIdentifier")         as? String ?? "Unknown"
             self.name      = widgetBundle.object(forInfoDictionaryKey: "CFBundleName")               as? String ?? "Unknown"
@@ -27,6 +32,12 @@ public struct WidgetInfo {
             self.author    = widgetBundle.object(forInfoDictionaryKey: "PKWidgetAuthor")             as? String ?? "Unknown"
             self.className = className
             self.loaded  = false
+            /// Preference
+            if let preferenceClassName = widgetBundle.object(forInfoDictionaryKey: "PKWidgetPreferenceClass") as? String {
+                self.preferenceClass = NSClassFromString(preferenceClassName)
+            }else {
+                self.preferenceClass = nil
+            }
             return
         }
         throw NSError(domain: "WidgetInfo:init", code: 999, userInfo: ["description": "Can't load widget at: \"\(path.absoluteString)\""])

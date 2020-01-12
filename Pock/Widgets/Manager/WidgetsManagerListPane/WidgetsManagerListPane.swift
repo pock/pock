@@ -29,6 +29,13 @@ internal class WidgetsManagerListPane: NSViewController, PreferencePane {
     @IBOutlet private weak var statusLabel:     NSTextField!
     @IBOutlet private weak var uninstallButton: NSButton!
     
+    // MARK: Menu
+    private lazy var rightClickMenu: NSMenu = {
+        let menu = NSMenu(title: "Widget Options".localized)
+        menu.addItem(withTitle: "Preferences…", action: #selector(openPreferencePaneForWidget(_:)), keyEquivalent: ",")
+        return menu
+    }()
+    
     // MARK: Data
     private var widgets: [WidgetInfo] = []
     private var selectedWidget: WidgetInfo?
@@ -50,6 +57,7 @@ internal class WidgetsManagerListPane: NSViewController, PreferencePane {
                                                selector: #selector(reloadData(_:)),
                                                name: .didUninstallWidget,
                                                object: nil)
+        self.tableView.menu = rightClickMenu
     }
     
     override func viewWillAppear() {
@@ -83,6 +91,25 @@ extension WidgetsManagerListPane {
                 self?.updateUIElements()
             }
         }
+    }
+    
+    /// Open preferences for selected widget
+    @IBAction private func openPreferencePaneForWidget(_ sender: Any? = nil) {
+        guard tableView.clickedRow >= 0, tableView.clickedRow < widgets.count else {
+            return
+        }
+        let widget = widgets[tableView.clickedRow]
+        guard let clss = widget.preferenceClass as? PKWidgetPreference.Type else {
+            return
+        }
+        openWindowForPreferenceClass(clss, title: widget.name)
+    }
+    
+    /// Open window for preference class
+    private func openWindowForPreferenceClass(_ clss: PKWidgetPreference.Type, title: String? = nil) {
+        let controller = clss.init(nibName: clss.nibName, bundle: Bundle(for: clss))
+        controller.title = controller.title ?? title ?? clss.nibName
+        self.presentAsModalWindow(controller)
     }
     
     /// Uninstall widget
