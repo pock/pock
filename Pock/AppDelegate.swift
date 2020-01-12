@@ -62,8 +62,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             generalPreferencePane,
             DockWidgetPreferencePane(),
             StatusWidgetPreferencePane(),
-            ControlCenterWidgetPreferencePane(),
-            NowPlayingPreferencePane()
+            ControlCenterWidgetPreferencePane()
         ])
     }()
     

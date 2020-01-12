@@ -17,7 +17,6 @@ extension NSTouchBarItem.Identifier {
     static let pockSystemIcon = NSTouchBarItem.Identifier("Pock")
     static let dockView       = NSTouchBarItem.Identifier("Dock")
     static let controlCenter  = NSTouchBarItem.Identifier("ControlCenter")
-    static let nowPlaying     = NSTouchBarItem.Identifier("NowPlaying")
     static let status         = NSTouchBarItem.Identifier("Status")
 }
 
@@ -41,7 +40,7 @@ class PockMainController: PKTouchBarController {
     override func didLoad() {
         WidgetsDispatcher.default.loadInstalledWidget() { [weak self] identifiers in
             self?.touchBar?.customizationIdentifier             = .pockTouchBar
-            self?.touchBar?.customizationAllowedItemIdentifiers = [.dockView, .controlCenter, .nowPlaying, .status]
+            self?.touchBar?.customizationAllowedItemIdentifiers = [.dockView, .controlCenter, .status]
             self?.touchBar?.customizationAllowedItemIdentifiers.append(contentsOf: identifiers)
             self?.awakeFromNib()
         }
@@ -61,9 +60,6 @@ class PockMainController: PKTouchBarController {
         /// ControlCenter widget
         case .controlCenter:
             widget = ControlCenterWidget()
-        /// NowPlaying widget
-        case .nowPlaying:
-            widget = NowPlayingWidget()
         /// Status widget
         case .status:
             widget = StatusWidget()

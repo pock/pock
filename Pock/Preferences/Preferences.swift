@@ -82,10 +82,6 @@ enum AppExposeSettings : String, Codable, CaseIterable {
     }
 }
 
-enum NowPlayingWidgetStyle: String, Codable {
-    case `default`, playPause, onlyInfo
-}
-
 extension Defaults.Keys {
     static let hideControlStrip                 = Defaults.Key<Bool?>("hideControlStrip",      default: true)
     static let enableAutomaticUpdates           = Defaults.Key<Bool>("enableAutomaticUpdates", default: false)
@@ -122,11 +118,4 @@ extension Defaults.Keys {
     static let shouldShowVolumeMuteItem         = Defaults.Key<Bool>("shouldShowVolumeMuteItem",        default: false)
     static let isVolumeMute                     = Defaults.Key<Bool>("isVolumeMute",                    default: false)
     static let shouldShowVolumeToggleItem       = Defaults.Key<Bool>("shouldShowVolumeToggleItem",      default: false)
-    /// Now Playing widget
-    static let defaultMusicPlayerName           = Defaults.Key<String>("defaultMusicPlayerName",        default: "Music")
-    static let defaultMusicPlayerBundleID       = Defaults.Key<String>("defaultMusicPlayerBundleID",    default: "com.apple.Music")
-    static let defaultMusicPlayerPath           = Defaults.Key<String>("defaultMusicPlayerPath",        default: "/System/Applications/Music.app")
-    static let nowPlayingWidgetStyle            = Defaults.Key<NowPlayingWidgetStyle>("nowPlayingWidgetStyle", default: .default)
-    static let hideNowPlayingIfNoMedia          = Defaults.Key<Bool>("hideNowPlayingIfNoMedia", default: false)
-    static let animateIconWhilePlaying          = Defaults.Key<Bool>("animateIconWhilePlaying", default: true)
 }
