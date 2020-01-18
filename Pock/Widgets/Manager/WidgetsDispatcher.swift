@@ -44,7 +44,7 @@ public final class WidgetsDispatcher {
     }
     
     public func clearLoadedWidgets() {
-        loadedWidgets = [:]
+        loadedWidgets.removeAll()
     }
     
     private func fileExists(at path: String?, isDirectory: Bool) -> Bool {
@@ -111,7 +111,7 @@ public final class WidgetsDispatcher {
 extension WidgetsDispatcher {
     
     private func loadWidgetAt(path: URL) throws {
-        if let widgetBundle = Bundle(url: path), widgetBundle.load() {
+        if let widgetBundle = Bundle(url: path) {
             if let clss = widgetBundle.principalClass as? PKWidget.Type {
                 var plugin: PKWidget? = clss.init()
                 self.loadedWidgets[plugin!.identifier] = clss
