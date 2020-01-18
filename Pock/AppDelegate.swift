@@ -61,7 +61,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return PreferencesWindowController(preferencePanes: [
             generalPreferencePane,
             DockWidgetPreferencePane(),
-            StatusWidgetPreferencePane(),
             ControlCenterWidgetPreferencePane()
         ])
     }()

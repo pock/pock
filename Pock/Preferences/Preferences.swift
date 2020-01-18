@@ -16,9 +16,7 @@ let isProd: Bool = false
 extension PreferencePane.Identifier {
     static let general                 = Identifier("general")
     static let dock_widget             = Identifier("dock_widget")
-    static let status_widget           = Identifier("status_widget")
     static let controler_center_widget = Identifier("control_center_widget")
-    static let now_playing_widget      = Identifier("now_playing_widget")
 }
 
 // MARK: Widgets Manager
@@ -29,7 +27,6 @@ extension PreferencePane.Identifier {
 extension NSNotification.Name {
     static let didChangeNotificationBadgeRefreshRate = NSNotification.Name("didSelectNotificationBadgeRefreshRate")
     static let shouldReloadPock                      = NSNotification.Name("shouldReloadPock")
-    static let shouldReloadStatusWidget              = NSNotification.Name("shouldReloadStatusWidget")
     static let shouldReloadControlCenterWidget       = NSNotification.Name("shouldReloadControlCenterWidget")
     static let shouldReloadDock                      = NSNotification.Name("shouldReloadDock")
     static let shouldReloadDockLayout                = NSNotification.Name("shouldReloadDockLayout")
@@ -94,14 +91,6 @@ extension Defaults.Keys {
     static let hideTrash                        = Defaults.Key<Bool>("hideTrash",              default: false)
     static let hidePersistentItems              = Defaults.Key<Bool>("hidePersistentItems",    default: false)
     static let openFinderInsidePock             = Defaults.Key<Bool>("openFinderInsidePock",   default: true)
-    /// Status widget
-    static let shouldShowWifiItem               = Defaults.Key<Bool>("shouldShowWifiItem",          default: true)
-    static let shouldShowPowerItem              = Defaults.Key<Bool>("shouldShowPowerItem",         default: true)
-    static let shouldShowBatteryIcon            = Defaults.Key<Bool>("shouldShowBatteryIcon",       default: true)
-    static let shouldShowBatteryPercentage      = Defaults.Key<Bool>("shouldShowBatteryPercentage", default: true)
-    static let shouldShowDateItem               = Defaults.Key<Bool>("shouldShowDateItem",          default: true)
-    static let timeFormatTextField              = Defaults.Key<String>("timeFormatTextField",       default: "EE dd MMM HH:mm")
-    static let shouldShowSpotlightItem          = Defaults.Key<Bool>("shouldShowSpotlightItem",     default: true)
     /// Control Center widget
     static let shouldShowSleepItem              = Defaults.Key<Bool>("shouldShowSleepItem",             default: false)
     static let shouldShowLockItem               = Defaults.Key<Bool>("shouldShowLockItem",              default: false)
