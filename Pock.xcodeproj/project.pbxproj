@@ -12,7 +12,6 @@
 		3406433E227ED8BC00981372 /* DockFolderItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3406433D227ED8BC00981372 /* DockFolderItemView.swift */; };
 		34064343227EDC2200981372 /* DockFolderRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34064342227EDC2200981372 /* DockFolderRepository.swift */; };
 		34064345227EDCB900981372 /* DockFolderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34064344227EDCB900981372 /* DockFolderItem.swift */; };
-		3406434A227F323A00981372 /* PKTouchBarNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34064349227F323A00981372 /* PKTouchBarNavController.swift */; };
 		3406434D227F3FFF00981372 /* PockMainController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3406434C227F3FFF00981372 /* PockMainController.xib */; };
 		3407F9DC22D0E75E0072E742 /* ControlCenterWidgetPreferencePane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3407F9DA22D0E75D0072E742 /* ControlCenterWidgetPreferencePane.swift */; };
 		3407F9DE22D0F0A60072E742 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3407F9DD22D0F0A60072E742 /* Extensions.swift */; };
@@ -22,7 +21,6 @@
 		3418D9FF22882EC600E11E37 /* PKSlideableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3418D9FE22882EC600E11E37 /* PKSlideableController.swift */; };
 		3418DA022288318A00E11E37 /* PKSlideableController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3418DA012288318A00E11E37 /* PKSlideableController.xib */; };
 		342D83DF2278D5CF000D79DA /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 342D83952278D5CF000D79DA /* MainWindow.xib */; };
-		342D83E02278D5CF000D79DA /* PKTouchBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83972278D5CF000D79DA /* PKTouchBarController.swift */; };
 		342D83E12278D5CF000D79DA /* PockMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83982278D5CF000D79DA /* PockMainController.swift */; };
 		342D83E22278D5CF000D79DA /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D839A2278D5CF000D79DA /* Preferences.swift */; };
 		342D83E42278D5CF000D79DA /* GeneralPreferencePane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D839E2278D5CF000D79DA /* GeneralPreferencePane.swift */; };
@@ -52,7 +50,6 @@
 		345E2EC823C2691900A947FC /* WidgetsManagerListPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 345E2EC623C2691900A947FC /* WidgetsManagerListPane.xib */; };
 		347D7EE7230874A800BA9200 /* ControlCenterWidgetPreferencePane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9686B4F922D2216400C7A08C /* ControlCenterWidgetPreferencePane.xib */; };
 		347F336022D0D68400FA9805 /* CCLockItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347F335F22D0D68400FA9805 /* CCLockItem.swift */; };
-		347F336722D0DB9200FA9805 /* SystemHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 347F336622D0DB9100FA9805 /* SystemHelper.m */; };
 		347F336922D0DBD600FA9805 /* CCSleepItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347F336822D0DBD600FA9805 /* CCSleepItem.swift */; };
 		349F93E8228865C400B8CFBE /* ISSoundAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 349F93E7228865C400B8CFBE /* ISSoundAdditions.m */; };
 		349F9C1C23C36BCA002CEC1E /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 349F9C1B23C36BCA002CEC1E /* Quartz.framework */; };
@@ -114,7 +111,6 @@
 		3406433D227ED8BC00981372 /* DockFolderItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockFolderItemView.swift; sourceTree = "<group>"; };
 		34064342227EDC2200981372 /* DockFolderRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockFolderRepository.swift; sourceTree = "<group>"; };
 		34064344227EDCB900981372 /* DockFolderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockFolderItem.swift; sourceTree = "<group>"; };
-		34064349227F323A00981372 /* PKTouchBarNavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKTouchBarNavController.swift; sourceTree = "<group>"; };
 		3406434C227F3FFF00981372 /* PockMainController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PockMainController.xib; sourceTree = "<group>"; };
 		3407F9DA22D0E75D0072E742 /* ControlCenterWidgetPreferencePane.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlCenterWidgetPreferencePane.swift; sourceTree = "<group>"; };
 		3407F9DD22D0F0A60072E742 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -124,7 +120,6 @@
 		3418D9FE22882EC600E11E37 /* PKSlideableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKSlideableController.swift; sourceTree = "<group>"; };
 		3418DA012288318A00E11E37 /* PKSlideableController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PKSlideableController.xib; sourceTree = "<group>"; };
 		342D83952278D5CF000D79DA /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
-		342D83972278D5CF000D79DA /* PKTouchBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKTouchBarController.swift; sourceTree = "<group>"; };
 		342D83982278D5CF000D79DA /* PockMainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PockMainController.swift; sourceTree = "<group>"; };
 		342D839A2278D5CF000D79DA /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		342D839E2278D5CF000D79DA /* GeneralPreferencePane.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralPreferencePane.swift; sourceTree = "<group>"; };
@@ -160,8 +155,6 @@
 		345E2EC623C2691900A947FC /* WidgetsManagerListPane.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WidgetsManagerListPane.xib; sourceTree = "<group>"; };
 		347F335D22D0D5F600FA9805 /* login.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = login.framework; path = ../../../../../../../../../System/Library/PrivateFrameworks/login.framework; sourceTree = "<group>"; };
 		347F335F22D0D68400FA9805 /* CCLockItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CCLockItem.swift; sourceTree = "<group>"; };
-		347F336522D0DB9100FA9805 /* SystemHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemHelper.h; sourceTree = "<group>"; };
-		347F336622D0DB9100FA9805 /* SystemHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemHelper.m; sourceTree = "<group>"; };
 		347F336822D0DBD600FA9805 /* CCSleepItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCSleepItem.swift; sourceTree = "<group>"; };
 		348343D61F631B2E00CDA005 /* Pock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		349431EC22197484008622B1 /* MediaRemote.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaRemote.framework; path = ../../../../../../../../../System/Library/PrivateFrameworks/MediaRemote.framework; sourceTree = "<group>"; };
@@ -364,8 +357,6 @@
 			children = (
 				3406434B227F3FE900981372 /* PockMainController */,
 				3418DA0022882ECF00E11E37 /* PKSlideableController */,
-				342D83972278D5CF000D79DA /* PKTouchBarController.swift */,
-				34064349227F323A00981372 /* PKTouchBarNavController.swift */,
 			);
 			path = TouchBar;
 			sourceTree = "<group>";
@@ -419,7 +410,7 @@
 				342D83A82278D5CF000D79DA /* PockDockHelper */,
 				342D83AF2278D5CF000D79DA /* DKBrightness */,
 				34CA452123C0C9C900C45B0D /* TouchBarHelper */,
-				347F336422D0DB9100FA9805 /* SystemHelper */,
+				34CA451E23C0C99200C45B0D /* STPrivilegedTask */,
 				34E644F8227D7848003D0450 /* KeySenderHelper */,
 			);
 			path = Private;
@@ -551,16 +542,6 @@
 				9675D6D223701BC900C36234 /* CCBrightnessToggleItem.swift */,
 			);
 			path = Brightness;
-			sourceTree = "<group>";
-		};
-		347F336422D0DB9100FA9805 /* SystemHelper */ = {
-			isa = PBXGroup;
-			children = (
-				34CA451E23C0C99200C45B0D /* STPrivilegedTask */,
-				347F336522D0DB9100FA9805 /* SystemHelper.h */,
-				347F336622D0DB9100FA9805 /* SystemHelper.m */,
-			);
-			path = SystemHelper;
 			sourceTree = "<group>";
 		};
 		348343CD1F631B2E00CDA005 = {
@@ -914,14 +895,11 @@
 				342D83EC2278D5CF000D79DA /* OSDUIHelper.swift in Sources */,
 				3418D9FF22882EC600E11E37 /* PKSlideableController.swift in Sources */,
 				34064343227EDC2200981372 /* DockFolderRepository.swift in Sources */,
-				342D83E02278D5CF000D79DA /* PKTouchBarController.swift in Sources */,
-				3406434A227F323A00981372 /* PKTouchBarNavController.swift in Sources */,
 				34064337227E224700981372 /* DockFolderController.swift in Sources */,
 				342D83F22278D5CF000D79DA /* CCBrightnessUpItem.swift in Sources */,
 				3407F9DE22D0F0A60072E742 /* Extensions.swift in Sources */,
 				342D83F02278D5CF000D79DA /* CCBrightnessDownItem.swift in Sources */,
 				34CA452023C0C9C500C45B0D /* TouchBarHelper.swift in Sources */,
-				347F336722D0DB9200FA9805 /* SystemHelper.m in Sources */,
 				342D840D2278D5CF000D79DA /* FileMonitor.swift in Sources */,
 				3407F9E722D1C5170072E742 /* AppExposeController.swift in Sources */,
 				349F9C3723C39407002CEC1E /* PockWidgetDocument.swift in Sources */,

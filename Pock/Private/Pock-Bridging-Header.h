@@ -10,5 +10,4 @@
 #import "./PockDockHelper/PockDockHelper.h"
 #import "./KeySenderHelper/KeySenderHelper.h"
 #import "./ISSoundAdditions/ISSoundAdditions.h"
-#import "./SystemHelper/SystemHelper.h"
-#import "./SystemHelper/STPrivilegedTask/STPrivilegedTask.h"
+#import "./STPrivilegedTask/STPrivilegedTask.h"
