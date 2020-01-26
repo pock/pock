@@ -23,7 +23,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     /// Core
     public private(set) var alertWindowController: AlertWindowController?
-    public private(set) var navController:         PKTouchBarNavController?
+    public private(set) var navController:         PKTouchBarNavigationController?
     
     /// Timer
     fileprivate var automaticUpdatesTimer: Timer?
@@ -152,7 +152,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         navController?.dismiss()
         navController = nil
         let mainController: PockMainController = PockMainController.load()
-        navController = PKTouchBarNavController(rootController: mainController)
+        navController = PKTouchBarNavigationController(rootController: mainController)
     }
     
     @objc func reloadTouchBarServer() {

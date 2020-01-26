@@ -41,7 +41,7 @@ class PKSlideableController: PKTouchBarController {
     }
     
     @IBAction private func dismissAction(_ sender: Any) {
-        navController?.popLastController()
+        navigationController?.popLastController()
     }
     
     @IBAction private func itemAction(_ sender: NSButton) {

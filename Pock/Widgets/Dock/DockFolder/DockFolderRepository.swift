@@ -11,10 +11,10 @@ import Quartz
 
 class DockFolderRepository {
     
-    private var navController: PKTouchBarNavController? { return (NSApp.delegate as? AppDelegate)?.navController }
+    private var navigationController: PKTouchBarNavigationController? { return (NSApp.delegate as? AppDelegate)?.navController }
     
     public var shouldShowBackButton: Bool {
-        return navController?.childControllers.count ?? 0 > 2
+        return navigationController?.childControllers.count ?? 0 > 2
     }
     
     init(path: URL? = nil) {
@@ -22,7 +22,7 @@ class DockFolderRepository {
         let controller: DockFolderController = DockFolderController.load()
         controller.set(dockFolderRepository: self)
         controller.set(folderUrl: path!)
-        navController?.push(controller)
+        navigationController?.push(controller)
     }
     
     func getItems(in path: URL, _ completion: (([DockFolderItem]) -> Void)?) {
@@ -84,13 +84,13 @@ extension DockFolderRepository {
         let controller: DockFolderController = DockFolderController.load()
         controller.set(dockFolderRepository: self)
         controller.set(folderUrl: path)
-        navController?.push(controller)
+        navigationController?.push(controller)
     }
     public func popDockFolderController() {
-        navController?.popLastController()
+        navigationController?.popLastController()
     }
     public func popToRootDockFolderController() {
-        navController?.popToRootController()
+        navigationController?.popToRootController()
     }
 }
 
