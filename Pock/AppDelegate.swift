@@ -60,8 +60,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private lazy var preferencesWindowController: PreferencesWindowController = {
         return PreferencesWindowController(preferencePanes: [
             generalPreferencePane,
-            DockWidgetPreferencePane(),
-            ControlCenterWidgetPreferencePane()
+            DockWidgetPreferencePane()
         ])
     }()
     
