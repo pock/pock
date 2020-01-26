@@ -8,6 +8,4 @@
 
 #import "./NSTouchBar.h"
 #import "./PockDockHelper/PockDockHelper.h"
-#import "./KeySenderHelper/KeySenderHelper.h"
-#import "./ISSoundAdditions/ISSoundAdditions.h"
 #import "./STPrivilegedTask/STPrivilegedTask.h"
