@@ -23,6 +23,8 @@ fileprivate class CommandLineHelper {
 
 public class TouchBarHelper {
     
+    // MARK: Pock internal's helpers
+    
     public static var isSystemControlStripVisible: Bool {
         let status = TouchBarHelper.readSystemControlStripStatus()
         return status?.isEmpty ?? false
@@ -64,6 +66,40 @@ public class TouchBarHelper {
                 print("[TouchBarServer]: old_pid: `\(touchBarServerPid)` - new_pid: `\(_DFRGetServerPID().description)`")
             }
         })
+    }
+    
+    // MARK: NSTouchBar helpers
+    @objc public static func presentOnTop(_ touchBar: NSTouchBar?) {
+        guard let touchBar = touchBar else {
+            return
+        }
+        if #available (macOS 10.14, *) {
+            NSTouchBar.presentSystemModalTouchBar(touchBar, placement: 1, systemTrayItemIdentifier: nil)
+        } else {
+            NSTouchBar.presentSystemModalFunctionBar(touchBar, placement: 1, systemTrayItemIdentifier: nil)
+        }
+    }
+    
+    @objc public static func dismissFromTop(_ touchBar: NSTouchBar?) {
+        guard let touchBar = touchBar else {
+            return
+        }
+        if #available (macOS 10.14, *) {
+            NSTouchBar.dismissSystemModalTouchBar(touchBar)
+        } else {
+            NSTouchBar.dismissSystemModalFunctionBar(touchBar)
+        }
+    }
+    
+    @objc public static func minimizeFromTop(_ touchBar: NSTouchBar?) {
+        guard let touchBar = touchBar else {
+            return
+        }
+        if #available (macOS 10.14, *) {
+            NSTouchBar.minimizeSystemModalTouchBar(touchBar)
+        } else {
+            NSTouchBar.minimizeSystemModalFunctionBar(touchBar)
+        }
     }
     
 }
