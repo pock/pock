@@ -102,4 +102,8 @@ public class TouchBarHelper {
         }
     }
     
+    @objc public static func mainNavigationController() -> Any? {
+        return AppDelegate.default.navController
+    }
+    
 }
