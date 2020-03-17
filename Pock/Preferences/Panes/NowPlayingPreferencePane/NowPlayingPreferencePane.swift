@@ -14,7 +14,7 @@ class NowPlayingPreferencePane: NSViewController, PreferencePane {
 
     /// Preferenceable
     var preferencePaneIdentifier: Identifier = Identifier.now_playing_widget
-    let preferencePaneTitle:      String     = "Now Playing".localized
+    let preferencePaneTitle:      String     = "Now Playing Widget".localized
     var toolbarItemIcon:          NSImage {
         let id: String
         if #available(macOS 10.15, *) {
@@ -27,8 +27,6 @@ class NowPlayingPreferencePane: NSViewController, PreferencePane {
     }
     
     /// UI Elements
-    @IBOutlet weak var defaultsMusicPlayerIcon:         NSImageView!
-    @IBOutlet weak var defaultsMusicPlayerName:         NSTextField!
     @IBOutlet private weak var imagesStackView:         NSStackView!
     @IBOutlet private weak var defaultRadioButton:      NSButton!
     @IBOutlet private weak var onlyInfoRadioButton:     NSButton!
@@ -53,38 +51,6 @@ class NowPlayingPreferencePane: NSViewController, PreferencePane {
         hideWidgetIfNoMedia.state     = Defaults[.hideNowPlayingIfNoMedia] ? .on : .off
         animateIconWhilePlaying.state = Defaults[.animateIconWhilePlaying] ? .on : .off
         setupImageViewClickGesture()
-        updateDefaultMusicPlayer()
-    }
-    
-    @IBAction func didClickChooseDefaultMusicPlayerButton(_ sender: NSButton) {
-        let openPanel = NSOpenPanel()
-        openPanel.directoryURL = FileManager.default.urls(for: .applicationDirectory, in: .localDomainMask).first!
-        openPanel.canChooseDirectories = false
-        openPanel.canChooseFiles = true
-        openPanel.allowsMultipleSelection = false
-        openPanel.allowedFileTypes = ["app", "App", "APP"]
-        openPanel.beginSheetModal(for: view.window!, completionHandler: { result in
-            if result.rawValue == NSFileHandlingPanelOKButton && result == NSApplication.ModalResponse.OK {
-                if let applicationPath = openPanel.url?.path, let applicationBundleId = Bundle(url: openPanel.url!)?.bundleIdentifier {
-                    
-                    guard let bundle = Bundle.init(url: URL.init(fileURLWithPath: applicationPath)) else { return }
-                    let CFBundleDisplayName = bundle.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String
-                    let CFBundleName = bundle.object(forInfoDictionaryKey: "CFBundleName") as? String
-                    
-                    Defaults[.defaultMusicPlayerName] = CFBundleDisplayName ?? CFBundleName ?? ""
-                    Defaults[.defaultMusicPlayerBundleID] = applicationBundleId
-                    Defaults[.defaultMusicPlayerPath] = applicationPath
-                    
-                    self.updateDefaultMusicPlayer()
-                }
-            }
-        })
-    }
-    
-    private func updateDefaultMusicPlayer() {
-        self.defaultsMusicPlayerIcon.image = NSWorkspace.shared.icon(forFile: Defaults[.defaultMusicPlayerPath])
-        self.defaultsMusicPlayerName.stringValue = Defaults[.defaultMusicPlayerName]
-        NotificationCenter.default.post(name: NowPlayingHelper.kNowPlayingItemDidChange, object: nil)
     }
     
     private func setupImageViewClickGesture() {

@@ -155,6 +155,7 @@
 		347F336622D0DB9100FA9805 /* SystemHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemHelper.m; sourceTree = "<group>"; };
 		347F336822D0DBD600FA9805 /* CCSleepItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCSleepItem.swift; sourceTree = "<group>"; };
 		3482609823A687770053432B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NowPlayingPreferencePane.xib; sourceTree = "<group>"; };
+		3482609B23A687800053432B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/NowPlayingPreferencePane.strings; sourceTree = "<group>"; };
 		3482609D23A687810053432B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/NowPlayingPreferencePane.strings"; sourceTree = "<group>"; };
 		3482609F23A687820053432B /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/NowPlayingPreferencePane.strings"; sourceTree = "<group>"; };
 		348260A123A687820053432B /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/NowPlayingPreferencePane.strings; sourceTree = "<group>"; };
@@ -195,7 +196,6 @@
 		9675D6D223701BC900C36234 /* CCBrightnessToggleItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCBrightnessToggleItem.swift; sourceTree = "<group>"; };
 		9686B4F822D2216400C7A08C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ControlCenterWidgetPreferencePane.xib; sourceTree = "<group>"; };
 		969439E922D0FCA20022E67D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		96BCC88A23AF5FF60042364E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/NowPlayingPreferencePane.strings; sourceTree = "<group>"; };
 		96BE2700237171DC0031B31F /* CCScreensaverItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCScreensaverItem.swift; sourceTree = "<group>"; };
 		96E3DD8C2357258600AA719D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/StatusWidgetPreferencePane.strings; sourceTree = "<group>"; };
 		96E468B12351BC7200A20E56 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/DockWidgetPreferencePane.strings; sourceTree = "<group>"; };
@@ -890,11 +890,11 @@
 			isa = PBXVariantGroup;
 			children = (
 				3482609823A687770053432B /* Base */,
+				3482609B23A687800053432B /* en */,
 				3482609D23A687810053432B /* zh-Hans */,
 				3482609F23A687820053432B /* zh-Hant */,
 				348260A123A687820053432B /* it */,
 				348260A323A687830053432B /* tr */,
-				96BCC88A23AF5FF60042364E /* en */,
 			);
 			name = NowPlayingPreferencePane.xib;
 			sourceTree = "<group>";

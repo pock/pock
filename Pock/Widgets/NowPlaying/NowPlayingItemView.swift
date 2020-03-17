@@ -44,10 +44,15 @@ class NowPlayingItemView: PKDetailView {
         switch (appBundleIdentifier) {
         case "com.apple.WebKit.WebContent":
             appBundleIdentifier = "com.apple.Safari"
-        case "com.spotify.client", "com.apple.iTunes", "com.apple.Safari", "com.google.Chrome", "com.netease.163music", "com.tencent.QQMusicMac", "com.xiami.macclient", "com.apple.Music":
+        case "com.spotify.client", "com.apple.iTunes", "com.apple.Safari", "com.google.Chrome", "com.netease.163music", "com.tencent.QQMusicMac",
+             "com.xiami.macclient", "com.apple.Music":
             break
         default:
-            appBundleIdentifier = Defaults[.defaultMusicPlayerBundleID]
+            if #available(macOS 10.15, *) {
+                appBundleIdentifier = "com.apple.Music"
+            }else {
+                appBundleIdentifier = "com.apple.iTunes"
+            }
         }
         
         let path = NSWorkspace.shared.absolutePathForApplication(withBundleIdentifier: appBundleIdentifier)
@@ -92,26 +97,8 @@ class NowPlayingItemView: PKDetailView {
         }
     }
     
-    private func isRunningDefaultMusicPlayer() -> Bool {
-        for app in NSWorkspace.shared.runningApplications {
-            if app.bundleIdentifier == Defaults[.defaultMusicPlayerBundleID] {
-                return true
-            }
-        }
-        return false
-    }
-    
     override open func didTapHandler() {
-        if isRunningDefaultMusicPlayer() {
-            self.didTap?()
-        } else {
-            NSWorkspace.shared.launchApplication(
-                withBundleIdentifier: Defaults[.defaultMusicPlayerBundleID],
-                options: [],
-                additionalEventParamDescriptor: nil,
-                launchIdentifier: nil
-            )
-        }
+        self.didTap?()
     }
     
     override open func didSwipeLeftHandler() {
