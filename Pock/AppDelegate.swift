@@ -58,10 +58,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     /// Preferences
     private let generalPreferencePane: GeneralPreferencePane = GeneralPreferencePane()
     private lazy var preferencesWindowController: PreferencesWindowController = {
-        return PreferencesWindowController(preferencePanes: [
-            generalPreferencePane,
-            DockWidgetPreferencePane()
-        ])
+        return PreferencesWindowController(preferencePanes: [generalPreferencePane])
     }()
     
     /// Widgets Manager
@@ -103,6 +100,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     )
                 )
                 alertWindowController?.showWindow(nil)
+            }else {
+                self.initialize()
             }
         }else {
             self.initialize()

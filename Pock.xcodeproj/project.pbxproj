@@ -8,33 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		009B0E12E317757741CE38C8 /* Pods_Pock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 863BE70CFBAC31BDBF35B1FD /* Pods_Pock.framework */; };
-		34064337227E224700981372 /* DockFolderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34064336227E224700981372 /* DockFolderController.swift */; };
-		3406433E227ED8BC00981372 /* DockFolderItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3406433D227ED8BC00981372 /* DockFolderItemView.swift */; };
-		34064343227EDC2200981372 /* DockFolderRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34064342227EDC2200981372 /* DockFolderRepository.swift */; };
-		34064345227EDCB900981372 /* DockFolderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34064344227EDCB900981372 /* DockFolderItem.swift */; };
 		3406434D227F3FFF00981372 /* PockMainController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3406434C227F3FFF00981372 /* PockMainController.xib */; };
 		3407F9DE22D0F0A60072E742 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3407F9DD22D0F0A60072E742 /* Extensions.swift */; };
-		3407F9E722D1C5170072E742 /* AppExposeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3407F9E622D1C5170072E742 /* AppExposeController.swift */; };
-		3407F9EB22D1C7F40072E742 /* AppExposeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3407F9EA22D1C7F40072E742 /* AppExposeItem.swift */; };
-		3407F9EF22D1C9970072E742 /* AppExposeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3407F9EE22D1C9970072E742 /* AppExposeController.xib */; };
 		342D83DF2278D5CF000D79DA /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 342D83952278D5CF000D79DA /* MainWindow.xib */; };
 		342D83E12278D5CF000D79DA /* PockMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83982278D5CF000D79DA /* PockMainController.swift */; };
 		342D83E22278D5CF000D79DA /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D839A2278D5CF000D79DA /* Preferences.swift */; };
 		342D83E42278D5CF000D79DA /* GeneralPreferencePane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D839E2278D5CF000D79DA /* GeneralPreferencePane.swift */; };
 		342D83E72278D5CF000D79DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 342D83A32278D5CF000D79DA /* Assets.xcassets */; };
-		342D83E92278D5CF000D79DA /* PockDockHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 342D83AA2278D5CF000D79DA /* PockDockHelper.m */; };
 		342D83EC2278D5CF000D79DA /* OSDUIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83B22278D5CF000D79DA /* OSDUIHelper.swift */; };
 		342D83ED2278D5CF000D79DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83B32278D5CF000D79DA /* AppDelegate.swift */; };
 		342D84002278D5CF000D79DA /* PKWidgetTouchBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83CE2278D5CF000D79DA /* PKWidgetTouchBarItem.swift */; };
-		342D84022278D5CF000D79DA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83D12278D5CF000D79DA /* Constants.swift */; };
-		342D84032278D5CF000D79DA /* FileEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83D32278D5CF000D79DA /* FileEvent.swift */; };
-		342D84042278D5CF000D79DA /* EventStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83D42278D5CF000D79DA /* EventStream.swift */; };
-		342D84052278D5CF000D79DA /* Witness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83D52278D5CF000D79DA /* Witness.swift */; };
-		342D84072278D5CF000D79DA /* DockRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83D82278D5CF000D79DA /* DockRepository.swift */; };
-		342D84082278D5CF000D79DA /* DockItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83D92278D5CF000D79DA /* DockItem.swift */; };
-		342D840B2278D5CF000D79DA /* DockItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83DC2278D5CF000D79DA /* DockItemView.swift */; };
-		342D840C2278D5CF000D79DA /* DockWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83DD2278D5CF000D79DA /* DockWidget.swift */; };
-		342D840D2278D5CF000D79DA /* FileMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83DE2278D5CF000D79DA /* FileMonitor.swift */; };
 		3435675B2381666F00E408EF /* WidgetsDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3435675A2381666F00E408EF /* WidgetsDispatcher.swift */; };
 		345E2EC723C2691900A947FC /* WidgetsManagerListPane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345E2EC523C2691900A947FC /* WidgetsManagerListPane.swift */; };
 		345E2EC823C2691900A947FC /* WidgetsManagerListPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 345E2EC623C2691900A947FC /* WidgetsManagerListPane.xib */; };
@@ -50,13 +33,10 @@
 		34CA451D23C0C98A00C45B0D /* STPrivilegedTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 34CA451B23C0C98A00C45B0D /* STPrivilegedTask.m */; };
 		34CA452023C0C9C500C45B0D /* TouchBarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CA451F23C0C9C500C45B0D /* TouchBarHelper.swift */; };
 		34D6F6FC23C2DD7A0078181F /* widget_icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 34D6F6FB23C2DD7A0078181F /* widget_icon.icns */; };
-		34E644FB227D9A69003D0450 /* DockWidgetPreferencePane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E644F9227D9A69003D0450 /* DockWidgetPreferencePane.swift */; };
 		34EF604A23C12E1300FBE9E7 /* AlertWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EF604823C12E1300FBE9E7 /* AlertWindowController.swift */; };
 		34EF604B23C12E1300FBE9E7 /* AlertWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34EF604923C12E1300FBE9E7 /* AlertWindowController.xib */; };
-		962E0A5522CF1D1D00567E20 /* DockFolderController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 962E0A5722CF1D1D00567E20 /* DockFolderController.xib */; };
 		964435B722D18F91002FA1CB /* LocalizedUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964435B622D18F91002FA1CB /* LocalizedUtils.swift */; };
 		9667AAF222CF192D00C22410 /* GeneralPreferencePane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9667AAF422CF192D00C22410 /* GeneralPreferencePane.xib */; };
-		9667AB0422CF1ABA00C22410 /* DockWidgetPreferencePane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9667AB0622CF1ABA00C22410 /* DockWidgetPreferencePane.xib */; };
 		96FE269F22D0C3810071645C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 96FE26A122D0C3810071645C /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
@@ -85,15 +65,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		34064336227E224700981372 /* DockFolderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockFolderController.swift; sourceTree = "<group>"; };
-		3406433D227ED8BC00981372 /* DockFolderItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockFolderItemView.swift; sourceTree = "<group>"; };
-		34064342227EDC2200981372 /* DockFolderRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockFolderRepository.swift; sourceTree = "<group>"; };
-		34064344227EDCB900981372 /* DockFolderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockFolderItem.swift; sourceTree = "<group>"; };
 		3406434C227F3FFF00981372 /* PockMainController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PockMainController.xib; sourceTree = "<group>"; };
 		3407F9DD22D0F0A60072E742 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		3407F9E622D1C5170072E742 /* AppExposeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppExposeController.swift; sourceTree = "<group>"; };
-		3407F9EA22D1C7F40072E742 /* AppExposeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppExposeItem.swift; sourceTree = "<group>"; };
-		3407F9EE22D1C9970072E742 /* AppExposeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppExposeController.xib; sourceTree = "<group>"; };
 		342D83952278D5CF000D79DA /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		342D83982278D5CF000D79DA /* PockMainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PockMainController.swift; sourceTree = "<group>"; };
 		342D839A2278D5CF000D79DA /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
@@ -102,22 +75,10 @@
 		342D83A42278D5CF000D79DA /* Pock.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Pock.entitlements; sourceTree = "<group>"; };
 		342D83A52278D5CF000D79DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		342D83A72278D5CF000D79DA /* NSTouchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSTouchBar.h; sourceTree = "<group>"; };
-		342D83A92278D5CF000D79DA /* PockDockHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PockDockHelper.h; sourceTree = "<group>"; };
-		342D83AA2278D5CF000D79DA /* PockDockHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PockDockHelper.m; sourceTree = "<group>"; };
 		342D83AE2278D5CF000D79DA /* Pock-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Pock-Bridging-Header.h"; sourceTree = "<group>"; };
 		342D83B22278D5CF000D79DA /* OSDUIHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSDUIHelper.swift; sourceTree = "<group>"; };
 		342D83B32278D5CF000D79DA /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		342D83CE2278D5CF000D79DA /* PKWidgetTouchBarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKWidgetTouchBarItem.swift; sourceTree = "<group>"; };
-		342D83D12278D5CF000D79DA /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		342D83D32278D5CF000D79DA /* FileEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileEvent.swift; sourceTree = "<group>"; };
-		342D83D42278D5CF000D79DA /* EventStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventStream.swift; sourceTree = "<group>"; };
-		342D83D52278D5CF000D79DA /* Witness.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Witness.swift; sourceTree = "<group>"; };
-		342D83D62278D5CF000D79DA /* Witness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Witness.h; sourceTree = "<group>"; };
-		342D83D82278D5CF000D79DA /* DockRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DockRepository.swift; sourceTree = "<group>"; };
-		342D83D92278D5CF000D79DA /* DockItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DockItem.swift; sourceTree = "<group>"; };
-		342D83DC2278D5CF000D79DA /* DockItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DockItemView.swift; sourceTree = "<group>"; };
-		342D83DD2278D5CF000D79DA /* DockWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DockWidget.swift; sourceTree = "<group>"; };
-		342D83DE2278D5CF000D79DA /* FileMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileMonitor.swift; sourceTree = "<group>"; };
 		3435675A2381666F00E408EF /* WidgetsDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetsDispatcher.swift; sourceTree = "<group>"; };
 		345E2EC523C2691900A947FC /* WidgetsManagerListPane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetsManagerListPane.swift; sourceTree = "<group>"; };
 		345E2EC623C2691900A947FC /* WidgetsManagerListPane.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WidgetsManagerListPane.xib; sourceTree = "<group>"; };
@@ -134,7 +95,6 @@
 		349F9C2D23C37231002CEC1E /* WidgetInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetInfo.swift; sourceTree = "<group>"; };
 		349F9C3023C379C3002CEC1E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		349F9C3623C39407002CEC1E /* PockWidgetDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PockWidgetDocument.swift; sourceTree = "<group>"; };
-		34A8060422F6B97000621235 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/DockFolderController.strings; sourceTree = "<group>"; };
 		34A8060522F6B97000621235 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/GeneralPreferencePane.strings; sourceTree = "<group>"; };
 		34A8060922F6B97000621235 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		34BC3ECB2210B2EC00C1DD3C /* DFRFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DFRFoundation.framework; path = ../../../../../../../../../System/Library/PrivateFrameworks/DFRFoundation.framework; sourceTree = "<group>"; };
@@ -142,32 +102,20 @@
 		34CA451C23C0C98A00C45B0D /* STPrivilegedTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPrivilegedTask.h; sourceTree = "<group>"; };
 		34CA451F23C0C9C500C45B0D /* TouchBarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchBarHelper.swift; sourceTree = "<group>"; };
 		34D6F6FB23C2DD7A0078181F /* widget_icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = widget_icon.icns; sourceTree = "<group>"; };
-		34E644F9227D9A69003D0450 /* DockWidgetPreferencePane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockWidgetPreferencePane.swift; sourceTree = "<group>"; };
 		34EF604823C12E1300FBE9E7 /* AlertWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertWindowController.swift; sourceTree = "<group>"; };
 		34EF604923C12E1300FBE9E7 /* AlertWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertWindowController.xib; sourceTree = "<group>"; };
 		34F27F2523428108001EBB6B /* LaunchAtLogin.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LaunchAtLogin.framework; path = Carthage/Build/Mac/LaunchAtLogin.framework; sourceTree = "<group>"; };
 		3BA42833BC69C895EB31DF93 /* Pods-Pock.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pock.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pock/Pods-Pock.debug.xcconfig"; sourceTree = "<group>"; };
 		716D62071D19174E56D6E33D /* Pods-Pock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pock.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pock/Pods-Pock.release.xcconfig"; sourceTree = "<group>"; };
 		863BE70CFBAC31BDBF35B1FD /* Pods_Pock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		881719822334CAFA00CEFF2B /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/DockFolderController.strings; sourceTree = "<group>"; };
 		881719832334CAFA00CEFF2B /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/GeneralPreferencePane.strings; sourceTree = "<group>"; };
 		881719872334CAFA00CEFF2B /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
-		962E0A5622CF1D1D00567E20 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/DockFolderController.xib; sourceTree = "<group>"; };
-		962E0A5922CF1D1E00567E20 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/DockFolderController.strings; sourceTree = "<group>"; };
-		962E0A5B22CF1D1F00567E20 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/DockFolderController.strings"; sourceTree = "<group>"; };
 		964435B622D18F91002FA1CB /* LocalizedUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedUtils.swift; sourceTree = "<group>"; };
 		9667AAF322CF192D00C22410 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/GeneralPreferencePane.xib; sourceTree = "<group>"; };
 		9667AAFA22CF1A4D00C22410 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/GeneralPreferencePane.strings"; sourceTree = "<group>"; };
-		9667AB0522CF1ABA00C22410 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/DockWidgetPreferencePane.xib; sourceTree = "<group>"; };
 		969439E922D0FCA20022E67D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		96E468B12351BC7200A20E56 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/DockWidgetPreferencePane.strings; sourceTree = "<group>"; };
-		96E468B22351BC7500A20E56 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/DockWidgetPreferencePane.strings"; sourceTree = "<group>"; };
-		96E468B32351BC7900A20E56 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/DockWidgetPreferencePane.strings"; sourceTree = "<group>"; };
-		96E468B42351BC7B00A20E56 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/DockWidgetPreferencePane.strings; sourceTree = "<group>"; };
-		96E468B52351BC7F00A20E56 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/DockWidgetPreferencePane.strings; sourceTree = "<group>"; };
 		96F29996231797C00055DA26 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/GeneralPreferencePane.strings; sourceTree = "<group>"; };
 		96FE26A022D0C3810071645C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		AAA3636F2333699C0016267D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/DockFolderController.strings"; sourceTree = "<group>"; };
 		AAA363702333699C0016267D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/GeneralPreferencePane.strings"; sourceTree = "<group>"; };
 		AAA363742333699C0016267D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -202,34 +150,6 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		3406433A227E26FA00981372 /* DockFolder */ = {
-			isa = PBXGroup;
-			children = (
-				34064346227EDCD000981372 /* DockFolderController */,
-				3406433F227ED8C400981372 /* DockFolderItemView */,
-				34064342227EDC2200981372 /* DockFolderRepository.swift */,
-				34064344227EDCB900981372 /* DockFolderItem.swift */,
-			);
-			path = DockFolder;
-			sourceTree = "<group>";
-		};
-		3406433F227ED8C400981372 /* DockFolderItemView */ = {
-			isa = PBXGroup;
-			children = (
-				3406433D227ED8BC00981372 /* DockFolderItemView.swift */,
-			);
-			path = DockFolderItemView;
-			sourceTree = "<group>";
-		};
-		34064346227EDCD000981372 /* DockFolderController */ = {
-			isa = PBXGroup;
-			children = (
-				962E0A5722CF1D1D00567E20 /* DockFolderController.xib */,
-				34064336227E224700981372 /* DockFolderController.swift */,
-			);
-			path = DockFolderController;
-			sourceTree = "<group>";
-		};
 		3406434B227F3FE900981372 /* PockMainController */ = {
 			isa = PBXGroup;
 			children = (
@@ -237,25 +157,6 @@
 				342D83982278D5CF000D79DA /* PockMainController.swift */,
 			);
 			path = PockMainController;
-			sourceTree = "<group>";
-		};
-		3407F9E422D1C5170072E742 /* AppExpose */ = {
-			isa = PBXGroup;
-			children = (
-				3407F9E522D1C5170072E742 /* AppExposeController */,
-				3407F9EA22D1C7F40072E742 /* AppExposeItem.swift */,
-			);
-			name = AppExpose;
-			path = Pock/Widgets/Dock/AppExpose;
-			sourceTree = SOURCE_ROOT;
-		};
-		3407F9E522D1C5170072E742 /* AppExposeController */ = {
-			isa = PBXGroup;
-			children = (
-				3407F9EE22D1C9970072E742 /* AppExposeController.xib */,
-				3407F9E622D1C5170072E742 /* AppExposeController.swift */,
-			);
-			path = AppExposeController;
 			sourceTree = "<group>";
 		};
 		342D83932278D5CF000D79DA /* Pock */ = {
@@ -304,7 +205,6 @@
 			isa = PBXGroup;
 			children = (
 				342D839C2278D5CF000D79DA /* GeneralPreferencePane */,
-				34E644FD227D9A6C003D0450 /* DockWidgetPreferencePane */,
 			);
 			path = Panes;
 			sourceTree = "<group>";
@@ -335,20 +235,10 @@
 				342D83AE2278D5CF000D79DA /* Pock-Bridging-Header.h */,
 				342D83A72278D5CF000D79DA /* NSTouchBar.h */,
 				342D83B22278D5CF000D79DA /* OSDUIHelper.swift */,
-				342D83A82278D5CF000D79DA /* PockDockHelper */,
 				34CA452123C0C9C900C45B0D /* TouchBarHelper */,
 				34CA451E23C0C99200C45B0D /* STPrivilegedTask */,
 			);
 			path = Private;
-			sourceTree = "<group>";
-		};
-		342D83A82278D5CF000D79DA /* PockDockHelper */ = {
-			isa = PBXGroup;
-			children = (
-				342D83A92278D5CF000D79DA /* PockDockHelper.h */,
-				342D83AA2278D5CF000D79DA /* PockDockHelper.m */,
-			);
-			path = PockDockHelper;
 			sourceTree = "<group>";
 		};
 		342D83B42278D5CF000D79DA /* Widgets */ = {
@@ -356,7 +246,6 @@
 			children = (
 				345E2ECA23C2692900A947FC /* Manager */,
 				342D83CD2278D5CF000D79DA /* Common */,
-				342D83D02278D5CF000D79DA /* Dock */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -367,33 +256,6 @@
 				342D83CE2278D5CF000D79DA /* PKWidgetTouchBarItem.swift */,
 			);
 			path = Common;
-			sourceTree = "<group>";
-		};
-		342D83D02278D5CF000D79DA /* Dock */ = {
-			isa = PBXGroup;
-			children = (
-				342D83D22278D5CF000D79DA /* Witness */,
-				3407F9E422D1C5170072E742 /* AppExpose */,
-				3406433A227E26FA00981372 /* DockFolder */,
-				342D83D12278D5CF000D79DA /* Constants.swift */,
-				342D83D82278D5CF000D79DA /* DockRepository.swift */,
-				342D83D92278D5CF000D79DA /* DockItem.swift */,
-				342D83DC2278D5CF000D79DA /* DockItemView.swift */,
-				342D83DD2278D5CF000D79DA /* DockWidget.swift */,
-				342D83DE2278D5CF000D79DA /* FileMonitor.swift */,
-			);
-			path = Dock;
-			sourceTree = "<group>";
-		};
-		342D83D22278D5CF000D79DA /* Witness */ = {
-			isa = PBXGroup;
-			children = (
-				342D83D32278D5CF000D79DA /* FileEvent.swift */,
-				342D83D42278D5CF000D79DA /* EventStream.swift */,
-				342D83D52278D5CF000D79DA /* Witness.swift */,
-				342D83D62278D5CF000D79DA /* Witness.h */,
-			);
-			path = Witness;
 			sourceTree = "<group>";
 		};
 		345E2EC923C2692300A947FC /* WidgetsManagerListPane */ = {
@@ -472,15 +334,6 @@
 				34CA451F23C0C9C500C45B0D /* TouchBarHelper.swift */,
 			);
 			path = TouchBarHelper;
-			sourceTree = "<group>";
-		};
-		34E644FD227D9A6C003D0450 /* DockWidgetPreferencePane */ = {
-			isa = PBXGroup;
-			children = (
-				9667AB0622CF1ABA00C22410 /* DockWidgetPreferencePane.xib */,
-				34E644F9227D9A69003D0450 /* DockWidgetPreferencePane.swift */,
-			);
-			path = DockWidgetPreferencePane;
 			sourceTree = "<group>";
 		};
 		34EF604C23C12E1700FBE9E7 /* AlertWindowController */ = {
@@ -603,16 +456,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				962E0A5522CF1D1D00567E20 /* DockFolderController.xib in Resources */,
 				342D83DF2278D5CF000D79DA /* MainWindow.xib in Resources */,
-				3407F9EF22D1C9970072E742 /* AppExposeController.xib in Resources */,
 				34D6F6FC23C2DD7A0078181F /* widget_icon.icns in Resources */,
 				9667AAF222CF192D00C22410 /* GeneralPreferencePane.xib in Resources */,
 				345E2EC823C2691900A947FC /* WidgetsManagerListPane.xib in Resources */,
 				34EF604B23C12E1300FBE9E7 /* AlertWindowController.xib in Resources */,
 				96FE269F22D0C3810071645C /* Localizable.strings in Resources */,
 				3406434D227F3FFF00981372 /* PockMainController.xib in Resources */,
-				9667AB0422CF1ABA00C22410 /* DockWidgetPreferencePane.xib in Resources */,
 				342D83E72278D5CF000D79DA /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -697,6 +547,7 @@
 				"${BUILT_PRODUCTS_DIR}/Magnet/Magnet.framework",
 				"${BUILT_PRODUCTS_DIR}/PockKit/PockKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Preferences/Preferences.framework",
+				"${BUILT_PRODUCTS_DIR}/Sauce/Sauce.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -706,6 +557,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Magnet.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PockKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Preferences.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sauce.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -720,28 +572,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3406433E227ED8BC00981372 /* DockFolderItemView.swift in Sources */,
 				345E2EC723C2691900A947FC /* WidgetsManagerListPane.swift in Sources */,
-				342D84072278D5CF000D79DA /* DockRepository.swift in Sources */,
 				3435675B2381666F00E408EF /* WidgetsDispatcher.swift in Sources */,
-				342D83E92278D5CF000D79DA /* PockDockHelper.m in Sources */,
-				34064345227EDCB900981372 /* DockFolderItem.swift in Sources */,
-				342D84042278D5CF000D79DA /* EventStream.swift in Sources */,
-				342D84022278D5CF000D79DA /* Constants.swift in Sources */,
-				342D84032278D5CF000D79DA /* FileEvent.swift in Sources */,
-				3407F9EB22D1C7F40072E742 /* AppExposeItem.swift in Sources */,
-				342D840B2278D5CF000D79DA /* DockItemView.swift in Sources */,
-				342D840C2278D5CF000D79DA /* DockWidget.swift in Sources */,
-				34E644FB227D9A69003D0450 /* DockWidgetPreferencePane.swift in Sources */,
 				34CA451D23C0C98A00C45B0D /* STPrivilegedTask.m in Sources */,
 				349F9C2E23C37231002CEC1E /* WidgetInfo.swift in Sources */,
 				342D83EC2278D5CF000D79DA /* OSDUIHelper.swift in Sources */,
-				34064343227EDC2200981372 /* DockFolderRepository.swift in Sources */,
-				34064337227E224700981372 /* DockFolderController.swift in Sources */,
 				3407F9DE22D0F0A60072E742 /* Extensions.swift in Sources */,
 				34CA452023C0C9C500C45B0D /* TouchBarHelper.swift in Sources */,
-				342D840D2278D5CF000D79DA /* FileMonitor.swift in Sources */,
-				3407F9E722D1C5170072E742 /* AppExposeController.swift in Sources */,
 				349F9C3723C39407002CEC1E /* PockWidgetDocument.swift in Sources */,
 				342D83E12278D5CF000D79DA /* PockMainController.swift in Sources */,
 				34EF604A23C12E1300FBE9E7 /* AlertWindowController.swift in Sources */,
@@ -749,8 +586,6 @@
 				342D84002278D5CF000D79DA /* PKWidgetTouchBarItem.swift in Sources */,
 				342D83E22278D5CF000D79DA /* Preferences.swift in Sources */,
 				342D83ED2278D5CF000D79DA /* AppDelegate.swift in Sources */,
-				342D84052278D5CF000D79DA /* Witness.swift in Sources */,
-				342D84082278D5CF000D79DA /* DockItem.swift in Sources */,
 				342D83E42278D5CF000D79DA /* GeneralPreferencePane.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -783,19 +618,6 @@
 			name = PreviewViewController.xib;
 			sourceTree = "<group>";
 		};
-		962E0A5722CF1D1D00567E20 /* DockFolderController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				962E0A5622CF1D1D00567E20 /* Base */,
-				962E0A5922CF1D1E00567E20 /* en */,
-				962E0A5B22CF1D1F00567E20 /* zh-Hans */,
-				34A8060422F6B97000621235 /* it */,
-				881719822334CAFA00CEFF2B /* tr */,
-				AAA3636F2333699C0016267D /* zh-Hant */,
-			);
-			name = DockFolderController.xib;
-			sourceTree = "<group>";
-		};
 		9667AAF422CF192D00C22410 /* GeneralPreferencePane.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -807,19 +629,6 @@
 				96F29996231797C00055DA26 /* en */,
 			);
 			name = GeneralPreferencePane.xib;
-			sourceTree = "<group>";
-		};
-		9667AB0622CF1ABA00C22410 /* DockWidgetPreferencePane.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9667AB0522CF1ABA00C22410 /* Base */,
-				96E468B12351BC7200A20E56 /* en */,
-				96E468B22351BC7500A20E56 /* zh-Hans */,
-				96E468B32351BC7900A20E56 /* zh-Hant */,
-				96E468B42351BC7B00A20E56 /* it */,
-				96E468B52351BC7F00A20E56 /* tr */,
-			);
-			name = DockWidgetPreferencePane.xib;
 			sourceTree = "<group>";
 		};
 		96FE26A122D0C3810071645C /* Localizable.strings */ = {

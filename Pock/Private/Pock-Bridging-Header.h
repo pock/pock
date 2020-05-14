@@ -7,5 +7,4 @@
 //
 
 #import "./NSTouchBar.h"
-#import "./PockDockHelper/PockDockHelper.h"
 #import "./STPrivilegedTask/STPrivilegedTask.h"
