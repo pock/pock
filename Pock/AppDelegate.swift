@@ -50,7 +50,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     private lazy var advancedPockMenu: NSMenu = {
         let menu = NSMenu(title: "Advanced".localized)
-        menu.addItem(withTitle: "Reload Pock".localized, action: #selector(reloadPock), keyEquivalent: "r")
+        let reloadItem = NSMenuItem(title: "Reload Pock".localized, action: #selector(reloadPock), keyEquivalent: "r")
+        let relaunchItem = NSMenuItem(title: "Relaunch Pock".localized, action: #selector(relaunchPock), keyEquivalent: "R")
+        relaunchItem.isAlternate = true
+        menu.addItem(reloadItem)
+        menu.addItem(relaunchItem)
         menu.addItem(withTitle: "Reload System Touch Bar".localized, action: #selector(reloadTouchBarServer), keyEquivalent: "a")
         return menu
     }()
@@ -151,6 +155,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         navController = nil
         let mainController: PockMainController = PockMainController.load()
         navController = PKTouchBarNavigationController(rootController: mainController)
+    }
+    
+    @objc func relaunchPock() {
+        guard let relaunch_path = Bundle.main.path(forResource: "Relaunch", ofType: nil) else {
+            return
+        }
+        let task = Process()
+        task.launchPath = relaunch_path
+        task.arguments  = ["\(ProcessInfo.processInfo.processIdentifier)"]
+        task.launch()
     }
     
     @objc func reloadTouchBarServer() {

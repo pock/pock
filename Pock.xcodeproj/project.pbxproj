@@ -21,6 +21,8 @@
 		3435675B2381666F00E408EF /* WidgetsDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3435675A2381666F00E408EF /* WidgetsDispatcher.swift */; };
 		345E2EC723C2691900A947FC /* WidgetsManagerListPane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345E2EC523C2691900A947FC /* WidgetsManagerListPane.swift */; };
 		345E2EC823C2691900A947FC /* WidgetsManagerListPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 345E2EC623C2691900A947FC /* WidgetsManagerListPane.xib */; };
+		34832418246FFA6F0035D2C2 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34832417246FFA6F0035D2C2 /* main.swift */; };
+		3483241E246FFA8B0035D2C2 /* Relaunch in Resources */ = {isa = PBXBuildFile; fileRef = 34832415246FFA6F0035D2C2 /* Relaunch */; };
 		349F9C1C23C36BCA002CEC1E /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 349F9C1B23C36BCA002CEC1E /* Quartz.framework */; };
 		349F9C1F23C36BCA002CEC1E /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349F9C1E23C36BCA002CEC1E /* PreviewViewController.swift */; };
 		349F9C2223C36BCA002CEC1E /* PreviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 349F9C2023C36BCA002CEC1E /* PreviewViewController.xib */; };
@@ -41,6 +43,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		3483241C246FFA810035D2C2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 348343CE1F631B2E00CDA005 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 34832414246FFA6F0035D2C2;
+			remoteInfo = Relaunch;
+		};
 		349F9C2523C36BCA002CEC1E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 348343CE1F631B2E00CDA005 /* Project object */;
@@ -51,6 +60,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		34832413246FFA6F0035D2C2 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		349F9C2B23C36BCA002CEC1E /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -83,6 +101,8 @@
 		345E2EC523C2691900A947FC /* WidgetsManagerListPane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetsManagerListPane.swift; sourceTree = "<group>"; };
 		345E2EC623C2691900A947FC /* WidgetsManagerListPane.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WidgetsManagerListPane.xib; sourceTree = "<group>"; };
 		347F335D22D0D5F600FA9805 /* login.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = login.framework; path = ../../../../../../../../../System/Library/PrivateFrameworks/login.framework; sourceTree = "<group>"; };
+		34832415246FFA6F0035D2C2 /* Relaunch */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Relaunch; sourceTree = BUILT_PRODUCTS_DIR; };
+		34832417246FFA6F0035D2C2 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		348343D61F631B2E00CDA005 /* Pock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		349431EC22197484008622B1 /* MediaRemote.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaRemote.framework; path = ../../../../../../../../../System/Library/PrivateFrameworks/MediaRemote.framework; sourceTree = "<group>"; };
 		3494320B222179D7008622B1 /* BatteryUIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BatteryUIKit.framework; path = ../../../../../../../../../System/Library/PrivateFrameworks/BatteryUIKit.framework; sourceTree = "<group>"; };
@@ -121,6 +141,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		34832412246FFA6F0035D2C2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		348343D31F631B2E00CDA005 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -278,11 +305,20 @@
 			path = Manager;
 			sourceTree = "<group>";
 		};
+		34832416246FFA6F0035D2C2 /* Relaunch */ = {
+			isa = PBXGroup;
+			children = (
+				34832417246FFA6F0035D2C2 /* main.swift */,
+			);
+			path = Relaunch;
+			sourceTree = "<group>";
+		};
 		348343CD1F631B2E00CDA005 = {
 			isa = PBXGroup;
 			children = (
 				342D83932278D5CF000D79DA /* Pock */,
 				349F9C1D23C36BCA002CEC1E /* QLPockWidget */,
+				34832416246FFA6F0035D2C2 /* Relaunch */,
 				348343D71F631B2E00CDA005 /* Products */,
 				2F31B7DC05EFA1E8090C87AE /* Pods */,
 				4ED8D081458713BE440562D3 /* Frameworks */,
@@ -294,6 +330,7 @@
 			children = (
 				348343D61F631B2E00CDA005 /* Pock.app */,
 				349F9C1A23C36BCA002CEC1E /* QLPockWidget.appex */,
+				34832415246FFA6F0035D2C2 /* Relaunch */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -362,6 +399,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		34832414246FFA6F0035D2C2 /* Relaunch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 34832419246FFA6F0035D2C2 /* Build configuration list for PBXNativeTarget "Relaunch" */;
+			buildPhases = (
+				34832411246FFA6F0035D2C2 /* Sources */,
+				34832412246FFA6F0035D2C2 /* Frameworks */,
+				34832413246FFA6F0035D2C2 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Relaunch;
+			productName = Relaunch;
+			productReference = 34832415246FFA6F0035D2C2 /* Relaunch */;
+			productType = "com.apple.product-type.tool";
+		};
 		348343D51F631B2E00CDA005 /* Pock */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 348343E51F631B2E00CDA005 /* Build configuration list for PBXNativeTarget "Pock" */;
@@ -378,6 +432,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				3483241D246FFA810035D2C2 /* PBXTargetDependency */,
 				349F9C2623C36BCA002CEC1E /* PBXTargetDependency */,
 			);
 			name = Pock;
@@ -412,6 +467,11 @@
 				LastUpgradeCheck = 1100;
 				ORGANIZATIONNAME = "Pierluigi Galdi";
 				TargetAttributes = {
+					34832414246FFA6F0035D2C2 = {
+						CreatedOnToolsVersion = 11.0;
+						DevelopmentTeam = 788D9WZ9Z3;
+						ProvisioningStyle = Automatic;
+					};
 					348343D51F631B2E00CDA005 = {
 						CreatedOnToolsVersion = 8.3.3;
 						LastSwiftMigration = 1100;
@@ -446,6 +506,7 @@
 			projectRoot = "";
 			targets = (
 				348343D51F631B2E00CDA005 /* Pock */,
+				34832414246FFA6F0035D2C2 /* Relaunch */,
 				349F9C1923C36BCA002CEC1E /* QLPockWidget */,
 			);
 		};
@@ -456,6 +517,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3483241E246FFA8B0035D2C2 /* Relaunch in Resources */,
 				342D83DF2278D5CF000D79DA /* MainWindow.xib in Resources */,
 				34D6F6FC23C2DD7A0078181F /* widget_icon.icns in Resources */,
 				9667AAF222CF192D00C22410 /* GeneralPreferencePane.xib in Resources */,
@@ -568,6 +630,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		34832411246FFA6F0035D2C2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34832418246FFA6F0035D2C2 /* main.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		348343D21F631B2E00CDA005 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -602,6 +672,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		3483241D246FFA810035D2C2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 34832414246FFA6F0035D2C2 /* Relaunch */;
+			targetProxy = 3483241C246FFA810035D2C2 /* PBXContainerItemProxy */;
+		};
 		349F9C2623C36BCA002CEC1E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 349F9C1923C36BCA002CEC1E /* QLPockWidget */;
@@ -646,6 +721,41 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		3483241A246FFA6F0035D2C2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 788D9WZ9Z3;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		3483241B246FFA6F0035D2C2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 788D9WZ9Z3;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 		348343E31F631B2E00CDA005 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -866,6 +976,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		34832419246FFA6F0035D2C2 /* Build configuration list for PBXNativeTarget "Relaunch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3483241A246FFA6F0035D2C2 /* Debug */,
+				3483241B246FFA6F0035D2C2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		348343D11F631B2E00CDA005 /* Build configuration list for PBXProject "Pock" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
