@@ -8,6 +8,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="WidgetsManagerListPane" customModule="Pock" customModuleProvider="target">
             <connections>
+                <outlet property="preferencesButton" destination="9qY-JZ-MY5" id="5gR-tS-Y5m"/>
                 <outlet property="statusLabel" destination="6kc-nR-owD" id="mcu-3s-7I3"/>
                 <outlet property="tableView" destination="e7c-EJ-TU7" id="6sk-HR-e9b"/>
                 <outlet property="uninstallButton" destination="7gd-ex-myd" id="PvG-00-Nkd"/>
@@ -35,7 +36,7 @@
                                 <tableColumns>
                                     <tableColumn identifier="nameCellIdentifier" width="200" minWidth="200" maxWidth="200" id="MED-7Z-xbu">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Name">
-                                            <font key="font" metaFont="system" size="11"/>
+                                            <font key="font" metaFont="message" size="11"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                         </tableHeaderCell>
@@ -68,7 +69,7 @@
                                     </tableColumn>
                                     <tableColumn identifier="authorCellIdentifier" width="200" minWidth="200" maxWidth="200" id="9Qx-Tm-UPH">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Author">
-                                            <font key="font" metaFont="system" size="11"/>
+                                            <font key="font" metaFont="message" size="11"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </tableHeaderCell>
@@ -101,7 +102,7 @@
                                     </tableColumn>
                                     <tableColumn identifier="versionCellIdentifier" width="80" minWidth="80" maxWidth="80" id="zrk-x6-ZhV">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Version">
-                                            <font key="font" metaFont="system" size="11"/>
+                                            <font key="font" metaFont="message" size="11"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                         </tableHeaderCell>
@@ -134,7 +135,7 @@
                                     </tableColumn>
                                     <tableColumn identifier="statusCellIdentifier" width="80" minWidth="80" maxWidth="80" id="eOk-m0-nNE">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Status">
-                                            <font key="font" metaFont="system" size="11"/>
+                                            <font key="font" metaFont="message" size="11"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </tableHeaderCell>
@@ -198,7 +199,7 @@
                     <subviews>
                         <button horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="60P-6U-yLy">
                             <rect key="frame" x="-6" y="-7" width="47" height="32"/>
-                            <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSRefreshTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="MuW-2p-aw7">
+                            <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSTouchBarRefreshTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="MuW-2p-aw7">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
@@ -207,16 +208,26 @@
                             </connections>
                         </button>
                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="6kc-nR-owD">
-                            <rect key="frame" x="49" y="3" width="433" height="16"/>
+                            <rect key="frame" x="49" y="3" width="383" height="16"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="16" id="MwB-Zk-AVC"/>
                             </constraints>
                             <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="0 widgets" id="jNM-gX-rdw">
-                                <font key="font" metaFont="system" size="11"/>
+                                <font key="font" metaFont="message" size="11"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
+                        <button horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9qY-JZ-MY5" userLabel="Preferences Button">
+                            <rect key="frame" x="440" y="-7" width="46" height="32"/>
+                            <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSTouchBarListViewTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="eL7-YZ-Zoe">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="message" size="11"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="openPreferencePaneForWidget:" target="-2" id="7y3-r6-Eof"/>
+                            </connections>
+                        </button>
                         <button horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7gd-ex-myd">
                             <rect key="frame" x="490" y="-7" width="44" height="32"/>
                             <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSTouchBarDeleteTemplate" imagePosition="only" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Z0w-lE-KOM">
@@ -232,8 +243,10 @@
                         <integer value="1000"/>
                         <integer value="1000"/>
                         <integer value="1000"/>
+                        <integer value="1000"/>
                     </visibilityPriorities>
                     <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
                         <real value="3.4028234663852886e+38"/>
                         <real value="3.4028234663852886e+38"/>
                         <real value="3.4028234663852886e+38"/>
@@ -254,7 +267,8 @@
     </objects>
     <resources>
         <image name="NSActionTemplate" width="14" height="14"/>
-        <image name="NSRefreshTemplate" width="11" height="15"/>
         <image name="NSTouchBarDeleteTemplate" width="15" height="30"/>
+        <image name="NSTouchBarListViewTemplate" width="18" height="30"/>
+        <image name="NSTouchBarRefreshTemplate" width="19" height="30"/>
     </resources>
 </document>

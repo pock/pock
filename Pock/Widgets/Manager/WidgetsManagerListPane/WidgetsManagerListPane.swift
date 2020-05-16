@@ -25,14 +25,15 @@ internal class WidgetsManagerListPane: NSViewController, PreferencePane {
     }
     
     // MARK: UI Elements
-    @IBOutlet private weak var tableView:       NSTableView!
-    @IBOutlet private weak var statusLabel:     NSTextField!
-    @IBOutlet private weak var uninstallButton: NSButton!
+    @IBOutlet private weak var tableView:         NSTableView!
+    @IBOutlet private weak var statusLabel:       NSTextField!
+    @IBOutlet private weak var preferencesButton: NSButton!
+    @IBOutlet private weak var uninstallButton:   NSButton!
     
     // MARK: Menu
     private lazy var rightClickMenu: NSMenu = {
         let menu = NSMenu(title: "Widget Options".localized)
-        menu.addItem(withTitle: "Preferences…", action: #selector(openPreferencePaneForWidget(_:)), keyEquivalent: ",")
+        menu.delegate = self
         return menu
     }()
     
@@ -95,11 +96,7 @@ extension WidgetsManagerListPane {
     
     /// Open preferences for selected widget
     @IBAction private func openPreferencePaneForWidget(_ sender: Any? = nil) {
-        guard tableView.clickedRow >= 0, tableView.clickedRow < widgets.count else {
-            return
-        }
-        let widget = widgets[tableView.clickedRow]
-        guard let clss = widget.preferenceClass as? PKWidgetPreference.Type else {
+        guard let widget = selectedWidget, let clss = widget.preferenceClass as? PKWidgetPreference.Type else {
             return
         }
         openWindowForPreferenceClass(clss, title: widget.name)
@@ -140,15 +137,31 @@ extension WidgetsManagerListPane {
     /// Update status label
     private func updateUIElements() {
         guard let widget = selectedWidget else {
+            self.preferencesButton.isHidden = true
             self.uninstallButton.isEnabled = false
             let count = widgets.count
             self.statusLabel.stringValue   = "\(count) widget\(count == 1 ? "" : "s") installed"
             return
         }
         self.statusLabel.stringValue   = "\(widget.name) (\(widget.version)) selected"
+        self.preferencesButton.isHidden = widget.preferenceClass as? PKWidgetPreference.Type == nil
         self.uninstallButton.isEnabled = true
     }
 
+}
+
+// MARK: Menu Delegate
+extension WidgetsManagerListPane: NSMenuDelegate {
+    
+    /// Adjust menu elements
+    func menuNeedsUpdate(_ menu: NSMenu) {
+        menu.removeAllItems()
+        guard selectedWidget?.preferenceClass as? PKWidgetPreference.Type != nil else {
+            return
+        }
+        menu.addItem(withTitle: "Preferences…".localized, action: #selector(openPreferencePaneForWidget(_:)), keyEquivalent: ",")
+    }
+    
 }
 
 // MARK: Data Source
