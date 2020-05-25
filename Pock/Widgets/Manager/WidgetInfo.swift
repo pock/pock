@@ -20,6 +20,9 @@ public struct WidgetInfo {
     
     /// Preference
     let preferenceClass: AnyClass?
+    var hasPreferences: Bool {
+        return preferenceClass != nil
+    }
     
     /// Load info for widget at given path.
     public init(path: URL) throws {
