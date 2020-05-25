@@ -27,7 +27,6 @@ internal class WidgetsManagerListPane: NSViewController, PreferencePane {
     // MARK: UI Elements
     @IBOutlet private weak var tableView:         NSTableView!
     @IBOutlet private weak var statusLabel:       NSTextField!
-    @IBOutlet private weak var preferencesButton: NSButton!
     @IBOutlet private weak var uninstallButton:   NSButton!
     
     // MARK: Menu
@@ -137,14 +136,12 @@ extension WidgetsManagerListPane {
     /// Update status label
     private func updateUIElements() {
         guard let widget = selectedWidget else {
-            self.preferencesButton.isHidden = true
             self.uninstallButton.isEnabled = false
             let count = widgets.count
             self.statusLabel.stringValue   = "\(count) widget\(count == 1 ? "" : "s") installed"
             return
         }
         self.statusLabel.stringValue   = "\(widget.name) (\(widget.version)) selected"
-        self.preferencesButton.isHidden = widget.preferenceClass as? PKWidgetPreference.Type == nil
         self.uninstallButton.isEnabled = true
     }
 
@@ -156,10 +153,13 @@ extension WidgetsManagerListPane: NSMenuDelegate {
     /// Adjust menu elements
     func menuNeedsUpdate(_ menu: NSMenu) {
         menu.removeAllItems()
-        guard selectedWidget?.preferenceClass as? PKWidgetPreference.Type != nil else {
-            return
+        let row = tableView.clickedRow
+        if row > -1 && row < widgets.count {
+            tableView.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
+            if selectedWidget?.preferenceClass as? PKWidgetPreference.Type != nil {
+                menu.addItem(withTitle: "Preferences…".localized, action: #selector(openPreferencePaneForWidget(_:)), keyEquivalent: ",")
+            }
         }
-        menu.addItem(withTitle: "Preferences…".localized, action: #selector(openPreferencePaneForWidget(_:)), keyEquivalent: ",")
     }
     
 }
