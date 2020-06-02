@@ -22,7 +22,7 @@ class StatusWidgetPreferencePane: NSViewController, NSTextFieldDelegate, Prefere
     @IBOutlet weak var timeFormatTextField:         NSTextField!
     
     /// Preferenceable
-    var preferencePaneIdentifier: Identifier = Identifier.status_widget
+    var preferencePaneIdentifier: Preferences.PaneIdentifier = Preferences.PaneIdentifier.status_widget
     let preferencePaneTitle:      String     = "Status Widget".localized
     var toolbarItemIcon:          NSImage {
         let path = NSWorkspace.shared.absolutePathForApplication(withBundleIdentifier: "com.apple.systempreferences")!

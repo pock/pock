@@ -13,7 +13,7 @@ import Defaults
 class NowPlayingPreferencePane: NSViewController, PreferencePane {
 
     /// Preferenceable
-    var preferencePaneIdentifier: Identifier = Identifier.now_playing_widget
+    var preferencePaneIdentifier: Preferences.PaneIdentifier = Preferences.PaneIdentifier.now_playing_widget
     let preferencePaneTitle:      String     = "Now Playing Widget".localized
     var toolbarItemIcon:          NSImage {
         let id: String

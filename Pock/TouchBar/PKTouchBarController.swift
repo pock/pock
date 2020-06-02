@@ -101,6 +101,7 @@ extension PKTouchBarController {
     func openCustomization() {
         NSApp.touchBar = self.touchBar
         self.addCustomizationObservers()
+        NSApp.activate(ignoringOtherApps: true)
         self.perform(#selector(delayedOpenCustomization), with: nil, afterDelay: 0.3)
     }
     
