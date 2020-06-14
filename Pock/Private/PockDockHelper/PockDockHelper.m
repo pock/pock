@@ -44,6 +44,20 @@ void SafeCFRelease(CFTypeRef cf) {
     return value;
 }
 
+
+- (__nullable CFTypeRef)getValueForKeys:(_Nonnull CFStringRef)key in:(AXUIElementRef)element {
+    CFArrayRef value;
+    AXUIElementCopyAttributeValues(element, key,0,100,&value);
+    return value;
+}
+
+
+- (__nullable CFArrayRef)getKeys:(AXUIElementRef)element {
+    CFArrayRef names;
+    AXUIElementCopyAttributeNames(element, &names);
+    return names;
+}
+
 //  Thanks to: @Minebomber
 //  Ref:       https://stackoverflow.com/a/36115210
 //
@@ -114,6 +128,60 @@ void SafeCFRelease(CFTypeRef cf) {
     return aReturnItem;
 }
 
+- (NSArray *)getDockItemLabelWithPath:(NSString *)pathString {
+    NSArray *anArray = [NSRunningApplication runningApplicationsWithBundleIdentifier:@"com.apple.dock"];
+    if (anArray.count == 0) {
+        return NULL;
+    }
+    AXUIElementRef anAXDockApp = AXUIElementCreateApplication([[anArray objectAtIndex:0] processIdentifier]);
+    AXUIElementRef aList = [self copyAXUIElementFrom:anAXDockApp role:@"AXList" atIndex:0];
+    if (aList == NULL) {
+        SafeCFRelease(anAXDockApp);
+        return NULL;
+    }
+    NSArray *aChildren = [(NSArray *)CFBridgingRelease([self getValueForKey:kAXChildrenAttribute in:aList]) copy];
+    if (aChildren == NULL) {
+        SafeCFRelease(aList);
+        SafeCFRelease(anAXDockApp);
+        return NULL;
+    }
+    NSMutableArray *itemIndices = [[NSMutableArray alloc] init];
+    __weak PockDockHelper *weakSelf = self;
+    for (int i = 0; i < [aChildren count]; i++) {
+        CFTypeRef anElement = CFBridgingRetain(aChildren[i]);
+
+        CFURLRef elem= [weakSelf getValueForKey:kAXURLAttribute in:anElement];
+        NSURL* url = (__bridge NSURL *) elem;
+        NSString* path = url.absoluteString;
+
+        SafeCFRelease(anElement);
+        if (path != NULL && [path isEqualToString:pathString]) {
+            [itemIndices addObject:[NSNumber numberWithInt:i]];
+        }
+    }
+    if (itemIndices.count == 0) {
+        SafeCFRelease(aList);
+        SafeCFRelease(anAXDockApp);
+        return NULL;
+    }
+
+    //AXUIElementRef returnItems[itemIndices.count];
+    NSMutableArray *returnItems = [NSMutableArray arrayWithCapacity:itemIndices.count];
+    for (int i = 0; i<itemIndices.count; i++) {
+        NSNumber* idx = itemIndices[i];
+        NSInteger itx = idx.integerValue;
+        AXUIElementRef item = [self copyAXUIElementFrom:aList role:@"AXDockItem" atIndex:itx];
+        NSString *it = [(NSString *)CFBridgingRelease([self getValueForKey:kAXStatusLabelAttribute in:item]) copy];
+        SafeCFRelease(item);
+        if(it != NULL)
+            returnItems[i] = it;
+    }
+
+    SafeCFRelease(aList);
+    SafeCFRelease(anAXDockApp);
+    return returnItems;
+}
+
 - (NSString *)getBadgeCountForItemWithName:(NSString *)name {
     AXUIElementRef dockItem = [self getDockItemWithName:name];
     if (dockItem == NULL) {
@@ -123,6 +191,27 @@ void SafeCFRelease(CFTypeRef cf) {
     NSString *statusLabel = [(NSString *)CFBridgingRelease([self getValueForKey:kAXStatusLabelAttribute in:dockItem]) copy];
     SafeCFRelease(dockItem);
     return statusLabel;
+}
+
+- (NSString *)getBadgeCountForItemWithPath:(NSURL *)path {
+    NSArray *items= [self getDockItemLabelWithPath:path.absoluteString];
+    if (items == NULL || items.count == 0) {
+        // SafeCFRelease((__bridge CFTypeRef)(items));
+        return NULL;
+    }
+    NSMutableArray* labels = [NSMutableArray arrayWithCapacity:items.count];
+    for (int i = 0; i < [items count]; i++) {
+        NSString *statusLabel = items[i];
+        labels[i] = statusLabel;
+    }
+
+    for (int i = 0; i < [labels count]; i++) {
+        NSString *item = labels[i];
+        if(item != NULL) {
+            return [[NSString alloc] initWithString:item];
+        }
+    }
+    return NULL;
 }
 
 // MARK: CGWindowID

@@ -135,8 +135,8 @@ class DockRepository {
         dockItems.removeAll(where: { canRemove(item: $0) })
         runningItems = []
         for app in NSWorkspace.shared.runningApplications {
-            if let item = dockItems.first(where: { $0.bundleIdentifier == app.bundleIdentifier }) {
-                item.name        = app.localizedName ?? item.name
+            if let item = dockItems.first(where: { $0.bundleIdentifier == app.bundleIdentifier && $0.path == app.bundleURL}) {
+                item.name        = item.name ?? app.localizedName
                 item.icon        = app.icon ?? item.icon
                 item.pid_t       = app.processIdentifier
                 item.isLaunching = !app.isFinishedLaunching
@@ -183,6 +183,9 @@ class DockRepository {
             guard let label = dataTile["file-label"] as? String else { NSLog("[Pock]: Can't get app label"); continue }
             /// Get app's bundle identifier
             guard let bundleIdentifier = dataTile["bundle-identifier"] as? String else { NSLog("[Pock]: Can't get app bundle identifier"); continue }
+
+            guard let fileData = dataTile["file-data"] as?  [String: Any] else { NSLog("[Pock]: Can't get file data identifier"); continue }
+            guard let urlString = fileData["_CFURLString"] as? String  else { NSLog("[Pock]: Can't get url identifier"); continue }
             /// Check if item already exists
             if let item = dockItems.first(where: { $0.bundleIdentifier == bundleIdentifier }) {
                 persistentApps.append(item)
@@ -191,7 +194,7 @@ class DockRepository {
                 let item = DockItem(index,
                                     bundleIdentifier,
                                     name: label,
-                                    path: nil,
+                                    path: URL(string: urlString),
                                     icon: DockRepository.getIcon(forBundleIdentifier: bundleIdentifier),
                                     pid_t: 0,
                                     launching: false)
@@ -259,7 +262,7 @@ class DockRepository {
     private func updateBouncing(for notification: NSNotification?) {
         if notification?.name == NSWorkspace.willLaunchApplicationNotification {
             if let app = notification?.userInfo?[NSWorkspace.applicationUserInfoKey] as? NSRunningApplication {
-                if let item = dockItems.first(where: { $0.bundleIdentifier == app.bundleIdentifier }), !item.isLaunching {
+                if let item = dockItems.first(where: { $0.bundleIdentifier == app.bundleIdentifier && $0.path == app.bundleURL }), !item.isLaunching {
                     item.isLaunching = true
                     delegate?.didUpdateRunningState(for: dockItems)
                 }
@@ -267,7 +270,7 @@ class DockRepository {
         }else if notification?.name == NSWorkspace.didLaunchApplicationNotification ||
                  notification?.name == NSWorkspace.didActivateApplicationNotification {
             if let app = notification?.userInfo?[NSWorkspace.applicationUserInfoKey] as? NSRunningApplication {
-                if let item = dockItems.first(where: { $0.bundleIdentifier == app.bundleIdentifier }), item.isLaunching {
+                if let item = dockItems.first(where: { $0.bundleIdentifier == app.bundleIdentifier && $0.path == app.bundleURL }), item.isLaunching {
                     item.isLaunching = false
                     delegate?.didUpdateRunningState(for: dockItems)
                 }
@@ -280,8 +283,10 @@ class DockRepository {
         guard shouldShowNotificationBadge else { return }
         DispatchQueue.main.async { [weak self] in
             guard let s = self else { return }
+            guard let helper = PockDockHelper.sharedInstance() else { return }
             for item in s.dockItems {
-                var badge: NSString? = PockDockHelper.sharedInstance()?.getBadgeCountForItem(withName: item.name) as NSString?
+                var badge: NSString? = helper.getBadgeCountForItem(withPath: item.path) as NSString?
+                                        ?? helper.getBadgeCountForItem(withName: item.name) as NSString?
                 item.badge = badge?.copy() as? String
                 badge = nil
             }

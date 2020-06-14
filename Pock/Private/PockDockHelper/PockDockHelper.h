@@ -25,6 +25,7 @@ extern AXError _AXUIElementGetWindow(AXUIElementRef window, CGWindowID *windowID
 
 + (PockDockHelper *)sharedInstance;
 - (NSString *)getBadgeCountForItemWithName:(NSString *)name;
+- (NSString *)getBadgeCountForItemWithPath:(NSURL *)path;
 - (NSArray *)getWindowsOfApp:(pid_t)pid;
 - (BOOL)windowIsFrontmost:(CGWindowID)wid forApp:(NSRunningApplication *)app;
 - (void)minimizeWindowItem:(CGWindowItem *)item;
