@@ -85,6 +85,7 @@
 		96E7A152239B99F700CB4C4C /* CCDoNotDisturbItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E7A151239B99F700CB4C4C /* CCDoNotDisturbItem.swift */; };
 		96FE269F22D0C3810071645C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 96FE26A122D0C3810071645C /* Localizable.strings */; };
 		9955665222DC668500EFFE6D /* CCVolumeMuteItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9955665122DC668500EFFE6D /* CCVolumeMuteItem.swift */; };
+		999276BE249FD8C300EFF44A /* SLangItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999276BD249FD8C300EFF44A /* SLangItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -210,6 +211,7 @@
 		96F2999A2317980B0055DA26 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ControlCenterWidgetPreferencePane.strings"; sourceTree = "<group>"; };
 		96FE26A022D0C3810071645C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9955665122DC668500EFFE6D /* CCVolumeMuteItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCVolumeMuteItem.swift; sourceTree = "<group>"; };
+		999276BD249FD8C300EFF44A /* SLangItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLangItem.swift; sourceTree = "<group>"; };
 		AAA3636F2333699C0016267D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/DockFolderController.strings"; sourceTree = "<group>"; };
 		AAA363702333699C0016267D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/GeneralPreferencePane.strings"; sourceTree = "<group>"; };
 		AAA363712333699C0016267D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/StatusWidgetPreferencePane.strings"; sourceTree = "<group>"; };
@@ -499,6 +501,7 @@
 		342D83C52278D5CF000D79DA /* Items */ = {
 			isa = PBXGroup;
 			children = (
+				999276BD249FD8C300EFF44A /* SLangItem.swift */,
 				342D83C62278D5CF000D79DA /* SSpotlightItem.swift */,
 				342D83C72278D5CF000D79DA /* SWifiItem.swift */,
 				342D83C82278D5CF000D79DA /* SPowerItem.swift */,
@@ -795,6 +798,7 @@
 				"${BUILT_PRODUCTS_DIR}/Magnet/Magnet.framework",
 				"${BUILT_PRODUCTS_DIR}/PockKit/PockKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Preferences/Preferences.framework",
+				"${BUILT_PRODUCTS_DIR}/Sauce/Sauce.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -804,6 +808,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Magnet.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PockKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Preferences.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sauce.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -820,6 +825,7 @@
 			files = (
 				342D83FA2278D5CF000D79DA /* SSpotlightItem.swift in Sources */,
 				342D83F92278D5CF000D79DA /* StatusItem.swift in Sources */,
+				999276BE249FD8C300EFF44A /* SLangItem.swift in Sources */,
 				3406433E227ED8BC00981372 /* DockFolderItemView.swift in Sources */,
 				347F336022D0D68400FA9805 /* CCLockItem.swift in Sources */,
 				342D83E62278D5CF000D79DA /* StatusWidgetPreferencePane.swift in Sources */,
