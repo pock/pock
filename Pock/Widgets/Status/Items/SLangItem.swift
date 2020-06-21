@@ -16,10 +16,9 @@ class SLangItem: StatusItem {
     /// UI
     private let iconView: NSImageView = NSImageView(frame: NSRect(x: 0, y: 0, width: 26, height: 26))
     
-    init() {
-        didLoad()
-        reload()
-    }
+    var tisInputSource: TISInputSource? = nil
+    
+    init() {}
     
     deinit {
         didUnload()
@@ -37,9 +36,9 @@ class SLangItem: StatusItem {
     
     
     func didLoad() {
-        //iconView.imageScaling = NSImageScaling.scaleProportionallyUpOrDown
         iconView.imageAlignment = NSImageAlignment.alignCenter
-        // Required else it will lose reference to button currently being displayed
+        self.reload()
+        // register input source listener
         DistributedNotificationCenter.default().addObserver(self,
         selector: #selector(selectedKeyboardInputSourceChanged),
         name: NSNotification.Name(kTISNotifySelectedKeyboardInputSourceChanged as String),
@@ -48,14 +47,21 @@ class SLangItem: StatusItem {
     }
     
     func didUnload() {
-        
+        DistributedNotificationCenter.default().removeObserver(self, name: NSNotification.Name(kTISNotifySelectedKeyboardInputSourceChanged as String), object: nil)
     }
     
     
     func reload() {
+        // check if there is need to change the input source icon
+        let tisInputSourceLocal = TISCopyCurrentKeyboardInputSource().takeRetainedValue()
+        if (tisInputSource?.name == tisInputSourceLocal.name) {
+            return
+        }
+        tisInputSource = nil
+        tisInputSource = tisInputSourceLocal
         var iconImage: NSImage? = nil
-        let tisInputSource = TISCopyCurrentKeyboardInputSource().takeUnretainedValue()
-        if let imageURL = tisInputSource.iconImageURL {
+        // try getting high-res icon url
+        if let imageURL = tisInputSource!.iconImageURL {
             for url in [imageURL.retinaImageURL, imageURL.tiffImageURL, imageURL] {
                 if let image = NSImage(contentsOf: url) {
                     iconImage = image
@@ -64,10 +70,12 @@ class SLangItem: StatusItem {
             }
         }
 
-        if iconImage == nil, let iconRef = tisInputSource.iconRef {
+        // get the iconRef if no high-res icon url is available
+        if iconImage == nil, let iconRef = tisInputSource!.iconRef {
             iconImage = NSImage(iconRef: iconRef)
         }
         
+        // resize in order to fit the touchbar without blurriness when too big
         self.iconView.image = iconImage?.resizeWhileMaintainingAspectRatioToSize(size: NSSize(width: 18, height: 18))
         
     }
@@ -75,6 +83,7 @@ class SLangItem: StatusItem {
 }
 
 extension SLangItem {
+    // this may be called twice
     @objc func selectedKeyboardInputSourceChanged() {
         self.reload()
     }
@@ -82,6 +91,7 @@ extension SLangItem {
 
 //credit: https://github.com/utatti/kawa
 private extension URL {
+    // try getting retina image from URL
     var retinaImageURL: URL {
         var components = pathComponents
         let filename: String = components.removeLast()
@@ -90,11 +100,13 @@ private extension URL {
         return NSURL.fileURL(withPathComponents: components + [retinaFilename])!
     }
 
+    // try getting high quality tiff from URL
     var tiffImageURL: URL {
         return deletingPathExtension().appendingPathExtension("tiff")
     }
 }
 
+// extension which makes getting properties from TISInputSource easier
 extension TISInputSource {
     enum Category {
         static var keyboardInputSource: String {
