@@ -58,7 +58,7 @@ class NowPlayingItemView: PKDetailView {
         let path = NSWorkspace.shared.absolutePathForApplication(withBundleIdentifier: appBundleIdentifier)
         
         DispatchQueue.main.async { [weak self] in
-            self?.imageView.image = DockRepository.getIcon(forBundleIdentifier: appBundleIdentifier, orPath: path)
+            self?.imageView.image = self?.nowPLayingItem?.image ?? DockRepository.getIcon(forBundleIdentifier: appBundleIdentifier, orPath: path)
             
             let isPlaying = self?.nowPLayingItem?.isPlaying ?? false
             var title     = self?.nowPLayingItem?.title     ?? "Tap here".localized

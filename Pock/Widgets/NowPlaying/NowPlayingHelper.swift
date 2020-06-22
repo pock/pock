@@ -74,6 +74,73 @@ class NowPlayingHelper {
         })
     }
     
+    
+    private var artworkAPITask: URLSessionTask?
+    private var artworkDownloadTask: URLSessionTask?
+    
+    var cachedAlbumArtName: String? = nil
+    var cachedAlbumArt: NSImage? = nil
+    
+    func updateArtwork(search: String, completionHandler: @escaping (NSImage?) -> Void) {
+        
+        if (cachedAlbumArtName == search) {
+            completionHandler(cachedAlbumArt)
+            return
+        }
+        
+        
+        // Destroy tasks, if any was already busy
+        if let previousAPITask = artworkAPITask {
+            previousAPITask.cancel()
+        }
+        
+        if let previousDownloadTask = artworkDownloadTask {
+            previousDownloadTask.cancel()
+        }
+        
+        // Start fetching artwork
+        artworkAPITask = URLSession.fetchJSON(fromURL: URL(string: "https://itunes.apple.com/search?term=\(search)&entity=song&limit=1")!) { (data, json, error) in
+            if error != nil {
+                print("Could not get artwork")
+                completionHandler(nil)
+                return
+            }
+
+            if let json = json as? [String: Any] {
+                if let results = json["results"] as? [[String: Any]] {
+                    if results.count >= 1, let imgURL = results[0]["artworkUrl100"] as? String {
+                        
+                        // Create the URL
+                        let url = URL(string: imgURL)!
+                        
+                        // Download the artwork
+                        self.artworkDownloadTask = URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+                            
+                            if error != nil {
+                                completionHandler(nil)
+                                return
+                            }
+
+                            DispatchQueue.main.async {
+                                self.cachedAlbumArtName = search
+                                self.cachedAlbumArt = NSImage(data: data!)
+                                // Set the artwork to the image
+                                completionHandler(self.cachedAlbumArt)
+                            }
+                        })
+                            
+                        self.artworkDownloadTask!.resume()
+                    }
+                    else {
+                        completionHandler(nil)
+                    }
+                }
+            }
+        }
+        
+        artworkAPITask!.resume()
+    }
+    
     @objc private func updateMediaContent() {
         MRMediaRemoteGetNowPlayingInfo(DispatchQueue.global(qos: .utility), { [weak self] info in
             self?.nowPlayingItem.title  = info?[kMRMediaRemoteNowPlayingInfoTitle]  as? String
@@ -82,7 +149,12 @@ class NowPlayingHelper {
             if info == nil {
                 self?.nowPlayingItem.isPlaying = false
             }
+            self?.nowPlayingItem.image = nil
             NotificationCenter.default.post(name: NowPlayingHelper.kNowPlayingItemDidChange, object: nil)
+            self?.updateArtwork(search: "\(self?.nowPlayingItem.title ?? "") \(self?.nowPlayingItem.artist ?? "")".replacingOccurrences(of: " ", with: "+").addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!) { image in
+                self?.nowPlayingItem.image = image
+                NotificationCenter.default.post(name: NowPlayingHelper.kNowPlayingItemDidChange, object: nil)
+            }
         })
     }
     
@@ -118,3 +190,22 @@ extension NowPlayingHelper {
     }
     
 }
+
+extension URLSession {
+      static func fetchJSON(fromURL url: URL, completionHandler: @escaping (Data?, Any?, Error?) -> Void) -> URLSessionTask {
+          let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+              // Error occurred during request
+              if error != nil {
+                  completionHandler(nil, nil, error)
+                  return
+              }
+              
+              let json = try! JSONSerialization.jsonObject(with: data!, options: .allowFragments)
+
+              completionHandler(data, json, nil)
+          }
+          
+          return task
+      }
+  }
+
