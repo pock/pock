@@ -15,7 +15,7 @@ class NowPlayingHelper {
     public static let kNowPlayingItemDidChange: Notification.Name = Notification.Name(rawValue: "kNowPlayingItemDidChange")
     
     /// Data
-    public let nowPlayingItem: NowPlayingItem = NowPlayingItem()
+    public var nowPlayingItem: NowPlayingItem = NowPlayingItem()
     
     private init() {
         MRMediaRemoteRegisterForNowPlayingNotifications(DispatchQueue.global(qos: .utility))
@@ -70,6 +70,7 @@ class NowPlayingHelper {
                 self?.nowPlayingItem.artist = nil
                 self?.nowPlayingItem.title  = nil
             }
+            self?.lastNowPlayingItem?.appBundleIdentifier = self?.nowPlayingItem.appBundleIdentifier
             NotificationCenter.default.post(name: NowPlayingHelper.kNowPlayingItemDidChange, object: nil)
         })
     }
@@ -79,9 +80,10 @@ class NowPlayingHelper {
     private var artworkDownloadTask: URLSessionTask?
     
     var cachedAlbumArtName: String? = nil
-    var cachedAlbumArt: NSImage? = nil
+    var cachedAlbumArt: Data? = nil
     
-    func updateArtwork(search: String, completionHandler: @escaping (NSImage?) -> Void) {
+    // credit: https://github.com/musa11971/Music-Bar
+    func updateArtwork(search: String, completionHandler: @escaping (Data?) -> Void) {
         
         if (cachedAlbumArtName == search) {
             completionHandler(cachedAlbumArt)
@@ -123,7 +125,7 @@ class NowPlayingHelper {
 
                             DispatchQueue.main.async {
                                 self.cachedAlbumArtName = search
-                                self.cachedAlbumArt = NSImage(data: data!)
+                                self.cachedAlbumArt = data
                                 // Set the artwork to the image
                                 completionHandler(self.cachedAlbumArt)
                             }
@@ -141,19 +143,126 @@ class NowPlayingHelper {
         artworkAPITask!.resume()
     }
     
+    
+    
+    var albumArtFallbackTimer: Timer? = nil
+    
+    var lastUIUpdateNanos: UInt64? = nil
+    
+    // flag to indicate whether to fallback to network icon
+    var timesLeftTryUpdatingMediaContentManually: Int = 2
+
+    
+    @objc func fireTimerIconFailed() {
+        albumArtFallbackTimer = nil
+        if (self.nowPlayingItem.image == nil) {
+            self.updateArtwork(search: "\(self.nowPlayingItem.title ?? "") \(self.nowPlayingItem.artist ?? "")".replacingOccurrences(of: " ", with: "+").addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!) { image in
+                self.nowPlayingItem.image = image
+                NotificationCenter.default.post(name: NowPlayingHelper.kNowPlayingItemDidChange, object: nil)
+            }
+        }
+    }
+    
+    // added this variable because `updateMediaContent` is called many times with different information
+    var lastNowPlayingItem: NowPlayingItem?
+    
+    func updateUI(withTimer: Bool) {
+        self.lastUIUpdateNanos = DispatchTime.now().uptimeNanoseconds
+        NotificationCenter.default.post(name: NowPlayingHelper.kNowPlayingItemDidChange, object: nil)
+        if withTimer {
+            if self.albumArtFallbackTimer == nil {
+                // fallback to network artwork after 20 seconds
+                DispatchQueue.main.async {
+                    if (self.timesLeftTryUpdatingMediaContentManually <= 0) {
+                        // we have tried getting the artwork with official api manuall but it didn't work, get it from the iTunes API
+                        self.timesLeftTryUpdatingMediaContentManually = 2
+                        self.albumArtFallbackTimer = Timer.scheduledTimer(timeInterval: 20.0, target: self, selector: #selector(NowPlayingHelper.fireTimerIconFailed), userInfo: nil, repeats: false)
+                    } else {
+                        let timeInterval: Double = self.timesLeftTryUpdatingMediaContentManually == 2 ? 1.5 : 8.0
+                        
+                        self.timesLeftTryUpdatingMediaContentManually -= 1
+                        self.albumArtFallbackTimer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(NowPlayingHelper.updateMediaContent), userInfo: nil, repeats: false)
+                    }
+                }
+            }
+        }
+    }
+    
     @objc private func updateMediaContent() {
         MRMediaRemoteGetNowPlayingInfo(DispatchQueue.global(qos: .utility), { [weak self] info in
-            self?.nowPlayingItem.title  = info?[kMRMediaRemoteNowPlayingInfoTitle]  as? String
-            self?.nowPlayingItem.album  = info?[kMRMediaRemoteNowPlayingInfoAlbum]  as? String
-            self?.nowPlayingItem.artist = info?[kMRMediaRemoteNowPlayingInfoArtist] as? String
-            if info == nil {
-                self?.nowPlayingItem.isPlaying = false
+            var initialRun = false
+            if (self?.lastNowPlayingItem == nil) {
+                // `lastNowPlayingItem` is still nil it's the first time `updateMediaContent` is being run
+                self?.lastNowPlayingItem = self?.nowPlayingItem
+                initialRun = true
             }
-            self?.nowPlayingItem.image = nil
-            NotificationCenter.default.post(name: NowPlayingHelper.kNowPlayingItemDidChange, object: nil)
-            self?.updateArtwork(search: "\(self?.nowPlayingItem.title ?? "") \(self?.nowPlayingItem.artist ?? "")".replacingOccurrences(of: " ", with: "+").addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!) { image in
-                self?.nowPlayingItem.image = image
-                NotificationCenter.default.post(name: NowPlayingHelper.kNowPlayingItemDidChange, object: nil)
+            self?.lastNowPlayingItem?.title  = info?[kMRMediaRemoteNowPlayingInfoTitle]  as? String
+            self?.lastNowPlayingItem?.album  = info?[kMRMediaRemoteNowPlayingInfoAlbum]  as? String
+            self?.lastNowPlayingItem?.artist = info?[kMRMediaRemoteNowPlayingInfoArtist] as? String
+            self?.lastNowPlayingItem?.image = info?[kMRMediaRemoteNowPlayingInfoArtworkData] as? Data
+            
+            if info == nil {
+                self?.lastNowPlayingItem?.isPlaying = false
+            }
+        
+            let containsImage = self?.lastNowPlayingItem?.image != nil
+            if (!isProd) {
+                print("contains image: \(containsImage)")
+            }
+
+            if (!initialRun &&
+                self?.lastNowPlayingItem?.title == self?.nowPlayingItem.title &&
+                self?.lastNowPlayingItem?.album == self?.nowPlayingItem.album &&
+                self?.lastNowPlayingItem?.artist == self?.nowPlayingItem.artist &&
+                self?.lastNowPlayingItem?.appBundleIdentifier == self?.nowPlayingItem.appBundleIdentifier) {
+                // if everything is the same compare image data
+                if (self?.lastNowPlayingItem?.image != self?.nowPlayingItem.image) {
+                    self?.nowPlayingItem.image = self?.lastNowPlayingItem?.image
+                    // if the new image data isn't nil cancel the network fallback timer
+                    if (self?.nowPlayingItem.image != nil) {
+                        self?.albumArtFallbackTimer?.invalidate()
+                        self?.albumArtFallbackTimer = nil
+                    }
+                    self?.timesLeftTryUpdatingMediaContentManually = 2
+                    // if image data is different update the UI
+                    if let lastUIUpdateNanosVerified = self?.lastUIUpdateNanos {
+                        if (DispatchTime.now().uptimeNanoseconds - lastUIUpdateNanosVerified < 500*1000000) {
+                            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+DispatchTimeInterval.milliseconds(500)) {
+                                self?.updateUI(withTimer: false)
+                            }
+                        } else {
+                            self?.updateUI(withTimer: false)
+                        }
+                    } else {
+                        self?.updateUI(withTimer: false)
+                    }
+                }
+            } else {
+                if let nowPlayingLocal = self?.lastNowPlayingItem {
+                    // create a copy of the `nowPlayingItem` item in order to compare
+                    self?.nowPlayingItem = NowPlayingItem()
+                    self?.nowPlayingItem.album = nowPlayingLocal.album
+                    self?.nowPlayingItem.artist = nowPlayingLocal.artist
+                    self?.nowPlayingItem.appBundleIdentifier = nowPlayingLocal.appBundleIdentifier
+                    self?.nowPlayingItem.title = nowPlayingLocal.title
+                    self?.nowPlayingItem.image = nowPlayingLocal.image
+                    self?.nowPlayingItem.isPlaying = nowPlayingLocal.isPlaying
+                    self?.lastUIUpdateNanos = DispatchTime.now().uptimeNanoseconds
+                    if let lastUIUpdateNanosVerified = self?.lastUIUpdateNanos {
+                        if (DispatchTime.now().uptimeNanoseconds - lastUIUpdateNanosVerified < 500*1000000) {
+                            if (DispatchTime.now().uptimeNanoseconds - lastUIUpdateNanosVerified < 500*1000000) {
+                                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+DispatchTimeInterval.milliseconds(500)) {
+                                    self?.updateUI(withTimer: !containsImage)
+                                }
+                            }
+                        } else {
+                            self?.updateUI(withTimer: !containsImage)
+                        }
+                    } else {
+                        self?.updateUI(withTimer: !containsImage)
+                    }
+                    
+                }
             }
         })
     }
@@ -165,6 +274,7 @@ class NowPlayingHelper {
             }else {
                 self?.nowPlayingItem.isPlaying = isPlaying
             }
+            self?.lastNowPlayingItem?.isPlaying = self?.nowPlayingItem.isPlaying == true
             NotificationCenter.default.post(name: NowPlayingHelper.kNowPlayingItemDidChange, object: nil)
         })
     }
