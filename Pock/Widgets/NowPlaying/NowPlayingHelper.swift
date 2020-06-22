@@ -137,6 +137,12 @@ class NowPlayingHelper {
                         completionHandler(nil)
                     }
                 }
+                else {
+                    completionHandler(nil)
+                }
+            }
+            else {
+                completionHandler(nil)
             }
         }
         
