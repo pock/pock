@@ -179,7 +179,7 @@ class NowPlayingHelper {
             // fallback to network artwork after 20 seconds
             DispatchQueue.main.async {
                 if (self.timesLeftTryUpdatingMediaContentManually <= 0) {
-                    // we have tried getting the artwork with official api manuall but it didn't work, get it from the iTunes API
+                    // we have tried getting the artwork with official api manually but it didn't work, get it from the iTunes API
                     self.timesLeftTryUpdatingMediaContentManually = 2
                     self.albumArtFallbackTimer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(NowPlayingHelper.fireTimerIconFailed), userInfo: nil, repeats: false)
                 } else {
