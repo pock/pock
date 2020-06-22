@@ -91,7 +91,7 @@ class NowPlayingHelper {
         }
         
         
-        // Destroy tasks, if any was already busy
+        // Destroy tasks, if any were already busy
         if let previousAPITask = artworkAPITask {
             previousAPITask.cancel()
         }
@@ -157,8 +157,10 @@ class NowPlayingHelper {
         albumArtFallbackTimer = nil
         if (self.nowPlayingItem.image == nil) {
             self.updateArtwork(search: "\(self.nowPlayingItem.title ?? "") \(self.nowPlayingItem.artist ?? "")".replacingOccurrences(of: " ", with: "+").addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!) { image in
-                self.nowPlayingItem.image = image
-                NotificationCenter.default.post(name: NowPlayingHelper.kNowPlayingItemDidChange, object: nil)
+                if (image != nil) {
+                    self.nowPlayingItem.image = image
+                    NotificationCenter.default.post(name: NowPlayingHelper.kNowPlayingItemDidChange, object: nil)
+                }
             }
         }
     }
@@ -166,29 +168,56 @@ class NowPlayingHelper {
     // added this variable because `updateMediaContent` is called many times with different information
     var lastNowPlayingItem: NowPlayingItem?
     
-    func updateUI(withTimer: Bool) {
-        self.lastUIUpdateNanos = DispatchTime.now().uptimeNanoseconds
-        NotificationCenter.default.post(name: NowPlayingHelper.kNowPlayingItemDidChange, object: nil)
-        if withTimer {
-            if self.albumArtFallbackTimer == nil {
-                // fallback to network artwork after 20 seconds
-                DispatchQueue.main.async {
-                    if (self.timesLeftTryUpdatingMediaContentManually <= 0) {
-                        // we have tried getting the artwork with official api manuall but it didn't work, get it from the iTunes API
-                        self.timesLeftTryUpdatingMediaContentManually = 2
-                        self.albumArtFallbackTimer = Timer.scheduledTimer(timeInterval: 20.0, target: self, selector: #selector(NowPlayingHelper.fireTimerIconFailed), userInfo: nil, repeats: false)
-                    } else {
-                        let timeInterval: Double = self.timesLeftTryUpdatingMediaContentManually == 2 ? 1.5 : 8.0
-                        
-                        self.timesLeftTryUpdatingMediaContentManually -= 1
-                        self.albumArtFallbackTimer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(NowPlayingHelper.updateMediaContent), userInfo: nil, repeats: false)
-                    }
+    func setupTimer() {
+        if self.albumArtFallbackTimer == nil {
+            // fallback to network artwork after 20 seconds
+            DispatchQueue.main.async {
+                if (self.timesLeftTryUpdatingMediaContentManually <= 0) {
+                    // we have tried getting the artwork with official api manuall but it didn't work, get it from the iTunes API
+                    self.timesLeftTryUpdatingMediaContentManually = 2
+                    self.albumArtFallbackTimer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(NowPlayingHelper.fireTimerIconFailed), userInfo: nil, repeats: false)
+                } else {
+                    let timeInterval: Double = self.timesLeftTryUpdatingMediaContentManually == 2 ? 1.5 : 8.0
+                    
+                    self.timesLeftTryUpdatingMediaContentManually -= 1
+                    self.albumArtFallbackTimer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(NowPlayingHelper.updateMediaContent(sender:)), userInfo: ["fromTimer": true], repeats: false)
                 }
             }
         }
     }
     
-    @objc private func updateMediaContent() {
+    func updateUI(withTimer: Bool) {
+        self.lastUIUpdateNanos = DispatchTime.now().uptimeNanoseconds
+        NotificationCenter.default.post(name: NowPlayingHelper.kNowPlayingItemDidChange, object: nil)
+        if withTimer {
+            if self.albumArtFallbackTimer != nil {
+                self.albumArtFallbackTimer?.invalidate()
+                self.albumArtFallbackTimer = nil
+                self.timesLeftTryUpdatingMediaContentManually = 2
+                if let previousAPITask = artworkAPITask {
+                    previousAPITask.cancel()
+                }
+                
+                if let previousDownloadTask = artworkDownloadTask {
+                    previousDownloadTask.cancel()
+                }
+            }
+            setupTimer()
+        }
+    }
+    
+    @objc private func updateMediaContent(sender: Any? = nil) {
+        // indicates whether we need to run another step of the timer
+        var rerunTimer = false
+        if sender != nil {
+            if (sender is Timer) {
+                let dict = (sender as! Timer).userInfo as? NSDictionary
+                if ((dict?["fromTimer"] as? Bool) == true) {
+                    self.albumArtFallbackTimer = nil
+                    rerunTimer = true
+                }
+            }
+        }
         MRMediaRemoteGetNowPlayingInfo(DispatchQueue.global(qos: .utility), { [weak self] info in
             var initialRun = false
             if (self?.lastNowPlayingItem == nil) {
@@ -200,6 +229,9 @@ class NowPlayingHelper {
             self?.lastNowPlayingItem?.album  = info?[kMRMediaRemoteNowPlayingInfoAlbum]  as? String
             self?.lastNowPlayingItem?.artist = info?[kMRMediaRemoteNowPlayingInfoArtist] as? String
             self?.lastNowPlayingItem?.image = info?[kMRMediaRemoteNowPlayingInfoArtworkData] as? Data
+            if (self?.cachedAlbumArtName == "\(self?.lastNowPlayingItem?.title ?? "") \(self?.lastNowPlayingItem?.artist ?? "")".replacingOccurrences(of: " ", with: "+").addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!) {
+                self?.lastNowPlayingItem?.image = self?.cachedAlbumArt
+            }
             
             if info == nil {
                 self?.lastNowPlayingItem?.isPlaying = false
@@ -224,6 +256,7 @@ class NowPlayingHelper {
                         self?.albumArtFallbackTimer = nil
                     }
                     self?.timesLeftTryUpdatingMediaContentManually = 2
+                    rerunTimer = false
                     // if image data is different update the UI
                     if let lastUIUpdateNanosVerified = self?.lastUIUpdateNanos {
                         if (DispatchTime.now().uptimeNanoseconds - lastUIUpdateNanosVerified < 500*1000000) {
@@ -263,6 +296,9 @@ class NowPlayingHelper {
                     }
                     
                 }
+            }
+            if (rerunTimer) {
+                self?.setupTimer()
             }
         })
     }
