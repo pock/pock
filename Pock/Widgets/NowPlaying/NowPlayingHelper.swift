@@ -351,10 +351,20 @@ extension URLSession {
                   completionHandler(nil, nil, error)
                   return
               }
+            
+            if data == nil {
+                completionHandler(nil, nil, NSError(domain:"", code:401, userInfo:[ NSLocalizedDescriptionKey: "Invalid data"]))
+                return
+            }
               
-              let json = try! JSONSerialization.jsonObject(with: data!, options: .allowFragments)
+            let json = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments)
 
-              completionHandler(data, json, nil)
+            if json == nil {
+                completionHandler(nil, nil, NSError(domain:"", code:401, userInfo:[ NSLocalizedDescriptionKey: "Invalid json"]))
+                return
+            }
+            
+            completionHandler(data, json, nil)
           }
           
           return task
