@@ -199,7 +199,6 @@ class NowPlayingHelper {
             if self.albumArtFallbackTimer != nil {
                 self.albumArtFallbackTimer?.invalidate()
                 self.albumArtFallbackTimer = nil
-                self.timesLeftTryUpdatingMediaContentManually = 2
                 if let previousAPITask = artworkAPITask {
                     previousAPITask.cancel()
                 }
@@ -208,6 +207,7 @@ class NowPlayingHelper {
                     previousDownloadTask.cancel()
                 }
             }
+            self.timesLeftTryUpdatingMediaContentManually = 2
             setupTimer()
         }
     }

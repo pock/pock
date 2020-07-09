@@ -58,6 +58,9 @@ class NowPlayingItemView: PKDetailView {
         let path = NSWorkspace.shared.absolutePathForApplication(withBundleIdentifier: appBundleIdentifier)
         
         DispatchQueue.main.async { [weak self] in
+            if self == nil {
+                return
+            }
             if let imageData = self?.nowPLayingItem?.image {
                 self?.imageView.image = NSImage(data: imageData)
             } else {
