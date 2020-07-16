@@ -224,7 +224,10 @@ class NowPlayingHelper {
                 }
             }
         }
-        MRMediaRemoteGetNowPlayingInfo(DispatchQueue.global(qos: .utility), { [weak self] info in
+        MRMediaRemoteGetNowPlayingInfo(DispatchQueue.main, { [weak self] info in
+            if self == nil {
+                return
+            }
             var initialRun = false
             if (self?.lastNowPlayingItem == nil) {
                 // `lastNowPlayingItem` is still nil it's the first time `updateMediaContent` is being run
@@ -310,7 +313,7 @@ class NowPlayingHelper {
     }
     
     @objc private func updateCurrentPlayingState() {
-        MRMediaRemoteGetNowPlayingApplicationIsPlaying(DispatchQueue.global(qos: .utility), {[weak self] isPlaying in
+        MRMediaRemoteGetNowPlayingApplicationIsPlaying(DispatchQueue.main, {[weak self] isPlaying in
             if self?.nowPlayingItem.appBundleIdentifier == nil {
                 self?.nowPlayingItem.isPlaying = false
             }else {
