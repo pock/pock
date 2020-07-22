@@ -64,7 +64,7 @@ class SLangItem: StatusItem {
         if let imageURL = tisInputSource!.iconImageURL {
             for url in [imageURL.retinaImageURL, imageURL.tiffImageURL, imageURL] {
                 if let image = NSImage(contentsOf: url) {
-                    iconImage = image
+                    iconImage = image.tint(color: NSColor.white)
                     break
                 }
             }
