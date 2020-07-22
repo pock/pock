@@ -64,7 +64,7 @@ class SLangItem: StatusItem {
         if let imageURL = tisInputSource!.iconImageURL {
             for url in [imageURL.retinaImageURL, imageURL.tiffImageURL, imageURL] {
                 if let image = NSImage(contentsOf: url) {
-                    iconImage = image.tint(color: NSColor.white)
+                    iconImage = image
                     break
                 }
             }
@@ -74,7 +74,47 @@ class SLangItem: StatusItem {
         if iconImage == nil, let iconRef = tisInputSource!.iconRef {
             iconImage = NSImage(iconRef: iconRef)
         }
+        let defaults = UserDefaults.standard
+        var blackColorsRecorded = 0
+        //check if blackColorsRecorded is already ran as to not waste resources
+        let blackColorsRecordedForTis = defaults.object(forKey: tisInputSource!.id)
+        if (blackColorsRecordedForTis != nil) {
+            blackColorsRecorded = blackColorsRecordedForTis as! Int
+        } else {
+            if let icon = iconImage {
+                if let tiff = icon.tiffRepresentation, let tiffData = NSBitmapImageRep(data: tiff) {
+                    // rounded corner offset is around 0,15625
+                    // remove it and divide the height & width by 4
+                    let dividedHeight = round((CGFloat(tiffData.size.height)*0.84375)/4.0)
+                    let dividedWidth = round((CGFloat(tiffData.size.width)*0.84375)/4.0)
+                    var pointsX = 4
+                    while (pointsX > 0) {
+                        var pointsY = 4
+                        while (pointsY > 0) {
+                            pointsY-=1
+                            // get the pixel color of each one of the 16 sectors of the image
+                            let color = tiffData.colorAt(x: Int(dividedWidth)*(pointsX+1), y: Int(dividedHeight)*(pointsY+1))
+                            if let letOKColor = color {
+                                let ciColor:CIColor = CIColor(color: letOKColor)!
+                                #if DEBUG
+                                print("Color at point: x: \(Int(dividedWidth)*pointsX) y: \(Int(dividedHeight)*pointsY) color: \(ciColor) pointsX: \(pointsX) pointsY: \(pointsY)")
+                                #endif
+                                // convert to rgb
+                                if (ciColor.red == 0 && ciColor.blue == 0 && ciColor.green == 0) {
+                                    blackColorsRecorded+=1
+                                }
+                            }
+                        }
+                        pointsX-=1
+                    }
+                    defaults.set(blackColorsRecorded, forKey: tisInputSource!.id)
+                }
+            }
+        }
         
+        if (blackColorsRecorded > 10) {
+            iconImage = iconImage?.tint(color: NSColor.init(calibratedRed: 0.85, green: 0.85, blue: 0.85, alpha: 1))
+        }
         // resize in order to fit the touchbar without blurriness when too big
         self.iconView.image = iconImage?.resizeWhileMaintainingAspectRatioToSize(size: NSSize(width: 18, height: 18))
         
