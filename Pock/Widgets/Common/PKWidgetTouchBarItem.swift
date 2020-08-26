@@ -31,7 +31,9 @@ class PKWidgetViewController: NSViewController {
         self.widgetItem?.viewDidDisappear()
     }
     deinit {
-        if !isProd { print("[\(type(of: self))]: Widget deinit called.") }
+        #if DEBUG
+            print("[\(type(of: self))]: Widget deinit called.")
+        #endif
     }
 }
 
@@ -61,7 +63,9 @@ class PKWidgetTouchBarItem: NSCustomTouchBarItem {
     }
     
     deinit {
-        if !isProd { print("[PockWidget]: [\(widget?.identifier.rawValue ?? "Unknown widget")] - deinit called.") }
+        #if DEBUG
+            print("[PockWidget]: [\(widget?.identifier.rawValue ?? "Unknown widget")] - deinit called.")
+        #endif
         viewController = nil
         widget         = nil
     }

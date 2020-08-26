@@ -32,7 +32,9 @@ class PockMainController: PKTouchBarController {
     deinit {
         items.removeAll()
         WidgetsDispatcher.default.clearLoadedWidgets()
-        if !isProd { print("[PockMainController]: Deinit Pock main controller") }
+        #if DEBUG
+            print("[PockMainController]: Deinit Pock main controller")
+        #endif
     }
     
     override func reloadNib<T>(_ type: T.Type = T.self) where T : PKTouchBarController {

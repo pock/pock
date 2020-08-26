@@ -62,9 +62,9 @@ public class TouchBarHelper {
             default:
                 completion?(false)
             }
-            if !isProd {
+            #if DEBUG
                 print("[TouchBarServer]: old_pid: `\(touchBarServerPid)` - new_pid: `\(_DFRGetServerPID().description)`")
-            }
+            #endif
         })
     }
     
