@@ -10,16 +10,14 @@ import Foundation
 import Preferences
 import Defaults
 
-let isProd: Bool = false
-
 // MARK: Preferences
-extension PreferencePane.Identifier {
-    static let general = Identifier("general")
+extension Preferences.PaneIdentifier {
+    static let general = Preferences.PaneIdentifier("general")
 }
 
 // MARK: Widgets Manager
-extension PreferencePane.Identifier {
-    static let widgets_manager_list = Identifier("widgets_manager_list")
+extension Preferences.PaneIdentifier {
+    static let widgets_manager_list = Preferences.PaneIdentifier("widgets_manager_list")
 }
 
 extension NSNotification.Name {

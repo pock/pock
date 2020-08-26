@@ -12,7 +12,7 @@ import Preferences
 internal class WidgetsManagerListPane: NSViewController, PreferencePane {
 
     // MARK: Preferenceable
-    var preferencePaneIdentifier: Identifier = Identifier.widgets_manager_list
+    var preferencePaneIdentifier: Preferences.PaneIdentifier = Preferences.PaneIdentifier.widgets_manager_list
     let preferencePaneTitle:      String     = "Widgets".localized
     var toolbarItemIcon:          NSImage    = NSImage(named: "WidgetsManagerList")!
     
