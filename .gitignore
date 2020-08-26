@@ -13,6 +13,5 @@ Carthage/
 Pock.xcodeproj/xcuserdata/
 Pock.xcworkspace/xcuserdata/
 
-## Don't track Fabric
-Fabric.framework
-FabricEnv
+## Hide Secrets
+Secrets.plist

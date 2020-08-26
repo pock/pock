@@ -9,8 +9,9 @@
 import Cocoa
 import Defaults
 import Preferences
-import Fabric
-import Crashlytics
+import AppCenter
+import AppCenterAnalytics
+import AppCenterCrashes
 import Magnet
 @_exported import PockKit
 
@@ -79,10 +80,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
         /// Initialize Crashlytics
-        if isProd {
-            UserDefaults.standard.register(defaults: ["NSApplicationCrashOnExceptions": true])
-            Fabric.with([Crashlytics.self])
+        #if !DEBUG
+        if let path = Bundle.main.path(forResource: "Secrets", ofType: "plist") {
+            if let secrets = NSDictionary(contentsOfFile: path) as? [String: String], let secret = secrets["AppCenter"] {
+                UserDefaults.standard.register(defaults: ["NSApplicationCrashOnExceptions": true])
+                MSAppCenter.start(secret, withServices: [
+                    MSAnalytics.self,
+                    MSCrashes.self
+                ])
+            }
         }
+        #endif
         
         /// Check for legacy hideControlStrip option
         if let shouldHideControlStrip = Defaults[.hideControlStrip] {

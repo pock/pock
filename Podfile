@@ -9,8 +9,7 @@ target 'Pock' do
   pod 'PockKit'
   
   # Pods for Pock
-  pod 'Fabric'
-  pod 'Crashlytics'
+  pod 'AppCenter'
   pod 'Magnet'
   pod 'Defaults'
   pod 'Preferences'
