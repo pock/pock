@@ -34,9 +34,9 @@ final class GeneralPreferencePane: NSViewController, PreferencePane {
     private static let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String ?? "Unknown"
     
     /// Preferenceable
-    var preferencePaneIdentifier: Identifier = Identifier.general
-    let preferencePaneTitle:      String     = "General".localized
-    let toolbarItemIcon:          NSImage    = NSImage(named: NSImage.preferencesGeneralName)!
+    var preferencePaneIdentifier: Preferences.PaneIdentifier = Preferences.PaneIdentifier.general
+    let preferencePaneTitle:      String                     = "General".localized
+    let toolbarItemIcon:          NSImage                    = NSImage(named: NSImage.preferencesGeneralName)!
     
     override var nibName: NSNib.Name? {
         return "GeneralPreferencePane"
@@ -63,14 +63,26 @@ final class GeneralPreferencePane: NSViewController, PreferencePane {
     }
     
     private func setupCheckboxes() {
-        self.hideControlStripCheckbox.state = Defaults[.hideControlStrip]              ? .on : .off
-        self.enableAutomaticUpdates.state   = Defaults[.enableAutomaticUpdates]        ? .on : .off
-        self.launchAtLoginCheckbox.state    = LoginServiceKit.isExistLoginItems()      ? .on : .off
+        self.hideControlStripCheckbox.state = TouchBarHelper.isSystemControlStripVisible ? .off : .on
+        self.enableAutomaticUpdates.state   = Defaults[.enableAutomaticUpdates]          ? .on  : .off
+        self.launchAtLoginCheckbox.state    = LoginServiceKit.isExistLoginItems()        ? .on  : .off
     }
     
     @IBAction private func didChangeHideControlStripValue(button: NSButton) {
-        Defaults[.hideControlStrip] = button.state == .on
-        NSWorkspace.shared.notificationCenter.post(name: .shouldReloadPock, object: nil)
+        if button.state == .on {
+            TouchBarHelper.hideSystemControlStrip { success in
+                if success {
+                    NSWorkspace.shared.notificationCenter.post(name: .shouldReloadPock, object: nil)
+                }
+            }
+        }else {
+            TouchBarHelper.showSystemControlStrip { success in
+                if success {
+                    NSWorkspace.shared.notificationCenter.post(name: .shouldReloadPock, object: nil)
+                }
+            }
+        }
+        self.dismiss(button)
     }
     
     @IBAction private func didChangeLaunchAtLoginValue(button: NSButton) {

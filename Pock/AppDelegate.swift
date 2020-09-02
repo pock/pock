@@ -9,8 +9,9 @@
 import Cocoa
 import Defaults
 import Preferences
-import Fabric
-import Crashlytics
+import AppCenter
+import AppCenterAnalytics
+import AppCenterCrashes
 import Magnet
 @_exported import PockKit
 
@@ -22,8 +23,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     /// Core
-    fileprivate var _navController: PKTouchBarNavController?
-    var navController: PKTouchBarNavController? { return _navController }
+    public private(set) var alertWindowController: AlertWindowController?
+    public private(set) var navController:         PKTouchBarNavigationController?
     
     /// Timer
     fileprivate var automaticUpdatesTimer: Timer?
@@ -31,50 +32,108 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     /// Status bar Pock icon
     fileprivate let pockStatusbarIcon = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
     
+    /// Main Pock menu
+    private lazy var mainPockMenu: NSMenu = {
+        let menu = NSMenu(title: "Pock Options")
+        menu.addItem(withTitle: "Preferences…".localized, action: #selector(openPreferences), keyEquivalent: ",")
+        menu.addItem(withTitle: "Customize…".localized, action: #selector(openCustomization), keyEquivalent: "c")
+        menu.addItem(NSMenuItem.separator())
+        menu.addItem(withTitle: "Widgets Manager".localized, action: #selector(openWidgetsManager), keyEquivalent: "w")
+        let advancedMenuItem = NSMenuItem(title: "Advanced".localized, action: nil, keyEquivalent: "")
+        advancedMenuItem.submenu = advancedPockMenu
+        menu.addItem(advancedMenuItem)
+        menu.addItem(NSMenuItem.separator())
+        menu.addItem(withTitle: "Support this project".localized, action: #selector(openDonateURL),  keyEquivalent: "s")
+        menu.addItem(NSMenuItem.separator())
+        menu.addItem(withTitle: "Quit Pock".localized, action: #selector(NSApp.terminate), keyEquivalent: "q")
+        return menu
+    }()
+    
+    private lazy var advancedPockMenu: NSMenu = {
+        let menu = NSMenu(title: "Advanced".localized)
+        let reloadItem = NSMenuItem(title: "Reload Pock".localized, action: #selector(reloadPock), keyEquivalent: "r")
+        let relaunchItem = NSMenuItem(title: "Relaunch Pock".localized, action: #selector(relaunchPock), keyEquivalent: "R")
+        relaunchItem.isAlternate = true
+        menu.addItem(reloadItem)
+        menu.addItem(relaunchItem)
+        menu.addItem(withTitle: "Reload System Touch Bar".localized, action: #selector(reloadTouchBarServer), keyEquivalent: "a")
+        return menu
+    }()
+    
     /// Preferences
-    fileprivate let generalPreferencePane: GeneralPreferencePane = GeneralPreferencePane()
-    fileprivate let dockWidgetPreferencePane: DockWidgetPreferencePane = DockWidgetPreferencePane()
-    fileprivate let statusWidgetPreferencePane: StatusWidgetPreferencePane = StatusWidgetPreferencePane()
-    fileprivate let controlCenterWidgetPreferencePane: ControlCenterWidgetPreferencePane = ControlCenterWidgetPreferencePane()
-    fileprivate let nowPlayingWidgetPreferencePane: NowPlayingPreferencePane = NowPlayingPreferencePane()
-    fileprivate var preferencesWindowController: PreferencesWindowController!
+    private let generalPreferencePane: GeneralPreferencePane = GeneralPreferencePane()
+    private lazy var preferencesWindowController: PreferencesWindowController = {
+        return PreferencesWindowController(preferencePanes: [generalPreferencePane])
+    }()
+    
+    /// Widgets Manager
+    private lazy var widgetsManagerWindowController: PreferencesWindowController = {
+        return PreferencesWindowController(
+            preferencePanes: [
+                WidgetsManagerListPane()
+            ],
+            hidesToolbarForSingleItem: false
+        )
+    }()
     
     /// Finish launching
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Insert code here to initialize your application
-        NSApp.isAutomaticCustomizeTouchBarMenuItemEnabled = true
         
         /// Initialize Crashlytics
-        if isProd {
-            UserDefaults.standard.register(defaults: ["NSApplicationCrashOnExceptions": true])
-            Fabric.with([Crashlytics.self])
+        #if !DEBUG
+        if let path = Bundle.main.path(forResource: "Secrets", ofType: "plist") {
+            if let secrets = NSDictionary(contentsOfFile: path) as? [String: String], let secret = secrets["AppCenter"] {
+                UserDefaults.standard.register(defaults: ["NSApplicationCrashOnExceptions": true])
+                MSAppCenter.start(secret, withServices: [
+                    MSAnalytics.self,
+                    MSCrashes.self
+                ])
+            }
+        }
+        #endif
+        
+        /// Check for legacy hideControlStrip option
+        if let shouldHideControlStrip = Defaults[.hideControlStrip] {
+            if shouldHideControlStrip && TouchBarHelper.isSystemControlStripVisible {
+                alertWindowController = AlertWindowController(
+                    title:   "Hide Control Strip".localized,
+                    message: "Hide_Control_Strip_Message".localized,
+                    action: AlertAction(
+                        title: "Continue".localized,
+                        action: {
+                            TouchBarHelper.hideSystemControlStrip({ [weak self] success in
+                                if success {
+                                    Defaults[.hideControlStrip] = nil
+                                }
+                                self?.initialize()
+                                self?.alertWindowController = nil
+                            })
+                        }
+                    )
+                )
+                alertWindowController?.showWindow(nil)
+            }else {
+                self.initialize()
+            }
+        }else {
+            self.initialize()
         }
         
+        /// Set Pock inactive
+        NSApp.deactivate()
+
+    }
+    
+    private func initialize() {
         /// Check for accessibility (needed for badges to work)
         self.checkAccessibility()
-        
-        /// Preferences
-        self.preferencesWindowController = PreferencesWindowController(preferencePanes: [
-            generalPreferencePane,
-            dockWidgetPreferencePane,
-            statusWidgetPreferencePane,
-            controlCenterWidgetPreferencePane,
-            nowPlayingWidgetPreferencePane
-        ])
         
         /// Check for status bar icon
         if let button = pockStatusbarIcon.button {
             button.image = NSImage(named: "pock-inner-icon")
             button.image?.isTemplate = true
             /// Create menu
-            let menu = NSMenu(title: "Pock Options")
-            menu.addItem(withTitle: "Preferences…".localized, action: #selector(openPreferences),   keyEquivalent: ",")
-            menu.addItem(withTitle: "Customize…".localized,   action: #selector(openCustomization), keyEquivalent: "c")
-            menu.addItem(NSMenuItem.separator())
-            menu.addItem(withTitle: "Support this project".localized, action: #selector(openDonateURL),  keyEquivalent: "s")
-            menu.addItem(NSMenuItem.separator())
-            menu.addItem(withTitle: "Quit Pock".localized, action: #selector(NSApp.terminate), keyEquivalent: "q")
-            pockStatusbarIcon.menu = menu
+            pockStatusbarIcon.menu = mainPockMenu
         }
         
         /// Check for updates
@@ -87,6 +146,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                                                           selector: #selector(toggleAutomaticUpdatesTimer),
                                                           name: .shouldEnableAutomaticUpdates,
                                                           object: nil)
+        
         NSWorkspace.shared.notificationCenter.addObserver(self,
                                                           selector: #selector(reloadPock),
                                                           name: .shouldReloadPock,
@@ -96,30 +156,37 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         /// Present Pock
         self.reloadPock()
-        
-        /// Set Pock inactive
-        NSApp.deactivate()
-        
-        ///Reload Control Center Widget every 1 second in order to sync volume item icon with system
-        Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(reloadControlCenterWidget), userInfo: nil, repeats: true)
-
-    }
-    
-    @objc func reloadControlCenterWidget() {
-        NSWorkspace.shared.notificationCenter.post(name: .shouldReloadControlCenterWidget, object: nil)
     }
     
     @objc func reloadPock() {
-        _navController?.dismiss()
-        _navController = nil
+        navController?.dismiss()
+        navController = nil
         let mainController: PockMainController = PockMainController.load()
-        _navController = PKTouchBarNavController(rootController: mainController)
+        navController = PKTouchBarNavigationController(rootController: mainController)
+    }
+    
+    @objc func relaunchPock() {
+        guard let relaunch_path = Bundle.main.path(forResource: "Relaunch", ofType: nil) else {
+            return
+        }
+        let task = Process()
+        task.launchPath = relaunch_path
+        task.arguments  = ["\(ProcessInfo.processInfo.processIdentifier)"]
+        task.launch()
+    }
+    
+    @objc func reloadTouchBarServer() {
+        TouchBarHelper.reloadTouchBarServer { [weak self] success in
+            if success {
+                self?.reloadPock()
+            }
+        }
     }
     
     private func registerGlobalHotKey() {
         if let keyCombo = KeyCombo(doubledCocoaModifiers: .control) {
             let hotKey = HotKey(identifier: "TogglePock", keyCombo: keyCombo) { [weak self] _ in
-                self?._navController?.toggle()
+                self?.navController?.toggle()
             }
             hotKey.register()
         }
@@ -137,8 +204,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     /// Will terminate
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
-        _navController?.dismiss()
-        _navController = nil
+        NotificationCenter.default.removeObserver(self)
+        navController?.dismiss()
+        navController = nil
     }
     
     /// Check for updates
@@ -166,10 +234,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         preferencesWindowController.show()
     }
     
+    /// Open customization
     @objc private func openCustomization() {
-        (_navController?.rootController as? PockMainController)?.openCustomization()
+        (navController?.rootController as? PockMainController)?.openCustomization()
     }
     
+    /// Open widgets manager
+    @objc internal func openWidgetsManager() {
+        widgetsManagerWindowController.show()
+    }
+    
+    /// Open donate url
     @objc private func openDonateURL() {
         guard let url = URL(string: "https://paypal.me/pigigaldi") else { return }
         NSWorkspace.shared.open(url)

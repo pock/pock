@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "absolute:Pock.xcodeproj">
+      location = "group:Pock.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:README.md">
@@ -11,9 +11,9 @@
       location = "group:LICENSE">
    </FileRef>
    <FileRef
-      location = "group:Pods/Pods.xcodeproj">
+      location = "group:CONTRIBUTING.md">
    </FileRef>
    <FileRef
-      location = "group:Pock.xcodeproj">
+      location = "group:Pods/Pods.xcodeproj">
    </FileRef>
 </Workspace>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14868" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14868"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="PreviewViewController" customModule="QLPockWidget" customModuleProvider="target">
+            <connections>
+                <outlet property="authorLabel" destination="uVE-xq-szF" id="gCf-sy-Ac4"/>
+                <outlet property="bundleLabel" destination="4Qd-Ze-dfJ" id="daT-Gf-j5b"/>
+                <outlet property="iconView" destination="MUX-pE-NUa" id="l0Z-zz-0aD"/>
+                <outlet property="nameLabel" destination="4fB-Rl-anS" id="3RX-f1-YhZ"/>
+                <outlet property="versionLabel" destination="aIS-K4-s8x" id="2U6-cC-2oV"/>
+                <outlet property="view" destination="c22-O7-iKe" id="NRM-P4-wb6"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe" userLabel="Preview View">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="190"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MUX-pE-NUa">
+                    <rect key="frame" x="20" y="20" width="150" height="150"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="150" id="8hX-Fl-r5G"/>
+                        <constraint firstAttribute="height" constant="150" id="bFw-ZD-J3s"/>
+                    </constraints>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="WidgetsManagerList" id="CYr-Ri-mVA"/>
+                </imageView>
+                <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k7A-Ij-mFw">
+                    <rect key="frame" x="196" y="68" width="264" height="94"/>
+                    <subviews>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4fB-Rl-anS">
+                            <rect key="frame" x="-2" y="75" width="107" height="19"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="Widget Name" id="Aip-Gm-oKJ">
+                                <font key="font" metaFont="systemSemibold" size="16"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aIS-K4-s8x">
+                            <rect key="frame" x="-2" y="48" width="24" height="19"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="0.1" id="KhO-GG-Z6L">
+                                <font key="font" metaFont="system" size="15"/>
+                                <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uVE-xq-szF">
+                            <rect key="frame" x="-2" y="23" width="89" height="17"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="Author Name" id="MqB-uv-T4B">
+                                <font key="font" metaFont="menu" size="14"/>
+                                <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4Qd-Ze-dfJ">
+                            <rect key="frame" x="-2" y="0.0" width="156" height="15"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="com.example.widget_name" id="cm4-t6-1HE">
+                                <font key="font" metaFont="system" size="12"/>
+                                <color key="textColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                    </subviews>
+                    <visibilityPriorities>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                    </visibilityPriorities>
+                    <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                    </customSpacing>
+                </stackView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="MUX-pE-NUa" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="20" id="1SH-kv-w4j"/>
+                <constraint firstItem="k7A-Ij-mFw" firstAttribute="top" secondItem="MUX-pE-NUa" secondAttribute="top" constant="8" id="8P4-CV-ivf"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="k7A-Ij-mFw" secondAttribute="bottom" constant="20" id="Bbe-Wo-vhR"/>
+                <constraint firstAttribute="trailing" secondItem="k7A-Ij-mFw" secondAttribute="trailing" constant="20" id="T8X-iE-DTg"/>
+                <constraint firstItem="MUX-pE-NUa" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="20" id="bvd-i2-8dz"/>
+                <constraint firstItem="k7A-Ij-mFw" firstAttribute="leading" secondItem="MUX-pE-NUa" secondAttribute="trailing" constant="26" id="gvH-Ks-awg"/>
+                <constraint firstAttribute="bottom" secondItem="MUX-pE-NUa" secondAttribute="bottom" constant="20" id="ufB-mS-aKM"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="154"/>
+        </customView>
+    </objects>
+    <resources>
+        <image name="WidgetsManagerList" width="1024" height="1024"/>
+    </resources>
+</document>

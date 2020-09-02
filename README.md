@@ -155,6 +155,7 @@ You can customize the widget position in TouchBar from the **Customize** menu it
 * [Minebomber](https://stackoverflow.com/a/36115210) - This comment blowed my mind
 * [Defaults, Preferences](https://github.com/sindresorhus/)
 * [Witness](https://github.com/njdehoog/Witness)
+* [STPrivilegedTask](https://github.com/sveinbjornt/STPrivilegedTask)
 
 
 

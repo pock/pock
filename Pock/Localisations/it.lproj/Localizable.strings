@@ -7,14 +7,12 @@
  */
 
 "General" = "Impostazioni";
-"Status Widget" = "Status Widget";
-"Dock Widget" = "Dock Widget";
-"Esc key" = "Tasto Esc";
 "Dock" = "Dock";
-"Unknown" = "Sconosciuto";
-"Now Playing" = "In riproduzione";
-"Control Center" = "Centro di Controllo";
 "Status" = "Barra di stato";
+"Control Center" = "Centro di Controllo";
+"Now Playing" = "In riproduzione";
+"Esc key" = "Tasto Esc";
+"Unknown" = "Sconosciuto";
 "Never" = "Mai";
 "Instantly" = "Istanteneo";
 "1 second" = "1 secondo";
@@ -37,10 +35,8 @@
 "New version available!" = "Nuova versione disponibile!";
 "Download" = "Scarica";
 "Later" = "Più tardi";
-"No Playback" = "Nessun contenuto";
 "Do you want to download version" = "Vuoi scaricare la versione";
 "now?" = "adesso?";
-"Control Center Widget" = "Control Center Widget";
 "windows" = "windows";
 "Loading..." = "Loading...";
 "elements" = "elements";
@@ -49,3 +45,11 @@
 "to play music" = "per riprodurre musica";
 "Missing title" = "Titolo mancante";
 "Unknown artist" = "Artista sconosciuto";
+
+"Advanced" = "Avanzate";
+"Reload Pock" = "Ricarica Pock";
+"Reload System Touch Bar" = "Ricarica la Touch Bar di sistema";
+
+"Hide Control Strip" = "Nascondi Control Strip";
+"Hide_Control_Strip_Message" = "Pock utilizza adesso un metodo più affidabile per nascondere il Control Strip dalla Touch Bar di sistema.\n\nDal momento che l'opzione per nascondere il Control Strip era già stata selezionata, fai clic sul pulsante \"Prosegui\" qui sotto ed inserisci la password del tuo account per apportare le nuove modifiche.\n\nSe vuoi sapere perché Pock ha bisogno della password del tuo account, visita il link qui sotto:\n\nhttps://pock.dev/faq";
+"Continue" = "Prosegui";

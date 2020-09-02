@@ -8,6 +8,12 @@
 
 import Foundation
 
+extension String {
+    func truncate(length: Int, trailing: String = "…") -> String {
+        return self.count > length ? String(self.prefix(length)) + trailing : self
+    }
+}
+
 extension NSImage {
     func resize(w: Int, h: Int, color: NSColor = .white) -> NSImage {
         let destSize = NSMakeSize(CGFloat(w), CGFloat(h))

@@ -7,8 +7,4 @@
 //
 
 #import "./NSTouchBar.h"
-#import "./PockDockHelper/PockDockHelper.h"
-#import "./MRMediaRemote.h"
-#import "./KeySenderHelper/KeySenderHelper.h"
-#import "./ISSoundAdditions/ISSoundAdditions.h"
-#import "./SystemHelper/SystemHelper.h"
+#import "./STPrivilegedTask/STPrivilegedTask.h"
