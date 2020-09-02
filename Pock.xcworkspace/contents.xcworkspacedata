@@ -11,6 +11,9 @@
       location = "group:LICENSE">
    </FileRef>
    <FileRef
+      location = "group:CONTRIBUTING.md">
+   </FileRef>
+   <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
 </Workspace>
