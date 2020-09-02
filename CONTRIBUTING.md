@@ -1,21 +1,23 @@
+<img src="https://pock.dev/assets/img/brand/web-icon-black.png" width="50"/>
+
 # Contributing to Pock
 
-With these guidelines, we hope to make contributing to this project as easy as possible, whether it's:
+With these guidelines, I hope to make contributing to this project as easy as possible, whether it's:
 
 - Reporting a bug
 - Discussing the current state of the code
 - Submitting a fix
 - Proposing new features
 
-We're sorry if, since today, contributing to Pock was such a mess.
+I'm sorry if, since today, contributing to Pock was such a mess.
 
 ## [GitHub](https://github.com/pock/pock)
 
-We use **GitHub** to host code, track issues, and feature requests, and accept pull requests.
+I use **GitHub** to host code, track issues, and feature requests, and accept pull requests.
 
 ## [GitHub issues](https://github.com/pock/pock/issues)
 
-We use **GitHub issues** to track public bugs. Report a bug by [opening a new issue]().  
+I use **GitHub issues** to track public bugs. Report a bug by [opening a new issue]().  
 Please, adopt the issues template based on your request. Any issue that does not conform to the project's templates will be *closed*.
 
 ## [GitHub Flow](https://guides.github.com/introduction/flow/index.html)
