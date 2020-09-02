@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "348343D51F631B2E00CDA005"
-               BuildableName = "Prod.app"
-               BlueprintName = "Prod"
+               BlueprintIdentifier = "340520C424F7B0710082955A"
+               BuildableName = "[D] Pock.app"
+               BlueprintName = "[D] Pock"
                ReferencedContainer = "container:Pock.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -27,20 +27,11 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "348343D51F631B2E00CDA005"
-            BuildableName = "Prod.app"
-            BlueprintName = "Prod"
-            ReferencedContainer = "container:Pock.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <Testables>
       </Testables>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -53,24 +44,12 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "348343D51F631B2E00CDA005"
-            BuildableName = "Prod.app"
-            BlueprintName = "Prod"
+            BlueprintIdentifier = "340520C424F7B0710082955A"
+            BuildableName = "[D] Pock.app"
+            BlueprintName = "[D] Pock"
             ReferencedContainer = "container:Pock.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <AdditionalOptions>
-         <AdditionalOption
-            key = "MallocStackLogging"
-            value = ""
-            isEnabled = "YES">
-         </AdditionalOption>
-         <AdditionalOption
-            key = "PrefersMallocStackLoggingLite"
-            value = ""
-            isEnabled = "YES">
-         </AdditionalOption>
-      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -82,9 +61,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "348343D51F631B2E00CDA005"
-            BuildableName = "Prod.app"
-            BlueprintName = "Prod"
+            BlueprintIdentifier = "340520C424F7B0710082955A"
+            BuildableName = "[D] Pock.app"
+            BlueprintName = "[D] Pock"
             ReferencedContainer = "container:Pock.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

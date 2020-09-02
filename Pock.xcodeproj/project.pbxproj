@@ -34,7 +34,7 @@
 		340520E624F7B0710082955A /* PockMainController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3406434C227F3FFF00981372 /* PockMainController.xib */; };
 		340520E724F7B0710082955A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 342D83A32278D5CF000D79DA /* Assets.xcassets */; };
 		340520EA24F7B0710082955A /* QLPockWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 349F9C1A23C36BCA002CEC1E /* QLPockWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		340520F024F7B4000082955A /* Dev.app in Resources */ = {isa = PBXBuildFile; fileRef = 340520EE24F7B0710082955A /* Dev.app */; };
+		340520F024F7B4000082955A /* [D] Pock.app in Resources */ = {isa = PBXBuildFile; fileRef = 340520EE24F7B0710082955A /* [D] Pock.app */; };
 		3406434D227F3FFF00981372 /* PockMainController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3406434C227F3FFF00981372 /* PockMainController.xib */; };
 		3407F9DE22D0F0A60072E742 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3407F9DD22D0F0A60072E742 /* Extensions.swift */; };
 		342D83DF2278D5CF000D79DA /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 342D83952278D5CF000D79DA /* MainWindow.xib */; };
@@ -146,7 +146,7 @@
 /* Begin PBXFileReference section */
 		0023778C90876B75927D08B1 /* Pods-Dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dev.release.xcconfig"; path = "Pods/Target Support Files/Pods-Dev/Pods-Dev.release.xcconfig"; sourceTree = "<group>"; };
 		340520BC24F6DF510082955A /* Secrets.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Secrets.plist; sourceTree = "<group>"; };
-		340520EE24F7B0710082955A /* Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dev.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		340520EE24F7B0710082955A /* [D] Pock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "[D] Pock.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		340520EF24F7B0720082955A /* Info-dev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-dev.plist"; path = "/Users/Pierluigi/Lavoro/Globals/Pock/App/Xcode/Pock/Info-dev.plist"; sourceTree = "<absolute>"; };
 		3406434C227F3FFF00981372 /* PockMainController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PockMainController.xib; sourceTree = "<group>"; };
 		3407F9DD22D0F0A60072E742 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -168,7 +168,7 @@
 		347F335D22D0D5F600FA9805 /* login.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = login.framework; path = ../../../../../../../../../System/Library/PrivateFrameworks/login.framework; sourceTree = "<group>"; };
 		34832415246FFA6F0035D2C2 /* Relaunch */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Relaunch; sourceTree = BUILT_PRODUCTS_DIR; };
 		34832417246FFA6F0035D2C2 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		348343D61F631B2E00CDA005 /* Prod.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Prod.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		348343D61F631B2E00CDA005 /* Pock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		349431EC22197484008622B1 /* MediaRemote.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaRemote.framework; path = ../../../../../../../../../System/Library/PrivateFrameworks/MediaRemote.framework; sourceTree = "<group>"; };
 		3494320B222179D7008622B1 /* BatteryUIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BatteryUIKit.framework; path = ../../../../../../../../../System/Library/PrivateFrameworks/BatteryUIKit.framework; sourceTree = "<group>"; };
 		349F9C1A23C36BCA002CEC1E /* QLPockWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = QLPockWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -416,10 +416,10 @@
 		348343D71F631B2E00CDA005 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				348343D61F631B2E00CDA005 /* Prod.app */,
+				348343D61F631B2E00CDA005 /* Pock.app */,
 				349F9C1A23C36BCA002CEC1E /* QLPockWidget.appex */,
 				34832415246FFA6F0035D2C2 /* Relaunch */,
-				340520EE24F7B0710082955A /* Dev.app */,
+				340520EE24F7B0710082955A /* [D] Pock.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -489,9 +489,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		340520C424F7B0710082955A /* Dev */ = {
+		340520C424F7B0710082955A /* [D] Pock */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 340520EB24F7B0710082955A /* Build configuration list for PBXNativeTarget "Dev" */;
+			buildConfigurationList = 340520EB24F7B0710082955A /* Build configuration list for PBXNativeTarget "[D] Pock" */;
 			buildPhases = (
 				340520C924F7B0710082955A /* [CP] Check Pods Manifest.lock */,
 				340520CA24F7B0710082955A /* Sources */,
@@ -506,9 +506,9 @@
 				340520C524F7B0710082955A /* PBXTargetDependency */,
 				340520C724F7B0710082955A /* PBXTargetDependency */,
 			);
-			name = Dev;
+			name = "[D] Pock";
 			productName = Pock;
-			productReference = 340520EE24F7B0710082955A /* Dev.app */;
+			productReference = 340520EE24F7B0710082955A /* [D] Pock.app */;
 			productType = "com.apple.product-type.application";
 		};
 		34832414246FFA6F0035D2C2 /* Relaunch */ = {
@@ -528,9 +528,9 @@
 			productReference = 34832415246FFA6F0035D2C2 /* Relaunch */;
 			productType = "com.apple.product-type.tool";
 		};
-		348343D51F631B2E00CDA005 /* Prod */ = {
+		348343D51F631B2E00CDA005 /* Pock */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 348343E51F631B2E00CDA005 /* Build configuration list for PBXNativeTarget "Prod" */;
+			buildConfigurationList = 348343E51F631B2E00CDA005 /* Build configuration list for PBXNativeTarget "Pock" */;
 			buildPhases = (
 				2B2556069E62CDAC367ACF33 /* [CP] Check Pods Manifest.lock */,
 				348343D21F631B2E00CDA005 /* Sources */,
@@ -546,9 +546,9 @@
 				349F9C2623C36BCA002CEC1E /* PBXTargetDependency */,
 				340520F224F7B4000082955A /* PBXTargetDependency */,
 			);
-			name = Prod;
+			name = Pock;
 			productName = Pock;
-			productReference = 348343D61F631B2E00CDA005 /* Prod.app */;
+			productReference = 348343D61F631B2E00CDA005 /* Pock.app */;
 			productType = "com.apple.product-type.application";
 		};
 		349F9C1923C36BCA002CEC1E /* QLPockWidget */ = {
@@ -622,8 +622,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				348343D51F631B2E00CDA005 /* Prod */,
-				340520C424F7B0710082955A /* Dev */,
+				348343D51F631B2E00CDA005 /* Pock */,
+				340520C424F7B0710082955A /* [D] Pock */,
 				34832414246FFA6F0035D2C2 /* Relaunch */,
 				349F9C1923C36BCA002CEC1E /* QLPockWidget */,
 			);
@@ -651,7 +651,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				340520F024F7B4000082955A /* Dev.app in Resources */,
+				340520F024F7B4000082955A /* [D] Pock.app in Resources */,
 				3483241E246FFA8B0035D2C2 /* Relaunch in Resources */,
 				342D83DF2278D5CF000D79DA /* MainWindow.xib in Resources */,
 				34D6F6FC23C2DD7A0078181F /* widget_icon.icns in Resources */,
@@ -852,7 +852,7 @@
 		};
 		340520F224F7B4000082955A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 340520C424F7B0710082955A /* Dev */;
+			target = 340520C424F7B0710082955A /* [D] Pock */;
 			targetProxy = 340520F124F7B4000082955A /* PBXContainerItemProxy */;
 		};
 		3483241D246FFA810035D2C2 /* PBXTargetDependency */ = {
@@ -1227,7 +1227,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		340520EB24F7B0710082955A /* Build configuration list for PBXNativeTarget "Dev" */ = {
+		340520EB24F7B0710082955A /* Build configuration list for PBXNativeTarget "[D] Pock" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				340520EC24F7B0710082955A /* Debug */,
@@ -1254,7 +1254,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		348343E51F631B2E00CDA005 /* Build configuration list for PBXNativeTarget "Prod" */ = {
+		348343E51F631B2E00CDA005 /* Build configuration list for PBXNativeTarget "Pock" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				348343E61F631B2E00CDA005 /* Debug */,
