@@ -15,13 +15,14 @@ abstract_target 'Targets' do
   pod 'Defaults'
   pod 'Preferences'
   pod 'LoginServiceKit', :git => 'https://github.com/Clipy/LoginServiceKit.git'
+  pod 'Zip'
   
   # Prod
-  target 'Prod' do
+  target 'Pock' do
   end
   
   # Dev
-  target 'Dev' do
+  target '[D] Pock' do
   end
   
 end

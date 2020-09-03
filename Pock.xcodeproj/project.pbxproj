@@ -58,17 +58,19 @@
 		349F9C3123C379C3002CEC1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 349F9C3023C379C3002CEC1E /* Assets.xcassets */; };
 		349F9C3523C393F6002CEC1E /* WidgetInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349F9C2D23C37231002CEC1E /* WidgetInfo.swift */; };
 		349F9C3723C39407002CEC1E /* PockWidgetDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349F9C3623C39407002CEC1E /* PockWidgetDocument.swift */; };
+		34AB11C4250040DA00829E59 /* PockHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AB11C3250040DA00829E59 /* PockHelper.swift */; };
+		34AB11C5250040DA00829E59 /* PockHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AB11C3250040DA00829E59 /* PockHelper.swift */; };
 		34BC3ECC2210B2EC00C1DD3C /* DFRFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34BC3ECB2210B2EC00C1DD3C /* DFRFoundation.framework */; };
 		34CA451D23C0C98A00C45B0D /* STPrivilegedTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 34CA451B23C0C98A00C45B0D /* STPrivilegedTask.m */; };
 		34CA452023C0C9C500C45B0D /* TouchBarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CA451F23C0C9C500C45B0D /* TouchBarHelper.swift */; };
 		34D6F6FC23C2DD7A0078181F /* widget_icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 34D6F6FB23C2DD7A0078181F /* widget_icon.icns */; };
 		34EF604A23C12E1300FBE9E7 /* AlertWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EF604823C12E1300FBE9E7 /* AlertWindowController.swift */; };
 		34EF604B23C12E1300FBE9E7 /* AlertWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34EF604923C12E1300FBE9E7 /* AlertWindowController.xib */; };
+		3A97A978F3068287D5D4E6A7 /* Pods_Targets__D__Pock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 727B0FB6B7DA2CD8DC121FC3 /* Pods_Targets__D__Pock.framework */; };
 		964435B722D18F91002FA1CB /* LocalizedUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964435B622D18F91002FA1CB /* LocalizedUtils.swift */; };
 		9667AAF222CF192D00C22410 /* GeneralPreferencePane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9667AAF422CF192D00C22410 /* GeneralPreferencePane.xib */; };
 		96FE269F22D0C3810071645C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 96FE26A122D0C3810071645C /* Localizable.strings */; };
-		E1B545A6A5A3C9F8F54C3986 /* Pods_Targets_Prod.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A4C0222129371DC58FC1B28 /* Pods_Targets_Prod.framework */; };
-		EA0D7B1C7027EEB965BAC0BC /* Pods_Targets_Dev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E95C08B60C9ED4486D253A4 /* Pods_Targets_Dev.framework */; };
+		A5521D21FCA77BCA97F8D302 /* Pods_Targets_Pock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD0EFAA3DD3F9651E23863C6 /* Pods_Targets_Pock.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -145,6 +147,8 @@
 
 /* Begin PBXFileReference section */
 		0023778C90876B75927D08B1 /* Pods-Dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dev.release.xcconfig"; path = "Pods/Target Support Files/Pods-Dev/Pods-Dev.release.xcconfig"; sourceTree = "<group>"; };
+		0977870FCAE1CDC7CD046166 /* Pods-Targets-Pock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Targets-Pock.release.xcconfig"; path = "Pods/Target Support Files/Pods-Targets-Pock/Pods-Targets-Pock.release.xcconfig"; sourceTree = "<group>"; };
+		2D76D0DCC09BBC431C56941A /* Pods-Targets-Pock.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Targets-Pock.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Targets-Pock/Pods-Targets-Pock.debug.xcconfig"; sourceTree = "<group>"; };
 		340520BC24F6DF510082955A /* Secrets.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Secrets.plist; sourceTree = "<group>"; };
 		340520EE24F7B0710082955A /* [D] Pock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "[D] Pock.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		340520EF24F7B0720082955A /* Info-dev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-dev.plist"; path = "/Users/Pierluigi/Lavoro/Globals/Pock/App/Xcode/Pock/Info-dev.plist"; sourceTree = "<absolute>"; };
@@ -182,6 +186,7 @@
 		349F9C3623C39407002CEC1E /* PockWidgetDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PockWidgetDocument.swift; sourceTree = "<group>"; };
 		34A8060522F6B97000621235 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/GeneralPreferencePane.strings; sourceTree = "<group>"; };
 		34A8060922F6B97000621235 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
+		34AB11C3250040DA00829E59 /* PockHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PockHelper.swift; sourceTree = "<group>"; };
 		34BC3ECB2210B2EC00C1DD3C /* DFRFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DFRFoundation.framework; path = ../../../../../../../../../System/Library/PrivateFrameworks/DFRFoundation.framework; sourceTree = "<group>"; };
 		34CA451B23C0C98A00C45B0D /* STPrivilegedTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPrivilegedTask.m; sourceTree = "<group>"; };
 		34CA451C23C0C98A00C45B0D /* STPrivilegedTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPrivilegedTask.h; sourceTree = "<group>"; };
@@ -191,12 +196,12 @@
 		34EF604923C12E1300FBE9E7 /* AlertWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertWindowController.xib; sourceTree = "<group>"; };
 		34F27F2523428108001EBB6B /* LaunchAtLogin.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LaunchAtLogin.framework; path = Carthage/Build/Mac/LaunchAtLogin.framework; sourceTree = "<group>"; };
 		394C7C7F7A64365896C8E4C4 /* Pods-Targets-Prod.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Targets-Prod.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Targets-Prod/Pods-Targets-Prod.debug.xcconfig"; sourceTree = "<group>"; };
-		3A4C0222129371DC58FC1B28 /* Pods_Targets_Prod.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Targets_Prod.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BA42833BC69C895EB31DF93 /* Pods-Pock.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pock.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pock/Pods-Pock.debug.xcconfig"; sourceTree = "<group>"; };
+		4A9360DDE9DA4CB8B154E472 /* Pods-Targets-[D] Pock.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Targets-[D] Pock.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Targets-[D] Pock/Pods-Targets-[D] Pock.debug.xcconfig"; sourceTree = "<group>"; };
 		4C0693F76B68D0D583C3A26F /* Pods-Targets-Dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Targets-Dev.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Targets-Dev/Pods-Targets-Dev.debug.xcconfig"; sourceTree = "<group>"; };
-		4E95C08B60C9ED4486D253A4 /* Pods_Targets_Dev.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Targets_Dev.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		50551B05672E87DC93063005 /* Pods-Targets-Dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Targets-Dev.release.xcconfig"; path = "Pods/Target Support Files/Pods-Targets-Dev/Pods-Targets-Dev.release.xcconfig"; sourceTree = "<group>"; };
 		716D62071D19174E56D6E33D /* Pods-Pock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pock.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pock/Pods-Pock.release.xcconfig"; sourceTree = "<group>"; };
+		727B0FB6B7DA2CD8DC121FC3 /* Pods_Targets__D__Pock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Targets__D__Pock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		881719832334CAFA00CEFF2B /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/GeneralPreferencePane.strings; sourceTree = "<group>"; };
 		881719872334CAFA00CEFF2B /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		911C7A54A62BB0A6C82070F0 /* Pods-Targets-Prod.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Targets-Prod.release.xcconfig"; path = "Pods/Target Support Files/Pods-Targets-Prod/Pods-Targets-Prod.release.xcconfig"; sourceTree = "<group>"; };
@@ -206,8 +211,10 @@
 		969439E922D0FCA20022E67D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		96F29996231797C00055DA26 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/GeneralPreferencePane.strings; sourceTree = "<group>"; };
 		96FE26A022D0C3810071645C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9F235096B16A29D0F370260B /* Pods-Targets-[D] Pock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Targets-[D] Pock.release.xcconfig"; path = "Pods/Target Support Files/Pods-Targets-[D] Pock/Pods-Targets-[D] Pock.release.xcconfig"; sourceTree = "<group>"; };
 		AAA363702333699C0016267D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/GeneralPreferencePane.strings"; sourceTree = "<group>"; };
 		AAA363742333699C0016267D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		BD0EFAA3DD3F9651E23863C6 /* Pods_Targets_Pock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Targets_Pock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD41AB618E141555E5E2E139 /* Pods-Dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dev.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Dev/Pods-Dev.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -217,7 +224,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				340520DB24F7B0710082955A /* DFRFoundation.framework in Frameworks */,
-				EA0D7B1C7027EEB965BAC0BC /* Pods_Targets_Dev.framework in Frameworks */,
+				3A97A978F3068287D5D4E6A7 /* Pods_Targets__D__Pock.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,7 +240,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				34BC3ECC2210B2EC00C1DD3C /* DFRFoundation.framework in Frameworks */,
-				E1B545A6A5A3C9F8F54C3986 /* Pods_Targets_Prod.framework in Frameworks */,
+				A5521D21FCA77BCA97F8D302 /* Pods_Targets_Pock.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,6 +266,10 @@
 				50551B05672E87DC93063005 /* Pods-Targets-Dev.release.xcconfig */,
 				394C7C7F7A64365896C8E4C4 /* Pods-Targets-Prod.debug.xcconfig */,
 				911C7A54A62BB0A6C82070F0 /* Pods-Targets-Prod.release.xcconfig */,
+				2D76D0DCC09BBC431C56941A /* Pods-Targets-Pock.debug.xcconfig */,
+				0977870FCAE1CDC7CD046166 /* Pods-Targets-Pock.release.xcconfig */,
+				4A9360DDE9DA4CB8B154E472 /* Pods-Targets-[D] Pock.debug.xcconfig */,
+				9F235096B16A29D0F370260B /* Pods-Targets-[D] Pock.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -349,6 +360,7 @@
 			children = (
 				342D83AE2278D5CF000D79DA /* Pock-Bridging-Header.h */,
 				342D83A72278D5CF000D79DA /* NSTouchBar.h */,
+				34AB11C3250040DA00829E59 /* PockHelper.swift */,
 				342D83B22278D5CF000D79DA /* OSDUIHelper.swift */,
 				34CA452123C0C9C900C45B0D /* TouchBarHelper */,
 				34CA451E23C0C99200C45B0D /* STPrivilegedTask */,
@@ -480,8 +492,8 @@
 				349431EC22197484008622B1 /* MediaRemote.framework */,
 				34BC3ECB2210B2EC00C1DD3C /* DFRFoundation.framework */,
 				349F9C1B23C36BCA002CEC1E /* Quartz.framework */,
-				4E95C08B60C9ED4486D253A4 /* Pods_Targets_Dev.framework */,
-				3A4C0222129371DC58FC1B28 /* Pods_Targets_Prod.framework */,
+				BD0EFAA3DD3F9651E23863C6 /* Pods_Targets_Pock.framework */,
+				727B0FB6B7DA2CD8DC121FC3 /* Pods_Targets__D__Pock.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -688,7 +700,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Targets-Prod-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Targets-Pock-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -706,7 +718,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Targets-Dev-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Targets-[D] Pock-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -719,7 +731,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Targets-Prod/Pods-Targets-Prod-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Targets-Pock/Pods-Targets-Pock-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Defaults/Defaults.framework",
 				"${BUILT_PRODUCTS_DIR}/LoginServiceKit/LoginServiceKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Magnet/Magnet.framework",
@@ -727,6 +739,7 @@
 				"${BUILT_PRODUCTS_DIR}/Preferences/Preferences.framework",
 				"${BUILT_PRODUCTS_DIR}/Sauce/Sauce.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Zip/Zip.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -737,10 +750,11 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Preferences.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sauce.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Zip.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Targets-Prod/Pods-Targets-Prod-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Targets-Pock/Pods-Targets-Pock-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A4C929DAB1B52CB85B4B7988 /* [CP] Embed Pods Frameworks */ = {
@@ -749,7 +763,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Targets-Dev/Pods-Targets-Dev-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Targets-[D] Pock/Pods-Targets-[D] Pock-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Defaults/Defaults.framework",
 				"${BUILT_PRODUCTS_DIR}/LoginServiceKit/LoginServiceKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Magnet/Magnet.framework",
@@ -757,6 +771,7 @@
 				"${BUILT_PRODUCTS_DIR}/Preferences/Preferences.framework",
 				"${BUILT_PRODUCTS_DIR}/Sauce/Sauce.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Zip/Zip.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -767,10 +782,11 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Preferences.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sauce.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Zip.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Targets-Dev/Pods-Targets-Dev-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Targets-[D] Pock/Pods-Targets-[D] Pock-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -788,6 +804,7 @@
 				340520D024F7B0710082955A /* Extensions.swift in Sources */,
 				340520D124F7B0710082955A /* TouchBarHelper.swift in Sources */,
 				340520D224F7B0710082955A /* PockWidgetDocument.swift in Sources */,
+				34AB11C5250040DA00829E59 /* PockHelper.swift in Sources */,
 				340520D324F7B0710082955A /* PockMainController.swift in Sources */,
 				340520D424F7B0710082955A /* AlertWindowController.swift in Sources */,
 				340520D524F7B0710082955A /* LocalizedUtils.swift in Sources */,
@@ -818,6 +835,7 @@
 				3407F9DE22D0F0A60072E742 /* Extensions.swift in Sources */,
 				34CA452023C0C9C500C45B0D /* TouchBarHelper.swift in Sources */,
 				349F9C3723C39407002CEC1E /* PockWidgetDocument.swift in Sources */,
+				34AB11C4250040DA00829E59 /* PockHelper.swift in Sources */,
 				342D83E12278D5CF000D79DA /* PockMainController.swift in Sources */,
 				34EF604A23C12E1300FBE9E7 /* AlertWindowController.swift in Sources */,
 				964435B722D18F91002FA1CB /* LocalizedUtils.swift in Sources */,
@@ -906,7 +924,7 @@
 /* Begin XCBuildConfiguration section */
 		340520EC24F7B0710082955A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4C0693F76B68D0D583C3A26F /* Pods-Targets-Dev.debug.xcconfig */;
+			baseConfigurationReference = 4A9360DDE9DA4CB8B154E472 /* Pods-Targets-[D] Pock.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -936,7 +954,7 @@
 		};
 		340520ED24F7B0710082955A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 50551B05672E87DC93063005 /* Pods-Targets-Dev.release.xcconfig */;
+			baseConfigurationReference = 9F235096B16A29D0F370260B /* Pods-Targets-[D] Pock.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1117,7 +1135,7 @@
 		};
 		348343E61F631B2E00CDA005 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 394C7C7F7A64365896C8E4C4 /* Pods-Targets-Prod.debug.xcconfig */;
+			baseConfigurationReference = 2D76D0DCC09BBC431C56941A /* Pods-Targets-Pock.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1147,7 +1165,7 @@
 		};
 		348343E71F631B2E00CDA005 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 911C7A54A62BB0A6C82070F0 /* Pods-Targets-Prod.release.xcconfig */;
+			baseConfigurationReference = 0977870FCAE1CDC7CD046166 /* Pods-Targets-Pock.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
