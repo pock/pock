@@ -44,6 +44,11 @@ class PockMainController: PKTouchBarController {
     
     override func didLoad() {
         WidgetsDispatcher.default.loadInstalledWidget() { [weak self] identifiers in
+            if identifiers.isEmpty && PockHelper.didAskToInstallDefaultWidgets == false {
+                async(after: 1) {
+                    PockHelper.default.installDefaultWidgets()
+                }
+            }
             self?.touchBar?.customizationIdentifier = .pockTouchBar
             self?.touchBar?.customizationAllowedItemIdentifiers.append(contentsOf: identifiers)
             self?.awakeFromNib()

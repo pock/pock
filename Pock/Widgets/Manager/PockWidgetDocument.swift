@@ -14,13 +14,7 @@ public class PockWidgetDocument: NSDocument {
         defer {
             close()
         }
-        do {
-            try WidgetsDispatcher.default.installWidget(at: path)
-            AppDelegate.default.openWidgetsManager()
-            NotificationCenter.default.post(name: .didInstallWidget, object: nil)
-        } catch {
-            NSLog("[PockWidgetDocument]: Can't install widget. Reason: \(error.localizedDescription)")
-        }
+        try PockHelper.default.openProcessControllerForWidget(at: path, process: .install)
     }
     
     init(contentsOf url: URL, ofType typeName: String) throws {

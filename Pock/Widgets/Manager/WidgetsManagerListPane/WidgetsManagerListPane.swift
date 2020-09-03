@@ -80,15 +80,17 @@ extension WidgetsManagerListPane {
         /// Clear UI
         widgets = []
         selectedWidget = nil
-        tableView.reloadData()
-        updateUIElements()
-        /// Fetch installed widgets
-        fetchInstalledWidgets() { [weak self] widgets in
-            self?.widgets = widgets
-            /// Update UI on main thread
-            DispatchQueue.main.async { [weak self] in
-                self?.tableView.reloadData()
-                self?.updateUIElements()
+        async { [weak self] in
+            self?.tableView.reloadData()
+            self?.updateUIElements()
+            /// Fetch installed widgets
+            self?.fetchInstalledWidgets() { [weak self] widgets in
+                self?.widgets = widgets
+                /// Update UI on main thread
+                DispatchQueue.main.async { [weak self] in
+                    self?.tableView.reloadData()
+                    self?.updateUIElements()
+                }
             }
         }
     }
@@ -114,10 +116,9 @@ extension WidgetsManagerListPane {
             return
         }
         do {
-            try WidgetsDispatcher.default.removeWidget(atPath: widget.path?.path)
+            try PockHelper.default.openProcessControllerForWidget(at: widget.path, process: .remove)
         } catch {
-            /// TODO: Show alert to inform user.
-            print("[WidgetsManagerListPane]: Can't uninstall widget. Reason: \(error.localizedDescription)")
+            print("[WidgetsManagerListPane]: Can't process widget. Reason: \(error.localizedDescription)")
         }
     }
     

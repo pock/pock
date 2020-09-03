@@ -8,6 +8,7 @@
 
 import Foundation
 import PockKit
+import Zip
 
 extension NSNotification.Name {
     static let didLoadInstalledWidgets = NSNotification.Name("didLoadInstalledWidgets")
@@ -63,7 +64,7 @@ public final class WidgetsDispatcher {
         guard let name = name else {
             return nil
         }
-        return widgetsPath + "/\(name).pock"
+        return widgetsPath + "/\(name)" + (name.contains(".pock") ? "" : ".pock")
     }
     
     private var installedWidgetsPaths: [URL] {

@@ -26,7 +26,7 @@ public struct WidgetInfo {
     
     /// Load info for widget at given path.
     public init(path: URL) throws {
-        if let widgetBundle = Bundle(url: path), let className = widgetBundle.object(forInfoDictionaryKey: "NSPrincipalClass") as? String {
+        if let widgetBundle = Bundle(path: path.path), let className = widgetBundle.object(forInfoDictionaryKey: "NSPrincipalClass") as? String {
             /// Data
             self.path      = path
             self.id        = widgetBundle.object(forInfoDictionaryKey: "CFBundleIdentifier")         as? String ?? "Unknown"

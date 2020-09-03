@@ -54,6 +54,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let reloadItem = NSMenuItem(title: "Reload Pock".localized, action: #selector(reloadPock), keyEquivalent: "r")
         let relaunchItem = NSMenuItem(title: "Relaunch Pock".localized, action: #selector(relaunchPock), keyEquivalent: "R")
         relaunchItem.isAlternate = true
+        menu.addItem(withTitle: "Re-Install default widgets".localized, action: #selector(installDefaultWidgets), keyEquivalent: "d")
+        menu.addItem(NSMenuItem.separator())
         menu.addItem(reloadItem)
         menu.addItem(relaunchItem)
         menu.addItem(withTitle: "Reload System Touch Bar".localized, action: #selector(reloadTouchBarServer), keyEquivalent: "a")
@@ -166,21 +168,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @objc func relaunchPock() {
-        guard let relaunch_path = Bundle.main.path(forResource: "Relaunch", ofType: nil) else {
-            return
-        }
-        let task = Process()
-        task.launchPath = relaunch_path
-        task.arguments  = ["\(ProcessInfo.processInfo.processIdentifier)"]
-        task.launch()
+        PockHelper.default.relaunchPock()
     }
     
     @objc func reloadTouchBarServer() {
-        TouchBarHelper.reloadTouchBarServer { [weak self] success in
+        PockHelper.default.reloadTouchBarServer() { [weak self] success in
             if success {
                 self?.reloadPock()
             }
         }
+    }
+    
+    @objc func installDefaultWidgets() {
+        PockHelper.default.installDefaultWidgets()
     }
     
     private func registerGlobalHotKey() {

@@ -38,6 +38,8 @@
 		34D6F6FC23C2DD7A0078181F /* widget_icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 34D6F6FB23C2DD7A0078181F /* widget_icon.icns */; };
 		34EF604A23C12E1300FBE9E7 /* AlertWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EF604823C12E1300FBE9E7 /* AlertWindowController.swift */; };
 		34EF604B23C12E1300FBE9E7 /* AlertWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34EF604923C12E1300FBE9E7 /* AlertWindowController.xib */; };
+		34F7648E250158B700310698 /* ProcessWidgetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F7648D250158B600310698 /* ProcessWidgetController.swift */; };
+		34F76490250158BD00310698 /* ProcessWidgetController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34F7648F250158BD00310698 /* ProcessWidgetController.xib */; };
 		964435B722D18F91002FA1CB /* LocalizedUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964435B622D18F91002FA1CB /* LocalizedUtils.swift */; };
 		9667AAF222CF192D00C22410 /* GeneralPreferencePane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9667AAF422CF192D00C22410 /* GeneralPreferencePane.xib */; };
 		96FE269F22D0C3810071645C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 96FE26A122D0C3810071645C /* Localizable.strings */; };
@@ -133,6 +135,8 @@
 		34EF604823C12E1300FBE9E7 /* AlertWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertWindowController.swift; sourceTree = "<group>"; };
 		34EF604923C12E1300FBE9E7 /* AlertWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertWindowController.xib; sourceTree = "<group>"; };
 		34F27F2523428108001EBB6B /* LaunchAtLogin.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LaunchAtLogin.framework; path = Carthage/Build/Mac/LaunchAtLogin.framework; sourceTree = "<group>"; };
+		34F7648D250158B600310698 /* ProcessWidgetController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcessWidgetController.swift; sourceTree = "<group>"; };
+		34F7648F250158BD00310698 /* ProcessWidgetController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProcessWidgetController.xib; sourceTree = "<group>"; };
 		394C7C7F7A64365896C8E4C4 /* Pods-Targets-Prod.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Targets-Prod.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Targets-Prod/Pods-Targets-Prod.debug.xcconfig"; sourceTree = "<group>"; };
 		3BA42833BC69C895EB31DF93 /* Pods-Pock.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pock.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pock/Pods-Pock.debug.xcconfig"; sourceTree = "<group>"; };
 		4A9360DDE9DA4CB8B154E472 /* Pods-Targets-[D] Pock.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Targets-[D] Pock.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Targets-[D] Pock/Pods-Targets-[D] Pock.debug.xcconfig"; sourceTree = "<group>"; };
@@ -241,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				3406434B227F3FE900981372 /* PockMainController */,
+				34AA071025015491003CAD10 /* ProcessWidgetController */,
 			);
 			path = TouchBar;
 			sourceTree = "<group>";
@@ -383,6 +388,15 @@
 				964435B622D18F91002FA1CB /* LocalizedUtils.swift */,
 			);
 			path = Localisations;
+			sourceTree = "<group>";
+		};
+		34AA071025015491003CAD10 /* ProcessWidgetController */ = {
+			isa = PBXGroup;
+			children = (
+				34F7648F250158BD00310698 /* ProcessWidgetController.xib */,
+				34F7648D250158B600310698 /* ProcessWidgetController.swift */,
+			);
+			path = ProcessWidgetController;
 			sourceTree = "<group>";
 		};
 		34CA451E23C0C99200C45B0D /* STPrivilegedTask */ = {
@@ -553,6 +567,7 @@
 				9667AAF222CF192D00C22410 /* GeneralPreferencePane.xib in Resources */,
 				345E2EC823C2691900A947FC /* WidgetsManagerListPane.xib in Resources */,
 				34EF604B23C12E1300FBE9E7 /* AlertWindowController.xib in Resources */,
+				34F76490250158BD00310698 /* ProcessWidgetController.xib in Resources */,
 				340520BD24F6DF510082955A /* Secrets.plist in Resources */,
 				96FE269F22D0C3810071645C /* Localizable.strings in Resources */,
 				3406434D227F3FFF00981372 /* PockMainController.xib in Resources */,
@@ -647,6 +662,7 @@
 				349F9C3723C39407002CEC1E /* PockWidgetDocument.swift in Sources */,
 				34AB11C4250040DA00829E59 /* PockHelper.swift in Sources */,
 				342D83E12278D5CF000D79DA /* PockMainController.swift in Sources */,
+				34F7648E250158B700310698 /* ProcessWidgetController.swift in Sources */,
 				34EF604A23C12E1300FBE9E7 /* AlertWindowController.swift in Sources */,
 				964435B722D18F91002FA1CB /* LocalizedUtils.swift in Sources */,
 				342D84002278D5CF000D79DA /* PKWidgetTouchBarItem.swift in Sources */,
