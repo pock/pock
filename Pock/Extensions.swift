@@ -34,3 +34,33 @@ extension NSImage {
         return image
     }
 }
+
+// MARK: Async / Background
+public func async(after: TimeInterval = 0, _ block: @escaping () -> Void) {
+    DispatchQueue.main.asyncAfter(deadline: .now() + after, execute: { [block] in
+        block()
+    })
+}
+public func async(after: TimeInterval = 0, _ block: @escaping () throws -> Void) {
+    DispatchQueue.main.asyncAfter(deadline: .now() + after, execute: { [block] in
+        do {
+            try block()
+        } catch {
+            print("[async(after: \(after)]: Invalid block: \(error.localizedDescription)")
+        }
+    })
+}
+public func background(qos: DispatchQoS.QoSClass = .background, after: TimeInterval = 0, _ block: @escaping () -> Void) {
+    DispatchQueue.global(qos: qos).asyncAfter(deadline: .now() + after, execute: { [block] in
+        block()
+    })
+}
+public func background(qos: DispatchQoS.QoSClass = .background, after: TimeInterval = 0, _ block: @escaping () throws -> Void) {
+    DispatchQueue.global(qos: qos).asyncAfter(deadline: .now() + after, execute: { [block] in
+        do {
+            try block()
+        } catch {
+            print("[background(qos: \(qos), after: \(after)]: Invalid block: \(error.localizedDescription)")
+        }
+    })
+}
