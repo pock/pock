@@ -112,7 +112,7 @@ public class ProcessWidgetController: PKTouchBarController {
             infoLabel.stringValue   = "Tap to install `\(widgetInfo.name)`".localized
             actionButton.title      = "Install".localized
             actionButton.tag        = 0
-            actionButton.bezelColor = NSColor.systemGreen
+            actionButton.bezelColor = NSColor.systemBlue
             actionButton.isEnabled  = true
             iconView.isHidden       = false
             async(after: 0.5) { [weak self] in
@@ -138,7 +138,7 @@ public class ProcessWidgetController: PKTouchBarController {
             infoLabel.stringValue   = "Processing".localized + " `\(widgetInfo.name)`"
             actionButton.tag        = -1
             actionButton.title      = "Install".localized
-            actionButton.bezelColor = NSColor.systemGray
+            actionButton.bezelColor = NSColor.systemGray.withAlphaComponent(0.3725)
             actionButton.isEnabled  = false
             iconView.isHidden       = true
             removeIconViewAnimation()
@@ -163,7 +163,7 @@ public class ProcessWidgetController: PKTouchBarController {
             infoLabel.stringValue  += " Tap to reload Pock".localized
             actionButton.title      = "Reload".localized
             actionButton.tag        = 2
-            actionButton.bezelColor = NSColor.systemGray
+            actionButton.bezelColor = NSColor.systemGray.withAlphaComponent(0.6725)
             actionButton.isEnabled  = true
             iconView.isHidden       = false
             addIconViewAnimation()
