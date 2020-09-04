@@ -20,9 +20,6 @@ internal class PockHelper {
     /// Singleton
     public static let `default`: PockHelper = PockHelper()
     
-    /// Processing widget
-    private var processWidgetController: ProcessWidgetController?
-    
     static var didAskToInstallDefaultWidgets: Bool {
         get {
             return Defaults[.didAskToInstallDefaultsWidgets]
@@ -175,26 +172,30 @@ internal class PockHelper {
         guard let url = url else {
             return
         }
-        async { [weak self] in
+        async {
+            /// load Pock main controller if needed
+            if AppDelegate.default.navController == nil {
+                AppDelegate.default.reloadPock()
+            }
             /// load widget info
             let widgetInfo = try WidgetInfo(path: url)
             /// instantiate process widget controller
-            self?.processWidgetController = ProcessWidgetController.processWidget(
+            let processWidgetController = ProcessWidgetController.processWidget(
                 withInfo:    widgetInfo,
                 process:     process,
                 skipConfirm: skipConfirm,
                 forceReload: forceReload,
                 needsReload: needsReload,
                 completion)
-            self?.processWidgetController?.pushOnMainNavigationController()
+            processWidgetController?.pushOnMainNavigationController()
             if let name = name {
-                self?.processWidgetController?.nameLabel.stringValue = name
+                processWidgetController?.nameLabel.stringValue = name
             }
             if let author = author {
-                self?.processWidgetController?.authorLabel.stringValue = author
+                processWidgetController?.authorLabel.stringValue = author
             }
             if let label = label {
-                self?.processWidgetController?.infoLabel.stringValue = label
+                processWidgetController?.infoLabel.stringValue = label
             }
         }
     }

@@ -145,7 +145,6 @@ public class ProcessWidgetController: PKTouchBarController {
         case .completed(let success):
             completion?(success)
             if needsReload == false {
-                dismiss()
                 return
             }
             if forceReload {
