@@ -116,7 +116,7 @@ extension WidgetsManagerListPane {
             return
         }
         do {
-            try PockHelper.default.openProcessControllerForWidget(at: widget.path, process: .remove)
+            try PockHelper.default.openProcessControllerForWidget(configuration: .default(process: .remove, widgetInfo: widget))
         } catch {
             print("[WidgetsManagerListPane]: Can't process widget. Reason: \(error.localizedDescription)")
         }

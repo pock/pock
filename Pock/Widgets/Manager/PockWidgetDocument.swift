@@ -14,7 +14,8 @@ public class PockWidgetDocument: NSDocument {
         defer {
             close()
         }
-        try PockHelper.default.openProcessControllerForWidget(at: path, process: .install)
+        let widgetInfo = try WidgetInfo(path: path)
+        try PockHelper.default.openProcessControllerForWidget(configuration: .default(process: .install, widgetInfo: widgetInfo))
     }
     
     init(contentsOf url: URL, ofType typeName: String) throws {
