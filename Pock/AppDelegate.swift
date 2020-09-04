@@ -139,9 +139,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         /// Check for updates
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: { [weak self] in
+        async(after: 1) { [weak self] in
             self?.checkForUpdates()
-        })
+        }
         
         /// Register for notification
         NSWorkspace.shared.notificationCenter.addObserver(self,
@@ -214,7 +214,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         generalPreferencePane.hasLatestVersion(completion: { [weak self] versionNumber, downloadURL in
             guard let versionNumber = versionNumber, let downloadURL = downloadURL else { return }
             self?.generalPreferencePane.newVersionAvailable = (versionNumber, downloadURL)
-            DispatchQueue.main.async { [weak self] in
+            async { [weak self] in
                 self?.openPreferences()
             }
         })

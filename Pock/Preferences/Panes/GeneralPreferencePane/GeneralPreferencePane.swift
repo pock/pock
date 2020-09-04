@@ -111,7 +111,7 @@ final class GeneralPreferencePane: NSViewController, PreferencePane {
             }else {
                 self?.showAlert(title: "Installed version".localized + ": \(GeneralPreferencePane.appVersion)", message: "Already on latest version".localized)
             }
-            DispatchQueue.main.async { [weak self] in
+            async { [weak self] in
                 self?.checkForUpdatesButton.isEnabled = true
                 self?.checkForUpdatesButton.title     = "Check for updates".localized
             }
@@ -129,7 +129,7 @@ extension GeneralPreferencePane {
     }
     
     private func showAlert(title: String, message: String, buttons: [String] = [], completion: ((NSApplication.ModalResponse) -> Void)? = nil) {
-        DispatchQueue.main.async { [weak self] in
+        async { [weak self] in
             guard let _self = self else { return }
             let alert             = NSAlert()
             alert.alertStyle      = NSAlert.Style.informational

@@ -87,7 +87,7 @@ extension WidgetsManagerListPane {
             self?.fetchInstalledWidgets() { [weak self] widgets in
                 self?.widgets = widgets
                 /// Update UI on main thread
-                DispatchQueue.main.async { [weak self] in
+                async { [weak self] in
                     self?.tableView.reloadData()
                     self?.updateUIElements()
                 }
@@ -124,7 +124,7 @@ extension WidgetsManagerListPane {
     
     /// Fetch installed widgets
     private func fetchInstalledWidgets(_ completion: @escaping ([WidgetInfo]) -> Void) {
-        DispatchQueue.global(qos: .background).async {
+        background {
             let widgets = WidgetsDispatcher.default.installedWidgets
             completion(widgets)
         }

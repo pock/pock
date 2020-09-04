@@ -55,7 +55,7 @@ public class TouchBarHelper {
             completion?(false)
             return
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: { [touchBarServerPid, error] in
+        async(after: 1.5) { [touchBarServerPid, error] in
             switch error {
             case errAuthorizationSuccess:
                 completion?(true)
@@ -65,7 +65,7 @@ public class TouchBarHelper {
             #if DEBUG
                 print("[TouchBarServer]: old_pid: `\(touchBarServerPid)` - new_pid: `\(_DFRGetServerPID().description)`")
             #endif
-        })
+        }
     }
     
     // MARK: NSTouchBar helpers

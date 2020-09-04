@@ -100,9 +100,9 @@ public class ProcessWidgetController: PKTouchBarController {
             actionButton.bezelColor = NSColor.systemGray
             actionButton.isEnabled  = true
             iconView.isHidden       = false
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: { [weak self] in
+            async(after: 0.5) { [weak self] in
                 self?.addIconViewAnimation()
-            })
+            }
         case .install:
             if skipConfirm {
                 installLocalWidget()
@@ -115,9 +115,9 @@ public class ProcessWidgetController: PKTouchBarController {
             actionButton.bezelColor = NSColor.systemGreen
             actionButton.isEnabled  = true
             iconView.isHidden       = false
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: { [weak self] in
+            async(after: 0.5) { [weak self] in
                 self?.addIconViewAnimation()
-            })
+            }
         case .remove:
             if skipConfirm {
                 removeLocalWidget()
@@ -130,9 +130,9 @@ public class ProcessWidgetController: PKTouchBarController {
             actionButton.bezelColor = NSColor.systemRed
             actionButton.isEnabled  = true
             iconView.isHidden       = false
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: { [weak self] in
+            async(after: 0.5) { [weak self] in
                 self?.addIconViewAnimation()
-            })
+            }
         case .processing:
             cancelButton.isHidden   = true
             infoLabel.stringValue   = "Processing".localized + " `\(widgetInfo.name)`"
