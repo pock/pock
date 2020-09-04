@@ -83,7 +83,7 @@ class PockMainController: PKTouchBarController {
         if let item = items[identifier] {
             return item
         }
-        guard let widget: PKWidget = WidgetsDispatcher.default.loadedWidgets[identifier]?.init() else {
+        guard let widget: PKWidget = WidgetsDispatcher.default.loadedWidgets[identifier] else {
             return nil
         }
         let item = PKWidgetTouchBarItem(widget: widget)

@@ -157,7 +157,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         registerGlobalHotKey()
         
         /// Present Pock
-        self.reloadPock()
+        reloadPock()
     }
     
     @objc func reloadPock() {
@@ -185,10 +185,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     private func registerGlobalHotKey() {
         if let keyCombo = KeyCombo(doubledCocoaModifiers: .control) {
-            let hotKey = HotKey(identifier: "TogglePock", keyCombo: keyCombo) { [weak self] _ in
-                self?.navController?.toggle()
-            }
+            let hotKey = HotKey(identifier: "TogglePock", keyCombo: keyCombo, target: self, action: #selector(togglePock))
             hotKey.register()
+        }
+    }
+    
+    @objc private func togglePock() {
+        if navController == nil {
+            reloadPock()
+        }else {
+            navController?.dismiss()
+            navController = nil
         }
     }
     
