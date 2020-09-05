@@ -17,7 +17,8 @@ extension Preferences.PaneIdentifier {
 
 // MARK: Widgets Manager
 extension Preferences.PaneIdentifier {
-    static let widgets_manager_list = Preferences.PaneIdentifier("widgets_manager_list")
+    static let widgets_manager_list    = Preferences.PaneIdentifier("widgets_manager_list")
+    static let widgets_manager_install = Preferences.PaneIdentifier("widgets_manager_install")
 }
 
 extension NSNotification.Name {

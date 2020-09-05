@@ -72,7 +72,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private lazy var widgetsManagerWindowController: PreferencesWindowController = {
         return PreferencesWindowController(
             preferencePanes: [
-                WidgetsManagerListPane()
+                WidgetsManagerListPane(),
+                WidgetsManagerInstallPane()
             ],
             hidesToolbarForSingleItem: false
         )

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="16097" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="WidgetsManagerInstallPane" customModule="Pock" customModuleProvider="target">
+            <connections>
+                <outlet property="dragAndDropContainerView" destination="PVz-yG-9Ex" id="R9H-oN-3ac"/>
+                <outlet property="dragAndDropInfoLabel" destination="scD-th-e7M" id="IXh-ye-eYF"/>
+                <outlet property="dragAndDropTopLayer" destination="hhA-Rb-1ya" id="PJA-sP-Xn2"/>
+                <outlet property="remoteInstallButton" destination="i4C-A4-2Zu" id="PF0-aO-toy"/>
+                <outlet property="remoteInstallContainerView" destination="qkM-Qj-Z2H" id="vCT-bd-tbb"/>
+                <outlet property="remoteInstallTextField" destination="rMW-4n-Zol" id="aIA-T1-7IR"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="387" height="372"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="6" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m2q-bP-4qj">
+                    <rect key="frame" x="6" y="6" width="375" height="360"/>
+                    <subviews>
+                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="qkM-Qj-Z2H" customClass="RoundedRectView" customModule="Pock" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="315" width="375" height="45"/>
+                            <subviews>
+                                <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Z1-vx-iyD">
+                                    <rect key="frame" x="12" y="12" width="351" height="21"/>
+                                    <subviews>
+                                        <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rMW-4n-Zol">
+                                            <rect key="frame" x="-2" y="3" width="278" height="16"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" focusRingType="none" alignment="left" placeholderString="https://" id="9zU-w1-DrZ">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="CY0-oc-pon" customClass="RoundedRectView" customModule="Pock" customModuleProvider="target">
+                                            <rect key="frame" x="282" y="0.0" width="1" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="1" id="q48-Eb-7mU"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="radius">
+                                                    <real key="value" value="0.0"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                    <color key="value" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </customView>
+                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="i4C-A4-2Zu">
+                                            <rect key="frame" x="291" y="3" width="60" height="15"/>
+                                            <buttonCell key="cell" type="roundTextured" title="Download" bezelStyle="texturedRounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="0Qq-lW-xt0">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system" size="12"/>
+                                            </buttonCell>
+                                            <color key="contentTintColor" name="linkColor" catalog="System" colorSpace="catalog"/>
+                                            <connections>
+                                                <action selector="didClickOnDownloadButton:" target="-2" id="KcO-da-yPp"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <visibilityPriorities>
+                                        <integer value="1000"/>
+                                        <integer value="1000"/>
+                                        <integer value="1000"/>
+                                    </visibilityPriorities>
+                                    <customSpacing>
+                                        <real value="3.4028234663852886e+38"/>
+                                        <real value="3.4028234663852886e+38"/>
+                                        <real value="3.4028234663852886e+38"/>
+                                    </customSpacing>
+                                </stackView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="2Z1-vx-iyD" firstAttribute="top" secondItem="qkM-Qj-Z2H" secondAttribute="top" constant="12" id="24f-hn-JxF"/>
+                                <constraint firstAttribute="height" constant="45" id="IQp-ep-lZA"/>
+                                <constraint firstAttribute="trailing" secondItem="2Z1-vx-iyD" secondAttribute="trailing" constant="12" id="Oxb-3b-wfN"/>
+                                <constraint firstAttribute="bottom" secondItem="2Z1-vx-iyD" secondAttribute="bottom" constant="12" id="QNG-Gi-MoJ"/>
+                                <constraint firstItem="2Z1-vx-iyD" firstAttribute="leading" secondItem="qkM-Qj-Z2H" secondAttribute="leading" constant="12" id="Qm7-s2-80O"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="radius">
+                                    <real key="value" value="5"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                    <color key="value" name="quaternaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </customView>
+                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="K3E-Q2-IuC" customClass="RoundedRectView" customModule="Pock" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="308" width="375" height="1"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="4ua-hm-cT5"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                    <color key="value" name="quaternaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="radius">
+                                    <real key="value" value="0.0"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </customView>
+                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="PVz-yG-9Ex">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="302"/>
+                            <subviews>
+                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="hhA-Rb-1ya" customClass="DestinationView" customModule="Pock" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="302"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                            <color key="value" name="quaternaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="radius">
+                                            <real key="value" value="5"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </customView>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="scD-th-e7M">
+                                    <rect key="frame" x="14" y="140" width="347" height="23"/>
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Drag Widget Here" id="a5P-I2-pHI">
+                                        <font key="font" metaFont="systemSemibold" size="20"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="hhA-Rb-1ya" firstAttribute="leading" secondItem="PVz-yG-9Ex" secondAttribute="leading" id="HdE-eo-NmD"/>
+                                <constraint firstItem="hhA-Rb-1ya" firstAttribute="top" secondItem="PVz-yG-9Ex" secondAttribute="top" id="RFc-qN-emD"/>
+                                <constraint firstItem="scD-th-e7M" firstAttribute="leading" secondItem="PVz-yG-9Ex" secondAttribute="leading" constant="16" id="Y1i-1V-JeV"/>
+                                <constraint firstItem="scD-th-e7M" firstAttribute="centerY" secondItem="PVz-yG-9Ex" secondAttribute="centerY" id="cpl-qq-0jk"/>
+                                <constraint firstAttribute="bottom" secondItem="hhA-Rb-1ya" secondAttribute="bottom" id="j1U-oh-7v7"/>
+                                <constraint firstAttribute="trailing" secondItem="scD-th-e7M" secondAttribute="trailing" constant="16" id="k5y-xU-NkF"/>
+                                <constraint firstAttribute="trailing" secondItem="hhA-Rb-1ya" secondAttribute="trailing" id="liT-Gi-NT7"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                    <color key="value" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="radius">
+                                    <real key="value" value="6"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </customView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="K3E-Q2-IuC" secondAttribute="trailing" id="3xS-Ld-k4P"/>
+                        <constraint firstAttribute="width" constant="375" id="AMn-Hb-A5V"/>
+                        <constraint firstItem="qkM-Qj-Z2H" firstAttribute="leading" secondItem="m2q-bP-4qj" secondAttribute="leading" id="Jck-B0-T90"/>
+                        <constraint firstItem="K3E-Q2-IuC" firstAttribute="leading" secondItem="m2q-bP-4qj" secondAttribute="leading" id="OOm-ea-eYJ"/>
+                        <constraint firstItem="PVz-yG-9Ex" firstAttribute="leading" secondItem="m2q-bP-4qj" secondAttribute="leading" id="PI9-vk-lDW"/>
+                        <constraint firstAttribute="height" constant="360" id="QzM-7j-0p1"/>
+                        <constraint firstAttribute="trailing" secondItem="PVz-yG-9Ex" secondAttribute="trailing" id="YaB-2P-I4h"/>
+                        <constraint firstAttribute="trailing" secondItem="qkM-Qj-Z2H" secondAttribute="trailing" id="oUL-iK-Inr"/>
+                    </constraints>
+                    <visibilityPriorities>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                    </visibilityPriorities>
+                    <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                    </customSpacing>
+                </stackView>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="m2q-bP-4qj" secondAttribute="bottom" constant="6" id="9GG-nP-gPB"/>
+                <constraint firstAttribute="trailing" secondItem="m2q-bP-4qj" secondAttribute="trailing" constant="6" id="AWe-Gh-lOO"/>
+                <constraint firstItem="m2q-bP-4qj" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="6" id="ITE-w7-gP8"/>
+                <constraint firstItem="m2q-bP-4qj" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="6" id="gWE-Zy-VRD"/>
+            </constraints>
+            <point key="canvasLocation" x="139.5" y="153.5"/>
+        </customView>
+    </objects>
+</document>

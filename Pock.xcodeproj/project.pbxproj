@@ -33,8 +33,12 @@
 		349F9C3723C39407002CEC1E /* PockWidgetDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349F9C3623C39407002CEC1E /* PockWidgetDocument.swift */; };
 		34AB11C4250040DA00829E59 /* PockHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AB11C3250040DA00829E59 /* PockHelper.swift */; };
 		34BC3ECC2210B2EC00C1DD3C /* DFRFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34BC3ECB2210B2EC00C1DD3C /* DFRFoundation.framework */; };
+		34BFC52725038EC3008E5ACB /* WidgetsManagerInstallPane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BFC52525038EC3008E5ACB /* WidgetsManagerInstallPane.swift */; };
+		34BFC52825038EC3008E5ACB /* WidgetsManagerInstallPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34BFC52625038EC3008E5ACB /* WidgetsManagerInstallPane.xib */; };
 		34CA451D23C0C98A00C45B0D /* STPrivilegedTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 34CA451B23C0C98A00C45B0D /* STPrivilegedTask.m */; };
 		34CA452023C0C9C500C45B0D /* TouchBarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CA451F23C0C9C500C45B0D /* TouchBarHelper.swift */; };
+		34D5C1E825039714007A021E /* RoundedRectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D5C1E725039714007A021E /* RoundedRectView.swift */; };
+		34D5C1EB2503973A007A021E /* DestinationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D5C1EA2503973A007A021E /* DestinationView.swift */; };
 		34D6F6FC23C2DD7A0078181F /* widget_icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 34D6F6FB23C2DD7A0078181F /* widget_icon.icns */; };
 		34EF604A23C12E1300FBE9E7 /* AlertWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EF604823C12E1300FBE9E7 /* AlertWindowController.swift */; };
 		34EF604B23C12E1300FBE9E7 /* AlertWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34EF604923C12E1300FBE9E7 /* AlertWindowController.xib */; };
@@ -91,7 +95,6 @@
 		0977870FCAE1CDC7CD046166 /* Pods-Targets-Pock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Targets-Pock.release.xcconfig"; path = "Pods/Target Support Files/Pods-Targets-Pock/Pods-Targets-Pock.release.xcconfig"; sourceTree = "<group>"; };
 		2D76D0DCC09BBC431C56941A /* Pods-Targets-Pock.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Targets-Pock.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Targets-Pock/Pods-Targets-Pock.debug.xcconfig"; sourceTree = "<group>"; };
 		340520BC24F6DF510082955A /* Secrets.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Secrets.plist; sourceTree = "<group>"; };
-		340520EF24F7B0720082955A /* Info-dev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-dev.plist"; path = "/Users/Pierluigi/Lavoro/Globals/Pock/App/Xcode/Pock/Info-dev.plist"; sourceTree = "<absolute>"; };
 		3406434C227F3FFF00981372 /* PockMainController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PockMainController.xib; sourceTree = "<group>"; };
 		3407F9DD22D0F0A60072E742 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		342D83952278D5CF000D79DA /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
@@ -128,9 +131,13 @@
 		34A8060922F6B97000621235 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		34AB11C3250040DA00829E59 /* PockHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PockHelper.swift; sourceTree = "<group>"; };
 		34BC3ECB2210B2EC00C1DD3C /* DFRFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DFRFoundation.framework; path = ../../../../../../../../../System/Library/PrivateFrameworks/DFRFoundation.framework; sourceTree = "<group>"; };
+		34BFC52525038EC3008E5ACB /* WidgetsManagerInstallPane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetsManagerInstallPane.swift; sourceTree = "<group>"; };
+		34BFC52625038EC3008E5ACB /* WidgetsManagerInstallPane.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WidgetsManagerInstallPane.xib; sourceTree = "<group>"; };
 		34CA451B23C0C98A00C45B0D /* STPrivilegedTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPrivilegedTask.m; sourceTree = "<group>"; };
 		34CA451C23C0C98A00C45B0D /* STPrivilegedTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPrivilegedTask.h; sourceTree = "<group>"; };
 		34CA451F23C0C9C500C45B0D /* TouchBarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchBarHelper.swift; sourceTree = "<group>"; };
+		34D5C1E725039714007A021E /* RoundedRectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRectView.swift; sourceTree = "<group>"; };
+		34D5C1EA2503973A007A021E /* DestinationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationView.swift; sourceTree = "<group>"; };
 		34D6F6FB23C2DD7A0078181F /* widget_icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = widget_icon.icns; sourceTree = "<group>"; };
 		34EF604823C12E1300FBE9E7 /* AlertWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertWindowController.swift; sourceTree = "<group>"; };
 		34EF604923C12E1300FBE9E7 /* AlertWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertWindowController.xib; sourceTree = "<group>"; };
@@ -281,7 +288,6 @@
 			children = (
 				34D6F6FB23C2DD7A0078181F /* widget_icon.icns */,
 				342D83A52278D5CF000D79DA /* Info.plist */,
-				340520EF24F7B0720082955A /* Info-dev.plist */,
 				340520BC24F6DF510082955A /* Secrets.plist */,
 				342D83A32278D5CF000D79DA /* Assets.xcassets */,
 				342D83A42278D5CF000D79DA /* Pock.entitlements */,
@@ -335,6 +341,7 @@
 				349F9C3623C39407002CEC1E /* PockWidgetDocument.swift */,
 				3435675A2381666F00E408EF /* WidgetsDispatcher.swift */,
 				345E2EC923C2692300A947FC /* WidgetsManagerListPane */,
+				34BFC52925038EC7008E5ACB /* WidgetsManagerInstallPane */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -399,6 +406,16 @@
 			path = ProcessWidgetController;
 			sourceTree = "<group>";
 		};
+		34BFC52925038EC7008E5ACB /* WidgetsManagerInstallPane */ = {
+			isa = PBXGroup;
+			children = (
+				34D5C1E92503971B007A021E /* UI Utils */,
+				34BFC52525038EC3008E5ACB /* WidgetsManagerInstallPane.swift */,
+				34BFC52625038EC3008E5ACB /* WidgetsManagerInstallPane.xib */,
+			);
+			path = WidgetsManagerInstallPane;
+			sourceTree = "<group>";
+		};
 		34CA451E23C0C99200C45B0D /* STPrivilegedTask */ = {
 			isa = PBXGroup;
 			children = (
@@ -414,6 +431,15 @@
 				34CA451F23C0C9C500C45B0D /* TouchBarHelper.swift */,
 			);
 			path = TouchBarHelper;
+			sourceTree = "<group>";
+		};
+		34D5C1E92503971B007A021E /* UI Utils */ = {
+			isa = PBXGroup;
+			children = (
+				34D5C1E725039714007A021E /* RoundedRectView.swift */,
+				34D5C1EA2503973A007A021E /* DestinationView.swift */,
+			);
+			path = "UI Utils";
 			sourceTree = "<group>";
 		};
 		34EF604C23C12E1700FBE9E7 /* AlertWindowController */ = {
@@ -572,6 +598,7 @@
 				96FE269F22D0C3810071645C /* Localizable.strings in Resources */,
 				3406434D227F3FFF00981372 /* PockMainController.xib in Resources */,
 				342D83E72278D5CF000D79DA /* Assets.xcassets in Resources */,
+				34BFC52825038EC3008E5ACB /* WidgetsManagerInstallPane.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -653,6 +680,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				345E2EC723C2691900A947FC /* WidgetsManagerListPane.swift in Sources */,
+				34BFC52725038EC3008E5ACB /* WidgetsManagerInstallPane.swift in Sources */,
 				3435675B2381666F00E408EF /* WidgetsDispatcher.swift in Sources */,
 				34CA451D23C0C98A00C45B0D /* STPrivilegedTask.m in Sources */,
 				349F9C2E23C37231002CEC1E /* WidgetInfo.swift in Sources */,
@@ -668,6 +696,8 @@
 				342D84002278D5CF000D79DA /* PKWidgetTouchBarItem.swift in Sources */,
 				342D83E22278D5CF000D79DA /* Preferences.swift in Sources */,
 				342D83ED2278D5CF000D79DA /* AppDelegate.swift in Sources */,
+				34D5C1EB2503973A007A021E /* DestinationView.swift in Sources */,
+				34D5C1E825039714007A021E /* RoundedRectView.swift in Sources */,
 				342D83E42278D5CF000D79DA /* GeneralPreferencePane.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -824,7 +854,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -877,7 +907,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -904,7 +934,7 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Pock/Various/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.12.2;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MARKETING_VERSION = 0.8.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pigigaldi.pock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -933,7 +963,7 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Pock/Various/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.12.2;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MARKETING_VERSION = 0.8.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pigigaldi.pock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
