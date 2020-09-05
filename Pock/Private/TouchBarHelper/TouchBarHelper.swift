@@ -63,7 +63,7 @@ public class TouchBarHelper {
                 completion?(false)
             }
             #if DEBUG
-                print("[TouchBarServer]: old_pid: `\(touchBarServerPid)` - new_pid: `\(_DFRGetServerPID().description)`")
+                NSLog("[TouchBarServer]: old_pid: `\(touchBarServerPid)` - new_pid: `\(_DFRGetServerPID().description)`")
             #endif
         }
     }

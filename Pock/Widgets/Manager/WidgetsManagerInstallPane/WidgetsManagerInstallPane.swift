@@ -95,7 +95,7 @@ extension WidgetsManagerInstallPane {
             )
         } catch {
             remoteInstallTextField.textColor = .systemRed
-            print("[WidgetsManagerInstallPane]: Can't install remote widget: \(error.localizedDescription)")
+            NSLog("[WidgetsManagerInstallPane]: Can't install remote widget: \(error.localizedDescription)")
         }
     }
 }

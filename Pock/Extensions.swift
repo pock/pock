@@ -46,7 +46,7 @@ public func async(after: TimeInterval = 0, _ block: @escaping () throws -> Void)
         do {
             try block()
         } catch {
-            print("[async(after: \(after)]: Invalid block: \(error.localizedDescription)")
+            NSLog("[async(after: \(after)]: Invalid block: \(error.localizedDescription)")
         }
     })
 }
@@ -60,7 +60,7 @@ public func background(qos: DispatchQoS.QoSClass = .background, after: TimeInter
         do {
             try block()
         } catch {
-            print("[background(qos: \(qos), after: \(after)]: Invalid block: \(error.localizedDescription)")
+            NSLog("[background(qos: \(qos), after: \(after)]: Invalid block: \(error.localizedDescription)")
         }
     })
 }

@@ -310,7 +310,7 @@ extension ProcessWidgetController {
                 async { [weak self] in
                     self?.state = .completed(success: false)
                 }
-                print("[ProcessWidgetController]: Can't uninstall widget. Reason: \(error.localizedDescription)")
+                NSLog("[ProcessWidgetController]: Can't uninstall widget. Reason: \(error.localizedDescription)")
             }
         }
     }

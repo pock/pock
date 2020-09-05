@@ -119,7 +119,7 @@ extension WidgetsManagerListPane {
         do {
             try PockHelper.default.openProcessControllerForWidget(configuration: .default(process: .remove, widgetInfo: widget))
         } catch {
-            print("[WidgetsManagerListPane]: Can't process widget. Reason: \(error.localizedDescription)")
+            NSLog("[WidgetsManagerListPane]: Can't process widget. Reason: \(error.localizedDescription)")
         }
     }
     
