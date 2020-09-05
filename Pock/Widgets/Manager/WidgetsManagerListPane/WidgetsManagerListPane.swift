@@ -27,6 +27,7 @@ internal class WidgetsManagerListPane: NSViewController, PreferencePane {
     // MARK: UI Elements
     @IBOutlet private weak var tableView:         NSTableView!
     @IBOutlet private weak var statusLabel:       NSTextField!
+    @IBOutlet private weak var preferencesButton: NSButton!
     @IBOutlet private weak var uninstallButton:   NSButton!
     
     // MARK: Menu
@@ -137,13 +138,15 @@ extension WidgetsManagerListPane {
     /// Update status label
     private func updateUIElements() {
         guard let widget = selectedWidget else {
-            self.uninstallButton.isEnabled = false
+            self.preferencesButton.isEnabled = false
+            self.uninstallButton.isEnabled   = false
             let count = widgets.count
             self.statusLabel.stringValue   = "\(count) widget\(count == 1 ? "" : "s") installed"
             return
         }
-        self.statusLabel.stringValue   = "\(widget.name) (\(widget.version)) selected"
-        self.uninstallButton.isEnabled = true
+        self.statusLabel.stringValue     = "\(widget.name) (\(widget.version)) selected"
+        self.preferencesButton.isEnabled = widget.hasPreferences
+        self.uninstallButton.isEnabled   = true
     }
 
 }
