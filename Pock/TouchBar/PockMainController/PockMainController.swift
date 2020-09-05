@@ -126,7 +126,7 @@ extension PockMainController {
     }
     
     @objc private func willEnterCustomization(_ sender: Any?) {
-        self.dismiss()
+        self.minimize()
     }
     
     @objc private func didExitCustomization(_ sender: Any?) {

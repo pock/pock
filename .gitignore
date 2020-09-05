@@ -10,6 +10,7 @@ Cartfile.resolved
 Carthage/
 
 ## Userdata
+clear_pock_environment
 Pock.xcodeproj/xcuserdata/
 Pock.xcworkspace/xcuserdata/
 
