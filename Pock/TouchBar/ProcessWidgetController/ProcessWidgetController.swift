@@ -55,6 +55,7 @@ public class ProcessWidgetController: PKTouchBarController {
     /// Core
     private var configuration: Configuration!
     private var completion: ((Bool) -> Void)? = nil
+    private var willDismiss: (() -> Void)?    = nil
     
     private var widgetName: String {
         return configuration.widgetInfo?.name ?? configuration.remoteURL?.lastPathComponent.replacingOccurrences(of: ".zip", with: "") ?? "Unknown"
@@ -85,13 +86,14 @@ public class ProcessWidgetController: PKTouchBarController {
     }
     
     // MARK: Initialiser
-    public class func processWidget(configuration: Configuration, _ completion: ((Bool) -> Void)? = nil) -> ProcessWidgetController? {
+    public class func processWidget(configuration: Configuration, _ willDismiss: (() -> Void)? = nil, _ completion: ((Bool) -> Void)? = nil) -> ProcessWidgetController? {
         guard let _: Any = configuration.remoteURL ?? configuration.widgetInfo else {
             return nil
         }
         let returnable: ProcessWidgetController = ProcessWidgetController.load()
         returnable.configuration = configuration
         returnable.process       = configuration.process
+        returnable.willDismiss   = willDismiss
         returnable.completion    = completion
         return returnable
     }
@@ -235,6 +237,7 @@ extension ProcessWidgetController {
         case 3: // reload
             PockHelper.default.relaunchPock()
         default: // close
+            willDismiss?()
             dismiss()
         }
     }

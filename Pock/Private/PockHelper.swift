@@ -95,7 +95,9 @@ internal class PockHelper {
     }
     
     // MARK: Process
-    internal func openProcessControllerForWidget(configuration: ProcessWidgetController.Configuration, _ completion: ((Bool) -> Void)? = nil) throws {
+    internal func openProcessControllerForWidget(configuration: ProcessWidgetController.Configuration,
+                                                 _ willDismiss: (() -> Void)?     = nil,
+                                                 _ completion:  ((Bool) -> Void)? = nil) throws {
         guard let _: Any = configuration.remoteURL ?? configuration.widgetInfo else {
             return
         }
@@ -105,7 +107,7 @@ internal class PockHelper {
                 AppDelegate.default.reloadPock()
             }
             /// instantiate process widget controller
-            let processWidgetController = ProcessWidgetController.processWidget(configuration: configuration, completion)
+            let processWidgetController = ProcessWidgetController.processWidget(configuration: configuration, willDismiss, completion)
             processWidgetController?.pushOnMainNavigationController()
         }
     }
