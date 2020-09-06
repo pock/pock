@@ -54,8 +54,8 @@ public class ProcessWidgetController: PKTouchBarController {
     
     /// Core
     private var configuration: Configuration!
-    private var completion: ((Bool) -> Void)? = nil
-    private var willDismiss: (() -> Void)?    = nil
+    private var completion:  ((Bool) -> Void)? = nil
+    private var willDismiss: (() -> Void)?     = nil
     
     private var widgetName: String {
         return configuration.widgetInfo?.name ?? configuration.remoteURL?.lastPathComponent.replacingOccurrences(of: ".zip", with: "") ?? "Unknown"
@@ -285,6 +285,8 @@ extension ProcessWidgetController {
         state = .processing
         background { [weak self] in
             do {
+                try? WidgetsDispatcher.default.removeWidget(withName: self?.widgetName)
+                sleep(2)
                 try WidgetsDispatcher.default.installWidget(at: self?.configuration.widgetInfo?.path)
                 NotificationCenter.default.post(name: .didInstallWidget, object: nil)
                 async { [weak self] in
