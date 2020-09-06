@@ -13,20 +13,15 @@ import PockKit
 extension NSTouchBar.CustomizationIdentifier {
     static let pockTouchBar = "PockTouchBar"
 }
+
 extension NSTouchBarItem.Identifier {
     static let pockSystemIcon = NSTouchBarItem.Identifier("Pock")
 }
 
 class PockMainController: PKTouchBarController {
     
+    // MARK: Data
     private var items: [NSTouchBarItem.Identifier: NSTouchBarItem] = [:]
-    
-    private var systemTrayItem: NSCustomTouchBarItem? {
-        let item = NSCustomTouchBarItem(identifier: .pockSystemIcon)
-        item.view = NSButton(image: #imageLiteral(resourceName: "pock-inner-icon"), target: self, action: #selector(presentFromSystemTrayItem))
-        return item
-    }
-    
     private var systemTrayItemIdentifier: NSTouchBarItem.Identifier? { return .pockSystemIcon }
     
     deinit {
@@ -35,11 +30,6 @@ class PockMainController: PKTouchBarController {
         #if DEBUG
             print("[PockMainController]: Deinit Pock main controller")
         #endif
-    }
-    
-    override func reloadNib<T>(_ type: T.Type = T.self) where T : PKTouchBarController {
-        super.reloadNib(type)
-        self.showControlStripIcon()
     }
     
     override func didLoad() {
@@ -62,13 +52,6 @@ class PockMainController: PKTouchBarController {
     @objc private func presentFromSystemTrayItem() {
         let placement: Int64 = TouchBarHelper.isSystemControlStripVisible ? 0 : 1
         self.presentWithPlacement(placement: placement)
-    }
-    
-    private func showControlStripIcon() {
-        DFRSystemModalShowsCloseBoxWhenFrontMost(false)
-        guard systemTrayItem != nil else { return }
-        NSTouchBarItem.removeSystemTrayItem(systemTrayItem!)
-        NSTouchBarItem.addSystemTrayItem(systemTrayItem!)
     }
     
     private func presentWithPlacement(placement: Int64) {
@@ -126,7 +109,7 @@ extension PockMainController {
     }
     
     @objc private func willEnterCustomization(_ sender: Any?) {
-        self.minimize()
+        self.dismiss()
     }
     
     @objc private func didExitCustomization(_ sender: Any?) {
