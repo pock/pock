@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-  platform :osx, '10.12.2'
+platform :osx, '10.13'
 
 abstract_target 'Targets' do
   
@@ -19,10 +19,6 @@ abstract_target 'Targets' do
   
   # Prod
   target 'Pock' do
-  end
-  
-  # Dev
-  target '[D] Pock' do
   end
   
 end
