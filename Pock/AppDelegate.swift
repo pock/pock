@@ -96,7 +96,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         #endif
         
         /// Check for legacy hideControlStrip option
-        if let shouldHideControlStrip = Defaults[.hideControlStrip] {
+        if Defaults[.hideSystemControlStrip] == nil, let shouldHideControlStrip = Defaults[.hideControlStrip] {
+            Defaults[.hideSystemControlStrip] = shouldHideControlStrip
             if shouldHideControlStrip && TouchBarHelper.isSystemControlStripVisible {
                 alertWindowController = AlertWindowController(
                     title:   "Hide Control Strip".localized,
