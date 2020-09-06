@@ -46,6 +46,7 @@ class PockMainController: PKTouchBarController {
     }
     
     override func present() {
+        self.isVisible = true
         presentFromSystemTrayItem()
     }
     
