@@ -79,10 +79,23 @@ internal class PockHelper {
                         author:        author,
                         label:         label
                     )
-                    try self?.openProcessControllerForWidget(configuration: configuration) { _ in
-                        sleep(2)
-                        semaphore.signal()
-                    }
+                    try self?.openProcessControllerForWidget(
+                        configuration: configuration,
+                        /// willDismiss
+                        {
+                            if index == 0 {
+                                PockHelper.didAskToInstallDefaultWidgets = true
+                            }
+                        },
+                        /// completion
+                        { _ in
+                            if index == 0 {
+                                PockHelper.didAskToInstallDefaultWidgets = true
+                            }
+                            sleep(2)
+                            semaphore.signal()
+                        }
+                    )
                 } catch {
                     let error = NSError(domain: "WidgetDispatcher:installDefaultWidgets", code: 404, userInfo: ["description": error.localizedDescription])
                     NSLog("[\(error.domain)]: \(error.code) - \(error.description)")
