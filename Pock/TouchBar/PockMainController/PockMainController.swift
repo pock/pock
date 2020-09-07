@@ -33,14 +33,16 @@ class PockMainController: PKTouchBarController {
     }
     
     override func didLoad() {
-        WidgetsDispatcher.default.loadInstalledWidget() { [weak self] identifiers in
-            if identifiers.isEmpty && PockHelper.didAskToInstallDefaultWidgets == false {
+        WidgetsDispatcher.default.loadInstalledWidget() { [weak self] widgets in
+            if widgets.isEmpty && PockHelper.didAskToInstallDefaultWidgets == false {
                 async(after: 1) {
                     PockHelper.default.installDefaultWidgets()
                 }
             }
-            self?.touchBar?.customizationIdentifier = .pockTouchBar
-            self?.touchBar?.customizationAllowedItemIdentifiers.append(contentsOf: identifiers)
+            let identifiers: [NSTouchBarItem.Identifier] = widgets.compactMap({ $0.identifier })
+            self?.touchBar?.customizationIdentifier             = .pockTouchBar
+            self?.touchBar?.customizationAllowedItemIdentifiers = identifiers
+            self?.touchBar?.escapeKeyReplacementItemIdentifier  = identifiers.first(where: { $0.rawValue == "EscWidget" })
             self?.awakeFromNib()
         }
     }
@@ -67,7 +69,7 @@ class PockMainController: PKTouchBarController {
         if let item = items[identifier] {
             return item
         }
-        guard let widget: PKWidget = WidgetsDispatcher.default.loadedWidgets[identifier] else {
+        guard let widget: PKWidget = WidgetsDispatcher.default.loadedWidgets.first(where: { $0.identifier == identifier }) else {
             return nil
         }
         let item = PKWidgetTouchBarItem(widget: widget)
@@ -110,7 +112,7 @@ extension PockMainController {
     }
     
     @objc private func willEnterCustomization(_ sender: Any?) {
-        self.dismiss()
+        self.minimize()
     }
     
     @objc private func didExitCustomization(_ sender: Any?) {

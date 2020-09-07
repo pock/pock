@@ -21,7 +21,7 @@ public final class WidgetsDispatcher {
     /// Configuration
     public struct Configuration {
         let shouldDeleteAfterInstall: Bool
-        static let `default`: Configuration = Configuration(shouldDeleteAfterInstall: true)
+        static let `default`: Configuration = Configuration(shouldDeleteAfterInstall: false)
     }
     
     /// Singleton
@@ -34,7 +34,7 @@ public final class WidgetsDispatcher {
     private var configuration: Configuration
     
     /// Data
-    public private(set) var loadedWidgets: [NSTouchBarItem.Identifier: PKWidget] = [:]
+    public private(set) var loadedWidgets: [PKWidget] = []
     
     /// Getters
     private var applicationSupportPockFolder: String {
@@ -87,7 +87,7 @@ public final class WidgetsDispatcher {
         var returnable: [WidgetInfo] = []
         for path in installedWidgetsPaths {
             if var info = try? WidgetInfo(path: path) {
-                info.loaded = loadedWidgets.values.contains(where: {
+                info.loaded = loadedWidgets.contains(where: {
                     guard let clss = object_getClass($0) else {
                         return false
                     }
@@ -100,12 +100,12 @@ public final class WidgetsDispatcher {
     }
     
     /// Load widgets from widgets directory
-    public func loadInstalledWidget(_ completion: ([NSTouchBarItem.Identifier]) -> Void) {
+    public func loadInstalledWidget(_ completion: ([PKWidget]) -> Void) {
         self.loadedWidgets.removeAll()
         for widgetBundleURL in installedWidgetsPaths {
             try? loadWidgetAt(path: widgetBundleURL)
         }
-        completion(Array(loadedWidgets.keys))
+        completion(loadedWidgets)
         NotificationCenter.default.post(name: .didLoadInstalledWidgets, object: nil)
     }
     
@@ -117,8 +117,7 @@ extension WidgetsDispatcher {
     private func loadWidgetAt(path: URL) throws {
         if let widgetBundle = Bundle(url: path) {
             if let clss = widgetBundle.principalClass as? PKWidget.Type {
-                let plugin = clss.init()
-                self.loadedWidgets[plugin.identifier] = plugin
+                self.loadedWidgets.append(clss.init())
                 return
             }
         }
