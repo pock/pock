@@ -27,11 +27,17 @@ Pock will always be available as free software!
 
 
 
-## How To Enable
+## How to install
 
-1. Move Pock to your Applications folder
-2. Open Pock
-3. If you don't see Pock in your Touch Bar, go to the `Keyboard` pane in System Preferences and select "Touch Bar shows _App Controls_."
+ 1. Go to the [website](https://pock.dev) and click download.
+ 2. Unzip the archive by running `unzip` or double-clicking on the file.
+ 3. Move the extracted file to `/Applications`.
+ 
+ 
+ ## Usage 
+
+  1. Open Pock.
+  2. If you don't see Pock in your Touch Bar, go to the `Keyboard` pane in System Preferences and select "Touch Bar shows _App Controls_.", then relaunch Pock.
 
 
 
