@@ -42,7 +42,6 @@ class PockMainController: PKTouchBarController {
             let identifiers: [NSTouchBarItem.Identifier] = widgets.compactMap({ $0.identifier })
             self?.touchBar?.customizationIdentifier             = .pockTouchBar
             self?.touchBar?.customizationAllowedItemIdentifiers = identifiers
-            self?.touchBar?.escapeKeyReplacementItemIdentifier  = identifiers.first(where: { $0.rawValue == "EscWidget" })
             self?.awakeFromNib()
         }
     }
