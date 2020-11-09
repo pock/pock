@@ -36,4 +36,5 @@ extension Defaults.Keys {
     static let hideControlStrip       = Defaults.Key<Bool?>("hideControlStrip",       default: true)
     static let hideSystemControlStrip = Defaults.Key<Bool?>("hideSystemControlStrip", default: true)
     static let enableAutomaticUpdates = Defaults.Key<Bool>("enableAutomaticUpdates",  default: false)
+	static let allowBlankTouchBar	  = Defaults.Key<Bool>("allowBlankTouchBar",	  default: false)
 }

@@ -27,6 +27,15 @@ internal class PockHelper {
             Defaults[.didAskToInstallDefaultsWidgets] = newValue
         }
     }
+	
+	static var allowBlankTouchBar: Bool {
+		get {
+			return Defaults[.allowBlankTouchBar]
+		}
+		set {
+			Defaults[.allowBlankTouchBar] = newValue
+		}
+	}
     
     internal func relaunchPock() {
         guard let relaunch_path = Bundle.main.path(forResource: "Relaunch", ofType: nil) else {
@@ -124,5 +133,32 @@ internal class PockHelper {
             processWidgetController?.pushOnMainNavigationController()
         }
     }
+	
+	// MARK: No widget enabled
+	internal func openProcessControllerForEmptyWidgets() {
+		async {
+			/// load Pock main controller if needed
+			if AppDelegate.default.navController == nil {
+				AppDelegate.default.reloadPock()
+			}
+			/// instantiate process widget controller
+			let configuration = ProcessWidgetController.Configuration(process: .empty,
+																	  remoteURL: nil,
+																	  widgetInfo: nil,
+																	  skipConfirm: false,
+																	  forceDownload: false,
+																	  forceReload: false,
+																	  needsReload: false,
+																	  name: "Welcome to Pock",
+																	  author: "Widgets manager for MacBook's Touch Bar",
+																	  label: nil)
+			let processWidgetController = ProcessWidgetController.processWidget(configuration: configuration, {
+				if let mainController = AppDelegate.default.navController?.rootController as? PockMainController {
+					mainController.openCustomization()
+				}
+			}, { _ in })
+			processWidgetController?.pushOnMainNavigationController()
+		}
+	}
     
 }

@@ -19,6 +19,7 @@ final class GeneralPreferencePane: NSViewController, PreferencePane {
     @IBOutlet weak var launchAtLoginCheckbox:              NSButton!
     @IBOutlet weak var enableAutomaticUpdates:             NSButton!
     @IBOutlet weak var checkForUpdatesButton:              NSButton!
+	@IBOutlet weak var allowBlankTouchBar:				   NSButton!
     
     /// Endpoint
     #if DEBUG
@@ -66,6 +67,7 @@ final class GeneralPreferencePane: NSViewController, PreferencePane {
         self.hideControlStripCheckbox.state = TouchBarHelper.isSystemControlStripVisible ? .off : .on
         self.enableAutomaticUpdates.state   = Defaults[.enableAutomaticUpdates]          ? .on  : .off
         self.launchAtLoginCheckbox.state    = LoginServiceKit.isExistLoginItems()        ? .on  : .off
+		self.allowBlankTouchBar.state		= Defaults[.allowBlankTouchBar]				 ? .on  : .off
     }
     
     @IBAction private func didChangeHideControlStripValue(button: NSButton) {
@@ -95,6 +97,11 @@ final class GeneralPreferencePane: NSViewController, PreferencePane {
             return
         }
     }
+	
+	@IBAction private func didChangeAllowBlankTouchBarValue(button: NSButton) {
+		Defaults[.allowBlankTouchBar] = button.state == .on
+		NSWorkspace.shared.notificationCenter.post(name: .shouldReloadPock, object: nil)
+	}
     
     @IBAction private func didChangeEnableAutomaticUpdates(button: NSButton) {
         Defaults[.enableAutomaticUpdates] = button.state == .on

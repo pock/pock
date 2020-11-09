@@ -43,8 +43,20 @@ class PockMainController: PKTouchBarController {
             self?.touchBar?.customizationIdentifier             = .pockTouchBar
             self?.touchBar?.customizationAllowedItemIdentifiers = identifiers
             self?.awakeFromNib()
+			self?.checkForBlankTouchBar()
         }
     }
+	
+	private func checkForBlankTouchBar() {
+		guard PockHelper.allowBlankTouchBar == false else {
+			return
+		}
+		async(after: 1) { [weak self] in
+			if self?.items.isEmpty == true {
+				PockHelper.default.openProcessControllerForEmptyWidgets()
+			}
+		}
+	}
     
     override func present() {
         self.isVisible = true
@@ -118,6 +130,7 @@ extension PockMainController {
         TouchBarHelper.dismissFromTop(NSApp.touchBar)
         self.removeCustomizationObservers()
         self.present()
+		self.checkForBlankTouchBar()
     }
     
 }

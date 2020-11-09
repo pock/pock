@@ -16,12 +16,12 @@ public class ProcessWidgetController: PKTouchBarController {
     
     // MARK: UI State
     private enum UIState {
-        case unknown, download, install, remove, processing, downloading, completed(success: Bool)
+        case unknown, download, install, remove, processing, downloading, completed(success: Bool), empty
     }
     
     // MARK: Widget Process
     public enum Process {
-        case unknown, download, install, remove
+        case unknown, download, install, remove, empty
     }
     
     // MARK: Configutation
@@ -87,15 +87,18 @@ public class ProcessWidgetController: PKTouchBarController {
     
     // MARK: Initialiser
     public class func processWidget(configuration: Configuration, _ willDismiss: (() -> Void)? = nil, _ completion: ((Bool) -> Void)? = nil) -> ProcessWidgetController? {
-        guard let _: Any = configuration.remoteURL ?? configuration.widgetInfo else {
-            return nil
+		if configuration.remoteURL != nil || configuration.widgetInfo != nil || configuration.process == .empty {
+			let returnable: ProcessWidgetController = ProcessWidgetController.load()
+			returnable.configuration = configuration
+			returnable.process       = configuration.process
+			returnable.willDismiss   = willDismiss
+			returnable.completion    = completion
+			if configuration.process == .empty {
+				returnable.updateUIState(to: .empty)
+			}
+			return returnable
         }
-        let returnable: ProcessWidgetController = ProcessWidgetController.load()
-        returnable.configuration = configuration
-        returnable.process       = configuration.process
-        returnable.willDismiss   = willDismiss
-        returnable.completion    = completion
-        return returnable
+		return nil
     }
     
     // MARK: Overrides
@@ -119,6 +122,17 @@ public class ProcessWidgetController: PKTouchBarController {
     private func updateUIState(to state: UIState) {
         updateLeftDetailView()
         switch state {
+		case .empty:
+			cancelButton.isHidden   = true
+			infoLabel.stringValue	= "Add widgets to Pock".localized
+			actionButton.title		= "Customize".localized
+			actionButton.tag		= -2
+			actionButton.bezelColor = NSColor.systemBlue
+			actionButton.isEnabled  = true
+			iconView.isHidden		= false
+			async(after: 0.5) { [weak self] in
+				self?.addIconViewAnimation()
+			}
         case .unknown:
             cancelButton.isHidden   = false
             infoLabel.stringValue   = "Something went wrong".localized
@@ -208,6 +222,7 @@ public class ProcessWidgetController: PKTouchBarController {
                 case .install:  return "installed".localized
                 case .remove:   return "removed".localized
                 case .download: return "downloaded".localized
+				case.empty:		return ""
                 }
             }()
             cancelButton.isHidden   = true
