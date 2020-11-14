@@ -32,8 +32,9 @@ final class GeneralPreferencePane: NSViewController, PreferencePane {
     var newVersionAvailable: (String, URL)?
     
     /// Core
-    private static let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String ?? "Unknown"
-    
+    internal static let appVersion 	 = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String ?? "???"
+	internal static let buildVersion = Bundle.main.infoDictionary!["CFBundleVersion"]      		 as? String ?? "-"
+	
     /// Preferenceable
     var preferencePaneIdentifier: Preferences.PaneIdentifier = Preferences.PaneIdentifier.general
     let preferencePaneTitle:      String                     = "General".localized
@@ -60,7 +61,7 @@ final class GeneralPreferencePane: NSViewController, PreferencePane {
     }
     
     private func loadVersionNumber() {
-        self.versionLabel.stringValue = GeneralPreferencePane.appVersion
+		self.versionLabel.stringValue = "\(GeneralPreferencePane.appVersion)-\(GeneralPreferencePane.buildVersion)"
     }
     
     private func setupCheckboxes() {
@@ -116,7 +117,7 @@ final class GeneralPreferencePane: NSViewController, PreferencePane {
             if let latestVersion = latestVersion, let latestVersionDownloadURL = latestVersionDownloadURL {
                 self?.showNewVersionAlert(versionNumber: latestVersion, downloadURL: latestVersionDownloadURL)
             }else {
-                self?.showAlert(title: "Installed version".localized + ": \(GeneralPreferencePane.appVersion)", message: "Already on latest version".localized)
+				self?.showAlert(title: "Installed version".localized + ": \(GeneralPreferencePane.appVersion)-\(GeneralPreferencePane.buildVersion)", message: "Already on latest version".localized)
             }
             async { [weak self] in
                 self?.checkForUpdatesButton.isEnabled = true
@@ -163,7 +164,7 @@ extension GeneralPreferencePane {
             let apiResponse = try? JSONDecoder().decode(APIUpdateResponse.self, from: data),
             let downloadURL = URL(string: apiResponse.download_link),
             GeneralPreferencePane.appVersion < apiResponse.version_number else {
-                NSLog("[Pock]: Already on latest version: \(GeneralPreferencePane.appVersion)")
+				NSLog("[Pock]: Already on latest version: \(GeneralPreferencePane.appVersion)-\(GeneralPreferencePane.buildVersion)")
                 URLSession.shared.finishTasksAndInvalidate()
                 completion(nil, nil)
                 return
