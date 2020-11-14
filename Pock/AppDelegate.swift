@@ -35,17 +35,42 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     /// Main Pock menu
     private lazy var mainPockMenu: NSMenu = {
         let menu = NSMenu(title: "Pock Options")
-        menu.addItem(withTitle: "Preferences…".localized, action: #selector(openPreferences), keyEquivalent: ",")
-        menu.addItem(withTitle: "Customize…".localized, action: #selector(openCustomization), keyEquivalent: "c")
-        menu.addItem(NSMenuItem.separator())
-        menu.addItem(withTitle: "Widgets Manager".localized, action: #selector(openWidgetsManager), keyEquivalent: "w")
+		
+		/// Version item
+		let aboutItem = NSMenuItem(title: "About Pock", action: #selector(openWebsite), keyEquivalent: "")
+		
+		/// Open Preferences item
+		let openPreferencesItem = NSMenuItem(title: "Open Preferences…".localized, action: #selector(openPreferences), keyEquivalent: ",")
+		
+        /// Open Customize window
+		let openCustomizeWindowItem = NSMenuItem(title: "Customise Widgets Position…".localized, action: #selector(openCustomization), keyEquivalent: "c")
+		
+        /// Open Widgets Manager
+		let openWidgestManagerItem = NSMenuItem(title: "Open Widgets Manager…".localized, action: #selector(openWidgetsManager), keyEquivalent: "w")
+        
+        /// Advanced menu
         let advancedMenuItem = NSMenuItem(title: "Advanced".localized, action: nil, keyEquivalent: "")
         advancedMenuItem.submenu = advancedPockMenu
-        menu.addItem(advancedMenuItem)
-        menu.addItem(NSMenuItem.separator())
-        menu.addItem(withTitle: "Support this project".localized, action: #selector(openDonateURL),  keyEquivalent: "s")
-        menu.addItem(NSMenuItem.separator())
-        menu.addItem(withTitle: "Quit Pock".localized, action: #selector(NSApp.terminate), keyEquivalent: "q")
+        
+        /// Support item
+		let supportItem = NSMenuItem(title: "Support This Project".localized, action: #selector(openDonateURL), keyEquivalent: "s")
+        /// Quit item
+		let quitItem = NSMenuItem(title: "Quit Pock".localized, action: #selector(NSApp.terminate), keyEquivalent: "q")
+		
+		let items: [NSMenuItem] = [
+			aboutItem,
+			openPreferencesItem,
+			.separator(),
+			openWidgestManagerItem,
+			openCustomizeWindowItem,
+			.separator(),
+			advancedMenuItem,
+			.separator(),
+			supportItem,
+			quitItem
+		]
+		items.forEach({ menu.addItem($0) })
+		
         return menu
     }()
     
@@ -253,6 +278,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         widgetsManagerWindowController.show()
     }
     
+	/// Open website
+	@objc private func openWebsite() {
+		guard let url = URL(string: "https://pock.dev") else { return }
+		NSWorkspace.shared.open(url)
+	}
+	
     /// Open donate url
     @objc private func openDonateURL() {
         guard let url = URL(string: "https://paypal.me/pigigaldi") else { return }
