@@ -43,7 +43,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		let openPreferencesItem = NSMenuItem(title: "Open Preferences…".localized, action: #selector(openPreferences), keyEquivalent: ",")
 		
         /// Open Customize window
-		let openCustomizeWindowItem = NSMenuItem(title: "Customise Widgets Position…".localized, action: #selector(openCustomization), keyEquivalent: "c")
+		let openCustomizeWindowItem = NSMenuItem(title: "Customize Touch Bar…".localized, action: #selector(openCustomization), keyEquivalent: "c")
 		
         /// Open Widgets Manager
 		let openWidgestManagerItem = NSMenuItem(title: "Open Widgets Manager…".localized, action: #selector(openWidgetsManager), keyEquivalent: "w")
