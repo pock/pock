@@ -61,8 +61,11 @@ class SClockItem: StatusItem {
         let formatter = DateFormatter()
         formatter.dateFormat = Defaults[.timeFormatTextField]
         formatter.locale = Locale(identifier: Locale.preferredLanguages.first ?? "en_US_POSIX")
-        clockLabel?.stringValue = formatter.string(from: Date())
-        clockLabel?.sizeToFit()
+        let tempLabel = formatter.string(from: Date())
+        if tempLabel != clockLabel?.stringValue {
+            clockLabel?.stringValue = tempLabel
+            clockLabel?.sizeToFit()
+        }
     }
     
 }

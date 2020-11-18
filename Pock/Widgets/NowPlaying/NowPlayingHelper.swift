@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Defaults
 
 class NowPlayingHelper {
     
@@ -237,18 +238,21 @@ class NowPlayingHelper {
             self?.lastNowPlayingItem?.title  = info?[kMRMediaRemoteNowPlayingInfoTitle]  as? String
             self?.lastNowPlayingItem?.album  = info?[kMRMediaRemoteNowPlayingInfoAlbum]  as? String
             self?.lastNowPlayingItem?.artist = info?[kMRMediaRemoteNowPlayingInfoArtist] as? String
-            self?.lastNowPlayingItem?.image = info?[kMRMediaRemoteNowPlayingInfoArtworkData] as? Data
-            if (self?.cachedAlbumArtName == "\(self?.lastNowPlayingItem?.title ?? "") \(self?.lastNowPlayingItem?.artist ?? "")".replacingOccurrences(of: " ", with: "+").addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!) {
-                self?.lastNowPlayingItem?.image = self?.cachedAlbumArt
-            }
-            
             if info == nil {
                 self?.lastNowPlayingItem?.isPlaying = false
             }
-        
-            let containsImage = self?.lastNowPlayingItem?.image != nil
-            if (!isProd) {
-                print("contains image: \(containsImage)")
+            var containsImage = false
+            if Defaults[.showArtwork] {
+                self?.lastNowPlayingItem?.image = info?[kMRMediaRemoteNowPlayingInfoArtworkData] as? Data
+                let url = info?[kMRMediaRemoteNowPlayingInfoArtworkURL] as? String
+                if (self?.cachedAlbumArtName == "\(self?.lastNowPlayingItem?.title ?? "") \(self?.lastNowPlayingItem?.artist ?? "")".replacingOccurrences(of: " ", with: "+").addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!) {
+                    self?.lastNowPlayingItem?.image = self?.cachedAlbumArt
+                }
+                
+                containsImage = self?.lastNowPlayingItem?.image != nil
+                if (!isProd) {
+                    print("contains image: \(containsImage)")
+                }
             }
 
             if (!initialRun &&
@@ -256,27 +260,29 @@ class NowPlayingHelper {
                 self?.lastNowPlayingItem?.album == self?.nowPlayingItem.album &&
                 self?.lastNowPlayingItem?.artist == self?.nowPlayingItem.artist &&
                 self?.lastNowPlayingItem?.appBundleIdentifier == self?.nowPlayingItem.appBundleIdentifier) {
-                // if everything is the same compare image data
-                if (self?.lastNowPlayingItem?.image != self?.nowPlayingItem.image) {
-                    self?.nowPlayingItem.image = self?.lastNowPlayingItem?.image
-                    // if the new image data isn't nil cancel the network fallback timer
-                    if (self?.nowPlayingItem.image != nil) {
-                        self?.albumArtFallbackTimer?.invalidate()
-                        self?.albumArtFallbackTimer = nil
-                    }
-                    self?.timesLeftTryUpdatingMediaContentManually = 2
-                    rerunTimer = false
-                    // if image data is different update the UI
-                    if let lastUIUpdateNanosVerified = self?.lastUIUpdateNanos {
-                        if (DispatchTime.now().uptimeNanoseconds - lastUIUpdateNanosVerified < 500*1000000) {
-                            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+DispatchTimeInterval.milliseconds(500)) {
+                if Defaults[.showArtwork] {
+                    // if everything is the same compare image data
+                    if (self?.lastNowPlayingItem?.image != self?.nowPlayingItem.image) {
+                        self?.nowPlayingItem.image = self?.lastNowPlayingItem?.image
+                        // if the new image data isn't nil cancel the network fallback timer
+                        if (self?.nowPlayingItem.image != nil) {
+                            self?.albumArtFallbackTimer?.invalidate()
+                            self?.albumArtFallbackTimer = nil
+                        }
+                        self?.timesLeftTryUpdatingMediaContentManually = 2
+                        rerunTimer = false
+                        // if image data is different update the UI
+                        if let lastUIUpdateNanosVerified = self?.lastUIUpdateNanos {
+                            if (DispatchTime.now().uptimeNanoseconds - lastUIUpdateNanosVerified < 500*1000000) {
+                                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+DispatchTimeInterval.milliseconds(500)) {
+                                    self?.updateUI(withTimer: false)
+                                }
+                            } else {
                                 self?.updateUI(withTimer: false)
                             }
                         } else {
                             self?.updateUI(withTimer: false)
                         }
-                    } else {
-                        self?.updateUI(withTimer: false)
                     }
                 }
             } else {
@@ -287,23 +293,27 @@ class NowPlayingHelper {
                     self?.nowPlayingItem.artist = nowPlayingLocal.artist
                     self?.nowPlayingItem.appBundleIdentifier = nowPlayingLocal.appBundleIdentifier
                     self?.nowPlayingItem.title = nowPlayingLocal.title
-                    self?.nowPlayingItem.image = nowPlayingLocal.image
                     self?.nowPlayingItem.isPlaying = nowPlayingLocal.isPlaying
                     self?.lastUIUpdateNanos = DispatchTime.now().uptimeNanoseconds
-                    if let lastUIUpdateNanosVerified = self?.lastUIUpdateNanos {
-                        if (DispatchTime.now().uptimeNanoseconds - lastUIUpdateNanosVerified < 500*1000000) {
+                    
+                    if Defaults[.showArtwork] {
+                        self?.nowPlayingItem.image = nowPlayingLocal.image
+                        if let lastUIUpdateNanosVerified = self?.lastUIUpdateNanos {
                             if (DispatchTime.now().uptimeNanoseconds - lastUIUpdateNanosVerified < 500*1000000) {
-                                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+DispatchTimeInterval.milliseconds(500)) {
-                                    self?.updateUI(withTimer: !containsImage)
+                                if (DispatchTime.now().uptimeNanoseconds - lastUIUpdateNanosVerified < 500*1000000) {
+                                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+DispatchTimeInterval.milliseconds(500)) {
+                                        self?.updateUI(withTimer: !containsImage)
+                                    }
                                 }
+                            } else {
+                                self?.updateUI(withTimer: !containsImage)
                             }
                         } else {
                             self?.updateUI(withTimer: !containsImage)
                         }
                     } else {
-                        self?.updateUI(withTimer: !containsImage)
+                        self?.updateUI(withTimer: false)
                     }
-                    
                 }
             }
             if (rerunTimer) {

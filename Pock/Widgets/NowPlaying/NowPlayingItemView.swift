@@ -61,7 +61,7 @@ class NowPlayingItemView: PKDetailView {
             if self == nil {
                 return
             }
-            if let imageData = self?.nowPLayingItem?.image {
+            if Defaults[.showArtwork], let imageData = self?.nowPLayingItem?.image {
                 self?.imageView.image = NSImage(data: imageData)
             } else {
                 self?.imageView.image = DockRepository.getIcon(forBundleIdentifier: appBundleIdentifier, orPath: path)

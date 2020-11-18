@@ -17,12 +17,13 @@ class StatusWidgetPreferencePane: NSViewController, NSTextFieldDelegate, Prefere
     @IBOutlet weak var showPowerItem:               NSButton!
     @IBOutlet weak var showBatteryIconItem:         NSButton!
     @IBOutlet weak var showBatteryPercentageItem:   NSButton!
+    @IBOutlet weak var showBatteryTimeItem:         NSButton!
     @IBOutlet weak var showDateItem:                NSButton!
     // @IBOutlet weak var showSpotlightItem:           NSButton!
     @IBOutlet weak var timeFormatTextField:         NSTextField!
     
     /// Preferenceable
-    var preferencePaneIdentifier: Identifier = Identifier.status_widget
+    var preferencePaneIdentifier: Preferences.PaneIdentifier = Preferences.PaneIdentifier.status_widget
     let preferencePaneTitle:      String     = "Status Widget".localized
     var toolbarItemIcon:          NSImage {
         let path = NSWorkspace.shared.absolutePathForApplication(withBundleIdentifier: "com.apple.systempreferences")!
@@ -48,6 +49,7 @@ class StatusWidgetPreferencePane: NSViewController, NSTextFieldDelegate, Prefere
         self.showBatteryIconItem.state       = Defaults[.shouldShowBatteryIcon]       ? .on : .off
         self.showBatteryPercentageItem.state = Defaults[.shouldShowBatteryPercentage] ? .on : .off
         self.showDateItem.state              = Defaults[.shouldShowDateItem]          ? .on : .off
+        self.showBatteryTimeItem.state       = Defaults[.shouldShowBatteryTime]          ? .on : .off
         // self.showSpotlightItem.state         = defaults[.shouldShowSpotlightItem]     ? .on : .off
     }
     
@@ -62,12 +64,24 @@ class StatusWidgetPreferencePane: NSViewController, NSTextFieldDelegate, Prefere
             key = .shouldShowBatteryIcon
         case 22:
             key = .shouldShowBatteryPercentage
+        case 23:
+            key = .shouldShowBatteryTime
         case 3:
             key = .shouldShowDateItem
         /* case 4:
             key = .shouldShowSpotlightItem */
         default:
             return
+        }
+        // percentage
+        if checkbox.tag == 22 && checkbox.state == .on {
+            showBatteryTimeItem.state = .off
+            Defaults[.shouldShowBatteryTime] = false
+        }
+        // time
+        if checkbox.tag == 23 && checkbox.state == .on {
+            showBatteryPercentageItem.state = .off
+            Defaults[.shouldShowBatteryPercentage] = false
         }
         Defaults[key] = checkbox.state == .on
         NSWorkspace.shared.notificationCenter.post(name: .shouldReloadStatusWidget, object: nil)
