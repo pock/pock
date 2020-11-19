@@ -10,21 +10,22 @@ import Foundation
 import Defaults
 import Carbon
 
-class SLangItem: StatusItem {
-    
+class SLangItem: StatusItem, ClickListener {
     
     /// UI
-    private let iconView: NSImageView = NSImageView(frame: NSRect(x: 0, y: 0, width: 26, height: 26))
+    private let iconView: NSClickableImageView = NSClickableImageView(frame: NSRect(x: 0, y: 0, width: 26, height: 26), id: -111)
     
     var tisInputSource: TISInputSource? = nil
     
-    init() {}
+    init() {
+        iconView.clickDelegate = self
+    }
     
     deinit {
         didUnload()
     }
     
-    var enabled: Bool{ return Defaults[.shouldShowWifiItem] }
+    var enabled: Bool{ return Defaults[.shouldShowLangItem] }
     
     var title: String  { return "lang" }
     
@@ -117,7 +118,34 @@ class SLangItem: StatusItem {
         }
         // resize in order to fit the touchbar without blurriness when too big
         self.iconView.image = iconImage?.resizeWhileMaintainingAspectRatioToSize(size: NSSize(width: 18, height: 18))
+    }
+    
+    // click handlers
+    func didTapHandler() {
+        if !Defaults[.shouldMakeClickable] {
+            return
+        }
+        let tises = TISInputSource.sources
+        let tisInputSourceLocal = TISCopyCurrentKeyboardInputSource().takeRetainedValue()
+        var neededId = 0
+        for i in 0..<tises.count {
+            if tises[i].id == tisInputSourceLocal.id {
+                if (i+1 < tises.count) {
+                    neededId = i+1
+                }
+                break
+            }
+        }
+        TISSelectInputSource(tises[neededId])
+    }
         
+    func didLongPressHandler() {
+    }
+    
+    func didSwipeLeftHandler() {
+    }
+    
+    func didSwipeRightHandler() {
     }
     
 }
@@ -190,7 +218,18 @@ extension TISInputSource {
     var iconRef: IconRef? {
         return OpaquePointer(TISGetInputSourceProperty(self, kTISPropertyIconRef)) as IconRef?
     }
+    
+    static var sources: [TISInputSource] {
+      let inputSourceNSArray = TISCreateInputSourceList(nil, false).takeRetainedValue() as NSArray
+      let inputSourceList = inputSourceNSArray as! [TISInputSource]
+
+      return inputSourceList
+        .filter {
+          $0.category == TISInputSource.Category.keyboardInputSource && $0.isSelectable
+      }
+    }
 }
+
 
 // credit: https://gist.github.com/MaciejGad/11d8469b218817290ee77012edb46608
 extension NSImage {
@@ -266,4 +305,3 @@ extension NSImage {
     }
     
 }
-

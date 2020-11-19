@@ -94,6 +94,8 @@ extension Defaults.Keys {
     static let openFinderInsidePock             = Defaults.Key<Bool>("openFinderInsidePock",   default: true)
     /// Status widget
     static let shouldShowWifiItem               = Defaults.Key<Bool>("shouldShowWifiItem",          default: true)
+    static let shouldShowLangItem               = Defaults.Key<Bool>("shouldShowLangItem",          default: true)
+    static let shouldMakeClickable               = Defaults.Key<Bool>("shouldMakeClickable",          default: true)
     static let shouldShowPowerItem              = Defaults.Key<Bool>("shouldShowPowerItem",         default: true)
     static let shouldShowBatteryIcon            = Defaults.Key<Bool>("shouldShowBatteryIcon",       default: true)
     static let shouldShowBatteryPercentage      = Defaults.Key<Bool>("shouldShowBatteryPercentage", default: true)

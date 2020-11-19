@@ -14,7 +14,7 @@ struct SPowerStatus {
     var isCharging: Bool, currentValue: Int
 }
 
-class SPowerItem: StatusItem {
+class SPowerItem: StatusItem, ClickListener {
     
     /// Core
     private var refreshTimer: Timer?
@@ -37,7 +37,7 @@ class SPowerItem: StatusItem {
     private var battery: BatteryService!
     
     /// UI
-    private var stackView: NSStackView = NSStackView(frame: .zero)
+    private var stackView: NSClickableStack = NSClickableStack(frame: .zero, id: -11)
     private let iconView: NSImageView = NSImageView(frame: NSRect(x: 0, y: 0, width: 26, height: 26))
     private let valueLabel: NSTextField = NSTextField(frame: .zero)
     ///  The icon to display in the battery status bar item.
@@ -119,7 +119,8 @@ class SPowerItem: StatusItem {
     }
     
     private func configureStackView() {
-        stackView = NSStackView(frame: .zero)
+        stackView = NSClickableStack(frame: .zero, id: -11)
+        stackView.clickDelegate = self
         stackView.orientation = .horizontal
         stackView.alignment = .centerY
         stackView.distribution = .fill
@@ -191,8 +192,37 @@ class SPowerItem: StatusItem {
         }
     }
     
+    // click handlers
+    func didTapHandler() {
+        if !Defaults[.shouldMakeClickable] {
+            return
+        }
+        NSWorkspace.shared.open(URL(fileURLWithPath: "/System/Library/PreferencePanes/Battery.prefPane"))
+    }
+    
+    func didLongPressHandler() {
+        if !Defaults[.shouldMakeClickable] {
+            return
+        }
+        if shouldShowBatteryTime {
+            Defaults[.shouldShowBatteryTime] = false
+            Defaults[.shouldShowBatteryPercentage] = true
+            NSWorkspace.shared.notificationCenter.post(name: .shouldReloadStatusWidget, object: nil)
+        } else if shouldShowBatteryPercentage {
+            Defaults[.shouldShowBatteryTime] = true
+            Defaults[.shouldShowBatteryPercentage] = false
+            NSWorkspace.shared.notificationCenter.post(name: .shouldReloadStatusWidget, object: nil)
+        }
+    }
+    
+    func didSwipeLeftHandler() {
+    }
+    
+    func didSwipeRightHandler() {
+    }
+    
     func reload() {
-        return
+        /*
         if lastShouldShowBatteryPercentage != shouldShowBatteryPercentage ||
             lastShouldShowBatteryTime != shouldShowBatteryTime {
             lastShouldShowBatteryTime = shouldShowBatteryTime
@@ -204,6 +234,6 @@ class SPowerItem: StatusItem {
             if let batteryState = battery?.state {
                 setBatteryIcon(batteryState)
             }
-        }
+        }*/
     }
 }

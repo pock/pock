@@ -9,13 +9,13 @@
 import Foundation
 import Defaults
 
-class SClockItem: StatusItem {
+class SClockItem: StatusItem, ClickListener {
     
     /// Core
     private var refreshTimer: Timer?
     
     /// UI
-    private var clockLabel: NSTextField!
+    private var clockLabel: NSClickableTextField!
     
     init() {
         didLoad()
@@ -29,7 +29,8 @@ class SClockItem: StatusItem {
     func didLoad() {
         // Required else it will lose reference to button currently being displayed
         if clockLabel == nil {
-            clockLabel = NSTextField()
+            clockLabel = NSClickableTextField(id: -1111)
+            clockLabel.clickDelegate = self
             clockLabel.frame = CGRect(origin: .zero, size: CGSize(width: 100, height: 44))
             clockLabel.font = NSFont.systemFont(ofSize: 13)
             clockLabel.backgroundColor = .clear
@@ -68,4 +69,20 @@ class SClockItem: StatusItem {
         }
     }
     
+    // click handlers
+    func didTapHandler() {
+        if !Defaults[.shouldMakeClickable] {
+            return
+        }
+        NSWorkspace.shared.launchApplication("Calendar")
+    }
+    
+    func didLongPressHandler() {
+    }
+    
+    func didSwipeLeftHandler() {
+    }
+    
+    func didSwipeRightHandler() {
+    }
 }

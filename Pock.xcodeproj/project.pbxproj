@@ -93,6 +93,7 @@
 		995100112565912200E34E4D /* StatusBarIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9951000E2565912200E34E4D /* StatusBarIcon.swift */; };
 		9955665222DC668500EFFE6D /* CCVolumeMuteItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9955665122DC668500EFFE6D /* CCVolumeMuteItem.swift */; };
 		999276BE249FD8C300EFF44A /* SLangItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999276BD249FD8C300EFF44A /* SLangItem.swift */; };
+		99A4FC742566AD5900BFD91F /* PKClickableElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A4FC732566AD5900BFD91F /* PKClickableElements.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -226,6 +227,7 @@
 		9951000E2565912200E34E4D /* StatusBarIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusBarIcon.swift; sourceTree = "<group>"; };
 		9955665122DC668500EFFE6D /* CCVolumeMuteItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCVolumeMuteItem.swift; sourceTree = "<group>"; };
 		999276BD249FD8C300EFF44A /* SLangItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLangItem.swift; sourceTree = "<group>"; };
+		99A4FC732566AD5900BFD91F /* PKClickableElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKClickableElements.swift; sourceTree = "<group>"; };
 		AAA3636F2333699C0016267D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/DockFolderController.strings"; sourceTree = "<group>"; };
 		AAA363702333699C0016267D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/GeneralPreferencePane.strings"; sourceTree = "<group>"; };
 		AAA363712333699C0016267D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/StatusWidgetPreferencePane.strings"; sourceTree = "<group>"; };
@@ -538,6 +540,7 @@
 			isa = PBXGroup;
 			children = (
 				342D83CE2278D5CF000D79DA /* PKWidgetTouchBarItem.swift */,
+				99A4FC732566AD5900BFD91F /* PKClickableElements.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -881,6 +884,7 @@
 				342D840C2278D5CF000D79DA /* DockWidget.swift in Sources */,
 				34E644FB227D9A69003D0450 /* DockWidgetPreferencePane.swift in Sources */,
 				3407F9DC22D0E75E0072E742 /* ControlCenterWidgetPreferencePane.swift in Sources */,
+				99A4FC742566AD5900BFD91F /* PKClickableElements.swift in Sources */,
 				99510002256574DC00E34E4D /* BatteryService.swift in Sources */,
 				342D83EE2278D5CF000D79DA /* ControlCenterWidget.swift in Sources */,
 				342D83EC2278D5CF000D79DA /* OSDUIHelper.swift in Sources */,

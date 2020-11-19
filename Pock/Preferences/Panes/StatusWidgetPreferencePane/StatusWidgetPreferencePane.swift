@@ -19,6 +19,8 @@ class StatusWidgetPreferencePane: NSViewController, NSTextFieldDelegate, Prefere
     @IBOutlet weak var showBatteryPercentageItem:   NSButton!
     @IBOutlet weak var showBatteryTimeItem:         NSButton!
     @IBOutlet weak var showDateItem:                NSButton!
+    @IBOutlet weak var showLangItem: NSButton!
+    @IBOutlet weak var makeClickable: NSButton!
     // @IBOutlet weak var showSpotlightItem:           NSButton!
     @IBOutlet weak var timeFormatTextField:         NSTextField!
     
@@ -50,6 +52,8 @@ class StatusWidgetPreferencePane: NSViewController, NSTextFieldDelegate, Prefere
         self.showBatteryPercentageItem.state = Defaults[.shouldShowBatteryPercentage] ? .on : .off
         self.showDateItem.state              = Defaults[.shouldShowDateItem]          ? .on : .off
         self.showBatteryTimeItem.state       = Defaults[.shouldShowBatteryTime]          ? .on : .off
+        self.showLangItem.state       = Defaults[.shouldShowLangItem]          ? .on : .off
+        self.makeClickable.state       = Defaults[.shouldMakeClickable]          ? .on : .off
         // self.showSpotlightItem.state         = defaults[.shouldShowSpotlightItem]     ? .on : .off
     }
     
@@ -58,6 +62,8 @@ class StatusWidgetPreferencePane: NSViewController, NSTextFieldDelegate, Prefere
         switch checkbox.tag {
         case 1:
             key = .shouldShowWifiItem
+        case 10:
+            key = .shouldShowLangItem
         case 2:
             key = .shouldShowPowerItem
         case 21:
@@ -68,6 +74,8 @@ class StatusWidgetPreferencePane: NSViewController, NSTextFieldDelegate, Prefere
             key = .shouldShowBatteryTime
         case 3:
             key = .shouldShowDateItem
+        case 4:
+            key = .shouldMakeClickable
         /* case 4:
             key = .shouldShowSpotlightItem */
         default:
