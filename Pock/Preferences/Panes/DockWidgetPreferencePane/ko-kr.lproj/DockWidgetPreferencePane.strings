@@ -1,0 +1,45 @@
+
+/* Class = "NSButtonCell"; title = "Hide Persistent Items"; ObjectID = "1qS-MJ-ICj"; */
+"1qS-MJ-ICj.title" = "영구 항목 숨기기";
+
+/* Class = "NSMenuItem"; title = "Item 3"; ObjectID = "2At-Ch-OCx"; */
+"2At-Ch-OCx.title" = "항목 3";
+
+/* Class = "NSMenuItem"; title = "Item 2"; ObjectID = "HIz-zB-e7Z"; */
+"HIz-zB-e7Z.title" = "항목 2";
+
+/* Class = "NSTextFieldCell"; title = "Notification badge refresh rate:"; ObjectID = "ICj-g3-VIO"; */
+"ICj-g3-VIO.title" = "알림 벳지 업데이트 주기:";
+
+/* Class = "NSButtonCell"; title = "Hide Finder"; ObjectID = "PDB-GT-mUQ"; */
+"PDB-GT-mUQ.title" = "Finder 숨기기";
+
+/* Class = "NSMenuItem"; title = "Item 2"; ObjectID = "UnW-lx-nml"; */
+"UnW-lx-nml.title" = "항목 2";
+
+/* Class = "NSMenuItem"; title = "Item 3"; ObjectID = "Yra-28-ozo"; */
+"Yra-28-ozo.title" = "항목 3";
+
+/* Class = "NSTextFieldCell"; placeholderString = "8pt"; ObjectID = "aXg-gA-VhE"; */
+"aXg-gA-VhE.placeholderString" = "8pt";
+
+/* Class = "NSButtonCell"; title = "Opens Finder and directories inside Pock"; ObjectID = "ckK-v4-yvT"; */
+"ckK-v4-yvT.title" = "Pock 내에서 Finder 및 디렉토리를 엽니다.";
+
+/* Class = "NSMenuItem"; title = "Item 1"; ObjectID = "fzh-TY-1IX"; */
+"fzh-TY-1IX.title" = "항목 1";
+
+/* Class = "NSMenuItem"; title = "Item 1"; ObjectID = "pRj-TS-f3F"; */
+"pRj-TS-f3F.title" = "항목 1";
+
+/* Class = "NSTextFieldCell"; title = "Item spacing:"; ObjectID = "qJw-Vc-w0w"; */
+"qJw-Vc-w0w.title" = "항목 간격:";
+
+/* Class = "NSButtonCell"; title = "Show only running apps"; ObjectID = "qS6-8X-eGs"; */
+"qS6-8X-eGs.title" = "실행중인 앱 만 표시";
+
+/* Class = "NSTextFieldCell"; title = "Open App Exposé:"; ObjectID = "r6d-m5-Q8l"; */
+"r6d-m5-Q8l.title" = "App Exposé 열기:";
+
+/* Class = "NSButtonCell"; title = "Hide Trash"; ObjectID = "vFP-uA-jfm"; */
+"vFP-uA-jfm.title" = "휴지통 숨기기";

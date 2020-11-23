@@ -1,0 +1,21 @@
+
+/* Class = "NSButtonCell"; title = "Launch at login"; ObjectID = "0Zd-e7-34p"; */
+"0Zd-e7-34p.title" = "Mac 시작시 자동 실행";
+
+/* Class = "NSButtonCell"; title = "Hide Control Strip"; ObjectID = "206-HT-yI6"; */
+"206-HT-yI6.title" = "Control Strip 숨김";
+
+/* Class = "NSTextFieldCell"; title = "Double press `⌃ Control` key to toggle between Pock and System Touch Bar."; ObjectID = "5UW-Vr-bYf"; */
+"5UW-Vr-bYf.title" = "Pock과 System Touch Bar 모드를 상호 전환하려면`⌃ Control` 키를 두 번 누르십시오.";
+
+/* Class = "NSTextFieldCell"; title = "VERSION"; ObjectID = "K9v-5R-z7Q"; */
+"K9v-5R-z7Q.title" = "버전";
+
+/* Class = "NSButtonCell"; title = "Check for updates"; ObjectID = "MJG-ij-J6R"; */
+"MJG-ij-J6R.title" = "업데이트 확인";
+
+/* Class = "NSTextFieldCell"; title = "Pock"; ObjectID = "aMA-Da-MZq"; */
+"aMA-Da-MZq.title" = "Pock";
+
+/* Class = "NSButtonCell"; title = "Check for updates once a day"; ObjectID = "wxD-tO-31t"; */
+"wxD-tO-31t.title" = "매일 업데이트 확인";

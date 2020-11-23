@@ -1,0 +1,21 @@
+
+/* Class = "NSTextFieldCell"; title = "Time Format:"; ObjectID = "6tU-S4-ovU"; */
+"6tU-S4-ovU.title" = "시간 형식:";
+
+/* Class = "NSButtonCell"; title = "Show Power item"; ObjectID = "OGc-Cn-VS5"; */
+"OGc-Cn-VS5.title" = "전원 항목 표시";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Time Format Help"; ObjectID = "QDl-u9-yz3"; */
+"QDl-u9-yz3.ibShadowedToolTip" = "시간 형식 안내";
+
+/* Class = "NSButtonCell"; title = "Show Battery Icon"; ObjectID = "S9t-Wy-9IV"; */
+"S9t-Wy-9IV.title" = "베터리 아이콘 표시";
+
+/* Class = "NSButtonCell"; title = "Show Date item"; ObjectID = "Zze-FZ-vdx"; */
+"Zze-FZ-vdx.title" = "날짜 항목 표시";
+
+/* Class = "NSButtonCell"; title = "Show Wifi item"; ObjectID = "c9g-yA-umL"; */
+"c9g-yA-umL.title" = "와이파이 항목 표시";
+
+/* Class = "NSButtonCell"; title = "Show Battery Percentage"; ObjectID = "zlO-nx-U7P"; */
+"zlO-nx-U7P.title" = "베터리 잔량 표시";

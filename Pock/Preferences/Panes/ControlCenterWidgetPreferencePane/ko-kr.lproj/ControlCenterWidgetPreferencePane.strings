@@ -1,0 +1,39 @@
+
+/* Class = "NSButtonCell"; title = "Show Volume Mute Item"; ObjectID = "0cO-cp-q0P"; */
+"0cO-cp-q0P.title" = "볼륨 음소거 항목 표시";
+
+/* Class = "NSButtonCell"; title = "Show Screensaver Item"; ObjectID = "2xh-EW-PL2"; */
+"2xh-EW-PL2.title" = "Screensaver 항목 표시";
+
+/* Class = "NSButtonCell"; title = "Show Volume Items"; ObjectID = "A1L-D1-Jwj"; */
+"A1L-D1-Jwj.title" = "볼륨 항목 표시";
+
+/* Class = "NSButtonCell"; title = "Show Volume Up Item"; ObjectID = "AJ4-PK-Oid"; */
+"AJ4-PK-Oid.title" = "볼륨 업 항목 표시";
+
+/* Class = "NSButtonCell"; title = "Show Do Not Disturb Item"; ObjectID = "BRS-Qc-kaR"; */
+"BRS-Qc-kaR.title" = "방해 금지 항목 표시";
+
+/* Class = "NSButtonCell"; title = "Show Lock Item"; ObjectID = "OGc-Cn-VS5"; */
+"OGc-Cn-VS5.title" = "잠금 항목 표시";
+
+/* Class = "NSButtonCell"; title = "Show Brightness Down Item"; ObjectID = "S9t-Wy-9IV"; */
+"S9t-Wy-9IV.title" = "밝기 낮추기 항목 표시";
+
+/* Class = "NSButtonCell"; title = "Show Volume Down Item"; ObjectID = "Zze-FZ-vdx"; */
+"Zze-FZ-vdx.title" = "볼륨 감소 항목 표시";
+
+/* Class = "NSButtonCell"; title = "Show Sleep Item"; ObjectID = "c9g-yA-umL"; */
+"c9g-yA-umL.title" = "Sleep 항목 표시";
+
+/* Class = "NSButtonCell"; title = "Show Volume Toggle Item"; ObjectID = "oTc-dK-63V"; */
+"oTc-dK-63V.title" = "볼륨 토글 항목 표시";
+
+/* Class = "NSButtonCell"; title = "Show Brightness Toggle Item"; ObjectID = "po1-9a-abU"; */
+"po1-9a-abU.title" = "밝기 토글 항목 표시";
+
+/* Class = "NSButtonCell"; title = "Show Brightness Up Item"; ObjectID = "zlO-nx-U7P"; */
+"zlO-nx-U7P.title" = "Show Brightness Up Item";
+
+/* Class = "NSButtonCell"; title = "Show Brightness Items"; ObjectID = "zt4-Gu-yzF"; */
+"zt4-Gu-yzF.title" = "밝기 높이기 항목 표시";
