@@ -1,0 +1,47 @@
+/* 
+  Localizable.strings
+  Pock
+
+  Created by zeroday0619 on 2020/11/23.
+  Copyright © 2020 Pierluigi Galdi. All rights reserved.
+*/
+
+"General" = "일반";
+"Status Widget" = "상태 위젯";
+"Dock Widget" = "Dock 위젯";
+"Esc key" = "Esc 키";
+"Dock" = "Dock";
+"Unknown" = "알수없음";
+"Now Playing" = "재생 중";
+"Control Center" = "제어 센터";
+"Status" = "상태";
+"Never" = "안함";
+"Instantly" = "즉시";
+"1 second" = "1 초";
+"5 seconds" = "5 초";
+"10 seconds" = "10 초";
+"30 seconds" = "30 초";
+"1 minute" = "1 분";
+"3 minutes" = "3 분";
+"More Than 1 Window" = "1개 이상의 창";
+"Always" = "항상";
+"Pock Options" = "Pock 옵션";
+"Preferences…" = "환경설정…";
+"Customize…" = "사용자 정의…";
+"Support this project" = "Pock 프로젝트 지원하기";
+"Quit Pock" = "종료";
+"Checking…"= "확인중…";
+"Installed version" = "설치된 버전";
+"Already on latest version" = "이미 최신버전입니다.";
+"Check for updates" = "업데이트 확인";
+"New version available!" = "최신버전이 있습니다.";
+"Download" = "다운로드";
+"Later" = "나중에";
+"No Playback" = "재생 중이 아님";
+"Do you want to download version" = "버전을 다운로드 하시겠어요?";
+"now?" = "지금?";
+"Control Center Widget" = "제어 센터 위젯";
+"windows" = "창";
+"Loading..." = "로딩중...";
+"elements" = "요소";
+"Trash" = "휴지통";
