@@ -141,7 +141,7 @@ You can customize the widget position in TouchBar from the **Customize** menu it
 </p>
 
 <div align="center">
-  <img width="260" src="https://pock.dev/assets/img/preview/developers/xcode_plus_pockkit.png"/>
+  <img width="260" src="https://user-images.githubusercontent.com/56252259/100600010-bd24a000-3326-11eb-908e-afdd6c16529c.png"/>
 </div>
 
 
