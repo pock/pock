@@ -112,10 +112,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if let path = Bundle.main.path(forResource: "Secrets", ofType: "plist") {
             if let secrets = NSDictionary(contentsOfFile: path) as? [String: String], let secret = secrets["AppCenter"] {
                 UserDefaults.standard.register(defaults: ["NSApplicationCrashOnExceptions": true])
-                MSAppCenter.start(secret, withServices: [
-                    MSAnalytics.self,
-                    MSCrashes.self
-                ])
+				AppCenter.start(withAppSecret: secret, services: [
+					Analytics.self,
+					Crashes.self
+				])
             }
         }
         #endif
