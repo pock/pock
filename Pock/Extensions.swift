@@ -35,6 +35,29 @@ extension NSImage {
     }
 }
 
+extension NSView {
+	func findViews<T: NSView>(subclassOf: T.Type = T.self) -> [T] {
+		return recursiveSubviews.compactMap { $0 as? T }
+	}
+	var recursiveSubviews: [NSView] {
+		return subviews + subviews.flatMap { $0.recursiveSubviews }
+	}
+	func superview<T: NSView>(subclassOf type: T.Type = T.self) -> T? {
+		guard let view = superview else {
+			return nil
+		}
+		return view as? T ?? view.superview(subclassOf: type)
+	}
+	func subview<T: NSView>(at location: NSPoint?, in parentView: NSView? = nil, of type: T.Type = T.self) -> T? {
+		guard let location = location else {
+			return nil
+		}
+		let loc = NSPoint(x: location.x, y: 12)
+		let views = self.findViews(subclassOf: type)
+		return views.first(where: { $0.superview?.convert($0.frame, to: parentView ?? self).contains(loc) == true })
+	}
+}
+
 // MARK: Async / Background
 public func async(after: TimeInterval = 0, _ block: @escaping () -> Void) {
     DispatchQueue.main.asyncAfter(deadline: .now() + after, execute: { [block] in
