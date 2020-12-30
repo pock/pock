@@ -10,7 +10,8 @@ abstract_target 'Targets' do
   pod 'PockKit', :git => 'https://github.com/pock/pockkit.git'
   
   # Pods for Pock
-  pod 'AppCenter'
+  pod 'AppCenter/Analytics'
+  pod 'AppCenter/Crashes'
   pod 'Magnet'
   pod 'Defaults'
   pod 'Preferences'
