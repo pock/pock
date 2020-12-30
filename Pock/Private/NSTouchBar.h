@@ -37,3 +37,10 @@ extern void DFRSystemModalShowsCloseBoxWhenFrontMost(BOOL);
 @property (readwrite, strong, nullable) __kindof NSViewController *viewController;
 @property (readwrite, copy, null_resettable) NSString *customizationLabel;
 @end
+
+@interface NSTouchBarView: NSView
+@end
+
+@interface NSTouchBarItemContainerView: NSTouchBarView
+@end
+
