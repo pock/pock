@@ -12,7 +12,7 @@ import Zip
 
 private let widgetIcon: NSImage? = NSImage(named: "WidgetsManagerList")
 
-public class ProcessWidgetController: PKTouchBarController {
+public class ProcessWidgetController: PKTouchBarMouseController {
     
     // MARK: UI State
     private enum UIState {
@@ -84,6 +84,21 @@ public class ProcessWidgetController: PKTouchBarController {
             }
         }
     }
+	
+	// MARK: Mouse Support
+	private var buttonWithMouseOver:   NSButton?
+	private var touchBarView: NSView {
+		if let view = actionButton.superview(subclassOf: NSTouchBarView.self) {
+			return view
+		}
+		fatalError("Can't find NSTouchBarView object.")
+	}
+	public override var visibleRectWidth: CGFloat {
+		get { return touchBarView.visibleRect.width } set { /**/ }
+	}
+	public override var parentView: NSView! {
+		get { return touchBarView } set { /**/ }
+	}
     
     // MARK: Initialiser
     public class func processWidget(configuration: Configuration, _ willDismiss: (() -> Void)? = nil, _ completion: ((Bool) -> Void)? = nil) -> ProcessWidgetController? {
@@ -236,6 +251,39 @@ public class ProcessWidgetController: PKTouchBarController {
             addIconViewAnimation()
         }
     }
+	
+	// MARK: Mouse stuff
+	public override func screenEdgeController(_ controller: PKScreenEdgeController, mouseClickAtLocation location: NSPoint) {
+		/// Check for button
+		guard let button = button(at: location) else {
+			return
+		}
+		switch button {
+		case cancelButton:
+			dismiss()
+		default:
+			actionButtonPressed(button)
+		}
+	}
+	
+	public override func showCursor(_ cursor: NSCursor?, at location: NSPoint?) {
+		super.showCursor(cursor, at: location)
+	}
+	
+	public override func updateCursorLocation(_ location: NSPoint?) {
+		super.updateCursorLocation(location)
+		buttonWithMouseOver?.isHighlighted = false
+		buttonWithMouseOver = nil
+		buttonWithMouseOver = button(at: location)
+		buttonWithMouseOver?.isHighlighted = true
+	}
+	
+	private func button(at location: NSPoint?) -> NSButton? {
+		guard let view = parentView.subview(at: location, of: NSTouchBarItemContainerView.self) else {
+			return nil
+		}
+		return view.findViews(subclassOf: NSButton.self).first
+	}
     
 }
 
