@@ -88,7 +88,7 @@ public class ProcessWidgetController: PKTouchBarMouseController {
 	// MARK: Mouse Support
 	private var buttonWithMouseOver:   NSButton?
 	private var touchBarView: NSView {
-		if let view = actionButton.superview(subclassOf: NSTouchBarView.self) {
+		if let view = actionButton.superview(subclassOf: "NSTouchBarView") {
 			return view
 		}
 		fatalError("Can't find NSTouchBarView object.")
@@ -279,7 +279,7 @@ public class ProcessWidgetController: PKTouchBarMouseController {
 	}
 	
 	private func button(at location: NSPoint?) -> NSButton? {
-		guard let view = parentView.subview(at: location, of: NSTouchBarItemContainerView.self) else {
+		guard let view = parentView.subview(in: parentView, at: location, of: "NSTouchBarItemContainerView") else {
 			return nil
 		}
 		return view.findViews(subclassOf: NSButton.self).first
