@@ -14,6 +14,15 @@ extension Defaults.Keys {
     static let didAskToInstallDefaultsWidgets = Defaults.Key<Bool>("didAskToInstallDefaultsWidgets", default: false)
 }
 
+internal class PockApplication: NSApplication {
+	override func _crash(onException exception: Any) {
+		if let exception = exception as? NSException, exception.debugDescription.contains("NSFunctionRow") {
+			return
+		}
+		super._crash(onException: exception)
+	}
+}
+
 internal class PockHelper {
     
     /// Singleton

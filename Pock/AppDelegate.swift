@@ -42,11 +42,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		/// Open Preferences item
 		let openPreferencesItem = NSMenuItem(title: "Open Preferences…".localized, action: #selector(openPreferences), keyEquivalent: ",")
 		
+		/// Open Widgets Manager
+		let openWidgestManagerItem = NSMenuItem(title: "Open Widgets Manager…".localized, action: #selector(openWidgetsManager), keyEquivalent: "w")
+		
         /// Open Customize window
 		let openCustomizeWindowItem = NSMenuItem(title: "Customize Touch Bar…".localized, action: #selector(openCustomization), keyEquivalent: "c")
 		
-        /// Open Widgets Manager
-		let openWidgestManagerItem = NSMenuItem(title: "Open Widgets Manager…".localized, action: #selector(openWidgetsManager), keyEquivalent: "w")
+		/// Install new widget
+		let openInstallWidgetManagerItem = NSMenuItem(title: "Install Widget…".localized, action: #selector(openInstallWidgetsManager), keyEquivalent: "i")
         
         /// Advanced menu
         let advancedMenuItem = NSMenuItem(title: "Advanced".localized, action: nil, keyEquivalent: "")
@@ -63,6 +66,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			.separator(),
 			openWidgestManagerItem,
 			openCustomizeWindowItem,
+			openInstallWidgetManagerItem,
 			.separator(),
 			advancedMenuItem,
 			.separator(),
@@ -275,8 +279,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     /// Open widgets manager
     @objc internal func openWidgetsManager() {
-        widgetsManagerWindowController.show()
+		widgetsManagerWindowController.show(preferencePane: .widgets_manager_list)
     }
+	
+	@objc internal func openInstallWidgetsManager() {
+		widgetsManagerWindowController.show(preferencePane: .widgets_manager_install)
+	}
     
 	/// Open website
 	@objc private func openWebsite() {

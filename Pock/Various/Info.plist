@@ -69,7 +69,7 @@
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
 	<key>NSPrincipalClass</key>
-	<string>NSApplication</string>
+	<string>Pock.PockApplication</string>
 	<key>UTExportedTypeDeclarations</key>
 	<array>
 		<dict>
