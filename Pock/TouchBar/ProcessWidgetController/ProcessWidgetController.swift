@@ -253,7 +253,7 @@ public class ProcessWidgetController: PKTouchBarMouseController {
     }
 	
 	// MARK: Mouse stuff
-	public override func screenEdgeController(_ controller: PKScreenEdgeController, mouseClickAtLocation location: NSPoint) {
+	public override func screenEdgeController(_ controller: PKScreenEdgeController, mouseClickAtLocation location: NSPoint, in view: NSView) {
 		/// Check for button
 		guard let button = button(at: location) else {
 			return
