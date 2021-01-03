@@ -18,12 +18,26 @@ extension NSTouchBarItem.Identifier {
     static let pockSystemIcon = NSTouchBarItem.Identifier("Pock")
 }
 
-class PockMainController: PKTouchBarController {
+class PockMainController: PKTouchBarMouseController {
     
     // MARK: Data
     private var items: [NSTouchBarItem.Identifier: NSTouchBarItem] = [:]
     private var systemTrayItemIdentifier: NSTouchBarItem.Identifier? { return .pockSystemIcon }
     
+	// MARK: Mouse Support
+	private var touchBarView: NSView {
+		guard let views = NSFunctionRow._topLevelViews() as? [NSView], let view = views.last else {
+			fatalError("Touch Bar is not available.")
+		}
+		return view
+	}
+	public override var visibleRectWidth: CGFloat {
+		get { return touchBarView.visibleRect.width } set { /**/ }
+	}
+	public override var parentView: NSView! {
+		get { return touchBarView } set { /**/ }
+	}
+	
     deinit {
         items.removeAll()
         WidgetsDispatcher.default.clearLoadedWidgets()
@@ -33,6 +47,7 @@ class PockMainController: PKTouchBarController {
     }
     
     override func didLoad() {
+		super.didLoad()
         WidgetsDispatcher.default.loadInstalledWidget() { [weak self] widgets in
             if widgets.isEmpty && PockHelper.didAskToInstallDefaultWidgets == false {
                 async(after: 1) {

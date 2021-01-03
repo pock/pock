@@ -266,10 +266,6 @@ public class ProcessWidgetController: PKTouchBarMouseController {
 		}
 	}
 	
-	public override func showCursor(_ cursor: NSCursor?, at location: NSPoint?) {
-		super.showCursor(cursor, at: location)
-	}
-	
 	public override func updateCursorLocation(_ location: NSPoint?) {
 		super.updateCursorLocation(location)
 		buttonWithMouseOver?.isHighlighted = false

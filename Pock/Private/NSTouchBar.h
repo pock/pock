@@ -13,7 +13,12 @@ extern int _DFRGetTouchBarAgentPID();
 extern void DFRElementSetControlStripPresenceForIdentifier(_Nonnull NSTouchBarItemIdentifier, BOOL);
 extern void DFRSystemModalShowsCloseBoxWhenFrontMost(BOOL);
 
-@interface NSTouchBar ()
+@interface NSFunctionRow
++ (struct CGRect)defaultFrameForType:(long long)arg1;
++ (nonnull NSArray *)_topLevelFunctionRowViews;
+@end
+
+@interface NSTouchBar (Pock)
 /* macOS 10.13 */
 + (void)presentSystemModalFunctionBar:(nullable NSTouchBar *)touchBar placement:(long long)placement systemTrayItemIdentifier:(nullable NSTouchBarItemIdentifier)identifier;
 + (void)presentSystemModalFunctionBar:(nullable NSTouchBar *)touchBar systemTrayItemIdentifier:(nullable NSTouchBarItemIdentifier)identifier;
@@ -27,7 +32,7 @@ extern void DFRSystemModalShowsCloseBoxWhenFrontMost(BOOL);
 + (void)minimizeSystemModalTouchBar:(nullable NSTouchBar *)touchBar;
 @end
 
-@interface NSTouchBarItem ()
+@interface NSTouchBarItem (Pock)
 + (void)addSystemTrayItem:(nullable NSTouchBarItem *)item;
 + (void)removeSystemTrayItem:(nullable NSTouchBarItem *)item;
 @end
