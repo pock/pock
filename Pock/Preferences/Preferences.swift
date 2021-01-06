@@ -29,4 +29,6 @@ extension NSNotification.Name {
 extension Defaults.Keys {
     static let enableAutomaticUpdates = Defaults.Key<Bool>("enableAutomaticUpdates", default: false)
 	static let allowBlankTouchBar	  = Defaults.Key<Bool>("allowBlankTouchBar",	 default: false)
+	/// Presentation mode
+	static let preferredPresentationMode = Defaults.Key<String?>("preferredPresentationMode", default: nil)
 }

@@ -79,12 +79,13 @@ class PockMainController: PKTouchBarMouseController {
 	}
     
 	override func dismiss() {
-		TouchBarHelper.resetSystemControlStripToUserPreference()
+		TouchBarHelper.setPresentationMode(to: .preferred)
 		super.dismiss()
 	}
 	
     override func present() {
-		TouchBarHelper.hideSystemControlStrip()
+		/// Keep reference to user preferred presentation mode
+		TouchBarHelper.setPresentationMode(to: .app)
         self.isVisible = true
 		self.presentWithPlacement(placement: 1)
     }

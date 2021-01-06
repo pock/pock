@@ -7,10 +7,9 @@
 //
 
 import CoreFoundation
+import Defaults
 
 fileprivate let kPresentationModeGlobal  = "PresentationModeGlobal" as CFString
-fileprivate let kModeApp 				 = "app" as CFString
-fileprivate let kModeAppWithControlStrip = "appWithControlStrip" as CFString
 fileprivate let kTouchBarAgentIdentifier = "com.apple.touchbar.agent" as CFString
 
 fileprivate class CommandLineHelper {
@@ -28,39 +27,55 @@ fileprivate class CommandLineHelper {
     }
 }
 
+public enum PresentationMode: String {
+	case app,
+		 appWithControlStrip,
+		 fullControlStrip,
+		 functionKeys,
+		 workflows,
+		 workflowsWithControlStrip,
+		 spaces,
+		 spacesWithControlStrip
+	public var hasControlStrip: Bool {
+		switch self {
+		case .appWithControlStrip, .workflowsWithControlStrip, .spacesWithControlStrip:
+			return true
+		default:
+			return false
+		}
+	}
+	/// statics
+	static let `default` = PresentationMode.appWithControlStrip
+	static let preferred = PresentationMode(rawValue: Defaults[.preferredPresentationMode] ?? "") ?? .default
+}
+
 public class TouchBarHelper {
     
     // MARK: Pock internal's helpers
     
     public static var isSystemControlStripVisible: Bool {
-        let status = TouchBarHelper.readSystemControlStripStatus()
-		return status?.lowercased.contains("controlstrip") == true
+		return TouchBarHelper.currentPresentationMode.hasControlStrip
     }
     
-    public static func readSystemControlStripStatus() -> NSString? {
-		return CFPreferencesCopyAppValue(kPresentationModeGlobal, kTouchBarAgentIdentifier) as? NSString
+	public static var currentPresentationMode: PresentationMode {
+		guard let value = (CFPreferencesCopyAppValue(kPresentationModeGlobal, kTouchBarAgentIdentifier) as? NSObject)?.copy(),
+			  let mode  = value as? String else {
+			return .default
+		}
+		return PresentationMode(rawValue: mode) ?? .default
     }
     
-	private static func setTouchBarPresentationMode(to mode: CFString) -> Bool {
-		let currentMode = readSystemControlStripStatus()?.copy() as? NSString
-		CFPreferencesSetAppValue(kPresentationModeGlobal, mode, kTouchBarAgentIdentifier)
+	@discardableResult
+	public static func setPresentationMode(to mode: PresentationMode) -> Bool {
+		let currentMode = currentPresentationMode
+		CFPreferencesSetAppValue(kPresentationModeGlobal, mode.rawValue as CFString, kTouchBarAgentIdentifier)
 		let result = CFPreferencesAppSynchronize(kTouchBarAgentIdentifier)
 		reloadTouchBarAgent()
 		#if DEBUG
-		print("Touch Bar Presentation mode changed: [\(result ? "success" : "error")] \(currentMode ?? "unknown") -> \(mode)")
+		print("Touch Bar Presentation mode changed: [\(result ? "success" : "error")] \(currentMode) -> \(mode)")
 		#endif
 		return result
 	}
-	
-    public static func hideSystemControlStrip(_ completion: ((Bool) -> Void)? = nil) {
-		let result = setTouchBarPresentationMode(to: kModeApp)
-		completion?(result)
-    }
-    
-    public static func resetSystemControlStripToUserPreference(_ completion: ((Bool) -> Void)? = nil) {
-		let result = setTouchBarPresentationMode(to: kModeAppWithControlStrip)
-		completion?(result)
-    }
     
 	public static func reloadTouchBarAgent(_ completion: ((Bool) -> Void)? = nil) {
 		let result = CommandLineHelper.execute(launchPath: "/usr/bin/pkill", arguments: ["ControlStrip"])
