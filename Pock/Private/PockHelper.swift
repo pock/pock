@@ -47,12 +47,6 @@ internal class PockHelper {
         task.launch()
     }
     
-    internal func reloadTouchBarServer(_ completion: ((Bool) -> Void)? = nil) {
-        TouchBarHelper.reloadTouchBarServer { success in
-            completion?(success)
-        }
-    }
-    
     // MARK: Default widgets
     internal func installDefaultWidgets() {
         let widgets = [

@@ -82,12 +82,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let menu = NSMenu(title: "Advanced".localized)
         let reloadItem = NSMenuItem(title: "Reload Pock".localized, action: #selector(reloadPock), keyEquivalent: "r")
         let relaunchItem = NSMenuItem(title: "Relaunch Pock".localized, action: #selector(relaunchPock), keyEquivalent: "R")
-        relaunchItem.isAlternate = true
+		relaunchItem.isAlternate = true
+		let relaunchAgentItem = NSMenuItem(title: "Relaunch Touch Bar Agent".localized, action: #selector(reloadTouchBarAgent), keyEquivalent: "a")
+		let relaunchServerItem = NSMenuItem(title: "Relaunch Touch Bar Server".localized, action: #selector(reloadTouchBarServer), keyEquivalent: "A")
+		relaunchServerItem.isAlternate = true
         menu.addItem(withTitle: "Re-Install default widgets".localized, action: #selector(installDefaultWidgets), keyEquivalent: "d")
         menu.addItem(NSMenuItem.separator())
         menu.addItem(reloadItem)
         menu.addItem(relaunchItem)
-        menu.addItem(withTitle: "Reload Touch Bar".localized, action: #selector(reloadTouchBarServer), keyEquivalent: "a")
+		menu.addItem(relaunchAgentItem)
+		menu.addItem(relaunchServerItem)
         return menu
     }()
     
@@ -176,9 +180,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @objc func relaunchPock() {
         PockHelper.default.relaunchPock()
     }
+	
+	@objc func reloadTouchBarAgent() {
+		TouchBarHelper.reloadTouchBarAgent()
+	}
     
     @objc func reloadTouchBarServer() {
-        PockHelper.default.reloadTouchBarServer() { [weak self] success in
+        TouchBarHelper.reloadTouchBarServer() { [weak self] success in
             if success {
                 self?.reloadPock()
             }
