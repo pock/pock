@@ -66,7 +66,7 @@ public class TouchBarHelper {
     }
     
 	@discardableResult
-	public static func setPresentationMode(to mode: PresentationMode) -> Bool {
+	internal static func setPresentationMode(to mode: PresentationMode) -> Bool {
 		let currentMode = currentPresentationMode
 		CFPreferencesSetAppValue(kPresentationModeGlobal, mode.rawValue as CFString, kTouchBarAgentIdentifier)
 		let result = CFPreferencesAppSynchronize(kTouchBarAgentIdentifier)
@@ -77,12 +77,12 @@ public class TouchBarHelper {
 		return result
 	}
     
-	public static func reloadTouchBarAgent(_ completion: ((Bool) -> Void)? = nil) {
+	@objc public static func reloadTouchBarAgent(_ completion: ((Bool) -> Void)? = nil) {
 		let result = CommandLineHelper.execute(launchPath: "/usr/bin/pkill", arguments: ["ControlStrip"])
 		completion?(result != nil)
 	}
 	
-    public static func reloadTouchBarServer(_ completion: ((Bool) -> Void)? = nil) {
+    internal static func reloadTouchBarServer(_ completion: ((Bool) -> Void)? = nil) {
         let touchBarServerPid = _DFRGetServerPID().description
         var task = STPrivilegedTask(launchPath: "/bin/kill", arguments: [touchBarServerPid])
         defer {
