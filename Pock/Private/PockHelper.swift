@@ -36,6 +36,24 @@ internal class PockHelper {
 			Defaults[.allowBlankTouchBar] = newValue
 		}
 	}
+	
+	static var mouseSupportIsEnabled: Bool {
+		get {
+			return Defaults[.enableMouseSupport]
+		}
+		set {
+			Defaults[.enableMouseSupport] = newValue
+		}
+	}
+	
+	static var showMouseTrackingArea: Bool {
+		get {
+			return Defaults[.showMouseTrackingArea]
+		}
+		set {
+			Defaults[.showMouseTrackingArea] = newValue
+		}
+	}
     
     internal func relaunchPock() {
         guard let relaunch_path = Bundle.main.path(forResource: "Relaunch", ofType: nil) else {

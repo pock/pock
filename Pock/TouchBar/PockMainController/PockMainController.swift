@@ -61,8 +61,10 @@ class PockMainController: PKTouchBarMouseController {
             self?.awakeFromNib()
 			self?.checkForBlankTouchBar()
 			mouseDelegates.removeAll()
-			for widget in widgets.compactMap({ $0 as? PKScreenEdgeMouseDelegate }) {
-				mouseDelegates.append(widget)
+			if PockHelper.mouseSupportIsEnabled {
+				for widget in widgets.compactMap({ $0 as? PKScreenEdgeMouseDelegate }) {
+					mouseDelegates.append(widget)
+				}
 			}
         }
     }
@@ -112,7 +114,10 @@ class PockMainController: PKTouchBarMouseController {
 	
 	// MARK: Mouse Overrides
 	override func reloadScreenEdgeController() {
-		self.edgeController = PKScreenEdgeController(mouseDelegate: self, parentView: parentView, barColor: .black)
+		if PockHelper.mouseSupportIsEnabled {
+			let color: NSColor = PockHelper.showMouseTrackingArea ? .black : .clear
+			self.edgeController = PKScreenEdgeController(mouseDelegate: self, parentView: parentView, barColor: color)
+		}
 	}
 	
 	override func screenEdgeController(_ controller: PKScreenEdgeController, mouseEnteredAtLocation location: NSPoint, in view: NSView) {

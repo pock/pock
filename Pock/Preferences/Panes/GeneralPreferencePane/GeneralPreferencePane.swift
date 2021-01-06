@@ -19,6 +19,8 @@ final class GeneralPreferencePane: NSViewController, PreferencePane {
     @IBOutlet weak var enableAutomaticUpdates:   NSButton!
     @IBOutlet weak var checkForUpdatesButton:    NSButton!
 	@IBOutlet weak var allowBlankTouchBar:		 NSButton!
+	@IBOutlet weak var enableMouseSupport:       NSButton!
+	@IBOutlet weak var showTrackingArea:		 NSButton!
     
     /// Endpoint
     #if DEBUG
@@ -64,31 +66,44 @@ final class GeneralPreferencePane: NSViewController, PreferencePane {
     }
     
     private func setupCheckboxes() {
-        self.enableAutomaticUpdates.state   = Defaults[.enableAutomaticUpdates]   ? .on : .off
-        self.launchAtLoginCheckbox.state    = LoginServiceKit.isExistLoginItems() ? .on : .off
-		self.allowBlankTouchBar.state		= Defaults[.allowBlankTouchBar]		  ? .on : .off
-    }
-    
-    @IBAction private func didChangeLaunchAtLoginValue(button: NSButton) {
-        switch button.state {
-        case .on:
-            LoginServiceKit.addLoginItems()
-        case .off:
-            LoginServiceKit.removeLoginItems()
-        default:
-            return
-        }
+        self.enableAutomaticUpdates.state = Defaults[.enableAutomaticUpdates]   ? .on : .off
+        self.launchAtLoginCheckbox.state  = LoginServiceKit.isExistLoginItems() ? .on : .off
+		self.allowBlankTouchBar.state	  = Defaults[.allowBlankTouchBar]		? .on : .off
+		self.enableMouseSupport.state	  = Defaults[.enableMouseSupport]       ? .on : .off
+		self.showTrackingArea.state		  = Defaults[.showMouseTrackingArea]	? .on : .off
+		self.showTrackingArea.isEnabled   = Defaults[.enableMouseSupport]
     }
 	
-	@IBAction private func didChangeAllowBlankTouchBarValue(button: NSButton) {
-		Defaults[.allowBlankTouchBar] = button.state == .on
-		NSWorkspace.shared.notificationCenter.post(name: .shouldReloadPock, object: nil)
+	@IBAction private func didChangeOptions(for button: NSButton) {
+		switch button {
+		case allowBlankTouchBar:
+			Defaults[.allowBlankTouchBar] = button.state == .on
+			NSWorkspace.shared.notificationCenter.post(name: .shouldReloadPock, object: nil)
+			
+		case launchAtLoginCheckbox:
+			if button.state == .on {
+				LoginServiceKit.addLoginItems()
+			}else {
+				LoginServiceKit.removeLoginItems()
+			}
+			
+		case enableMouseSupport:
+			showTrackingArea.isEnabled 	  = button.state == .on
+			Defaults[.enableMouseSupport] = button.state == .on
+			NSWorkspace.shared.notificationCenter.post(name: .shouldReloadPock, object: nil)
+			
+		case showTrackingArea:
+			Defaults[.showMouseTrackingArea] = button.state == .on
+			NSWorkspace.shared.notificationCenter.post(name: .shouldReloadPock, object: nil)
+			
+		case enableAutomaticUpdates:
+			Defaults[.enableAutomaticUpdates] = button.state == .on
+			NSWorkspace.shared.notificationCenter.post(name: .shouldEnableAutomaticUpdates, object: nil)
+			
+		default:
+			return
+		}
 	}
-    
-    @IBAction private func didChangeEnableAutomaticUpdates(button: NSButton) {
-        Defaults[.enableAutomaticUpdates] = button.state == .on
-        NSWorkspace.shared.notificationCenter.post(name: .shouldEnableAutomaticUpdates, object: nil)
-    }
     
     @IBAction private func checkForUpdates(_ sender: NSButton) {
         self.checkForUpdatesButton.isEnabled = false

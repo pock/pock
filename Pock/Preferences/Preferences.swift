@@ -27,8 +27,12 @@ extension NSNotification.Name {
 }
 
 extension Defaults.Keys {
+	/// General
     static let enableAutomaticUpdates = Defaults.Key<Bool>("enableAutomaticUpdates", default: false)
 	static let allowBlankTouchBar	  = Defaults.Key<Bool>("allowBlankTouchBar",	 default: false)
+	/// Mouse support
+	static let enableMouseSupport    = Defaults.Key<Bool>("enableMouseSupport",    default: true)
+	static let showMouseTrackingArea = Defaults.Key<Bool>("showMouseTrackingArea", default: false)
 	/// Presentation mode
 	static let preferredPresentationMode = Defaults.Key<String?>("preferredPresentationMode", default: nil)
 }
