@@ -87,7 +87,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         menu.addItem(NSMenuItem.separator())
         menu.addItem(reloadItem)
         menu.addItem(relaunchItem)
-        menu.addItem(withTitle: "Reload System Touch Bar".localized, action: #selector(reloadTouchBarServer), keyEquivalent: "a")
+        menu.addItem(withTitle: "Reload Touch Bar".localized, action: #selector(reloadTouchBarServer), keyEquivalent: "a")
         return menu
     }()
     
@@ -124,33 +124,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         #endif
         
-        /// Check for legacy hideControlStrip option
-        if Defaults[.hideSystemControlStrip] == nil, let shouldHideControlStrip = Defaults[.hideControlStrip] {
-            Defaults[.hideSystemControlStrip] = shouldHideControlStrip
-            if shouldHideControlStrip && TouchBarHelper.isSystemControlStripVisible {
-                alertWindowController = AlertWindowController(
-                    title:   "Hide Control Strip".localized,
-                    message: "Hide_Control_Strip_Message".localized,
-                    action: AlertAction(
-                        title: "Continue".localized,
-                        action: {
-                            TouchBarHelper.hideSystemControlStrip({ [weak self] success in
-                                if success {
-                                    Defaults[.hideControlStrip] = nil
-                                }
-                                self?.initialize()
-                                self?.alertWindowController = nil
-                            })
-                        }
-                    )
-                )
-                alertWindowController?.showWindow(nil)
-            }else {
-                self.initialize()
-            }
-        }else {
-            self.initialize()
-        }
+        /// Initialise Pock
+		self.initialize()
         
         /// Set Pock inactive
         NSApp.deactivate()

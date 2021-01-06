@@ -14,12 +14,11 @@ import LoginServiceKit
 final class GeneralPreferencePane: NSViewController, PreferencePane {
     
     /// UI
-    @IBOutlet weak var versionLabel:                       NSTextField!
-    @IBOutlet weak var hideControlStripCheckbox:           NSButton!
-    @IBOutlet weak var launchAtLoginCheckbox:              NSButton!
-    @IBOutlet weak var enableAutomaticUpdates:             NSButton!
-    @IBOutlet weak var checkForUpdatesButton:              NSButton!
-	@IBOutlet weak var allowBlankTouchBar:				   NSButton!
+    @IBOutlet weak var versionLabel:             NSTextField!
+    @IBOutlet weak var launchAtLoginCheckbox:    NSButton!
+    @IBOutlet weak var enableAutomaticUpdates:   NSButton!
+    @IBOutlet weak var checkForUpdatesButton:    NSButton!
+	@IBOutlet weak var allowBlankTouchBar:		 NSButton!
     
     /// Endpoint
     #if DEBUG
@@ -65,27 +64,9 @@ final class GeneralPreferencePane: NSViewController, PreferencePane {
     }
     
     private func setupCheckboxes() {
-        self.hideControlStripCheckbox.state = TouchBarHelper.isSystemControlStripVisible ? .off : .on
-        self.enableAutomaticUpdates.state   = Defaults[.enableAutomaticUpdates]          ? .on  : .off
-        self.launchAtLoginCheckbox.state    = LoginServiceKit.isExistLoginItems()        ? .on  : .off
-		self.allowBlankTouchBar.state		= Defaults[.allowBlankTouchBar]				 ? .on  : .off
-    }
-    
-    @IBAction private func didChangeHideControlStripValue(button: NSButton) {
-        if button.state == .on {
-            TouchBarHelper.hideSystemControlStrip { success in
-                if success {
-                    NSWorkspace.shared.notificationCenter.post(name: .shouldReloadPock, object: nil)
-                }
-            }
-        }else {
-            TouchBarHelper.showSystemControlStrip { success in
-                if success {
-                    NSWorkspace.shared.notificationCenter.post(name: .shouldReloadPock, object: nil)
-                }
-            }
-        }
-        self.dismiss(button)
+        self.enableAutomaticUpdates.state   = Defaults[.enableAutomaticUpdates]   ? .on : .off
+        self.launchAtLoginCheckbox.state    = LoginServiceKit.isExistLoginItems() ? .on : .off
+		self.allowBlankTouchBar.state		= Defaults[.allowBlankTouchBar]		  ? .on : .off
     }
     
     @IBAction private func didChangeLaunchAtLoginValue(button: NSButton) {

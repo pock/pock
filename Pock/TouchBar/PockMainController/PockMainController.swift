@@ -78,14 +78,15 @@ class PockMainController: PKTouchBarMouseController {
 		}
 	}
     
+	override func dismiss() {
+		TouchBarHelper.resetSystemControlStripToUserPreference()
+		super.dismiss()
+	}
+	
     override func present() {
+		TouchBarHelper.hideSystemControlStrip()
         self.isVisible = true
-        presentFromSystemTrayItem()
-    }
-    
-    @objc private func presentFromSystemTrayItem() {
-        let placement: Int64 = TouchBarHelper.isSystemControlStripVisible ? 0 : 1
-        self.presentWithPlacement(placement: placement)
+		self.presentWithPlacement(placement: 1)
     }
     
     private func presentWithPlacement(placement: Int64) {
@@ -109,6 +110,10 @@ class PockMainController: PKTouchBarMouseController {
     }
 	
 	// MARK: Mouse Overrides
+	override func reloadScreenEdgeController() {
+		self.edgeController = PKScreenEdgeController(mouseDelegate: self, parentView: parentView, barColor: .black)
+	}
+	
 	override func screenEdgeController(_ controller: PKScreenEdgeController, mouseEnteredAtLocation location: NSPoint, in view: NSView) {
 		super.screenEdgeController(controller, mouseEnteredAtLocation: location, in: view)
 		mouseDelegates.forEach({

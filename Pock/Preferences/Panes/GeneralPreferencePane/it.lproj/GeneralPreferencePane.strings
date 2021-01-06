@@ -2,8 +2,8 @@
 /* Class = "NSButtonCell"; title = "Launch at login"; ObjectID = "0Zd-e7-34p"; */
 "0Zd-e7-34p.title" = "Apri all'avvio del Mac";
 
-/* Class = "NSButtonCell"; title = "Hide Control Strip"; ObjectID = "206-HT-yI6"; */
-"206-HT-yI6.title" = "Nascondi Control Strip";
+/* Class = "NSButtonCell"; title = "Show Control Strip"; ObjectID = "206-HT-yI6"; */
+"206-HT-yI6.title" = "Mostra Control Strip";
 
 /* Class = "NSTextFieldCell"; title = "Double press `⌃ Control` key to toggle between Pock and System Touch Bar."; ObjectID = "5UW-Vr-bYf"; */
 "5UW-Vr-bYf.title" = "Premi due volte il pulsante `⌃ Control` per spostarti tra Pock e la Touch Bar di sistema.";

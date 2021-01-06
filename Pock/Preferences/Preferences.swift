@@ -22,19 +22,11 @@ extension Preferences.PaneIdentifier {
 }
 
 extension NSNotification.Name {
-    static let didChangeNotificationBadgeRefreshRate = NSNotification.Name("didSelectNotificationBadgeRefreshRate")
-    static let shouldReloadPock                      = NSNotification.Name("shouldReloadPock")
-    static let shouldReloadControlCenterWidget       = NSNotification.Name("shouldReloadControlCenterWidget")
-    static let shouldReloadDock                      = NSNotification.Name("shouldReloadDock")
-    static let shouldReloadDockLayout                = NSNotification.Name("shouldReloadDockLayout")
-    static let shouldReloadPersistentItems           = NSNotification.Name("shouldReloadPersistentItems")
-    static let shouldEnableAutomaticUpdates          = NSNotification.Name("shouldEnableAutomaticUpdates")
-    static let didChangeNowPlayingWidgetStyle        = NSNotification.Name("didChangeNowPlayingWidgetStyle")
+    static let shouldReloadPock             = NSNotification.Name("shouldReloadPock")
+    static let shouldEnableAutomaticUpdates = NSNotification.Name("shouldEnableAutomaticUpdates")
 }
 
 extension Defaults.Keys {
-    static let hideControlStrip       = Defaults.Key<Bool?>("hideControlStrip",       default: true)
-    static let hideSystemControlStrip = Defaults.Key<Bool?>("hideSystemControlStrip", default: true)
-    static let enableAutomaticUpdates = Defaults.Key<Bool>("enableAutomaticUpdates",  default: false)
-	static let allowBlankTouchBar	  = Defaults.Key<Bool>("allowBlankTouchBar",	  default: false)
+    static let enableAutomaticUpdates = Defaults.Key<Bool>("enableAutomaticUpdates", default: false)
+	static let allowBlankTouchBar	  = Defaults.Key<Bool>("allowBlankTouchBar",	 default: false)
 }
