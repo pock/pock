@@ -7,7 +7,7 @@ abstract_target 'Targets' do
   use_frameworks!
 
   # PockKit
-  pod 'PockKit', :git => 'https://github.com/pock/pockkit.git'
+  pod 'PockKit'
   
   # Pods for Pock
   pod 'AppCenter/Analytics'
