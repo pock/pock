@@ -31,6 +31,9 @@
 		349F9C3123C379C3002CEC1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 349F9C3023C379C3002CEC1E /* Assets.xcassets */; };
 		349F9C3523C393F6002CEC1E /* WidgetInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349F9C2D23C37231002CEC1E /* WidgetInfo.swift */; };
 		349F9C3723C39407002CEC1E /* PockWidgetDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349F9C3623C39407002CEC1E /* PockWidgetDocument.swift */; };
+		34A0E78B25A7C8FB002F58A1 /* OnBoardWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A0E78925A7C8FB002F58A1 /* OnBoardWindowController.swift */; };
+		34A0E78C25A7C8FB002F58A1 /* OnBoardWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34A0E78A25A7C8FB002F58A1 /* OnBoardWindowController.xib */; };
+		34A0E79625A8B1EB002F58A1 /* install_defaults.gif in Resources */ = {isa = PBXBuildFile; fileRef = 34A0E79525A8B1EB002F58A1 /* install_defaults.gif */; };
 		34AB11C4250040DA00829E59 /* PockHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AB11C3250040DA00829E59 /* PockHelper.swift */; };
 		34B6D0FE25A62111001C925C /* GeneralPreferencePane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34B6D0FD25A62111001C925C /* GeneralPreferencePane.xib */; };
 		34BC3ECC2210B2EC00C1DD3C /* DFRFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34BC3ECB2210B2EC00C1DD3C /* DFRFoundation.framework */; };
@@ -128,6 +131,9 @@
 		349F9C2D23C37231002CEC1E /* WidgetInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetInfo.swift; sourceTree = "<group>"; };
 		349F9C3023C379C3002CEC1E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		349F9C3623C39407002CEC1E /* PockWidgetDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PockWidgetDocument.swift; sourceTree = "<group>"; };
+		34A0E78925A7C8FB002F58A1 /* OnBoardWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardWindowController.swift; sourceTree = "<group>"; };
+		34A0E78A25A7C8FB002F58A1 /* OnBoardWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnBoardWindowController.xib; sourceTree = "<group>"; };
+		34A0E79525A8B1EB002F58A1 /* install_defaults.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = install_defaults.gif; sourceTree = "<group>"; };
 		34A8060922F6B97000621235 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		34AB11C3250040DA00829E59 /* PockHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PockHelper.swift; sourceTree = "<group>"; };
 		34B6D0FD25A62111001C925C /* GeneralPreferencePane.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GeneralPreferencePane.xib; sourceTree = "<group>"; };
@@ -242,6 +248,7 @@
 			children = (
 				342D83952278D5CF000D79DA /* MainWindow.xib */,
 				34EF604C23C12E1700FBE9E7 /* AlertWindowController */,
+				34A0E79025A7C901002F58A1 /* OnBoardWindowController */,
 			);
 			path = "Interfaces UI";
 			sourceTree = "<group>";
@@ -284,7 +291,7 @@
 		342D83A22278D5CF000D79DA /* Various */ = {
 			isa = PBXGroup;
 			children = (
-				34D6F6FB23C2DD7A0078181F /* widget_icon.icns */,
+				34A0E79425A8B1BE002F58A1 /* Resources */,
 				342D83A52278D5CF000D79DA /* Info.plist */,
 				340520BC24F6DF510082955A /* Secrets.plist */,
 				342D83A32278D5CF000D79DA /* Assets.xcassets */,
@@ -385,6 +392,24 @@
 				349F9C2423C36BCA002CEC1E /* QLPockWidget.entitlements */,
 			);
 			path = QLPockWidget;
+			sourceTree = "<group>";
+		};
+		34A0E79025A7C901002F58A1 /* OnBoardWindowController */ = {
+			isa = PBXGroup;
+			children = (
+				34A0E78925A7C8FB002F58A1 /* OnBoardWindowController.swift */,
+				34A0E78A25A7C8FB002F58A1 /* OnBoardWindowController.xib */,
+			);
+			path = OnBoardWindowController;
+			sourceTree = "<group>";
+		};
+		34A0E79425A8B1BE002F58A1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				34A0E79525A8B1EB002F58A1 /* install_defaults.gif */,
+				34D6F6FB23C2DD7A0078181F /* widget_icon.icns */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		34A8061222F6C98F00621235 /* Localisations */ = {
@@ -598,10 +623,12 @@
 				3483241E246FFA8B0035D2C2 /* Relaunch in Resources */,
 				342D83DF2278D5CF000D79DA /* MainWindow.xib in Resources */,
 				34D6F6FC23C2DD7A0078181F /* widget_icon.icns in Resources */,
+				34A0E78C25A7C8FB002F58A1 /* OnBoardWindowController.xib in Resources */,
 				345E2EC823C2691900A947FC /* WidgetsManagerListPane.xib in Resources */,
 				34EF604B23C12E1300FBE9E7 /* AlertWindowController.xib in Resources */,
 				34F76490250158BD00310698 /* ProcessWidgetController.xib in Resources */,
 				340520BD24F6DF510082955A /* Secrets.plist in Resources */,
+				34A0E79625A8B1EB002F58A1 /* install_defaults.gif in Resources */,
 				34B6D0FE25A62111001C925C /* GeneralPreferencePane.xib in Resources */,
 				96FE269F22D0C3810071645C /* Localizable.strings in Resources */,
 				3406434D227F3FFF00981372 /* PockMainController.xib in Resources */,
@@ -713,6 +740,7 @@
 				3435675B2381666F00E408EF /* WidgetsDispatcher.swift in Sources */,
 				34CA451D23C0C98A00C45B0D /* STPrivilegedTask.m in Sources */,
 				349F9C2E23C37231002CEC1E /* WidgetInfo.swift in Sources */,
+				34A0E78B25A7C8FB002F58A1 /* OnBoardWindowController.swift in Sources */,
 				6AF5DC9725A0DF56008351C9 /* PockApplication.m in Sources */,
 				342D83EC2278D5CF000D79DA /* OSDUIHelper.swift in Sources */,
 				3407F9DE22D0F0A60072E742 /* Extensions.swift in Sources */,
@@ -975,8 +1003,8 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = "";
 				CURRENT_PROJECT_VERSION = 7;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

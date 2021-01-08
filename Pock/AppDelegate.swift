@@ -136,6 +136,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         /// Initialise Pock
 		self.initialize()
+		
+		/// Show on board window controller
+		let onBoardController = OnBoardWindowController()
+		onBoardController.showWindow(self)
         
         /// Set Pock inactive
         NSApp.deactivate()

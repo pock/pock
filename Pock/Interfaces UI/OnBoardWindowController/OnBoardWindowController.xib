@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="OnBoardWindowController" customModule="Pock" customModuleProvider="target">
+            <connections>
+                <outlet property="animatableStack" destination="Jeo-k6-bpZ" id="vwR-7y-Zch"/>
+                <outlet property="animatedView" destination="X3c-pe-3Y0" id="Hlx-HD-XZc"/>
+                <outlet property="bodyLabel" destination="Cik-ef-wfI" id="GLu-Oa-nEg"/>
+                <outlet property="titleLabel" destination="Lvu-jq-gb5" id="Itt-y6-zSU"/>
+                <outlet property="tooltipLabel" destination="tee-t5-Ejb" id="b76-zB-da9"/>
+                <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="Welcome to Pock" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" fullSizeContentView="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="596" y="251" width="480" height="508"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1025"/>
+            <view key="contentView" id="se5-gp-TjO">
+                <rect key="frame" x="0.0" y="0.0" width="617" height="629"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v0f-m4-LTU">
+                        <rect key="frame" x="48" y="0.0" width="521" height="581"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Lvu-jq-gb5">
+                                <rect key="frame" x="99" y="565" width="323" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Get the Most Out of Your MacBook Pro Touch Bar" id="sJb-NZ-zZw">
+                                    <font key="font" textStyle="headline" name=".SFNS-Bold"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Cik-ef-wfI">
+                                <rect key="frame" x="-2" y="515" width="525" height="30"/>
+                                <textFieldCell key="cell" selectable="YES" alignment="center" id="5E2-jb-qIe">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <string key="title">Pock comes with default widgets to give you access to the most essential information and functionality of your frequently used applications.</string>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <stackView distribution="fillEqually" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jeo-k6-bpZ">
+                                <rect key="frame" x="155" y="445" width="211" height="40"/>
+                                <subviews>
+                                    <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="26" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X8a-K3-rvT">
+                                        <rect key="frame" x="0.0" y="24" width="211" height="16"/>
+                                        <subviews>
+                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="EUc-UM-uda">
+                                                <rect key="frame" x="-2" y="0.0" width="40" height="16"/>
+                                                <textFieldCell key="cell" selectable="YES" alignment="center" title="Dock" id="OJP-he-XYP">
+                                                    <font key="font" textStyle="body" name=".SFNS-Regular"/>
+                                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="uOj-00-qeD">
+                                                <rect key="frame" x="60" y="0.0" width="97" height="16"/>
+                                                <textFieldCell key="cell" selectable="YES" alignment="center" title="Control Center" id="kmG-e6-fx3">
+                                                    <font key="font" textStyle="body" name=".SFNS-Regular"/>
+                                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="YG6-pM-Rpa">
+                                                <rect key="frame" x="179" y="0.0" width="34" height="16"/>
+                                                <textFieldCell key="cell" selectable="YES" alignment="center" title="ESC" id="pXS-1s-lle">
+                                                    <font key="font" textStyle="body" name=".SFNS-Regular"/>
+                                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                        </subviews>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
+                                    <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="26" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RV6-4R-Geb">
+                                        <rect key="frame" x="32" y="0.0" width="148" height="16"/>
+                                        <subviews>
+                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="786-aZ-HFT" userLabel="Now Playing Widget">
+                                                <rect key="frame" x="-2" y="0.0" width="83" height="16"/>
+                                                <textFieldCell key="cell" selectable="YES" alignment="center" title="Now Playing" id="YJa-so-9Ua">
+                                                    <font key="font" textStyle="body" name=".SFNS-Regular"/>
+                                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="cVl-OA-wUe">
+                                                <rect key="frame" x="103" y="0.0" width="47" height="16"/>
+                                                <textFieldCell key="cell" selectable="YES" alignment="center" title="Status" id="ZK2-DS-XAC">
+                                                    <font key="font" textStyle="body" name=".SFNS-Regular"/>
+                                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                        </subviews>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="tee-t5-Ejb">
+                                <rect key="frame" x="74" y="400" width="373" height="15"/>
+                                <textFieldCell key="cell" selectable="YES" alignment="center" title="Follow the instructions in the Touch Bar to install default widgets" id="6IP-B9-vLX">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="X3c-pe-3Y0">
+                                <rect key="frame" x="0.0" y="0.0" width="521" height="380"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="X3c-pe-3Y0" secondAttribute="height" multiplier="48:35" id="JkO-mG-Pvx"/>
+                                    <constraint firstAttribute="height" constant="380" id="xCT-Uh-s4n"/>
+                                </constraints>
+                                <imageCell key="cell" alignment="left" animates="YES" imageScaling="proportionallyDown" image="install_defaults" id="SGw-5a-z5N"/>
+                            </imageView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="Jeo-k6-bpZ" firstAttribute="top" secondItem="Cik-ef-wfI" secondAttribute="bottom" constant="30" id="YLX-35-y1b"/>
+                            <constraint firstItem="tee-t5-Ejb" firstAttribute="top" secondItem="Jeo-k6-bpZ" secondAttribute="bottom" constant="30" id="nE1-5N-4cI"/>
+                        </constraints>
+                        <visibilityPriorities>
+                            <integer value="1000"/>
+                            <integer value="1000"/>
+                            <integer value="1000"/>
+                            <integer value="1000"/>
+                            <integer value="1000"/>
+                        </visibilityPriorities>
+                        <customSpacing>
+                            <real value="3.4028234663852886e+38"/>
+                            <real value="3.4028234663852886e+38"/>
+                            <real value="3.4028234663852886e+38"/>
+                            <real value="3.4028234663852886e+38"/>
+                            <real value="3.4028234663852886e+38"/>
+                        </customSpacing>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="v0f-m4-LTU" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="48" id="UtH-8u-cqt"/>
+                    <constraint firstAttribute="bottom" secondItem="v0f-m4-LTU" secondAttribute="bottom" id="cau-CL-AAc"/>
+                    <constraint firstItem="v0f-m4-LTU" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="48" id="q4t-Ux-M4O"/>
+                    <constraint firstAttribute="trailing" secondItem="v0f-m4-LTU" secondAttribute="trailing" constant="48" id="sqZ-ST-9hP"/>
+                </constraints>
+            </view>
+            <connections>
+                <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
+            </connections>
+            <point key="canvasLocation" x="-136" y="121"/>
+        </window>
+    </objects>
+    <resources>
+        <image name="install_defaults" width="960" height="700"/>
+    </resources>
+</document>
