@@ -1,5 +1,5 @@
 //
-//  OnBoardWindowController.swift
+//  OnboardWindowController.swift
 //  Pock
 //
 //  Created by Pierluigi Galdi on 07/01/21.
@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class OnBoardWindowController: NSWindowController {
+class OnboardWindowController: NSWindowController {
 
 	/// Core
 	public override var windowNibName: NSNib.Name? {

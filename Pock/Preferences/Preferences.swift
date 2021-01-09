@@ -28,6 +28,7 @@ extension NSNotification.Name {
 
 extension Defaults.Keys {
 	/// General
+	static let didShowOnboardScreen	  = Defaults.Key<Bool>("didShowOnboardScreen",	 default: false)
     static let enableAutomaticUpdates = Defaults.Key<Bool>("enableAutomaticUpdates", default: false)
 	static let allowBlankTouchBar	  = Defaults.Key<Bool>("allowBlankTouchBar",	 default: false)
 	/// Mouse support

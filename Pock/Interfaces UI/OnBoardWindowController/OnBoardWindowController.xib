@@ -6,7 +6,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="OnBoardWindowController" customModule="Pock" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="OnboardWindowController" customModule="Pock" customModuleProvider="target">
             <connections>
                 <outlet property="animatableStack" destination="Jeo-k6-bpZ" id="vwR-7y-Zch"/>
                 <outlet property="animatedView" destination="X3c-pe-3Y0" id="Hlx-HD-XZc"/>

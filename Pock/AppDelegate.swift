@@ -88,6 +88,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		relaunchServerItem.isAlternate = true
         menu.addItem(withTitle: "Re-Install default widgets".localized, action: #selector(installDefaultWidgets), keyEquivalent: "d")
         menu.addItem(NSMenuItem.separator())
+		menu.addItem(withTitle: "Show Onboard Screen".localized, action: #selector(showOnboardScreen), keyEquivalent: "o")
+		menu.addItem(NSMenuItem.separator())
         menu.addItem(reloadItem)
         menu.addItem(relaunchItem)
 		menu.addItem(relaunchAgentItem)
@@ -138,8 +140,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		self.initialize()
 		
 		/// Show on board window controller
-		let onBoardController = OnBoardWindowController()
-		onBoardController.showWindow(self)
+		if Defaults[.didShowOnboardScreen] == false {
+			Defaults[.didShowOnboardScreen] = true
+			self.showOnboardScreen()
+		}
         
         /// Set Pock inactive
         NSApp.deactivate()
@@ -290,5 +294,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         guard let url = URL(string: "https://paypal.me/pigigaldi") else { return }
         NSWorkspace.shared.open(url)
     }
+	
+	/// Show On Board screen
+	@objc private func showOnboardScreen() {
+		let onboardController = OnboardWindowController()
+		onboardController.showWindow(self)
+	}
     
 }
