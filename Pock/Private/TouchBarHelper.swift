@@ -9,7 +9,7 @@
 import CoreFoundation
 import Defaults
 
-fileprivate let kPresentationModeGlobal  = "PresentationModeGlobal" as CFString
+fileprivate let kPresentationModeGlobal  = "PresentationModeGlobal"   as CFString
 fileprivate let kTouchBarAgentIdentifier = "com.apple.touchbar.agent" as CFString
 
 fileprivate class CommandLineHelper {

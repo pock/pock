@@ -304,12 +304,12 @@
 			isa = PBXGroup;
 			children = (
 				6AF5DC9B25A0DF5D008351C9 /* PockApplication */,
+				34CA451E23C0C99200C45B0D /* STPrivilegedTask */,
 				342D83AE2278D5CF000D79DA /* Pock-Bridging-Header.h */,
 				342D83A72278D5CF000D79DA /* NSTouchBar.h */,
 				34AB11C3250040DA00829E59 /* PockHelper.swift */,
 				342D83B22278D5CF000D79DA /* OSDUIHelper.swift */,
-				34CA452123C0C9C900C45B0D /* TouchBarHelper */,
-				34CA451E23C0C99200C45B0D /* STPrivilegedTask */,
+				34CA451F23C0C9C500C45B0D /* TouchBarHelper.swift */,
 			);
 			path = Private;
 			sourceTree = "<group>";
@@ -447,14 +447,6 @@
 				34CA451B23C0C98A00C45B0D /* STPrivilegedTask.m */,
 			);
 			path = STPrivilegedTask;
-			sourceTree = "<group>";
-		};
-		34CA452123C0C9C900C45B0D /* TouchBarHelper */ = {
-			isa = PBXGroup;
-			children = (
-				34CA451F23C0C9C500C45B0D /* TouchBarHelper.swift */,
-			);
-			path = TouchBarHelper;
 			sourceTree = "<group>";
 		};
 		34D5C1E92503971B007A021E /* UI Utils */ = {
