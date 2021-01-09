@@ -18,28 +18,26 @@ internal class WidgetsManagerListPane: NSViewController, PreferencePane {
     
     // MARK: Cell Identifiers
     private enum CellIdentifiers {
-        static let nameCellIdentifier:    NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("nameCellIdentifier")
-        static let authorCellIdentifier:  NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("authorCellIdentifier")
-        static let versionCellIdentifier: NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("versionCellIdentifier")
-        static let statusCellIdentifier:  NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("statusCellIdentifier")
+        static let nameCellIdentifier: NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("nameCellIdentifier")
     }
     
     // MARK: UI Elements
-    @IBOutlet private weak var tableView:         NSTableView!
-    @IBOutlet private weak var statusLabel:       NSTextField!
-    @IBOutlet private weak var preferencesButton: NSButton!
-    @IBOutlet private weak var uninstallButton:   NSButton!
-    
-    // MARK: Menu
-    private lazy var rightClickMenu: NSMenu = {
-        let menu = NSMenu(title: "Widget Options".localized)
-        menu.delegate = self
-        return menu
-    }()
+    @IBOutlet private weak var tableView:          NSTableView!
+	@IBOutlet private weak var widgetNameLabel:    NSTextField!
+	@IBOutlet private weak var widgetAuthorLabel:  NSTextField!
+	@IBOutlet private weak var widgetVersionLabel: NSTextField!
+    @IBOutlet private weak var uninstallButton:    NSButton!
+	@IBOutlet private weak var preferencesContainer: NSView!
+	@IBOutlet private weak var preferencesStatusLabel: NSTextField!
     
     // MARK: Data
     private var widgets: [WidgetInfo] = []
     private var selectedWidget: WidgetInfo?
+	private var selectedPreferences: PKWidgetPreference?
+	
+	override var preferredMinimumSize: NSSize {
+		return NSSize(width: 650, height: 300)
+	}
     
     // MARK: Overrides
     override func viewDidLoad() {
@@ -58,17 +56,18 @@ internal class WidgetsManagerListPane: NSViewController, PreferencePane {
                                                selector: #selector(reloadData(_:)),
                                                name: .didUninstallWidget,
                                                object: nil)
-        self.tableView.menu = rightClickMenu
     }
     
     override func viewWillAppear() {
         super.viewWillAppear()
         self.reloadData()
     }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
+	
+	override func viewWillDisappear() {
+		super.viewWillDisappear()
+		loadWindowForPreferenceClass(nil)
+		NotificationCenter.default.removeObserver(self)
+	}
     
 }
 
@@ -96,19 +95,24 @@ extension WidgetsManagerListPane {
         }
     }
     
-    /// Open preferences for selected widget
-    @IBAction private func openPreferencePaneForWidget(_ sender: Any? = nil) {
-        guard let widget = selectedWidget, let clss = widget.preferenceClass as? PKWidgetPreference.Type else {
-            return
-        }
-        openWindowForPreferenceClass(clss, title: widget.name)
-    }
-    
     /// Open window for preference class
-    private func openWindowForPreferenceClass(_ clss: PKWidgetPreference.Type, title: String? = nil) {
-        let controller = clss.init(nibName: clss.nibName, bundle: Bundle(for: clss))
-        controller.title = controller.title ?? title ?? clss.nibName
-        self.presentAsModalWindow(controller)
+    private func loadWindowForPreferenceClass(_ clss: PKWidgetPreference.Type?) {
+		self.selectedPreferences?.view.removeFromSuperview()
+		self.selectedPreferences?.removeFromParent()
+		self.selectedPreferences = nil
+		self.preferencesStatusLabel.stringValue = "This widget has no preferences".localized
+		if let clss = clss {
+			self.selectedPreferences = clss.init(nibName: clss.nibName, bundle: Bundle(for: clss))
+			if let controller = self.selectedPreferences {
+				self.preferencesStatusLabel.stringValue = ""
+				addChild(controller)
+				preferencesContainer.addSubview(controller.view)
+				controller.view.snp.makeConstraints {
+					$0.edges.equalToSuperview()
+				}
+				view.setNeedsDisplay(view.visibleRect)
+			}
+		}
     }
     
     /// Uninstall widget
@@ -138,43 +142,40 @@ extension WidgetsManagerListPane {
     /// Update status label
     private func updateUIElements() {
         guard let widget = selectedWidget else {
-            self.preferencesButton.isEnabled = false
-            self.uninstallButton.isEnabled   = false
-            let count = widgets.count
-            self.statusLabel.stringValue   = "\(count) widget\(count == 1 ? "" : "s") installed"
+            self.uninstallButton.isEnabled = false
+			self.widgetNameLabel.stringValue = ""
+			self.widgetAuthorLabel.stringValue = ""
+			self.widgetVersionLabel.stringValue = ""
+			self.widgetNameLabel.placeholderString = "Widget Name"
+			self.widgetAuthorLabel.placeholderString = "Author"
+			self.widgetVersionLabel.placeholderString = "Version"
+			self.loadWindowForPreferenceClass(nil)
             return
         }
-        self.statusLabel.stringValue     = "\(widget.name) (\(widget.version)) selected"
-        self.preferencesButton.isEnabled = widget.hasPreferences
-        self.uninstallButton.isEnabled   = true
+        self.uninstallButton.isEnabled = true
+		self.widgetNameLabel.stringValue = widget.name
+		self.widgetAuthorLabel.stringValue = widget.author
+		self.widgetVersionLabel.stringValue = widget.version
+		self.loadWindowForPreferenceClass(widget.preferenceClass as? PKWidgetPreference.Type)
     }
 
 }
 
-// MARK: Menu Delegate
-extension WidgetsManagerListPane: NSMenuDelegate {
-    
-    /// Adjust menu elements
-    func menuNeedsUpdate(_ menu: NSMenu) {
-        menu.removeAllItems()
-        let row = tableView.clickedRow
-        if row > -1 && row < widgets.count {
-            tableView.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
-            if selectedWidget?.preferenceClass as? PKWidgetPreference.Type != nil {
-                menu.addItem(withTitle: "Preferences…".localized, action: #selector(openPreferencePaneForWidget(_:)), keyEquivalent: ",")
-            }
-        }
-    }
-    
-}
-
-// MARK: Data Source
+// MARK: Table - Data Source
 extension WidgetsManagerListPane: NSTableViewDataSource {
     
     /// Number of rows
     func numberOfRows(in tableView: NSTableView) -> Int {
         return widgets.count
     }
+	
+	func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
+		return 42
+	}
+	
+	func tableView(_ tableView: NSTableView, sizeToFitWidthOfColumn column: Int) -> CGFloat {
+		return 220
+	}
     
 }
 
@@ -183,48 +184,28 @@ extension WidgetsManagerListPane: NSTableViewDelegate {
     
     /// View for cell in row
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        
         /// Check for cell
         guard let id = tableColumn?.identifier, let cell = tableView.makeView(withIdentifier: id, owner: nil) as? NSTableCellView else {
             return nil
         }
-        
         /// Get item
         let widget = widgets[row]
-        
         /// Define cell identifier
         let cellText:  String?
         let cellImage: NSImage?
-        
         /// Get proper cell identifier based on tableColumn
         switch tableColumn?.identifier {
         case CellIdentifiers.nameCellIdentifier:
             cellText  = widget.name
-            cellImage = nil
-            
-        case CellIdentifiers.authorCellIdentifier:
-            cellText  = widget.author
-            cellImage = nil
-            
-        case CellIdentifiers.versionCellIdentifier:
-            cellText  = widget.version
-            cellImage = nil
-            
-        case CellIdentifiers.statusCellIdentifier:
-            cellText  = nil
             cellImage = NSImage(named: widget.loaded ? NSImage.statusAvailableName : NSImage.statusUnavailableName)
-            
         default:
             return nil
         }
-        
         /// Setup cell
         cell.textField?.stringValue = cellText ?? ""
         cell.imageView?.image       = cellImage
-        
         /// Return
         return cell
-    
     }
     
     /// Did select row
