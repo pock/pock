@@ -208,7 +208,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @objc func installDefaultWidgets() {
-        PockHelper.default.installDefaultWidgets()
+        PockHelper.default.installDefaultWidgets(nil)
     }
     
     private func registerGlobalHotKey() {

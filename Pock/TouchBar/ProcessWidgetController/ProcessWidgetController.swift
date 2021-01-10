@@ -258,12 +258,7 @@ public class ProcessWidgetController: PKTouchBarMouseController {
 		guard let button = button(at: location) else {
 			return
 		}
-		switch button {
-		case cancelButton:
-			dismiss()
-		default:
-			actionButtonPressed(button)
-		}
+		actionButtonPressed(button)
 	}
 	
 	public override func updateCursorLocation(_ location: NSPoint?) {

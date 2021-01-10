@@ -52,22 +52,29 @@ class PockMainController: PKTouchBarMouseController {
         WidgetsDispatcher.default.loadInstalledWidget() { [weak self] widgets in
             if widgets.isEmpty && PockHelper.didAskToInstallDefaultWidgets == false {
                 async(after: 1) {
-                    PockHelper.default.installDefaultWidgets()
+					PockHelper.default.installDefaultWidgets { [widgets] in
+						self?.load(widgets: widgets)
+					}
                 }
+				return
             }
-            let identifiers: [NSTouchBarItem.Identifier] = widgets.compactMap({ $0.identifier })
-            self?.touchBar?.customizationIdentifier             = .pockTouchBar
-            self?.touchBar?.customizationAllowedItemIdentifiers = identifiers
-            self?.awakeFromNib()
-			self?.checkForBlankTouchBar()
-			mouseDelegates.removeAll()
-			if PockHelper.mouseSupportIsEnabled {
-				for widget in widgets.compactMap({ $0 as? PKScreenEdgeMouseDelegate }) {
-					mouseDelegates.append(widget)
-				}
-			}
+			self?.load(widgets: widgets)
         }
     }
+	
+	private func load(widgets: [PKWidget]) {
+		let identifiers: [NSTouchBarItem.Identifier] = widgets.compactMap({ $0.identifier })
+		self.touchBar?.customizationIdentifier             = .pockTouchBar
+		self.touchBar?.customizationAllowedItemIdentifiers = identifiers
+		self.awakeFromNib()
+		self.checkForBlankTouchBar()
+		mouseDelegates.removeAll()
+		if PockHelper.mouseSupportIsEnabled {
+			for widget in widgets.compactMap({ $0 as? PKScreenEdgeMouseDelegate }) {
+				mouseDelegates.append(widget)
+			}
+		}
+	}
 	
 	private func checkForBlankTouchBar() {
 		guard PockHelper.allowBlankTouchBar == false else {

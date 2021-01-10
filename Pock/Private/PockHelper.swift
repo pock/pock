@@ -11,7 +11,7 @@ import PockKit
 import Defaults
 
 extension Defaults.Keys {
-    static let didAskToInstallDefaultsWidgets = Defaults.Key<Bool>("didAskToInstallDefaultsWidgets", default: false)
+    static let didAskToInstallDefaultWidgets = Defaults.Key<Bool>("didAskToInstallDefaultWidgets", default: false)
 }
 
 internal class PockHelper {
@@ -21,10 +21,10 @@ internal class PockHelper {
     
     static var didAskToInstallDefaultWidgets: Bool {
         get {
-            return Defaults[.didAskToInstallDefaultsWidgets]
+            return Defaults[.didAskToInstallDefaultWidgets]
         }
         set {
-            Defaults[.didAskToInstallDefaultsWidgets] = newValue
+            Defaults[.didAskToInstallDefaultWidgets] = newValue
         }
     }
 	
@@ -66,7 +66,7 @@ internal class PockHelper {
     }
     
     // MARK: Default widgets
-    internal func installDefaultWidgets() {
+	internal func installDefaultWidgets(_ completion: (() -> Void)?) {
         let widgets = [
             "https://pock.dev/widgets/defaults/ControlCenter.pock.zip",
             "https://pock.dev/widgets/defaults/Dock.pock.zip",
@@ -106,6 +106,7 @@ internal class PockHelper {
                         {
                             if index == 0 {
                                 PockHelper.didAskToInstallDefaultWidgets = true
+								completion?()
                             }
                         },
                         /// completion
