@@ -66,6 +66,9 @@ internal class WidgetsManagerListPane: NSViewController, PreferencePane {
 	override func viewWillDisappear() {
 		super.viewWillDisappear()
 		loadWindowForPreferenceClass(nil)
+	}
+	
+	deinit {
 		NotificationCenter.default.removeObserver(self)
 	}
     
