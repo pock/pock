@@ -43,7 +43,7 @@ class PockMainController: PKTouchBarMouseController {
         items.removeAll()
         WidgetsDispatcher.default.clearLoadedWidgets()
         #if DEBUG
-            print("[PockMainController]: Deinit Pock main controller")
+            NSLog("[PockMainController]: Deinit Pock main controller")
         #endif
     }
     

@@ -23,10 +23,10 @@ class DK_OSDUIHelper {
     class func showHUD(type: OSDImage, filled: CUnsignedInt, total: CUnsignedInt = 16) {
         let conn = NSXPCConnection(machServiceName: "com.apple.OSDUIHelper", options: [])
         conn.remoteObjectInterface = NSXPCInterface(with: OSDUIHelperProtocol.self)
-        conn.interruptionHandler = { print("Interrupted!") }
-        conn.invalidationHandler = { print("Invalidated!") }
+        conn.interruptionHandler = { NSLog("Interrupted!") }
+        conn.invalidationHandler = { NSLog("Invalidated!") }
         conn.resume()
-        let target = conn.remoteObjectProxyWithErrorHandler { print("Failed: \($0)") }
+        let target = conn.remoteObjectProxyWithErrorHandler { NSLog("Failed: \($0)") }
         guard let helper = target as? OSDUIHelperProtocol else { fatalError("Wrong type: \(target)") }
         helper.showImage(type, onDisplayID: CGMainDisplayID(), priority: 0x1f4, msecUntilFade: 2000, filledChiclets: filled, totalChiclets: total, locked: false)
     }

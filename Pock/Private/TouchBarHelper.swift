@@ -72,7 +72,7 @@ public class TouchBarHelper {
 		let result = CFPreferencesAppSynchronize(kTouchBarAgentIdentifier)
 		reloadTouchBarAgent()
 		#if DEBUG
-		print("Touch Bar Presentation mode changed: [\(result ? "success" : "error")] \(currentMode) -> \(mode)")
+		NSLog("Touch Bar Presentation mode changed: [\(result ? "success" : "error")] \(currentMode) -> \(mode)")
 		#endif
 		return result
 	}

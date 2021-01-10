@@ -32,7 +32,7 @@ class PKWidgetViewController: NSViewController {
     }
     deinit {
         #if DEBUG
-            print("[\(type(of: self))]: Widget deinit called.")
+		NSLog("[\(type(of: self))]: Widget deinit called.")
         #endif
     }
 }
@@ -64,7 +64,7 @@ class PKWidgetTouchBarItem: NSCustomTouchBarItem {
     
     deinit {
         #if DEBUG
-            print("[PockWidget]: [\(widget?.identifier.rawValue ?? "Unknown widget")] - deinit called.")
+		NSLog("[PockWidget]: [\(widget?.identifier.rawValue ?? "Unknown widget")] - deinit called.")
         #endif
         viewController = nil
         widget         = nil
