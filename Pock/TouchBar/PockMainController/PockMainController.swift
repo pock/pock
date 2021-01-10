@@ -51,7 +51,7 @@ class PockMainController: PKTouchBarMouseController {
 		super.didLoad()
         WidgetsDispatcher.default.loadInstalledWidget() { [weak self] widgets in
             if widgets.isEmpty && PockHelper.didAskToInstallDefaultWidgets == false {
-                async(after: 1) {
+				async(after: 0.25) {
 					PockHelper.default.installDefaultWidgets { [widgets] in
 						self?.load(widgets: widgets)
 					}
@@ -80,7 +80,7 @@ class PockMainController: PKTouchBarMouseController {
 		guard PockHelper.allowBlankTouchBar == false else {
 			return
 		}
-		async(after: 1) { [weak self] in
+		async(after: 0.25) { [weak self] in
 			if self?.items.isEmpty == true {
 				PockHelper.default.openProcessControllerForEmptyWidgets()
 			}
