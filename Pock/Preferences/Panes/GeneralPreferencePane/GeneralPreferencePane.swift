@@ -22,25 +22,8 @@ final class GeneralPreferencePane: NSViewController, PreferencePane {
 	@IBOutlet weak var enableMouseSupport:       NSButton!
 	@IBOutlet weak var showTrackingArea:		 NSButton!
     
-    /// Endpoint
-    #if DEBUG
-    private let latestVersionURLString: String = "https://pock.dev/api/dev/latestRelease.json"
-    #else
-    private let latestVersionURLString: String = "https://pock.dev/api/latestRelease.json"
-    #endif
-    
     /// Updates
     var newVersionAvailable: (String, URL)?
-    
-    /// Core
-	internal static var appVersion: String {
-		let base = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String ?? "???"
-		guard let build = buildVersion else {
-			return base
-		}
-		return "\(base)-\(build)"
-	}
-	internal static let buildVersion = Bundle.main.infoDictionary!["CFBundleVersion"] as? String
 	
     /// Preferenceable
     var preferencePaneIdentifier: Preferences.PaneIdentifier = Preferences.PaneIdentifier.general
@@ -68,7 +51,7 @@ final class GeneralPreferencePane: NSViewController, PreferencePane {
     }
     
     private func loadVersionNumber() {
-		self.versionLabel.stringValue = GeneralPreferencePane.appVersion
+		self.versionLabel.stringValue = PockUpdater.appVersion
     }
     
     private func setupCheckboxes() {
@@ -119,7 +102,7 @@ final class GeneralPreferencePane: NSViewController, PreferencePane {
             if let latestVersion = latestVersion, let latestVersionDownloadURL = latestVersionDownloadURL {
                 self?.showNewVersionAlert(versionNumber: latestVersion, downloadURL: latestVersionDownloadURL)
             }else {
-				self?.showAlert(title: "Installed version".localized + ": \(GeneralPreferencePane.appVersion)", message: "Already on latest version".localized)
+				self?.showAlert(title: "Installed version".localized + ": \(PockUpdater.appVersion)", message: "Already on latest version".localized)
             }
             async { [weak self] in
                 self?.checkForUpdatesButton.isEnabled = true
@@ -158,28 +141,21 @@ extension GeneralPreferencePane {
     }
     
     func hasLatestVersion(completion: @escaping (String?, URL?) -> Void) {
-		guard let latestVersionURL: URL = URL(string: latestVersionURLString) else {
-			completion(nil, nil)
-			return
-		}
-		async {
-			let request = URLRequest(url: latestVersionURL, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 60.0)
-			URLSession.shared.invalidateAndCancel()
-			URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
-				guard let data  = data,
-				let apiResponse = try? JSONDecoder().decode(APIUpdateResponse.self, from: data),
-				let downloadURL = URL(string: apiResponse.download_link),
-				GeneralPreferencePane.appVersion < apiResponse.version_number else {
-					NSLog("[Pock]: Already on latest version: \(GeneralPreferencePane.appVersion)")
-					URLSession.shared.finishTasksAndInvalidate()
-					completion(nil, nil)
-					return
-				}
-				NSLog("[Pock]: New version available: \(apiResponse.version_number)")
+		PockUpdater.default.fetchNewVersions(ignoreCache: true) { versions in
+			guard let core = versions?.core else {
+				completion(nil, nil)
+				return
+			}
+			guard PockUpdater.appVersion < core.name else {
+				NSLog("[Pock]: Already on latest version: \(PockUpdater.appVersion)")
 				URLSession.shared.finishTasksAndInvalidate()
-				completion(apiResponse.version_number, downloadURL)
-			}).resume()
+				completion(nil, nil)
+				return
+			}
+			NSLog("[Pock]: New version available: \(core.name)")
+			URLSession.shared.finishTasksAndInvalidate()
+			completion(core.name, core.link)
 		}
-    }
+	}
 }
 
