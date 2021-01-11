@@ -18,7 +18,7 @@ internal class WidgetsManagerListPane: NSViewController, PreferencePane {
     
     // MARK: Cell Identifiers
     private enum CellIdentifiers {
-        static let nameCellIdentifier: NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("nameCellIdentifier")
+        static let widgetCell: NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier("widgetCellIdentifier")
     }
     
     // MARK: UI Elements
@@ -42,6 +42,7 @@ internal class WidgetsManagerListPane: NSViewController, PreferencePane {
     // MARK: Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
+		self.tableView.register(NSNib(nibNamed: "PKWidgetCellView", bundle: .main), forIdentifier: CellIdentifiers.widgetCell)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(reloadData(_:)),
                                                name: .didLoadInstalledWidgets,
@@ -86,15 +87,18 @@ extension WidgetsManagerListPane {
         async { [weak self] in
             self?.tableView.reloadData()
             self?.updateUIElements()
-            /// Fetch installed widgets
-            self?.fetchInstalledWidgets() { [weak self] widgets in
-                self?.widgets = widgets
-                /// Update UI on main thread
-                async { [weak self] in
-                    self?.tableView.reloadData()
-                    self?.updateUIElements()
-                }
-            }
+			/// Fetch new versions first
+			PockUpdater.default.fetchNewVersions { _ in
+				/// Fetch installed widgets
+				self?.fetchInstalledWidgets() { [weak self] widgets in
+					self?.widgets = widgets
+					/// Update UI on main thread
+					async { [weak self] in
+						self?.tableView.reloadData()
+						self?.updateUIElements()
+					}
+				}
+			}
         }
     }
     
@@ -184,29 +188,27 @@ extension WidgetsManagerListPane: NSTableViewDataSource {
 
 // MARK: Delegate
 extension WidgetsManagerListPane: NSTableViewDelegate {
-    
+	
+	private func widgetCanBeUpdated(_ widget: WidgetInfo) -> Bool {
+		guard let newVersion = PockUpdater.default.latestReleases?.widgets.first(where: { $0.key.lowercased() == widget.id.lowercased()
+		})?.value else {
+			return false
+		}
+		return widget.version < newVersion.name
+	}
+	
     /// View for cell in row
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         /// Check for cell
-        guard let id = tableColumn?.identifier, let cell = tableView.makeView(withIdentifier: id, owner: nil) as? NSTableCellView else {
+		guard let cell = tableView.makeView(withIdentifier: CellIdentifiers.widgetCell, owner: nil) as? PKWidgetCellView else {
             return nil
         }
         /// Get item
         let widget = widgets[row]
-        /// Define cell identifier
-        let cellText:  String?
-        let cellImage: NSImage?
-        /// Get proper cell identifier based on tableColumn
-        switch tableColumn?.identifier {
-        case CellIdentifiers.nameCellIdentifier:
-            cellText  = widget.name
-            cellImage = NSImage(named: widget.loaded ? NSImage.statusAvailableName : NSImage.statusUnavailableName)
-        default:
-            return nil
-        }
         /// Setup cell
-        cell.textField?.stringValue = cellText ?? ""
-        cell.imageView?.image       = cellImage
+		cell.status.image = NSImage(named: widget.loaded ? NSImage.statusAvailableName : NSImage.statusUnavailableName)
+		cell.name.stringValue = widget.name
+		cell.badge.isHidden = !widgetCanBeUpdated(widget)
         /// Return
         return cell
     }

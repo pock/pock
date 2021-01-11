@@ -46,53 +46,6 @@
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
-                                        <prototypeCellViews>
-                                            <tableCellView identifier="nameCellIdentifier" id="X8X-73-3Jm">
-                                                <rect key="frame" x="0.0" y="0.0" width="232" height="42"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                <subviews>
-                                                    <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PCB-fC-fpt">
-                                                        <rect key="frame" x="12" y="0.0" width="208" height="42"/>
-                                                        <subviews>
-                                                            <imageView wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vb2-6E-GSE">
-                                                                <rect key="frame" x="0.0" y="13" width="16" height="16"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" constant="16" id="epp-bu-0OJ"/>
-                                                                    <constraint firstAttribute="height" constant="16" id="rFn-dS-qHX"/>
-                                                                </constraints>
-                                                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSStatusUnavailable" id="GgP-dd-Rfz"/>
-                                                            </imageView>
-                                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="k48-T4-WGI">
-                                                                <rect key="frame" x="22" y="13" width="188" height="16"/>
-                                                                <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="Widget Name" id="bVb-Fg-ahP">
-                                                                    <font key="font" metaFont="system"/>
-                                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                </textFieldCell>
-                                                            </textField>
-                                                        </subviews>
-                                                        <visibilityPriorities>
-                                                            <integer value="1000"/>
-                                                            <integer value="1000"/>
-                                                        </visibilityPriorities>
-                                                        <customSpacing>
-                                                            <real value="3.4028234663852886e+38"/>
-                                                            <real value="3.4028234663852886e+38"/>
-                                                        </customSpacing>
-                                                    </stackView>
-                                                </subviews>
-                                                <constraints>
-                                                    <constraint firstAttribute="bottom" secondItem="PCB-fC-fpt" secondAttribute="bottom" id="OYz-i5-v7H"/>
-                                                    <constraint firstItem="PCB-fC-fpt" firstAttribute="top" secondItem="X8X-73-3Jm" secondAttribute="top" id="d60-6p-pDB"/>
-                                                    <constraint firstAttribute="trailing" secondItem="PCB-fC-fpt" secondAttribute="trailing" constant="12" id="gxS-yi-lHJ"/>
-                                                    <constraint firstItem="PCB-fC-fpt" firstAttribute="leading" secondItem="X8X-73-3Jm" secondAttribute="leading" constant="12" id="hM6-pC-HCf"/>
-                                                </constraints>
-                                                <connections>
-                                                    <outlet property="imageView" destination="vb2-6E-GSE" id="hrs-tl-RtA"/>
-                                                    <outlet property="textField" destination="k48-T4-WGI" id="1Nl-SN-ov8"/>
-                                                </connections>
-                                            </tableCellView>
-                                        </prototypeCellViews>
                                     </tableColumn>
                                 </tableColumns>
                                 <connections>
@@ -247,7 +200,4 @@
             <point key="canvasLocation" x="-55" y="-345"/>
         </customView>
     </objects>
-    <resources>
-        <image name="NSStatusUnavailable" width="16" height="16"/>
-    </resources>
 </document>

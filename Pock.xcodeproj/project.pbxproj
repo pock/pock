@@ -11,6 +11,8 @@
 		3406434D227F3FFF00981372 /* PockMainController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3406434C227F3FFF00981372 /* PockMainController.xib */; };
 		3407F9DE22D0F0A60072E742 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3407F9DD22D0F0A60072E742 /* Extensions.swift */; };
 		341F51CC25AC9A81003D2674 /* PockUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341F51CB25AC9A81003D2674 /* PockUpdater.swift */; };
+		341F51D725ACB46A003D2674 /* PKWidgetCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 341F51D625ACB46A003D2674 /* PKWidgetCellView.xib */; };
+		341F51DC25ACB513003D2674 /* PKWidgetCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341F51DB25ACB513003D2674 /* PKWidgetCellView.swift */; };
 		342D83DF2278D5CF000D79DA /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 342D83952278D5CF000D79DA /* MainWindow.xib */; };
 		342D83E12278D5CF000D79DA /* PockMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83982278D5CF000D79DA /* PockMainController.swift */; };
 		342D83E22278D5CF000D79DA /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D839A2278D5CF000D79DA /* Preferences.swift */; };
@@ -103,6 +105,8 @@
 		3406434C227F3FFF00981372 /* PockMainController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PockMainController.xib; sourceTree = "<group>"; };
 		3407F9DD22D0F0A60072E742 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		341F51CB25AC9A81003D2674 /* PockUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PockUpdater.swift; sourceTree = "<group>"; };
+		341F51D625ACB46A003D2674 /* PKWidgetCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PKWidgetCellView.xib; sourceTree = "<group>"; };
+		341F51DB25ACB513003D2674 /* PKWidgetCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKWidgetCellView.swift; sourceTree = "<group>"; };
 		342D83952278D5CF000D79DA /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		342D83982278D5CF000D79DA /* PockMainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PockMainController.swift; sourceTree = "<group>"; };
 		342D839A2278D5CF000D79DA /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
@@ -229,6 +233,15 @@
 			path = PockMainController;
 			sourceTree = "<group>";
 		};
+		341F51E025ACB521003D2674 /* PKWidgetCellView */ = {
+			isa = PBXGroup;
+			children = (
+				341F51DB25ACB513003D2674 /* PKWidgetCellView.swift */,
+				341F51D625ACB46A003D2674 /* PKWidgetCellView.xib */,
+			);
+			path = PKWidgetCellView;
+			sourceTree = "<group>";
+		};
 		342D83932278D5CF000D79DA /* Pock */ = {
 			isa = PBXGroup;
 			children = (
@@ -337,6 +350,7 @@
 		345E2EC923C2692300A947FC /* WidgetsManagerListPane */ = {
 			isa = PBXGroup;
 			children = (
+				341F51E025ACB521003D2674 /* PKWidgetCellView */,
 				345E2EC523C2691900A947FC /* WidgetsManagerListPane.swift */,
 				345E2EC623C2691900A947FC /* WidgetsManagerListPane.xib */,
 			);
@@ -619,6 +633,7 @@
 				342D83DF2278D5CF000D79DA /* MainWindow.xib in Resources */,
 				34D6F6FC23C2DD7A0078181F /* widget_icon.icns in Resources */,
 				34A0E78C25A7C8FB002F58A1 /* OnBoardWindowController.xib in Resources */,
+				341F51D725ACB46A003D2674 /* PKWidgetCellView.xib in Resources */,
 				345E2EC823C2691900A947FC /* WidgetsManagerListPane.xib in Resources */,
 				34EF604B23C12E1300FBE9E7 /* AlertWindowController.xib in Resources */,
 				34F76490250158BD00310698 /* ProcessWidgetController.xib in Resources */,
@@ -741,6 +756,7 @@
 				342D83EC2278D5CF000D79DA /* OSDUIHelper.swift in Sources */,
 				3407F9DE22D0F0A60072E742 /* Extensions.swift in Sources */,
 				34CA452023C0C9C500C45B0D /* TouchBarHelper.swift in Sources */,
+				341F51DC25ACB513003D2674 /* PKWidgetCellView.swift in Sources */,
 				349F9C3723C39407002CEC1E /* PockWidgetDocument.swift in Sources */,
 				34AB11C4250040DA00829E59 /* PockHelper.swift in Sources */,
 				342D83E12278D5CF000D79DA /* PockMainController.swift in Sources */,
@@ -969,7 +985,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -980,7 +996,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Pock/Various/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = 0.8.0;
+				MARKETING_VERSION = 0.8.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pigigaldi.pock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -999,7 +1015,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1009,7 +1025,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Pock/Various/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = 0.8.0;
+				MARKETING_VERSION = 0.8.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pigigaldi.pock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1028,14 +1044,14 @@
 				CODE_SIGN_ENTITLEMENTS = QLPockWidget/QLPockWidget.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = QLPockWidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = 0.8.0;
+				MARKETING_VERSION = 0.8.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pigigaldi.pock.QLPockWidget;
@@ -1055,14 +1071,14 @@
 				CODE_SIGN_ENTITLEMENTS = QLPockWidget/QLPockWidget.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = QLPockWidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = 0.8.0;
+				MARKETING_VERSION = 0.8.1;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pigigaldi.pock.QLPockWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
