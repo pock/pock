@@ -12,6 +12,7 @@
                 <outlet property="preferencesStatusLabel" destination="RBY-UY-QMr" id="cOQ-Cf-4Sx"/>
                 <outlet property="tableView" destination="0Ls-y2-qXA" id="XSL-Vi-zkB"/>
                 <outlet property="uninstallButton" destination="kdU-gr-5CC" id="YnV-Qa-kQ7"/>
+                <outlet property="updateButton" destination="fb4-mh-aTe" id="GsV-OL-ztZ"/>
                 <outlet property="view" destination="LM1-ZA-Shg" id="y3e-en-NkW"/>
                 <outlet property="widgetAuthorLabel" destination="Y0r-n7-7KC" id="xTE-VP-sxK"/>
                 <outlet property="widgetNameLabel" destination="vBl-Ur-nMF" id="R08-I3-VeB"/>
@@ -21,7 +22,7 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="LM1-ZA-Shg">
-            <rect key="frame" x="0.0" y="0.0" width="652" height="300"/>
+            <rect key="frame" x="0.0" y="0.0" width="653" height="300"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="42" horizontalPageScroll="10" verticalLineScroll="42" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="allowed" translatesAutoresizingMaskIntoConstraints="NO" id="Cbs-br-hlL">
@@ -76,10 +77,10 @@
                     </constraints>
                 </box>
                 <stackView distribution="equalSpacing" orientation="vertical" alignment="leading" spacing="16" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jia-HN-c0C">
-                    <rect key="frame" x="221" y="212" width="431" height="88"/>
+                    <rect key="frame" x="221" y="212" width="432" height="88"/>
                     <subviews>
                         <stackView distribution="equalCentering" orientation="horizontal" alignment="centerY" spacing="16" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N2D-WI-Xia">
-                            <rect key="frame" x="16" y="17" width="399" height="55"/>
+                            <rect key="frame" x="16" y="17" width="400" height="55"/>
                             <subviews>
                                 <stackView distribution="fillProportionally" orientation="vertical" alignment="leading" spacing="4" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LKn-oP-mug">
                                     <rect key="frame" x="0.0" y="0.0" width="101" height="55"/>
@@ -120,16 +121,39 @@
                                         <real value="3.4028234663852886e+38"/>
                                     </customSpacing>
                                 </stackView>
-                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kdU-gr-5CC">
-                                    <rect key="frame" x="319" y="11" width="87" height="32"/>
-                                    <buttonCell key="cell" type="push" title="Uninstall" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="W3I-4n-f2Z">
-                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                        <font key="font" metaFont="system"/>
-                                    </buttonCell>
-                                    <connections>
-                                        <action selector="uninstallSelectedWidget:" target="-2" id="kp7-oC-MEW"/>
-                                    </connections>
-                                </button>
+                                <stackView distribution="fill" orientation="vertical" alignment="trailing" spacing="12" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Iud-eS-Zi4">
+                                    <rect key="frame" x="327" y="2" width="73" height="52"/>
+                                    <subviews>
+                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fb4-mh-aTe">
+                                            <rect key="frame" x="1" y="25" width="79" height="32"/>
+                                            <buttonCell key="cell" type="push" title="Update" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1c7-Xa-HaN">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="updateSelectedWidget:" target="-2" id="sUp-az-Rtb"/>
+                                            </connections>
+                                        </button>
+                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kdU-gr-5CC">
+                                            <rect key="frame" x="-7" y="-7" width="87" height="32"/>
+                                            <buttonCell key="cell" type="push" title="Uninstall" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="W3I-4n-f2Z">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="uninstallSelectedWidget:" target="-2" id="kp7-oC-MEW"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <visibilityPriorities>
+                                        <integer value="1000"/>
+                                        <integer value="1000"/>
+                                    </visibilityPriorities>
+                                    <customSpacing>
+                                        <real value="3.4028234663852886e+38"/>
+                                        <real value="3.4028234663852886e+38"/>
+                                    </customSpacing>
+                                </stackView>
                             </subviews>
                             <visibilityPriorities>
                                 <integer value="1000"/>
@@ -141,7 +165,7 @@
                             </customSpacing>
                         </stackView>
                         <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="CNm-tT-fTG">
-                            <rect key="frame" x="0.0" y="-2" width="431" height="5"/>
+                            <rect key="frame" x="0.0" y="-2" width="432" height="5"/>
                         </box>
                     </subviews>
                     <constraints>
@@ -162,10 +186,10 @@
                     </customSpacing>
                 </stackView>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="FgL-Zf-Jbt">
-                    <rect key="frame" x="221" y="0.0" width="431" height="212"/>
+                    <rect key="frame" x="221" y="0.0" width="432" height="212"/>
                     <subviews>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RBY-UY-QMr">
-                            <rect key="frame" x="18" y="97" width="395" height="19"/>
+                            <rect key="frame" x="18" y="97" width="396" height="19"/>
                             <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="This widget has no preferences" id="d50-5n-Fvy">
                                 <font key="font" textStyle="title3" name=".SFNS-Regular"/>
                                 <color key="textColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>

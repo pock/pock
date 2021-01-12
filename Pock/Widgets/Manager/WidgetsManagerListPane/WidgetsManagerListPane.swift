@@ -26,6 +26,7 @@ internal class WidgetsManagerListPane: NSViewController, PreferencePane {
 	@IBOutlet private weak var widgetNameLabel:    NSTextField!
 	@IBOutlet private weak var widgetAuthorLabel:  NSTextField!
 	@IBOutlet private weak var widgetVersionLabel: NSTextField!
+	@IBOutlet private weak var updateButton:	   NSButton!
     @IBOutlet private weak var uninstallButton:    NSButton!
 	@IBOutlet private weak var preferencesContainer: NSView!
 	@IBOutlet private weak var preferencesStatusLabel: NSTextField!
@@ -121,6 +122,29 @@ extension WidgetsManagerListPane {
 			}
 		}
     }
+	
+	/// Update widget
+	@IBAction private func updateSelectedWidget(_ sender: Any? = nil) {
+		guard let widget = selectedWidget, let newVersion = newVersion(for: widget) else {
+			return
+		}
+		do {
+			self.updateButton.isEnabled = false
+			self.updateButton.title = "Updating…".localized
+			self.uninstallButton.isEnabled = false
+			try PockHelper.default.openProcessControllerForWidget(configuration: .default(remoteURL: newVersion.link), {
+				PockUpdater.default.fetchNewVersions(ignoreCache: true) { [weak self] _ in
+					self?.reloadData(nil)
+				}
+			}, { success in
+				PockUpdater.default.fetchNewVersions(ignoreCache: true) { [weak self] _ in
+					self?.reloadData(nil)
+				}
+			})
+		} catch {
+			NSLog("[WidgetsManagerListPane]: Can't update widget. Reason: \(error.localizedDescription)")
+		}
+	}
     
     /// Uninstall widget
     @IBAction private func uninstallSelectedWidget(_ sender: Any? = nil) {
@@ -128,7 +152,18 @@ extension WidgetsManagerListPane {
             return
         }
         do {
-            try PockHelper.default.openProcessControllerForWidget(configuration: .default(process: .remove, widgetInfo: widget))
+			self.updateButton.isEnabled = false
+			self.uninstallButton.title = "Uninstalling…".localized
+			self.uninstallButton.isEnabled = false
+			try PockHelper.default.openProcessControllerForWidget(configuration: .default(process: .remove, widgetInfo: widget), {
+				PockUpdater.default.fetchNewVersions(ignoreCache: true) { [weak self] _ in
+					self?.reloadData(nil)
+				}
+			}, { success in
+				PockUpdater.default.fetchNewVersions(ignoreCache: true) { [weak self] _ in
+					self?.reloadData(nil)
+				}
+			})
         } catch {
             NSLog("[WidgetsManagerListPane]: Can't process widget. Reason: \(error.localizedDescription)")
         }
@@ -149,7 +184,10 @@ extension WidgetsManagerListPane {
     /// Update status label
     private func updateUIElements() {
         guard let widget = selectedWidget else {
+			self.updateButton.isEnabled = false
             self.uninstallButton.isEnabled = false
+			self.updateButton.title = "Update".localized
+			self.uninstallButton.title = "Uninstall".localized
 			self.widgetNameLabel.stringValue = ""
 			self.widgetAuthorLabel.stringValue = ""
 			self.widgetVersionLabel.stringValue = ""
@@ -159,6 +197,7 @@ extension WidgetsManagerListPane {
 			self.loadWindowForPreferenceClass(nil)
             return
         }
+		self.updateButton.isEnabled = newVersion(for: widget) != nil
         self.uninstallButton.isEnabled = true
 		self.widgetNameLabel.stringValue = widget.name
 		self.widgetAuthorLabel.stringValue = widget.author
@@ -189,12 +228,12 @@ extension WidgetsManagerListPane: NSTableViewDataSource {
 // MARK: Delegate
 extension WidgetsManagerListPane: NSTableViewDelegate {
 	
-	private func widgetCanBeUpdated(_ widget: WidgetInfo) -> Bool {
+	private func newVersion(for widget: WidgetInfo) -> Version? {
 		guard let newVersion = PockUpdater.default.latestReleases?.widgets.first(where: { $0.key.lowercased() == widget.id.lowercased()
 		})?.value else {
-			return false
+			return nil
 		}
-		return widget.version < newVersion.name
+		return widget.version < newVersion.name ? newVersion : nil
 	}
 	
     /// View for cell in row
@@ -208,7 +247,7 @@ extension WidgetsManagerListPane: NSTableViewDelegate {
         /// Setup cell
 		cell.status.image = NSImage(named: widget.loaded ? NSImage.statusAvailableName : NSImage.statusUnavailableName)
 		cell.name.stringValue = widget.name
-		cell.badge.isHidden = !widgetCanBeUpdated(widget)
+		cell.badge.isHidden = newVersion(for: widget) == nil
         /// Return
         return cell
     }
