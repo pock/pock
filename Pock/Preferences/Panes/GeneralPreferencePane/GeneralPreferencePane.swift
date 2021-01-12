@@ -23,7 +23,7 @@ final class GeneralPreferencePane: NSViewController, PreferencePane {
 	@IBOutlet weak var showTrackingArea:		 NSButton!
     
     /// Updates
-    var newVersionAvailable: (String, URL)?
+    var newVersionAvailable: Version?
 	
     /// Preferenceable
     var preferencePaneIdentifier: Preferences.PaneIdentifier = Preferences.PaneIdentifier.general
@@ -44,8 +44,8 @@ final class GeneralPreferencePane: NSViewController, PreferencePane {
         super.viewWillAppear()
         self.loadVersionNumber()
         self.setupCheckboxes()
-        if let newVersionNumber = self.newVersionAvailable?.0, let newVersionDownloadURL = self.newVersionAvailable?.1 {
-            self.showNewVersionAlert(versionNumber: newVersionNumber, downloadURL: newVersionDownloadURL)
+		if let newVersion = self.newVersionAvailable {
+			self.showNewVersionAlert(version: newVersion)
             self.newVersionAvailable = nil
         }
     }
@@ -98,9 +98,9 @@ final class GeneralPreferencePane: NSViewController, PreferencePane {
         self.checkForUpdatesButton.isEnabled = false
         self.checkForUpdatesButton.title     = "Checking…".localized
         
-        self.hasLatestVersion(completion: { [weak self] latestVersion, latestVersionDownloadURL in
-            if let latestVersion = latestVersion, let latestVersionDownloadURL = latestVersionDownloadURL {
-                self?.showNewVersionAlert(versionNumber: latestVersion, downloadURL: latestVersionDownloadURL)
+        self.hasLatestVersion(completion: { [weak self] latestVersion in
+            if let latestVersion = latestVersion {
+				self?.showNewVersionAlert(version: latestVersion)
             }else {
 				self?.showAlert(title: "Installed version".localized + ": \(PockUpdater.appVersion)", message: "Already on latest version".localized)
             }
@@ -113,12 +113,20 @@ final class GeneralPreferencePane: NSViewController, PreferencePane {
 }
 
 extension GeneralPreferencePane {
-    func showNewVersionAlert(versionNumber: String, downloadURL: URL) {
-        self.showAlert(title:      "New version available!".localized,
-                       message:    "Do you want to download version".localized + " \"\(versionNumber)\" " + "now?".localized,
-            buttons:    ["Download".localized, "Later".localized],
-            completion: { modalResponse in if modalResponse == .alertFirstButtonReturn { NSWorkspace.shared.open(downloadURL) }
-        })
+	func showNewVersionAlert(version: Version) {
+		async {
+			if let controller = UpdateAlertController(
+				newVersion: version,
+				fromVersion: PockUpdater.appVersion,
+				packageName: "Pock",
+				icon: NSImage(named: "pock-app-icon"),
+				updateHandle: {
+					NSWorkspace.shared.open(version.link)
+				}
+			) {
+				self.presentAsSheet(controller)
+			}
+		}
     }
     
     private func showAlert(title: String, message: String, buttons: [String] = [], completion: ((NSApplication.ModalResponse) -> Void)? = nil) {
@@ -140,21 +148,21 @@ extension GeneralPreferencePane {
         let download_link:  String
     }
     
-    func hasLatestVersion(completion: @escaping (String?, URL?) -> Void) {
+    func hasLatestVersion(completion: @escaping (Version?) -> Void) {
 		PockUpdater.default.fetchNewVersions(ignoreCache: true) { versions in
 			guard let core = versions?.core else {
-				completion(nil, nil)
+				completion(nil)
 				return
 			}
 			guard PockUpdater.appVersion < core.name else {
 				NSLog("[Pock]: Already on latest version: \(PockUpdater.appVersion)")
 				URLSession.shared.finishTasksAndInvalidate()
-				completion(nil, nil)
+				completion(nil)
 				return
 			}
 			NSLog("[Pock]: New version available: \(core.name)")
 			URLSession.shared.finishTasksAndInvalidate()
-			completion(core.name, core.link)
+			completion(core)
 		}
 	}
 }

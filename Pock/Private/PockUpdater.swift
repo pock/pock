@@ -11,6 +11,7 @@ import Foundation
 internal struct Version: Codable {
 	let name: String
 	let link: URL
+	let changelog: String
 }
 
 internal struct LatestReleases: Codable {
@@ -30,7 +31,7 @@ internal class PockUpdater {
 	/// Info
 	internal static var appVersion: String {
 		let base = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String ?? "???"
-		guard let build = buildVersion else {
+		guard let build = buildVersion, build != "1" else {
 			return base
 		}
 		return "\(base)-\(build)"

@@ -22,6 +22,8 @@
 		342D83ED2278D5CF000D79DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83B32278D5CF000D79DA /* AppDelegate.swift */; };
 		342D84002278D5CF000D79DA /* PKWidgetTouchBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D83CE2278D5CF000D79DA /* PKWidgetTouchBarItem.swift */; };
 		3435675B2381666F00E408EF /* WidgetsDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3435675A2381666F00E408EF /* WidgetsDispatcher.swift */; };
+		3446657525AE273500A08380 /* UpdateAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3446657325AE273500A08380 /* UpdateAlertController.swift */; };
+		3446657625AE273500A08380 /* UpdateAlertController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3446657425AE273500A08380 /* UpdateAlertController.xib */; };
 		345E2EC723C2691900A947FC /* WidgetsManagerListPane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345E2EC523C2691900A947FC /* WidgetsManagerListPane.swift */; };
 		345E2EC823C2691900A947FC /* WidgetsManagerListPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 345E2EC623C2691900A947FC /* WidgetsManagerListPane.xib */; };
 		34832418246FFA6F0035D2C2 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34832417246FFA6F0035D2C2 /* main.swift */; };
@@ -120,6 +122,8 @@
 		342D83B32278D5CF000D79DA /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		342D83CE2278D5CF000D79DA /* PKWidgetTouchBarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKWidgetTouchBarItem.swift; sourceTree = "<group>"; };
 		3435675A2381666F00E408EF /* WidgetsDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetsDispatcher.swift; sourceTree = "<group>"; };
+		3446657325AE273500A08380 /* UpdateAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAlertController.swift; sourceTree = "<group>"; };
+		3446657425AE273500A08380 /* UpdateAlertController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpdateAlertController.xib; sourceTree = "<group>"; };
 		345E2EC523C2691900A947FC /* WidgetsManagerListPane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetsManagerListPane.swift; sourceTree = "<group>"; };
 		345E2EC623C2691900A947FC /* WidgetsManagerListPane.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WidgetsManagerListPane.xib; sourceTree = "<group>"; };
 		347F335D22D0D5F600FA9805 /* login.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = login.framework; path = ../../../../../../../../../System/Library/PrivateFrameworks/login.framework; sourceTree = "<group>"; };
@@ -262,6 +266,7 @@
 			isa = PBXGroup;
 			children = (
 				342D83952278D5CF000D79DA /* MainWindow.xib */,
+				3446657A25AE273A00A08380 /* UpdateAlertController */,
 				34EF604C23C12E1700FBE9E7 /* AlertWindowController */,
 				34A0E79025A7C901002F58A1 /* OnBoardWindowController */,
 			);
@@ -345,6 +350,15 @@
 				342D83CE2278D5CF000D79DA /* PKWidgetTouchBarItem.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		3446657A25AE273A00A08380 /* UpdateAlertController */ = {
+			isa = PBXGroup;
+			children = (
+				3446657325AE273500A08380 /* UpdateAlertController.swift */,
+				3446657425AE273500A08380 /* UpdateAlertController.xib */,
+			);
+			path = UpdateAlertController;
 			sourceTree = "<group>";
 		};
 		345E2EC923C2692300A947FC /* WidgetsManagerListPane */ = {
@@ -632,6 +646,7 @@
 				3483241E246FFA8B0035D2C2 /* Relaunch in Resources */,
 				342D83DF2278D5CF000D79DA /* MainWindow.xib in Resources */,
 				34D6F6FC23C2DD7A0078181F /* widget_icon.icns in Resources */,
+				3446657625AE273500A08380 /* UpdateAlertController.xib in Resources */,
 				34A0E78C25A7C8FB002F58A1 /* OnBoardWindowController.xib in Resources */,
 				341F51D725ACB46A003D2674 /* PKWidgetCellView.xib in Resources */,
 				345E2EC823C2691900A947FC /* WidgetsManagerListPane.xib in Resources */,
@@ -755,6 +770,7 @@
 				6AF5DC9725A0DF56008351C9 /* PockApplication.m in Sources */,
 				342D83EC2278D5CF000D79DA /* OSDUIHelper.swift in Sources */,
 				3407F9DE22D0F0A60072E742 /* Extensions.swift in Sources */,
+				3446657525AE273500A08380 /* UpdateAlertController.swift in Sources */,
 				34CA452023C0C9C500C45B0D /* TouchBarHelper.swift in Sources */,
 				341F51DC25ACB513003D2674 /* PKWidgetCellView.swift in Sources */,
 				349F9C3723C39407002CEC1E /* PockWidgetDocument.swift in Sources */,

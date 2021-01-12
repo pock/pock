@@ -36,6 +36,8 @@ internal class WidgetsManagerListPane: NSViewController, PreferencePane {
     private var selectedWidget: WidgetInfo?
 	private var selectedPreferences: PKWidgetPreference?
 	
+	private var updateAlertController: UpdateAlertController?
+	
 	override var preferredMinimumSize: NSSize {
 		return NSSize(width: 650, height: 300)
 	}
@@ -197,13 +199,30 @@ extension WidgetsManagerListPane {
 			self.loadWindowForPreferenceClass(nil)
             return
         }
-		self.updateButton.isEnabled = newVersion(for: widget) != nil
+		let version = newVersion(for: widget)
+		self.updateButton.isEnabled = version != nil
         self.uninstallButton.isEnabled = true
 		self.widgetNameLabel.stringValue = widget.name
 		self.widgetAuthorLabel.stringValue = widget.author
 		self.widgetVersionLabel.stringValue = widget.version
 		self.loadWindowForPreferenceClass(widget.preferenceClass as? PKWidgetPreference.Type)
+		self.showUpdateAlert(for: widget, version: version)
     }
+	
+	private func showUpdateAlert(for widget: WidgetInfo, version: Version?) {
+		guard let version = version,
+			  let controller = UpdateAlertController(
+				newVersion: version,
+				fromVersion: widget.version,
+				packageName: "\(widget.name) Widget",
+				updateHandle: { [weak self] in
+					self?.updateSelectedWidget()
+				}
+			  ) else {
+			return
+		}
+		self.presentAsSheet(controller)
+	}
 
 }
 

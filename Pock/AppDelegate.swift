@@ -246,9 +246,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     /// Check for updates
     @objc private func checkForUpdates() {
-        generalPreferencePane.hasLatestVersion(completion: { [weak self] versionNumber, downloadURL in
-            guard let versionNumber = versionNumber, let downloadURL = downloadURL else { return }
-            self?.generalPreferencePane.newVersionAvailable = (versionNumber, downloadURL)
+        generalPreferencePane.hasLatestVersion(completion: { [weak self] latestVersion in
+            guard let latestVersion = latestVersion else {
+				return
+			}
+            self?.generalPreferencePane.newVersionAvailable = (latestVersion)
             async { [weak self] in
                 self?.openPreferences()
             }
