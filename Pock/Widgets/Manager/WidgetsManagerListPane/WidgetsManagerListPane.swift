@@ -56,7 +56,14 @@ internal class WidgetsManagerListPane: NSViewController, PreferencePane {
 	
 	override func viewWillDisappear() {
 		super.viewWillDisappear()
-		unloadWindowForPreference(title: nil)
+		/// Clear UI
+		widgets = []
+		selectedWidget = nil
+		async { [weak self] in
+			self?.unloadWindowForPreference(title: "This widget has no preferences".localized)
+			self?.tableView.reloadData()
+			self?.updateUIElements()
+		}
 	}
 	
 	deinit {
@@ -216,7 +223,7 @@ extension WidgetsManagerListPane {
 		guard let version = version,
 			  let controller = UpdateAlertController(
 				newVersion: version,
-				fromVersion: widget.version,
+				fromVersion: widget.version + widget.build,
 				packageName: "\(widget.name) Widget",
 				updateHandle: { [weak self] in
 					self?.updateSelectedWidget()
@@ -255,7 +262,7 @@ extension WidgetsManagerListPane: NSTableViewDelegate {
 		})?.value else {
 			return nil
 		}
-		return widget.version < newVersion.name ? newVersion : nil
+		return (widget.version + widget.build) < newVersion.name ? newVersion : nil
 	}
 	
     /// View for cell in row
