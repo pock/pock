@@ -21,7 +21,7 @@ public class ProcessWidgetController: PKTouchBarMouseController {
     
     // MARK: Widget Process
     public enum Process {
-        case unknown, download, install, remove, empty
+        case unknown, download, install, update, remove, empty
     }
     
     // MARK: Configutation
@@ -36,8 +36,8 @@ public class ProcessWidgetController: PKTouchBarMouseController {
         var name:          String?
         var author:        String?
         var label:         String?
-        public static func `default`(remoteURL: URL?) -> Configuration {
-            return Configuration(process: .download, remoteURL: remoteURL, widgetInfo: nil, skipConfirm: false, forceDownload: false, forceReload: false, needsReload: true)
+		public static func `default`(remoteURL: URL?, process: Process = .download) -> Configuration {
+            return Configuration(process: process, remoteURL: remoteURL, widgetInfo: nil, skipConfirm: false, forceDownload: false, forceReload: false, needsReload: true)
         }
         public static func `default`(process: Process, widgetInfo: WidgetInfo?) -> Configuration {
             return Configuration(process: process, remoteURL: nil, widgetInfo: widgetInfo, skipConfirm: false, forceDownload: false, forceReload: false, needsReload: true)
@@ -73,11 +73,11 @@ public class ProcessWidgetController: PKTouchBarMouseController {
         set {
             configuration.process = newValue
             switch newValue {
-            case .install:
+			case .install:
                 state = .install
             case .remove:
                 state = .remove
-            case .download:
+            case .download, .update:
                 state = .download
             default:
                 state = .unknown
@@ -161,7 +161,7 @@ public class ProcessWidgetController: PKTouchBarMouseController {
             async(after: 0.5) { [weak self] in
                 self?.addIconViewAnimation()
             }
-        case .install:
+		case .install:
             if configuration.skipConfirm {
                 installLocalWidget()
                 return
@@ -236,14 +236,15 @@ public class ProcessWidgetController: PKTouchBarMouseController {
             let processName: String = {
                 switch process {
                 case .unknown:  return "WTF?".localized
-                case .install:  return "installed".localized
-                case .remove:   return "removed".localized
-                case .download: return "downloaded".localized
+                case .install:  return "Installed".localized
+				case .update:   return "Updated".localized
+                case .remove:   return "Removed".localized
+                case .download: return "Downloaded".localized
 				case.empty:		return ""
                 }
             }()
             cancelButton.isHidden   = true
-            infoLabel.stringValue   = success ? "Done!".localized : "`\(widgetName)`" + "can't be \(processName).".localized
+            infoLabel.stringValue   = success ? "\(processName)!".localized : "`\(widgetName)`" + "can't be \(processName).".localized
             infoLabel.stringValue  += " Tap to reload Pock".localized
             actionButton.title      = "Reload".localized
             actionButton.tag        = 3
@@ -341,10 +342,7 @@ extension ProcessWidgetController {
         state = .processing
         background { [weak self] in
             do {
-                try? WidgetsDispatcher.default.removeWidget(withName: self?.widgetName)
-                sleep(2)
                 try WidgetsDispatcher.default.installWidget(at: self?.configuration.widgetInfo?.path)
-                NotificationCenter.default.post(name: .didInstallWidget, object: nil)
                 async { [weak self] in
                     self?.state = .completed(success: true)
                 }

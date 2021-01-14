@@ -10,12 +10,6 @@ import Foundation
 import PockKit
 import Zip
 
-extension NSNotification.Name {
-    static let didLoadInstalledWidgets = NSNotification.Name("didLoadInstalledWidgets")
-    static let didInstallWidget        = NSNotification.Name("didInstallWidget")
-    static let didUninstallWidget      = NSNotification.Name("didUninstallWidget")
-}
-
 public final class WidgetsDispatcher {
     
     /// Configuration
@@ -106,7 +100,6 @@ public final class WidgetsDispatcher {
             try? loadWidgetAt(path: widgetBundleURL)
         }
         completion(loadedWidgets)
-        NotificationCenter.default.post(name: .didLoadInstalledWidgets, object: nil)
     }
     
 }
@@ -115,9 +108,9 @@ public final class WidgetsDispatcher {
 extension WidgetsDispatcher {
     
     private func loadWidgetAt(path: URL) throws {
-        if let widgetBundle = Bundle(url: path) {
+		if let widgetBundle = Bundle(url: path) {
             if let clss = widgetBundle.principalClass as? PKWidget.Type {
-                self.loadedWidgets.append(clss.init())
+				self.loadedWidgets.append(clss.init())
                 return
             }
         }
@@ -135,11 +128,30 @@ extension WidgetsDispatcher {
         guard let directory = directory, let name = name else {
             throw NSError(domain: "WidgetDispatcher:installWidget", code: 404, userInfo: ["description": "Can't read widgets bundle URL."])
         }
-        if configuration.shouldDeleteAfterInstall {
-            try FileManager.default.moveItem(atPath: directory, toPath: "\(widgetsPath)/\(name)")
-        }else {
-            try FileManager.default.copyItem(atPath: directory, toPath: "\(widgetsPath)/\(name)")
-        }
+		let path = "\(widgetsPath)/\(name)"
+		if fileExists(at: path, isDirectory: true) {
+			try FileManager.default.moveItem(atPath: path, toPath: "\(path).tmp")
+		}
+		defer {
+			if fileExists(at: path, isDirectory: true) {
+				Bundle(path: "\(path).tmp")?.unload()
+				try? FileManager.default.removeItem(atPath: "\(path).tmp")
+			}else {
+				try? FileManager.default.moveItem(atPath: "\(path).tmp", toPath: path)
+			}
+		}
+		do {
+			if configuration.shouldDeleteAfterInstall {
+				try FileManager.default.moveItem(atPath: directory, toPath: path)
+			}else {
+				try FileManager.default.copyItem(atPath: directory, toPath: path)
+			}
+			async { [weak self, path] in
+				try? self?.loadWidgetAt(path: URL(fileURLWithPath: path))
+			}
+		} catch {
+			throw error
+		}
     }
     
     internal func removeWidget(withName name: String?) throws {
@@ -154,17 +166,6 @@ extension WidgetsDispatcher {
             throw NSError(domain: "WidgetDispatcher:removeWidget", code: 404, userInfo: ["description": "Can't find bundle for widget at path: \"\(path ?? "Unknown")\""])
         }
         try FileManager.default.removeItem(atPath: widgetPath)
-        NotificationCenter.default.post(name: .didUninstallWidget, object: nil)
-    }
-    
-    @discardableResult
-    internal func updateWidget(withName name: String?, with newItemPath: String?) throws -> URL? {
-        guard let name = name, let widgetPath = getWidgetPath(for: name), let newItemPath = newItemPath else {
-            throw NSError(domain: "WidgetDispatcher:removeWidget", code: 500, userInfo: ["description": "Invalid passed name: `nil`"])
-        }
-        let pathURL    = URL(fileURLWithPath: widgetPath)
-        let newItemURL = URL(fileURLWithPath: newItemPath)
-        return try FileManager.default.replaceItemAt(pathURL, withItemAt: newItemURL)
     }
     
 }

@@ -14,6 +14,7 @@ public struct WidgetInfo {
     let id:        String
     let name:      String
     let version:   String
+	let build:	   String
     let author:    String
     let className: String
     var loaded:    Bool
@@ -33,6 +34,11 @@ public struct WidgetInfo {
             self.name      = widgetBundle.object(forInfoDictionaryKey: "CFBundleName")               as? String ?? "Unknown"
             self.version   = widgetBundle.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "Unknown"
             self.author    = widgetBundle.object(forInfoDictionaryKey: "PKWidgetAuthor")             as? String ?? "Unknown"
+			if let build = widgetBundle.object(forInfoDictionaryKey: "CFBundleVersion") as? String {
+				self.build = build == "1" ? "" : "-\(build)"
+			}else {
+				self.build = ""
+			}
             self.className = className
             self.loaded  = false
             /// Preference

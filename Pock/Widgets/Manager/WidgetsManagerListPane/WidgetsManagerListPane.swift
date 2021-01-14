@@ -33,6 +33,7 @@ internal class WidgetsManagerListPane: NSViewController, PreferencePane {
     
     // MARK: Data
     private var widgets: [WidgetInfo] = []
+	private var disabledWidgets: Set<String> = []
     private var selectedWidget: WidgetInfo?
 	private var selectedPreferences: PKWidgetPreference?
 	
@@ -46,20 +47,6 @@ internal class WidgetsManagerListPane: NSViewController, PreferencePane {
     override func viewDidLoad() {
         super.viewDidLoad()
 		self.tableView.register(NSNib(nibNamed: "PKWidgetCellView", bundle: .main), forIdentifier: CellIdentifiers.widgetCell)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(reloadData(_:)),
-                                               name: .didLoadInstalledWidgets,
-                                               object: nil)
-        
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(reloadData(_:)),
-                                               name: .didInstallWidget,
-                                               object: nil)
-        
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(reloadData(_:)),
-                                               name: .didUninstallWidget,
-                                               object: nil)
     }
     
     override func viewWillAppear() {
@@ -69,7 +56,7 @@ internal class WidgetsManagerListPane: NSViewController, PreferencePane {
 	
 	override func viewWillDisappear() {
 		super.viewWillDisappear()
-		loadWindowForPreferenceClass(nil)
+		unloadWindowForPreference(title: nil)
 	}
 	
 	deinit {
@@ -86,15 +73,19 @@ extension WidgetsManagerListPane {
     @IBAction private func reloadData(_ sender: Any? = nil) {
         /// Clear UI
         widgets = []
-        selectedWidget = nil
+		selectedWidget = nil
         async { [weak self] in
+			self?.unloadWindowForPreference(title: "This widget has no preferences".localized)
             self?.tableView.reloadData()
             self?.updateUIElements()
 			/// Fetch new versions first
-			PockUpdater.default.fetchNewVersions { _ in
+			PockUpdater.default.fetchNewVersions(ignoreCache: false) { _ in
 				/// Fetch installed widgets
 				self?.fetchInstalledWidgets() { [weak self] widgets in
 					self?.widgets = widgets
+					if !widgets.contains(where: { $0.id == self?.selectedWidget?.id }) {
+						self?.selectedWidget = nil
+					}
 					/// Update UI on main thread
 					async { [weak self] in
 						self?.tableView.reloadData()
@@ -106,12 +97,9 @@ extension WidgetsManagerListPane {
     }
     
     /// Open window for preference class
-    private func loadWindowForPreferenceClass(_ clss: PKWidgetPreference.Type?) {
-		self.selectedPreferences?.view.removeFromSuperview()
-		self.selectedPreferences?.removeFromParent()
-		self.selectedPreferences = nil
-		self.preferencesStatusLabel.stringValue = "This widget has no preferences".localized
-		if let clss = clss {
+	private func loadPreferencesWindow(for widget: WidgetInfo?) {
+		self.unloadWindowForPreference(title: "This widget has no preferences".localized)
+		if let widget = widget, let clss = widget.preferenceClass as? PKWidgetPreference.Type {
 			self.selectedPreferences = clss.init(nibName: clss.nibName, bundle: Bundle(for: clss))
 			if let controller = self.selectedPreferences {
 				self.preferencesStatusLabel.stringValue = ""
@@ -124,24 +112,34 @@ extension WidgetsManagerListPane {
 			}
 		}
     }
+	private func unloadWindowForPreference(title: String?) {
+		self.selectedPreferences?.view.removeFromSuperview()
+		self.selectedPreferences?.removeFromParent()
+		self.selectedPreferences = nil
+		self.preferencesStatusLabel.stringValue = title ?? "\"Houston, we had a problem here\"".localized
+	}
 	
 	/// Update widget
 	@IBAction private func updateSelectedWidget(_ sender: Any? = nil) {
-		guard let widget = selectedWidget, let newVersion = newVersion(for: widget) else {
+		guard let widget = selectedWidget, let newVersion = newVersion(for: widget), let index = widgets.firstIndex(where: { $0.id == widget.id }) else {
 			return
 		}
 		do {
+			self.disabledWidgets.insert(widget.id)
+			self.tableView.reloadData(forRowIndexes: IndexSet(integer: index), columnIndexes: IndexSet(integer: 0))
+			self.unloadWindowForPreference(title: "\(widget.name) Widget " + "will be updated".localized)
 			self.updateButton.isEnabled = false
 			self.updateButton.title = "Updating…".localized
 			self.uninstallButton.isEnabled = false
-			try PockHelper.default.openProcessControllerForWidget(configuration: .default(remoteURL: newVersion.link), {
-				PockUpdater.default.fetchNewVersions(ignoreCache: true) { [weak self] _ in
-					self?.reloadData(nil)
-				}
-			}, { success in
-				PockUpdater.default.fetchNewVersions(ignoreCache: true) { [weak self] _ in
-					self?.reloadData(nil)
-				}
+			try PockHelper.default.openProcessControllerForWidget(configuration: .default(remoteURL: newVersion.link, process: .update), { [weak self, index] in
+				self?.disabledWidgets.remove(widget.id)
+				self?.tableView.reloadData(forRowIndexes: IndexSet(integer: index), columnIndexes: IndexSet(integer: 0))
+				self?.loadPreferencesWindow(for: self?.selectedWidget)
+				self?.updateUIElements()
+			}, { [weak self] _ in
+				self?.unloadWindowForPreference(title: "Reload Pock to refresh widgets preferences".localized)
+				self?.tableView.reloadData(forRowIndexes: IndexSet(integer: index), columnIndexes: IndexSet(integer: 0))
+				self?.updateUIElements()
 			})
 		} catch {
 			NSLog("[WidgetsManagerListPane]: Can't update widget. Reason: \(error.localizedDescription)")
@@ -150,21 +148,27 @@ extension WidgetsManagerListPane {
     
     /// Uninstall widget
     @IBAction private func uninstallSelectedWidget(_ sender: Any? = nil) {
-        guard let widget = selectedWidget else {
+		guard let widget = selectedWidget, let index = widgets.firstIndex(where: { $0.id == widget.id }) else {
             return
         }
         do {
+			self.disabledWidgets.insert(widget.id)
+			self.tableView.reloadData(forRowIndexes: IndexSet(integer: index), columnIndexes: IndexSet(integer: 0))
+			self.unloadWindowForPreference(title: "\(widget.name) Widget " + "will be removed".localized)
 			self.updateButton.isEnabled = false
 			self.uninstallButton.title = "Uninstalling…".localized
 			self.uninstallButton.isEnabled = false
-			try PockHelper.default.openProcessControllerForWidget(configuration: .default(process: .remove, widgetInfo: widget), {
-				PockUpdater.default.fetchNewVersions(ignoreCache: true) { [weak self] _ in
-					self?.reloadData(nil)
-				}
-			}, { success in
-				PockUpdater.default.fetchNewVersions(ignoreCache: true) { [weak self] _ in
-					self?.reloadData(nil)
-				}
+			try PockHelper.default.openProcessControllerForWidget(configuration: .default(process: .remove, widgetInfo: widget), { [weak self, index] in
+				self?.disabledWidgets.remove(widget.id)
+				self?.tableView.reloadData(forRowIndexes: IndexSet(integer: index), columnIndexes: IndexSet(integer: 0))
+				self?.loadPreferencesWindow(for: self?.selectedWidget)
+				self?.updateUIElements()
+			}, { [weak self] _ in
+				self?.disabledWidgets.remove(widget.id)
+				self?.widgets.remove(at: index)
+				self?.tableView.removeRows(at: IndexSet(integer: index), withAnimation: .slideLeft)
+				self?.loadPreferencesWindow(for: nil)
+				self?.updateUIElements()
 			})
         } catch {
             NSLog("[WidgetsManagerListPane]: Can't process widget. Reason: \(error.localizedDescription)")
@@ -185,28 +189,27 @@ extension WidgetsManagerListPane {
 
     /// Update status label
     private func updateUIElements() {
+		self.updateButton.title = "Update".localized
+		self.uninstallButton.title = "Uninstall".localized
+		self.widgetNameLabel.placeholderString = "Widget Name".localized
+		self.widgetAuthorLabel.placeholderString = "Author".localized
+		self.widgetVersionLabel.placeholderString = "Version".localized
         guard let widget = selectedWidget else {
 			self.updateButton.isEnabled = false
             self.uninstallButton.isEnabled = false
-			self.updateButton.title = "Update".localized
-			self.uninstallButton.title = "Uninstall".localized
 			self.widgetNameLabel.stringValue = ""
 			self.widgetAuthorLabel.stringValue = ""
 			self.widgetVersionLabel.stringValue = ""
-			self.widgetNameLabel.placeholderString = "Widget Name"
-			self.widgetAuthorLabel.placeholderString = "Author"
-			self.widgetVersionLabel.placeholderString = "Version"
-			self.loadWindowForPreferenceClass(nil)
+			self.loadPreferencesWindow(for: nil)
             return
         }
+		let disabled = disabledWidgets.contains(where: { $0 == widget.id })
 		let version = newVersion(for: widget)
-		self.updateButton.isEnabled = version != nil
-        self.uninstallButton.isEnabled = true
+		self.updateButton.isEnabled = disabled == false && version != nil
+        self.uninstallButton.isEnabled = disabled == false
 		self.widgetNameLabel.stringValue = widget.name
 		self.widgetAuthorLabel.stringValue = widget.author
-		self.widgetVersionLabel.stringValue = widget.version
-		self.loadWindowForPreferenceClass(widget.preferenceClass as? PKWidgetPreference.Type)
-		self.showUpdateAlert(for: widget, version: version)
+		self.widgetVersionLabel.stringValue = widget.version + widget.build
     }
 	
 	private func showUpdateAlert(for widget: WidgetInfo, version: Version?) {
@@ -258,15 +261,17 @@ extension WidgetsManagerListPane: NSTableViewDelegate {
     /// View for cell in row
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         /// Check for cell
-		guard let cell = tableView.makeView(withIdentifier: CellIdentifiers.widgetCell, owner: nil) as? PKWidgetCellView else {
+		guard widgets.count > row, let cell = tableView.makeView(withIdentifier: CellIdentifiers.widgetCell, owner: nil) as? PKWidgetCellView else {
             return nil
         }
         /// Get item
-        let widget = widgets[row]
+        let widget   = widgets[row]
+		let disabled = disabledWidgets.contains(where: { $0 == widget.id })
         /// Setup cell
-		cell.status.image = NSImage(named: widget.loaded ? NSImage.statusAvailableName : NSImage.statusUnavailableName)
+		cell.status.image 	  = NSImage(named: widget.loaded ? NSImage.statusAvailableName : NSImage.statusUnavailableName)
 		cell.name.stringValue = widget.name
-		cell.badge.isHidden = newVersion(for: widget) == nil
+		cell.name.alphaValue  = disabled ? 0.475 : 1
+		cell.badge.isHidden   = disabled || newVersion(for: widget) == nil
         /// Return
         return cell
     }
@@ -274,7 +279,16 @@ extension WidgetsManagerListPane: NSTableViewDelegate {
     /// Did select row
     func tableViewSelectionDidChange(_ notification: Notification) {
         self.selectedWidget = tableView.selectedRow > -1 ? widgets[tableView.selectedRow] : nil
+		guard let selectedWidget = selectedWidget else {
+			return
+		}
         self.updateUIElements()
+		if disabledWidgets.contains(where: { $0 == selectedWidget.id }) == false {
+			self.loadPreferencesWindow(for: selectedWidget)
+			self.showUpdateAlert(for: selectedWidget, version: newVersion(for: selectedWidget))
+		}else {
+			self.unloadWindowForPreference(title: "Reload Pock to refresh widgets preferences".localized)
+		}
     }
     
 }
