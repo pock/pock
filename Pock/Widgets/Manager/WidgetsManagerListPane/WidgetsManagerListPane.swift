@@ -28,13 +28,19 @@ internal class WidgetsManagerListPane: NSViewController, PreferencePane {
 	@IBOutlet private weak var widgetVersionLabel: NSTextField!
 	@IBOutlet private weak var updateButton:	   NSButton!
     @IBOutlet private weak var uninstallButton:    NSButton!
-	@IBOutlet private weak var preferencesContainer: NSView!
+	@IBOutlet private weak var unableToUpdateLabel:    NSTextField!
+	@IBOutlet private weak var preferencesContainer:   NSView!
 	@IBOutlet private weak var preferencesStatusLabel: NSTextField!
     
     // MARK: Data
     private var widgets: [WidgetInfo] = []
 	private var disabledWidgets: Set<String> = []
-    private var selectedWidget: WidgetInfo?
+	private var selectedWidget: WidgetInfo? {
+		didSet {
+			selectedWidgetNewVersion = PockUpdater.default.newVersion(for: selectedWidget)
+		}
+	}
+	private var selectedWidgetNewVersion: VersionModel?
 	private var selectedPreferences: PKWidgetPreference?
 	
 	private var updateAlertController: UpdateAlertController?
@@ -47,6 +53,7 @@ internal class WidgetsManagerListPane: NSViewController, PreferencePane {
     override func viewDidLoad() {
         super.viewDidLoad()
 		self.tableView.register(NSNib(nibNamed: "PKWidgetCellView", bundle: .main), forIdentifier: CellIdentifiers.widgetCell)
+		self.updateUIElements()
     }
     
     override func viewWillAppear() {
@@ -86,7 +93,7 @@ extension WidgetsManagerListPane {
             self?.tableView.reloadData()
             self?.updateUIElements()
 			/// Fetch new versions first
-			PockUpdater.default.fetchNewVersions(ignoreCache: false) { _ in
+			PockUpdater.default.fetchNewVersions(ignoreCache: true) { _ in
 				/// Fetch installed widgets
 				self?.fetchInstalledWidgets() { [weak self] widgets in
 					self?.widgets = widgets
@@ -103,6 +110,15 @@ extension WidgetsManagerListPane {
         }
     }
     
+	private func updatePreferredContentSize() {
+		let frame = preferencesContainer.convert(preferencesContainer.visibleRect, to: view)
+		self.preferredContentSize = NSSize(
+			width: frame.origin.x + frame.size.width,
+			height: frame.origin.y + frame.size.height
+		)
+		self.view.layout()
+	}
+	
     /// Open window for preference class
 	private func loadPreferencesWindow(for widget: WidgetInfo?) {
 		self.unloadWindowForPreference(title: "This widget has no preferences".localized)
@@ -110,12 +126,15 @@ extension WidgetsManagerListPane {
 			self.selectedPreferences = clss.init(nibName: clss.nibName, bundle: Bundle(for: clss))
 			if let controller = self.selectedPreferences {
 				self.preferencesStatusLabel.stringValue = ""
+				self.preferencesStatusLabel.isHidden = true
 				addChild(controller)
 				preferencesContainer.addSubview(controller.view)
 				controller.view.snp.makeConstraints {
 					$0.edges.equalToSuperview()
 				}
-				view.setNeedsDisplay(view.visibleRect)
+				async { [weak self] in
+					self?.updatePreferredContentSize()
+				}
 			}
 		}
     }
@@ -124,11 +143,12 @@ extension WidgetsManagerListPane {
 		self.selectedPreferences?.removeFromParent()
 		self.selectedPreferences = nil
 		self.preferencesStatusLabel.stringValue = title ?? "\"Houston, we had a problem here\"".localized
+		self.preferencesStatusLabel.isHidden = false
 	}
 	
 	/// Update widget
 	@IBAction private func updateSelectedWidget(_ sender: Any? = nil) {
-		guard let widget = selectedWidget, let newVersion = newVersion(for: widget), let index = widgets.firstIndex(where: { $0.id == widget.id }) else {
+		guard let widget = selectedWidget, let newVersion = selectedWidgetNewVersion?.version, let index = widgets.firstIndex(where: { $0.id == widget.id }) else {
 			return
 		}
 		do {
@@ -196,6 +216,7 @@ extension WidgetsManagerListPane {
 
     /// Update status label
     private func updateUIElements() {
+		self.updateButton.isHighlighted = true
 		self.updateButton.title = "Update".localized
 		self.uninstallButton.title = "Uninstall".localized
 		self.widgetNameLabel.placeholderString = "Widget Name".localized
@@ -207,16 +228,18 @@ extension WidgetsManagerListPane {
 			self.widgetNameLabel.stringValue = ""
 			self.widgetAuthorLabel.stringValue = ""
 			self.widgetVersionLabel.stringValue = ""
+			self.unableToUpdateLabel.isHidden = true
 			self.loadPreferencesWindow(for: nil)
             return
         }
 		let disabled = disabledWidgets.contains(where: { $0 == widget.id })
-		let version = newVersion(for: widget)
-		self.updateButton.isEnabled = disabled == false && version != nil
+		self.updateButton.isEnabled = disabled == false && selectedWidgetNewVersion?.version != nil
         self.uninstallButton.isEnabled = disabled == false
 		self.widgetNameLabel.stringValue = widget.name
 		self.widgetAuthorLabel.stringValue = widget.author
 		self.widgetVersionLabel.stringValue = widget.version + widget.build
+		self.unableToUpdateLabel.stringValue = selectedWidgetNewVersion?.error ?? ""
+		self.unableToUpdateLabel.isHidden = selectedWidgetNewVersion?.error == nil
     }
 	
 	private func showUpdateAlert(for widget: WidgetInfo, version: Version?) {
@@ -257,14 +280,6 @@ extension WidgetsManagerListPane: NSTableViewDataSource {
 // MARK: Delegate
 extension WidgetsManagerListPane: NSTableViewDelegate {
 	
-	private func newVersion(for widget: WidgetInfo) -> Version? {
-		guard let newVersion = PockUpdater.default.latestReleases?.widgets.first(where: { $0.key.lowercased() == widget.id.lowercased()
-		})?.value else {
-			return nil
-		}
-		return (widget.version + widget.build) < newVersion.name ? newVersion : nil
-	}
-	
     /// View for cell in row
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         /// Check for cell
@@ -278,7 +293,7 @@ extension WidgetsManagerListPane: NSTableViewDelegate {
 		cell.status.image 	  = NSImage(named: widget.loaded ? NSImage.statusAvailableName : NSImage.statusUnavailableName)
 		cell.name.stringValue = widget.name
 		cell.name.alphaValue  = disabled ? 0.475 : 1
-		cell.badge.isHidden   = disabled || newVersion(for: widget) == nil
+		cell.badge.isHidden   = disabled || PockUpdater.default.newVersion(for: widget) == nil
         /// Return
         return cell
     }
@@ -292,7 +307,7 @@ extension WidgetsManagerListPane: NSTableViewDelegate {
         self.updateUIElements()
 		if disabledWidgets.contains(where: { $0 == selectedWidget.id }) == false {
 			self.loadPreferencesWindow(for: selectedWidget)
-			self.showUpdateAlert(for: selectedWidget, version: newVersion(for: selectedWidget))
+			self.showUpdateAlert(for: selectedWidget, version: selectedWidgetNewVersion?.version)
 		}else {
 			self.unloadWindowForPreference(title: "Reload Pock to refresh widgets preferences".localized)
 		}

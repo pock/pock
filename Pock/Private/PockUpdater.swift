@@ -12,6 +12,12 @@ internal struct Version: Codable {
 	let name: String
 	let link: URL
 	let changelog: String
+	let core_min: String?
+}
+
+internal struct VersionModel {
+	let version: Version?
+	let error: String?
 }
 
 internal struct LatestReleases: Codable {
@@ -69,6 +75,19 @@ internal class PockUpdater {
 				completion?(response)
 			}).resume()
 		}
+	}
+	
+	/// Get new version for given widget, if any.
+	internal func newVersion(for widget: WidgetInfo?) -> VersionModel? {
+		guard let widget = widget, let newVersion = PockUpdater.default.latestReleases?.widgets.first(where: { $0.key.lowercased() == widget.id.lowercased() })?.value else {
+			return nil
+		}
+		if let core_min = newVersion.core_min {
+			if PockUpdater.appVersion < core_min {
+				return VersionModel(version: nil, error: "A new version for this widget is available, but your version of Pock is not supported. Please, update to the minimum supported version (\(core_min)) to install this update.")
+			}
+		}
+		return (widget.version + widget.build) < newVersion.name ? VersionModel(version: newVersion, error: nil) : nil
 	}
 	
 }
