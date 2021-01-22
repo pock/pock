@@ -129,12 +129,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
         #endif
-		
-		/// Keep reference to user preferred presentation mode
-		if Defaults[.preferredPresentationMode] != nil {
-			TouchBarHelper.setPresentationMode(to: .preferred)
-		}
-		Defaults[.preferredPresentationMode] = TouchBarHelper.currentPresentationMode.rawValue
         
         /// Initialise Pock
 		self.initialize()
@@ -219,7 +213,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @objc private func togglePock() {
-        if navController == nil {
+		if navController == nil || NSFunctionRow.activeFunctionRows().count == 1 {
             reloadPock()
         }else {
             navController?.dismiss()

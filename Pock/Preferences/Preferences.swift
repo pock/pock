@@ -35,5 +35,6 @@ extension Defaults.Keys {
 	static let enableMouseSupport    = Defaults.Key<Bool>("enableMouseSupport",    default: true)
 	static let showMouseTrackingArea = Defaults.Key<Bool>("showMouseTrackingArea", default: false)
 	/// Presentation mode
+	static let disableControlStrip		 = Defaults.Key<Bool>("disableControlStrip", default: true)
 	static let preferredPresentationMode = Defaults.Key<String?>("preferredPresentationMode", default: nil)
 }

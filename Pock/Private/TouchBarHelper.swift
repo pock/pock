@@ -67,6 +67,12 @@ public class TouchBarHelper {
     
 	@discardableResult
 	internal static func setPresentationMode(to mode: PresentationMode) -> Bool {
+		guard currentPresentationMode != mode else {
+			#if DEBUG
+			NSLog("Touch Bar Presentation mode already setted to: \(mode)")
+			#endif
+			return false
+		}
 		let currentMode = currentPresentationMode
 		CFPreferencesSetAppValue(kPresentationModeGlobal, mode.rawValue as CFString, kTouchBarAgentIdentifier)
 		let result = CFPreferencesAppSynchronize(kTouchBarAgentIdentifier)

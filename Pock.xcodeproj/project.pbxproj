@@ -1013,6 +1013,46 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MARKETING_VERSION = 0.8.1;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-l\"c++\"",
+					"-l\"sqlite3\"",
+					"-l\"z\"",
+					"-framework",
+					"\"AppCenter\"",
+					"-framework",
+					"\"AppCenterAnalytics\"",
+					"-framework",
+					"\"AppCenterCrashes\"",
+					"-framework",
+					"\"AppKit\"",
+					"-framework",
+					"\"Carbon\"",
+					"-framework",
+					"\"Cocoa\"",
+					"-framework",
+					"\"Defaults\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"LoginServiceKit\"",
+					"-framework",
+					"\"Magnet\"",
+					"-framework",
+					"\"PockKit\"",
+					"-framework",
+					"\"Preferences\"",
+					"-framework",
+					"\"Sauce\"",
+					"-framework",
+					"\"SnapKit\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"Zip\"",
+					"-weak_framework",
+					"\"Combine\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pigigaldi.pock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1042,6 +1082,46 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MARKETING_VERSION = 0.8.1;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-l\"c++\"",
+					"-l\"sqlite3\"",
+					"-l\"z\"",
+					"-framework",
+					"\"AppCenter\"",
+					"-framework",
+					"\"AppCenterAnalytics\"",
+					"-framework",
+					"\"AppCenterCrashes\"",
+					"-framework",
+					"\"AppKit\"",
+					"-framework",
+					"\"Carbon\"",
+					"-framework",
+					"\"Cocoa\"",
+					"-framework",
+					"\"Defaults\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"LoginServiceKit\"",
+					"-framework",
+					"\"Magnet\"",
+					"-framework",
+					"\"PockKit\"",
+					"-framework",
+					"\"Preferences\"",
+					"-framework",
+					"\"Sauce\"",
+					"-framework",
+					"\"SnapKit\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"Zip\"",
+					"-weak_framework",
+					"\"Combine\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pigigaldi.pock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

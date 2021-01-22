@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Defaults
 import PockKit
 
 /// Custom identifiers
@@ -86,17 +87,18 @@ class PockMainController: PKTouchBarMouseController {
 			}
 		}
 	}
-    
-	override func dismiss() {
-		TouchBarHelper.setPresentationMode(to: .preferred)
-		super.dismiss()
-	}
 	
     override func present() {
-		/// Keep reference to user preferred presentation mode
-		TouchBarHelper.setPresentationMode(to: .app)
-        self.isVisible = true
-		self.presentWithPlacement(placement: 1)
+		defer {
+			self.isVisible = true
+		}
+		if Defaults[.disableControlStrip] {
+			TouchBarHelper.setPresentationMode(to: .app)
+			self.presentWithPlacement(placement: 1)
+		}else {
+			TouchBarHelper.setPresentationMode(to: .appWithControlStrip)
+			self.presentWithPlacement(placement: 0)
+		}
     }
     
     private func presentWithPlacement(placement: Int64) {

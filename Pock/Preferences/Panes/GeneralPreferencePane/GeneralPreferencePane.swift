@@ -14,13 +14,14 @@ import LoginServiceKit
 final class GeneralPreferencePane: NSViewController, PreferencePane {
     
     /// UI
-    @IBOutlet weak var versionLabel:             NSTextField!
-    @IBOutlet weak var launchAtLoginCheckbox:    NSButton!
-    @IBOutlet weak var enableAutomaticUpdates:   NSButton!
-    @IBOutlet weak var checkForUpdatesButton:    NSButton!
-	@IBOutlet weak var allowBlankTouchBar:		 NSButton!
-	@IBOutlet weak var enableMouseSupport:       NSButton!
-	@IBOutlet weak var showTrackingArea:		 NSButton!
+    @IBOutlet weak var versionLabel:           NSTextField!
+    @IBOutlet weak var launchAtLoginCheckbox:  NSButton!
+    @IBOutlet weak var enableAutomaticUpdates: NSButton!
+    @IBOutlet weak var checkForUpdatesButton:  NSButton!
+	@IBOutlet weak var allowBlankTouchBar:	   NSButton!
+	@IBOutlet weak var disableControlStrip:	   NSButton!
+	@IBOutlet weak var enableMouseSupport:     NSButton!
+	@IBOutlet weak var showTrackingArea:	   NSButton!
     
     /// Updates
     var newVersionAvailable: Version?
@@ -58,6 +59,7 @@ final class GeneralPreferencePane: NSViewController, PreferencePane {
         self.enableAutomaticUpdates.state = Defaults[.enableAutomaticUpdates]   ? .on : .off
         self.launchAtLoginCheckbox.state  = LoginServiceKit.isExistLoginItems() ? .on : .off
 		self.allowBlankTouchBar.state	  = Defaults[.allowBlankTouchBar]		? .on : .off
+		self.disableControlStrip.state	  = Defaults[.disableControlStrip]		? .on : .off
 		self.enableMouseSupport.state	  = Defaults[.enableMouseSupport]       ? .on : .off
 		self.showTrackingArea.state		  = Defaults[.showMouseTrackingArea]	? .on : .off
 		self.showTrackingArea.isEnabled   = Defaults[.enableMouseSupport]
@@ -67,6 +69,10 @@ final class GeneralPreferencePane: NSViewController, PreferencePane {
 		switch button {
 		case allowBlankTouchBar:
 			Defaults[.allowBlankTouchBar] = button.state == .on
+			NSWorkspace.shared.notificationCenter.post(name: .shouldReloadPock, object: nil)
+			
+		case disableControlStrip:
+			Defaults[.disableControlStrip] = button.state == .on
 			NSWorkspace.shared.notificationCenter.post(name: .shouldReloadPock, object: nil)
 			
 		case launchAtLoginCheckbox:

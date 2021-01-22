@@ -8,12 +8,13 @@
 
 #import <AppKit/AppKit.h>
 
-extern int _DFRGetServerPID();
-extern int _DFRGetTouchBarAgentPID();
+extern int _DFRGetServerPID(void);
+extern int _DFRGetTouchBarAgentPID(void);
 
 @interface NSFunctionRow
 + (struct CGRect)defaultFrameForType:(long long)arg1;
 + (nonnull NSArray *)_topLevelFunctionRowViews;
++ (nonnull NSArray *)activeFunctionRows;
 @end
 
 @interface NSTouchBar (Pock)
