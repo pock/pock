@@ -8,10 +8,6 @@
 
 #import <AppKit/AppKit.h>
 
-@interface NSImageView (Pock)
-- (_Nullable id)touchBarItem;
-@end
-
 @interface NSApplication (Pock)
 - (void)_crashOnException:(NSException * _Nullable)exception;
 @end

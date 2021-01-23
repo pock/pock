@@ -28,6 +28,7 @@
 		345E2EC823C2691900A947FC /* WidgetsManagerListPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 345E2EC623C2691900A947FC /* WidgetsManagerListPane.xib */; };
 		34832418246FFA6F0035D2C2 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34832417246FFA6F0035D2C2 /* main.swift */; };
 		3483241E246FFA8B0035D2C2 /* Relaunch in Resources */ = {isa = PBXBuildFile; fileRef = 34832415246FFA6F0035D2C2 /* Relaunch */; };
+		34881E9D25BAFF630075AF7E /* NSMenuBadgeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34881E9C25BAFF620075AF7E /* NSMenuBadgeItem.swift */; };
 		349F9C1C23C36BCA002CEC1E /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 349F9C1B23C36BCA002CEC1E /* Quartz.framework */; };
 		349F9C1F23C36BCA002CEC1E /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349F9C1E23C36BCA002CEC1E /* PreviewViewController.swift */; };
 		349F9C2223C36BCA002CEC1E /* PreviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 349F9C2023C36BCA002CEC1E /* PreviewViewController.xib */; };
@@ -130,6 +131,7 @@
 		34832415246FFA6F0035D2C2 /* Relaunch */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Relaunch; sourceTree = BUILT_PRODUCTS_DIR; };
 		34832417246FFA6F0035D2C2 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		348343D61F631B2E00CDA005 /* Pock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pock.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		34881E9C25BAFF620075AF7E /* NSMenuBadgeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSMenuBadgeItem.swift; sourceTree = "<group>"; };
 		349431EC22197484008622B1 /* MediaRemote.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaRemote.framework; path = ../../../../../../../../../System/Library/PrivateFrameworks/MediaRemote.framework; sourceTree = "<group>"; };
 		3494320B222179D7008622B1 /* BatteryUIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BatteryUIKit.framework; path = ../../../../../../../../../System/Library/PrivateFrameworks/BatteryUIKit.framework; sourceTree = "<group>"; };
 		349F9C1A23C36BCA002CEC1E /* QLPockWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = QLPockWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -266,6 +268,7 @@
 			isa = PBXGroup;
 			children = (
 				342D83952278D5CF000D79DA /* MainWindow.xib */,
+				34881E9C25BAFF620075AF7E /* NSMenuBadgeItem.swift */,
 				3446657A25AE273A00A08380 /* UpdateAlertController */,
 				34EF604C23C12E1700FBE9E7 /* AlertWindowController */,
 				34A0E79025A7C901002F58A1 /* OnBoardWindowController */,
@@ -762,6 +765,7 @@
 			files = (
 				345E2EC723C2691900A947FC /* WidgetsManagerListPane.swift in Sources */,
 				34BFC52725038EC3008E5ACB /* WidgetsManagerInstallPane.swift in Sources */,
+				34881E9D25BAFF630075AF7E /* NSMenuBadgeItem.swift in Sources */,
 				3435675B2381666F00E408EF /* WidgetsDispatcher.swift in Sources */,
 				34CA451D23C0C98A00C45B0D /* STPrivilegedTask.m in Sources */,
 				349F9C2E23C37231002CEC1E /* WidgetInfo.swift in Sources */,

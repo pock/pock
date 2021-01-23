@@ -73,6 +73,24 @@ internal class PockUpdater {
 				}
 				self?.latestReleases = response
 				completion?(response)
+				
+				/// Set update badges
+				var coreToUpdate: 	 Int = 0
+				var widgetsToUpdate: Int = 0
+				if response.core.name > PockUpdater.appVersion {
+					coreToUpdate += 1
+				}
+				for widget in WidgetsDispatcher.default.installedWidgets {
+					if let newVers = response.widgets.first(where: { $0.key == widget.id })?.value {
+						if newVers.name > widget.version + widget.build {
+							widgetsToUpdate += 1
+						}
+					}
+				}
+				async { [widgetsToUpdate] in
+					AppDelegate.default.setUpdatesBadge(core: coreToUpdate, widgets: widgetsToUpdate)
+				}
+				
 			}).resume()
 		}
 	}

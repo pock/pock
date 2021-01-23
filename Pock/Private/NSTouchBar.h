@@ -8,6 +8,11 @@
 
 #import <AppKit/AppKit.h>
 
+@interface NSMenuItem (Pock)
+- (void)_setViewHandlesEvents:(BOOL)arg0;
+- (BOOL)_viewHandlesEvents;
+@end
+
 extern int _DFRGetServerPID(void);
 extern int _DFRGetTouchBarAgentPID(void);
 

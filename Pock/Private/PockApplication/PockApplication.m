@@ -8,12 +8,6 @@
 
 #import "PockApplication.h"
 
-@implementation NSImageView (Pock)
-- (_Nullable id)touchBarItem {
-    return self;
-}
-@end
-
 @implementation PockApplication
 - (void)_crashOnException:(NSException *)exception {
     if ([exception.debugDescription rangeOfString:@"NSFunctionRow"].location != NSNotFound) {

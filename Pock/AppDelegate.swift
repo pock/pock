@@ -33,69 +33,102 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     fileprivate let pockStatusbarIcon = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
     
     /// Main Pock menu
-    private lazy var mainPockMenu: NSMenu = {
-        let menu = NSMenu(title: "Pock Options")
+	@IBOutlet private weak var mainMenu: NSMenu!
+	/// Main menu items
+	@IBOutlet private weak var aboutPockMenuItem: NSMenuItem!
+	@IBOutlet private weak var openPreferencesMenuItem: NSMenuBadgeItem!
+	@IBOutlet private weak var openWidgetsManagerMenuItem: NSMenuBadgeItem!
+	@IBOutlet private weak var customizeTouchBarMenuItem: NSMenuItem!
+	@IBOutlet private weak var installWidgetMenuItem: NSMenuItem!
+	@IBOutlet private weak var advancedMenuItem: NSMenuItem!
+	@IBOutlet private weak var supportThisProjectMenuItem: NSMenuItem!
+	@IBOutlet private weak var quitPockMenuItem: NSMenuItem!
+	/// Advanced submeu
+	@IBOutlet private weak var reInstallDefaultWidgetsMenuItem: NSMenuItem!
+	@IBOutlet private weak var showOnBoardScreenMenuItem: NSMenuItem!
+	@IBOutlet private weak var reloadPockMenuItem: NSMenuItem!
+	@IBOutlet private weak var relaunchPockMenuItem: NSMenuItem! // alternate: true
+	@IBOutlet private weak var relaunchTouchBarAgentMenuItem: NSMenuItem!
+	@IBOutlet private weak var relaunchTouchBarServerMenuItem: NSMenuItem! // alternate: true
+	
+	// MARK: Setup Main Menu Items
+	private func setupMainMenuItems() {
+		/// Set target
+		mainMenu.items.forEach({ $0.target = self })
+		/// Set title and actions
 		
-		/// Version item
-		let aboutItem = NSMenuItem(title: "About Pock", action: #selector(openWebsite), keyEquivalent: "")
-		
-		/// Open Preferences item
-		let openPreferencesItem = NSMenuItem(title: "Open Preferences…".localized, action: #selector(openPreferences), keyEquivalent: ",")
-		
-		/// Open Widgets Manager
-		let openWidgestManagerItem = NSMenuItem(title: "Open Widgets Manager…".localized, action: #selector(openWidgetsManager), keyEquivalent: "w")
-		
-        /// Open Customize window
-		let openCustomizeWindowItem = NSMenuItem(title: "Customize Touch Bar…".localized, action: #selector(openCustomization), keyEquivalent: "c")
-		
-		/// Install new widget
-		let openInstallWidgetManagerItem = NSMenuItem(title: "Install Widget…".localized, action: #selector(openInstallWidgetsManager), keyEquivalent: "i")
-        
-        /// Advanced menu
-        let advancedMenuItem = NSMenuItem(title: "Advanced".localized, action: nil, keyEquivalent: "")
-        advancedMenuItem.submenu = advancedPockMenu
-        
-        /// Support item
-		let supportItem = NSMenuItem(title: "Support This Project".localized, action: #selector(openDonateURL), keyEquivalent: "s")
-        /// Quit item
-		let quitItem = NSMenuItem(title: "Quit Pock".localized, action: #selector(NSApp.terminate), keyEquivalent: "q")
-		
-		let items: [NSMenuItem] = [
-			aboutItem,
-			openPreferencesItem,
-			.separator(),
-			openWidgestManagerItem,
-			openCustomizeWindowItem,
-			openInstallWidgetManagerItem,
-			.separator(),
-			advancedMenuItem,
-			.separator(),
-			supportItem,
-			quitItem
-		]
-		items.forEach({ menu.addItem($0) })
-		
-        return menu
-    }()
-    
-    private lazy var advancedPockMenu: NSMenu = {
-        let menu = NSMenu(title: "Advanced".localized)
-        let reloadItem = NSMenuItem(title: "Reload Pock".localized, action: #selector(reloadPock), keyEquivalent: "r")
-        let relaunchItem = NSMenuItem(title: "Relaunch Pock".localized, action: #selector(relaunchPock), keyEquivalent: "R")
-		relaunchItem.isAlternate = true
-		let relaunchAgentItem = NSMenuItem(title: "Relaunch Touch Bar Agent".localized, action: #selector(reloadTouchBarAgent), keyEquivalent: "a")
-		let relaunchServerItem = NSMenuItem(title: "Relaunch Touch Bar Server".localized, action: #selector(reloadTouchBarServer), keyEquivalent: "A")
-		relaunchServerItem.isAlternate = true
-        menu.addItem(withTitle: "Re-Install default widgets".localized, action: #selector(installDefaultWidgets), keyEquivalent: "d")
-        menu.addItem(NSMenuItem.separator())
-		menu.addItem(withTitle: "Show Onboard Screen".localized, action: #selector(showOnboardScreen), keyEquivalent: "o")
-		menu.addItem(NSMenuItem.separator())
-        menu.addItem(reloadItem)
-        menu.addItem(relaunchItem)
-		menu.addItem(relaunchAgentItem)
-		menu.addItem(relaunchServerItem)
-        return menu
-    }()
+		// MARK: About Pock
+		aboutPockMenuItem.title  = "About Pock".localized
+		aboutPockMenuItem.action = #selector(openWebsite)
+		// MARK: Open Preferences
+		openPreferencesMenuItem.title  = "Open Preferences…".localized
+		openPreferencesMenuItem.action = #selector(openPreferences)
+		// MARK: Open Widgets Manager
+		openWidgetsManagerMenuItem.title  = "Open Widgets Manager…".localized
+		openWidgetsManagerMenuItem.action = #selector(openWidgetsManager)
+		// MARK: Customize Touch Bar
+		customizeTouchBarMenuItem.title  = "Customize Touch Bar…".localized
+		customizeTouchBarMenuItem.action = #selector(openCustomization)
+		// MARK: Install (widget)
+		installWidgetMenuItem.title  = "Install Widget…".localized
+		installWidgetMenuItem.action = #selector(openInstallWidgetsManager)
+		// MARK: Advanced
+		advancedMenuItem.title = "Advanced".localized
+		/// START - Advanced submenu
+		// MARK: Install (default widgets)
+		reInstallDefaultWidgetsMenuItem.title  = "Re-Install Default Widgets".localized
+		reInstallDefaultWidgetsMenuItem.action = #selector(installDefaultWidgets)
+		// MARK: Show On-Board Screen
+		showOnBoardScreenMenuItem.title  = "Show On-Board Screen".localized
+		showOnBoardScreenMenuItem.action = #selector(showOnboardScreen)
+		// MARK: Reload (Pock)
+		reloadPockMenuItem.title  		 = "Reload Pock".localized
+		reloadPockMenuItem.action 		 = #selector(reloadPock)
+		reloadPockMenuItem.keyEquivalent = "r"
+		reloadPockMenuItem.keyEquivalentModifierMask = .command
+		// MARK: Relaunch (Pock)
+		relaunchPockMenuItem.title 		   = "Relaunch Pock".localized
+		relaunchPockMenuItem.action 	   = #selector(relaunchPock)
+		relaunchPockMenuItem.keyEquivalent = "R"
+		relaunchPockMenuItem.keyEquivalentModifierMask = .command
+		// MARK: Relaunch (Touch Bar Agent)
+		relaunchTouchBarAgentMenuItem.title 		= "Relaunch Touch Bar Agent".localized
+		relaunchTouchBarAgentMenuItem.action 		= #selector(reloadTouchBarAgent)
+		relaunchTouchBarAgentMenuItem.keyEquivalent = "a"
+		relaunchTouchBarAgentMenuItem.keyEquivalentModifierMask = .command
+		// MARK: Relaunch (Touch Bar Server)
+		relaunchTouchBarServerMenuItem.title 		 = "Relaunch Touch Bar Server".localized
+		relaunchTouchBarServerMenuItem.action 		 = #selector(reloadTouchBarServer)
+		relaunchTouchBarServerMenuItem.keyEquivalent = "A"
+		relaunchTouchBarServerMenuItem.keyEquivalentModifierMask = .command
+		/// END - Advanced submenu
+		// MARK: Support This Project
+		supportThisProjectMenuItem.title  = "Support This Project".localized
+		supportThisProjectMenuItem.action = #selector(openDonateURL)
+		// MARK: Quit Pock
+		quitPockMenuItem.title  = "Quit Pock".localized
+		quitPockMenuItem.target = NSApp
+		quitPockMenuItem.action = #selector(NSApp.terminate)
+	}
+	internal func setUpdatesBadge(core: Int, widgets: Int, color: NSColor = .systemRed) {
+		self.openPreferencesMenuItem.setBadge(core > 0 ? core.description : nil, color: color)
+		self.openWidgetsManagerMenuItem.setBadge(widgets > 0 ? widgets.description : nil, color: color)
+		if core + widgets > 0 {
+			let base = pockStatusbarIcon.button
+			let badge = NSView(frame: .zero)
+			badge.wantsLayer = true
+			badge.layer?.backgroundColor = NSColor.systemRed.cgColor
+			badge.layer?.cornerRadius = 2
+			base?.addSubview(badge)
+			badge.snp.remakeConstraints {
+				$0.height.width.equalTo(4)
+				$0.right.equalToSuperview().inset(4)
+				$0.bottom.equalToSuperview().inset(4)
+			}
+		}else {
+			pockStatusbarIcon.button?.subviews.forEach({ $0.removeFromSuperview() })
+		}
+	}
     
     /// Preferences
     private let generalPreferencePane: GeneralPreferencePane = GeneralPreferencePane()
@@ -153,12 +186,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             button.image = NSImage(named: "pock-inner-icon")
             button.image?.isTemplate = true
             /// Create menu
-            pockStatusbarIcon.menu = mainPockMenu
+			setupMainMenuItems()
+            pockStatusbarIcon.menu = mainMenu
         }
         
         /// Check for updates
         async(after: 1) { [weak self] in
-            self?.checkForUpdates()
+			self?.checkForUpdates() { [weak self] in
+				/// Present Pock
+				self?.reloadPock()
+			}
         }
         
         /// Register for notification
@@ -173,9 +210,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                                                           object: nil)
         toggleAutomaticUpdatesTimer()
         registerGlobalHotKey()
-        
-        /// Present Pock
-        reloadPock()
     }
     
     @objc func reloadPock() {
@@ -239,9 +273,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     /// Check for updates
-    @objc private func checkForUpdates() {
+	@objc private func checkForUpdates(_ completion: @escaping () -> Void) {
         generalPreferencePane.hasLatestVersion(completion: { [weak self] latestVersion in
-            guard let latestVersion = latestVersion else {
+			async { [completion] in
+				completion()
+			}
+			guard let latestVersion = latestVersion else {
 				return
 			}
             self?.generalPreferencePane.newVersionAvailable = (latestVersion)
