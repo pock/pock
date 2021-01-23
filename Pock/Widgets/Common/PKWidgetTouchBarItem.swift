@@ -32,7 +32,7 @@ class PKWidgetViewController: NSViewController {
     }
     deinit {
         #if DEBUG
-		NSLog("[\(type(of: self))]: Widget deinit called.")
+		NSLog("[\(type(of: self))]: [\(type(of: self.widgetItem))] - deinit called.")
         #endif
     }
 }

@@ -68,8 +68,6 @@
 	<string>Copyright © 2017 Pierluigi Galdi. All rights reserved.</string>
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
-	<key>NSPrincipalClass</key>
-	<string>PockApplication</string>
 	<key>UTExportedTypeDeclarations</key>
 	<array>
 		<dict>

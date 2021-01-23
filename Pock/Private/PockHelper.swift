@@ -120,7 +120,7 @@ internal class PockHelper {
                     )
                 } catch {
                     let error = NSError(domain: "WidgetDispatcher:installDefaultWidgets", code: 404, userInfo: ["description": error.localizedDescription])
-                    NSLog("[\(error.domain)]: \(error.code) - \(error.description)")
+                    NSLog("[Pock][\(error.domain)]: \(error.code) - \(error.description)")
                     sleep(2)
                     semaphore.signal()
                 }

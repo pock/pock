@@ -124,7 +124,7 @@ public class ProcessWidgetController: PKTouchBarMouseController {
     
     deinit {
 		#if DEBUG
-		NSLog("[\(process)][\(state)] Deinit ProcessWidgetController for widget: `\(widgetName)`")
+		NSLog("[ProcessWidgetController][\(process)][\(state)]: Deinit ProcessWidgetController for widget: `\(widgetName)`")
 		#endif
     }
     

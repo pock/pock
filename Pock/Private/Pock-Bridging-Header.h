@@ -6,6 +6,5 @@
 //  Copyright © 2017 Pierluigi Galdi. All rights reserved.
 //
 
-#import "./PockApplication/PockApplication.h"
 #import "./NSTouchBar.h"
 #import "./STPrivilegedTask/STPrivilegedTask.h"

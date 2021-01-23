@@ -69,7 +69,7 @@ public class TouchBarHelper {
 	internal static func setPresentationMode(to mode: PresentationMode) -> Bool {
 		guard currentPresentationMode != mode else {
 			#if DEBUG
-			NSLog("Touch Bar Presentation mode already setted to: \(mode)")
+			NSLog("[Pock]: Touch Bar Presentation mode already setted to: \(mode)")
 			#endif
 			return false
 		}
@@ -78,7 +78,7 @@ public class TouchBarHelper {
 		let result = CFPreferencesAppSynchronize(kTouchBarAgentIdentifier)
 		reloadTouchBarAgent()
 		#if DEBUG
-		NSLog("Touch Bar Presentation mode changed: [\(result ? "success" : "error")] \(currentMode) -> \(mode)")
+		NSLog("[Pock]: Touch Bar Presentation mode changed: [\(result ? "success" : "error")] \(currentMode) -> \(mode)")
 		#endif
 		return result
 	}
