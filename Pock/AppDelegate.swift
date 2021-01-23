@@ -25,7 +25,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     /// Core
     public private(set) var alertWindowController: AlertWindowController?
     public private(set) var navController:         PKTouchBarNavigationController?
-    
+	public private(set) var screenIsLocked: Bool = false
+	
     /// Timer
     fileprivate var automaticUpdatesTimer: Timer?
     
@@ -203,14 +204,59 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                                                           selector: #selector(toggleAutomaticUpdatesTimer),
                                                           name: .shouldEnableAutomaticUpdates,
                                                           object: nil)
-        
         NSWorkspace.shared.notificationCenter.addObserver(self,
                                                           selector: #selector(reloadPock),
                                                           name: .shouldReloadPock,
                                                           object: nil)
+		NSWorkspace.shared.notificationCenter.addObserver(self,
+														  selector: #selector(handleSleepWakeNotifications(_:)),
+														  name: NSWorkspace.willSleepNotification,
+														  object: nil)
+		NSWorkspace.shared.notificationCenter.addObserver(self,
+														  selector: #selector(handleSleepWakeNotifications(_:)),
+														  name: NSWorkspace.didWakeNotification,
+														  object: nil)
+		/// Register for lock/unlock notifications
+		DistributedNotificationCenter.default().addObserver(
+			forName: .screenIsLocked, object: nil, queue: .main, using: { [weak self] _ in
+				self?.screenIsLocked = true
+				self?._handleSleepWakeNotifications(name: .screenIsLocked)
+			}
+		)
+		DistributedNotificationCenter.default().addObserver(
+			forName: .screenIsUnlocked, object: nil, queue: .main, using: { [weak self] _ in
+				self?.screenIsLocked = false
+				self?._handleSleepWakeNotifications(name: .screenIsUnlocked)
+			}
+		)
+		
         toggleAutomaticUpdatesTimer()
         registerGlobalHotKey()
     }
+	
+	@objc private func handleSleepWakeNotifications(_ notification: Notification?) {
+		self._handleSleepWakeNotifications(name: notification?.name)
+	}
+	
+	private func _handleSleepWakeNotifications(name: Notification.Name?) {
+		switch name {
+		case NSWorkspace.willSleepNotification, Notification.Name.screenIsLocked:
+			#if DEBUG
+			NSLog("[Pock]: Dismissing Pock... Reason: \(name?.rawValue ?? "unknown") [screenIsLocked: \(screenIsLocked)]")
+			#endif
+			self.navController?.dismiss()
+			self.navController = nil
+		case NSWorkspace.didWakeNotification, Notification.Name.screenIsUnlocked:
+			#if DEBUG
+			NSLog("[Pock]: Presenting Pock... Reason: \(name?.rawValue ?? "unknown") [screenIsLocked: \(screenIsLocked)]")
+			#endif
+			if !screenIsLocked {
+				self.reloadPock()
+			}
+		default:
+			return
+		}
+	}
     
     @objc func reloadPock() {
         navController?.dismiss()

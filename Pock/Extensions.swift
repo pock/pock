@@ -8,6 +8,11 @@
 
 import Foundation
 
+extension Notification.Name {
+	static let screenIsLocked 	= Notification.Name("com.apple.screenIsLocked")
+	static let screenIsUnlocked = Notification.Name("com.apple.screenIsUnlocked")
+}
+
 extension String {
     func truncate(length: Int, trailing: String = "…") -> String {
         return self.count > length ? String(self.prefix(length)) + trailing : self
