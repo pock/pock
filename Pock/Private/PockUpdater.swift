@@ -47,6 +47,9 @@ internal class PockUpdater {
 	/// Singleton
 	internal static let `default`: PockUpdater = PockUpdater()
 	
+	/// Core
+	private var session: URLSession?
+	
 	/// Data
 	internal var latestReleases: LatestReleases?
 	
@@ -60,12 +63,14 @@ internal class PockUpdater {
 			completion?(cached)
 			return
 		}
-		async {
+		async { [weak self] in
 			let request = URLRequest(url: latestVersionsURL, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 60.0)
-			URLSession.shared.invalidateAndCancel()
-			URLSession.shared.dataTask(with: request, completionHandler: { [weak self] data, response, error in
+			self?.session?.finishTasksAndInvalidate()
+			self?.session = URLSession(configuration: .ephemeral)
+			self?.session?.dataTask(with: request, completionHandler: { [weak self] data, response, error in
 				defer {
-					URLSession.shared.finishTasksAndInvalidate()
+					self?.session?.finishTasksAndInvalidate()
+					self?.session = nil
 				}
 				guard let data = data, let response = try? JSONDecoder().decode(LatestReleases.self, from: data) else {
 					completion?(nil)

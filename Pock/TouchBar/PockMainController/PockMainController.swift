@@ -51,7 +51,7 @@ class PockMainController: PKTouchBarMouseController {
     override func didLoad() {
 		super.didLoad()
         WidgetsDispatcher.default.loadInstalledWidget() { [weak self] widgets in
-            if widgets.isEmpty && PockHelper.didAskToInstallDefaultWidgets == false {
+			if widgets.isEmpty && Defaults[.didAskToInstallDefaultWidgets] == false {
 				async(after: 0.25) {
 					PockHelper.default.installDefaultWidgets { [widgets] in
 						self?.load(widgets: widgets)
@@ -70,7 +70,7 @@ class PockMainController: PKTouchBarMouseController {
 		self.awakeFromNib()
 		self.checkForBlankTouchBar()
 		mouseDelegates.removeAll()
-		if PockHelper.mouseSupportIsEnabled {
+		if Defaults[.enableMouseSupport] {
 			for widget in widgets.compactMap({ $0 as? PKScreenEdgeMouseDelegate }) {
 				mouseDelegates.append(widget)
 			}
@@ -78,7 +78,7 @@ class PockMainController: PKTouchBarMouseController {
 	}
 	
 	private func checkForBlankTouchBar() {
-		guard PockHelper.allowBlankTouchBar == false else {
+		guard Defaults[.allowBlankTouchBar] == false else {
 			return
 		}
 		async(after: 0.25) { [weak self] in
@@ -123,8 +123,8 @@ class PockMainController: PKTouchBarMouseController {
 	
 	// MARK: Mouse Overrides
 	override func reloadScreenEdgeController() {
-		if PockHelper.mouseSupportIsEnabled {
-			let color: NSColor = PockHelper.showMouseTrackingArea ? .black : .clear
+		if Defaults[.enableMouseSupport] {
+			let color: NSColor = Defaults[.showMouseTrackingArea] ? .black : .clear
 			self.edgeController = PKScreenEdgeController(mouseDelegate: self, parentView: parentView, barColor: color)
 		}
 	}
