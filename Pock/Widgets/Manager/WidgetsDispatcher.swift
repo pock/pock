@@ -167,5 +167,47 @@ extension WidgetsDispatcher {
         }
         try FileManager.default.removeItem(atPath: widgetPath)
     }
+	
+	internal func downloadWidget(atURL _url: URL?, _ completion: @escaping (ProcessWidgetController.UIState, WidgetInfo?) -> Void) throws {
+		guard let url = _url else {
+			throw NSError(domain: "WidgetDispatcher:removeWidget", code: 500, userInfo: ["description": "Invalid URL passed: \(_url?.absoluteString ?? "unknown")"])
+		}
+		let task = URLSession(configuration: .ephemeral).downloadTask(with: url) { tmpPath, response, error in
+			guard error == nil, let tmpPath = tmpPath else {
+				async {
+					completion(.completed(success: false), nil)
+				}
+				return
+			}
+			guard let widgetName = response?.url?.lastPathComponent.replacingOccurrences(of: ".zip", with: "") else {
+				async {
+					completion(.completed(success: false), nil)
+				}
+				return
+			}
+			let path = tmpPath.deletingLastPathComponent().appendingPathComponent("\(widgetName).zip")
+			let dest = path.deletingLastPathComponent()
+			try? FileManager.default.removeItem(at: path) // remove invalid data, if needed
+			do {
+				try FileManager.default.moveItem(at: tmpPath, to: path)
+				var widgetInfo: WidgetInfo?
+				try Zip.unzipFile(path, destination: dest, overwrite: true, password: nil, fileOutputHandler: { output in
+					guard widgetInfo == nil, output.lastPathComponent.contains(".pock") else {
+						return
+					}
+					widgetInfo = try? WidgetInfo(path: output)
+				})
+				try FileManager.default.removeItem(at: path)
+				async {
+					completion(.install, widgetInfo)
+				}
+			} catch {
+				async {
+					completion(.completed(success: false), nil)
+				}
+			}
+		}
+		task.resume()
+	}
     
 }

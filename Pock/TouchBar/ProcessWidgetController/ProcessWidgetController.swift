@@ -15,8 +15,8 @@ private let widgetIcon: NSImage? = NSImage(named: "WidgetsManagerList")
 public class ProcessWidgetController: PKTouchBarMouseController {
     
     // MARK: UI State
-    private enum UIState {
-        case unknown, download, install, remove, processing, downloading, completed(success: Bool), empty
+    internal enum UIState {
+        case unknown, download, install, remove, processing, downloading, completed(success: Bool), reloading, empty
     }
     
     // MARK: Widget Process
@@ -26,21 +26,21 @@ public class ProcessWidgetController: PKTouchBarMouseController {
     
     // MARK: Configutation
     public struct Configuration {
-        var process:       Process
-        var remoteURL:     URL?
-        var widgetInfo:    WidgetInfo?
-        var skipConfirm:   Bool
-        var forceDownload: Bool
-        var forceReload:   Bool
-        var needsReload:   Bool
-        var name:          String?
-        var author:        String?
-        var label:         String?
+        var process:       		Process
+        var remoteURL:     		URL?
+        var widgetInfo:    		WidgetInfo?
+        var skipInstallConfirm: Bool
+        var forceDownload: 		Bool
+        var forceReload:   		Bool
+        var needsReload:   		Bool
+        var name:          		String?
+        var author:        		String?
+        var label:         		String?
 		public static func `default`(remoteURL: URL?, process: Process = .download) -> Configuration {
-            return Configuration(process: process, remoteURL: remoteURL, widgetInfo: nil, skipConfirm: false, forceDownload: false, forceReload: false, needsReload: true)
+            return Configuration(process: process, remoteURL: remoteURL, widgetInfo: nil, skipInstallConfirm: true, forceDownload: false, forceReload: false, needsReload: true)
         }
         public static func `default`(process: Process, widgetInfo: WidgetInfo?) -> Configuration {
-            return Configuration(process: process, remoteURL: nil, widgetInfo: widgetInfo, skipConfirm: false, forceDownload: false, forceReload: false, needsReload: true)
+            return Configuration(process: process, remoteURL: nil, widgetInfo: widgetInfo, skipInstallConfirm: true, forceDownload: false, forceReload: false, needsReload: true)
         }
     }
     
@@ -150,7 +150,17 @@ public class ProcessWidgetController: PKTouchBarMouseController {
 			async(after: 0.5) { [weak self] in
 				self?.addIconViewAnimation()
 			}
-        case .unknown:
+			
+		case .reloading:
+			cancelButton.isHidden   = true
+			infoLabel.stringValue	= "Reloading...".localized
+			actionButton.title		= "Reload".localized
+			actionButton.tag		= 3
+			actionButton.bezelColor = NSColor.systemGray
+			actionButton.isEnabled  = false
+			iconView.isHidden		= true
+        
+		case .unknown:
             cancelButton.isHidden   = false
             infoLabel.stringValue   = "Something went wrong".localized
             actionButton.title      = "Close".localized
@@ -161,8 +171,9 @@ public class ProcessWidgetController: PKTouchBarMouseController {
             async(after: 0.5) { [weak self] in
                 self?.addIconViewAnimation()
             }
+		
 		case .install:
-            if configuration.skipConfirm {
+            if configuration.skipInstallConfirm {
                 installLocalWidget()
                 return
             }
@@ -176,11 +187,8 @@ public class ProcessWidgetController: PKTouchBarMouseController {
             async(after: 0.5) { [weak self] in
                 self?.addIconViewAnimation()
             }
-        case .remove:
-            if configuration.skipConfirm {
-                removeLocalWidget()
-                return
-            }
+        
+		case .remove:
             cancelButton.isHidden   = false
             infoLabel.stringValue   = configuration.label ?? "Are you sure you want to remove".localized + " `\(widgetName)`?"
             actionButton.title      = "Remove".localized
@@ -191,14 +199,15 @@ public class ProcessWidgetController: PKTouchBarMouseController {
             async(after: 0.5) { [weak self] in
                 self?.addIconViewAnimation()
             }
-        case .download:
+        
+		case .download:
             if configuration.forceDownload {
                 downloadRemoteWidget()
                 return
             }
             cancelButton.isHidden   = false
-            infoLabel.stringValue   = configuration.label ?? "Tap to download".localized + " `\(widgetName)`"
-            actionButton.title      = "Download".localized
+            infoLabel.stringValue   = configuration.label ?? ((process == .update ? "Update" : "Download").localized + " `\(widgetName)`")
+            actionButton.title      = (process == .update ? "Update" : "Download").localized
             actionButton.tag        = 2
             actionButton.bezelColor = NSColor.systemBlue
             actionButton.isEnabled  = true
@@ -206,7 +215,8 @@ public class ProcessWidgetController: PKTouchBarMouseController {
             async(after: 0.5) { [weak self] in
                 self?.addIconViewAnimation()
             }
-        case .processing:
+        
+		case .processing:
             cancelButton.isHidden   = true
             infoLabel.stringValue   = "Processing".localized + " `\(widgetName)`"
             actionButton.tag        = -1
@@ -215,16 +225,18 @@ public class ProcessWidgetController: PKTouchBarMouseController {
             actionButton.isEnabled  = false
             iconView.isHidden       = true
             removeIconViewAnimation()
-        case .downloading:
-            cancelButton.isHidden   = false
+        
+		case .downloading:
+			cancelButton.isHidden   = configuration.forceDownload
             infoLabel.stringValue   = "Downloading".localized + " `\(widgetName)`"
             actionButton.tag        = -1
-            actionButton.title      = "Download".localized
+			actionButton.title      = (process == .update ? "Update" : "Download").localized
             actionButton.bezelColor = NSColor.systemGray.withAlphaComponent(0.3725)
             actionButton.isEnabled  = false
             iconView.isHidden       = true
             removeIconViewAnimation()
-        case .completed(let success):
+        
+		case .completed(let success):
             completion?(success)
             if configuration.needsReload == false {
                 return
@@ -292,7 +304,10 @@ extension ProcessWidgetController {
         case 2: // download
             downloadRemoteWidget()
         case 3: // reload
-            PockHelper.default.relaunchPock()
+			state = .reloading
+			async(after: 0.75) {
+				PockHelper.default.relaunchPock()
+			}
         default: // close
             willDismiss?()
             dismiss()
@@ -304,40 +319,28 @@ extension ProcessWidgetController {
             return
         }
         state = .downloading
-        background {
-            let task = URLSession(configuration: .default).downloadTask(with: url) { [weak self] tmpPath, response, error in
-                guard error == nil, let tmpPath = tmpPath else {
-                    async { [weak self] in
-                        self?.state = .completed(success: false)
-                    }
-                    return
-                }
-                guard let widgetName = response?.url?.lastPathComponent.replacingOccurrences(of: ".zip", with: "") else {
-                    async { [weak self] in
-                        self?.state = .completed(success: false)
-                    }
-                    return
-                }
-                let path = tmpPath.deletingLastPathComponent().appendingPathComponent("\(widgetName).zip")
-                let dest = path.deletingLastPathComponent()
-                do {
-                    try FileManager.default.moveItem(at: tmpPath, to: path)
-                    try Zip.unzipFile(path, destination: dest, overwrite: true, password: nil)
-                    try FileManager.default.removeItem(at: path)
-                    self?.configuration.remoteURL  = nil
-                    self?.configuration.widgetInfo = try WidgetInfo(path: dest.appendingPathComponent(widgetName))
-                    async { [weak self] in
-                        self?.process = .install
-                    }
-                } catch {
-                    async { [weak self] in
-                        self?.state = .completed(success: false)
-                    }
-                }
-            }
-            task.resume()
-        }
-    }
+		background { [weak self] in
+			do {
+				try WidgetsDispatcher.default.downloadWidget(atURL: url) { [weak self] newState, widgetInfo in
+					guard let info = widgetInfo else {
+						self?.state = .completed(success: false)
+						return
+					}
+					self?.configuration.remoteURL  = nil
+					self?.configuration.widgetInfo = info
+					async(after: 0.025) { [weak self, newState] in
+						self?.state = newState
+					}
+				}
+			} catch {
+				async { [weak self] in
+					self?.state = .completed(success: false)
+				}
+				NSLog("[ProcessWidgetController]: Can't download widget. Reason: \(error.localizedDescription)")
+			}
+		}
+	}
+
     private func installLocalWidget() {
         state = .processing
         background { [weak self] in

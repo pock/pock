@@ -163,7 +163,7 @@ extension WidgetsManagerListPane {
 				self?.tableView.reloadData(forRowIndexes: IndexSet(integer: index), columnIndexes: IndexSet(integer: 0))
 				self?.loadPreferencesWindow(for: self?.selectedWidget)
 				self?.updateUIElements()
-			}, { [weak self] _ in
+			}, { [weak self, index] _ in
 				self?.unloadWindowForPreference(title: "Reload Pock to refresh widgets preferences".localized)
 				self?.tableView.reloadData(forRowIndexes: IndexSet(integer: index), columnIndexes: IndexSet(integer: 0))
 				self?.updateUIElements()
@@ -307,7 +307,9 @@ extension WidgetsManagerListPane: NSTableViewDelegate {
         self.updateUIElements()
 		if disabledWidgets.contains(where: { $0 == selectedWidget.id }) == false {
 			self.loadPreferencesWindow(for: selectedWidget)
-			self.showUpdateAlert(for: selectedWidget, version: selectedWidgetNewVersion?.version)
+			async(after: 0.025) { [weak self] in
+				self?.showUpdateAlert(for: selectedWidget, version: self?.selectedWidgetNewVersion?.version)
+			}
 		}else {
 			self.unloadWindowForPreference(title: "Reload Pock to refresh widgets preferences".localized)
 		}

@@ -82,16 +82,16 @@ internal class PockHelper {
 				let label               = index == 0 ? "Tap to install default widgets".localized : nil
 				do {
 					let configuration = ProcessWidgetController.Configuration(
-						process:       .download,
-						remoteURL:     url,
-						widgetInfo:    nil,
-						skipConfirm:   true,
-						forceDownload: shouldForceDownload,
-						forceReload:   shouldForceReload,
-						needsReload:   needsReload,
-						name:          name,
-						author:        author,
-						label:         label
+						process:       		.download,
+						remoteURL:     		url,
+						widgetInfo:    		nil,
+						skipInstallConfirm: true,
+						forceDownload: 		shouldForceDownload,
+						forceReload:   		shouldForceReload,
+						needsReload:   		needsReload,
+						name:          		name,
+						author:        		author,
+						label:         		label
 					)
 					try self?.openProcessControllerForWidget(
 						configuration: configuration,
@@ -152,7 +152,7 @@ internal class PockHelper {
 			let configuration = ProcessWidgetController.Configuration(process: .empty,
 																	  remoteURL: nil,
 																	  widgetInfo: nil,
-																	  skipConfirm: false,
+																	  skipInstallConfirm: false,
 																	  forceDownload: false,
 																	  forceReload: false,
 																	  needsReload: false,
