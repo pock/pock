@@ -61,20 +61,26 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		// MARK: About Pock
 		aboutPockMenuItem.title  = "About Pock".localized
 		aboutPockMenuItem.action = #selector(openWebsite)
+		aboutPockMenuItem.view	 = NSMenuItemCustomView(item: aboutPockMenuItem)
 		// MARK: Open Preferences
 		openPreferencesMenuItem.title  = "Open Preferences…".localized
 		openPreferencesMenuItem.action = #selector(openPreferences)
+		openPreferencesMenuItem.view   = NSMenuBadgeItemView(item: openPreferencesMenuItem)
 		// MARK: Open Widgets Manager
 		openWidgetsManagerMenuItem.title  = "Open Widgets Manager…".localized
 		openWidgetsManagerMenuItem.action = #selector(openWidgetsManager)
+		openWidgetsManagerMenuItem.view   = NSMenuBadgeItemView(item: openWidgetsManagerMenuItem)
 		// MARK: Customize Touch Bar
 		customizeTouchBarMenuItem.title  = "Customize Touch Bar…".localized
 		customizeTouchBarMenuItem.action = #selector(openCustomization)
+		customizeTouchBarMenuItem.view	 = NSMenuItemCustomView(item: customizeTouchBarMenuItem)
 		// MARK: Install (widget)
 		installWidgetMenuItem.title  = "Install Widget…".localized
 		installWidgetMenuItem.action = #selector(openInstallWidgetsManager)
+		installWidgetMenuItem.view	 = NSMenuItemCustomView(item: installWidgetMenuItem)
 		// MARK: Advanced
 		advancedMenuItem.title = "Advanced".localized
+		advancedMenuItem.view  = NSMenuItemCustomView(item: advancedMenuItem)
 		/// START - Advanced submenu
 		// MARK: Install (default widgets)
 		reInstallDefaultWidgetsMenuItem.title  = "Re-Install Default Widgets".localized
@@ -106,10 +112,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		// MARK: Support This Project
 		supportThisProjectMenuItem.title  = "Support This Project".localized
 		supportThisProjectMenuItem.action = #selector(openDonateURL)
+		supportThisProjectMenuItem.view  = NSMenuItemCustomView(item: supportThisProjectMenuItem)
 		// MARK: Quit Pock
 		quitPockMenuItem.title  = "Quit Pock".localized
 		quitPockMenuItem.target = NSApp
 		quitPockMenuItem.action = #selector(NSApp.terminate)
+		quitPockMenuItem.view  = NSMenuItemCustomView(item: quitPockMenuItem)
 	}
 	internal func setUpdatesBadge(core: Int, widgets: Int, color: NSColor = .systemRed) {
 		self.openPreferencesMenuItem.setBadge(core > 0 ? core.description : nil, color: color)

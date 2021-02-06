@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
-        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -37,17 +36,9 @@
                 <menuItem title="About Pock" allowsKeyEquivalentWhenHidden="YES" id="oAO-4Q-BbC">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
-                <menuItem title="Open Preferences…" keyEquivalent="," allowsKeyEquivalentWhenHidden="YES" id="e7u-Sb-rWb" customClass="NSMenuBadgeItem" customModule="Pock" customModuleProvider="target">
-                    <connections>
-                        <outlet property="view" destination="Pdz-aR-jMO" id="Fbu-Mg-aVV"/>
-                    </connections>
-                </menuItem>
+                <menuItem title="Open Preferences…" keyEquivalent="," allowsKeyEquivalentWhenHidden="YES" id="e7u-Sb-rWb" customClass="NSMenuBadgeItem" customModule="Pock" customModuleProvider="target"/>
                 <menuItem isSeparatorItem="YES" id="eAb-eO-fF2"/>
-                <menuItem title="Open Widgets Manager" keyEquivalent="m" allowsKeyEquivalentWhenHidden="YES" id="smb-g2-csr" customClass="NSMenuBadgeItem" customModule="Pock" customModuleProvider="target">
-                    <connections>
-                        <outlet property="view" destination="wnC-CZ-C93" id="LPF-P0-pcO"/>
-                    </connections>
-                </menuItem>
+                <menuItem title="Open Widgets Manager" keyEquivalent="m" allowsKeyEquivalentWhenHidden="YES" id="smb-g2-csr" customClass="NSMenuBadgeItem" customModule="Pock" customModuleProvider="target"/>
                 <menuItem title="Customize Touch Bar" keyEquivalent="c" allowsKeyEquivalentWhenHidden="YES" id="k6g-Fg-Nvo"/>
                 <menuItem title="Install Widget…" keyEquivalent="i" allowsKeyEquivalentWhenHidden="YES" id="wxG-hG-Edx"/>
                 <menuItem isSeparatorItem="YES" id="Uex-be-91C"/>
@@ -80,175 +71,5 @@
             </items>
             <point key="canvasLocation" x="-135" y="151"/>
         </menu>
-        <customView id="wnC-CZ-C93" userLabel="Open Widgets Manager (Item)" customClass="NSMenuBadgeItemView" customModule="Pock" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="260" height="26"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-            <subviews>
-                <stackView distribution="fillProportionally" orientation="horizontal" alignment="centerY" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ugt-rs-hq0">
-                    <rect key="frame" x="9" y="1" width="244" height="25"/>
-                    <subviews>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dcs-Nt-7x5">
-                            <rect key="frame" x="-2" y="5" width="174" height="16"/>
-                            <textFieldCell key="cell" lineBreakMode="clipping" title="Open Widgets Manager" id="DOW-H7-hwN">
-                                <font key="font" metaFont="system"/>
-                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                            </textFieldCell>
-                        </textField>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="A9m-yZ-SOA">
-                            <rect key="frame" x="180" y="6" width="24" height="14"/>
-                            <constraints>
-                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="24" id="EH1-3I-KMT"/>
-                            </constraints>
-                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="1" drawsBackground="YES" id="zhx-6N-b65">
-                                <font key="font" metaFont="system" size="11"/>
-                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                <color key="backgroundColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
-                            </textFieldCell>
-                        </textField>
-                        <stackView distribution="fillProportionally" orientation="horizontal" alignment="centerY" spacing="-3" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uNc-UN-di3">
-                            <rect key="frame" x="214" y="4" width="30" height="17"/>
-                            <subviews>
-                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="7Iu-4w-4gc">
-                                    <rect key="frame" x="-2" y="0.0" width="21" height="17"/>
-                                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="⌘" id="m3H-Ae-dVP">
-                                        <font key="font" metaFont="systemSemibold" size="14"/>
-                                        <color key="textColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
-                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                    </textFieldCell>
-                                </textField>
-                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="4Ha-yc-num">
-                                    <rect key="frame" x="12" y="1" width="20" height="16"/>
-                                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="M" id="O04-Ky-fJi">
-                                        <font key="font" metaFont="systemMedium" size="13"/>
-                                        <color key="textColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
-                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                    </textFieldCell>
-                                </textField>
-                            </subviews>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="30" id="v8R-Mf-Zod"/>
-                            </constraints>
-                            <visibilityPriorities>
-                                <integer value="1000"/>
-                                <integer value="1000"/>
-                            </visibilityPriorities>
-                            <customSpacing>
-                                <real value="3.4028234663852886e+38"/>
-                                <real value="3.4028234663852886e+38"/>
-                            </customSpacing>
-                        </stackView>
-                    </subviews>
-                    <visibilityPriorities>
-                        <integer value="1000"/>
-                        <integer value="1000"/>
-                        <integer value="1000"/>
-                    </visibilityPriorities>
-                    <customSpacing>
-                        <real value="3.4028234663852886e+38"/>
-                        <real value="3.4028234663852886e+38"/>
-                        <real value="3.4028234663852886e+38"/>
-                    </customSpacing>
-                </stackView>
-            </subviews>
-            <constraints>
-                <constraint firstItem="Ugt-rs-hq0" firstAttribute="top" secondItem="wnC-CZ-C93" secondAttribute="top" id="3ac-Ww-Wna"/>
-                <constraint firstItem="Ugt-rs-hq0" firstAttribute="leading" secondItem="wnC-CZ-C93" secondAttribute="leading" constant="9" id="5fZ-O5-pOG"/>
-                <constraint firstAttribute="trailing" secondItem="Ugt-rs-hq0" secondAttribute="trailing" constant="7" id="Cjl-bd-4cV"/>
-                <constraint firstAttribute="bottom" secondItem="Ugt-rs-hq0" secondAttribute="bottom" constant="1" id="dk0-5N-5qz"/>
-            </constraints>
-            <connections>
-                <outlet property="badge" destination="A9m-yZ-SOA" id="HC2-Vg-Ul9"/>
-                <outlet property="keyChar" destination="4Ha-yc-num" id="6an-Dv-1e8"/>
-                <outlet property="keyModifier" destination="7Iu-4w-4gc" id="mvq-AH-yX4"/>
-                <outlet property="mainLabel" destination="dcs-Nt-7x5" id="1kh-zI-AFk"/>
-            </connections>
-            <point key="canvasLocation" x="163" y="150"/>
-        </customView>
-        <customView id="Pdz-aR-jMO" userLabel="Open Preferences (Item)" customClass="NSMenuBadgeItemView" customModule="Pock" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="260" height="26"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-            <subviews>
-                <stackView distribution="fillProportionally" orientation="horizontal" alignment="centerY" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sOQ-0L-NFn">
-                    <rect key="frame" x="9" y="1" width="244" height="25"/>
-                    <subviews>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SMP-V2-2gE">
-                            <rect key="frame" x="-2" y="5" width="174" height="16"/>
-                            <textFieldCell key="cell" lineBreakMode="clipping" title="Open Preferences" id="b46-qP-LeM">
-                                <font key="font" metaFont="system"/>
-                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                            </textFieldCell>
-                        </textField>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Kqa-bl-ZN6">
-                            <rect key="frame" x="180" y="6" width="24" height="14"/>
-                            <constraints>
-                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="24" id="YD4-aV-sib"/>
-                            </constraints>
-                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="1" drawsBackground="YES" id="Eza-Pj-iuG">
-                                <font key="font" metaFont="system" size="11"/>
-                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                <color key="backgroundColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
-                            </textFieldCell>
-                        </textField>
-                        <stackView distribution="fillProportionally" orientation="horizontal" alignment="centerY" spacing="-3" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yVq-bQ-aG0">
-                            <rect key="frame" x="214" y="4" width="30" height="17"/>
-                            <subviews>
-                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="qHy-jk-zik">
-                                    <rect key="frame" x="-2" y="0.0" width="26" height="17"/>
-                                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="⌘" id="AEn-fc-oEE">
-                                        <font key="font" metaFont="systemSemibold" size="14"/>
-                                        <color key="textColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
-                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                    </textFieldCell>
-                                </textField>
-                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="5Pd-bN-Fpe">
-                                    <rect key="frame" x="17" y="1" width="15" height="16"/>
-                                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="," id="Nui-T4-4Ng">
-                                        <font key="font" metaFont="systemMedium" size="13"/>
-                                        <color key="textColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
-                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                    </textFieldCell>
-                                </textField>
-                            </subviews>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="30" id="SBx-ju-ulq"/>
-                            </constraints>
-                            <visibilityPriorities>
-                                <integer value="1000"/>
-                                <integer value="1000"/>
-                            </visibilityPriorities>
-                            <customSpacing>
-                                <real value="3.4028234663852886e+38"/>
-                                <real value="3.4028234663852886e+38"/>
-                            </customSpacing>
-                        </stackView>
-                    </subviews>
-                    <visibilityPriorities>
-                        <integer value="1000"/>
-                        <integer value="1000"/>
-                        <integer value="1000"/>
-                    </visibilityPriorities>
-                    <customSpacing>
-                        <real value="3.4028234663852886e+38"/>
-                        <real value="3.4028234663852886e+38"/>
-                        <real value="3.4028234663852886e+38"/>
-                    </customSpacing>
-                </stackView>
-            </subviews>
-            <constraints>
-                <constraint firstAttribute="bottom" secondItem="sOQ-0L-NFn" secondAttribute="bottom" constant="1" id="Nzb-T7-kke"/>
-                <constraint firstItem="sOQ-0L-NFn" firstAttribute="top" secondItem="Pdz-aR-jMO" secondAttribute="top" id="YOy-mx-Jhe"/>
-                <constraint firstAttribute="trailing" secondItem="sOQ-0L-NFn" secondAttribute="trailing" constant="7" id="ZmC-VK-wOb"/>
-                <constraint firstItem="sOQ-0L-NFn" firstAttribute="leading" secondItem="Pdz-aR-jMO" secondAttribute="leading" constant="9" id="zYc-ta-tNz"/>
-            </constraints>
-            <connections>
-                <outlet property="badge" destination="Kqa-bl-ZN6" id="z6g-P9-Kw6"/>
-                <outlet property="keyChar" destination="5Pd-bN-Fpe" id="qn4-Ij-g7Y"/>
-                <outlet property="keyModifier" destination="qHy-jk-zik" id="7Em-67-iUe"/>
-                <outlet property="mainLabel" destination="SMP-V2-2gE" id="HzR-ua-4gp"/>
-            </connections>
-            <point key="canvasLocation" x="163" y="55"/>
-        </customView>
     </objects>
 </document>
