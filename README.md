@@ -1,7 +1,6 @@
 <p align="center"><img src="https://pock.dev/assets/img/brand/web-icon-black.png" width="96"/></p>
-<p align="center">Display macOS Dock in Touch Bar.</p>
-<p align="center">It's free and open source, and it also brings some minimalistic widgets with it!
-</p>
+<p align="center">Widgets manager for MacBook's Touch Bar</p>
+<p align="center">Pock is a free, open-source tool that gives you quick access to your favorite controls and services while maximizing your on-screen real estate</p>
 <p align="center">
   <img width="800" src="https://pock.dev/assets/img/preview/pock_widgets.png"/>
 </p>
