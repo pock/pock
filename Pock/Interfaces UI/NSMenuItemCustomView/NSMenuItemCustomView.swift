@@ -34,6 +34,7 @@ internal class NSMenuItemCustomView: NSView {
 		view.snp.makeConstraints({
 			$0.edges.equalToSuperview()
 		})
+		layoutSubtreeIfNeeded()
 	}
 	
 	override func draw(_ dirtyRect: NSRect) {

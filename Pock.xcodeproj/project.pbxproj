@@ -10,6 +10,10 @@
 		340520BD24F6DF510082955A /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 340520BC24F6DF510082955A /* Secrets.plist */; };
 		3406434D227F3FFF00981372 /* PockMainController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3406434C227F3FFF00981372 /* PockMainController.xib */; };
 		3407F9DE22D0F0A60072E742 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3407F9DD22D0F0A60072E742 /* Extensions.swift */; };
+		340C833F25D06F510089A005 /* NSMenuBadgeItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 340C833B25D06F510089A005 /* NSMenuBadgeItemView.xib */; };
+		340C834025D06F510089A005 /* NSMenuBadgeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340C833C25D06F510089A005 /* NSMenuBadgeItem.swift */; };
+		340C834125D06F510089A005 /* NSMenuItemCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340C833D25D06F510089A005 /* NSMenuItemCustomView.swift */; };
+		340C834225D06F510089A005 /* NSMenuItemCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 340C833E25D06F510089A005 /* NSMenuItemCustomView.xib */; };
 		341F51CC25AC9A81003D2674 /* PockUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341F51CB25AC9A81003D2674 /* PockUpdater.swift */; };
 		341F51D725ACB46A003D2674 /* PKWidgetCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 341F51D625ACB46A003D2674 /* PKWidgetCellView.xib */; };
 		341F51DC25ACB513003D2674 /* PKWidgetCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341F51DB25ACB513003D2674 /* PKWidgetCellView.swift */; };
@@ -28,7 +32,6 @@
 		345E2EC823C2691900A947FC /* WidgetsManagerListPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 345E2EC623C2691900A947FC /* WidgetsManagerListPane.xib */; };
 		34832418246FFA6F0035D2C2 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34832417246FFA6F0035D2C2 /* main.swift */; };
 		3483241E246FFA8B0035D2C2 /* Relaunch in Resources */ = {isa = PBXBuildFile; fileRef = 34832415246FFA6F0035D2C2 /* Relaunch */; };
-		34881E9D25BAFF630075AF7E /* NSMenuBadgeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34881E9C25BAFF620075AF7E /* NSMenuBadgeItem.swift */; };
 		349F9C1C23C36BCA002CEC1E /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 349F9C1B23C36BCA002CEC1E /* Quartz.framework */; };
 		349F9C1F23C36BCA002CEC1E /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349F9C1E23C36BCA002CEC1E /* PreviewViewController.swift */; };
 		349F9C2223C36BCA002CEC1E /* PreviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 349F9C2023C36BCA002CEC1E /* PreviewViewController.xib */; };
@@ -41,7 +44,6 @@
 		34A0E78C25A7C8FB002F58A1 /* OnBoardWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34A0E78A25A7C8FB002F58A1 /* OnBoardWindowController.xib */; };
 		34A0E79625A8B1EB002F58A1 /* install_defaults.gif in Resources */ = {isa = PBXBuildFile; fileRef = 34A0E79525A8B1EB002F58A1 /* install_defaults.gif */; };
 		34AB11C4250040DA00829E59 /* PockHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AB11C3250040DA00829E59 /* PockHelper.swift */; };
-		34AD423B25CF104E008E8E90 /* NSMenuItemCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34AD423A25CF104E008E8E90 /* NSMenuItemCustomView.xib */; };
 		34B6D0FE25A62111001C925C /* GeneralPreferencePane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34B6D0FD25A62111001C925C /* GeneralPreferencePane.xib */; };
 		34BC3ECC2210B2EC00C1DD3C /* DFRFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34BC3ECB2210B2EC00C1DD3C /* DFRFoundation.framework */; };
 		34BFC52725038EC3008E5ACB /* WidgetsManagerInstallPane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BFC52525038EC3008E5ACB /* WidgetsManagerInstallPane.swift */; };
@@ -51,8 +53,6 @@
 		34D5C1E825039714007A021E /* RoundedRectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D5C1E725039714007A021E /* RoundedRectView.swift */; };
 		34D5C1EB2503973A007A021E /* DestinationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D5C1EA2503973A007A021E /* DestinationView.swift */; };
 		34D6F6FC23C2DD7A0078181F /* widget_icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 34D6F6FB23C2DD7A0078181F /* widget_icon.icns */; };
-		34E9ECDE25CDA7AE0071AFAA /* NSMenuItemCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E9ECDC25CDA7AE0071AFAA /* NSMenuItemCustomView.swift */; };
-		34E9ECDF25CDA7AE0071AFAA /* NSMenuBadgeItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34E9ECDD25CDA7AE0071AFAA /* NSMenuBadgeItemView.xib */; };
 		34EF604A23C12E1300FBE9E7 /* AlertWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EF604823C12E1300FBE9E7 /* AlertWindowController.swift */; };
 		34EF604B23C12E1300FBE9E7 /* AlertWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34EF604923C12E1300FBE9E7 /* AlertWindowController.xib */; };
 		34F7648E250158B700310698 /* ProcessWidgetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F7648D250158B600310698 /* ProcessWidgetController.swift */; };
@@ -109,6 +109,10 @@
 		340520BC24F6DF510082955A /* Secrets.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Secrets.plist; sourceTree = "<group>"; };
 		3406434C227F3FFF00981372 /* PockMainController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PockMainController.xib; sourceTree = "<group>"; };
 		3407F9DD22D0F0A60072E742 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		340C833B25D06F510089A005 /* NSMenuBadgeItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NSMenuBadgeItemView.xib; sourceTree = "<group>"; };
+		340C833C25D06F510089A005 /* NSMenuBadgeItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSMenuBadgeItem.swift; sourceTree = "<group>"; };
+		340C833D25D06F510089A005 /* NSMenuItemCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSMenuItemCustomView.swift; sourceTree = "<group>"; };
+		340C833E25D06F510089A005 /* NSMenuItemCustomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NSMenuItemCustomView.xib; sourceTree = "<group>"; };
 		341F51CB25AC9A81003D2674 /* PockUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PockUpdater.swift; sourceTree = "<group>"; };
 		341F51D625ACB46A003D2674 /* PKWidgetCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PKWidgetCellView.xib; sourceTree = "<group>"; };
 		341F51DB25ACB513003D2674 /* PKWidgetCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKWidgetCellView.swift; sourceTree = "<group>"; };
@@ -133,7 +137,6 @@
 		34832415246FFA6F0035D2C2 /* Relaunch */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Relaunch; sourceTree = BUILT_PRODUCTS_DIR; };
 		34832417246FFA6F0035D2C2 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		348343D61F631B2E00CDA005 /* Pock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pock.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		34881E9C25BAFF620075AF7E /* NSMenuBadgeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSMenuBadgeItem.swift; sourceTree = "<group>"; };
 		349431EC22197484008622B1 /* MediaRemote.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaRemote.framework; path = ../../../../../../../../../System/Library/PrivateFrameworks/MediaRemote.framework; sourceTree = "<group>"; };
 		3494320B222179D7008622B1 /* BatteryUIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BatteryUIKit.framework; path = ../../../../../../../../../System/Library/PrivateFrameworks/BatteryUIKit.framework; sourceTree = "<group>"; };
 		349F9C1A23C36BCA002CEC1E /* QLPockWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = QLPockWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -150,7 +153,6 @@
 		34A0E79525A8B1EB002F58A1 /* install_defaults.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = install_defaults.gif; sourceTree = "<group>"; };
 		34A8060922F6B97000621235 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		34AB11C3250040DA00829E59 /* PockHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PockHelper.swift; sourceTree = "<group>"; };
-		34AD423A25CF104E008E8E90 /* NSMenuItemCustomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NSMenuItemCustomView.xib; sourceTree = "<group>"; };
 		34B6D0FD25A62111001C925C /* GeneralPreferencePane.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GeneralPreferencePane.xib; sourceTree = "<group>"; };
 		34BC3ECB2210B2EC00C1DD3C /* DFRFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DFRFoundation.framework; path = ../../../../../../../../../System/Library/PrivateFrameworks/DFRFoundation.framework; sourceTree = "<group>"; };
 		34BFC52525038EC3008E5ACB /* WidgetsManagerInstallPane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetsManagerInstallPane.swift; sourceTree = "<group>"; };
@@ -161,8 +163,6 @@
 		34D5C1E725039714007A021E /* RoundedRectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRectView.swift; sourceTree = "<group>"; };
 		34D5C1EA2503973A007A021E /* DestinationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationView.swift; sourceTree = "<group>"; };
 		34D6F6FB23C2DD7A0078181F /* widget_icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = widget_icon.icns; sourceTree = "<group>"; };
-		34E9ECDC25CDA7AE0071AFAA /* NSMenuItemCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSMenuItemCustomView.swift; sourceTree = "<group>"; };
-		34E9ECDD25CDA7AE0071AFAA /* NSMenuBadgeItemView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NSMenuBadgeItemView.xib; sourceTree = "<group>"; };
 		34EF604823C12E1300FBE9E7 /* AlertWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertWindowController.swift; sourceTree = "<group>"; };
 		34EF604923C12E1300FBE9E7 /* AlertWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertWindowController.xib; sourceTree = "<group>"; };
 		34F27F2523428108001EBB6B /* LaunchAtLogin.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LaunchAtLogin.framework; path = Carthage/Build/Mac/LaunchAtLogin.framework; sourceTree = "<group>"; };
@@ -242,6 +242,25 @@
 			path = PockMainController;
 			sourceTree = "<group>";
 		};
+		340C833925D06F510089A005 /* NSMenuItemCustomView */ = {
+			isa = PBXGroup;
+			children = (
+				340C833A25D06F510089A005 /* NSMenuBadgeItem */,
+				340C833D25D06F510089A005 /* NSMenuItemCustomView.swift */,
+				340C833E25D06F510089A005 /* NSMenuItemCustomView.xib */,
+			);
+			path = NSMenuItemCustomView;
+			sourceTree = "<group>";
+		};
+		340C833A25D06F510089A005 /* NSMenuBadgeItem */ = {
+			isa = PBXGroup;
+			children = (
+				340C833B25D06F510089A005 /* NSMenuBadgeItemView.xib */,
+				340C833C25D06F510089A005 /* NSMenuBadgeItem.swift */,
+			);
+			path = NSMenuBadgeItem;
+			sourceTree = "<group>";
+		};
 		341F51E025ACB521003D2674 /* PKWidgetCellView */ = {
 			isa = PBXGroup;
 			children = (
@@ -271,7 +290,7 @@
 			isa = PBXGroup;
 			children = (
 				342D83952278D5CF000D79DA /* MainWindow.xib */,
-				34AD423F25CF1054008E8E90 /* NSMenuItemCustomView */,
+				340C833925D06F510089A005 /* NSMenuItemCustomView */,
 				3446657A25AE273A00A08380 /* UpdateAlertController */,
 				34EF604C23C12E1700FBE9E7 /* AlertWindowController */,
 				34A0E79025A7C901002F58A1 /* OnBoardWindowController */,
@@ -466,17 +485,6 @@
 			path = ProcessWidgetController;
 			sourceTree = "<group>";
 		};
-		34AD423F25CF1054008E8E90 /* NSMenuItemCustomView */ = {
-			isa = PBXGroup;
-			children = (
-				34E9ECE325CDA7B70071AFAA /* NSMenuItemCustomView */,
-				34E9ECDC25CDA7AE0071AFAA /* NSMenuItemCustomView.swift */,
-				34AD423A25CF104E008E8E90 /* NSMenuItemCustomView.xib */,
-			);
-			name = NSMenuItemCustomView;
-			path = NSMenuItemCustomView/NSMenuItemCustomView;
-			sourceTree = "<group>";
-		};
 		34BFC52925038EC7008E5ACB /* WidgetsManagerInstallPane */ = {
 			isa = PBXGroup;
 			children = (
@@ -503,16 +511,6 @@
 				34D5C1EA2503973A007A021E /* DestinationView.swift */,
 			);
 			path = "UI Utils";
-			sourceTree = "<group>";
-		};
-		34E9ECE325CDA7B70071AFAA /* NSMenuItemCustomView */ = {
-			isa = PBXGroup;
-			children = (
-				34881E9C25BAFF620075AF7E /* NSMenuBadgeItem.swift */,
-				34E9ECDD25CDA7AE0071AFAA /* NSMenuBadgeItemView.xib */,
-			);
-			name = NSMenuItemCustomView;
-			path = ..;
 			sourceTree = "<group>";
 		};
 		34EF604C23C12E1700FBE9E7 /* AlertWindowController */ = {
@@ -668,7 +666,6 @@
 				341F51D725ACB46A003D2674 /* PKWidgetCellView.xib in Resources */,
 				345E2EC823C2691900A947FC /* WidgetsManagerListPane.xib in Resources */,
 				34EF604B23C12E1300FBE9E7 /* AlertWindowController.xib in Resources */,
-				34E9ECDF25CDA7AE0071AFAA /* NSMenuBadgeItemView.xib in Resources */,
 				34F76490250158BD00310698 /* ProcessWidgetController.xib in Resources */,
 				340520BD24F6DF510082955A /* Secrets.plist in Resources */,
 				34A0E79625A8B1EB002F58A1 /* install_defaults.gif in Resources */,
@@ -676,8 +673,9 @@
 				96FE269F22D0C3810071645C /* Localizable.strings in Resources */,
 				3406434D227F3FFF00981372 /* PockMainController.xib in Resources */,
 				342D83E72278D5CF000D79DA /* Assets.xcassets in Resources */,
-				34AD423B25CF104E008E8E90 /* NSMenuItemCustomView.xib in Resources */,
 				34BFC52825038EC3008E5ACB /* WidgetsManagerInstallPane.xib in Resources */,
+				340C834225D06F510089A005 /* NSMenuItemCustomView.xib in Resources */,
+				340C833F25D06F510089A005 /* NSMenuBadgeItemView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -779,10 +777,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				34E9ECDE25CDA7AE0071AFAA /* NSMenuItemCustomView.swift in Sources */,
+				340C834125D06F510089A005 /* NSMenuItemCustomView.swift in Sources */,
 				345E2EC723C2691900A947FC /* WidgetsManagerListPane.swift in Sources */,
 				34BFC52725038EC3008E5ACB /* WidgetsManagerInstallPane.swift in Sources */,
-				34881E9D25BAFF630075AF7E /* NSMenuBadgeItem.swift in Sources */,
 				3435675B2381666F00E408EF /* WidgetsDispatcher.swift in Sources */,
 				34CA451D23C0C98A00C45B0D /* STPrivilegedTask.m in Sources */,
 				349F9C2E23C37231002CEC1E /* WidgetInfo.swift in Sources */,
@@ -805,6 +802,7 @@
 				34D5C1EB2503973A007A021E /* DestinationView.swift in Sources */,
 				34D5C1E825039714007A021E /* RoundedRectView.swift in Sources */,
 				342D83E42278D5CF000D79DA /* GeneralPreferencePane.swift in Sources */,
+				340C834025D06F510089A005 /* NSMenuBadgeItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

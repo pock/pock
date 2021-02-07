@@ -118,6 +118,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		quitPockMenuItem.target = NSApp
 		quitPockMenuItem.action = #selector(NSApp.terminate)
 		quitPockMenuItem.view  = NSMenuItemCustomView(item: quitPockMenuItem)
+		// MARK: Set indentation level for advanced menu
+		if #available(macOS 11, *) {
+			return
+		}
+		advancedMenuItem.submenu?.items.forEach({ $0.indentationLevel = 1 })
 	}
 	internal func setUpdatesBadge(core: Int, widgets: Int, color: NSColor = .systemRed) {
 		self.openPreferencesMenuItem.setBadge(core > 0 ? core.description : nil, color: color)
