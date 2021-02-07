@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="18121" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18121"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -29,9 +29,9 @@
                     <rect key="frame" x="0.0" y="153" width="142" height="103"/>
                     <subviews>
                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Jxs-rJ-hZ7">
-                            <rect key="frame" x="11" y="53" width="120" height="50"/>
+                            <rect key="frame" x="46" y="53" width="50" height="50"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="120" id="B43-2G-d8G"/>
+                                <constraint firstAttribute="width" constant="50" id="B43-2G-d8G"/>
                                 <constraint firstAttribute="height" constant="50" id="VbT-qn-k2e"/>
                             </constraints>
                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="pock-app-icon" id="XoW-WB-C0h"/>
@@ -342,6 +342,6 @@
         </customView>
     </objects>
     <resources>
-        <image name="pock-app-icon" width="150" height="150"/>
+        <image name="pock-app-icon" width="50" height="50"/>
     </resources>
 </document>

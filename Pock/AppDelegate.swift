@@ -131,7 +131,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			base?.addSubview(badge)
 			badge.snp.remakeConstraints {
 				$0.height.width.equalTo(4)
-				$0.right.equalToSuperview().inset(4)
+				$0.right.equalToSuperview().inset(3)
 				$0.bottom.equalToSuperview().inset(4)
 			}
 		}else {
