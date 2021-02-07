@@ -65,7 +65,7 @@
 		</dict>
 	</dict>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2017 Pierluigi Galdi. All rights reserved.</string>
+	<string>Copyright © 2021 Pierluigi Galdi. All rights reserved.</string>
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
 	<key>NSPrincipalClass</key>
