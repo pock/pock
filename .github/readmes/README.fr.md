@@ -158,7 +158,7 @@ Vous pourrez bientôt le faire grâce au <b>PockKit</b>!
 
 ## README traduits
 
-🇺🇸 [English](README.md)
+🇺🇸 [English](/README.md)
 🇨🇳 [中文](.github/readmes/README.cn.md)
 🇯🇵 [日本語](.github/readmes/README.ja.md)
 🇹🇷 [Türkçe](.github/readmes/README.tr.md)
@@ -176,4 +176,4 @@ Vous pourrez bientôt le faire grâce au <b>PockKit</b>!
 
 ## Licence d'utilisation
 
-Sous licence MIT. Voir le fichier [LICENCE](LICENSE) pour plus d'informations.
+Sous licence MIT. Voir le fichier [LICENCE](/LICENSE) pour plus d'informations.
