@@ -1,0 +1,15 @@
+## .DS_Store
+.DS_Store
+
+## No Pods folder
+Podfile.lock
+Pods
+
+## Userdata
+clear_pock_environment
+Pock.xcodeproj/xcuserdata
+Pock.xcworkspace/xcuserdata
+Pock.xcworkspace/contents.xcworkspacedata
+
+## Hide Secrets
+Secrets.plist
