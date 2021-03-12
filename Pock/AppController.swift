@@ -9,6 +9,21 @@ import Foundation
 import Magnet
 import PockKit
 
+internal struct MessageAction {
+	internal enum Key: String {
+		case none = "", esc = "\u{1b}", enter = "\r"
+	}
+	typealias MessageActionHandler = () -> Void
+	let title: String
+	let key: Key
+	let action: MessageActionHandler?
+	internal init(title: String, key: Key = .none, action: MessageActionHandler? = nil) {
+		self.title = title
+		self.key = key
+		self.action = action
+	}
+}
+
 internal class AppController: NSResponder {
 
 	/// Singleton
@@ -67,6 +82,45 @@ internal class AppController: NSResponder {
 	/// Register double `ctrl` hotkey
 	private func registerDoubleControlHotKey() {
 		doubleCtrlHotKey = HotKey(key: .control, double: true, target: self, selector: #selector(toggleVisibility))
+	}
+	
+	// MARK: Show messages panel to inform users about certain situations
+	internal func showMessagePanelWith(
+		error: Error? = nil,
+		title: String? = nil,
+		message: String? = nil,
+		style: NSAlert.Style = .informational,
+		actions: [MessageAction] = []
+	) {
+		precondition(actions.count <= 4, "Invalid alert actions count. `NSAlert` can only have a maximum of 3 buttons other than `cancel`")
+		precondition(actions.filter({ $0.key == .esc }).count <= 1, "Invalid number of `cancel` actions. Only one is allowed.")
+		let alert = NSAlert()
+		alert.messageText = title ?? "alert.title.default".localized
+		alert.informativeText = message ?? "alert.message.default".localized
+		alert.alertStyle = style
+		if actions.isEmpty {
+			let cancel = alert.addButton(withTitle: "base.cancel".localized)
+			cancel.keyEquivalent = MessageAction.Key.esc.rawValue
+		} else {
+			actions.forEach({
+				let button = alert.addButton(withTitle: $0.title)
+				button.keyEquivalent = $0.key.rawValue
+			})
+		}
+		NSApp.activate(ignoringOtherApps: true)
+		defer {
+			NSApp.deactivate()
+		}
+		switch alert.runModal() {
+		case .alertFirstButtonReturn:
+			actions[0].action?()
+		case .alertSecondButtonReturn:
+			actions[1].action?()
+		case .alertThirdButtonReturn:
+			actions[2].action?()
+		default:
+			return
+		}
 	}
 
 }

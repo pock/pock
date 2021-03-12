@@ -22,8 +22,11 @@ internal final class WidgetsLoader {
 	init() {
 		/// Create support folders, if needed
 		guard createSupportFoldersIfNeeded() else {
-			// TODO: Show alert
-			Roger.error("Can't create Pock's support folders.")
+			AppController.shared.showMessagePanelWith(
+				title: "error.title.default".localized,
+				message: "error.message.cant_create_support_folders".localized,
+				style: .critical
+			)
 			return
 		}
 	}
