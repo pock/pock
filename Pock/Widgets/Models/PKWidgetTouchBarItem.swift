@@ -35,18 +35,29 @@ internal class PKWidgetTouchBarItem: NSCustomTouchBarItem {
 		widget = nil
 	}
 	
-	private var viewSnapshot: NSImage {
-		return NSImage(data: view.dataWithPDF(inside: view.bounds)) ?? NSImage(named: .pockInnerIcon)!
+	private var defaultSnapshotView: NSView {
+		return NSImageView(image: NSImage(named: .pockInnerIcon)!) // TODO: Change with default widget icon
 	}
 	
-	override func viewForCustomizationPalette() -> NSView? {
+	private var snapshotView: NSView {
+		view.frame = NSRect(origin: .zero, size: view.fittingSize)
+		if let bitmapImage = view.bitmapImageRepForCachingDisplay(in: view.frame) {
+			view.cacheDisplay(in: view.frame, to: bitmapImage)
+			if let cgImage = bitmapImage.cgImage {
+				return NSImageView(image: NSImage(cgImage: cgImage, size: view.frame.size))
+			}
+		}
+		return defaultSnapshotView
+	}
+	
+	override func viewForCustomizationPalette() -> NSView {
 		Roger.info("[\(identifier)] - Snapshotting view for customization palette...")
-		return NSImageView(image: viewSnapshot)
+		return snapshotView
 	}
 	
-	override func viewForCustomizationPreview() -> NSView? {
+	override func viewForCustomizationPreview() -> NSView {
 		Roger.info("[\(identifier)] - Snapshotting view for customization preview...")
-		return NSImageView(image: viewSnapshot)
+		return snapshotView
 	}
 	
 }

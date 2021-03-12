@@ -19,10 +19,11 @@
 @end
 
 
+
 // MARK: NSCustomTouchBarItem
 @interface NSCustomTouchBarItem (Pock)
-- (nullable NSView *)viewForCustomizationPalette;
-- (nullable NSView *)viewForCustomizationPreview;
+- (nonnull NSView *)viewForCustomizationPalette;
+- (nonnull NSView *)viewForCustomizationPreview;
 - (CGFloat)preferredSizeForCustomizationPalette;
 @end
 
