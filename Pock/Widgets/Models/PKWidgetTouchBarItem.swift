@@ -40,7 +40,9 @@ internal class PKWidgetTouchBarItem: NSCustomTouchBarItem {
 	}
 	
 	private var snapshotView: NSView {
-		view.frame = NSRect(origin: .zero, size: view.fittingSize)
+		if view.frame.width == 0 {
+			view.frame.size = view.fittingSize
+		}
 		if let bitmapImage = view.bitmapImageRepForCachingDisplay(in: view.frame) {
 			view.cacheDisplay(in: view.frame, to: bitmapImage)
 			if let cgImage = bitmapImage.cgImage {

@@ -25,6 +25,10 @@ internal class PockTouchBarController: PKTouchBarMouseController {
 	private(set) var widgets: [NSTouchBarItem.Identifier: PKWidget.Type] = [:]
 	private(set) var cachedItems: [NSTouchBarItem.Identifier: PKWidgetTouchBarItem] = [:]
 	
+	internal var allowedCustomizationIdentifiers: [NSTouchBarItem.Identifier] {
+		return Array(widgets.keys) + [.flexibleSpace]
+	}
+	
 	/// Overrides
 	override func didLoad() {
 		Roger.debug("[PockTouchBarController] Loaded.")
@@ -41,9 +45,8 @@ internal class PockTouchBarController: PKTouchBarMouseController {
 		guard isVisible == false else {
 			return
 		}
-		invalidateTouchBar()
 		loadInstalledWidgets { [weak self] in
-			TouchBarHelper.setPresentationMode(to: .app)
+			self?.invalidateTouchBar()
 			self?.isVisible = true
 			self?.presentWithPlacement(placement: 1)
 		}
@@ -76,10 +79,9 @@ internal class PockTouchBarController: PKTouchBarMouseController {
 	/// Load installed widgets
 	private func loadInstalledWidgets(_ completion: @escaping () -> Void) {
 		WidgetsLoader().loadInstalledWidgets { [unowned self] widgets in
-			self.touchBar?.customizationAllowedItemIdentifiers = widgets.map({
-				self.widgets[$0.identifier] = $0
-				return $0.identifier
-			})
+			for widget in widgets {
+				self.widgets[widget.identifier] = widget
+			}
 			completion()
 		}
 	}
@@ -89,7 +91,7 @@ internal class PockTouchBarController: PKTouchBarMouseController {
 		let touchBar = NSTouchBar()
 		touchBar.delegate = self
 		touchBar.customizationIdentifier = .pockTouchBarController
-		touchBar.customizationAllowedItemIdentifiers = Array(widgets.keys)
+		touchBar.customizationAllowedItemIdentifiers = allowedCustomizationIdentifiers
 		for key in widgets.keys {
 			Roger.info("[\(key.rawValue)] - Allowed for customization")
 		}
@@ -99,6 +101,7 @@ internal class PockTouchBarController: PKTouchBarMouseController {
 	/// Make Touch Bar item for given identifier
 	func touchBar(_ touchBar: NSTouchBar, makeItemForIdentifier identifier: NSTouchBarItem.Identifier) -> NSTouchBarItem? {
 		guard let widget = widgets[identifier] else {
+			Roger.error("Can't find `NSTouchBarItem` for given identifier: `\(identifier)`")
 			return nil
 		}
 		if let item = cachedItems[identifier] {

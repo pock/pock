@@ -68,6 +68,11 @@ internal class AppController: NSResponder {
 	private func registerDoubleControlHotKey() {
 		doubleCtrlHotKey = HotKey(key: .control, double: true, target: self, selector: #selector(toggleVisibility))
 	}
+
+}
+
+// MARK: Customization menu
+extension AppController: NSTouchBarDelegate {
 	
 	/// Open customization menu
 	@objc internal func openCustomizationMenu() {
@@ -81,26 +86,22 @@ internal class AppController: NSResponder {
 			NSApp.toggleTouchBarCustomizationPalette(self)
 		}
 	}
-
-}
-
-// MARK: Customization menu
-extension AppController: NSTouchBarDelegate {
 	
 	override func makeTouchBar() -> NSTouchBar? {
 		let touchBar = NSTouchBar()
 		touchBar.delegate = self
 		touchBar.customizationIdentifier = .pockTouchBarController
-		touchBar.customizationAllowedItemIdentifiers = Array(pockTouchBarController.widgets.keys)
+		touchBar.customizationAllowedItemIdentifiers = pockTouchBarController.allowedCustomizationIdentifiers
 		return touchBar
 	}
 	
 	func touchBar(_ touchBar: NSTouchBar, makeItemForIdentifier identifier: NSTouchBarItem.Identifier) -> NSTouchBarItem? {
-		guard let widget = pockTouchBarController.cachedItems[identifier] else {
+		guard let widget = pockTouchBarController.touchBar?.item(forIdentifier: identifier) as? PKWidgetTouchBarItem else {
+			Roger.error("Can't find `NSTouchBarItem` for given identifier: `\(identifier)`")
 			return nil
 		}
 		let item = NSCustomTouchBarItem(identifier: identifier)
-		item.view = widget.viewForCustomizationPalette()!
+		item.view = widget.viewForCustomizationPalette()
 		item.customizationLabel = widget.customizationLabel
 		return item
 	}
