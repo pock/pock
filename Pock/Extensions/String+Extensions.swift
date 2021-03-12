@@ -11,7 +11,7 @@ extension String {
 
 	/// Localized string for given key
 	var localized: String {
-		return NSLocalizedString(self, comment: self)
+		return NSLocalizedString(self, tableName: "Localisations", bundle: .main, value: self, comment: self)
 	}
 
 }

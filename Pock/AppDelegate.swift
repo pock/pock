@@ -55,17 +55,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		/// Set title and actions
 
 		// MARK: About Pock
-		let aboutPockMenuItem = NSMenuItem(title: "About Pock".localized, action: #selector(openWebsite), keyEquivalent: "")
+		let aboutPockMenuItem = NSMenuItem(title: "menu.about".localized, action: #selector(openWebsite), keyEquivalent: "")
 		aboutPockMenuItem.view = NSMenuItemCustomView(item: aboutPockMenuItem)
 		mainBarMenu.addItem(aboutPockMenuItem)
 
 		// MARK: Customize Touch Bar
-		let customizeTouchBarMenuItem = NSMenuItem(title: "Customize Touch Bar…".localized, action: #selector(openCustomizationMenu), keyEquivalent: "c")
+		let customizeTouchBarMenuItem = NSMenuItem(title: "menu.open_customization_palette".localized, action: #selector(openCustomizationPalette), keyEquivalent: "c")
 		customizeTouchBarMenuItem.view = NSMenuItemCustomView(item: customizeTouchBarMenuItem)
 		mainBarMenu.addItem(customizeTouchBarMenuItem)
 		
 		// MARK: Quit Pock
-		let quitPockMenuItem = NSMenuItem(title: "Quit Pock".localized, action: #selector(NSApp.terminate(_:)), keyEquivalent: "q")
+		let quitPockMenuItem = NSMenuItem(title: "menu.quit".localized, action: #selector(NSApp.terminate(_:)), keyEquivalent: "q")
 		quitPockMenuItem.target = NSApp
 		quitPockMenuItem.view = NSMenuItemCustomView(item: quitPockMenuItem)
 		mainBarMenu.addItem(quitPockMenuItem)
@@ -79,13 +79,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 	// MARK: Open website
 	@objc private func openWebsite() {
-		guard let url = URL(string: "https://pock.dev") else { return }
+		guard let url = URL(string: "base.website_url".localized) else { return }
 		NSWorkspace.shared.open(url)
 	}
 	
 	// MARK: Open customization menu
-	@objc private func openCustomizationMenu() {
-		AppController.shared.openCustomizationMenu()
+	@objc private func openCustomizationPalette() {
+		AppController.shared.openCustomizationPalette()
 	}
 
 }

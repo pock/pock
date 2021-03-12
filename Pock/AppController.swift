@@ -75,7 +75,7 @@ internal class AppController: NSResponder {
 extension AppController: NSTouchBarDelegate {
 	
 	/// Open customization menu
-	@objc internal func openCustomizationMenu() {
+	@objc internal func openCustomizationPalette() {
 		if pockTouchBarController == nil {
 			return
 		}

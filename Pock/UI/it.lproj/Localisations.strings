@@ -1,0 +1,21 @@
+/* 
+  English.strings
+  Pock
+
+  Created by Pierluigi Galdi on 12/03/21.
+  
+*/
+
+// MARK: Base
+"base.website_url" = "https://pock.dev/it";
+"base.cancel" = "Annulla";
+
+// MARK: MainBarMenu
+"menu.about" = "A Proposito di Pock";
+"menu.open_customization_palette" = "Configura la Touch Bar…";
+"menu.quit" = "Chiudi Pock";
+
+// MARK: Onboard Screen
+"onboard.title" = "Ottieni il massimo dalla Touch Bar del tuo MacBook Pro";
+"onboard.message" = "Pock viene fornito con widget predefiniti che ti consentono di accedere ai controlli utilizzati di frequente e alle informazioni essenziali.";
+"onboard.footer" = "Segui le istruzioni nella Touch Bar per installare i widget di sistema";
