@@ -18,6 +18,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	private let mainBarMenu = NSMenu(title: "Pock")
 
 	func applicationDidFinishLaunching(_ aNotification: Notification) {
+		/// Set Roger allowed log levels
+		Roger.allowedLevels = [.error]
+		
 		/// Initialise AppCenter stuff (Analytics & Crash)
 		#if !DEBUG
 		if let path = Bundle.main.path(forResource: "Secrets", ofType: "plist") {

@@ -18,11 +18,14 @@ public func print(_ data: Any) {
 public class Roger {
 
 	/// Log levels
-	public enum Level: String {
+	public enum Level: String, CaseIterable {
 		case debug = "[💬]"
 		case info = "[ℹ️]"
 		case error = "[⛔]"
 	}
+	
+	/// Allowed levels
+	public static var allowedLevels: [Level] = Level.allCases
 
 	/// Helpers
 	private class func fileName(at path: String) -> String {
@@ -32,6 +35,9 @@ public class Roger {
 
 	/// Base
 	private static func _baseLogString(level: Level, file: String = #file, function: String = #function, line: Int = #line, _ data: Any?) {
+		guard allowedLevels.contains(level) else {
+			return
+		}
 		let base = "\(level.rawValue)[\(fileName(at: file))][\(function)]:\(line)"
 		guard let data = data else {
 			print("\(base) -> `null`")
