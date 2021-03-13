@@ -76,6 +76,11 @@ public class TouchBarHelper {
 		Roger.debug("Touch Bar Presentation mode changed: [\(result ? "success" : "error")] \(currentMode) -> \(mode)")
 		return result
 	}
+	
+	@objc public static func markTouchBarAsDimmed(_ dimmed: Bool) {
+		NSFunctionRow.markActiveFunctionRows(asDimmed: dimmed)
+	}
+	
 
 	@objc public static func reloadTouchBarAgent(_ completion: ((Bool) -> Void)? = nil) {
 		let result = CommandLineHelper.execute(launchPath: "/usr/bin/pkill", arguments: ["ControlStrip"])
@@ -142,4 +147,29 @@ public class TouchBarHelper {
 		return AppController.shared.navigationController
 	}
 
+}
+
+extension TouchBarHelper {
+	
+	private static let sel1 = #selector(NSFunctionRow.markActiveFunctionRows(asDimmed:))
+	private static let sel2 = #selector(TouchBarHelper.s_markActiveFunctionRowsAsDimmed(_:))
+	
+	// MARK: Swizzle `markActiveFunctionRowsAsDimmed(_:)`
+	@objc static func s_markActiveFunctionRowsAsDimmed(_ dimmed: Bool) {
+		#if DEBUG
+		print("[Pock]: Swizzled method: `NSFunctionRow.markActiveFunctionRowsAsDimmed` - [dimmed: \(dimmed)]")
+		#endif
+		if dimmed {
+			AppController.shared.tearDownTouchBar()
+		} else {
+			AppController.shared.prepareTouchBar()
+		}
+	}
+	
+	internal static let swizzleFunctions: Void = {
+		if let met1 = class_getClassMethod(NSFunctionRow.self, sel1), let met2 = class_getClassMethod(TouchBarHelper.self, sel2) {
+			method_exchangeImplementations(met1, met2)
+		}
+	}()
+	
 }

@@ -25,7 +25,7 @@ internal struct MessageAction {
 }
 
 internal class AppController: NSResponder {
-
+	
 	/// Singleton
 	static let shared = AppController()
 
@@ -35,6 +35,7 @@ internal class AppController: NSResponder {
 	/// Private initialiser
 	private override init() {
 		super.init()
+		_ = TouchBarHelper.swizzleFunctions
 		registerDoubleControlHotKey()
 	}
 	
@@ -71,10 +72,14 @@ internal class AppController: NSResponder {
 		if pockTouchBarController == nil {
 			prepareTouchBar()
 		} else {
-			if NSFunctionRow.activeFunctionRows().count == 1 {
-				reload()
+			if navigationController.visibleController?.isVisible == true {
+				if NSFunctionRow.activeFunctionRows().count > 1 {
+					TouchBarHelper.markTouchBarAsDimmed(true)
+				} else {
+					reload()
+				}
 			} else {
-				tearDownTouchBar()
+				TouchBarHelper.markTouchBarAsDimmed(false)
 			}
 		}
 	}

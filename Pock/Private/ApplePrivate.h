@@ -19,7 +19,6 @@
 @end
 
 
-
 // MARK: NSCustomTouchBarItem
 @interface NSCustomTouchBarItem (Pock)
 - (nonnull NSView *)viewForCustomizationPalette;
@@ -48,10 +47,9 @@
 
 // MARK: NSFunctionRow
 @interface NSFunctionRow: NSObject
-+ (struct CGRect)defaultFrameForType:(long long)arg1;
++ (void)markActiveFunctionRowsAsDimmed:(BOOL)arg1;
 + (nonnull NSArray *)_topLevelFunctionRowViews;
 + (nonnull NSArray *)activeFunctionRows;
-+ (nonnull NSFunctionRow *)makeSystemFunctionRowForTouchBar:(nonnull NSTouchBar *)arg1 systemType:(long long)arg2;
 + (void)removeActiveFunctionRow:(nonnull NSFunctionRow *)arg1;
 + (void)addActiveFunctionRow:(nonnull NSFunctionRow *)arg1;
 @end
