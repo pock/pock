@@ -35,7 +35,7 @@ internal class AppController: NSResponder {
 	/// Private initialiser
 	private override init() {
 		super.init()
-		_ = TouchBarHelper.swizzleFunctions
+		_ = TouchBarHelper.swizzleFunctions()
 		registerDoubleControlHotKey()
 	}
 	

@@ -81,6 +81,15 @@ public class TouchBarHelper {
 		NSFunctionRow.markActiveFunctionRows(asDimmed: dimmed)
 	}
 	
+	@objc public static func hideCloseButtonIfNeeded() {
+		if let view = NSFunctionRow._topLevelViews().first(where: {
+			object_getClass($0) === NSClassFromString("NSFunctionRowBackgroundColorView")
+		}) as? NSView,
+		   let stackView = view.subviews.first(where: { $0 is NSStackView }) as? NSStackView,
+		   let closeButton = stackView.subviews.first(where: { $0 is NSButton }) {
+			closeButton.isHidden = true
+		}
+	}
 
 	@objc public static func reloadTouchBarAgent(_ completion: ((Bool) -> Void)? = nil) {
 		let result = CommandLineHelper.execute(launchPath: "/usr/bin/pkill", arguments: ["ControlStrip"])
@@ -115,9 +124,9 @@ public class TouchBarHelper {
 			return
 		}
 		if #available (macOS 10.14, *) {
-			NSTouchBar.presentSystemModalTouchBar(touchBar, placement: 1, systemTrayItemIdentifier: nil)
+			NSTouchBar.presentSystemModalTouchBar(touchBar, placement: 0, systemTrayItemIdentifier: nil)
 		} else {
-			NSTouchBar.presentSystemModalFunctionBar(touchBar, placement: 1, systemTrayItemIdentifier: nil)
+			NSTouchBar.presentSystemModalFunctionBar(touchBar, placement: 0, systemTrayItemIdentifier: nil)
 		}
 	}
 
@@ -146,15 +155,17 @@ public class TouchBarHelper {
 	@objc public static func mainNavigationController() -> Any? {
 		return AppController.shared.navigationController
 	}
+	
+	@objc public static func swizzleFunctions() {
+		NSFunctionRow.swizzleFunctionMarkActiveFunctionRows
+		NSFunctionRow.swizzleFunctionCloseButtonPadding
+	}
 
 }
 
-extension TouchBarHelper {
+// MARK: Swizzle - markActiveFunctionRows
+extension NSFunctionRow {
 	
-	private static let sel1 = #selector(NSFunctionRow.markActiveFunctionRows(asDimmed:))
-	private static let sel2 = #selector(TouchBarHelper.s_markActiveFunctionRowsAsDimmed(_:))
-	
-	// MARK: Swizzle `markActiveFunctionRowsAsDimmed(_:)`
 	@objc static func s_markActiveFunctionRowsAsDimmed(_ dimmed: Bool) {
 		#if DEBUG
 		print("[Pock]: Swizzled method: `NSFunctionRow.markActiveFunctionRowsAsDimmed` - [dimmed: \(dimmed)]")
@@ -166,8 +177,31 @@ extension TouchBarHelper {
 		}
 	}
 	
-	internal static let swizzleFunctions: Void = {
-		if let met1 = class_getClassMethod(NSFunctionRow.self, sel1), let met2 = class_getClassMethod(TouchBarHelper.self, sel2) {
+	internal static let swizzleFunctionMarkActiveFunctionRows: Void = {
+		let sel1 = #selector(NSFunctionRow.markActiveFunctionRows(asDimmed:))
+		let sel2 = #selector(NSFunctionRow.s_markActiveFunctionRowsAsDimmed(_:))
+		if let met1 = class_getClassMethod(NSFunctionRow.self, sel1), let met2 = class_getClassMethod(NSFunctionRow.self, sel2) {
+			method_exchangeImplementations(met1, met2)
+		}
+	}()
+	
+}
+
+// MARK: Swizzle - escapeKeyPaddingForCloseButton
+extension NSFunctionRow {
+	
+	@objc func s_escapeKeyPaddingForCloseButton(_ isForCloseButton: Bool) -> Double {
+		let original = self.s_escapeKeyPaddingForCloseButton(isForCloseButton)
+		#if DEBUG
+		print("[Pock]: Swizzled method: `_NSFunctionRow.escapeKeyPaddingForCloseButton` - [padding: \(original), isForCloseButton: \(isForCloseButton)]")
+		#endif
+		return isForCloseButton ? 0 : original
+	}
+	
+	internal static let swizzleFunctionCloseButtonPadding: Void = {
+		let sel1 = NSSelectorFromString("escapeKeyPaddingForCloseButton:")
+		let sel2 = #selector(NSFunctionRow.s_escapeKeyPaddingForCloseButton(_:))
+		if let met1 = class_getInstanceMethod(NSClassFromString("_NSFunctionRow"), sel1), let met2 = class_getInstanceMethod(NSFunctionRow.self, sel2) {
 			method_exchangeImplementations(met1, met2)
 		}
 	}()

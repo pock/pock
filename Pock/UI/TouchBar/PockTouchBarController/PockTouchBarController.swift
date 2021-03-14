@@ -47,9 +47,8 @@ internal class PockTouchBarController: PKTouchBarMouseController {
 		}
 		loadInstalledWidgets { [weak self] in
 			self?.invalidateTouchBar()
-			self?.isVisible = true
-			self?.presentWithPlacement(placement: 1)
 		}
+		super.present()
 	}
 	
 	override func dismiss() {
@@ -62,18 +61,6 @@ internal class PockTouchBarController: PKTouchBarMouseController {
 	
 	private func flushWidgetItems() {
 		cachedItems.removeAll()
-	}
-
-	/// Custom `presentWithPlacement` implementation
-	private func presentWithPlacement(placement: Int64) {
-		defer {
-			DFRSystemModalShowsCloseBoxWhenFrontMost(false)
-		}
-		if #available (macOS 10.14, *) {
-			NSTouchBar.presentSystemModalTouchBar(touchBar, placement: placement, systemTrayItemIdentifier: .pockControlStripItem)
-		} else {
-			NSTouchBar.presentSystemModalFunctionBar(touchBar, placement: placement, systemTrayItemIdentifier: .pockControlStripItem)
-		}
 	}
 	
 	/// Load installed widgets
