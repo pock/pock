@@ -61,18 +61,33 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		let aboutPockMenuItem = NSMenuItem(title: "menu.about".localized, action: #selector(openWebsite), keyEquivalent: "")
 		aboutPockMenuItem.view = NSMenuItemCustomView(item: aboutPockMenuItem)
 		mainBarMenu.addItem(aboutPockMenuItem)
-
+		
 		// MARK: Customize Touch Bar
 		let customizeTouchBarMenuItem = NSMenuItem(title: "menu.open_customization_palette".localized, action: #selector(openCustomizationPalette), keyEquivalent: "c")
 		customizeTouchBarMenuItem.view = NSMenuItemCustomView(item: customizeTouchBarMenuItem)
 		mainBarMenu.addItem(customizeTouchBarMenuItem)
+
+		// MARK: Debug
+		#if DEBUG
+		mainBarMenu.addItem(.separator())
+		let debugMenu = NSMenu(title: "PockDebug")
+		debugMenu.addItem(withTitle: "Toggle Touch Bar visibility", action: #selector(toggleTouchBarVisibility), keyEquivalent: "")
+		debugMenu.addItem(withTitle: "Show debug console…", action: #selector(showDebugConsole), keyEquivalent: "c")
+		debugMenu.addItem(.separator())
+		debugMenu.addItem(withTitle: "Relaunch Pock", action: #selector(relaunch), keyEquivalent: "")
+		let debugMenuItem = NSMenuItem(title: "Debug…", action: nil, keyEquivalent: "")
+		debugMenuItem.submenu = debugMenu
+		debugMenuItem.view = NSMenuItemCustomView(item: debugMenuItem)
+		mainBarMenu.addItem(debugMenuItem)
+		#endif
 		
 		// MARK: Quit Pock
 		let quitPockMenuItem = NSMenuItem(title: "menu.quit".localized, action: #selector(NSApp.terminate(_:)), keyEquivalent: "q")
 		quitPockMenuItem.target = NSApp
 		quitPockMenuItem.view = NSMenuItemCustomView(item: quitPockMenuItem)
+		mainBarMenu.addItem(.separator())
 		mainBarMenu.addItem(quitPockMenuItem)
-
+		
 		// MARK: Set indentation level for advanced menu
 		if #available(macOS 11, *) {
 			return
@@ -92,3 +107,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	}
 
 }
+
+#if DEBUG
+private extension AppDelegate {
+	// MARK: Toggle Touch Bar visibility
+	@objc private func toggleTouchBarVisibility() {
+		AppController.shared.toggleVisibility()
+	}
+	// MARK: Show debug console
+	@objc private func showDebugConsole() {
+		// TODO: AppController.shared.showDebugConsole()
+	}
+	// MARK: Relaunch Pock
+	@objc private func relaunch() {
+		AppController.shared.relaunch()
+	}
+}
+#endif

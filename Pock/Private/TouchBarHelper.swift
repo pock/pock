@@ -124,9 +124,9 @@ public class TouchBarHelper {
 			return
 		}
 		if #available (macOS 10.14, *) {
-			NSTouchBar.presentSystemModalTouchBar(touchBar, placement: 0, systemTrayItemIdentifier: nil)
+			NSTouchBar.presentSystemModalTouchBar(touchBar, placement: 1, systemTrayItemIdentifier: nil)
 		} else {
-			NSTouchBar.presentSystemModalFunctionBar(touchBar, placement: 0, systemTrayItemIdentifier: nil)
+			NSTouchBar.presentSystemModalFunctionBar(touchBar, placement: 1, systemTrayItemIdentifier: nil)
 		}
 	}
 
@@ -167,9 +167,7 @@ public class TouchBarHelper {
 extension NSFunctionRow {
 	
 	@objc static func s_markActiveFunctionRowsAsDimmed(_ dimmed: Bool) {
-		#if DEBUG
-		print("[Pock]: Swizzled method: `NSFunctionRow.markActiveFunctionRowsAsDimmed` - [dimmed: \(dimmed)]")
-		#endif
+		Roger.debug("[Pock]: Swizzled method: `NSFunctionRow.markActiveFunctionRowsAsDimmed` - [dimmed: \(dimmed)]")
 		if dimmed {
 			AppController.shared.tearDownTouchBar()
 		} else {
@@ -192,9 +190,7 @@ extension NSFunctionRow {
 	
 	@objc func s_escapeKeyPaddingForCloseButton(_ isForCloseButton: Bool) -> Double {
 		let original = self.s_escapeKeyPaddingForCloseButton(isForCloseButton)
-		#if DEBUG
-		print("[Pock]: Swizzled method: `_NSFunctionRow.escapeKeyPaddingForCloseButton` - [padding: \(original), isForCloseButton: \(isForCloseButton)]")
-		#endif
+		Roger.debug("[Pock]: Swizzled method: `_NSFunctionRow.escapeKeyPaddingForCloseButton` - [padding: \(original), isForCloseButton: \(isForCloseButton)]")
 		return isForCloseButton ? 0 : original
 	}
 	

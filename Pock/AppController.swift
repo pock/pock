@@ -35,7 +35,7 @@ internal class AppController: NSResponder {
 	/// Private initialiser
 	private override init() {
 		super.init()
-		_ = TouchBarHelper.swizzleFunctions()
+		TouchBarHelper.swizzleFunctions()
 		registerDoubleControlHotKey()
 	}
 	
@@ -65,6 +65,17 @@ internal class AppController: NSResponder {
 		tearDownTouchBar()
 		dsleep(0.1)
 		prepareTouchBar()
+	}
+	
+	/// Relaunch
+	@objc internal func relaunch() {
+		guard let relaunchPpath = Bundle.main.path(forResource: "Relaunch", ofType: nil) else {
+			return
+		}
+		let task = Process()
+		task.launchPath = relaunchPpath
+		task.arguments  = ["\(ProcessInfo.processInfo.processIdentifier)"]
+		task.launch()
 	}
 
 	/// Toggle
