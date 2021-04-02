@@ -7,6 +7,7 @@
 
 import AppKit
 import PockKit
+import TinyConstraints
 
 internal class PKWidgetTouchBarItem: NSCustomTouchBarItem {
 	
@@ -40,16 +41,41 @@ internal class PKWidgetTouchBarItem: NSCustomTouchBarItem {
 	}
 	
 	private var snapshotView: NSView {
-		if view.frame.width == 0 {
-			view.frame.size = view.fittingSize
+		if let customImage = widget?.imageForCustomization {
+			return NSImageView(image: customImage)
 		}
-		if let bitmapImage = view.bitmapImageRepForCachingDisplay(in: view.frame) {
-			view.cacheDisplay(in: view.frame, to: bitmapImage)
-			if let cgImage = bitmapImage.cgImage {
-				return NSImageView(image: NSImage(cgImage: cgImage, size: view.frame.size))
+		let width = view.frame.width == 0 ? view.fittingSize.width : view.frame.width
+		let frame = NSRect(x: 0, y: 0, width: width, height: 30)
+		guard let button = view as? NSButton else {
+			guard let image = NSImage(frame: frame, view: view) else {
+				return defaultSnapshotView
 			}
+			return NSImageView(image: image)
 		}
-		return defaultSnapshotView
+		/// Special setup for NSButtons
+		let previousButtonStyle = button.bezelStyle
+		button.bezelStyle = .roundRect
+		button.subviews.filter({ $0.description.contains("NSButtonBezelView") }).forEach({
+			$0.alphaValue = 0
+		})
+		defer {
+			button.subviews.filter({ $0.description.contains("NSButtonBezelView") }).forEach({
+				$0.alphaValue = 1
+			})
+			button.bezelStyle = previousButtonStyle
+		}
+		guard let image = NSImage(frame: frame, view: button) else {
+			return defaultSnapshotView
+		}
+		let imageView = NSImageView(image: image)
+		let returnableView = NSView(frame: .zero)
+		returnableView.wantsLayer = true
+		returnableView.layer?.backgroundColor = NSColor(red: 0, green: 175/255, blue: 245/255, alpha: 0.275).cgColor
+		returnableView.layer?.cornerRadius = 6.25
+		returnableView.layer?.masksToBounds = true
+		returnableView.addSubview(imageView)
+		imageView.edgesToSuperview(insets: .horizontal(returnableView is NSButton ? 0 : 8))
+		return returnableView
 	}
 	
 	override func viewForCustomizationPalette() -> NSView {

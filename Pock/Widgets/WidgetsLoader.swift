@@ -19,6 +19,9 @@ internal final class WidgetsLoader {
 	/// File manager
 	private let fileManager = FileManager.default
 
+	/// Data
+	private static var loadedBundles: [Bundle] = []
+	
 	init() {
 		/// Create support folders, if needed
 		guard createSupportFoldersIfNeeded() else {
@@ -30,6 +33,10 @@ internal final class WidgetsLoader {
 			return
 		}
 	}
+	
+	deinit {
+		WidgetsLoader.loadedBundles.removeAll()
+	}
 
 	/// Create support folders, if needed
 	private func createSupportFoldersIfNeeded() -> Bool {
@@ -38,7 +45,11 @@ internal final class WidgetsLoader {
 	
 	/// Load installed widgets
 	internal func loadInstalledWidgets(_ completion: @escaping WidgetsLoaderHandler) {
-		let widgetURLs = fileManager.filesInFolder(kWidgetsPath, filter: { $0.contains(".pock") && !$0.contains("disabled") && !$0.contains("/") })
+		let widgetURLs = fileManager.filesInFolder(kWidgetsPath, filter: {
+			$0.contains(".pock")
+				&& !$0.contains("disabled")
+				&& !$0.contains("/")
+		})
 		var widgets: [PKWidget.Type] = []
 		for widgetFilePathURL in widgetURLs {
 			guard let widget = loadWidgetAtURL(widgetFilePathURL) else {
@@ -51,10 +62,21 @@ internal final class WidgetsLoader {
 	
 	/// Load single widget
 	private func loadWidgetAtURL(_ url: URL) -> PKWidget.Type? {
-		guard let widgetBundle = Bundle(url: url), let clss = widgetBundle.principalClass as? PKWidget.Type else {
+		guard let widgetBundle = WidgetsLoader.loadedBundles.first(where: { $0.bundleURL == url }) ?? Bundle(url: url),
+			  let clss = widgetBundle.principalClass as? PKWidget.Type else {
 			return nil
 		}
+		if !WidgetsLoader.loadedBundles.contains(widgetBundle) {
+			WidgetsLoader.loadedBundles.append(widgetBundle)
+		}
 		return clss
+	}
+	
+	/// Unload all widgets
+	internal static func unloadAllWidgets() {
+		for index in loadedBundles.reversed().indices {
+			loadedBundles.remove(at: index.base).unload()
+		}
 	}
 
 }

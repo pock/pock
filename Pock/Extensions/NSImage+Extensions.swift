@@ -11,3 +11,16 @@ import AppKit
 extension NSImage.Name {
 	static var pockInnerIcon: String = "pock-inner-icon"
 }
+
+extension NSImage {
+	/// Returns an NSImage snapshot of the passed view in 2x resolution.
+	convenience init?(frame: NSRect, view: NSView) {
+		guard let bitmapRep = view.bitmapImageRepForCachingDisplay(in: frame) else {
+			return nil
+		}
+		self.init()
+		view.cacheDisplay(in: frame, to: bitmapRep)
+		addRepresentation(bitmapRep)
+		bitmapRep.size = frame.size
+	}
+}
