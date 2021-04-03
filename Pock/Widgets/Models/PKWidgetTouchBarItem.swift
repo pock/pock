@@ -70,7 +70,7 @@ internal class PKWidgetTouchBarItem: NSCustomTouchBarItem {
 		let imageView = NSImageView(image: image)
 		let returnableView = NSView(frame: .zero)
 		returnableView.wantsLayer = true
-		returnableView.layer?.backgroundColor = NSColor(red: 0, green: 175/255, blue: 245/255, alpha: 0.275).cgColor
+		returnableView.layer?.backgroundColor = NSColor(red: 45/255, green: 41/255, blue: 44/255, alpha: 1).cgColor
 		returnableView.layer?.cornerRadius = 6.25
 		returnableView.layer?.masksToBounds = true
 		returnableView.addSubview(imageView)
