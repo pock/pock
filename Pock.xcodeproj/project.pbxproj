@@ -54,6 +54,10 @@
 		34A1A4CB25FBDF670086500F /* Localisations.strings in Resources */ = {isa = PBXBuildFile; fileRef = 34A1A4AF25FBDAA20086500F /* Localisations.strings */; };
 		34A1A4CC25FBDF670086500F /* NSMenuBadgeItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34564DD225F826340093E5E0 /* NSMenuBadgeItemView.xib */; };
 		34A1A4CD25FBDF670086500F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34564DE025F832070093E5E0 /* MainMenu.xib */; };
+		34E393E026186F3000E0B556 /* NSMenuHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E393DF26186F3000E0B556 /* NSMenuHeader.swift */; };
+		34E393E126186F3000E0B556 /* NSMenuHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E393DF26186F3000E0B556 /* NSMenuHeader.swift */; };
+		34E393E4261871F400E0B556 /* NSMenuHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34E393E326186F5400E0B556 /* NSMenuHeader.xib */; };
+		34E393E5261871F400E0B556 /* NSMenuHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34E393E326186F5400E0B556 /* NSMenuHeader.xib */; };
 		80F6ED9E941CB99A898BECF2 /* Pods_Pock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AE9B256A4CB4701408B60C0 /* Pods_Pock.framework */; };
 /* End PBXBuildFile section */
 
@@ -112,6 +116,8 @@
 		34A1A4AE25FBDAA20086500F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localisations.strings; sourceTree = "<group>"; };
 		34A1A4B025FBDAA60086500F /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localisations.strings; sourceTree = "<group>"; };
 		34A1A4D225FBDF670086500F /* Pock (Italian).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pock (Italian).app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		34E393DF26186F3000E0B556 /* NSMenuHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSMenuHeader.swift; sourceTree = "<group>"; };
+		34E393E326186F5400E0B556 /* NSMenuHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NSMenuHeader.xib; sourceTree = "<group>"; };
 		42458EF7CBD8C1A887586801 /* Pods-Pock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pock.release.xcconfig"; path = "Target Support Files/Pods-Pock/Pods-Pock.release.xcconfig"; sourceTree = "<group>"; };
 		7AE9B256A4CB4701408B60C0 /* Pods_Pock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FAB0C2306CA63DF211D8910 /* Pods-Pock.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pock.debug.xcconfig"; path = "Target Support Files/Pods-Pock/Pods-Pock.debug.xcconfig"; sourceTree = "<group>"; };
@@ -253,6 +259,7 @@
 			isa = PBXGroup;
 			children = (
 				34564DD025F826340093E5E0 /* NSMenuItemCustomView */,
+				34E393E226186F4600E0B556 /* NSMenuSectionHeader */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -327,6 +334,15 @@
 				34564E0725F98FD50093E5E0 /* PKWidgetTouchBarItem.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		34E393E226186F4600E0B556 /* NSMenuSectionHeader */ = {
+			isa = PBXGroup;
+			children = (
+				34E393DF26186F3000E0B556 /* NSMenuHeader.swift */,
+				34E393E326186F5400E0B556 /* NSMenuHeader.xib */,
+			);
+			path = NSMenuSectionHeader;
 			sourceTree = "<group>";
 		};
 		57B98144DEAC1BBEAE8F9DEA /* Frameworks */ = {
@@ -445,6 +461,7 @@
 				34564DBE25F81E590093E5E0 /* Assets.xcassets in Resources */,
 				34564DD925F826340093E5E0 /* NSMenuItemCustomView.xib in Resources */,
 				34A1A4AD25FBDAA20086500F /* Localisations.strings in Resources */,
+				34E393E4261871F400E0B556 /* NSMenuHeader.xib in Resources */,
 				34564DD625F826340093E5E0 /* NSMenuBadgeItemView.xib in Resources */,
 				34564DE125F832070093E5E0 /* MainMenu.xib in Resources */,
 			);
@@ -458,6 +475,7 @@
 				34A1A4CA25FBDF670086500F /* NSMenuItemCustomView.xib in Resources */,
 				34A1A4CB25FBDF670086500F /* Localisations.strings in Resources */,
 				34A1A4CC25FBDF670086500F /* NSMenuBadgeItemView.xib in Resources */,
+				34E393E5261871F400E0B556 /* NSMenuHeader.xib in Resources */,
 				34A1A4CD25FBDF670086500F /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -597,6 +615,7 @@
 				34564DF225F83DA60093E5E0 /* TouchBarHelper.swift in Sources */,
 				34564E0625F984850093E5E0 /* FileManager+Extensions.swift in Sources */,
 				34564DD825F826340093E5E0 /* NSMenuItemCustomView.swift in Sources */,
+				34E393E026186F3000E0B556 /* NSMenuHeader.swift in Sources */,
 				34564DCC25F8254B0093E5E0 /* String+Extensions.swift in Sources */,
 				34564DF825F83E490093E5E0 /* DispatchQueue-Extensions.swift in Sources */,
 				34564E0B25F990060093E5E0 /* PKWidgetViewController.swift in Sources */,
@@ -620,6 +639,7 @@
 				34A1A4B425FBDF670086500F /* TouchBarHelper.swift in Sources */,
 				34A1A4B525FBDF670086500F /* FileManager+Extensions.swift in Sources */,
 				34A1A4B625FBDF670086500F /* NSMenuItemCustomView.swift in Sources */,
+				34E393E126186F3000E0B556 /* NSMenuHeader.swift in Sources */,
 				34A1A4B725FBDF670086500F /* String+Extensions.swift in Sources */,
 				34A1A4B825FBDF670086500F /* DispatchQueue-Extensions.swift in Sources */,
 				34A1A4B925FBDF670086500F /* PKWidgetViewController.swift in Sources */,

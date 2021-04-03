@@ -19,13 +19,20 @@ internal class NSMenuItemCustomView: NSView {
 
 	internal weak var item: NSMenuItem?
 
+	internal static func new(title: String, target: AnyObject?, selector: Selector?, keyEquivalent: String?) -> NSMenuItem {
+		let item = NSMenuItem(title: title, action: selector, keyEquivalent: keyEquivalent ?? "")
+		item.target = target
+		item.view = NSMenuItemCustomView(item: item)
+		return item
+	}
+	
 	convenience init(item: NSMenuItem, height: CGFloat = 23) {
 		self.init(frame: .zero)
 		self.item = item
 		self.item?._setViewHandlesEvents(false)
 		self.translatesAutoresizingMaskIntoConstraints = false
 		self.heightAnchor.constraint(equalToConstant: height).isActive = true
-		let frameworkBundle = Bundle(for: NSMenuItemCustomView.self)
+		let frameworkBundle = Bundle(for: Self.self)
 		guard frameworkBundle.loadNibNamed("\(type(of: self))", owner: self, topLevelObjects: nil) else {
 			fatalError("Can't find nib for name: `\(type(of: self))`")
 		}
@@ -41,6 +48,11 @@ internal class NSMenuItemCustomView: NSView {
 	override func draw(_ dirtyRect: NSRect) {
 		super.draw(dirtyRect)
 		mainLabel.textColor = .labelColor
+		guard item?.submenu == nil, item?.keyEquivalent.isEmpty == false else {
+			keyModifier.isHidden = true
+			keyChar.isHidden = true
+			return
+		}
 		keyModifier.textColor = item?.isHighlighted == true ? .labelColor : .tertiaryLabelColor
 		keyChar.textColor = item?.isHighlighted == true ? .labelColor : .tertiaryLabelColor
 	}
@@ -48,6 +60,11 @@ internal class NSMenuItemCustomView: NSView {
 	override func viewDidMoveToWindow() {
 		super.viewDidMoveToWindow()
 		mainLabel.stringValue = item?.title ?? ""
+		guard item?.submenu == nil, item?.keyEquivalent.isEmpty == false else {
+			keyModifier.stringValue = ""
+			keyChar.stringValue = ""
+			return
+		}
 		keyModifier.stringValue = item?.keyEquivalentModifierMask.keyEquivalentStrings().joined() ?? ""
 		keyChar.stringValue = item?.keyEquivalent.uppercased() ?? ""
 	}

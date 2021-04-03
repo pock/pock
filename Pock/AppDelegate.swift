@@ -19,7 +19,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 	func applicationDidFinishLaunching(_ aNotification: Notification) {
 		/// Set Roger allowed log levels
-		Roger.allowedLevels = [.error]
+		Roger.allowedLevels = [.error, .debug]
 		
 		/// Initialise AppCenter stuff (Analytics & Crash)
 		#if !DEBUG
@@ -58,18 +58,32 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		/// Set title and actions
 
 		// MARK: About Pock
-		let aboutPockMenuItem = NSMenuItem(title: "menu.about".localized, action: #selector(openWebsite), keyEquivalent: "")
-		aboutPockMenuItem.view = NSMenuItemCustomView(item: aboutPockMenuItem)
-		mainBarMenu.addItem(aboutPockMenuItem)
+		mainBarMenu.addItem(NSMenuHeader.new(title: "menu.general".localized))
+		mainBarMenu.addItem(NSMenuItemCustomView.new(
+			title: "menu.about".localized,
+			target: self,
+			selector: #selector(openWebsite),
+			keyEquivalent: nil
+		))
 		
 		// MARK: Customize Touch Bar
-		let customizeTouchBarMenuItem = NSMenuItem(title: "menu.open_customization_palette".localized, action: #selector(openCustomizationPalette), keyEquivalent: "c")
-		customizeTouchBarMenuItem.view = NSMenuItemCustomView(item: customizeTouchBarMenuItem)
-		mainBarMenu.addItem(customizeTouchBarMenuItem)
+		mainBarMenu.addItem(NSMenuHeader.new(title: "menu.customization".localized))
+		mainBarMenu.addItem(NSMenuItemCustomView.new(
+			title: "menu.customization.pock".localized,
+			target: self,
+			selector: #selector(openCustomizationPalette),
+			keyEquivalent: "p"
+		))
+		mainBarMenu.addItem(NSMenuItemCustomView.new(
+			title: "menu.customization.control-strip".localized,
+			target: self,
+			selector: #selector(openCustomizationPalette),
+			keyEquivalent: "s"
+		))
 
 		// MARK: Debug
 		#if DEBUG
-		mainBarMenu.addItem(.separator())
+		mainBarMenu.addItem(NSMenuHeader.new(title: "Debug"))
 		let debugMenu = NSMenu(title: "PockDebug")
 		debugMenu.addItem(withTitle: "Toggle Touch Bar visibility", action: #selector(toggleTouchBarVisibility), keyEquivalent: "")
 		debugMenu.addItem(withTitle: "Show debug console…", action: #selector(showDebugConsole), keyEquivalent: "c")
@@ -82,17 +96,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		#endif
 		
 		// MARK: Quit Pock
-		let quitPockMenuItem = NSMenuItem(title: "menu.quit".localized, action: #selector(NSApp.terminate(_:)), keyEquivalent: "q")
-		quitPockMenuItem.target = NSApp
-		quitPockMenuItem.view = NSMenuItemCustomView(item: quitPockMenuItem)
 		mainBarMenu.addItem(.separator())
-		mainBarMenu.addItem(quitPockMenuItem)
+		mainBarMenu.addItem(NSMenuItemCustomView.new(
+			title: "menu.quit".localized,
+			target: NSApp,
+			selector: #selector(NSApp.terminate(_:)),
+			keyEquivalent: "q"
+		))
 		
 		// MARK: Set indentation level for advanced menu
 		if #available(macOS 11, *) {
 			return
 		}
-		// FIXME: advancedMenuItem.submenu?.items.forEach({ $0.indentationLevel = 1 })
 	}
 
 	// MARK: Open website

@@ -11,8 +11,11 @@
 "base.cancel" = "Cancel";
 
 // MARK: MainBarMenu
+"menu.general" = "General";
 "menu.about" = "About Pock";
-"menu.open_customization_palette" = "Open Customisation Palette…";
+"menu.customization" = "Customisation…";
+"menu.customization.pock" = "Customize Pock…";
+"menu.customization.control-strip" = "Customize Control Strip…";
 "menu.quit" = "Quit Pock";
 
 // MARK: Onboard Screen
