@@ -145,7 +145,7 @@ internal class AppController: NSResponder {
 extension AppController: NSTouchBarDelegate {
 	
 	/// Open customization menu
-	@objc internal func openCustomizationPalette() {
+	@objc internal func openPockCustomizationPalette() {
 		if pockTouchBarController == nil {
 			return
 		}
@@ -155,6 +155,10 @@ extension AppController: NSTouchBarDelegate {
 		async(after: 0.375) {
 			NSApp.toggleTouchBarCustomizationPalette(self)
 		}
+	}
+	
+	@objc internal func openControlStripCustomizationPalette() {
+		NSApp.toggleTouchBarCustomizationPalette(self)
 	}
 	
 	override func makeTouchBar() -> NSTouchBar? {

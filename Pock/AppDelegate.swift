@@ -58,7 +58,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		/// Set title and actions
 
 		// MARK: About Pock
-		mainBarMenu.addItem(NSMenuHeader.new(title: "menu.general".localized))
+		mainBarMenu.addItem(NSMenuHeader.new(title: "menu.general".localized, height: 22))
 		mainBarMenu.addItem(NSMenuItemCustomView.new(
 			title: "menu.about".localized,
 			target: self,
@@ -117,8 +117,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	}
 	
 	// MARK: Open customization menu
-	@objc private func openCustomizationPalette() {
-		AppController.shared.openCustomizationPalette()
+	@objc private func openCustomizationPalette(_ sender: NSMenuItem) {
+		switch sender.keyEquivalent {
+		case "p":
+			AppController.shared.openPockCustomizationPalette()
+		case "s":
+			AppController.shared.openControlStripCustomizationPalette()
+		default:
+			return
+		}
 	}
 
 }
