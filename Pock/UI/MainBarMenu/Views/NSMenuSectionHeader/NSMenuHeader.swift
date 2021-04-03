@@ -15,13 +15,13 @@ internal class NSMenuHeader: NSView {
 
 	internal weak var item: NSMenuItem?
 	
-	internal static func new(title: String) -> NSMenuItem {
+	internal static func new(title: String, height: CGFloat = 24) -> NSMenuItem {
 		let item = NSMenuItem(title: title, action: nil, keyEquivalent: "")
-		item.view = NSMenuHeader(item: item)
+		item.view = NSMenuHeader(item: item, height: height)
 		return item
 	}
 
-	convenience init(item: NSMenuItem, height: CGFloat = 26) {
+	convenience init(item: NSMenuItem, height: CGFloat = 24) {
 		self.init(frame: .zero)
 		self.item = item
 		self.item?._setViewHandlesEvents(false)

@@ -19,10 +19,10 @@ internal class NSMenuItemCustomView: NSView {
 
 	internal weak var item: NSMenuItem?
 
-	internal static func new(title: String, target: AnyObject?, selector: Selector?, keyEquivalent: String?) -> NSMenuItem {
+	internal static func new(title: String, target: AnyObject?, selector: Selector?, keyEquivalent: String?, height: CGFloat = 23) -> NSMenuItem {
 		let item = NSMenuItem(title: title, action: selector, keyEquivalent: keyEquivalent ?? "")
 		item.target = target
-		item.view = NSMenuItemCustomView(item: item)
+		item.view = NSMenuItemCustomView(item: item, height: height)
 		return item
 	}
 	
