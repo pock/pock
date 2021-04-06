@@ -26,7 +26,7 @@ internal class PKWidgetTouchBarItem: NSCustomTouchBarItem {
 	
 	/// Initialiser
 	convenience init(widget: PKWidget.Type) {
-		self.init(identifier: widget.identifier)
+		self.init(identifier: NSTouchBarItem.Identifier(widget.identifier))
 		self.widget = widget.init()
 		viewController = PKWidgetViewController(item: self)
 	}

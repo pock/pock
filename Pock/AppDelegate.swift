@@ -53,10 +53,26 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			mainBarItem.menu = mainBarMenu
 		}
 	}
+	
+	// MARK: Debug menu
+	#if DEBUG
+	private lazy var _debugMenuItem: NSMenuItem = {
+		let debugMenu = NSMenu(title: "PockDebug")
+		debugMenu.addItem(withTitle: "Toggle Touch Bar visibility", action: #selector(toggleTouchBarVisibility), keyEquivalent: "")
+		debugMenu.addItem(withTitle: "Show debug console…", action: #selector(showDebugConsole), keyEquivalent: "c")
+		debugMenu.addItem(NSMenuHeader.new(title: "Widget's Bundles"))
+		debugMenu.addItem(withTitle: "Unload All Widgets", action: #selector(unloadAllWidgets), keyEquivalent: "")
+		debugMenu.addItem(withTitle: "Reload Widgets", action: #selector(reloadWidgets), keyEquivalent: "")
+		debugMenu.addItem(withTitle: "Relaunch Pock", action: #selector(relaunch), keyEquivalent: "")
+		let debugMenuItem = NSMenuItem(title: "Debug…", action: nil, keyEquivalent: "")
+		debugMenuItem.submenu = debugMenu
+		debugMenuItem.view = NSMenuItemCustomView(item: debugMenuItem)
+		return debugMenuItem
+	}()
+	#endif
 
+	// MARK: Main bar menu items
 	private func setupMainBarMenuItems() {
-		/// Set title and actions
-
 		// MARK: About Pock
 		mainBarMenu.addItem(NSMenuHeader.new(title: "menu.general".localized, height: 22))
 		mainBarMenu.addItem(NSMenuItemCustomView.new(
@@ -64,6 +80,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			target: self,
 			selector: #selector(openWebsite),
 			keyEquivalent: nil
+		))
+		
+		// MARK: Preferences
+		mainBarMenu.addItem(NSMenuItemCustomView.new(
+			title: "menu.preferences".localized,
+			target: self,
+			selector: #selector(openPreferences),
+			keyEquivalent: ","
+		))
+		
+		// MARK: Widget's manager
+		mainBarMenu.addItem(NSMenuItemCustomView.new(
+			title: "menu.manage-widgets".localized,
+			target: self,
+			selector: #selector(openWidgetsManager),
+			keyEquivalent: "m"
 		))
 		
 		// MARK: Customize Touch Bar
@@ -81,18 +113,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			keyEquivalent: "s"
 		))
 
-		// MARK: Debug
 		#if DEBUG
+		// MARK: Debug
 		mainBarMenu.addItem(NSMenuHeader.new(title: "Debug"))
-		let debugMenu = NSMenu(title: "PockDebug")
-		debugMenu.addItem(withTitle: "Toggle Touch Bar visibility", action: #selector(toggleTouchBarVisibility), keyEquivalent: "")
-		debugMenu.addItem(withTitle: "Show debug console…", action: #selector(showDebugConsole), keyEquivalent: "c")
-		debugMenu.addItem(.separator())
-		debugMenu.addItem(withTitle: "Relaunch Pock", action: #selector(relaunch), keyEquivalent: "")
-		let debugMenuItem = NSMenuItem(title: "Debug…", action: nil, keyEquivalent: "")
-		debugMenuItem.submenu = debugMenu
-		debugMenuItem.view = NSMenuItemCustomView(item: debugMenuItem)
-		mainBarMenu.addItem(debugMenuItem)
+		mainBarMenu.addItem(_debugMenuItem)
 		#endif
 		
 		// MARK: Quit Pock
@@ -114,6 +138,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	@objc private func openWebsite() {
 		guard let url = URL(string: "base.website_url".localized) else { return }
 		NSWorkspace.shared.open(url)
+	}
+	
+	// MARK: Open preferences
+	@objc private func openPreferences() {
+		// TODO: To be implemented
+	}
+	
+	// MARK: Opwn widgets manager
+	@objc private func openWidgetsManager() {
+		// TODO: To be implemented
 	}
 	
 	// MARK: Open customization menu
@@ -139,6 +173,14 @@ private extension AppDelegate {
 	// MARK: Show debug console
 	@objc private func showDebugConsole() {
 		// TODO: AppController.shared.showDebugConsole()
+	}
+	// MARK: Unload All Widgets
+	@objc private func unloadAllWidgets() {
+		AppController.shared.unloadAllWidgets()
+	}
+	// MARK: Reload Widgets
+	@objc private func reloadWidgets() {
+		AppController.shared.reloadWidgets()
 	}
 	// MARK: Relaunch Pock
 	@objc private func relaunch() {

@@ -37,7 +37,6 @@ internal class PockTouchBarController: PKTouchBarMouseController {
 	deinit {
 		Roger.info("Deinit")
 		flushWidgetItems()
-		widgets.removeAll()
 		touchBar = nil
 	}
 
@@ -64,19 +63,20 @@ internal class PockTouchBarController: PKTouchBarMouseController {
 		TouchBarHelper.setPresentationMode(to: .appWithControlStrip)
 		super.dismiss()
 	}
-	
-	private func flushWidgetItems() {
-		cachedItems.removeAll()
-	}
-	
-	/// Load installed widgets
+
+	/// Load/unload installed widgets
 	private func loadInstalledWidgets(_ completion: @escaping () -> Void) {
 		WidgetsLoader().loadInstalledWidgets { [unowned self] widgets in
 			for widget in widgets {
-				self.widgets[widget.identifier] = widget
+				self.widgets[NSTouchBarItem.Identifier(widget.identifier)] = widget
 			}
 			completion()
 		}
+	}
+	
+	private func flushWidgetItems() {
+		cachedItems.removeAll()
+		widgets.removeAll()
 	}
 
 	/// Setup Touch Bar

@@ -67,6 +67,22 @@ internal class AppController: NSResponder {
 		prepareTouchBar()
 	}
 	
+	/// Unload (all widgets)
+	@objc internal func unloadAllWidgets(_ completion: (() -> Void)? = nil) {
+		TouchBarHelper.markTouchBarAsDimmed(true)
+		async {
+			WidgetsLoader.unloadAllWidgets()
+			completion?()
+		}
+	}
+	
+	/// Reload (widgets)
+	@objc internal func reloadWidgets() {
+		unloadAllWidgets { [weak self] in
+			self?.prepareTouchBar()
+		}
+	}
+	
 	/// Relaunch
 	@objc internal func relaunch() {
 		guard let relaunchPpath = Bundle.main.path(forResource: "Relaunch", ofType: nil) else {

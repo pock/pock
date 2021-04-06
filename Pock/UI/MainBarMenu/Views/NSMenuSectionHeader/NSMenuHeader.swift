@@ -28,8 +28,8 @@ internal class NSMenuHeader: NSView {
 		self.translatesAutoresizingMaskIntoConstraints = false
 		self.heightAnchor.constraint(equalToConstant: height).isActive = true
 		let frameworkBundle = Bundle(for: Self.self)
-		guard frameworkBundle.loadNibNamed("\(type(of: self))", owner: self, topLevelObjects: nil) else {
-			fatalError("Can't find nib for name: `\(type(of: self))`")
+		guard frameworkBundle.loadNibNamed(String(Self.self), owner: self, topLevelObjects: nil) else {
+			fatalError("Can't find nib for name: `\(String(Self.self))`")
 		}
 		addSubview(view)
 		view.translatesAutoresizingMaskIntoConstraints = false

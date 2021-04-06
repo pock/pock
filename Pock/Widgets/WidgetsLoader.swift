@@ -33,10 +33,6 @@ internal final class WidgetsLoader {
 			return
 		}
 	}
-	
-	deinit {
-		WidgetsLoader.loadedBundles.removeAll()
-	}
 
 	/// Create support folders, if needed
 	private func createSupportFoldersIfNeeded() -> Bool {
@@ -74,9 +70,11 @@ internal final class WidgetsLoader {
 	
 	/// Unload all widgets
 	internal static func unloadAllWidgets() {
-		for index in loadedBundles.reversed().indices {
-			loadedBundles.remove(at: index.base).unload()
+		for bundle in loadedBundles {
+			Roger.debug("[WidgetsLoader] unloading: \(bundle.bundleURL.lastPathComponent)")
+			bundle.unload()
 		}
+		loadedBundles.removeAll()
 	}
 
 }
