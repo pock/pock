@@ -31,33 +31,8 @@
 		34564E0825F98FD50093E5E0 /* PKWidgetTouchBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34564E0725F98FD50093E5E0 /* PKWidgetTouchBarItem.swift */; };
 		34564E0B25F990060093E5E0 /* PKWidgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34564E0A25F990060093E5E0 /* PKWidgetViewController.swift */; };
 		34A1A4AD25FBDAA20086500F /* Localisations.strings in Resources */ = {isa = PBXBuildFile; fileRef = 34A1A4AF25FBDAA20086500F /* Localisations.strings */; };
-		34A1A4B425FBDF670086500F /* TouchBarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34564DF125F83DA60093E5E0 /* TouchBarHelper.swift */; };
-		34A1A4B525FBDF670086500F /* FileManager+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34564E0525F984850093E5E0 /* FileManager+Extensions.swift */; };
-		34A1A4B625FBDF670086500F /* NSMenuItemCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34564DD425F826340093E5E0 /* NSMenuItemCustomView.swift */; };
-		34A1A4B725FBDF670086500F /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34564DCB25F8254B0093E5E0 /* String+Extensions.swift */; };
-		34A1A4B825FBDF670086500F /* DispatchQueue-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34564DF725F83E490093E5E0 /* DispatchQueue-Extensions.swift */; };
-		34A1A4B925FBDF670086500F /* PKWidgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34564E0A25F990060093E5E0 /* PKWidgetViewController.swift */; };
-		34A1A4BA25FBDF670086500F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34564DBB25F81E520093E5E0 /* AppDelegate.swift */; };
-		34A1A4BB25FBDF670086500F /* WidgetsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34564E0125F983640093E5E0 /* WidgetsLoader.swift */; };
-		34A1A4BC25FBDF670086500F /* NSImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34564DDC25F82D960093E5E0 /* NSImage+Extensions.swift */; };
-		34A1A4BD25FBDF670086500F /* NSMenuBadgeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34564DD325F826340093E5E0 /* NSMenuBadgeItem.swift */; };
-		34A1A4BE25FBDF670086500F /* STPrivilegedTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 34564DF525F83E2D0093E5E0 /* STPrivilegedTask.m */; };
-		34A1A4BF25FBDF670086500F /* Roger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34564DEE25F8389D0093E5E0 /* Roger.swift */; };
-		34A1A4C025FBDF670086500F /* PockTouchBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34564DE825F837960093E5E0 /* PockTouchBarController.swift */; };
-		34A1A4C125FBDF670086500F /* PKWidgetTouchBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34564E0725F98FD50093E5E0 /* PKWidgetTouchBarItem.swift */; };
-		34A1A4C225FBDF670086500F /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34564DE625F836530093E5E0 /* AppController.swift */; };
-		34A1A4C325FBDF670086500F /* HotKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34564DFF25F850170093E5E0 /* HotKey.swift */; };
-		34A1A4C625FBDF670086500F /* DFRFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34564DF925F83ECB0093E5E0 /* DFRFoundation.framework */; };
-		34A1A4C725FBDF670086500F /* Pods_Pock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AE9B256A4CB4701408B60C0 /* Pods_Pock.framework */; };
-		34A1A4C925FBDF670086500F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34564DBD25F81E590093E5E0 /* Assets.xcassets */; };
-		34A1A4CA25FBDF670086500F /* NSMenuItemCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34564DD525F826340093E5E0 /* NSMenuItemCustomView.xib */; };
-		34A1A4CB25FBDF670086500F /* Localisations.strings in Resources */ = {isa = PBXBuildFile; fileRef = 34A1A4AF25FBDAA20086500F /* Localisations.strings */; };
-		34A1A4CC25FBDF670086500F /* NSMenuBadgeItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34564DD225F826340093E5E0 /* NSMenuBadgeItemView.xib */; };
-		34A1A4CD25FBDF670086500F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34564DE025F832070093E5E0 /* MainMenu.xib */; };
 		34E393E026186F3000E0B556 /* NSMenuHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E393DF26186F3000E0B556 /* NSMenuHeader.swift */; };
-		34E393E126186F3000E0B556 /* NSMenuHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E393DF26186F3000E0B556 /* NSMenuHeader.swift */; };
 		34E393E4261871F400E0B556 /* NSMenuHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34E393E326186F5400E0B556 /* NSMenuHeader.xib */; };
-		34E393E5261871F400E0B556 /* NSMenuHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34E393E326186F5400E0B556 /* NSMenuHeader.xib */; };
 		80F6ED9E941CB99A898BECF2 /* Pods_Pock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AE9B256A4CB4701408B60C0 /* Pods_Pock.framework */; };
 /* End PBXBuildFile section */
 
@@ -115,7 +90,6 @@
 		34564E0A25F990060093E5E0 /* PKWidgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKWidgetViewController.swift; sourceTree = "<group>"; };
 		34A1A4AE25FBDAA20086500F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localisations.strings; sourceTree = "<group>"; };
 		34A1A4B025FBDAA60086500F /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localisations.strings; sourceTree = "<group>"; };
-		34A1A4D225FBDF670086500F /* Pock (Italian).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pock (Italian).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		34E393DF26186F3000E0B556 /* NSMenuHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSMenuHeader.swift; sourceTree = "<group>"; };
 		34E393E326186F5400E0B556 /* NSMenuHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NSMenuHeader.xib; sourceTree = "<group>"; };
 		42458EF7CBD8C1A887586801 /* Pods-Pock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pock.release.xcconfig"; path = "Target Support Files/Pods-Pock/Pods-Pock.release.xcconfig"; sourceTree = "<group>"; };
@@ -137,15 +111,6 @@
 			files = (
 				34564DFA25F83ECB0093E5E0 /* DFRFoundation.framework in Frameworks */,
 				80F6ED9E941CB99A898BECF2 /* Pods_Pock.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		34A1A4C525FBDF670086500F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				34A1A4C625FBDF670086500F /* DFRFoundation.framework in Frameworks */,
-				34A1A4C725FBDF670086500F /* Pods_Pock.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,7 +149,6 @@
 			isa = PBXGroup;
 			children = (
 				34564DB825F81E520093E5E0 /* Pock.app */,
-				34A1A4D225FBDF670086500F /* Pock (Italian).app */,
 				344C9A15260672F4009AA07C /* Relaunch */,
 			);
 			name = Products;
@@ -395,26 +359,6 @@
 			productReference = 34564DB825F81E520093E5E0 /* Pock.app */;
 			productType = "com.apple.product-type.application";
 		};
-		34A1A4B125FBDF670086500F /* Pock (Italian) */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 34A1A4CF25FBDF670086500F /* Build configuration list for PBXNativeTarget "Pock (Italian)" */;
-			buildPhases = (
-				34A1A4B225FBDF670086500F /* [CP] Check Pods Manifest.lock */,
-				34A1A4B325FBDF670086500F /* Sources */,
-				34A1A4C425FBDF670086500F /* [SwiftLint] Verify code-style */,
-				34A1A4C525FBDF670086500F /* Frameworks */,
-				34A1A4C825FBDF670086500F /* Resources */,
-				34A1A4CE25FBDF670086500F /* [CP] Embed Pods Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Pock (Italian)";
-			productName = Pock;
-			productReference = 34A1A4D225FBDF670086500F /* Pock (Italian).app */;
-			productType = "com.apple.product-type.application";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -446,7 +390,6 @@
 			projectRoot = "";
 			targets = (
 				34564DB725F81E520093E5E0 /* Pock */,
-				34A1A4B125FBDF670086500F /* Pock (Italian) */,
 				344C9A14260672F4009AA07C /* Relaunch */,
 			);
 		};
@@ -464,19 +407,6 @@
 				34E393E4261871F400E0B556 /* NSMenuHeader.xib in Resources */,
 				34564DD625F826340093E5E0 /* NSMenuBadgeItemView.xib in Resources */,
 				34564DE125F832070093E5E0 /* MainMenu.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		34A1A4C825FBDF670086500F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				34A1A4C925FBDF670086500F /* Assets.xcassets in Resources */,
-				34A1A4CA25FBDF670086500F /* NSMenuItemCustomView.xib in Resources */,
-				34A1A4CB25FBDF670086500F /* Localisations.strings in Resources */,
-				34A1A4CC25FBDF670086500F /* NSMenuBadgeItemView.xib in Resources */,
-				34E393E5261871F400E0B556 /* NSMenuHeader.xib in Resources */,
-				34A1A4CD25FBDF670086500F /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -522,63 +452,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
-		};
-		34A1A4B225FBDF670086500F /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Pock-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		34A1A4C425FBDF670086500F /* [SwiftLint] Verify code-style */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "[SwiftLint] Verify code-style";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
-		};
-		34A1A4CE25FBDF670086500F /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Pock/Pods-Pock-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Pock/Pods-Pock-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Pock/Pods-Pock-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 		FE26ADECFF38E70242F074EC /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -629,30 +502,6 @@
 				34564E0825F98FD50093E5E0 /* PKWidgetTouchBarItem.swift in Sources */,
 				34564DE725F836530093E5E0 /* AppController.swift in Sources */,
 				34564E0025F850170093E5E0 /* HotKey.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		34A1A4B325FBDF670086500F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				34A1A4B425FBDF670086500F /* TouchBarHelper.swift in Sources */,
-				34A1A4B525FBDF670086500F /* FileManager+Extensions.swift in Sources */,
-				34A1A4B625FBDF670086500F /* NSMenuItemCustomView.swift in Sources */,
-				34E393E126186F3000E0B556 /* NSMenuHeader.swift in Sources */,
-				34A1A4B725FBDF670086500F /* String+Extensions.swift in Sources */,
-				34A1A4B825FBDF670086500F /* DispatchQueue-Extensions.swift in Sources */,
-				34A1A4B925FBDF670086500F /* PKWidgetViewController.swift in Sources */,
-				34A1A4BA25FBDF670086500F /* AppDelegate.swift in Sources */,
-				34A1A4BB25FBDF670086500F /* WidgetsLoader.swift in Sources */,
-				34A1A4BC25FBDF670086500F /* NSImage+Extensions.swift in Sources */,
-				34A1A4BD25FBDF670086500F /* NSMenuBadgeItem.swift in Sources */,
-				34A1A4BE25FBDF670086500F /* STPrivilegedTask.m in Sources */,
-				34A1A4BF25FBDF670086500F /* Roger.swift in Sources */,
-				34A1A4C025FBDF670086500F /* PockTouchBarController.swift in Sources */,
-				34A1A4C125FBDF670086500F /* PKWidgetTouchBarItem.swift in Sources */,
-				34A1A4C225FBDF670086500F /* AppController.swift in Sources */,
-				34A1A4C325FBDF670086500F /* HotKey.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -886,68 +735,6 @@
 			};
 			name = Release;
 		};
-		34A1A4D025FBDF670086500F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9FAB0C2306CA63DF211D8910 /* Pods-Pock.debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Pock/Bundle/Pock.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Manual;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 788D9WZ9Z3;
-				ENABLE_HARDENED_RUNTIME = YES;
-				INFOPLIST_FILE = Pock/Bundle/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = 0.9.0;
-				PRODUCT_BUNDLE_IDENTIFIER = app.pock.pock;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/Pock/Private/Bridging-Header.h";
-				SWIFT_VERSION = 5.0;
-				SYSTEM_FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
-				);
-			};
-			name = Debug;
-		};
-		34A1A4D125FBDF670086500F /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 42458EF7CBD8C1A887586801 /* Pods-Pock.release.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Pock/Bundle/Pock.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Manual;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 788D9WZ9Z3;
-				ENABLE_HARDENED_RUNTIME = YES;
-				INFOPLIST_FILE = Pock/Bundle/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = 0.9.0;
-				PRODUCT_BUNDLE_IDENTIFIER = app.pock.pock;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/Pock/Private/Bridging-Header.h";
-				SWIFT_VERSION = 5.0;
-				SYSTEM_FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
-				);
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -974,15 +761,6 @@
 			buildConfigurations = (
 				34564DC725F81E590093E5E0 /* Debug */,
 				34564DC825F81E590093E5E0 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		34A1A4CF25FBDF670086500F /* Build configuration list for PBXNativeTarget "Pock (Italian)" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				34A1A4D025FBDF670086500F /* Debug */,
-				34A1A4D125FBDF670086500F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
