@@ -22,7 +22,7 @@ extension NSTouchBarItem.Identifier {
 internal class PockTouchBarController: PKTouchBarMouseController {
 
 	/// Data
-	private(set) var widgets: [NSTouchBarItem.Identifier: PKWidget.Type] = [:]
+	private(set) var widgets: [NSTouchBarItem.Identifier: PKWidgetInfo] = [:]
 	private(set) var cachedItems: [NSTouchBarItem.Identifier: PKWidgetTouchBarItem] = [:]
 	
 	internal var allowedCustomizationIdentifiers: [NSTouchBarItem.Identifier] {
@@ -68,7 +68,7 @@ internal class PockTouchBarController: PKTouchBarMouseController {
 	private func loadInstalledWidgets(_ completion: @escaping () -> Void) {
 		WidgetsLoader().loadInstalledWidgets { [unowned self] widgets in
 			for widget in widgets {
-				self.widgets[NSTouchBarItem.Identifier(widget.identifier)] = widget
+				self.widgets[NSTouchBarItem.Identifier(widget.bundleIdentifier)] = widget
 			}
 			completion()
 		}
@@ -93,13 +93,13 @@ internal class PockTouchBarController: PKTouchBarMouseController {
 
 	/// Make Touch Bar item for given identifier
 	func touchBar(_ touchBar: NSTouchBar, makeItemForIdentifier identifier: NSTouchBarItem.Identifier) -> NSTouchBarItem? {
-		guard let widget = widgets[identifier] else {
-			Roger.error("Can't find `NSTouchBarItem` for given identifier: `\(identifier)`")
-			return nil
-		}
 		if let item = cachedItems[identifier] {
 			Roger.info("[\(identifier.rawValue)][item] - cached")
 			return item
+		}
+		guard let widget = widgets[identifier] else {
+			Roger.error("Can't find `NSTouchBarItem` for given identifier: `\(identifier)`")
+			return nil
 		}
 		Roger.info("[\(identifier.rawValue)][item] - initializes")
 		let item = PKWidgetTouchBarItem(widget: widget)

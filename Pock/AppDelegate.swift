@@ -147,7 +147,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	
 	// MARK: Opwn widgets manager
 	@objc private func openWidgetsManager() {
-		// TODO: To be implemented
+		let controller = WidgetsManagerViewController()
+		let window = NSWindow(contentViewController: controller)
+		window.titleVisibility = .hidden
+		window.isReleasedWhenClosed = true
+		let windowController = NSWindowController(window: window)
+		windowController.showWindow(nil)
 	}
 	
 	// MARK: Open customization menu

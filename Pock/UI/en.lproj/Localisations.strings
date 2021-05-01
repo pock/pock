@@ -13,7 +13,9 @@
 // MARK: MainBarMenu
 "menu.general" = "General";
 "menu.about" = "About Pock";
-"menu.customization" = "Customisation…";
+"menu.preferences" = "Preferences…";
+"menu.manage-widgets" = "Manage widgets…";
+"menu.customization" = "Customisation";
 "menu.customization.pock" = "Customize Pock…";
 "menu.customization.control-strip" = "Customize Control Strip…";
 "menu.quit" = "Quit Pock";

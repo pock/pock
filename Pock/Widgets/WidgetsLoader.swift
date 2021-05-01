@@ -14,13 +14,18 @@ private let kWidgetsPath: String = kApplicationSupportPockFolder + "/Widgets"
 internal final class WidgetsLoader {
 
 	/// Typealias
-	typealias WidgetsLoaderHandler = ([PKWidget.Type]) -> Void
+	typealias WidgetsLoaderHandler = ([PKWidgetInfo]) -> Void
 	
 	/// File manager
 	private let fileManager = FileManager.default
 
 	/// Data
-	private static var loadedBundles: [Bundle] = []
+	private static var loadedWidgets: [PKWidgetInfo] {
+		return installedWidgets.filter({ $0.loaded == true })
+	}
+	
+	/// List of installed widgets (loaded or not)
+	public static var installedWidgets: [PKWidgetInfo] = []
 	
 	init() {
 		/// Create support folders, if needed
@@ -42,11 +47,9 @@ internal final class WidgetsLoader {
 	/// Load installed widgets
 	internal func loadInstalledWidgets(_ completion: @escaping WidgetsLoaderHandler) {
 		let widgetURLs = fileManager.filesInFolder(kWidgetsPath, filter: {
-			$0.contains(".pock")
-				&& !$0.contains("disabled")
-				&& !$0.contains("/")
+			$0.contains(".pock") && !$0.contains("disabled") && !$0.contains("/")
 		})
-		var widgets: [PKWidget.Type] = []
+		var widgets: [PKWidgetInfo] = []
 		for widgetFilePathURL in widgetURLs {
 			guard let widget = loadWidgetAtURL(widgetFilePathURL) else {
 				continue
@@ -57,24 +60,26 @@ internal final class WidgetsLoader {
 	}
 	
 	/// Load single widget
-	private func loadWidgetAtURL(_ url: URL) -> PKWidget.Type? {
-		guard let widgetBundle = WidgetsLoader.loadedBundles.first(where: { $0.bundleURL == url }) ?? Bundle(url: url),
-			  let clss = widgetBundle.principalClass as? PKWidget.Type else {
+	private func loadWidgetAtURL(_ url: URL) -> PKWidgetInfo? {
+		do {
+			let info = try PKWidgetInfo(path: url)
+			if !WidgetsLoader.installedWidgets.contains(info) {
+				WidgetsLoader.installedWidgets.append(info)
+			}
+			return info
+		} catch {
+			Roger.error(error.localizedDescription)
 			return nil
 		}
-		if !WidgetsLoader.loadedBundles.contains(widgetBundle) {
-			WidgetsLoader.loadedBundles.append(widgetBundle)
-		}
-		return clss
 	}
 	
 	/// Unload all widgets
 	internal static func unloadAllWidgets() {
-		for bundle in loadedBundles {
-			Roger.debug("[WidgetsLoader] unloading: \(bundle.bundleURL.lastPathComponent)")
+		for widget in loadedWidgets {
+			let bundle = Bundle(for: widget.principalClass)
+			Roger.debug("[WidgetsLoader] unloading: \(widget.name)")
 			bundle.unload()
 		}
-		loadedBundles.removeAll()
 	}
 
 }

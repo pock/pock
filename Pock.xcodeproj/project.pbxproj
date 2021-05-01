@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		34291B54263C778E00768B08 /* PKWidgetInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34291B53263C778E00768B08 /* PKWidgetInfo.swift */; };
+		34291B57263C7DA400768B08 /* PKWidgetCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34291B55263C7DA400768B08 /* PKWidgetCellView.swift */; };
+		34291B58263C7DA400768B08 /* PKWidgetCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34291B56263C7DA400768B08 /* PKWidgetCellView.xib */; };
 		344C9A18260672F4009AA07C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344C9A17260672F4009AA07C /* main.swift */; };
 		344C9A1E260674E5009AA07C /* Relaunch in Resources */ = {isa = PBXBuildFile; fileRef = 344C9A15260672F4009AA07C /* Relaunch */; };
 		34564DBC25F81E520093E5E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34564DBB25F81E520093E5E0 /* AppDelegate.swift */; };
@@ -33,6 +36,8 @@
 		34A1A4AD25FBDAA20086500F /* Localisations.strings in Resources */ = {isa = PBXBuildFile; fileRef = 34A1A4AF25FBDAA20086500F /* Localisations.strings */; };
 		34E393E026186F3000E0B556 /* NSMenuHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E393DF26186F3000E0B556 /* NSMenuHeader.swift */; };
 		34E393E4261871F400E0B556 /* NSMenuHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34E393E326186F5400E0B556 /* NSMenuHeader.xib */; };
+		34E7B98B263C65590072FE54 /* WidgetsManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E7B989263C65590072FE54 /* WidgetsManagerViewController.swift */; };
+		34E7B98C263C65590072FE54 /* WidgetsManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34E7B98A263C65590072FE54 /* WidgetsManagerViewController.xib */; };
 		80F6ED9E941CB99A898BECF2 /* Pods_Pock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AE9B256A4CB4701408B60C0 /* Pods_Pock.framework */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +64,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		34291B53263C778E00768B08 /* PKWidgetInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKWidgetInfo.swift; sourceTree = "<group>"; };
+		34291B55263C7DA400768B08 /* PKWidgetCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKWidgetCellView.swift; sourceTree = "<group>"; };
+		34291B56263C7DA400768B08 /* PKWidgetCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PKWidgetCellView.xib; sourceTree = "<group>"; };
 		344C9A15260672F4009AA07C /* Relaunch */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Relaunch; sourceTree = BUILT_PRODUCTS_DIR; };
 		344C9A17260672F4009AA07C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		34564DB825F81E520093E5E0 /* Pock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pock.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -92,6 +100,8 @@
 		34A1A4B025FBDAA60086500F /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localisations.strings; sourceTree = "<group>"; };
 		34E393DF26186F3000E0B556 /* NSMenuHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSMenuHeader.swift; sourceTree = "<group>"; };
 		34E393E326186F5400E0B556 /* NSMenuHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NSMenuHeader.xib; sourceTree = "<group>"; };
+		34E7B989263C65590072FE54 /* WidgetsManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetsManagerViewController.swift; sourceTree = "<group>"; };
+		34E7B98A263C65590072FE54 /* WidgetsManagerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WidgetsManagerViewController.xib; sourceTree = "<group>"; };
 		42458EF7CBD8C1A887586801 /* Pods-Pock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pock.release.xcconfig"; path = "Target Support Files/Pods-Pock/Pods-Pock.release.xcconfig"; sourceTree = "<group>"; };
 		7AE9B256A4CB4701408B60C0 /* Pods_Pock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FAB0C2306CA63DF211D8910 /* Pods-Pock.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pock.debug.xcconfig"; path = "Target Support Files/Pods-Pock/Pods-Pock.debug.xcconfig"; sourceTree = "<group>"; };
@@ -124,6 +134,32 @@
 				42458EF7CBD8C1A887586801 /* Pods-Pock.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		34291B59263C7DA800768B08 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				34291B5A263C7DBC00768B08 /* PKWidgetCellView */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		34291B5A263C7DBC00768B08 /* PKWidgetCellView */ = {
+			isa = PBXGroup;
+			children = (
+				34291B55263C7DA400768B08 /* PKWidgetCellView.swift */,
+				34291B56263C7DA400768B08 /* PKWidgetCellView.xib */,
+			);
+			path = PKWidgetCellView;
+			sourceTree = "<group>";
+		};
+		34291B5B263D71A800768B08 /* WidgetsManagerViewController */ = {
+			isa = PBXGroup;
+			children = (
+				34E7B989263C65590072FE54 /* WidgetsManagerViewController.swift */,
+				34E7B98A263C65590072FE54 /* WidgetsManagerViewController.xib */,
+			);
+			path = WidgetsManagerViewController;
 			sourceTree = "<group>";
 		};
 		344C9A16260672F4009AA07C /* Relaunch */ = {
@@ -287,6 +323,7 @@
 			children = (
 				34564E0125F983640093E5E0 /* WidgetsLoader.swift */,
 				34564E0925F98FD80093E5E0 /* Models */,
+				34E7B98D263C655F0072FE54 /* Manager */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -296,6 +333,7 @@
 			children = (
 				34564E0A25F990060093E5E0 /* PKWidgetViewController.swift */,
 				34564E0725F98FD50093E5E0 /* PKWidgetTouchBarItem.swift */,
+				34291B53263C778E00768B08 /* PKWidgetInfo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -307,6 +345,23 @@
 				34E393E326186F5400E0B556 /* NSMenuHeader.xib */,
 			);
 			path = NSMenuSectionHeader;
+			sourceTree = "<group>";
+		};
+		34E7B98D263C655F0072FE54 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				34291B59263C7DA800768B08 /* Views */,
+				34E7B98E263C65760072FE54 /* Controllers */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		34E7B98E263C65760072FE54 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				34291B5B263D71A800768B08 /* WidgetsManagerViewController */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		57B98144DEAC1BBEAE8F9DEA /* Frameworks */ = {
@@ -404,6 +459,8 @@
 				34564DBE25F81E590093E5E0 /* Assets.xcassets in Resources */,
 				34564DD925F826340093E5E0 /* NSMenuItemCustomView.xib in Resources */,
 				34A1A4AD25FBDAA20086500F /* Localisations.strings in Resources */,
+				34291B58263C7DA400768B08 /* PKWidgetCellView.xib in Resources */,
+				34E7B98C263C65590072FE54 /* WidgetsManagerViewController.xib in Resources */,
 				34E393E4261871F400E0B556 /* NSMenuHeader.xib in Resources */,
 				34564DD625F826340093E5E0 /* NSMenuBadgeItemView.xib in Resources */,
 				34564DE125F832070093E5E0 /* MainMenu.xib in Resources */,
@@ -489,6 +546,8 @@
 				34564E0625F984850093E5E0 /* FileManager+Extensions.swift in Sources */,
 				34564DD825F826340093E5E0 /* NSMenuItemCustomView.swift in Sources */,
 				34E393E026186F3000E0B556 /* NSMenuHeader.swift in Sources */,
+				34E7B98B263C65590072FE54 /* WidgetsManagerViewController.swift in Sources */,
+				34291B54263C778E00768B08 /* PKWidgetInfo.swift in Sources */,
 				34564DCC25F8254B0093E5E0 /* String+Extensions.swift in Sources */,
 				34564DF825F83E490093E5E0 /* DispatchQueue-Extensions.swift in Sources */,
 				34564E0B25F990060093E5E0 /* PKWidgetViewController.swift in Sources */,
@@ -498,6 +557,7 @@
 				34564DD725F826340093E5E0 /* NSMenuBadgeItem.swift in Sources */,
 				34564DF625F83E2D0093E5E0 /* STPrivilegedTask.m in Sources */,
 				34564DEF25F8389D0093E5E0 /* Roger.swift in Sources */,
+				34291B57263C7DA400768B08 /* PKWidgetCellView.swift in Sources */,
 				34564DE925F837960093E5E0 /* PockTouchBarController.swift in Sources */,
 				34564E0825F98FD50093E5E0 /* PKWidgetTouchBarItem.swift in Sources */,
 				34564DE725F836530093E5E0 /* AppController.swift in Sources */,
