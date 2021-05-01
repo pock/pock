@@ -29,8 +29,31 @@ internal class PockTouchBarController: PKTouchBarMouseController {
 		return Array(widgets.keys) + [.flexibleSpace]
 	}
 	
-	/// Overrides
+	// MARK: Mouse Support
+	private var touchBarView: NSView {
+		guard let views = NSFunctionRow._topLevelViews() as? [NSView], let view = views.last else {
+			fatalError("Touch Bar is not available.")
+		}
+		return view
+	}
+	public override var visibleRectWidth: CGFloat {
+		get {
+			return touchBarView.visibleRect.width
+		} set {
+			super.visibleRectWidth = newValue
+		}
+	}
+	public override var parentView: NSView! {
+		get {
+			return touchBarView
+		} set {
+			super.parentView = newValue
+		}
+	}
+	
+	// MARK: Overrides
 	override func didLoad() {
+		super.didLoad()
 		Roger.debug("[PockTouchBarController] Loaded.")
 	}
 	
@@ -105,6 +128,104 @@ internal class PockTouchBarController: PKTouchBarMouseController {
 		let item = PKWidgetTouchBarItem(widget: widget)
 		cachedItems[identifier] = item
 		return item
+	}
+	
+	// MARK: Mouse delegates
+	
+	private var mouseDelegates: [PKScreenEdgeMouseDelegate] {
+		return cachedItems.values.compactMap({ $0.widget as? PKScreenEdgeMouseDelegate })
+	}
+	
+	// MARK: Mouse Overrides
+	override func reloadScreenEdgeController() {
+		// TODO: Check for mouse support option
+//		if Defaults[.enableMouseSupport] {
+//			let color: NSColor = Defaults[.showMouseTrackingArea] ? .black : .clear
+//			self.edgeController = PKScreenEdgeController(mouseDelegate: self, parentView: parentView, barColor: color)
+//		}
+		self.edgeController = PKScreenEdgeController(mouseDelegate: self, parentView: parentView, barColor: .systemBlue)
+	}
+	
+	override func screenEdgeController(_ controller: PKScreenEdgeController, mouseEnteredAtLocation location: NSPoint, in view: NSView) {
+		super.screenEdgeController(controller, mouseEnteredAtLocation: location, in: view)
+		mouseDelegates.forEach({
+			$0.screenEdgeController(controller, mouseEnteredAtLocation: location, in: view)
+		})
+	}
+	
+	override func screenEdgeController(_ controller: PKScreenEdgeController, mouseMovedAtLocation location: NSPoint, in view: NSView) {
+		super.screenEdgeController(controller, mouseMovedAtLocation: location, in: view)
+		mouseDelegates.forEach({
+			$0.screenEdgeController(controller, mouseMovedAtLocation: location, in: view)
+		})
+	}
+	
+	override func screenEdgeController(_ controller: PKScreenEdgeController, mouseScrollWithDelta delta: CGFloat, atLocation location: NSPoint, in view: NSView) {
+		super.screenEdgeController(controller, mouseScrollWithDelta: delta, atLocation: location, in: view)
+		mouseDelegates.forEach({
+			$0.screenEdgeController?(controller, mouseScrollWithDelta: delta, atLocation: location, in: view)
+		})
+	}
+	
+	override func screenEdgeController(_ controller: PKScreenEdgeController, mouseClickAtLocation location: NSPoint, in view: NSView) {
+		super.screenEdgeController(controller, mouseClickAtLocation: location, in: view)
+		mouseDelegates.forEach({
+			$0.screenEdgeController(controller, mouseClickAtLocation: location, in: view)
+		})
+	}
+	
+	override func screenEdgeController(_ controller: PKScreenEdgeController, mouseExitedAtLocation location: NSPoint, in view: NSView) {
+		super.screenEdgeController(controller, mouseExitedAtLocation: location, in: view)
+		mouseDelegates.forEach({
+			$0.screenEdgeController(controller, mouseExitedAtLocation: location, in: view)
+		})
+	}
+	
+	// MARK: Dragging Overrides
+	override func screenEdgeController(_ controller: PKScreenEdgeController, draggingEntered info: NSDraggingInfo, filepath: String, in view: NSView) -> NSDragOperation {
+		var returnable: NSDragOperation?
+		for delegate in mouseDelegates {
+			guard let operation = delegate.screenEdgeController?(controller, draggingEntered: info, filepath: filepath, in: view) else {
+				continue
+			}
+			returnable = operation
+			self.showDraggingInfo(info, filepath: filepath)
+			break
+		}
+		return returnable ?? super.screenEdgeController(controller, draggingEntered: info, filepath: filepath, in: view)
+	}
+	
+	override func screenEdgeController(_ controller: PKScreenEdgeController, draggingUpdated info: NSDraggingInfo, filepath: String, in view: NSView) -> NSDragOperation {
+		var returnable: NSDragOperation?
+		for delegate in mouseDelegates {
+			guard let operation = delegate.screenEdgeController?(controller, draggingUpdated: info, filepath: filepath, in: view) else {
+				continue
+			}
+			returnable = operation
+			self.updateCursorLocation(info.draggingLocation)
+			self.updateDraggingInfoLocation(info.draggingLocation)
+			break
+		}
+		return returnable ?? super.screenEdgeController(controller, draggingUpdated: info, filepath: filepath, in: view)
+	}
+	
+	override func screenEdgeController(_ controller: PKScreenEdgeController, performDragOperation info: NSDraggingInfo, filepath: String, in view: NSView) -> Bool {
+		var returnable: Bool?
+		for delegate in mouseDelegates {
+			guard let operation = delegate.screenEdgeController?(controller, performDragOperation: info, filepath: filepath, in: view) else {
+				continue
+			}
+			returnable = operation
+			break
+		}
+		return returnable ?? super.screenEdgeController(controller, performDragOperation: info, filepath: filepath, in: view)
+	}
+	
+	override func screenEdgeController(_ controller: PKScreenEdgeController, draggingEnded info: NSDraggingInfo, in view: NSView) {
+		super.screenEdgeController(controller, draggingEnded: info, in: view)
+		mouseDelegates.forEach({
+			$0.screenEdgeController?(controller, draggingEnded: info, in: view)
+		})
 	}
 
 }
