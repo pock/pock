@@ -39,13 +39,7 @@ class WidgetsManagerViewController: NSViewController {
 	private var selectedWidget: PKWidgetInfo? {
 		didSet {
 			updateUIElementsForSelectedWidget()
-			if let clss = selectedWidget?.preferencesClass as? PKWidgetPreference.Type {
-				selectedPreferences = clss.init(nibName: clss.nibName, bundle: Bundle(for: clss))
-				loadPreferencesContainerForSelectedPreferences()
-			} else {
-				unloadPreferencesContainerWithTitle("widgets_manager.list.widget_has_no_preferences".localized)
-				selectedPreferences = nil
-			}
+			updatePreferencesContainerForSelectedPreferences()
 		}
 	}
 	private var selectedPreferences: PKWidgetPreference?
@@ -58,11 +52,11 @@ class WidgetsManagerViewController: NSViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		self.tableView.register(NSNib(nibNamed: "PKWidgetCellView", bundle: .main), forIdentifier: CellIdentifiers.widgetCell)
+		self.selectedWidget = widgets.first
 	}
 	
 	override func viewWillAppear() {
 		super.viewWillAppear()
-		self.selectedWidget = widgets.first
 		NSApp.activate(ignoringOtherApps: true)
 	}
 	
@@ -88,7 +82,7 @@ extension WidgetsManagerViewController {
 	
 	private func updateUIElementsForSelectedWidget() {
 		guard let widget = selectedWidget else {
-			widgetNameLabel.stringValue = "widgets_list.select_widget".localized
+			widgetNameLabel.stringValue = "widgets-manager.list.select-widget".localized
 			widgetAuthorLabel.stringValue = "--"
 			widgetVersionLabel.stringValue = "--"
 			widgetUninstallButton.isEnabled = false
@@ -106,12 +100,15 @@ extension WidgetsManagerViewController {
 	}
 	
 	private func updatePreferencesContainerForSelectedPreferences() {
-		guard let widget = selectedWidget else {
+		guard let widget = selectedWidget, let clss = widget.preferencesClass as? PKWidgetPreference.Type else {
+			unloadPreferencesContainerWithTitle("widgets-manager.list.no-preferences".localized)
+			selectedPreferences = nil
 			return
 		}
 		if disabledWidgets.contains(where: { $0 == widget.bundleIdentifier }) {
-			unloadPreferencesContainerWithTitle("widgets_manager.list.widget_is_processing".localized)
+			unloadPreferencesContainerWithTitle("widgets-manager.list.did-update".localized)
 		} else {
+			selectedPreferences = clss.init(nibName: clss.nibName, bundle: Bundle(for: clss))
 			loadPreferencesContainerForSelectedPreferences()
 		}
 	}

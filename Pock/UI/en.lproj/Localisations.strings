@@ -24,3 +24,10 @@
 "onboard.title" = "Get the Most Out of Your MacBook Pro Touch Bar";
 "onboard.message" = "Pock comes with default widgets that let you access your frequently used controls and essential information.";
 "onboard.footer" = "Follow the instructions in the Touch Bar to install default widgets";
+
+// MARK: Widgets Manager
+"widgets-manager.list.title" = "Widgets Manager";
+"widgets-manager.list.select-widget" = "Select a widget from the list";
+"widgets-manager.list.will-be-updated" = "\"%@\" widget will be updated";
+"widgets-manager.list.did-update" = "\"%@\" widget updated.\nReload Pock to refresh.";
+"widgets-manager.list.no-preferences" = "This widget has no preferences";

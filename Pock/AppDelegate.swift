@@ -149,6 +149,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	@objc private func openWidgetsManager() {
 		let controller = WidgetsManagerViewController()
 		let window = NSWindow(contentViewController: controller)
+		window.miniwindowTitle = "widgets-manager.list.title".localized
 		window.titleVisibility = .hidden
 		window.isReleasedWhenClosed = true
 		let windowController = NSWindowController(window: window)
