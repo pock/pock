@@ -113,6 +113,7 @@ extension WidgetsManagerViewController {
 		if disabledWidgets.contains(where: { $0 == widget.bundleIdentifier }) {
 			unloadPreferencesContainerWithTitle("widgets-manager.list.did-update".localized)
 		} else {
+			unloadPreferencesContainerWithTitle("widgets-manager.loading-preferences".localized)
 			selectedPreferences = clss.init(nibName: clss.nibName, bundle: Bundle(for: clss))
 			loadPreferencesContainerForSelectedPreferences()
 		}

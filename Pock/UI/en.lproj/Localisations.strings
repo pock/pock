@@ -30,4 +30,5 @@
 "widgets-manager.list.select-widget" = "Select a widget from the list";
 "widgets-manager.list.will-be-updated" = "\"%@\" widget will be updated";
 "widgets-manager.list.did-update" = "\"%@\" widget updated.\nReload Pock to refresh.";
+"widgets-manager.loading-preferences" = "Loading Preferences…";
 "widgets-manager.list.no-preferences" = "This widget has no preferences";
