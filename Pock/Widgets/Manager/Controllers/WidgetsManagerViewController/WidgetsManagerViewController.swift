@@ -65,6 +65,11 @@ class WidgetsManagerViewController: NSViewController {
 		NSApp.deactivate()
 	}
 	
+	deinit {
+		selectedWidget = nil
+		Roger.debug("[WidgetsManager][List] - deinit")
+	}
+	
 }
 
 // MARK: Methods
