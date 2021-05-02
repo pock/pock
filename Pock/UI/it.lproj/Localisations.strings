@@ -11,11 +11,32 @@
 "base.cancel" = "Annulla";
 
 // MARK: MainBarMenu
+"menu.general" = "Generali";
 "menu.about" = "A Proposito di Pock";
-"menu.open_customization_palette" = "Configura la Touch Bar…";
+"menu.preferences" = "Impostazioni…";
+"menu.manage-widgets" = "Gestisci i widget…";
+
+"menu.customization" = "Personalizzazione";
+"menu.customization.pock" = "Modifica Pock…";
+"menu.customization.control-strip" = "Modifica Control Strip…";
+
+"menu.advanced" = "Avanzate";
+"menu.advanced.reload_pock" = "Ricarica Pock…";
+"menu.advanced.relaunch_pock" = "Riavvia Pock…";
+"menu.advanced.reload_touchbar" = "Ricarica Control Strip…";
+"menu.advanced.relaunch_touchbar" = "Riavvia Touch Bar…";
+
 "menu.quit" = "Chiudi Pock";
 
 // MARK: Onboard Screen
 "onboard.title" = "Ottieni il massimo dalla Touch Bar del tuo MacBook Pro";
 "onboard.message" = "Pock viene fornito con widget predefiniti che ti consentono di accedere ai controlli utilizzati di frequente e alle informazioni essenziali.";
 "onboard.footer" = "Segui le istruzioni nella Touch Bar per installare i widget di sistema";
+
+// MARK: Widgets Manager
+"widgets-manager.list.title" = "Gestore dei Widget";
+"widgets-manager.list.select-widget" = "Seleziona un widget dalla list";
+"widgets-manager.list.will-be-updated" = "Il widget \"%@\" verrà aggiornato";
+"widgets-manager.list.did-update" = "Il widget \"%@\" è staro aggiornato.\nRicarica Pock.";
+"widgets-manager.loading-preferences" = "Carico Impostazioni…";
+"widgets-manager.list.no-preferences" = "Questo widget non ha impostazioni";

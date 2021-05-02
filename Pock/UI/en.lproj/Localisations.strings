@@ -15,9 +15,17 @@
 "menu.about" = "About Pock";
 "menu.preferences" = "Preferences…";
 "menu.manage-widgets" = "Manage widgets…";
+
 "menu.customization" = "Customisation";
 "menu.customization.pock" = "Customize Pock…";
 "menu.customization.control-strip" = "Customize Control Strip…";
+
+"menu.advanced" = "Advanced";
+"menu.advanced.reload_pock" = "Reload Pock…";
+"menu.advanced.relaunch_pock" = "Relaunch Pock…";
+"menu.advanced.reload_touchbar" = "Reload Control Strip…";
+"menu.advanced.relaunch_touchbar" = "Relaunch Touch Bar…";
+
 "menu.quit" = "Quit Pock";
 
 // MARK: Onboard Screen

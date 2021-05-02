@@ -54,6 +54,41 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		}
 	}
 	
+	// MARK: Advanced menu
+	private lazy var advancedMenuItem: NSMenuItem = {
+		let menu = NSMenu(title: "menu.advanced".localized)
+		menu.addItem(NSMenuItemCustomView.new(
+			title: "menu.advanced.reload_pock".localized,
+			target: self,
+			selector: #selector(selectAdvancedSectionItem(_:)),
+			keyEquivalent: "r"
+		))
+		menu.addItem(NSMenuItemCustomView.new(
+			title: "menu.advanced.relaunch_pock".localized,
+			target: self,
+			selector: #selector(selectAdvancedSectionItem(_:)),
+			keyEquivalent: "R",
+			isAlternate: true
+		))
+		menu.addItem(NSMenuItemCustomView.new(
+			title: "menu.advanced.reload_touchbar".localized,
+			target: self,
+			selector: #selector(selectAdvancedSectionItem(_:)),
+			keyEquivalent: "s"
+		))
+		menu.addItem(NSMenuItemCustomView.new(
+			title: "menu.advanced.relaunch_touchbar".localized,
+			target: self,
+			selector: #selector(selectAdvancedSectionItem(_:)),
+			keyEquivalent: "S",
+			isAlternate: true
+		))
+		let menuItem = NSMenuItem(title: "menu.advanced".localized, action: nil, keyEquivalent: "")
+		menuItem.submenu = menu
+		menuItem.view = NSMenuItemCustomView(item: menuItem)
+		return menuItem
+	}()
+	
 	// MARK: Debug menu
 	#if DEBUG
 	private lazy var _debugMenuItem: NSMenuItem = {
@@ -110,8 +145,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			title: "menu.customization.control-strip".localized,
 			target: self,
 			selector: #selector(openCustomizationPalette),
-			keyEquivalent: "s"
+			keyEquivalent: "c"
 		))
+		
+		// MARK: Advanced
+		mainBarMenu.addItem(NSMenuHeader.new(title: "menu.advanced".localized))
+		mainBarMenu.addItem(advancedMenuItem)
 
 		#if DEBUG
 		// MARK: Debug
@@ -163,6 +202,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			AppController.shared.openPockCustomizationPalette()
 		case "s":
 			AppController.shared.openControlStripCustomizationPalette()
+		default:
+			return
+		}
+	}
+	
+	// MARK: Select advanced section item
+	@objc private func selectAdvancedSectionItem(_ sender: NSMenuItem) {
+		switch sender.keyEquivalent {
+		case "r":
+			AppController.shared.reload()
+		case "R":
+			AppController.shared.relaunch()
+		case "s":
+			TouchBarHelper.reloadTouchBarAgent()
+		case "S":
+			TouchBarHelper.reloadTouchBarServer { _ in
+				NSApp.activate(ignoringOtherApps: true)
+			}
 		default:
 			return
 		}
