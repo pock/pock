@@ -35,6 +35,9 @@ internal class AppController: NSResponder {
 	/// Private initialiser
 	private override init() {
 		super.init()
+		if Preferences[.userDefinedPresentationMode] as PresentationMode == .undefined {
+			Preferences[.userDefinedPresentationMode] = TouchBarHelper.currentPresentationMode.rawValue
+		}
 		TouchBarHelper.swizzleFunctions()
 		registerForInternalNotifications()
 		registerDoubleControlHotKey()

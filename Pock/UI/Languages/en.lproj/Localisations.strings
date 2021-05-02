@@ -38,17 +38,39 @@
 "onboard.footer" = "Follow the instructions in the Touch Bar to install default widgets";
 
 // MARK: Preferences
-"preferences.general" = "General";
+"preferences.general.title" = "General";
 "preferences.general.allow-blank-touchbar.title" = "Allow blank Touch Bar";
 "preferences.general.allow-blank-touchbar.desc" = "If enabled, you can turn the Touch Bar completely off just by removing any added widgets.";
-"preferences.general.launch-ar-login" = "Launch at login";
+"preferences.general.launch-at-login" = "Launch at login";
+
+"preferences.layout.title" = "Layout";
+
 "preferences.double-control.title" = "Switch to default Touch Bar";
 "preferences.double-control.desc" = "Double press `^Control` key to toggle between Pock and System Touch Bar.";
-"preferences.cursor-options" = "Cursor options";
+"preferences.default-touchbar.shows" = "Default Touch Bar shows:";
+"preferences.default-touchbar.desc" = "To work properly, Pock may override the default Touch Bar preferences.
+You can always configure default settings from `System Preferences > Keyboard` to adapt the Touch Bar to your needs.";
+
+"preferences.cursor-options.title" = "Cursor options";
 "preferences.cursor-options.enable-mouse-support" = "Enable cursor support";
 "preferences.cursor-options.show-tracking-area" = "Show tracking area";
+
 "preferences.updates.check-for-updates-once-a-day" = "Check for updates once a day";
 "preferences.updates.check-for-updates" = "Check for updates";
+
+// MARK: Layout Style
+"layout-style.show-control-strip" = "Show Control Strip";
+"layout-style.full-width" = "Full width";
+
+// MARK: Presentation Mode
+"presentation-mode.app" = "App";
+"presentation-mode.app-with-control-strip" = "App with Control Strip";
+"presentation-mode.full-control-strip" = "Full Control Strip";
+"presentation-mode.function-keys" = "Function Keys (Fn)";
+"presentation-mode.workflows" = "Workflows";
+"presentation-mode.workflows-with-control-strip" = "Workflow with Control Strip";
+"presentation-mode.spaces" = "Spaces";
+"presentation-mode.spaces-with-control-strip" = "Spaces with Control Strip";
 
 // MARK: Widgets Manager
 "widgets-manager.list.title" = "Widgets Manager";

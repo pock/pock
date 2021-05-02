@@ -49,6 +49,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		/// Deactivate Pock
 		NSApp.deactivate()
 	}
+	
+	func applicationWillTerminate(_ notification: Notification) {
+		/// Tear down Pock to be sure to reset user defined Touch Bar settings.
+		AppController.shared.tearDownTouchBar()
+	}
 
 	// MARK: Setup main bar menu items
 	private func addMainBarItem() {

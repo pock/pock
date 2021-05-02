@@ -93,7 +93,7 @@ internal class PockTouchBarController: PKTouchBarMouseController {
 		guard isVisible else {
 			return
 		}
-		TouchBarHelper.setPresentationMode(to: .appWithControlStrip)
+		TouchBarHelper.setPresentationMode(to: Preferences[.userDefinedPresentationMode] as PresentationMode)
 		super.dismiss()
 	}
 

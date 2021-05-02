@@ -40,6 +40,7 @@ internal struct Preferences {
 		case mouseSupportEnabled
 		case showTrackingArea
 		case checkForUpdatesOnceADay
+		case userDefinedPresentationMode
 	}
 	static subscript<T>(_ key: Keys) -> T {
 		get {
@@ -47,6 +48,9 @@ internal struct Preferences {
 				// swiftlint:disable force_cast
 				if T.self == LayoutStyle.self, let raw = UserDefaults.standard.value(forKey: key.rawValue) as? String {
 					return LayoutStyle(rawValue: raw) as! T
+				}
+				if T.self == PresentationMode.self, let raw = UserDefaults.standard.value(forKey: key.rawValue) as? String {
+					return PresentationMode(rawValue: raw) as! T
 				}
 				switch key {
 				case .allowBlankTouchBar:
@@ -61,6 +65,8 @@ internal struct Preferences {
 					return false as! T
 				case .checkForUpdatesOnceADay:
 					return false as! T
+				case .userDefinedPresentationMode:
+					return PresentationMode.undefined as! T
 				}
 				// swiftlint:enable force_cast
 			}

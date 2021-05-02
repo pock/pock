@@ -13,6 +13,7 @@
 		34291B64263EDAD500768B08 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34291B63263EDAD500768B08 /* Preferences.swift */; };
 		34291B68263EDF9800768B08 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34291B66263EDF9800768B08 /* PreferencesViewController.swift */; };
 		34291B69263EDF9800768B08 /* PreferencesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34291B67263EDF9800768B08 /* PreferencesViewController.xib */; };
+		34291B6F263F4A7600768B08 /* Collections+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34291B6E263F4A7500768B08 /* Collections+Extensions.swift */; };
 		344C9A18260672F4009AA07C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344C9A17260672F4009AA07C /* main.swift */; };
 		344C9A1E260674E5009AA07C /* Relaunch in Resources */ = {isa = PBXBuildFile; fileRef = 344C9A15260672F4009AA07C /* Relaunch */; };
 		34564DBC25F81E520093E5E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34564DBB25F81E520093E5E0 /* AppDelegate.swift */; };
@@ -73,6 +74,7 @@
 		34291B63263EDAD500768B08 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		34291B66263EDF9800768B08 /* PreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		34291B67263EDF9800768B08 /* PreferencesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreferencesViewController.xib; sourceTree = "<group>"; };
+		34291B6E263F4A7500768B08 /* Collections+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collections+Extensions.swift"; sourceTree = "<group>"; };
 		344C9A15260672F4009AA07C /* Relaunch */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Relaunch; sourceTree = BUILT_PRODUCTS_DIR; };
 		344C9A17260672F4009AA07C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		34564DB825F81E520093E5E0 /* Pock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pock.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -282,6 +284,7 @@
 				34564DDC25F82D960093E5E0 /* NSImage+Extensions.swift */,
 				34564DF725F83E490093E5E0 /* DispatchQueue-Extensions.swift */,
 				34564E0525F984850093E5E0 /* FileManager+Extensions.swift */,
+				34291B6E263F4A7500768B08 /* Collections+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -612,6 +615,7 @@
 				34564DE925F837960093E5E0 /* PockTouchBarController.swift in Sources */,
 				34564E0825F98FD50093E5E0 /* PKWidgetTouchBarItem.swift in Sources */,
 				34564DE725F836530093E5E0 /* AppController.swift in Sources */,
+				34291B6F263F4A7600768B08 /* Collections+Extensions.swift in Sources */,
 				34564E0025F850170093E5E0 /* HotKey.swift in Sources */,
 				34291B68263EDF9800768B08 /* PreferencesViewController.swift in Sources */,
 			);

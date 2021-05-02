@@ -23,11 +23,13 @@ class PreferencesViewController: NSViewController {
 	@IBOutlet private weak var layoutStylesBox: NSBox!
 	@IBOutlet private weak var layoutStyleWithControlStripButton: NSButton!
 	@IBOutlet private weak var layoutStyleFullWidth: NSButton!
-	@IBOutlet private weak var layoutStyleDescriptionLabel: NSTextField!
 	
 	/// Double `^ control` shortcut
 	@IBOutlet private weak var doubleControlTitleLabel: NSTextField!
 	@IBOutlet private weak var doubleControlDescriptionLabel: NSTextField!
+	@IBOutlet private weak var defaultTouchBarPresentationModeLabel: NSTextField!
+	@IBOutlet private weak var defaultTouchBarPresentationModePopUp: NSPopUpButton!
+	@IBOutlet private weak var defaultTouchBarPresentationModeDesc: NSTextField!
 	
 	/// Cursor options
 	@IBOutlet private weak var cursorOptionsTitleLabel: NSTextField!
@@ -71,29 +73,45 @@ class PreferencesViewController: NSViewController {
 		checkForUpdatesOnceADayCheckbox.state = Preferences[.checkForUpdatesOnceADay] == true ? .on : .off
 		/// Layout Style
 		updateLayoutStyleUIElements()
+		/// Default Touch Bar Presentation Mode
+		updateDefaultPresentationModePopUpButton()
 		/// Build info
 		// TODO: Show current version number
 	}
 	
 	private func localizeUIElements() {
-		generalTitleLabel.stringValue = "preferences.general".localized
+		generalTitleLabel.stringValue = "preferences.general.title".localized
 		allowBlankTouchBarCheckbox.title = "preferences.general.allow-blank-touchbar.title".localized
 		allowBlankTouchBarDescriptionLabel.stringValue = "preferences.general.allow-blank-touchbar.desc".localized
-		launchAtLoginCheckbox.title = "preferences.general.launch-ar-login".localized
+		launchAtLoginCheckbox.title = "preferences.general.launch-at-login".localized
+		
+		layoutStyleTitleLabel.stringValue = "preferences.layout.title".localized
+		
 		doubleControlTitleLabel.stringValue = "preferences.double-control.title".localized
 		doubleControlDescriptionLabel.stringValue = "preferences.double-control.desc".localized
-		cursorOptionsTitleLabel.stringValue = "preferences.cursor-options".localized
+		defaultTouchBarPresentationModeLabel.stringValue = "preferences.default-touchbar.shows".localized
+		defaultTouchBarPresentationModeDesc.stringValue = "preferences.default-touchbar.desc".localized
+		
+		cursorOptionsTitleLabel.stringValue = "preferences.cursor-options.title".localized
 		enableMouseSupportCheckbox.title = "preferences.cursor-options.enable-mouse-support".localized
 		showTrackingAreaCheckbox.title = "preferences.cursor-options.show-tracking-area".localized
+		
 		checkForUpdatesOnceADayCheckbox.title = "preferences.updates.check-for-updates-once-a-day".localized
-		checkForUpdatesNowButton.stringValue = "preferences.updates.check-for-updates".localized
+		checkForUpdatesNowButton.title = "preferences.updates.check-for-updates".localized
+	}
+	
+	private func updateDefaultPresentationModePopUpButton() {
+		let mode: PresentationMode = Preferences[.userDefinedPresentationMode]
+		defaultTouchBarPresentationModePopUp.removeAllItems()
+		defaultTouchBarPresentationModePopUp.addItems(withTitles: PresentationMode.allCases.compactMap({ $0.title }))
+		defaultTouchBarPresentationModePopUp.selectItem(withTitle: mode.title)
 	}
 	
 	private func updateLayoutStyleUIElements() {
 		func resizeButton(_ button: NSButton, minify: Bool) {
 			if let constraint = button.constraints.first(where: { $0.identifier == "layout-style.option.width" }) {
 				NSAnimationContext.runAnimationGroup { context in
-					context.duration = 0.3125
+					context.duration = 0.2725
 					constraint.animator().constant = minify ? 132 : 256
 					button.animator().alphaValue = minify ? 0.525 : 1.0
 				}
@@ -130,6 +148,16 @@ class PreferencesViewController: NSViewController {
 		updateLayoutStyleUIElements()
 		async(after: 0.4) {
 			NotificationCenter.default.post(name: .shouldReloadPock, object: nil)
+		}
+	}
+	
+	@IBAction private func didChangeDefaultTouchBarPresentationMode(_ button: NSPopUpButton) {
+		let presentationMode = PresentationMode.allCases.without(.undefined)[defaultTouchBarPresentationModePopUp.indexOfSelectedItem]
+		if Preferences[.userDefinedPresentationMode] as PresentationMode != presentationMode {
+			Preferences[.userDefinedPresentationMode] = presentationMode.rawValue
+			if AppController.shared.pockTouchBarController?.isVisible == nil || false {
+				TouchBarHelper.setPresentationMode(to: presentationMode)
+			}
 		}
 	}
 	

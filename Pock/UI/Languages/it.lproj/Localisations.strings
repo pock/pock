@@ -33,22 +33,44 @@
 "menu.quit" = "Chiudi Pock";
 
 // MARK: Preferences
-"preferences.general" = "Generali";
+"preferences.general.title" = "Generali";
 "preferences.general.allow-blank-touchbar.title" = "Consenti Touch Bar vuota";
 "preferences.general.allow-blank-touchbar.desc" = "Quando questa opzione è abilitata, ti basta rimuovere tutti i widget per rendere la Touch Bar completamente nera.";
-"preferences.general.launch-ar-login" = "Apri all'avvio";
+"preferences.general.launch-at-login" = "Apri all'avvio";
+
+"preferences.layout.title" = "Disposizione";
+
 "preferences.double-control.title" = "Mostra la Touch Bar di sistema";
 "preferences.double-control.desc" = "Premi due volte il tasto `^Control` per passare rapidamente da Pock alla Touch Bar di sistema.";
-"preferences.cursor-options" = "Opzioni cursore";
+"preferences.default-touchbar.shows" = "La Touch Bar di sistema mostra:";
+"preferences.default-touchbar.desc" = "Per funzionare correttamente, Pock potrebbe sovrascrivere le impostazioni della Touch Bar di sistema.
+Potrai sempre tornare alle impostazioni che preferisci da `Impostazioni di Sistema > Tastiera`. In questo modo modo potrai adattare la Touch Bar alle tue esigenze.";
+
+"preferences.cursor-options.title" = "Opzioni cursore";
 "preferences.cursor-options.enable-mouse-support" = "Abilita il supporto al cursore";
 "preferences.cursor-options.show-tracking-area" = "Mostra l'area di tracciamento";
-"preferences.updates.check-for-updates-once-a-day" = "Verifica aggiornamenti una volta al giiorno";
+
+"preferences.updates.check-for-updates-once-a-day" = "Verifica aggiornamenti una volta al giorno";
 "preferences.updates.check-for-updates" = "Cerca aggiornamenti";
 
 // MARK: Onboard Screen
 "onboard.title" = "Ottieni il massimo dalla Touch Bar del tuo MacBook Pro";
 "onboard.message" = "Pock viene fornito con widget predefiniti che ti consentono di accedere ai controlli utilizzati di frequente e alle informazioni essenziali.";
 "onboard.footer" = "Segui le istruzioni nella Touch Bar per installare i widget di sistema";
+
+// MARK: Layout Style
+"layout-style.show-control-strip" = "Mostra Control Strip";
+"layout-style.full-width" = "Schermo intero";
+
+// MARK: Presentation Mode
+"presentation-mode.app" = "App";
+"presentation-mode.app-with-control-strip" = "App con Control Strip";
+"presentation-mode.full-control-strip" = "Control Strip estesa";
+"presentation-mode.function-keys" = "Tasti Funzione (Fn)";
+"presentation-mode.workflows" = "Workflows";
+"presentation-mode.workflows-with-control-strip" = "Workflow con Control Strip";
+"presentation-mode.spaces" = "Spazi";
+"presentation-mode.spaces-with-control-strip" = "Spazi con Control Strip";
 
 // MARK: Widgets Manager
 "widgets-manager.list.title" = "Gestore dei Widget";

@@ -25,8 +25,9 @@ private class CommandLineHelper {
 	}
 }
 
-public enum PresentationMode: String {
-	case app,
+public enum PresentationMode: String, CaseIterable {
+	case undefined,
+		 app,
 		 appWithControlStrip,
 		 fullControlStrip,
 		 functionKeys,
@@ -42,8 +43,26 @@ public enum PresentationMode: String {
 			return false
 		}
 	}
-	/// statics
-	static let `default` = PresentationMode.appWithControlStrip
+	public var title: String {
+		switch self {
+		case .app:
+			return "presentation-mode.app".localized
+		case .appWithControlStrip, .undefined:
+			return "presentation-mode.app-with-control-strip".localized
+		case .fullControlStrip:
+			return "presentation-mode.full-control-strip".localized
+		case .functionKeys:
+			return "presentation-mode.function-keys".localized
+		case .workflows:
+			return "presentation-mode.workflows".localized
+		case .workflowsWithControlStrip:
+			return "presentation-mode.workflows-with-control-strip".localized
+		case .spaces:
+			return "presentation-mode.spaces".localized
+		case .spacesWithControlStrip:
+			return "presentation-mode.spaces-with-control-strip".localized
+		}
+	}
 }
 
 public class TouchBarHelper {
@@ -57,9 +76,9 @@ public class TouchBarHelper {
 	public static var currentPresentationMode: PresentationMode {
 		guard let value = (CFPreferencesCopyAppValue(kPresentationModeGlobal, kTouchBarAgentIdentifier) as? NSObject)?.copy(),
 			  let mode  = value as? String else {
-			return .default
+			return .appWithControlStrip
 		}
-		return PresentationMode(rawValue: mode) ?? .default
+		return PresentationMode(rawValue: mode) ?? .appWithControlStrip
 	}
 
 	@discardableResult
