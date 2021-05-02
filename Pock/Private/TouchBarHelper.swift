@@ -107,7 +107,7 @@ public class TouchBarHelper {
 			completion?(false)
 			return
 		}
-		async(after: 1.5) { [touchBarServerPid, error] in
+		async(after: 2.525) { [touchBarServerPid, error] in
 			switch error {
 			case errAuthorizationSuccess:
 				completion?(true)
