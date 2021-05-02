@@ -10,6 +10,7 @@
 		34291B54263C778E00768B08 /* PKWidgetInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34291B53263C778E00768B08 /* PKWidgetInfo.swift */; };
 		34291B57263C7DA400768B08 /* PKWidgetCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34291B55263C7DA400768B08 /* PKWidgetCellView.swift */; };
 		34291B58263C7DA400768B08 /* PKWidgetCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34291B56263C7DA400768B08 /* PKWidgetCellView.xib */; };
+		34291B64263EDAD500768B08 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34291B63263EDAD500768B08 /* Preferences.swift */; };
 		344C9A18260672F4009AA07C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344C9A17260672F4009AA07C /* main.swift */; };
 		344C9A1E260674E5009AA07C /* Relaunch in Resources */ = {isa = PBXBuildFile; fileRef = 344C9A15260672F4009AA07C /* Relaunch */; };
 		34564DBC25F81E520093E5E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34564DBB25F81E520093E5E0 /* AppDelegate.swift */; };
@@ -67,6 +68,7 @@
 		34291B53263C778E00768B08 /* PKWidgetInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKWidgetInfo.swift; sourceTree = "<group>"; };
 		34291B55263C7DA400768B08 /* PKWidgetCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKWidgetCellView.swift; sourceTree = "<group>"; };
 		34291B56263C7DA400768B08 /* PKWidgetCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PKWidgetCellView.xib; sourceTree = "<group>"; };
+		34291B63263EDAD500768B08 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		344C9A15260672F4009AA07C /* Relaunch */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Relaunch; sourceTree = BUILT_PRODUCTS_DIR; };
 		344C9A17260672F4009AA07C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		34564DB825F81E520093E5E0 /* Pock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pock.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -162,6 +164,14 @@
 			path = WidgetsManagerViewController;
 			sourceTree = "<group>";
 		};
+		34291B65263EDADB00768B08 /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				34291B63263EDAD500768B08 /* Preferences.swift */,
+			);
+			path = Preferences;
+			sourceTree = "<group>";
+		};
 		344C9A16260672F4009AA07C /* Relaunch */ = {
 			isa = PBXGroup;
 			children = (
@@ -198,6 +208,7 @@
 				34564DCD25F825510093E5E0 /* Extensions */,
 				34564DF025F838A10093E5E0 /* Utilities */,
 				34564E0425F9837A0093E5E0 /* Widgets */,
+				34291B65263EDADB00768B08 /* Preferences */,
 				34564DCA25F81EA30093E5E0 /* UI */,
 				34564DC925F81E950093E5E0 /* Bundle */,
 				34564DE425F8333E0093E5E0 /* Private */,
@@ -550,6 +561,7 @@
 				34291B54263C778E00768B08 /* PKWidgetInfo.swift in Sources */,
 				34564DCC25F8254B0093E5E0 /* String+Extensions.swift in Sources */,
 				34564DF825F83E490093E5E0 /* DispatchQueue-Extensions.swift in Sources */,
+				34291B64263EDAD500768B08 /* Preferences.swift in Sources */,
 				34564E0B25F990060093E5E0 /* PKWidgetViewController.swift in Sources */,
 				34564DBC25F81E520093E5E0 /* AppDelegate.swift in Sources */,
 				34564E0225F983640093E5E0 /* WidgetsLoader.swift in Sources */,

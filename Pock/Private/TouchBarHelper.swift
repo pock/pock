@@ -6,7 +6,6 @@
 //
 
 import CoreFoundation
-import Defaults
 
 private let kPresentationModeGlobal  = "PresentationModeGlobal"   as CFString
 private let kTouchBarAgentIdentifier = "com.apple.touchbar.agent" as CFString
