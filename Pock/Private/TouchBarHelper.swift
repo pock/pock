@@ -190,7 +190,10 @@ extension NSFunctionRow {
 	@objc func s_escapeKeyPaddingForCloseButton(_ isForCloseButton: Bool) -> Double {
 		let original = self.s_escapeKeyPaddingForCloseButton(isForCloseButton)
 		Roger.debug("[Pock]: Swizzled method: `_NSFunctionRow.escapeKeyPaddingForCloseButton` - [padding: \(original), isForCloseButton: \(isForCloseButton)]")
-		return isForCloseButton ? 0 : original
+		async {
+			TouchBarHelper.hideCloseButtonIfNeeded()
+		}
+		return 0
 	}
 	
 	internal static let swizzleFunctionCloseButtonPadding: Void = {

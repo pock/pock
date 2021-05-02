@@ -18,6 +18,13 @@ class PreferencesViewController: NSViewController {
 	@IBOutlet private weak var allowBlankTouchBarDescriptionLabel: NSTextField!
 	@IBOutlet private weak var launchAtLoginCheckbox: NSButton!
 	
+	/// Layout Styles
+	@IBOutlet private weak var layoutStyleTitleLabel: NSTextField!
+	@IBOutlet private weak var layoutStylesBox: NSBox!
+	@IBOutlet private weak var layoutStyleWithControlStripButton: NSButton!
+	@IBOutlet private weak var layoutStyleFullWidth: NSButton!
+	@IBOutlet private weak var layoutStyleDescriptionLabel: NSTextField!
+	
 	/// Double `^ control` shortcut
 	@IBOutlet private weak var doubleControlTitleLabel: NSTextField!
 	@IBOutlet private weak var doubleControlDescriptionLabel: NSTextField!
@@ -56,13 +63,14 @@ class PreferencesViewController: NSViewController {
 	// MARK: Configure UI Elements
 	private func configureUIElements() {
 		/// Checkboxes
-		self.allowBlankTouchBarCheckbox.state = Preferences[.allowBlankTouchBar] == true ? .on : .off
-		self.launchAtLoginCheckbox.state  = Preferences[.launchAtLogin] == true ? .on : .off
-		// TODO: Control Strip style
-		self.enableMouseSupportCheckbox.state = Preferences[.mouseSupportEnabled] == true ? .on : .off
-		self.showTrackingAreaCheckbox.state = Preferences[.showTrackingArea] == true ? .on : .off
-		self.showTrackingAreaCheckbox.isEnabled = Preferences[.mouseSupportEnabled] == true
-		self.checkForUpdatesOnceADayCheckbox.state = Preferences[.checkForUpdatesOnceADay] == true ? .on : .off
+		allowBlankTouchBarCheckbox.state = Preferences[.allowBlankTouchBar] == true ? .on : .off
+		launchAtLoginCheckbox.state  = Preferences[.launchAtLogin] == true ? .on : .off
+		enableMouseSupportCheckbox.state = Preferences[.mouseSupportEnabled] == true ? .on : .off
+		showTrackingAreaCheckbox.state = Preferences[.showTrackingArea] == true ? .on : .off
+		showTrackingAreaCheckbox.isEnabled = Preferences[.mouseSupportEnabled] == true
+		checkForUpdatesOnceADayCheckbox.state = Preferences[.checkForUpdatesOnceADay] == true ? .on : .off
+		/// Layout Style
+		updateLayoutStyleUIElements()
 		/// Build info
 		// TODO: Show current version number
 	}
@@ -81,7 +89,49 @@ class PreferencesViewController: NSViewController {
 		checkForUpdatesNowButton.stringValue = "preferences.updates.check-for-updates".localized
 	}
 	
+	private func updateLayoutStyleUIElements() {
+		func resizeButton(_ button: NSButton, minify: Bool) {
+			if let constraint = button.constraints.first(where: { $0.identifier == "layout-style.option.width" }) {
+				NSAnimationContext.runAnimationGroup { context in
+					context.duration = 0.3125
+					constraint.animator().constant = minify ? 132 : 256
+					button.animator().alphaValue = minify ? 0.525 : 1.0
+				}
+			}
+		}
+		let style: LayoutStyle = Preferences[.layoutStyle]
+		switch style {
+		case .withControlStrip:
+			resizeButton(layoutStyleWithControlStripButton, minify: false)
+			resizeButton(layoutStyleFullWidth, minify: true)
+		case .fullWidth:
+			resizeButton(layoutStyleWithControlStripButton, minify: true)
+			resizeButton(layoutStyleFullWidth, minify: false)
+		}
+		layoutStylesBox.title = style.title
+	}
+	
 	// MARK: Actions
+	
+	@IBAction private func didChangeLayoutStyle(for button: NSButton) {
+		let style: LayoutStyle
+		switch button {
+		case layoutStyleWithControlStripButton:
+			style = .withControlStrip
+		case layoutStyleFullWidth:
+			style = .fullWidth
+		default:
+			return
+		}
+		guard Preferences[.layoutStyle] != style else {
+			return
+		}
+		Preferences[.layoutStyle] = style.rawValue
+		updateLayoutStyleUIElements()
+		async(after: 0.4) {
+			NotificationCenter.default.post(name: .shouldReloadPock, object: nil)
+		}
+	}
 	
 	@IBAction private func didChangePreferencesOption(for button: NSButton) {
 		let key: Preferences.Keys

@@ -70,13 +70,23 @@ internal class PockTouchBarController: PKTouchBarMouseController {
 		loadInstalledWidgets { [weak self] in
 			self?.invalidateTouchBar()
 		}
+		let placement: Int64
+		let presentationMode: PresentationMode
+		switch Preferences[.layoutStyle] as LayoutStyle {
+		case .withControlStrip:
+			placement = 0
+			presentationMode = .appWithControlStrip
+		case .fullWidth:
+			placement = 1
+			presentationMode = .app
+		}
 		isVisible = true
 		if #available (macOS 10.14, *) {
-			NSTouchBar.presentSystemModalTouchBar(touchBar, placement: 0, systemTrayItemIdentifier: nil)
+			NSTouchBar.presentSystemModalTouchBar(touchBar, placement: placement, systemTrayItemIdentifier: nil)
 		} else {
-			NSTouchBar.presentSystemModalFunctionBar(touchBar, placement: 0, systemTrayItemIdentifier: nil)
+			NSTouchBar.presentSystemModalFunctionBar(touchBar, placement: placement, systemTrayItemIdentifier: nil)
 		}
-		TouchBarHelper.hideCloseButtonIfNeeded()
+		TouchBarHelper.setPresentationMode(to: presentationMode)
 	}
 	
 	override func dismiss() {
