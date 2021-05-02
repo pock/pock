@@ -12,9 +12,11 @@ class Observer: NSObject {
 	init(_ completion: (() -> Void)?) {
 		self.completion = completion
 	}
+	// swiftlint:disable block_based_kvo
 	override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
 		completion?()
 	}
+	// swiftlint:enable block_based_kvo
 }
 
 autoreleasepool {

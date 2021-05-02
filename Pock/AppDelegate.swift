@@ -107,6 +107,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	#endif
 
 	// MARK: Main bar menu items
+	// swiftlint:disable function_body_length
 	private func setupMainBarMenuItems() {
 		// MARK: About Pock
 		mainBarMenu.addItem(NSMenuHeader.new(title: "menu.general".localized, height: 22))
@@ -172,6 +173,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			return
 		}
 	}
+	// swiftlint:enable function_body_length
 
 	// MARK: Open website
 	@objc private func openWebsite() {
