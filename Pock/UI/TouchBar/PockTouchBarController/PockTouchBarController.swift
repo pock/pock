@@ -138,12 +138,16 @@ internal class PockTouchBarController: PKTouchBarMouseController {
 	
 	// MARK: Mouse Overrides
 	override func reloadScreenEdgeController() {
+		#if DEBUG
+		self.edgeController = PKScreenEdgeController(mouseDelegate: self, parentView: parentView, barColor: .systemBlue)
+		#else
 		// TODO: Check for mouse support option
 //		if Defaults[.enableMouseSupport] {
-//			let color: NSColor = Defaults[.showMouseTrackingArea] ? .black : .clear
+//			let color: NSColor = Defaults[.showMouseTrackingArea] ? .systemBlue : .clear
 //			self.edgeController = PKScreenEdgeController(mouseDelegate: self, parentView: parentView, barColor: color)
 //		}
-		self.edgeController = PKScreenEdgeController(mouseDelegate: self, parentView: parentView, barColor: .systemBlue)
+		self.edgeController = PKScreenEdgeController(mouseDelegate: self, parentView: parentView, barColor: .clear)
+		#endif
 	}
 	
 	override func screenEdgeController(_ controller: PKScreenEdgeController, mouseEnteredAtLocation location: NSPoint, in view: NSView) {

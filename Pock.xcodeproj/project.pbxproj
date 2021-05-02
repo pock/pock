@@ -219,6 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				34A1A4AF25FBDAA20086500F /* Localisations.strings */,
+				34E7B98D263C655F0072FE54 /* Manager */,
 				34564DEC25F837B60093E5E0 /* MainBarMenu */,
 				34564DEB25F837A00093E5E0 /* TouchBar */,
 			);
@@ -323,7 +324,6 @@
 			children = (
 				34564E0125F983640093E5E0 /* WidgetsLoader.swift */,
 				34564E0925F98FD80093E5E0 /* Models */,
-				34E7B98D263C655F0072FE54 /* Manager */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
