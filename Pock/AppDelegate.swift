@@ -18,7 +18,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	private let mainBarMenu = NSMenu(title: "Pock")
 	
 	/// Current window controller
-	private weak var windowController: NSWindowController?
+	private var windowController: NSWindowController?
 
 	func applicationDidFinishLaunching(_ aNotification: Notification) {
 		/// Set Roger allowed log levels
@@ -234,23 +234,28 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			return
 		}
 	}
+
+}
+
+extension AppDelegate: NSWindowDelegate {
 	
 	// MARK: Open controller
 	private func openController(_ controller: NSViewController) {
-		func show(windowController: NSWindowController) {
-			self.windowController = windowController
-			self.windowController?.showWindow(self)
-		}
 		windowController?.close()
-		windowController = nil
 		let window = NSWindow(contentViewController: controller)
+		window.delegate = self
 		window.miniwindowTitle = "widgets-manager.list.title".localized
 		window.titleVisibility = .hidden
 		window.isReleasedWhenClosed = true
 		window.styleMask.remove(.resizable)
-		show(windowController: NSWindowController(window: window))
+		windowController = NSWindowController(window: window)
+		windowController?.showWindow(self)
 	}
-
+	
+	func windowWillClose(_ notification: Notification) {
+		windowController = nil
+	}
+	
 }
 
 #if DEBUG
