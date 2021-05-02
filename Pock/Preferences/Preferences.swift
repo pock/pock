@@ -7,12 +7,18 @@
 
 import Foundation
 
+extension NSNotification.Name {
+	static let shouldReloadPock = NSNotification.Name("shouldReloadPock")
+	static let shouldEnableAutomaticUpdates = NSNotification.Name("shouldEnableAutomaticUpdates")
+}
+
 internal struct Preferences {
 	internal enum Keys: String {
 		case allowBlankTouchBar
 		case launchAtLogin
 		case mouseSupportEnabled
 		case showTrackingArea
+		case checkForUpdatesOnceADay
 	}
 	static subscript<T>(_ key: Keys) -> T {
 		get {
@@ -26,6 +32,8 @@ internal struct Preferences {
 				case .mouseSupportEnabled:
 					return true as! T
 				case .showTrackingArea:
+					return false as! T
+				case .checkForUpdatesOnceADay:
 					return false as! T
 				}
 				// swiftlint:enable force_cast

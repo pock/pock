@@ -36,6 +36,7 @@ internal class AppController: NSResponder {
 	private override init() {
 		super.init()
 		TouchBarHelper.swizzleFunctions()
+		registerForInternalNotifications()
 		registerDoubleControlHotKey()
 	}
 	
@@ -109,6 +110,11 @@ internal class AppController: NSResponder {
 				TouchBarHelper.markTouchBarAsDimmed(false)
 			}
 		}
+	}
+	
+	/// Register for internal notifications
+	private func registerForInternalNotifications() {
+		NotificationCenter.default.addObserver(self, selector: #selector(reload), name: .shouldReloadPock, object: nil)
 	}
 
 	/// Register double `ctrl` hotkey

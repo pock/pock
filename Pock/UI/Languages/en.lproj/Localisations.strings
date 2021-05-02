@@ -11,27 +11,44 @@
 "base.cancel" = "Cancel";
 
 // MARK: MainBarMenu
+// General
 "menu.general" = "General";
 "menu.about" = "About Pock";
 "menu.preferences" = "Preferences…";
-"menu.manage-widgets" = "Manage widgets…";
-
+// Widgets
+"menu.widgets" = "Widgets";
+"menu.widgets.manage-widgets" = "Manage widgets…";
+"menu.widgets.install-widget" = "Install widget…";
+// Customisation
 "menu.customization" = "Customisation";
 "menu.customization.pock" = "Customize Pock…";
 "menu.customization.control-strip" = "Customize Control Strip…";
-
+// Advanced
 "menu.advanced" = "Advanced";
 "menu.advanced.reload_pock" = "Reload Pock…";
 "menu.advanced.relaunch_pock" = "Relaunch Pock…";
 "menu.advanced.reload_touchbar" = "Reload Control Strip…";
 "menu.advanced.relaunch_touchbar" = "Relaunch Touch Bar…";
-
+// Quit
 "menu.quit" = "Quit Pock";
 
 // MARK: Onboard Screen
 "onboard.title" = "Get the Most Out of Your MacBook Pro Touch Bar";
 "onboard.message" = "Pock comes with default widgets that let you access your frequently used controls and essential information.";
 "onboard.footer" = "Follow the instructions in the Touch Bar to install default widgets";
+
+// MARK: Preferences
+"preferences.general" = "General";
+"preferences.general.allow-blank-touchbar.title" = "Allow blank Touch Bar";
+"preferences.general.allow-blank-touchbar.desc" = "If enabled, you can turn the Touch Bar completely off just by removing any added widgets.";
+"preferences.general.launch-ar-login" = "Launch at login";
+"preferences.double-control.title" = "Switch to default Touch Bar";
+"preferences.double-control.desc" = "Double press `^Control` key to toggle between Pock and System Touch Bar.";
+"preferences.cursor-options" = "Cursor options";
+"preferences.cursor-options.enable-mouse-support" = "Enable cursor support";
+"preferences.cursor-options.show-tracking-area" = "Show tracking area";
+"preferences.updates.check-for-updates-once-a-day" = "Check for updates once a day";
+"preferences.updates.check-for-updates" = "Check for updates";
 
 // MARK: Widgets Manager
 "widgets-manager.list.title" = "Widgets Manager";

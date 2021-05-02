@@ -138,9 +138,6 @@ internal class PockTouchBarController: PKTouchBarMouseController {
 	
 	// MARK: Mouse Overrides
 	override func reloadScreenEdgeController() {
-		#if DEBUG
-		self.edgeController = PKScreenEdgeController(mouseDelegate: self, parentView: parentView, barColor: .systemBlue)
-		#else
 		if Preferences[.mouseSupportEnabled] {
 			let color: NSColor = Preferences[.showTrackingArea] ? .systemBlue : .clear
 			self.edgeController = PKScreenEdgeController(mouseDelegate: self, parentView: parentView, barColor: color)
@@ -148,7 +145,6 @@ internal class PockTouchBarController: PKTouchBarMouseController {
 			self.edgeController?.tearDown(invalidate: true)
 			self.edgeController = nil
 		}
-		#endif
 	}
 	
 	override func screenEdgeController(_ controller: PKScreenEdgeController, mouseEnteredAtLocation location: NSPoint, in view: NSView) {

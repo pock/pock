@@ -11,22 +11,39 @@
 "base.cancel" = "Annulla";
 
 // MARK: MainBarMenu
+// General
 "menu.general" = "Generali";
 "menu.about" = "A Proposito di Pock";
 "menu.preferences" = "Impostazioni…";
-"menu.manage-widgets" = "Gestisci i widget…";
-
+// Widgets
+"menu.widgets" = "Widget";
+"menu.widgets.manage-widgets" = "Gestisci i widget…";
+"menu.widgets.install-widget" = "Installa widget…";
+// Customization
 "menu.customization" = "Personalizzazione";
 "menu.customization.pock" = "Modifica Pock…";
 "menu.customization.control-strip" = "Modifica Control Strip…";
-
+// Advanced
 "menu.advanced" = "Avanzate";
 "menu.advanced.reload_pock" = "Ricarica Pock…";
 "menu.advanced.relaunch_pock" = "Riavvia Pock…";
 "menu.advanced.reload_touchbar" = "Ricarica Control Strip…";
 "menu.advanced.relaunch_touchbar" = "Riavvia Touch Bar…";
-
+// Quit
 "menu.quit" = "Chiudi Pock";
+
+// MARK: Preferences
+"preferences.general" = "Generali";
+"preferences.general.allow-blank-touchbar.title" = "Consenti Touch Bar vuota";
+"preferences.general.allow-blank-touchbar.desc" = "Quando questa opzione è abilitata, ti basta rimuovere tutti i widget per rendere la Touch Bar completamente nera.";
+"preferences.general.launch-ar-login" = "Apri all'avvio";
+"preferences.double-control.title" = "Mostra la Touch Bar di sistema";
+"preferences.double-control.desc" = "Premi due volte il tasto `^Control` per passare rapidamente da Pock alla Touch Bar di sistema.";
+"preferences.cursor-options" = "Opzioni cursore";
+"preferences.cursor-options.enable-mouse-support" = "Abilita il supporto al cursore";
+"preferences.cursor-options.show-tracking-area" = "Mostra l'area di tracciamento";
+"preferences.updates.check-for-updates-once-a-day" = "Verifica aggiornamenti una volta al giiorno";
+"preferences.updates.check-for-updates" = "Cerca aggiornamenti";
 
 // MARK: Onboard Screen
 "onboard.title" = "Ottieni il massimo dalla Touch Bar del tuo MacBook Pro";

@@ -16,10 +16,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	/// MenuBar item and menu
 	private let mainBarItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
 	private let mainBarMenu = NSMenu(title: "Pock")
+	
+	/// Current window controller
+	private weak var windowController: NSWindowController?
 
 	func applicationDidFinishLaunching(_ aNotification: Notification) {
 		/// Set Roger allowed log levels
+		#if DEBUG
 		Roger.allowedLevels = [.error, .debug]
+		#else
+		Roger.allowedLevels = []
+		#endif
 		
 		/// Initialise AppCenter stuff (Analytics & Crash)
 		#if !DEBUG
@@ -126,12 +133,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			keyEquivalent: ","
 		))
 		
-		// MARK: Widget's manager
+		// MARK: Widgets
+		mainBarMenu.addItem(NSMenuHeader.new(title: "menu.widgets".localized))
 		mainBarMenu.addItem(NSMenuItemCustomView.new(
-			title: "menu.manage-widgets".localized,
+			title: "menu.widgets.manage-widgets".localized,
 			target: self,
 			selector: #selector(openWidgetsManager),
 			keyEquivalent: "m"
+		))
+		mainBarMenu.addItem(NSMenuItemCustomView.new(
+			title: "menu.widgets.install-widget".localized,
+			target: self,
+			selector: #selector(openWidgetsManager),
+			keyEquivalent: "i"
 		))
 		
 		// MARK: Customize Touch Bar
@@ -183,18 +197,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	
 	// MARK: Open preferences
 	@objc private func openPreferences() {
-		// TODO: To be implemented
+		openController(PreferencesViewController())
 	}
 	
 	// MARK: Opwn widgets manager
 	@objc private func openWidgetsManager() {
-		let controller = WidgetsManagerViewController()
-		let window = NSWindow(contentViewController: controller)
-		window.miniwindowTitle = "widgets-manager.list.title".localized
-		window.titleVisibility = .hidden
-		window.isReleasedWhenClosed = true
-		let windowController = NSWindowController(window: window)
-		windowController.showWindow(nil)
+		openController(WidgetsManagerViewController())
 	}
 	
 	// MARK: Open customization menu
@@ -225,6 +233,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		default:
 			return
 		}
+	}
+	
+	// MARK: Open controller
+	private func openController(_ controller: NSViewController) {
+		func show(windowController: NSWindowController) {
+			self.windowController = windowController
+			self.windowController?.showWindow(self)
+		}
+		windowController?.close()
+		windowController = nil
+		let window = NSWindow(contentViewController: controller)
+		window.miniwindowTitle = "widgets-manager.list.title".localized
+		window.titleVisibility = .hidden
+		window.isReleasedWhenClosed = true
+		window.styleMask.remove(.resizable)
+		show(windowController: NSWindowController(window: window))
 	}
 
 }
