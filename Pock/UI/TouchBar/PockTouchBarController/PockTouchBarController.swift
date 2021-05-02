@@ -141,12 +141,13 @@ internal class PockTouchBarController: PKTouchBarMouseController {
 		#if DEBUG
 		self.edgeController = PKScreenEdgeController(mouseDelegate: self, parentView: parentView, barColor: .systemBlue)
 		#else
-		// TODO: Check for mouse support option
-//		if Defaults[.enableMouseSupport] {
-//			let color: NSColor = Defaults[.showMouseTrackingArea] ? .systemBlue : .clear
-//			self.edgeController = PKScreenEdgeController(mouseDelegate: self, parentView: parentView, barColor: color)
-//		}
-		self.edgeController = PKScreenEdgeController(mouseDelegate: self, parentView: parentView, barColor: .clear)
+		if Preferences[.mouseSupportEnabled] {
+			let color: NSColor = Preferences[.showTrackingArea] ? .systemBlue : .clear
+			self.edgeController = PKScreenEdgeController(mouseDelegate: self, parentView: parentView, barColor: color)
+		} else {
+			self.edgeController?.tearDown(invalidate: true)
+			self.edgeController = nil
+		}
 		#endif
 	}
 	
