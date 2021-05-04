@@ -79,3 +79,23 @@ You can always configure default settings from `System Preferences > Keyboard` t
 "widgets-manager.list.did-update" = "\"%@\" widget updated.\nReload Pock to refresh.";
 "widgets-manager.loading-preferences" = "Loading Preferences…";
 "widgets-manager.list.no-preferences" = "This widget has no preferences";
+
+// MARK: Widget Install/Update
+"widget.install.drag-here.title" = "Install new widget";
+"widget.install.drag-here.body" = "Drag&Drop widget file inside this dialog, or click the `Choose…` button to pick up the file.";
+"widget.install.drag-here.valid-formats" = "Accepted format: .pock";
+
+"widget.install.title" = "Install %@ widget";
+"widget.install.body" = "Would you like to proceed and install %@ widget?";
+"widget.install.click-to-continue" = "Click \"Install\" to continue…";
+
+"widget.update.changelog.title" = "Changelog:";
+
+"widget.installing.title" = "Installing %@ widget…";
+"widget.installing.body" = "This process can take some time…";
+
+// MARK: Actions
+"general.action.cancel" = "Cancel";
+"general.action.choose" = "Choose…";
+"general.action.install" = "Install";
+"general.action.installing" = "Installing…";

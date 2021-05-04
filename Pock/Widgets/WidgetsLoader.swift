@@ -8,8 +8,16 @@
 import Foundation
 import PockKit
 
-private let kApplicationSupportPockFolder: String = FileManager.default.homeDirectoryForCurrentUser.path + "/Library/Application Support/Pock"
-private let kWidgetsPath: String = kApplicationSupportPockFolder + "/Widgets"
+private var kApplicationSupportPockFolder: String {
+	let prefix: String
+	if let path = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first?.path {
+		prefix = path
+	} else {
+		prefix = FileManager.default.homeDirectoryForCurrentUser.path + "/Library/Application Support"
+	}
+	return prefix + "/Pock"
+}
+internal let kWidgetsPath: String = kApplicationSupportPockFolder + "/Widgets"
 
 internal final class WidgetsLoader {
 

@@ -141,6 +141,11 @@ extension WidgetsManagerViewController {
 		widgetPreferencesStatusLabel.isHidden = false
 	}
 	
+	internal func presentWidgetInstallPanel() {
+		let controller = WidgetsInstallViewController()
+		presentAsSheet(controller)
+	}
+	
 }
 
 // MARK: Table - Data Source

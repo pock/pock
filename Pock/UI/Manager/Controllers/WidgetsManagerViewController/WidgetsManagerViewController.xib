@@ -84,11 +84,11 @@
                             <rect key="frame" x="16" y="59" width="400" height="60"/>
                             <subviews>
                                 <stackView distribution="fillProportionally" orientation="vertical" alignment="leading" spacing="4" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y2T-BL-Xxd">
-                                    <rect key="frame" x="0.0" y="3" width="101" height="55"/>
+                                    <rect key="frame" x="0.0" y="3" width="105" height="55"/>
                                     <subviews>
                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="VZy-OM-R14">
-                                            <rect key="frame" x="-2" y="36" width="105" height="19"/>
-                                            <textFieldCell key="cell" selectable="YES" placeholderString="Widget Name" id="De4-Mx-c0l">
+                                            <rect key="frame" x="-2" y="36" width="109" height="19"/>
+                                            <textFieldCell key="cell" selectable="YES" alignment="center" placeholderString="Widget Name" id="De4-Mx-c0l">
                                                 <font key="font" metaFont="systemMedium" size="16"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>

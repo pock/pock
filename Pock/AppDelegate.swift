@@ -105,11 +105,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	#if DEBUG
 	private lazy var _debugMenuItem: NSMenuItem = {
 		let debugMenu = NSMenu(title: "PockDebug")
-		debugMenu.addItem(withTitle: "Toggle Touch Bar visibility", action: #selector(toggleTouchBarVisibility), keyEquivalent: "")
-		debugMenu.addItem(withTitle: "Show debug console…", action: #selector(showDebugConsole), keyEquivalent: "c")
-		debugMenu.addItem(NSMenuHeader.new(title: "Widget's Bundles"))
+		debugMenu.addItem(NSMenuHeader.new(title: "Widgets"))
+		debugMenu.addItem(withTitle: "Open widgets directory…", action: #selector(openWidgetsDirectory), keyEquivalent: "")
 		debugMenu.addItem(withTitle: "Unload All Widgets", action: #selector(unloadAllWidgets), keyEquivalent: "")
 		debugMenu.addItem(withTitle: "Reload Widgets", action: #selector(reloadWidgets), keyEquivalent: "")
+		debugMenu.addItem(NSMenuHeader.new(title: "General"))
+		debugMenu.addItem(withTitle: "Toggle Touch Bar visibility", action: #selector(toggleTouchBarVisibility), keyEquivalent: "")
+		debugMenu.addItem(withTitle: "Show debug console…", action: #selector(showDebugConsole), keyEquivalent: "c")
 		debugMenu.addItem(withTitle: "Relaunch Pock", action: #selector(relaunch), keyEquivalent: "")
 		let debugMenuItem = NSMenuItem(title: "Debug…", action: nil, keyEquivalent: "")
 		debugMenuItem.submenu = debugMenu
@@ -149,7 +151,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		mainBarMenu.addItem(NSMenuItemCustomView.new(
 			title: "menu.widgets.install-widget".localized,
 			target: self,
-			selector: #selector(openWidgetsManager),
+			selector: #selector(openWidgetInstallPanel),
 			keyEquivalent: "i"
 		))
 		
@@ -205,9 +207,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		openController(PreferencesViewController())
 	}
 	
-	// MARK: Opwn widgets manager
+	// MARK: Open widgets manager
 	@objc private func openWidgetsManager() {
 		openController(WidgetsManagerViewController())
+	}
+	
+	// MARK: Open widget install panel
+	@objc private func openWidgetInstallPanel() {
+		let controller = WidgetsManagerViewController()
+		openController(controller)
+		controller.presentWidgetInstallPanel()
 	}
 	
 	// MARK: Open customization menu
@@ -272,6 +281,10 @@ private extension AppDelegate {
 	// MARK: Show debug console
 	@objc private func showDebugConsole() {
 		// TODO: AppController.shared.showDebugConsole()
+	}
+	// MARK: Open widgets directory
+	@objc private func openWidgetsDirectory() {
+		NSWorkspace.shared.open(URL(fileURLWithPath: kWidgetsPath))
 	}
 	// MARK: Unload All Widgets
 	@objc private func unloadAllWidgets() {

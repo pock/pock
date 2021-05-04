@@ -212,7 +212,7 @@ extension NSFunctionRow {
 		async {
 			TouchBarHelper.hideCloseButtonIfNeeded()
 		}
-		return 0
+		return isForCloseButton ? 0 : original
 	}
 	
 	internal static let swizzleFunctionCloseButtonPadding: Void = {

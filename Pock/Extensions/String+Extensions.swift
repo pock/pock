@@ -14,6 +14,12 @@ extension String {
 		return NSLocalizedString(self, tableName: "Localisations", bundle: .main, value: self, comment: self)
 	}
 	
+	/// Localized string for given key with additional data
+	func localized(_ args: CVarArg...) -> String {
+		let localized = NSLocalizedString(self, tableName: "Localisations", bundle: .main, value: self, comment: self)
+		return String(format: localized, arguments: args)
+	}
+	
 	/// Class name as string
 	init(_ clss: AnyClass) {
 		self.init()

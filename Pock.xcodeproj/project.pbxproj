@@ -14,6 +14,10 @@
 		34291B68263EDF9800768B08 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34291B66263EDF9800768B08 /* PreferencesViewController.swift */; };
 		34291B69263EDF9800768B08 /* PreferencesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34291B67263EDF9800768B08 /* PreferencesViewController.xib */; };
 		34291B6F263F4A7600768B08 /* Collections+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34291B6E263F4A7500768B08 /* Collections+Extensions.swift */; };
+		34291B7126408E1D00768B08 /* WidgetInstaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34291B7026408E1D00768B08 /* WidgetInstaller.swift */; };
+		34291B74264143E400768B08 /* WidgetsInstallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34291B72264143E400768B08 /* WidgetsInstallViewController.swift */; };
+		34291B75264143E400768B08 /* WidgetsInstallViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34291B73264143E400768B08 /* WidgetsInstallViewController.xib */; };
+		34291B7826419B5A00768B08 /* DestinationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34291B7726419B5A00768B08 /* DestinationView.swift */; };
 		344C9A18260672F4009AA07C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344C9A17260672F4009AA07C /* main.swift */; };
 		344C9A1E260674E5009AA07C /* Relaunch in Resources */ = {isa = PBXBuildFile; fileRef = 344C9A15260672F4009AA07C /* Relaunch */; };
 		34564DBC25F81E520093E5E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34564DBB25F81E520093E5E0 /* AppDelegate.swift */; };
@@ -75,6 +79,10 @@
 		34291B66263EDF9800768B08 /* PreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		34291B67263EDF9800768B08 /* PreferencesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreferencesViewController.xib; sourceTree = "<group>"; };
 		34291B6E263F4A7500768B08 /* Collections+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collections+Extensions.swift"; sourceTree = "<group>"; };
+		34291B7026408E1D00768B08 /* WidgetInstaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetInstaller.swift; sourceTree = "<group>"; };
+		34291B72264143E400768B08 /* WidgetsInstallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetsInstallViewController.swift; sourceTree = "<group>"; };
+		34291B73264143E400768B08 /* WidgetsInstallViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WidgetsInstallViewController.xib; sourceTree = "<group>"; };
+		34291B7726419B5A00768B08 /* DestinationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationView.swift; sourceTree = "<group>"; };
 		344C9A15260672F4009AA07C /* Relaunch */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Relaunch; sourceTree = BUILT_PRODUCTS_DIR; };
 		344C9A17260672F4009AA07C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		34564DB825F81E520093E5E0 /* Pock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pock.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -147,6 +155,7 @@
 		34291B59263C7DA800768B08 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				34291B7726419B5A00768B08 /* DestinationView.swift */,
 				34291B5A263C7DBC00768B08 /* PKWidgetCellView */,
 			);
 			path = Views;
@@ -209,6 +218,15 @@
 				34291B67263EDF9800768B08 /* PreferencesViewController.xib */,
 			);
 			path = PreferencesViewController;
+			sourceTree = "<group>";
+		};
+		34291B76264143EB00768B08 /* WidgetsInstallViewController */ = {
+			isa = PBXGroup;
+			children = (
+				34291B72264143E400768B08 /* WidgetsInstallViewController.swift */,
+				34291B73264143E400768B08 /* WidgetsInstallViewController.xib */,
+			);
+			path = WidgetsInstallViewController;
 			sourceTree = "<group>";
 		};
 		344C9A16260672F4009AA07C /* Relaunch */ = {
@@ -375,6 +393,7 @@
 			isa = PBXGroup;
 			children = (
 				34564E0125F983640093E5E0 /* WidgetsLoader.swift */,
+				34291B7026408E1D00768B08 /* WidgetInstaller.swift */,
 				34564E0925F98FD80093E5E0 /* Models */,
 			);
 			path = Widgets;
@@ -412,6 +431,7 @@
 			isa = PBXGroup;
 			children = (
 				34291B5B263D71A800768B08 /* WidgetsManagerViewController */,
+				34291B76264143EB00768B08 /* WidgetsInstallViewController */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -515,6 +535,7 @@
 				34291B58263C7DA400768B08 /* PKWidgetCellView.xib in Resources */,
 				34E7B98C263C65590072FE54 /* WidgetsManagerViewController.xib in Resources */,
 				34E393E4261871F400E0B556 /* NSMenuHeader.xib in Resources */,
+				34291B75264143E400768B08 /* WidgetsInstallViewController.xib in Resources */,
 				34564DD625F826340093E5E0 /* NSMenuBadgeItemView.xib in Resources */,
 				34564DE125F832070093E5E0 /* MainMenu.xib in Resources */,
 			);
@@ -597,10 +618,12 @@
 			files = (
 				34564DF225F83DA60093E5E0 /* TouchBarHelper.swift in Sources */,
 				34564E0625F984850093E5E0 /* FileManager+Extensions.swift in Sources */,
+				34291B7126408E1D00768B08 /* WidgetInstaller.swift in Sources */,
 				34564DD825F826340093E5E0 /* NSMenuItemCustomView.swift in Sources */,
 				34E393E026186F3000E0B556 /* NSMenuHeader.swift in Sources */,
 				34E7B98B263C65590072FE54 /* WidgetsManagerViewController.swift in Sources */,
 				34291B54263C778E00768B08 /* PKWidgetInfo.swift in Sources */,
+				34291B7826419B5A00768B08 /* DestinationView.swift in Sources */,
 				34564DCC25F8254B0093E5E0 /* String+Extensions.swift in Sources */,
 				34564DF825F83E490093E5E0 /* DispatchQueue-Extensions.swift in Sources */,
 				34291B64263EDAD500768B08 /* Preferences.swift in Sources */,
@@ -610,6 +633,7 @@
 				34564DDD25F82D960093E5E0 /* NSImage+Extensions.swift in Sources */,
 				34564DD725F826340093E5E0 /* NSMenuBadgeItem.swift in Sources */,
 				34564DF625F83E2D0093E5E0 /* STPrivilegedTask.m in Sources */,
+				34291B74264143E400768B08 /* WidgetsInstallViewController.swift in Sources */,
 				34564DEF25F8389D0093E5E0 /* Roger.swift in Sources */,
 				34291B57263C7DA400768B08 /* PKWidgetCellView.swift in Sources */,
 				34564DE925F837960093E5E0 /* PockTouchBarController.swift in Sources */,
