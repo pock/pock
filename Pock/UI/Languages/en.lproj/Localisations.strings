@@ -85,17 +85,44 @@ You can always configure default settings from `System Preferences > Keyboard` t
 "widget.install.drag-here.body" = "Drag&Drop widget file inside this dialog, or click the `Choose…` button to pick up the file.";
 "widget.install.drag-here.valid-formats" = "Accepted format: .pock";
 
+"widget.remove.title" = "Remove %@ widget";
+"widget.remove.body" = "Would you like to proceed and remove %@ widget?";
+"widget.remove.click-to-continue" = "Click \"Remove\" to continue…";
+
 "widget.install.title" = "Install %@ widget";
 "widget.install.body" = "Would you like to proceed and install %@ widget?";
 "widget.install.click-to-continue" = "Click \"Install\" to continue…";
 
 "widget.update.changelog.title" = "Changelog:";
 
+"widget.removing.title" = "Removing %@ widget…";
+"widget.removing.body" = "This process can take some time…";
+
 "widget.installing.title" = "Installing %@ widget…";
 "widget.installing.body" = "This process can take some time…";
+
+"widget.remove.error.title" = "Widget removing has failed!";
+"widget.install.error.title" = "Widget installation has failed!";
+
+"widget.error.body" = "An error occured.\n\n%@";
+
+"widget.remove.success.title" = "Widget successfully removed!";
+"widget.remove.success.body" = "Great, %@ widget was completely removed.\nClick on `Reload` to refresh Pock.";
+
+"widget.install.success.title" = "What a success!";
+"widget.install.success.body" = "Congratulations, %@ widget is now ready to be added to the Touch Bar.\nReload Pock and then click on `Customize Pock…` option to personalize your widgets experience.";
 
 // MARK: Actions
 "general.action.cancel" = "Cancel";
 "general.action.choose" = "Choose…";
+"general.action.remove" = "Remove";
+"general.action.removing" = "Removing…";
 "general.action.install" = "Install";
 "general.action.installing" = "Installing…";
+"general.action.close" = "Close";
+"general.action.reload" = "Reload";
+
+// MARK: Errors
+"error.unknown" = "Unknown error occured";
+"error.cant-copy" = "File can't be copied to destination folder.\n%@";
+"error.cant-remove" = "Widget file can't be removed.\n%@";

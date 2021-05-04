@@ -131,6 +131,9 @@
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
+                                            <connections>
+                                                <action selector="presentWidgetInstallerPanelFrom:" target="-2" id="d4h-G7-2wT"/>
+                                            </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kJG-wj-C06">
                                             <rect key="frame" x="-7" y="-7" width="87" height="32"/>
@@ -138,6 +141,9 @@
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
+                                            <connections>
+                                                <action selector="presentWidgetInstallerPanelFrom:" target="-2" id="N1b-e2-gYQ"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <visibilityPriorities>

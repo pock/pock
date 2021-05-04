@@ -8,6 +8,14 @@
 import Foundation
 import PockKit
 
+// MARK: Notifications
+
+extension NSNotification.Name {
+	static let didLoadWidgets = NSNotification.Name("didLoadWidgets")
+}
+
+// MARK: Helpers
+
 private var kApplicationSupportPockFolder: String {
 	let prefix: String
 	if let path = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first?.path {
@@ -18,6 +26,9 @@ private var kApplicationSupportPockFolder: String {
 	return prefix + "/Pock"
 }
 internal let kWidgetsPath: String = kApplicationSupportPockFolder + "/Widgets"
+internal let kWidgetsPathURL: URL = URL(fileURLWithPath: kWidgetsPath)
+
+// MARK: Loader
 
 internal final class WidgetsLoader {
 
@@ -54,6 +65,7 @@ internal final class WidgetsLoader {
 	
 	/// Load installed widgets
 	internal func loadInstalledWidgets(_ completion: @escaping WidgetsLoaderHandler) {
+		WidgetsLoader.installedWidgets.removeAll()
 		let widgetURLs = fileManager.filesInFolder(kWidgetsPath, filter: {
 			$0.contains(".pock") && !$0.contains("disabled") && !$0.contains("/")
 		})
@@ -65,6 +77,7 @@ internal final class WidgetsLoader {
 			widgets.append(widget)
 		}
 		completion(widgets)
+		NotificationCenter.default.post(name: .didLoadWidgets, object: nil)
 	}
 	
 	/// Load single widget

@@ -53,6 +53,7 @@ class WidgetsManagerViewController: NSViewController {
 		super.viewDidLoad()
 		self.tableView.register(NSNib(nibNamed: "PKWidgetCellView", bundle: .main), forIdentifier: CellIdentifiers.widgetCell)
 		self.selectedWidget = widgets.first
+		NotificationCenter.default.addObserver(self, selector: #selector(reload), name: .didLoadWidgets, object: nil)
 	}
 	
 	override func viewWillAppear() {
@@ -66,6 +67,7 @@ class WidgetsManagerViewController: NSViewController {
 	}
 	
 	deinit {
+		NotificationCenter.default.removeObserver(self)
 		selectedWidget = nil
 		Roger.debug("[WidgetsManager][List] - deinit")
 	}
@@ -75,6 +77,10 @@ class WidgetsManagerViewController: NSViewController {
 // MARK: Methods
 
 extension WidgetsManagerViewController {
+	
+	@objc private func reload() {
+		tableView.reloadData()
+	}
 	
 	private func updatePreferredContentSize() {
 		let frame = widgetPreferencesContainer.convert(widgetPreferencesContainer.visibleRect, to: view)
@@ -143,6 +149,24 @@ extension WidgetsManagerViewController {
 	
 	internal func presentWidgetInstallPanel() {
 		let controller = WidgetsInstallViewController()
+		presentAsSheet(controller)
+	}
+	
+	@IBAction internal func presentWidgetInstallerPanelFrom(_ button: NSButton) {
+		guard let widget = selectedWidget else {
+			return
+		}
+		let state: WidgetsInstaller.State
+		switch button {
+		case widgetUpdateButton:
+			state = .update(widget: widget)
+		case widgetUninstallButton:
+			state = .remove(widget: widget)
+		default:
+			return
+		}
+		let controller = WidgetsInstallViewController()
+		controller.state = state
 		presentAsSheet(controller)
 	}
 	

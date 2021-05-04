@@ -14,7 +14,7 @@
 		34291B68263EDF9800768B08 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34291B66263EDF9800768B08 /* PreferencesViewController.swift */; };
 		34291B69263EDF9800768B08 /* PreferencesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34291B67263EDF9800768B08 /* PreferencesViewController.xib */; };
 		34291B6F263F4A7600768B08 /* Collections+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34291B6E263F4A7500768B08 /* Collections+Extensions.swift */; };
-		34291B7126408E1D00768B08 /* WidgetInstaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34291B7026408E1D00768B08 /* WidgetInstaller.swift */; };
+		34291B7126408E1D00768B08 /* WidgetsInstaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34291B7026408E1D00768B08 /* WidgetsInstaller.swift */; };
 		34291B74264143E400768B08 /* WidgetsInstallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34291B72264143E400768B08 /* WidgetsInstallViewController.swift */; };
 		34291B75264143E400768B08 /* WidgetsInstallViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34291B73264143E400768B08 /* WidgetsInstallViewController.xib */; };
 		34291B7826419B5A00768B08 /* DestinationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34291B7726419B5A00768B08 /* DestinationView.swift */; };
@@ -79,7 +79,7 @@
 		34291B66263EDF9800768B08 /* PreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		34291B67263EDF9800768B08 /* PreferencesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreferencesViewController.xib; sourceTree = "<group>"; };
 		34291B6E263F4A7500768B08 /* Collections+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collections+Extensions.swift"; sourceTree = "<group>"; };
-		34291B7026408E1D00768B08 /* WidgetInstaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetInstaller.swift; sourceTree = "<group>"; };
+		34291B7026408E1D00768B08 /* WidgetsInstaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetsInstaller.swift; sourceTree = "<group>"; };
 		34291B72264143E400768B08 /* WidgetsInstallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetsInstallViewController.swift; sourceTree = "<group>"; };
 		34291B73264143E400768B08 /* WidgetsInstallViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WidgetsInstallViewController.xib; sourceTree = "<group>"; };
 		34291B7726419B5A00768B08 /* DestinationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationView.swift; sourceTree = "<group>"; };
@@ -393,7 +393,7 @@
 			isa = PBXGroup;
 			children = (
 				34564E0125F983640093E5E0 /* WidgetsLoader.swift */,
-				34291B7026408E1D00768B08 /* WidgetInstaller.swift */,
+				34291B7026408E1D00768B08 /* WidgetsInstaller.swift */,
 				34564E0925F98FD80093E5E0 /* Models */,
 			);
 			path = Widgets;
@@ -618,7 +618,7 @@
 			files = (
 				34564DF225F83DA60093E5E0 /* TouchBarHelper.swift in Sources */,
 				34564E0625F984850093E5E0 /* FileManager+Extensions.swift in Sources */,
-				34291B7126408E1D00768B08 /* WidgetInstaller.swift in Sources */,
+				34291B7126408E1D00768B08 /* WidgetsInstaller.swift in Sources */,
 				34564DD825F826340093E5E0 /* NSMenuItemCustomView.swift in Sources */,
 				34E393E026186F3000E0B556 /* NSMenuHeader.swift in Sources */,
 				34E7B98B263C65590072FE54 /* WidgetsManagerViewController.swift in Sources */,
