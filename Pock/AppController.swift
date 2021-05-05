@@ -41,6 +41,7 @@ internal class AppController: NSResponder {
 		TouchBarHelper.swizzleFunctions()
 		registerForInternalNotifications()
 		registerDoubleControlHotKey()
+		fetchLatestVersions {}
 	}
 	
 	required init?(coder: NSCoder) {
@@ -51,6 +52,20 @@ internal class AppController: NSResponder {
 	private(set) var navigationController: PKTouchBarNavigationController!
 	private(set) var pockTouchBarController: PockTouchBarController!
 
+	/// Fetch latest versions
+	internal func fetchLatestVersions(_ completion: @escaping () -> Void) {
+		Updater().fetchLatestVersions(ignoreCache: true) { latestReleases, error in
+			if let error = error {
+				Roger.error(error)
+			} else if let latestReleases = latestReleases {
+				Roger.debug(latestReleases)
+			}
+			async { [completion] in
+				completion()
+			}
+		}
+	}
+	
 	/// Setup
 	internal func prepareTouchBar() {
 		pockTouchBarController = PockTouchBarController.load()
@@ -65,10 +80,19 @@ internal class AppController: NSResponder {
 	}
 
 	/// Reload
-	@objc internal func reload() {
-		tearDownTouchBar()
-		dsleep(0.1)
-		prepareTouchBar()
+	@objc internal func reload(shouldFetchLatestVersions: Bool) {
+		func _reload() {
+			tearDownTouchBar()
+			dsleep(0.1)
+			prepareTouchBar()
+		}
+		if shouldFetchLatestVersions {
+			fetchLatestVersions {
+				_reload()
+			}
+		} else {
+			_reload()
+		}
 	}
 	
 	/// Unload (all widgets)
@@ -107,7 +131,7 @@ internal class AppController: NSResponder {
 				if NSFunctionRow.activeFunctionRows().count > 1 {
 					TouchBarHelper.markTouchBarAsDimmed(true)
 				} else {
-					reload()
+					reload(shouldFetchLatestVersions: false)
 				}
 			} else {
 				TouchBarHelper.markTouchBarAsDimmed(false)

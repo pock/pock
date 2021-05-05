@@ -37,7 +37,6 @@ class WidgetsInstallViewController: NSViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidDisappear()
-		setupDraggingHandler()
 		configureUIElements()
 		updateUIElementsForInstallableWidget()
 	}
@@ -60,6 +59,8 @@ class WidgetsInstallViewController: NSViewController {
 	
 	private func configureUIElements() {
 		view.window?.styleMask.remove(.resizable)
+		progressBar.minValue = 0
+		progressBar.maxValue = 1
 		changelogTitleLabel.stringValue = "widget.update.changelog.title".localized
 	}
 	
@@ -70,7 +71,7 @@ class WidgetsInstallViewController: NSViewController {
 		changelogStackView.isHidden = changelogTitleLabel.isHidden
 	}
 	
-	private func toggleProgressBarStyle(isIndeterminated: Bool, value: Double = 0) {
+	private func toggleProgressBarStyle(isIndeterminated: Bool, progress: Double = 0) {
 		defer {
 			progressBar.isHidden = false
 		}
@@ -80,7 +81,7 @@ class WidgetsInstallViewController: NSViewController {
 			progressBar.startAnimation(nil)
 		} else {
 			progressBar.stopAnimation(nil)
-			progressBar.doubleValue = value
+			progressBar.doubleValue = progress
 			progressBar.isIndeterminate = false
 		}
 	}
@@ -90,6 +91,7 @@ class WidgetsInstallViewController: NSViewController {
 	private func updateUIElementsForInstallableWidget() {
 		// MARK: State
 		defer {
+			setupDraggingHandler()
 			actionButton.isHighlighted = true
 		}
 		switch state {
@@ -123,13 +125,14 @@ class WidgetsInstallViewController: NSViewController {
 			actionButton.title = "general.action.install".localized
 			actionButton.isEnabled = true
 			
-		case .update:
+		case .update(let widget, let version):
 			// MARK: Update
-			titleLabel.stringValue = "widget.update.title".localized
-			bodyLabel.stringValue = "widget.update.body".localized
+			titleLabel.stringValue = "widget.update.title".localized(widget.name)
+			bodyLabel.stringValue = "widget.update.body".localized(widget.fullVersion, version.name)
 			progressBar.isHidden = true
 			toggleChangelogVisibility(true)
-			cancelButton.title = "general.action.cancel".localized
+			changelogTextView.string = version.changelog
+			cancelButton.title = "general.action.later".localized
 			actionButton.title = "general.action.update".localized
 			actionButton.isEnabled = true
 		
@@ -157,20 +160,15 @@ class WidgetsInstallViewController: NSViewController {
 			// MARK: Downloading
 			titleLabel.stringValue = "widget.downloading.title".localized(widget.name)
 			bodyLabel.stringValue = "widget.downloading.body".localized
-			toggleProgressBarStyle(isIndeterminated: false, value: progress)
+			toggleProgressBarStyle(isIndeterminated: false, progress: progress)
 			toggleChangelogVisibility(false)
 			cancelButton.title = "general.action.cancel".localized
 			actionButton.title = "general.action.downloading".localized
 			actionButton.isEnabled = false
 		
 		case .error(let error):
-			// MARK: Success
-			switch error {
-			case .cantRemove:
-				titleLabel.stringValue = "widget.remove.error.title".localized
-			default:
-				titleLabel.stringValue = "widget.error.title".localized
-			}
+			// MARK: Error
+			titleLabel.stringValue = "widget.error.title".localized
 			bodyLabel.stringValue = "widget.error.body".localized(error.description)
 			progressBar.isHidden = true
 			toggleChangelogVisibility(false)
@@ -178,19 +176,29 @@ class WidgetsInstallViewController: NSViewController {
 			actionButton.title = "general.action.close".localized
 			actionButton.isEnabled = true
 			
-		case .success(let widget, let removed):
-			// MARK: Success
-			if removed {
+		case .removed(let widget), .installed(let widget), .updated(let widget):
+			switch state {
+			case .removed:
+				// MARK: Removed
 				titleLabel.stringValue = "widget.remove.success.title".localized
 				bodyLabel.stringValue = "widget.remove.success.body".localized(widget.name)
-			} else {
+				actionButton.title = "general.action.relaunch".localized
+			case .installed:
+				// MARK: Installed
 				titleLabel.stringValue = "widget.install.success.title".localized
 				bodyLabel.stringValue = "widget.install.success.body".localized(widget.name)
+				actionButton.title = "general.action.reload".localized
+			case .updated:
+				// MARK: Updated
+				titleLabel.stringValue = "widget.update.success.title".localized
+				bodyLabel.stringValue = "widget.update.success.body".localized(widget.name)
+				actionButton.title = "general.action.relaunch".localized
+			default:
+				return
 			}
 			progressBar.isHidden = true
 			toggleChangelogVisibility(false)
 			cancelButton.isHidden = true
-			actionButton.title = "general.action.reload".localized
 			actionButton.isEnabled = true
 			
 		}
@@ -215,7 +223,7 @@ class WidgetsInstallViewController: NSViewController {
 					if let error = error {
 						self?.state = .error(error)
 					} else {
-						self?.state = .success(widget: widget, removed: true)
+						self?.state = .removed(widget: widget)
 					}
 				}
 				
@@ -226,15 +234,16 @@ class WidgetsInstallViewController: NSViewController {
 					if let error = error {
 						self?.state = .error(error)
 					} else {
-						self?.state = .success(widget: widget, removed: false)
+						self?.state = .installed(widget: widget)
 					}
 				}
 				
-			case let .update(widget):
+			case let .update(widget, version):
 				// MARK: Update
 				state = .downloading(widget: widget, progress: 0)
 				WidgetsInstaller().updateWidget(
 					widget,
+					version: version,
 					progress: { [weak self] progress in
 						self?.state = .downloading(widget: widget, progress: progress)
 					},
@@ -242,16 +251,23 @@ class WidgetsInstallViewController: NSViewController {
 						if let error = error {
 							self?.state = .error(error)
 						} else {
-							self?.state = .install(widget: widget)
+							self?.state = .updated(widget: widget)
 						}
 					}
 				)
 				
-			case .success:
-				// MARK: Success
-				AppController.shared.reload()
+			case .installed:
+				// MARK: Reload
+				AppController.shared.reload(shouldFetchLatestVersions: true)
 				async { [weak self] in
 					self?.dismiss(nil)
+				}
+				
+			case .removed, .updated:
+				// MARK: Relaunch
+				dismiss(nil)
+				async {
+					AppController.shared.relaunch()
 				}
 				
 			case .error:
@@ -282,14 +298,21 @@ extension WidgetsInstallViewController {
 		guard let view = self.view as? DestinationView else {
 			return
 		}
-		view.completion = { [weak self] path in
-			do {
-				let widget = try PKWidgetInfo(path: path)
-				self?.state = .install(widget: widget)
-			} catch {
-				Roger.error(error)
-				self?.state = .error(.invalidBundle(reason: error.localizedDescription))
+		switch state {
+		case .dragdrop:
+			view.canAcceptDraggedElement = true
+			view.completion = { [weak self] path in
+				do {
+					let widget = try PKWidgetInfo(path: path)
+					self?.state = .install(widget: widget)
+				} catch {
+					Roger.error(error)
+					self?.state = .error(WidgetsInstallerError.invalidBundle(reason: error.localizedDescription))
+				}
 			}
+		default:
+			view.canAcceptDraggedElement = false
+			view.completion = nil
 		}
 	}
 	
@@ -314,10 +337,10 @@ extension WidgetsInstallViewController {
 						self.state = .install(widget: widget)
 					} catch {
 						Roger.error(error)
-						self.state = .error(.invalidBundle(reason: error.localizedDescription))
+						self.state = .error(WidgetsInstallerError.invalidBundle(reason: error.localizedDescription))
 					}
 				} else {
-					self.state = .error(.invalidBundle(reason: "error.unknown".localized))
+					self.state = .error(WidgetsInstallerError.invalidBundle(reason: "error.unknown".localized))
 				}
 			}
 		})

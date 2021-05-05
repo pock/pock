@@ -34,6 +34,13 @@ public struct PKWidgetInfo: Equatable {
 	let build: String
 	let loaded: Bool
 	
+	var fullVersion: String {
+		if build.isEmpty {
+			return version
+		}
+		return "\(version)-\(build)"
+	}
+	
 	// MARK: Preferences
 	let preferencesClass: AnyClass?
 	var hasPreferences: Bool {
@@ -59,7 +66,7 @@ public struct PKWidgetInfo: Equatable {
 		self.author = author
 		self.version = version
 		if let build: String = bundle[.bundleBuild] {
-			self.build = build == "1" ? "" : "-\(build)"
+			self.build = build == "1" ? "" : build
 		} else {
 			self.build = ""
 		}

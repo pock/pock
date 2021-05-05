@@ -38,7 +38,7 @@
                                 <constraint firstAttribute="height" constant="16" id="36E-ba-Y6W"/>
                                 <constraint firstAttribute="width" constant="16" id="l7s-6A-vjH"/>
                             </constraints>
-                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="UpdateAvailable" id="m34-UC-wwZ"/>
+                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="new-version-badge" id="m34-UC-wwZ"/>
                             <color key="contentTintColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
                         </imageView>
                     </subviews>
@@ -70,6 +70,6 @@
     </objects>
     <resources>
         <image name="NSStatusUnavailable" width="16" height="16"/>
-        <image name="UpdateAvailable" width="206" height="206"/>
+        <image name="new-version-badge" width="32" height="32"/>
     </resources>
 </document>

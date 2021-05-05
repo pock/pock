@@ -38,11 +38,17 @@ class WidgetsManagerViewController: NSViewController {
 	}
 	private var selectedWidget: PKWidgetInfo? {
 		didSet {
+			if let widget = selectedWidget {
+				selectedWidgetNewVersion = Updater.newVersion(for: widget)
+			} else {
+				selectedWidgetNewVersion = nil
+			}
 			updateUIElementsForSelectedWidget()
 			updatePreferencesContainerForSelectedPreferences()
 		}
 	}
 	private var selectedPreferences: PKWidgetPreference?
+	private var selectedWidgetNewVersion: Updater.WidgetVersion?
 	
 	/// Set of disabled widget's `bundleIdentifier` to avoid user selection
 	private var disabledWidgets: Set<String> = []
@@ -78,6 +84,10 @@ class WidgetsManagerViewController: NSViewController {
 
 extension WidgetsManagerViewController {
 	
+	@objc private func unloadCurrentWidget() {
+		selectedWidget = nil
+	}
+	
 	@objc private func reload() {
 		tableView.reloadData()
 	}
@@ -98,16 +108,18 @@ extension WidgetsManagerViewController {
 			widgetVersionLabel.stringValue = "--"
 			widgetUninstallButton.isEnabled = false
 			widgetUpdateButton.isEnabled = false
+			widgetUpdateButton.isHighlighted = false
 			widgetUpdateStatusLabel.isHidden = true
 			return
 		}
 		widgetNameLabel.stringValue = widget.name
 		widgetAuthorLabel.stringValue = widget.author
-		widgetVersionLabel.stringValue = widget.version
+		widgetVersionLabel.stringValue = widget.fullVersion
 		widgetUninstallButton.isEnabled = true
-		// TODO: Add check for `update` UI elements (button, label)
-		widgetUpdateButton.isEnabled = false
-		widgetUpdateStatusLabel.isHidden = true
+		widgetUpdateButton.isEnabled = selectedWidgetNewVersion?.version != nil
+		widgetUpdateButton.isHighlighted = widgetUpdateButton.isEnabled
+		widgetUpdateStatusLabel.isHidden = selectedWidgetNewVersion?.error == nil
+		widgetUpdateStatusLabel.stringValue = selectedWidgetNewVersion?.error?.description ?? "error.unknown".localized
 	}
 	
 	private func updatePreferencesContainerForSelectedPreferences() {
@@ -159,7 +171,10 @@ extension WidgetsManagerViewController {
 		let state: WidgetsInstaller.State
 		switch button {
 		case widgetUpdateButton:
-			state = .update(widget: widget)
+			guard let newVersion = selectedWidgetNewVersion?.version else {
+				return
+			}
+			state = .update(widget: widget, version: newVersion)
 		case widgetUninstallButton:
 			state = .remove(widget: widget)
 		default:
@@ -207,7 +222,7 @@ extension WidgetsManagerViewController: NSTableViewDelegate {
 		cell.status.image = NSImage(named: widget.loaded ? NSImage.statusAvailableName : NSImage.statusUnavailableName)
 		cell.name.stringValue = widget.name
 		cell.name.alphaValue  = disabled ? 0.475 : 1
-		cell.badge.isHidden = disabled // TODO: || PockUpdater.default.newVersion(for: widget) == nil
+		cell.badge.isHidden = disabled || Updater.newVersion(for: widget).version == nil
 		/// Return
 		return cell
 	}

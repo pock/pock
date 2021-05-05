@@ -93,6 +93,8 @@ You can always configure default settings from `System Preferences > Keyboard` t
 "widget.install.body" = "Would you like to proceed and install %@ widget?";
 "widget.install.click-to-continue" = "Click \"Install\" to continue…";
 
+"widget.update.title" = "New version available for %@ widget!";
+"widget.update.body" = "Would you like to upgrade from version %@ to the new version %@?";
 "widget.update.changelog.title" = "Changelog:";
 
 "widget.removing.title" = "Removing %@ widget…";
@@ -101,16 +103,23 @@ You can always configure default settings from `System Preferences > Keyboard` t
 "widget.installing.title" = "Installing %@ widget…";
 "widget.installing.body" = "This process can take some time…";
 
+"widget.downloading.title" = "Downloading %@ widget…";
+"widget.downloading.body" = "This process can take some time…\n\nCalculating estimated progress:";
+
 "widget.remove.error.title" = "Widget removing has failed!";
 "widget.install.error.title" = "Widget installation has failed!";
 
-"widget.error.body" = "An error occured.\n\n%@";
+"widget.error.title" = "Something went wrong…";
+"widget.error.body" = "An error occured during the process.\n\n%@";
 
 "widget.remove.success.title" = "Widget successfully removed!";
-"widget.remove.success.body" = "Great, %@ widget was completely removed.\nClick on `Reload` to refresh Pock.";
+"widget.remove.success.body" = "Great, %@ widget was completely removed.\nClick on `Relaunch` to relaunch Pock.";
 
 "widget.install.success.title" = "What a success!";
 "widget.install.success.body" = "Congratulations, %@ widget is now ready to be added to the Touch Bar.\nReload Pock and then click on `Customize Pock…` option to personalize your widgets experience.";
+
+"widget.update.success.title" = "Done!";
+"widget.update.success.body" = "Congratulations, %@ widget is now updated to the latest version.\nClick on `Relaunch` to relaunch Pock.";
 
 // MARK: Actions
 "general.action.cancel" = "Cancel";
@@ -119,10 +128,25 @@ You can always configure default settings from `System Preferences > Keyboard` t
 "general.action.removing" = "Removing…";
 "general.action.install" = "Install";
 "general.action.installing" = "Installing…";
+"general.action.later" = "Later";
+"general.action.update" = "Update";
+"general.action.downloading" = "Downloading…";
 "general.action.close" = "Close";
 "general.action.reload" = "Reload";
+"general.action.relaunch" = "Relaunch";
 
 // MARK: Errors
-"error.unknown" = "Unknown error occured";
+"error.unknown" = "Unknown error occured.";
 "error.cant-copy" = "File can't be copied to destination folder.\n%@";
 "error.cant-remove" = "Widget file can't be removed.\n%@";
+"error.unknown-server-error" = "Unknown";
+
+"error.updater.invalid-endpoint-url" = "Invalid URL.";
+"error.updater.response-error" = "Invalid response from the server: %@";
+"error.updater.parsing-error" = "Invalid response data.";
+"error.updater.invalid-core-version" = "A new version for this widget is available, but your version of Pock is not supported. Please, update to the minimum supported version (%@) to install this widget's version.";
+
+"error.downloader.invalid-file-url" = "Can't find requested file on remote server.";
+"error.downloader.response-error" = "Can't request file. Server response: %@";
+"error.downloader.download-error" = "Can't download requested file: %@";
+"error.file-system-error" = "Can't manage file: %@\n\nPlease, check app permission and try again.";

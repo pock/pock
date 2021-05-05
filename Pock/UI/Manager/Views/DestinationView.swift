@@ -15,6 +15,13 @@ internal class DestinationView: NSView {
 	
 	internal var completion: ((URL) -> Void)?
 	
+	@IBInspectable internal var canAcceptDraggedElement: Bool = true {
+		didSet {
+			setNeedsDisplay(bounds)
+			displayIfNeeded()
+		}
+	}
+	
 	/// Allowed extensions, separated by commas (`,`) without spaces
 	@IBInspectable internal var allowedExtension: String!
 	
@@ -45,6 +52,10 @@ internal class DestinationView: NSView {
 	// MARK: Overrides
 	
 	override func draw(_ dirtyRect: NSRect) {
+		guard canAcceptDraggedElement else {
+			super.draw(dirtyRect)
+			return
+		}
 		let path = NSBezierPath(roundedRect: bounds.insetBy(dx: radius, dy: radius), xRadius: radius, yRadius: radius)
 		currentColor.set()
 		path.fill()
@@ -64,7 +75,7 @@ internal class DestinationView: NSView {
 	// MARK: Drag&Dropp stuff
 	
 	override func draggingEntered(_ sender: NSDraggingInfo) -> NSDragOperation {
-		guard checkExtension(for: sender) else {
+		guard canAcceptDraggedElement, checkExtension(for: sender) else {
 			return NSDragOperation()
 		}
 		currentColor = draggingColor

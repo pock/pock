@@ -235,7 +235,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	@objc private func selectAdvancedSectionItem(_ sender: NSMenuItem) {
 		switch sender.keyEquivalent {
 		case "r":
-			AppController.shared.reload()
+			AppController.shared.reload(shouldFetchLatestVersions: true)
 		case "R":
 			AppController.shared.relaunch()
 		case "s":
@@ -284,7 +284,7 @@ private extension AppDelegate {
 	}
 	// MARK: Open widgets directory
 	@objc private func openWidgetsDirectory() {
-		NSWorkspace.shared.open(URL(fileURLWithPath: kWidgetsPath))
+		NSWorkspace.shared.open(kWidgetsPathURL)
 	}
 	// MARK: Unload All Widgets
 	@objc private func unloadAllWidgets() {

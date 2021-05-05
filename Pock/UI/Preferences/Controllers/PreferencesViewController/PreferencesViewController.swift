@@ -76,7 +76,7 @@ class PreferencesViewController: NSViewController {
 		/// Default Touch Bar Presentation Mode
 		updateDefaultPresentationModePopUpButton()
 		/// Build info
-		// TODO: Show current version number
+		versionLabel.stringValue = Updater.fullAppVersion
 	}
 	
 	private func localizeUIElements() {

@@ -27,6 +27,7 @@ private var kApplicationSupportPockFolder: String {
 }
 internal let kWidgetsPath: String = kApplicationSupportPockFolder + "/Widgets"
 internal let kWidgetsPathURL: URL = URL(fileURLWithPath: kWidgetsPath)
+internal let kWidgetsTempPathURL: URL = URL(fileURLWithPath: kWidgetsPath + "/Temp")
 
 // MARK: Loader
 

@@ -7,9 +7,10 @@
 
 import Foundation
 import PockKit
+import Zip
 
 // MARK: Error
-internal enum WidgetsInstallerError: CustomStringConvertible {
+internal enum WidgetsInstallerError: PockError {
 	case invalidBundle(reason: String?)
 	case cantCopy(reason: String?)
 	case cantRemove(reason: String?)
@@ -35,43 +36,91 @@ internal final class WidgetsInstaller {
 		case dragdrop
 		case remove(widget: PKWidgetInfo)
 		case install(widget: PKWidgetInfo)
-		case update(widget: PKWidgetInfo)
+		case update(widget: PKWidgetInfo, version: Version)
 		case removing(widget: PKWidgetInfo)
 		case installing(widget: PKWidgetInfo)
 		case downloading(widget: PKWidgetInfo, progress: Double)
-		case success(widget: PKWidgetInfo, removed: Bool)
-		case error(_ error: Error)
+		case removed(widget: PKWidgetInfo)
+		case installed(widget: PKWidgetInfo)
+		case updated(widget: PKWidgetInfo)
+		case error(_ error: PockError)
 	}
 	
 	private lazy var manager: FileManager = FileManager.default
 	
 	// MARK: Methods
 	
-	internal func installWidget(_ widget: PKWidgetInfo, _ completion: (Error?) -> Void) {
+	internal func installWidget(_ widget: PKWidgetInfo, removeSource: Bool = false, _ completion: (PockError?) -> Void) {
 		do {
-			try manager.copyItem(
-				at: URL(fileURLWithPath: widget.path.path),
-				to: kWidgetsPathURL.appendingPathComponent(widget.path.lastPathComponent)
-			)
+			let fromLocation = URL(fileURLWithPath: widget.path.path)
+			let toLocation = kWidgetsPathURL.appendingPathComponent(widget.path.lastPathComponent)
+			if removeSource {
+				try manager.moveItem(at: fromLocation, to: toLocation)
+			} else {
+				try manager.copyItem(at: fromLocation, to: toLocation)
+			}
 			completion(nil)
 		} catch {
 			Roger.error(error)
-			completion(.cantCopy(reason: error.localizedDescription))
+			completion(Error.cantCopy(reason: error.localizedDescription))
 		}
 	}
 	
-	internal func uninstallWidget(_ widget: PKWidgetInfo, _ completion: (Error?) -> Void) {
+	internal func uninstallWidget(_ widget: PKWidgetInfo, _ completion: (PockError?) -> Void) {
 		do {
 			try manager.removeItem(at: URL(fileURLWithPath: widget.path.path))
 			completion(nil)
 		} catch {
 			Roger.error(error)
-			completion(.cantRemove(reason: error.localizedDescription))
+			completion(Error.cantRemove(reason: error.localizedDescription))
 		}
 	}
 	
-	internal func updateWidget(_ widget: PKWidgetInfo, progress: (Double) -> Void, completion: (Error?) -> Void) {
-		// TODO: Implement
+	internal func updateWidget(_ widget: PKWidgetInfo, version: Version, progress: @escaping (Double) -> Void, completion: @escaping (PockError?) -> Void) {
+		Downloader(
+			url: version.link,
+			progress: { [progress] calculatedProgress in
+				async { [calculatedProgress] in
+					progress(calculatedProgress)
+				}
+			},
+			completion: { locationURL, error in
+				async { [weak self, widget, completion, locationURL, error] in
+					if let error = error {
+						completion(error)
+						return
+					}
+					guard let url = locationURL else {
+						completion(Error.cantCopy(reason: "error.invalid-path".localized))
+						return
+					}
+					self?.extractAndInstall(widget, atLocation: url, completion)
+				}
+			}
+		)
+	}
+	
+	private func extractAndInstall(_ widget: PKWidgetInfo, atLocation location: URL, _ completion: (PockError?) -> Void) {
+		let zipFileLocation = location.deletingLastPathComponent().appendingPathComponent(widget.name).appendingPathExtension("zip")
+		defer {
+			try? manager.removeItem(at: zipFileLocation)
+		}
+		do {
+			try manager.moveItem(at: location, to: zipFileLocation)
+			try Zip.unzipFile(zipFileLocation, destination: kWidgetsTempPathURL, overwrite: true, password: nil)
+			try manager.removeItem(at: zipFileLocation)
+			let unzippedLocation = kWidgetsTempPathURL.appendingPathComponent(widget.name).appendingPathExtension("pock")
+			let newWidget = try PKWidgetInfo(path: unzippedLocation)
+			uninstallWidget(widget) { error in
+				if let error = error {
+					completion(error)
+				} else {
+					installWidget(newWidget, removeSource: true, completion)
+				}
+			}
+		} catch {
+			completion(Error.cantCopy(reason: error.localizedDescription))
+		}
 	}
 	
 }

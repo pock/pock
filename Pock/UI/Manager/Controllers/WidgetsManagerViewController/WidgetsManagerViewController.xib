@@ -170,7 +170,7 @@
                         </stackView>
                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="KtT-RA-Fjg">
                             <rect key="frame" x="14" y="17" width="404" height="26"/>
-                            <textFieldCell key="cell" selectable="YES" alignment="center" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." id="8Sz-CY-fZM">
+                            <textFieldCell key="cell" selectable="YES" alignment="left" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." id="8Sz-CY-fZM">
                                 <font key="font" textStyle="footnote" name=".SFNS-Regular"/>
                                 <color key="textColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
