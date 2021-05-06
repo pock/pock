@@ -56,7 +56,11 @@ You can always configure default settings from `System Preferences > Keyboard` t
 "preferences.cursor-options.show-tracking-area" = "Show tracking area";
 
 "preferences.updates.check-for-updates-once-a-day" = "Check for updates once a day";
-"preferences.updates.check-for-updates" = "Check for updates";
+
+"preferences.updates.already-on-latest-version.title" = "Installed version: %@";
+"preferences.updates.already-on-latest-version.message" = "Pock is already running on latest version.";
+"preferences.updates.new-version-available.title" = "A new version is available";
+"preferences.updates.new-version-available.message" = "Would you like to update Pock from version %@ to version %@?";
 
 // MARK: Layout Style
 "layout-style.show-control-strip" = "Show Control Strip";
@@ -128,9 +132,11 @@ You can always configure default settings from `System Preferences > Keyboard` t
 "general.action.removing" = "Removing…";
 "general.action.install" = "Install";
 "general.action.installing" = "Installing…";
-"general.action.later" = "Later";
+"general.action.later" = "Maybe later";
 "general.action.update" = "Update";
 "general.action.downloading" = "Downloading…";
+"general.action.check-for-updates" = "Check for updates";
+"general.action.checking" = "Checking…";
 "general.action.close" = "Close";
 "general.action.reload" = "Reload";
 "general.action.relaunch" = "Relaunch";

@@ -246,8 +246,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 	// MARK: Open website
 	@objc private func openWebsite() {
-		guard let url = URL(string: "base.website_url".localized) else { return }
-		NSWorkspace.shared.open(url)
+		AppController.shared.openWebsite()
 	}
 	
 	// MARK: Open preferences

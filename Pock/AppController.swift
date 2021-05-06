@@ -31,6 +31,9 @@ internal class AppController: NSResponder {
 
 	/// Double `ctrl` hotkey
 	private var doubleCtrlHotKey: HotKey?
+	
+	/// Once (upon) a day timer
+	private var onceADayTimer: Timer?
 
 	/// Private initialiser
 	private override init() {
@@ -41,6 +44,7 @@ internal class AppController: NSResponder {
 		TouchBarHelper.swizzleFunctions()
 		registerForInternalNotifications()
 		registerDoubleControlHotKey()
+		prepareOnceADayTimer()
 	}
 	
 	required init?(coder: NSCoder) {
@@ -63,6 +67,14 @@ internal class AppController: NSResponder {
 				completion()
 			}
 		}
+	}
+	
+	/// Open Website
+	internal func openWebsite(_ customURL: URL? = nil) {
+		guard let url = customURL ?? URL(string: "base.website_url".localized) else {
+			return
+		}
+		NSWorkspace.shared.open(url)
 	}
 	
 	/// Setup
@@ -134,6 +146,7 @@ internal class AppController: NSResponder {
 	/// Register for internal notifications
 	private func registerForInternalNotifications() {
 		NotificationCenter.default.addObserver(self, selector: #selector(reload), name: .shouldReloadPock, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(prepareOnceADayTimer), name: .shouldEnableAutomaticUpdates, object: nil)
 	}
 
 	/// Register double `ctrl` hotkey
@@ -241,6 +254,45 @@ extension AppController: NSTouchBarDelegate {
 	@objc private func didExitCustomization(_ sender: Any?) {
 		NSApp.touchBar = nil
 		pockTouchBarController.present()
+	}
+	
+}
+
+// MARK: Update once (upon) a day
+extension AppController {
+
+	private var onceADayTimeInterval: TimeInterval {
+		return 86400 // (24h | 1 day)
+	}
+	
+	private var onceADayDate: Date {
+		var components = Calendar.current.dateComponents([.day, .month, .year], from: Date())
+		components.hour = 11
+		components.minute = 20
+		return (Calendar.current.date(from: components) ?? Date()).addingTimeInterval(onceADayTimeInterval)
+	}
+	
+	@objc private func prepareOnceADayTimer() {
+		invalidateOnceADayTimer()
+		guard Preferences[.checkForUpdatesOnceADay] == true else {
+			Roger.debug("[ONCE_A_DAY_TIMER]: Don't need to prepare timer.")
+			return
+		}
+		let timer = Timer(fireAt: onceADayDate, interval: onceADayTimeInterval, target: self, selector: #selector(checkForUpdates), userInfo: nil, repeats: true)
+		RunLoop.current.add(timer, forMode: .common)
+		onceADayTimer = timer
+		Roger.debug("[ONCE_A_DAY_TIMER]: Created new timer! First fire date will be: { \(onceADayDate) }")
+	}
+	
+	@objc private func invalidateOnceADayTimer() {
+		onceADayTimer?.invalidate()
+		onceADayTimer = nil
+		Roger.debug("[ONCE_A_DAY_TIMER]: Invalidated timer.")
+	}
+	
+	@objc private func checkForUpdates(_ timer: Timer?) {
+		Roger.debug("[ONCE_A_DAY_TIMER]: Timer fired! Fetch latest versions…")
+		fetchLatestVersions {}
 	}
 	
 }

@@ -53,6 +53,15 @@ class PreferencesViewController: NSViewController {
 		NSApp.activate(ignoringOtherApps: true)
 	}
 	
+	override func viewDidAppear() {
+		super.viewDidAppear()
+		shouldAskToupdate { [weak self] newVersion in
+			if let self = self, let new = newVersion {
+				self.showUpdateAlert(for: new)
+			}
+		}
+	}
+	
 	override func viewWillDisappear() {
 		super.viewWillDisappear()
 		NSApp.deactivate()
@@ -97,7 +106,7 @@ class PreferencesViewController: NSViewController {
 		showTrackingAreaCheckbox.title = "preferences.cursor-options.show-tracking-area".localized
 		
 		checkForUpdatesOnceADayCheckbox.title = "preferences.updates.check-for-updates-once-a-day".localized
-		checkForUpdatesNowButton.title = "preferences.updates.check-for-updates".localized
+		checkForUpdatesNowButton.title = "general.action.check-for-updates".localized
 	}
 	
 	private func updateDefaultPresentationModePopUpButton() {
@@ -192,6 +201,79 @@ class PreferencesViewController: NSViewController {
 			async {
 				NotificationCenter.default.post(name: .shouldReloadPock, object: nil)
 			}
+		}
+		if button == checkForUpdatesOnceADayCheckbox {
+			async {
+				NotificationCenter.default.post(name: .shouldEnableAutomaticUpdates, object: nil)
+			}
+		}
+	}
+	
+	// MARK: Core-update stuff
+	
+	private func shouldAskToupdate(_ completion: @escaping (Version?) -> Void) {
+		AppController.shared.fetchLatestVersions { [completion] in
+			let currentVersion = Updater.fullAppVersion
+			if let core = Updater.cachedLatestReleases?.core, core.name > currentVersion {
+				completion(core)
+			} else {
+				completion(nil)
+			}
+		}
+	}
+	
+	@IBAction private func checkForUpdates(_ sender: NSButton) {
+		checkForUpdatesNowButton.isEnabled = false
+		checkForUpdatesNowButton.title = "general.action.checking".localized
+		shouldAskToupdate { [weak self] newVersion in
+			guard let self = self else {
+				return
+			}
+			self.checkForUpdatesNowButton.title = "general.action.check-for-updates".localized
+			self.checkForUpdatesNowButton.isEnabled = true
+			self.showUpdateAlert(for: newVersion)
+		}
+	}
+	
+	private func showUpdateAlert(for version: Version?) {
+		let currentVersion = Updater.fullAppVersion
+		if let newVersion = version {
+			self.showAlert(
+				title: "preferences.updates.new-version-available.title".localized,
+				message: "preferences.updates.new-version-available.message".localized(currentVersion, newVersion.name),
+				buttons: ["general.action.update".localized, "general.action.later".localized],
+				completion: { response in
+					switch response {
+					case .alertFirstButtonReturn:
+						async {
+							AppController.shared.openWebsite(newVersion.link)
+						}
+					default:
+						return
+					}
+				}
+			)
+		} else {
+			self.showAlert(
+				title: "preferences.updates.already-on-latest-version.title".localized(currentVersion),
+				message: "preferences.updates.already-on-latest-version.message".localized
+			)
+		}
+	}
+	
+	private func showAlert(title: String, message: String, buttons: [String] = [], completion: ((NSApplication.ModalResponse) -> Void)? = nil) {
+		async { [weak self] in
+			guard let window = self?.view.window else {
+				return
+			}
+			let alert = NSAlert()
+			alert.alertStyle = NSAlert.Style.informational
+			alert.messageText = title
+			alert.informativeText = message
+			for buttonTitle in buttons {
+				alert.addButton(withTitle: buttonTitle)
+			}
+			alert.beginSheetModal(for: window, completionHandler: completion)
 		}
 	}
 	
