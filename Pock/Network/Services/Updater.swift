@@ -29,7 +29,7 @@ internal enum UpdaterError: PockError {
 
 // MARK: Notification
 extension NSNotification.Name {
-	static var didFetchLatestReleases = NSNotification.Name("didFetchLatestReleases")
+	static var didFetchLatestVersions = NSNotification.Name("didFetchLatestVersions")
 }
 
 internal class Updater {
@@ -91,8 +91,8 @@ internal class Updater {
 			}
 			do {
 				Updater.cachedLatestReleases = try JSONDecoder().decode(LatestReleases.self, from: data)
-				NotificationCenter.default.post(name: .didFetchLatestReleases, object: nil)
 				completion(Updater.cachedLatestReleases, nil)
+				NotificationCenter.default.post(name: .didFetchLatestVersions, object: nil)
 			} catch {
 				Roger.error(error)
 				completion(nil, .parsingError)

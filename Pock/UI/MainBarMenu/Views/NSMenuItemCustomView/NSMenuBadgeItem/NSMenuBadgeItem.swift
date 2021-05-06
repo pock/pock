@@ -18,6 +18,14 @@ internal class NSMenuBadgeItemView: NSMenuItemCustomView {
 		super.draw(dirtyRect)
 		self.badge.layer?.cornerRadius = self.badge.frame.height / 2
 	}
+	
+	internal static func item(title: String, target: AnyObject?, selector: Selector?, keyEquivalent: String?, isAlternate: Bool = false, height: CGFloat = 23) -> NSMenuBadgeItem {
+		let item = NSMenuBadgeItem(title: title, action: selector, keyEquivalent: keyEquivalent ?? "")
+		item.target = target
+		item.isAlternate = isAlternate
+		item.view = NSMenuBadgeItemView(item: item, height: height)
+		return item
+	}
 
 	override func awakeFromNib() {
 		super.awakeFromNib()

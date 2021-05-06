@@ -67,8 +67,8 @@ internal class PockTouchBarController: PKTouchBarMouseController {
 		guard isVisible == false else {
 			return
 		}
-		loadInstalledWidgets { [weak self] in
-			self?.invalidateTouchBar()
+		for widget in WidgetsLoader.loadedWidgets {
+			widgets[NSTouchBarItem.Identifier(widget.bundleIdentifier)] = widget
 		}
 		let placement: Int64
 		let presentationMode: PresentationMode
@@ -95,16 +95,6 @@ internal class PockTouchBarController: PKTouchBarMouseController {
 		}
 		TouchBarHelper.setPresentationMode(to: Preferences[.userDefinedPresentationMode] as PresentationMode)
 		super.dismiss()
-	}
-
-	/// Load/unload installed widgets
-	private func loadInstalledWidgets(_ completion: @escaping () -> Void) {
-		WidgetsLoader().loadInstalledWidgets { [unowned self] widgets in
-			for widget in widgets {
-				self.widgets[NSTouchBarItem.Identifier(widget.bundleIdentifier)] = widget
-			}
-			completion()
-		}
 	}
 	
 	private func flushWidgetItems() {

@@ -41,7 +41,6 @@ internal class AppController: NSResponder {
 		TouchBarHelper.swizzleFunctions()
 		registerForInternalNotifications()
 		registerDoubleControlHotKey()
-		fetchLatestVersions {}
 	}
 	
 	required init?(coder: NSCoder) {
@@ -87,27 +86,20 @@ internal class AppController: NSResponder {
 			prepareTouchBar()
 		}
 		if shouldFetchLatestVersions {
-			fetchLatestVersions {
-				_reload()
+			reloadWidgets { [weak self] in
+				self?.fetchLatestVersions {
+					_reload()
+				}
 			}
 		} else {
 			_reload()
 		}
 	}
 	
-	/// Unload (all widgets)
-	@objc internal func unloadAllWidgets(_ completion: (() -> Void)? = nil) {
-		TouchBarHelper.markTouchBarAsDimmed(true)
-		async {
-			WidgetsLoader.unloadAllWidgets()
-			completion?()
-		}
-	}
-	
 	/// Reload (widgets)
-	@objc internal func reloadWidgets() {
-		unloadAllWidgets { [weak self] in
-			self?.prepareTouchBar()
+	@objc internal func reloadWidgets(_ completion: @escaping () -> Void) {
+		WidgetsLoader().loadInstalledWidgets { [completion] _ in
+			completion()
 		}
 	}
 	

@@ -84,12 +84,10 @@ class WidgetsManagerViewController: NSViewController {
 
 extension WidgetsManagerViewController {
 	
-	@objc private func unloadCurrentWidget() {
-		selectedWidget = nil
-	}
-	
 	@objc private func reload() {
-		tableView.reloadData()
+		async { [weak self] in
+			self?.tableView.reloadData()
+		}
 	}
 	
 	private func updatePreferredContentSize() {

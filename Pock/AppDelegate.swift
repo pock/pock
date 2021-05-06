@@ -17,6 +17,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	private let mainBarItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
 	private let mainBarMenu = NSMenu(title: "Pock")
 	
+	private var preferencesMenuItem: NSMenuBadgeItem!
+	private var manageWidgetsMenuItem: NSMenuBadgeItem!
+	
 	/// Current window controller
 	private var windowController: NSWindowController?
 
@@ -43,8 +46,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		/// Add main bar menu item
 		addMainBarItem()
 
-		/// Initialise AppController
-		AppController.shared.prepareTouchBar()
+		/// Register for notifications
+		NotificationCenter.default.addObserver(self, selector: #selector(updateMenuItemsAfterLatestVersionsFetch), name: .didFetchLatestVersions, object: nil)
+		
+		/// Load installed widgets and prepare touch bar
+		AppController.shared.reloadWidgets {
+			AppController.shared.fetchLatestVersions {}
+			AppController.shared.prepareTouchBar()
+		}
 
 		/// Deactivate Pock
 		NSApp.deactivate()
@@ -107,7 +116,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		let debugMenu = NSMenu(title: "PockDebug")
 		debugMenu.addItem(NSMenuHeader.new(title: "Widgets"))
 		debugMenu.addItem(withTitle: "Open widgets directory…", action: #selector(openWidgetsDirectory), keyEquivalent: "")
-		debugMenu.addItem(withTitle: "Unload All Widgets", action: #selector(unloadAllWidgets), keyEquivalent: "")
 		debugMenu.addItem(withTitle: "Reload Widgets", action: #selector(reloadWidgets), keyEquivalent: "")
 		debugMenu.addItem(NSMenuHeader.new(title: "General"))
 		debugMenu.addItem(withTitle: "Toggle Touch Bar visibility", action: #selector(toggleTouchBarVisibility), keyEquivalent: "")
@@ -133,21 +141,23 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		))
 		
 		// MARK: Preferences
-		mainBarMenu.addItem(NSMenuItemCustomView.new(
+		preferencesMenuItem = NSMenuBadgeItemView.item(
 			title: "menu.preferences".localized,
 			target: self,
 			selector: #selector(openPreferences),
 			keyEquivalent: ","
-		))
+		)
+		mainBarMenu.addItem(preferencesMenuItem)
 		
 		// MARK: Widgets
 		mainBarMenu.addItem(NSMenuHeader.new(title: "menu.widgets".localized))
-		mainBarMenu.addItem(NSMenuItemCustomView.new(
+		manageWidgetsMenuItem = NSMenuBadgeItemView.item(
 			title: "menu.widgets.manage-widgets".localized,
 			target: self,
 			selector: #selector(openWidgetsManager),
 			keyEquivalent: "m"
-		))
+		)
+		mainBarMenu.addItem(manageWidgetsMenuItem)
 		mainBarMenu.addItem(NSMenuItemCustomView.new(
 			title: "menu.widgets.install-widget".localized,
 			target: self,
@@ -195,6 +205,44 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		}
 	}
 	// swiftlint:enable function_body_length
+	
+	// MARK: Update menu items for new versions
+	@objc private func updateMenuItemsAfterLatestVersionsFetch() {
+		guard let latestVersions = Updater.cachedLatestReleases else {
+			return
+		}
+		var coreBadge: Int = 0
+		if latestVersions.core.name > Updater.fullAppVersion {
+			coreBadge = 1
+		}
+		var widgetsToUpdate: Int = 0
+		for widget in WidgetsLoader.installedWidgets {
+			if Updater.newVersion(for: widget).version != nil {
+				widgetsToUpdate += 1
+			}
+		}
+		async { [weak self, coreBadge, widgetsToUpdate] in
+			guard let self = self else {
+				return
+			}
+			self.preferencesMenuItem.setBadge(coreBadge > 0 ? "\(coreBadge)" : nil)
+			self.manageWidgetsMenuItem.setBadge(widgetsToUpdate > 0 ? "\(widgetsToUpdate)" : nil)
+			if coreBadge + widgetsToUpdate > 0 {
+				let base = self.mainBarItem.button
+				let badge = NSView(frame: .zero)
+				badge.wantsLayer = true
+				badge.layer?.backgroundColor = NSColor.systemRed.cgColor
+				badge.layer?.cornerRadius = 2
+				base?.addSubview(badge)
+				badge.height(4)
+				badge.width(4)
+				badge.rightToSuperview(offset: -3)
+				badge.bottomToSuperview(offset: -4)
+			} else {
+				self.mainBarItem.button?.subviews.forEach({ $0.removeFromSuperview() })
+			}
+		}
+	}
 
 	// MARK: Open website
 	@objc private func openWebsite() {
@@ -286,13 +334,9 @@ private extension AppDelegate {
 	@objc private func openWidgetsDirectory() {
 		NSWorkspace.shared.open(kWidgetsPathURL)
 	}
-	// MARK: Unload All Widgets
-	@objc private func unloadAllWidgets() {
-		AppController.shared.unloadAllWidgets()
-	}
 	// MARK: Reload Widgets
 	@objc private func reloadWidgets() {
-		AppController.shared.reloadWidgets()
+		AppController.shared.reloadWidgets {}
 	}
 	// MARK: Relaunch Pock
 	@objc private func relaunch() {

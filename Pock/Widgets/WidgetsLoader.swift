@@ -40,7 +40,7 @@ internal final class WidgetsLoader {
 	private let fileManager = FileManager.default
 
 	/// Data
-	private static var loadedWidgets: [PKWidgetInfo] {
+	public static var loadedWidgets: [PKWidgetInfo] {
 		return installedWidgets.filter({ $0.loaded == true })
 	}
 	
