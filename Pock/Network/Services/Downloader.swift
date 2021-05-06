@@ -96,3 +96,48 @@ internal class Downloader: NSObject, URLSessionTaskDelegate, URLSessionDownloadD
 	}
 	
 }
+
+// MARK: Default widgets downloader
+
+internal class DefaultWidgetsDownloader {
+	
+	#if DEBUG
+	private let defaultWidgetsURLString: String = "https://pock.dev/api/dev/defaults.php"
+	#else
+	private let defaultWidgetsURLString: String = "https://pock.dev/api/defaults.php"
+	#endif
+	
+	// MARK: Fetch default widgets list
+	
+	internal func fetchDefaultWidgets(_ completion: @escaping ([String: URL], DownloaderError?) -> Void) {
+		guard let url = URL(string: defaultWidgetsURLString + "?core=\(Updater.fullAppVersion)") else {
+			completion([:], .invalidFileURL)
+			return
+		}
+		let request = URLRequest(url: url, cachePolicy: .returnCacheDataElseLoad, timeoutInterval: 20)
+		let task = URLSession.shared.dataTask(with: request) { data, response, error in
+			if let error = error {
+				Roger.error(error)
+				completion([:], .responseError(reason: error.localizedDescription))
+				return
+			}
+			guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
+				completion([:], .responseError(reason: "Invalid response code"))
+				return
+			}
+			guard httpResponse.mimeType == "application/json", let data = data else {
+				completion([:], .responseError(reason: "Invalid response data"))
+				return
+			}
+			do {
+				let list = try JSONDecoder().decode([String: URL].self, from: data)
+				completion(list, nil)
+			} catch {
+				Roger.error(error)
+				completion([:], .responseError(reason: "Invalid response data"))
+			}
+		}
+		task.resume()
+	}
+	
+}

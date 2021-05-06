@@ -78,6 +78,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	// MARK: Advanced menu
 	private lazy var advancedMenuItem: NSMenuItem = {
 		let menu = NSMenu(title: "menu.advanced".localized)
+		menu.addItem(NSMenuHeader.new(title: "menu.widgets".localized))
+		menu.addItem(NSMenuItemCustomView.new(
+			title: "menu.advanced.re-install-default-widgets".localized,
+			target: self,
+			selector: #selector(selectAdvancedSectionItem(_:)),
+			keyEquivalent: "d"
+		))
+		menu.addItem(NSMenuHeader.new(title: "general.action.reload".localized))
 		menu.addItem(NSMenuItemCustomView.new(
 			title: "menu.advanced.reload_pock".localized,
 			target: self,
@@ -281,6 +289,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	// MARK: Select advanced section item
 	@objc private func selectAdvancedSectionItem(_ sender: NSMenuItem) {
 		switch sender.keyEquivalent {
+		case "d":
+			AppController.shared.reInstallDefaultWidgets()
 		case "r":
 			AppController.shared.reload(shouldFetchLatestVersions: true)
 		case "R":

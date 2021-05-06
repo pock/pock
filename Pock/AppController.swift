@@ -108,6 +108,21 @@ internal class AppController: NSResponder {
 		}
 	}
 	
+	/// Re-install defaults widgets
+	@objc internal func reInstallDefaultWidgets() {
+		WidgetsInstaller().installDefaultWidgets(
+		progress: { widgetName, progress, processed, total in
+			Roger.debug("[DEFAULT] [\(processed)/\(total)] \(widgetName) (\(progress * 100)%)")
+		},
+		completion: { finished, error in
+			Roger.error("[DEFAULT] \(error?.description ?? "Success!")")
+			if finished {
+				Roger.error("[DEFAULT] Re-install - Finished.")
+			}
+		})
+
+	}
+	
 	/// Reload (widgets)
 	@objc internal func reloadWidgets(_ completion: @escaping () -> Void) {
 		WidgetsLoader().loadInstalledWidgets { [completion] _ in

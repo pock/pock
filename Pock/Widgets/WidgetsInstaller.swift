@@ -50,6 +50,8 @@ internal final class WidgetsInstaller {
 	
 	// MARK: Methods
 	
+	// MARK: Install local widget
+	
 	internal func installWidget(_ widget: PKWidgetInfo, removeSource: Bool = false, _ completion: (PockError?) -> Void) {
 		do {
 			let fromLocation = URL(fileURLWithPath: widget.path.path)
@@ -66,6 +68,8 @@ internal final class WidgetsInstaller {
 		}
 	}
 	
+	// MARK: Uninstall local widget
+	
 	internal func uninstallWidget(_ widget: PKWidgetInfo, _ completion: (PockError?) -> Void) {
 		do {
 			try manager.removeItem(at: URL(fileURLWithPath: widget.path.path))
@@ -76,16 +80,27 @@ internal final class WidgetsInstaller {
 		}
 	}
 	
+	// MARK: Update local widget
+	
 	internal func updateWidget(_ widget: PKWidgetInfo, version: Version, progress: @escaping (Double) -> Void, completion: @escaping (PockError?) -> Void) {
-		Downloader(
-			url: version.link,
+		downloadWidget(
+			at: version.link,
+			name: widget.name,
 			progress: { [progress] calculatedProgress in
 				async { [calculatedProgress] in
 					progress(calculatedProgress)
 				}
 			},
+			completion: completion
+		)
+	}
+	
+	private func downloadWidget(at url: URL, name: String, progress: @escaping (Double) -> Void, completion: @escaping (PockError?) -> Void) {
+		Downloader(
+			url: url,
+			progress: progress,
 			completion: { locationURL, error in
-				async { [weak self, widget, completion, locationURL, error] in
+				async { [weak self, name, completion, locationURL, error] in
 					if let error = error {
 						completion(error)
 						return
@@ -94,14 +109,63 @@ internal final class WidgetsInstaller {
 						completion(Error.cantCopy(reason: "error.invalid-path".localized))
 						return
 					}
-					self?.extractAndInstall(widget, atLocation: url, completion)
+					self?.extractAndInstall(name, atLocation: url, completion)
 				}
 			}
 		)
 	}
 	
-	private func extractAndInstall(_ widget: PKWidgetInfo, atLocation location: URL, _ completion: (PockError?) -> Void) {
-		let zipFileLocation = location.deletingLastPathComponent().appendingPathComponent(widget.name).appendingPathExtension("zip")
+	// MARK: Download default widgets
+	
+	typealias DefaultWidgetsInstallProgress = (name: String, progress: Double, processed: Int, total: Int)
+	typealias DefaultWidgetsInstallCompletion = (finished: Bool, error: PockError?)
+	
+	internal func installDefaultWidgets(progress: @escaping (DefaultWidgetsInstallProgress) -> Void, completion: @escaping (DefaultWidgetsInstallCompletion) -> Void) {
+		DefaultWidgetsDownloader().fetchDefaultWidgets { list, error in
+			if let error = error {
+				completion((finished: true, error: error))
+				return
+			}
+			let semaphore = DispatchSemaphore(value: 0)
+			let total = list.count
+			var processed: Int = 1
+			for (bundleIdentifier, url) in list.sorted(by: { $0.value.lastPathComponent < $1.value.lastPathComponent }) {
+				guard let nameSubstring = bundleIdentifier.split(separator: ".").last else {
+					processed += 1
+					continue
+				}
+				let name = String(nameSubstring)
+				self.downloadWidget(
+					at: url,
+					name: name,
+					progress: { [progress] calculatedProgress in
+						async { [calculatedProgress] in
+							progress((
+								name: name,
+								progress: calculatedProgress,
+								processed: processed,
+								total: total
+							))
+						}
+					},
+					completion: { [completion] error in
+						defer {
+							dsleep(0.75)
+							semaphore.signal()
+						}
+						completion((finished: processed == total, error: error))
+						processed += 1
+					}
+				)
+				semaphore.wait()
+			}
+		}
+	}
+	
+	// MARK: Extract downloaded widget
+	
+	private func extractAndInstall(_ widgetName: String, atLocation location: URL, _ completion: (PockError?) -> Void) {
+		let zipFileLocation = location.deletingLastPathComponent().appendingPathComponent(widgetName).appendingPathExtension("zip")
 		defer {
 			try? manager.removeItem(at: zipFileLocation)
 		}
@@ -109,14 +173,20 @@ internal final class WidgetsInstaller {
 			try manager.moveItem(at: location, to: zipFileLocation)
 			try Zip.unzipFile(zipFileLocation, destination: kWidgetsTempPathURL, overwrite: true, password: nil)
 			try manager.removeItem(at: zipFileLocation)
-			let unzippedLocation = kWidgetsTempPathURL.appendingPathComponent(widget.name).appendingPathExtension("pock")
+			let unzippedLocation = kWidgetsTempPathURL.appendingPathComponent(widgetName).appendingPathExtension("pock")
 			let newWidget = try PKWidgetInfo(path: unzippedLocation)
-			uninstallWidget(widget) { error in
-				if let error = error {
-					completion(error)
-				} else {
-					installWidget(newWidget, removeSource: true, completion)
+			if let oldWidget = WidgetsLoader.installedWidgets.first(where: {
+				$0.bundleIdentifier.lowercased() == widgetName.lowercased() || $0.name.lowercased() == widgetName.lowercased()
+			}) {
+				uninstallWidget(oldWidget) { error in
+					if let error = error {
+						completion(error)
+					} else {
+						installWidget(newWidget, removeSource: true, completion)
+					}
 				}
+			} else {
+				installWidget(newWidget, removeSource: true, completion)
 			}
 		} catch {
 			completion(Error.cantCopy(reason: error.localizedDescription))
