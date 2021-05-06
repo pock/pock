@@ -8,7 +8,7 @@
 
 
 ## macOS Catalina (10.15)
-If you are on macOS Catalina (10.15), please click [here](https://pock.dev/docs/catalina.html) and read carefully the suggestions to have a flawless experience.
+If you are on macOS Catalina (10.15), please click [here](https://pock.dev/docs/catalina) and read carefully the suggestions to have a flawless experience.
 
 ## Why can't I open an issue/pull request?
 I’m currently migrating all default widgets to make **Pock** independent from them. 
