@@ -44,6 +44,10 @@ internal final class WidgetsInstaller {
 		case installed(widget: PKWidgetInfo)
 		case updated(widget: PKWidgetInfo)
 		case error(_ error: PockError)
+		
+		case installDefault
+		case installingDefault(_ progress: DefaultWidgetsInstallProgress)
+		case installedDefault(_ errors: String?)
 	}
 	
 	private lazy var manager: FileManager = FileManager.default
@@ -118,17 +122,18 @@ internal final class WidgetsInstaller {
 	// MARK: Download default widgets
 	
 	typealias DefaultWidgetsInstallProgress = (name: String, progress: Double, processed: Int, total: Int)
-	typealias DefaultWidgetsInstallCompletion = (finished: Bool, error: PockError?)
+	typealias DefaultWidgetsInstallCompletion = [String: PockError?]
 	
 	internal func installDefaultWidgets(progress: @escaping (DefaultWidgetsInstallProgress) -> Void, completion: @escaping (DefaultWidgetsInstallCompletion) -> Void) {
 		DefaultWidgetsDownloader().fetchDefaultWidgets { list, error in
 			if let error = error {
-				completion((finished: true, error: error))
+				completion(["all": error])
 				return
 			}
 			let semaphore = DispatchSemaphore(value: 0)
 			let total = list.count
 			var processed: Int = 1
+			var errors: [String: PockError?] = [:]
 			for (bundleIdentifier, url) in list.sorted(by: { $0.value.lastPathComponent < $1.value.lastPathComponent }) {
 				guard let nameSubstring = bundleIdentifier.split(separator: ".").last else {
 					processed += 1
@@ -138,8 +143,8 @@ internal final class WidgetsInstaller {
 				self.downloadWidget(
 					at: url,
 					name: name,
-					progress: { [progress] calculatedProgress in
-						async { [calculatedProgress] in
+					progress: { calculatedProgress in
+						async { [progress, name, total, processed, calculatedProgress] in
 							progress((
 								name: name,
 								progress: calculatedProgress,
@@ -148,12 +153,15 @@ internal final class WidgetsInstaller {
 							))
 						}
 					},
-					completion: { [completion] error in
+					completion: { [completion, name] error in
 						defer {
 							dsleep(0.75)
 							semaphore.signal()
 						}
-						completion((finished: processed == total, error: error))
+						errors[name] = error
+						if processed == total {
+							completion(errors)
+						}
 						processed += 1
 					}
 				)

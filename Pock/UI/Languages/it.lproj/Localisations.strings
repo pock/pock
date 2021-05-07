@@ -8,7 +8,6 @@
 
 // MARK: Base
 "base.website_url" = "https://pock.dev/it";
-"base.cancel" = "Annulla";
 
 // MARK: MainBarMenu
 // General

@@ -19,9 +19,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	
 	private var preferencesMenuItem: NSMenuBadgeItem!
 	private var manageWidgetsMenuItem: NSMenuBadgeItem!
-	
-	/// Current window controller
-	private var windowController: NSWindowController?
 
 	func applicationDidFinishLaunching(_ aNotification: Notification) {
 		/// Set Roger allowed log levels
@@ -259,19 +256,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	
 	// MARK: Open preferences
 	@objc private func openPreferences() {
-		openController(PreferencesViewController())
+		AppController.shared.openController(PreferencesViewController())
 	}
 	
 	// MARK: Open widgets manager
 	@objc private func openWidgetsManager() {
-		openController(WidgetsManagerViewController())
+		AppController.shared.openController(WidgetsManagerViewController())
 	}
 	
 	// MARK: Open widget install panel
 	@objc private func openWidgetInstallPanel() {
 		let controller = WidgetsManagerViewController()
-		openController(controller)
-		controller.presentWidgetInstallPanel()
+		AppController.shared.openController(controller)
+		controller.presentWidgetInstallPanel(withInitialState: .dragdrop)
 	}
 	
 	// MARK: Open customization menu
@@ -306,27 +303,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		}
 	}
 
-}
-
-extension AppDelegate: NSWindowDelegate {
-	
-	// MARK: Open controller
-	private func openController(_ controller: NSViewController) {
-		windowController?.close()
-		let window = NSWindow(contentViewController: controller)
-		window.delegate = self
-		window.miniwindowTitle = "widgets-manager.list.title".localized
-		window.titleVisibility = .hidden
-		window.isReleasedWhenClosed = true
-		window.styleMask.remove(.resizable)
-		windowController = NSWindowController(window: window)
-		windowController?.showWindow(self)
-	}
-	
-	func windowWillClose(_ notification: Notification) {
-		windowController = nil
-	}
-	
 }
 
 #if DEBUG

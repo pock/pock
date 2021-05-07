@@ -26,7 +26,7 @@ autoreleasepool {
 			CFRunLoopStop(CFRunLoopGetCurrent())
 		}
 		app.addObserver(listener, forKeyPath: "isTerminated", options: .new, context: nil)
-		app.terminate()
+		app.forceTerminate()
 		CFRunLoopRun()
 		app.removeObserver(listener, forKeyPath: "isTerminated", context: nil)
 		do {

@@ -8,7 +8,8 @@
 
 // MARK: Base
 "base.website_url" = "https://pock.dev";
-"base.cancel" = "Cancel";
+"base.widget" = "widget";
+"base.Widget" = "Widget";
 
 // MARK: MainBarMenu
 // General
@@ -86,6 +87,13 @@ You can always configure default settings from `System Preferences > Keyboard` t
 "widgets-manager.list.no-preferences" = "This widget has no preferences";
 
 // MARK: Widget Install/Update
+
+"widget.install.default.title" = "Install default widgets";
+"widget.install.default.body" = "Would you like to install default widgets?";
+
+"widget.installing.default.body" = "Processed: %d/%d";
+"widget.installed.default.success.body" = "Default widgets was installed successfully!\nClick on `Relaunch` to relaunch Pock and enjoy your shiny-new Touch Bar!";
+
 "widget.install.drag-here.title" = "Install new widget";
 "widget.install.drag-here.body" = "Drag&Drop widget file inside this dialog, or click the `Choose…` button to pick up the file.";
 "widget.install.drag-here.valid-formats" = "Accepted format: .pock";
@@ -128,6 +136,7 @@ You can always configure default settings from `System Preferences > Keyboard` t
 
 // MARK: Actions
 "general.action.cancel" = "Cancel";
+"general.action.start" = "Start";
 "general.action.choose" = "Choose…";
 "general.action.remove" = "Remove";
 "general.action.removing" = "Removing…";

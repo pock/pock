@@ -157,8 +157,9 @@ extension WidgetsManagerViewController {
 		widgetPreferencesStatusLabel.isHidden = false
 	}
 	
-	internal func presentWidgetInstallPanel() {
+	internal func presentWidgetInstallPanel(withInitialState state: WidgetsInstaller.State) {
 		let controller = WidgetsInstallViewController()
+		controller.state = state
 		presentAsSheet(controller)
 	}
 	
@@ -178,9 +179,7 @@ extension WidgetsManagerViewController {
 		default:
 			return
 		}
-		let controller = WidgetsInstallViewController()
-		controller.state = state
-		presentAsSheet(controller)
+		presentWidgetInstallPanel(withInitialState: state)
 	}
 	
 }

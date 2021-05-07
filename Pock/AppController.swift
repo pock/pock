@@ -34,6 +34,9 @@ internal class AppController: NSResponder {
 	
 	/// Once (upon) a day timer
 	private var onceADayTimer: Timer?
+	
+	/// Current window controller
+	private var windowController: NSWindowController?
 
 	/// Private initialiser
 	private override init() {
@@ -110,17 +113,9 @@ internal class AppController: NSResponder {
 	
 	/// Re-install defaults widgets
 	@objc internal func reInstallDefaultWidgets() {
-		WidgetsInstaller().installDefaultWidgets(
-		progress: { widgetName, progress, processed, total in
-			Roger.debug("[DEFAULT] [\(processed)/\(total)] \(widgetName) (\(progress * 100)%)")
-		},
-		completion: { finished, error in
-			Roger.error("[DEFAULT] \(error?.description ?? "Success!")")
-			if finished {
-				Roger.error("[DEFAULT] Re-install - Finished.")
-			}
-		})
-
+		let controller = WidgetsManagerViewController()
+		openController(controller)
+		controller.presentWidgetInstallPanel(withInitialState: .installDefault)
 	}
 	
 	/// Reload (widgets)
@@ -184,7 +179,7 @@ internal class AppController: NSResponder {
 		alert.informativeText = message ?? "alert.message.default".localized
 		alert.alertStyle = style
 		if actions.isEmpty {
-			let cancel = alert.addButton(withTitle: "base.cancel".localized)
+			let cancel = alert.addButton(withTitle: "general.action.cancel".localized)
 			cancel.keyEquivalent = MessageAction.Key.esc.rawValue
 		} else {
 			actions.forEach({
@@ -207,7 +202,26 @@ internal class AppController: NSResponder {
 			return
 		}
 	}
+	
+	// MARK: Open controller
+	internal func openController(_ controller: NSViewController) {
+		windowController?.close()
+		let window = NSWindow(contentViewController: controller)
+		window.delegate = self
+		window.miniwindowTitle = "widgets-manager.list.title".localized
+		window.titleVisibility = .hidden
+		window.isReleasedWhenClosed = true
+		window.styleMask.remove(.resizable)
+		windowController = NSWindowController(window: window)
+		windowController?.showWindow(self)
+	}
 
+}
+
+extension AppController: NSWindowDelegate {
+	func windowWillClose(_ notification: Notification) {
+		windowController = nil
+	}
 }
 
 // MARK: Customization menu

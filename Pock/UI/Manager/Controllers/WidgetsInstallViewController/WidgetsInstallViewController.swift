@@ -95,6 +95,41 @@ class WidgetsInstallViewController: NSViewController {
 			actionButton.isHighlighted = true
 		}
 		switch state {
+		case .installDefault:
+			// MARK: Install default widgets
+			titleLabel.stringValue = "widget.install.default.title".localized
+			bodyLabel.stringValue = "widget.install.default.body".localized
+			progressBar.isHidden = true
+			toggleChangelogVisibility(false)
+			cancelButton.title = "general.action.cancel".localized
+			actionButton.title = "general.action.start".localized
+			actionButton.isEnabled = true
+			
+		case .installingDefault(let progress):
+			// MARK: Installing default widgets
+			titleLabel.stringValue = "widget.installing.title".localized(progress.name)
+			bodyLabel.stringValue = "widget.installing.default.body".localized(progress.processed, progress.total)
+			toggleProgressBarStyle(isIndeterminated: false, progress: progress.progress)
+			toggleChangelogVisibility(false)
+			cancelButton.title = "general.action.cancel".localized
+			actionButton.title = "general.action.downloading".localized
+			actionButton.isEnabled = false
+			
+		case .installedDefault(let errors):
+			// MARK: Installed default widgets
+			if let errors = errors {
+				titleLabel.stringValue = "widget.error.title".localized
+				bodyLabel.stringValue = "widget.error.body".localized(errors)
+			} else {
+				titleLabel.stringValue = "widget.install.success.title".localized
+				bodyLabel.stringValue = "widget.installed.default.success.body".localized
+			}
+			actionButton.title = "general.action.relaunch".localized
+			progressBar.isHidden = true
+			toggleChangelogVisibility(false)
+			cancelButton.isHidden = true
+			actionButton.isEnabled = true
+		
 		case .dragdrop:
 			// MARK: Drag&Drop
 			titleLabel.stringValue = "widget.install.drag-here.title".localized
@@ -212,6 +247,10 @@ class WidgetsInstallViewController: NSViewController {
 		switch button {
 		case actionButton:
 			switch state {
+			case .installDefault:
+				// MARK: Install default widgets
+				installDefaultWidgets()
+			
 			case .dragdrop:
 				// MARK: Drag&Drop
 				chooseWidgetFile()
@@ -262,6 +301,10 @@ class WidgetsInstallViewController: NSViewController {
 				async { [weak self] in
 					self?.dismiss(nil)
 				}
+
+			case .installedDefault:
+				// MARK: Relaunch on default widgets installation
+				AppController.shared.relaunch()
 				
 			case .removed, .updated:
 				// MARK: Relaunch
@@ -291,6 +334,26 @@ class WidgetsInstallViewController: NSViewController {
 }
 
 extension WidgetsInstallViewController {
+	
+	// MARK: Install default widgets
+	private func installDefaultWidgets() {
+		WidgetsInstaller().installDefaultWidgets(
+		progress: { [weak self] (widgetName, _, processed, total) in
+			self?.state = .installingDefault((widgetName, Double(processed) / Double(total), processed, total))
+		},
+		completion: { [weak self] errors in
+			var errorStrings: String?
+			if errors.values.contains(where: { $0 != nil }) {
+				errorStrings = ""
+				for (key, value) in errors {
+					if let error = value {
+						errorStrings? += "\(key) \("base.widget".localized): \(error.description)\n"
+					}
+				}
+			}
+			self?.state = .installedDefault(errorStrings)
+		})
+	}
 	
 	// MARK: Choose / Drag&Drop
 	
