@@ -11,6 +11,10 @@
 "base.widget" = "widget";
 "base.Widget" = "Widget";
 
+// MARK: General
+"general.welcome-to-pock" = "Welcome to Pock";
+"general.pock-widgets-manager" = "Widgets manager for MacBook's Touch Bar";
+
 // MARK: MainBarMenu
 // General
 "menu.general" = "General";
@@ -86,6 +90,10 @@ You can always configure default settings from `System Preferences > Keyboard` t
 "widgets-manager.loading-preferences" = "Loading Preferences…";
 "widgets-manager.list.no-preferences" = "This widget has no preferences";
 
+// MARK: Empty Touch Bar
+"widgets.defaults.tap-to-install" = "Tap to install default widgets…";
+"widgets.empty.add-widgets-to-pock" = "Tap to add widgets to Pock…";
+
 // MARK: Widget Install/Update
 
 "widget.install.default.title" = "Install default widgets";
@@ -150,6 +158,7 @@ You can always configure default settings from `System Preferences > Keyboard` t
 "general.action.close" = "Close";
 "general.action.reload" = "Reload";
 "general.action.relaunch" = "Relaunch";
+"general.action.customize" = "Customize";
 
 // MARK: Errors
 "error.unknown" = "Unknown error occured.";

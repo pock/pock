@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="18121" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaDFRPlugin" version="18009"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18121"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="System colors introduced in macOS 10.14" minToolsVersion="10.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <capability name="the Touch Bar" minToolsVersion="8.1" minSystemVersion="10.12.2" requiredIntegratedClassName="NSTouchBar"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="EmptyTouchBarController" customModule="Pock" customModuleProvider="target">
+            <connections>
+                <outlet property="actionButton" destination="1c9-BA-OcC" id="IdD-zh-vaM"/>
+                <outlet property="actionIconView" destination="jso-1p-Qbc" id="UZs-vd-hJz"/>
+                <outlet property="informativeLabel" destination="lMa-Mc-M4D" id="qex-xJ-1F5"/>
+                <outlet property="subtitleLabel" destination="zTN-an-Jir" id="2dM-WS-n0C"/>
+                <outlet property="titleLabel" destination="KrU-Q5-oal" id="9le-Md-JC4"/>
+                <outlet property="touchBar" destination="KFr-Hr-sqc" id="Sjj-a7-cSv"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <touchBar id="KFr-Hr-sqc">
+            <touchBarItems>
+                <touchBarItem id="WSZ-Mx-dy3">
+                    <viewController key="viewController" id="Om9-vZ-i0D">
+                        <view key="view" horizontalCompressionResistancePriority="752" translatesAutoresizingMaskIntoConstraints="NO" id="ssI-rv-Sze">
+                            <rect key="frame" x="0.0" y="0.0" width="60" height="30"/>
+                            <subviews>
+                                <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qps-ne-rXs">
+                                    <rect key="frame" x="2" y="-2" width="115" height="30"/>
+                                    <subviews>
+                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VhR-Kd-95Y">
+                                            <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="30" id="4no-hS-CAi"/>
+                                                <constraint firstAttribute="width" constant="30" id="JIk-2F-DHr"/>
+                                            </constraints>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="widget-icon" id="ogb-dy-ccl"/>
+                                        </imageView>
+                                        <stackView distribution="fillEqually" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uh3-kp-E3B">
+                                            <rect key="frame" x="38" y="2" width="77" height="26"/>
+                                            <subviews>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KrU-Q5-oal">
+                                                    <rect key="frame" x="-2" y="13" width="81" height="13"/>
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="Default widgets" id="WcJ-4b-k88">
+                                                        <font key="font" metaFont="system" size="10"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ttV-7k-gvs">
+                                                    <rect key="frame" x="0.0" y="0.0" width="24" height="13"/>
+                                                    <subviews>
+                                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zTN-an-Jir">
+                                                            <rect key="frame" x="-2" y="0.0" width="28" height="13"/>
+                                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Pock" id="f3q-6M-NL6">
+                                                                <font key="font" metaFont="system" size="10"/>
+                                                                <color key="textColor" white="0.54512737789999999" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                            </textFieldCell>
+                                                        </textField>
+                                                    </subviews>
+                                                    <visibilityPriorities>
+                                                        <integer value="1000"/>
+                                                    </visibilityPriorities>
+                                                    <customSpacing>
+                                                        <real value="3.4028234663852886e+38"/>
+                                                    </customSpacing>
+                                                </stackView>
+                                            </subviews>
+                                            <visibilityPriorities>
+                                                <integer value="1000"/>
+                                                <integer value="1000"/>
+                                            </visibilityPriorities>
+                                            <customSpacing>
+                                                <real value="3.4028234663852886e+38"/>
+                                                <real value="3.4028234663852886e+38"/>
+                                            </customSpacing>
+                                        </stackView>
+                                    </subviews>
+                                    <visibilityPriorities>
+                                        <integer value="1000"/>
+                                        <integer value="1000"/>
+                                    </visibilityPriorities>
+                                    <customSpacing>
+                                        <real value="3.4028234663852886e+38"/>
+                                        <real value="3.4028234663852886e+38"/>
+                                    </customSpacing>
+                                </stackView>
+                            </subviews>
+                        </view>
+                    </viewController>
+                    <size key="designTimeSize" width="60" height="30"/>
+                </touchBarItem>
+                <touchBarSpacerItem identifier="NSTouchBarItemIdentifierFlexibleSpace" id="lMR-r6-ngG"/>
+                <touchBarItem id="mBy-CW-w3V">
+                    <viewController key="viewController" id="SNL-kh-ktS">
+                        <textField key="view" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lMa-Mc-M4D">
+                            <rect key="frame" x="0.0" y="0.0" width="216" height="18"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="Tap to Install default widgets…" id="oVM-e2-k4q">
+                                <font key="font" usesAppearanceFont="YES"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                    </viewController>
+                </touchBarItem>
+                <touchBarItem id="lLr-FR-SLE">
+                    <viewController key="viewController" id="K9g-bR-tm1">
+                        <imageView key="view" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jso-1p-Qbc">
+                            <rect key="frame" x="0.0" y="0.0" width="10" height="14"/>
+                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="ZZB-xP-gHw">
+                                <imageReference key="image" image="chevron.right" catalog="system" symbolScale="medium"/>
+                            </imageCell>
+                        </imageView>
+                    </viewController>
+                </touchBarItem>
+                <touchBarSpacerItem identifier="NSTouchBarItemIdentifierFixedSpaceSmall" id="16x-je-via"/>
+                <touchBarItem id="tZo-7j-B8i">
+                    <viewController key="viewController" id="QSi-PE-0jq">
+                        <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1c9-BA-OcC">
+                            <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
+                            <buttonCell key="cell" type="push" title="Install" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="QNp-yy-hwn">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" usesAppearanceFont="YES"/>
+                            </buttonCell>
+                            <color key="bezelColor" name="controlAccentColor" catalog="System" colorSpace="catalog"/>
+                            <connections>
+                                <action selector="actionButtonPressed:" target="-2" id="fCy-lY-wrp"/>
+                            </connections>
+                        </button>
+                    </viewController>
+                </touchBarItem>
+            </touchBarItems>
+            <connections>
+                <outlet property="delegate" destination="-2" id="pwx-qZ-0vz"/>
+            </connections>
+            <point key="canvasLocation" x="-11.5" y="39"/>
+        </touchBar>
+    </objects>
+    <resources>
+        <image name="chevron.right" catalog="system" width="10" height="14"/>
+        <image name="widget-icon" width="50" height="50"/>
+    </resources>
+</document>

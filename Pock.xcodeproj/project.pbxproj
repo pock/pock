@@ -23,6 +23,9 @@
 		34291B8126431AB600768B08 /* LatestReleases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34291B8026431AB600768B08 /* LatestReleases.swift */; };
 		34291B8326433F6200768B08 /* Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34291B8226433F6100768B08 /* Downloader.swift */; };
 		34291B852643562900768B08 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34291B842643562800768B08 /* Errors.swift */; };
+		34291B9026455D0D00768B08 /* EmptyTouchBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34291B8E26455D0D00768B08 /* EmptyTouchBarController.swift */; };
+		34291B9126455D0E00768B08 /* EmptyTouchBarController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34291B8F26455D0D00768B08 /* EmptyTouchBarController.xib */; };
+		34291B962645674D00768B08 /* NSView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34291B952645674D00768B08 /* NSView+Extensions.swift */; };
 		344C9A18260672F4009AA07C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344C9A17260672F4009AA07C /* main.swift */; };
 		344C9A1E260674E5009AA07C /* Relaunch in Resources */ = {isa = PBXBuildFile; fileRef = 344C9A15260672F4009AA07C /* Relaunch */; };
 		34564DBC25F81E520093E5E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34564DBB25F81E520093E5E0 /* AppDelegate.swift */; };
@@ -93,6 +96,9 @@
 		34291B8026431AB600768B08 /* LatestReleases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestReleases.swift; sourceTree = "<group>"; };
 		34291B8226433F6100768B08 /* Downloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Downloader.swift; sourceTree = "<group>"; };
 		34291B842643562800768B08 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		34291B8E26455D0D00768B08 /* EmptyTouchBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTouchBarController.swift; sourceTree = "<group>"; };
+		34291B8F26455D0D00768B08 /* EmptyTouchBarController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyTouchBarController.xib; sourceTree = "<group>"; };
+		34291B952645674D00768B08 /* NSView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSView+Extensions.swift"; sourceTree = "<group>"; };
 		344C9A15260672F4009AA07C /* Relaunch */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Relaunch; sourceTree = BUILT_PRODUCTS_DIR; };
 		344C9A17260672F4009AA07C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		34564DB825F81E520093E5E0 /* Pock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pock.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -266,6 +272,15 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		34291B9226455D1900768B08 /* EmptyTouchBarController */ = {
+			isa = PBXGroup;
+			children = (
+				34291B8E26455D0D00768B08 /* EmptyTouchBarController.swift */,
+				34291B8F26455D0D00768B08 /* EmptyTouchBarController.xib */,
+			);
+			path = EmptyTouchBarController;
+			sourceTree = "<group>";
+		};
 		344C9A16260672F4009AA07C /* Relaunch */ = {
 			isa = PBXGroup;
 			children = (
@@ -341,6 +356,7 @@
 				34564DF725F83E490093E5E0 /* DispatchQueue-Extensions.swift */,
 				34564E0525F984850093E5E0 /* FileManager+Extensions.swift */,
 				34291B6E263F4A7500768B08 /* Collections+Extensions.swift */,
+				34291B952645674D00768B08 /* NSView+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -387,6 +403,7 @@
 			isa = PBXGroup;
 			children = (
 				34564DED25F837CB0093E5E0 /* PockTouchBarController */,
+				34291B9226455D1900768B08 /* EmptyTouchBarController */,
 			);
 			path = TouchBar;
 			sourceTree = "<group>";
@@ -577,6 +594,7 @@
 				34291B75264143E400768B08 /* WidgetsInstallViewController.xib in Resources */,
 				34564DD625F826340093E5E0 /* NSMenuBadgeItemView.xib in Resources */,
 				34564DE125F832070093E5E0 /* MainMenu.xib in Resources */,
+				34291B9126455D0E00768B08 /* EmptyTouchBarController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -666,6 +684,7 @@
 				34291B54263C778E00768B08 /* PKWidgetInfo.swift in Sources */,
 				34291B7826419B5A00768B08 /* DestinationView.swift in Sources */,
 				34564DCC25F8254B0093E5E0 /* String+Extensions.swift in Sources */,
+				34291B9026455D0D00768B08 /* EmptyTouchBarController.swift in Sources */,
 				34564DF825F83E490093E5E0 /* DispatchQueue-Extensions.swift in Sources */,
 				34291B64263EDAD500768B08 /* Preferences.swift in Sources */,
 				34291B852643562900768B08 /* Errors.swift in Sources */,
@@ -683,6 +702,7 @@
 				34564DE925F837960093E5E0 /* PockTouchBarController.swift in Sources */,
 				34564E0825F98FD50093E5E0 /* PKWidgetTouchBarItem.swift in Sources */,
 				34564DE725F836530093E5E0 /* AppController.swift in Sources */,
+				34291B962645674D00768B08 /* NSView+Extensions.swift in Sources */,
 				34291B6F263F4A7600768B08 /* Collections+Extensions.swift in Sources */,
 				34564E0025F850170093E5E0 /* HotKey.swift in Sources */,
 				34291B68263EDF9800768B08 /* PreferencesViewController.swift in Sources */,

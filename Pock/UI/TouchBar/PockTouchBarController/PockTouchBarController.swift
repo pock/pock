@@ -25,6 +25,11 @@ internal class PockTouchBarController: PKTouchBarMouseController {
 	private(set) var widgets: [NSTouchBarItem.Identifier: PKWidgetInfo] = [:]
 	private(set) var cachedItems: [NSTouchBarItem.Identifier: PKWidgetTouchBarItem] = [:]
 	
+	private var currentItems: [NSTouchBarItem.Identifier] {
+		return touchBar?.itemIdentifiers ?? []
+	}
+	private var emptyTouchBarController: EmptyTouchBarController?
+	
 	internal var allowedCustomizationIdentifiers: [NSTouchBarItem.Identifier] {
 		return Array(widgets.keys) + [.flexibleSpace]
 	}
@@ -60,6 +65,7 @@ internal class PockTouchBarController: PKTouchBarMouseController {
 	deinit {
 		Roger.info("Deinit")
 		flushWidgetItems()
+		emptyTouchBarController = nil
 		touchBar = nil
 	}
 
@@ -87,9 +93,16 @@ internal class PockTouchBarController: PKTouchBarMouseController {
 			NSTouchBar.presentSystemModalFunctionBar(touchBar, placement: placement, systemTrayItemIdentifier: nil)
 		}
 		TouchBarHelper.setPresentationMode(to: presentationMode)
+		checkForBlankTouchBar()
+	}
+	
+	override func minimize() {
+		emptyTouchBarController?.dismiss()
+		super.minimize()
 	}
 	
 	override func dismiss() {
+		emptyTouchBarController?.dismiss()
 		guard isVisible else {
 			return
 		}
@@ -128,6 +141,27 @@ internal class PockTouchBarController: PKTouchBarMouseController {
 		let item = PKWidgetTouchBarItem(widget: widget)
 		cachedItems[identifier] = item
 		return item
+	}
+	
+	// MARK: Blank Touch Bar
+	private func checkForBlankTouchBar() {
+		emptyTouchBarController?.dismiss()
+		emptyTouchBarController = nil
+		guard Preferences[.allowBlankTouchBar] == false else {
+			return
+		}
+		async(after: 0.225) { [weak self] in
+			guard let self = self else {
+				return
+			}
+			if self.widgets.isEmpty {
+				self.emptyTouchBarController = AppController.shared.showEmptyTouchBarController(with: .installDefault)
+			} else {
+				if self.currentItems.isEmpty {
+					self.emptyTouchBarController = AppController.shared.showEmptyTouchBarController(with: .empty)
+				}
+			}
+		}
 	}
 	
 	// MARK: Mouse delegates

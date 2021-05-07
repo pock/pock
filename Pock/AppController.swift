@@ -155,6 +155,14 @@ internal class AppController: NSResponder {
 		}
 	}
 	
+	/// Blank Touch Bar
+	internal func showEmptyTouchBarController(with state: EmptyTouchBarController.State) -> EmptyTouchBarController {
+		let controller: EmptyTouchBarController = EmptyTouchBarController.load()
+		controller.state = state
+		controller.pushOnMainNavigationController()
+		return controller
+	}
+	
 	/// Register for internal notifications
 	private func registerForInternalNotifications() {
 		NotificationCenter.default.addObserver(self, selector: #selector(reload), name: .shouldReloadPock, object: nil)
