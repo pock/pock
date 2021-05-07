@@ -40,10 +40,20 @@ internal class PKWidgetTouchBarItem: NSCustomTouchBarItem {
 	}
 	
 	private var defaultSnapshotView: NSView {
-		let view = NSImageView(image: NSImage(named: .widgetIcon)!)
-		view.size(CGSize(width: 50, height: 30))
-		view.imageScaling = .scaleProportionallyDown
-		return view
+		let label = NSTextField(string: widget?.customizationLabel ?? "general.unknown".localized)
+		label.font = NSFont.systemFont(ofSize: 9, weight: .semibold)
+		label.textColor = .white
+		label.sizeToFit()
+		label.width(label.bounds.width)
+		let image = NSImageView(image: NSImage(named: .widgetIcon)!)
+		image.imageScaling = .scaleProportionallyDown
+		let stackView = NSStackView(views: [image, label])
+		stackView.orientation = .horizontal
+		stackView.alignment = .centerY
+		stackView.distribution = .fill
+		stackView.spacing = 0
+		stackView.height(30)
+		return stackView
 	}
 	
 	private var snapshotView: NSView {
