@@ -40,7 +40,10 @@ internal class PKWidgetTouchBarItem: NSCustomTouchBarItem {
 	}
 	
 	private var defaultSnapshotView: NSView {
-		return NSImageView(image: NSImage(named: .pockInnerIcon)!) // TODO: Change with default widget icon
+		let view = NSImageView(image: NSImage(named: .widgetIcon)!)
+		view.size(CGSize(width: 50, height: 30))
+		view.imageScaling = .scaleProportionallyDown
+		return view
 	}
 	
 	private var snapshotView: NSView {

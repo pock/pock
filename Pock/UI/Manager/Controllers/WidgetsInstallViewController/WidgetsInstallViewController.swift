@@ -7,10 +7,10 @@
 
 import Cocoa
 
+// swiftlint:disable type_body_length
 class WidgetsInstallViewController: NSViewController {
 
     // MARK: UI Elements
-	
 	@IBOutlet private weak var iconView: NSImageView!
 	@IBOutlet private weak var titleLabel: NSTextField!
 	@IBOutlet private weak var bodyLabel: NSTextField!
@@ -24,7 +24,6 @@ class WidgetsInstallViewController: NSViewController {
 	@IBOutlet private weak var actionButton: NSButton!
 	
 	// MARK: State
-	
 	internal var state: WidgetsInstaller.State = .dragdrop {
 		didSet {
 			if isViewLoaded {
@@ -34,7 +33,6 @@ class WidgetsInstallViewController: NSViewController {
 	}
 	
 	// MARK: Overrides
-	
 	override func viewDidLoad() {
 		super.viewDidDisappear()
 		configureUIElements()
@@ -56,7 +54,6 @@ class WidgetsInstallViewController: NSViewController {
 	}
 	
 	// MARK: Methods
-	
 	private func configureUIElements() {
 		view.window?.styleMask.remove(.resizable)
 		progressBar.minValue = 0
@@ -240,9 +237,7 @@ class WidgetsInstallViewController: NSViewController {
 	}
 	
 	// MARK: Did select action
-	
 	@IBAction private func didSelectButton(_ button: NSButton) {
-		
 		// MARK: Actions
 		switch button {
 		case actionButton:
@@ -265,7 +260,6 @@ class WidgetsInstallViewController: NSViewController {
 						self?.state = .removed(widget: widget)
 					}
 				}
-				
 			case let .install(widget):
 				// MARK: Install
 				state = .installing(widget: widget)
@@ -276,7 +270,6 @@ class WidgetsInstallViewController: NSViewController {
 						self?.state = .installed(widget: widget)
 					}
 				}
-				
 			case let .update(widget, version):
 				// MARK: Update
 				state = .downloading(widget: widget, progress: 0)
@@ -294,14 +287,12 @@ class WidgetsInstallViewController: NSViewController {
 						}
 					}
 				)
-				
 			case .installed:
 				// MARK: Reload
 				AppController.shared.reload(shouldFetchLatestVersions: true)
 				async { [weak self] in
 					self?.dismiss(nil)
 				}
-
 			case .installedDefault:
 				// MARK: Relaunch on default widgets installation
 				AppController.shared.relaunch()
@@ -312,26 +303,22 @@ class WidgetsInstallViewController: NSViewController {
 				async {
 					AppController.shared.relaunch()
 				}
-				
 			case .error:
 				// MARK: Error
 				dismiss(nil)
-				
 			default:
 				return
 			}
-			
 		case cancelButton:
 			dismiss(nil)
-			
 		default:
 			return
 		}
 	}
 	// swiftlint:enable function_body_length
 	// swiftlint:enable cyclomatic_complexity
-	
 }
+// swiftlint:enable type_body_length
 
 extension WidgetsInstallViewController {
 	
@@ -356,7 +343,6 @@ extension WidgetsInstallViewController {
 	}
 	
 	// MARK: Choose / Drag&Drop
-	
 	private func setupDraggingHandler() {
 		guard let view = self.view as? DestinationView else {
 			return
@@ -408,5 +394,4 @@ extension WidgetsInstallViewController {
 			}
 		})
 	}
-	
 }

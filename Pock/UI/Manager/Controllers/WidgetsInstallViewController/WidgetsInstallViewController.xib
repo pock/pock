@@ -32,7 +32,7 @@
                         <constraint firstAttribute="width" constant="50" id="3i7-iI-bYM"/>
                         <constraint firstAttribute="height" constant="50" id="Zg4-Vn-sQX"/>
                     </constraints>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="pock-app-icon" id="r6l-qp-gIW"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="widget-icon" id="r6l-qp-gIW"/>
                 </imageView>
                 <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="18" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xwl-VR-xfg">
                     <rect key="frame" x="90" y="14" width="420" height="268"/>
@@ -211,6 +211,6 @@ Gw
         </customView>
     </objects>
     <resources>
-        <image name="pock-app-icon" width="50" height="50"/>
+        <image name="widget-icon" width="50" height="50"/>
     </resources>
 </document>

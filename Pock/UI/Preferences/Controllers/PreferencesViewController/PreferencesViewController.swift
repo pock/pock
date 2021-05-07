@@ -46,6 +46,9 @@ class PreferencesViewController: NSViewController {
 		super.viewDidLoad()
 		configureUIElements()
 		localizeUIElements()
+		if AppController.shared.isVisible == false {
+			AppController.shared.reload(shouldFetchLatestVersions: false)
+		}
 	}
 	
 	override func viewWillAppear() {

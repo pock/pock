@@ -58,13 +58,15 @@ internal class AppController: NSResponder {
 	private(set) var navigationController: PKTouchBarNavigationController!
 	private(set) var pockTouchBarController: PockTouchBarController!
 
+	internal var isVisible: Bool {
+		return pockTouchBarController != nil && pockTouchBarController.isVisible
+	}
+	
 	/// Fetch latest versions
 	internal func fetchLatestVersions(_ completion: @escaping () -> Void) {
-		Updater().fetchLatestVersions(ignoreCache: true) { latestReleases, error in
+		Updater().fetchLatestVersions(ignoreCache: true) { _, error in
 			if let error = error {
 				Roger.error(error)
-			} else if let latestReleases = latestReleases {
-				Roger.debug(latestReleases)
 			}
 			async { [completion] in
 				completion()
@@ -245,10 +247,13 @@ extension AppController: NSTouchBarDelegate {
 	}
 	
 	override func makeTouchBar() -> NSTouchBar? {
+		guard let controller = pockTouchBarController else {
+			return nil
+		}
 		let touchBar = NSTouchBar()
 		touchBar.delegate = self
 		touchBar.customizationIdentifier = .pockTouchBarController
-		touchBar.customizationAllowedItemIdentifiers = pockTouchBarController.allowedCustomizationIdentifiers
+		touchBar.customizationAllowedItemIdentifiers = controller.allowedCustomizationIdentifiers
 		return touchBar
 	}
 	

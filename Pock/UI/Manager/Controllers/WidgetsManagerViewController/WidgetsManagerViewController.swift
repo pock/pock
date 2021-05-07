@@ -25,11 +25,14 @@ class WidgetsManagerViewController: NSViewController {
 	@IBOutlet private weak var widgetNameLabel: NSTextField!
 	@IBOutlet private weak var widgetAuthorLabel: NSTextField!
 	@IBOutlet private weak var widgetVersionLabel: NSTextField!
+	@IBOutlet private weak var widgetInstallButton: NSButton!
 	@IBOutlet private weak var widgetUpdateButton: NSButton!
 	@IBOutlet private weak var widgetUninstallButton: NSButton!
 	@IBOutlet private weak var widgetUpdateStatusLabel: NSTextField!
 	@IBOutlet private weak var widgetPreferencesContainer: NSView!
 	@IBOutlet private weak var widgetPreferencesStatusLabel: NSTextField!
+	
+	@IBOutlet private weak var checkForWidgetsUpdateButton: NSButton!
 	
 	// MARK: Data
 	
@@ -58,7 +61,11 @@ class WidgetsManagerViewController: NSViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		self.tableView.register(NSNib(nibNamed: "PKWidgetCellView", bundle: .main), forIdentifier: CellIdentifiers.widgetCell)
+		self.configureUIElements()
 		self.selectedWidget = widgets.first
+		if AppController.shared.isVisible == false {
+			AppController.shared.reload(shouldFetchLatestVersions: false)
+		}
 		NotificationCenter.default.addObserver(self, selector: #selector(reload), name: .didLoadWidgets, object: nil)
 	}
 	
@@ -70,6 +77,17 @@ class WidgetsManagerViewController: NSViewController {
 	override func viewWillDisappear() {
 		super.viewWillDisappear()
 		NSApp.deactivate()
+	}
+	
+	private func configureUIElements() {
+		/// Check for updates button
+		checkForWidgetsUpdateButton.wantsLayer = true
+		checkForWidgetsUpdateButton.layer?.backgroundColor = NSColor.quaternaryLabelColor.cgColor
+		checkForWidgetsUpdateButton.title = "general.action.check-for-updates".localized
+		/// Install widget button
+		widgetInstallButton.wantsLayer = true
+		widgetInstallButton.layer?.backgroundColor = NSColor.secondarySelectedControlColor.cgColor
+		widgetInstallButton.title = "menu.widgets.install-widget".localized
 	}
 	
 	deinit {
@@ -169,6 +187,8 @@ extension WidgetsManagerViewController {
 		}
 		let state: WidgetsInstaller.State
 		switch button {
+		case widgetInstallButton:
+			state = .dragdrop
 		case widgetUpdateButton:
 			guard let newVersion = selectedWidgetNewVersion?.version else {
 				return
@@ -180,6 +200,17 @@ extension WidgetsManagerViewController {
 			return
 		}
 		presentWidgetInstallPanel(withInitialState: state)
+	}
+	
+	@IBAction private func checkForWidgetsUpdates(_ sender: Any?) {
+		checkForWidgetsUpdateButton.isEnabled = false
+		checkForWidgetsUpdateButton.title = "general.action.checking".localized
+		AppController.shared.fetchLatestVersions { [weak self] in
+			dsleep(1)
+			self?.checkForWidgetsUpdateButton.isEnabled = true
+			self?.checkForWidgetsUpdateButton.title = "general.action.check-for-updates".localized
+			self?.reload()
+		}
 	}
 	
 }

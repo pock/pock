@@ -9,7 +9,8 @@ import Foundation
 import AppKit
 
 extension NSImage.Name {
-	static var pockInnerIcon: String = "pock-inner-icon"
+	static var pockInnerIcon = NSImage.Name("pock-inner-icon")
+	static var widgetIcon = NSImage.Name("widget-icon")
 }
 
 extension NSImage {

@@ -95,7 +95,7 @@ You can always configure default settings from `System Preferences > Keyboard` t
 "widget.installed.default.success.body" = "Default widgets was installed successfully!\nClick on `Relaunch` to relaunch Pock and enjoy your shiny-new Touch Bar!";
 
 "widget.install.drag-here.title" = "Install new widget";
-"widget.install.drag-here.body" = "Drag&Drop widget file inside this dialog, or click the `Choose…` button to pick up the file.";
+"widget.install.drag-here.body" = "Drag & Drop widget file inside this dialog, or click the `Choose…` button to pick up the file.";
 "widget.install.drag-here.valid-formats" = "Accepted format: .pock";
 
 "widget.remove.title" = "Remove %@ widget";
