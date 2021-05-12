@@ -31,9 +31,9 @@ autoreleasepool {
 		app.removeObserver(listener, forKeyPath: "isTerminated", context: nil)
 		do {
 			try NSWorkspace.shared.launchApplication(at: url, options: .default, configuration: [:])
-			NSLog("[Pock]: Pock relaunched successfully!")
+			NSLog("[Pock][Relaunch]: Pock relaunched successfully!")
 		} catch {
-			NSLog("[Pock]: Can't relaunch Pock right now. Reason: \(error.localizedDescription)")
+			NSLog("[Pock][Relaunch]: Can't relaunch Pock right now. Reason: \(error.localizedDescription)")
 		}
 	}
 }

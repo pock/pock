@@ -44,8 +44,11 @@ internal struct Preferences {
 	}
 	static subscript<T>(_ key: Keys) -> T {
 		get {
+			// swiftlint:disable force_cast
+			if key == .launchAtLogin {
+				return LoginServiceKit().existsLoginItem(for: .main) as! T
+			}
 			guard let value = UserDefaults.standard.value(forKey: key.rawValue) as? T else {
-				// swiftlint:disable force_cast
 				if T.self == LayoutStyle.self, let raw = UserDefaults.standard.value(forKey: key.rawValue) as? String {
 					return LayoutStyle(rawValue: raw) as! T
 				}
@@ -56,7 +59,7 @@ internal struct Preferences {
 				case .allowBlankTouchBar:
 					return true as! T
 				case .launchAtLogin:
-					return false as! T
+					fatalError("[Pock][Internal-Error]: Execution should not reach this point.")
 				case .layoutStyle:
 					return LayoutStyle.withControlStrip as! T
 				case .mouseSupportEnabled:
@@ -68,12 +71,22 @@ internal struct Preferences {
 				case .userDefinedPresentationMode:
 					return PresentationMode.undefined as! T
 				}
-				// swiftlint:enable force_cast
 			}
 			return value
+			// swiftlint:enable force_cast
 		}
 		set {
-			UserDefaults.standard.setValue(newValue, forKey: key.rawValue)
+			if key == .launchAtLogin {
+				if let boolValue = newValue as? Bool {
+					if boolValue {
+						LoginServiceKit().addLoginItem(for: .main)
+					} else {
+						LoginServiceKit().removeLoginItem(for: .main)
+					}
+				}
+			} else {
+				UserDefaults.standard.setValue(newValue, forKey: key.rawValue)
+			}
 		}
 	}
 }

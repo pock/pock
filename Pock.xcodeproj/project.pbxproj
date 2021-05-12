@@ -26,6 +26,7 @@
 		34291B9026455D0D00768B08 /* EmptyTouchBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34291B8E26455D0D00768B08 /* EmptyTouchBarController.swift */; };
 		34291B9126455D0E00768B08 /* EmptyTouchBarController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34291B8F26455D0D00768B08 /* EmptyTouchBarController.xib */; };
 		34291B962645674D00768B08 /* NSView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34291B952645674D00768B08 /* NSView+Extensions.swift */; };
+		34291B98264BDBA800768B08 /* LoginServiceKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 34291B97264BDBA700768B08 /* LoginServiceKit.m */; };
 		344C9A18260672F4009AA07C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344C9A17260672F4009AA07C /* main.swift */; };
 		344C9A1E260674E5009AA07C /* Relaunch in Resources */ = {isa = PBXBuildFile; fileRef = 344C9A15260672F4009AA07C /* Relaunch */; };
 		34564DBC25F81E520093E5E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34564DBB25F81E520093E5E0 /* AppDelegate.swift */; };
@@ -99,6 +100,8 @@
 		34291B8E26455D0D00768B08 /* EmptyTouchBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTouchBarController.swift; sourceTree = "<group>"; };
 		34291B8F26455D0D00768B08 /* EmptyTouchBarController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyTouchBarController.xib; sourceTree = "<group>"; };
 		34291B952645674D00768B08 /* NSView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSView+Extensions.swift"; sourceTree = "<group>"; };
+		34291B97264BDBA700768B08 /* LoginServiceKit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginServiceKit.m; sourceTree = "<group>"; };
+		34291B9A264BDBC500768B08 /* LoginServiceKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginServiceKit.h; sourceTree = "<group>"; };
 		344C9A15260672F4009AA07C /* Relaunch */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Relaunch; sourceTree = BUILT_PRODUCTS_DIR; };
 		344C9A17260672F4009AA07C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		34564DB825F81E520093E5E0 /* Pock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pock.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -281,6 +284,15 @@
 			path = EmptyTouchBarController;
 			sourceTree = "<group>";
 		};
+		34291B99264BDBB300768B08 /* LoginServiceKit */ = {
+			isa = PBXGroup;
+			children = (
+				34291B9A264BDBC500768B08 /* LoginServiceKit.h */,
+				34291B97264BDBA700768B08 /* LoginServiceKit.m */,
+			);
+			path = LoginServiceKit;
+			sourceTree = "<group>";
+		};
 		344C9A16260672F4009AA07C /* Relaunch */ = {
 			isa = PBXGroup;
 			children = (
@@ -429,6 +441,7 @@
 			isa = PBXGroup;
 			children = (
 				34564DF325F83E2D0093E5E0 /* STPrivilegedTask */,
+				34291B99264BDBB300768B08 /* LoginServiceKit */,
 				34564DEE25F8389D0093E5E0 /* Roger.swift */,
 				34564DFF25F850170093E5E0 /* HotKey.swift */,
 				34291B842643562800768B08 /* Errors.swift */,
@@ -691,6 +704,7 @@
 				34564E0B25F990060093E5E0 /* PKWidgetViewController.swift in Sources */,
 				34564DBC25F81E520093E5E0 /* AppDelegate.swift in Sources */,
 				34564E0225F983640093E5E0 /* WidgetsLoader.swift in Sources */,
+				34291B98264BDBA800768B08 /* LoginServiceKit.m in Sources */,
 				34564DDD25F82D960093E5E0 /* NSImage+Extensions.swift in Sources */,
 				34564DD725F826340093E5E0 /* NSMenuBadgeItem.swift in Sources */,
 				34564DF625F83E2D0093E5E0 /* STPrivilegedTask.m in Sources */,

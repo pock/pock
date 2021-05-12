@@ -182,19 +182,19 @@ extension WidgetsManagerViewController {
 	}
 	
 	@IBAction internal func presentWidgetInstallerPanelFrom(_ button: NSButton) {
-		guard let widget = selectedWidget else {
-			return
-		}
 		let state: WidgetsInstaller.State
 		switch button {
 		case widgetInstallButton:
 			state = .dragdrop
 		case widgetUpdateButton:
-			guard let newVersion = selectedWidgetNewVersion?.version else {
+			guard let widget = selectedWidget, let newVersion = selectedWidgetNewVersion?.version else {
 				return
 			}
 			state = .update(widget: widget, version: newVersion)
 		case widgetUninstallButton:
+			guard let widget = selectedWidget else {
+				return
+			}
 			state = .remove(widget: widget)
 		default:
 			return
