@@ -20,9 +20,10 @@ class PreferencesViewController: NSViewController {
 	
 	/// Layout Styles
 	@IBOutlet private weak var layoutStyleTitleLabel: NSTextField!
-	@IBOutlet private weak var layoutStylesBox: NSBox!
 	@IBOutlet private weak var layoutStyleWithControlStripButton: NSButton!
-	@IBOutlet private weak var layoutStyleFullWidth: NSButton!
+	@IBOutlet private weak var layoutStyleWithControlStripLabel: NSTextField!
+	@IBOutlet private weak var layoutStyleFullWidthButton: NSButton!
+	@IBOutlet private weak var layoutStyleFullWidthLabel: NSTextField!
 	
 	/// Double `^ control` shortcut
 	@IBOutlet private weak var doubleControlTitleLabel: NSTextField!
@@ -133,8 +134,9 @@ class PreferencesViewController: NSViewController {
 			if let constraint = button.constraints.first(where: { $0.identifier == "layout-style.option.width" }) {
 				NSAnimationContext.runAnimationGroup { context in
 					context.duration = 0.2725
+					context.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
 					constraint.animator().constant = minify ? 132 : 256
-					button.animator().alphaValue = minify ? 0.525 : 1.0
+					button.superview?.animator().alphaValue = minify ? 0.525 : 1.0
 				}
 			}
 		}
@@ -142,12 +144,11 @@ class PreferencesViewController: NSViewController {
 		switch style {
 		case .withControlStrip:
 			resizeButton(layoutStyleWithControlStripButton, minify: false)
-			resizeButton(layoutStyleFullWidth, minify: true)
+			resizeButton(layoutStyleFullWidthButton, minify: true)
 		case .fullWidth:
 			resizeButton(layoutStyleWithControlStripButton, minify: true)
-			resizeButton(layoutStyleFullWidth, minify: false)
+			resizeButton(layoutStyleFullWidthButton, minify: false)
 		}
-		layoutStylesBox.title = style.title
 	}
 	
 	// MARK: Actions
@@ -157,7 +158,7 @@ class PreferencesViewController: NSViewController {
 		switch button {
 		case layoutStyleWithControlStripButton:
 			style = .withControlStrip
-		case layoutStyleFullWidth:
+		case layoutStyleFullWidthButton:
 			style = .fullWidth
 		default:
 			return
