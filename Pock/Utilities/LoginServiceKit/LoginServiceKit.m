@@ -6,7 +6,6 @@
 //
 //  Thanks to:
 // 	@boyvanamstel https://gist.github.com/boyvanamstel/1409312
-//  @ https://github.com/Clipy/LoginServiceKit
 //
 
 #import "LoginServiceKit.h"

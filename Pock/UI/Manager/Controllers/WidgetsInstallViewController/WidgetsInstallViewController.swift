@@ -33,6 +33,7 @@ class WidgetsInstallViewController: NSViewController {
 	}
 	
 	// MARK: Overrides
+	
 	override func viewDidLoad() {
 		super.viewDidDisappear()
 		configureUIElements()

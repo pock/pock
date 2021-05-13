@@ -44,6 +44,8 @@
 "onboard.footer" = "Follow the instructions in the Touch Bar to install default widgets";
 
 // MARK: Preferences
+"preferences.window.title" = "Preferences";
+
 "preferences.general.title" = "General";
 "preferences.general.allow-blank-touchbar.title" = "Allow blank Touch Bar";
 "preferences.general.allow-blank-touchbar.desc" = "If enabled, you can turn the Touch Bar completely off just by removing any added widgets.";

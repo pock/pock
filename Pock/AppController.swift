@@ -218,8 +218,9 @@ internal class AppController: NSResponder {
 		windowController?.close()
 		let window = NSWindow(contentViewController: controller)
 		window.delegate = self
-		window.miniwindowTitle = "widgets-manager.list.title".localized
-		window.titleVisibility = .hidden
+		window.title = controller.title ?? ""
+		window.miniwindowTitle = controller.title
+		window.titleVisibility = .visible
 		window.isReleasedWhenClosed = true
 		window.styleMask.remove(.resizable)
 		windowController = NSWindowController(window: window)

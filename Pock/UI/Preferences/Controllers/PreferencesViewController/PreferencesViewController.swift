@@ -42,6 +42,15 @@ class PreferencesViewController: NSViewController {
 	
 	// MARK: Overrides
 	
+	override var title: String? {
+		get {
+			return "preferences.window.title".localized
+		}
+		set {
+			view.window?.title = newValue ?? ""
+		}
+	}
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		configureUIElements()

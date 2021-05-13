@@ -58,6 +58,15 @@ class WidgetsManagerViewController: NSViewController {
 	
 	// MARK: Overrides
 	
+	override var title: String? {
+		get {
+			return "widgets-manager.list.title".localized
+		}
+		set {
+			view.window?.title = newValue ?? ""
+		}
+	}
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		self.tableView.register(NSNib(nibNamed: "PKWidgetCellView", bundle: .main), forIdentifier: CellIdentifiers.widgetCell)
