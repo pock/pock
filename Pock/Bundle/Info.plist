@@ -4,6 +4,33 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>pock</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>widget-big-icon</string>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
+			<key>CFBundleTypeName</key>
+			<string>Pock Widget</string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.pigigaldi.pock.widget</string>
+			</array>
+			<key>LSTypeIsPackage</key>
+			<integer>1</integer>
+			<key>NSDocumentClass</key>
+			<string>$(PRODUCT_MODULE_NAME).WidgetsInstaller</string>
+		</dict>
+	</array>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIconFile</key>
@@ -32,5 +59,36 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>UTExportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.directory</string>
+				<string>com.apple.bundle</string>
+				<string>com.apple.package</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Pock Widget</string>
+			<key>UTTypeIconFile</key>
+			<string>widget-big-icon</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBadgeName</key>
+				<string>widget-big-icon</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>com.pigigaldi.pock.widget</string>
+			<key>UTTypeReferenceURL</key>
+			<string>https://pock.dev</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>pock</string>
+				</array>
+			</dict>
+		</dict>
+	</array>
 </dict>
 </plist>

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3400F92D264EBBC8003B2B4C /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3400F92C264EBBC8003B2B4C /* Media.xcassets */; };
 		34291B54263C778E00768B08 /* PKWidgetInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34291B53263C778E00768B08 /* PKWidgetInfo.swift */; };
 		34291B57263C7DA400768B08 /* PKWidgetCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34291B55263C7DA400768B08 /* PKWidgetCellView.swift */; };
 		34291B58263C7DA400768B08 /* PKWidgetCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34291B56263C7DA400768B08 /* PKWidgetCellView.xib */; };
@@ -55,6 +56,11 @@
 		34A1A4AD25FBDAA20086500F /* Localisations.strings in Resources */ = {isa = PBXBuildFile; fileRef = 34A1A4AF25FBDAA20086500F /* Localisations.strings */; };
 		34E393E026186F3000E0B556 /* NSMenuHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E393DF26186F3000E0B556 /* NSMenuHeader.swift */; };
 		34E393E4261871F400E0B556 /* NSMenuHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34E393E326186F5400E0B556 /* NSMenuHeader.xib */; };
+		34E78F50264EB0FD001CBA4E /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34E78F4F264EB0FD001CBA4E /* Quartz.framework */; };
+		34E78F53264EB0FD001CBA4E /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E78F52264EB0FD001CBA4E /* PreviewViewController.swift */; };
+		34E78F56264EB0FD001CBA4E /* PreviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34E78F54264EB0FD001CBA4E /* PreviewViewController.xib */; };
+		34E78F5B264EB0FD001CBA4E /* QLPockWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 34E78F4E264EB0FD001CBA4E /* QLPockWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		34E78F62264EB220001CBA4E /* PKWidgetInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34291B53263C778E00768B08 /* PKWidgetInfo.swift */; };
 		34E7B98B263C65590072FE54 /* WidgetsManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E7B989263C65590072FE54 /* WidgetsManagerViewController.swift */; };
 		34E7B98C263C65590072FE54 /* WidgetsManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34E7B98A263C65590072FE54 /* WidgetsManagerViewController.xib */; };
 		80F6ED9E941CB99A898BECF2 /* Pods_Pock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AE9B256A4CB4701408B60C0 /* Pods_Pock.framework */; };
@@ -68,6 +74,13 @@
 			remoteGlobalIDString = 344C9A14260672F4009AA07C;
 			remoteInfo = Relaunch;
 		};
+		34E78F59264EB0FD001CBA4E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 34564DB025F81E520093E5E0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 34E78F4D264EB0FD001CBA4E;
+			remoteInfo = QLPockWidget;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -80,9 +93,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
+		34E78F5F264EB0FD001CBA4E /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				34E78F5B264EB0FD001CBA4E /* QLPockWidget.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3400F92C264EBBC8003B2B4C /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		34291B53263C778E00768B08 /* PKWidgetInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKWidgetInfo.swift; sourceTree = "<group>"; };
 		34291B55263C7DA400768B08 /* PKWidgetCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKWidgetCellView.swift; sourceTree = "<group>"; };
 		34291B56263C7DA400768B08 /* PKWidgetCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PKWidgetCellView.xib; sourceTree = "<group>"; };
@@ -139,6 +164,11 @@
 		34A1A4B025FBDAA60086500F /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localisations.strings; sourceTree = "<group>"; };
 		34E393DF26186F3000E0B556 /* NSMenuHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSMenuHeader.swift; sourceTree = "<group>"; };
 		34E393E326186F5400E0B556 /* NSMenuHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NSMenuHeader.xib; sourceTree = "<group>"; };
+		34E78F4E264EB0FD001CBA4E /* QLPockWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = QLPockWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		34E78F4F264EB0FD001CBA4E /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
+		34E78F52264EB0FD001CBA4E /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
+		34E78F55264EB0FD001CBA4E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PreviewViewController.xib; sourceTree = "<group>"; };
+		34E78F57264EB0FD001CBA4E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		34E7B989263C65590072FE54 /* WidgetsManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetsManagerViewController.swift; sourceTree = "<group>"; };
 		34E7B98A263C65590072FE54 /* WidgetsManagerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WidgetsManagerViewController.xib; sourceTree = "<group>"; };
 		42458EF7CBD8C1A887586801 /* Pods-Pock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pock.release.xcconfig"; path = "Target Support Files/Pods-Pock/Pods-Pock.release.xcconfig"; sourceTree = "<group>"; };
@@ -160,6 +190,14 @@
 			files = (
 				34564DFA25F83ECB0093E5E0 /* DFRFoundation.framework in Frameworks */,
 				80F6ED9E941CB99A898BECF2 /* Pods_Pock.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		34E78F4B264EB0FD001CBA4E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34E78F50264EB0FD001CBA4E /* Quartz.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,6 +357,7 @@
 			children = (
 				34564DBA25F81E520093E5E0 /* Pock */,
 				344C9A16260672F4009AA07C /* Relaunch */,
+				34E78F51264EB0FD001CBA4E /* QLPockWidget */,
 				34564DB925F81E520093E5E0 /* Products */,
 				1DBBF10483C46928DD425289 /* Pods */,
 				57B98144DEAC1BBEAE8F9DEA /* Frameworks */,
@@ -330,6 +369,7 @@
 			children = (
 				34564DB825F81E520093E5E0 /* Pock.app */,
 				344C9A15260672F4009AA07C /* Relaunch */,
+				34E78F4E264EB0FD001CBA4E /* QLPockWidget.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -501,6 +541,17 @@
 			path = NSMenuSectionHeader;
 			sourceTree = "<group>";
 		};
+		34E78F51264EB0FD001CBA4E /* QLPockWidget */ = {
+			isa = PBXGroup;
+			children = (
+				3400F92C264EBBC8003B2B4C /* Media.xcassets */,
+				34E78F52264EB0FD001CBA4E /* PreviewViewController.swift */,
+				34E78F54264EB0FD001CBA4E /* PreviewViewController.xib */,
+				34E78F57264EB0FD001CBA4E /* Info.plist */,
+			);
+			path = QLPockWidget;
+			sourceTree = "<group>";
+		};
 		34E7B98D263C655F0072FE54 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
@@ -524,6 +575,7 @@
 			children = (
 				34564DF925F83ECB0093E5E0 /* DFRFoundation.framework */,
 				7AE9B256A4CB4701408B60C0 /* Pods_Pock.framework */,
+				34E78F4F264EB0FD001CBA4E /* Quartz.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -558,16 +610,35 @@
 				34564DB525F81E520093E5E0 /* Frameworks */,
 				34564DB625F81E520093E5E0 /* Resources */,
 				FE26ADECFF38E70242F074EC /* [CP] Embed Pods Frameworks */,
+				34E78F5F264EB0FD001CBA4E /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				344C9A1D260674DB009AA07C /* PBXTargetDependency */,
+				34E78F5A264EB0FD001CBA4E /* PBXTargetDependency */,
 			);
 			name = Pock;
 			productName = Pock;
 			productReference = 34564DB825F81E520093E5E0 /* Pock.app */;
 			productType = "com.apple.product-type.application";
+		};
+		34E78F4D264EB0FD001CBA4E /* QLPockWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 34E78F5C264EB0FD001CBA4E /* Build configuration list for PBXNativeTarget "QLPockWidget" */;
+			buildPhases = (
+				34E78F4A264EB0FD001CBA4E /* Sources */,
+				34E78F4B264EB0FD001CBA4E /* Frameworks */,
+				34E78F4C264EB0FD001CBA4E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = QLPockWidget;
+			productName = QLPockWidget;
+			productReference = 34E78F4E264EB0FD001CBA4E /* QLPockWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -584,6 +655,9 @@
 					34564DB725F81E520093E5E0 = {
 						CreatedOnToolsVersion = 12.5;
 					};
+					34E78F4D264EB0FD001CBA4E = {
+						CreatedOnToolsVersion = 12.5;
+					};
 				};
 			};
 			buildConfigurationList = 34564DB325F81E520093E5E0 /* Build configuration list for PBXProject "Pock" */;
@@ -593,6 +667,7 @@
 			knownRegions = (
 				en,
 				it,
+				Base,
 			);
 			mainGroup = 34564DAF25F81E520093E5E0;
 			productRefGroup = 34564DB925F81E520093E5E0 /* Products */;
@@ -601,6 +676,7 @@
 			targets = (
 				34564DB725F81E520093E5E0 /* Pock */,
 				344C9A14260672F4009AA07C /* Relaunch */,
+				34E78F4D264EB0FD001CBA4E /* QLPockWidget */,
 			);
 		};
 /* End PBXProject section */
@@ -623,6 +699,15 @@
 				34564DD625F826340093E5E0 /* NSMenuBadgeItemView.xib in Resources */,
 				34564DE125F832070093E5E0 /* MainMenu.xib in Resources */,
 				34291B9126455D0E00768B08 /* EmptyTouchBarController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		34E78F4C264EB0FD001CBA4E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3400F92D264EBBC8003B2B4C /* Media.xcassets in Resources */,
+				34E78F56264EB0FD001CBA4E /* PreviewViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -739,6 +824,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		34E78F4A264EB0FD001CBA4E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34E78F62264EB220001CBA4E /* PKWidgetInfo.swift in Sources */,
+				34E78F53264EB0FD001CBA4E /* PreviewViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -746,6 +840,11 @@
 			isa = PBXTargetDependency;
 			target = 344C9A14260672F4009AA07C /* Relaunch */;
 			targetProxy = 344C9A1C260674DB009AA07C /* PBXContainerItemProxy */;
+		};
+		34E78F5A264EB0FD001CBA4E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 34E78F4D264EB0FD001CBA4E /* QLPockWidget */;
+			targetProxy = 34E78F59264EB0FD001CBA4E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -757,6 +856,14 @@
 				34A1A4B025FBDAA60086500F /* it */,
 			);
 			name = Localisations.strings;
+			sourceTree = "<group>";
+		};
+		34E78F54264EB0FD001CBA4E /* PreviewViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				34E78F55264EB0FD001CBA4E /* Base */,
+			);
+			name = PreviewViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -913,6 +1020,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9FAB0C2306CA63DF211D8910 /* Pods-Pock.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Pock/Bundle/Pock.entitlements;
@@ -945,6 +1053,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 42458EF7CBD8C1A887586801 /* Pods-Pock.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Pock/Bundle/Pock.entitlements;
@@ -970,6 +1079,52 @@
 					"$(inherited)",
 					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
 				);
+			};
+			name = Release;
+		};
+		34E78F5D264EB0FD001CBA4E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 788D9WZ9Z3;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = QLPockWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MARKETING_VERSION = 0.9.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pigigaldi.pock.QLPockWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Pock QL Plugin (Distribution)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		34E78F5E264EB0FD001CBA4E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 788D9WZ9Z3;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = QLPockWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MARKETING_VERSION = 0.9.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pigigaldi.pock.QLPockWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Pock QL Plugin (Distribution)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -999,6 +1154,15 @@
 			buildConfigurations = (
 				34564DC725F81E590093E5E0 /* Debug */,
 				34564DC825F81E590093E5E0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		34E78F5C264EB0FD001CBA4E /* Build configuration list for PBXNativeTarget "QLPockWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				34E78F5D264EB0FD001CBA4E /* Debug */,
+				34E78F5E264EB0FD001CBA4E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

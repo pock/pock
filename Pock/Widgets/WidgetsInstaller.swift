@@ -26,7 +26,7 @@ internal enum WidgetsInstallerError: PockError {
 	}
 }
 
-internal final class WidgetsInstaller {
+internal final class WidgetsInstaller: NSDocument {
 
 	typealias Error = WidgetsInstallerError
 	
@@ -51,6 +51,26 @@ internal final class WidgetsInstaller {
 	}
 	
 	private lazy var manager: FileManager = FileManager.default
+	
+	// MARK: NSDocument
+	
+	override init() {
+		// default initialiser
+	}
+	
+	init(contentsOf url: URL, ofType typeName: String) throws {
+		super.init()
+		let widget = try PKWidgetInfo(path: url)
+		installWidget(widget) { error in
+			let controller = WidgetsInstallViewController()
+			if let error = error {
+				controller.state = .error(error)
+			} else {
+				controller.state = .installed(widget: widget)
+			}
+			AppController.shared.openController(controller)
+		}
+	}
 	
 	// MARK: Methods
 	

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="18121" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18121"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="PreviewViewController" customModule="QLPockWidget" customModuleProvider="target">
+            <connections>
+                <outlet property="iconView" destination="8OE-oz-F4E" id="4hI-Ba-M8v"/>
+                <outlet property="view" destination="UiB-J6-2Ay" id="UeL-vc-1ut"/>
+                <outlet property="widgetAuthorLabel" destination="KOG-fY-CK6" id="jui-eo-zIT"/>
+                <outlet property="widgetBundleIdentifierLabel" destination="dnM-vb-auZ" id="7UZ-Su-QOa"/>
+                <outlet property="widgetNameLabel" destination="6ht-wx-sm9" id="x0C-cf-gPd"/>
+                <outlet property="widgetVersionLabel" destination="dGv-Yf-tHR" id="yjZ-kX-Dti"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="UiB-J6-2Ay" userLabel="Preview View">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="190"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8OE-oz-F4E">
+                    <rect key="frame" x="20" y="20" width="150" height="150"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="150" id="Jj8-Ct-UwW"/>
+                        <constraint firstAttribute="height" constant="150" id="YGn-fO-ETb"/>
+                    </constraints>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="widget-ql-icon" id="8xV-Va-mis"/>
+                </imageView>
+                <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hfM-g0-A0h">
+                    <rect key="frame" x="196" y="68" width="264" height="94"/>
+                    <subviews>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6ht-wx-sm9">
+                            <rect key="frame" x="-2" y="75" width="75" height="19"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="Unknown" id="pcg-DG-jSt">
+                                <font key="font" metaFont="systemSemibold" size="16"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dGv-Yf-tHR">
+                            <rect key="frame" x="-2" y="48" width="174" height="19"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="Something went wrong…" id="ghh-ZN-OCe">
+                                <font key="font" metaFont="system" size="15"/>
+                                <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KOG-fY-CK6">
+                            <rect key="frame" x="-2" y="23" width="17" height="17"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="--" id="o6E-kG-sra">
+                                <font key="font" metaFont="menu" size="14"/>
+                                <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dnM-vb-auZ">
+                            <rect key="frame" x="-2" y="0.0" width="16" height="15"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="--" id="VTh-OG-3rI">
+                                <font key="font" metaFont="cellTitle"/>
+                                <color key="textColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                    </subviews>
+                    <visibilityPriorities>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                    </visibilityPriorities>
+                    <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                    </customSpacing>
+                </stackView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="hfM-g0-A0h" firstAttribute="leading" secondItem="8OE-oz-F4E" secondAttribute="trailing" constant="26" id="36l-UV-Dp3"/>
+                <constraint firstAttribute="bottom" secondItem="8OE-oz-F4E" secondAttribute="bottom" constant="20" id="6aT-Bz-9Vj"/>
+                <constraint firstItem="8OE-oz-F4E" firstAttribute="top" secondItem="UiB-J6-2Ay" secondAttribute="top" constant="20" id="JqC-tL-N60"/>
+                <constraint firstAttribute="trailing" secondItem="hfM-g0-A0h" secondAttribute="trailing" constant="20" id="M2G-fJ-CO2"/>
+                <constraint firstItem="hfM-g0-A0h" firstAttribute="top" secondItem="8OE-oz-F4E" secondAttribute="top" constant="8" id="YUR-Ic-lwv"/>
+                <constraint firstItem="8OE-oz-F4E" firstAttribute="leading" secondItem="UiB-J6-2Ay" secondAttribute="leading" constant="20" id="nT5-Cb-yo2"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="hfM-g0-A0h" secondAttribute="bottom" constant="20" id="xAs-Fe-kWh"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="154"/>
+        </customView>
+    </objects>
+    <resources>
+        <image name="widget-ql-icon" width="150" height="150"/>
+    </resources>
+</document>
