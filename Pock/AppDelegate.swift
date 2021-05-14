@@ -54,6 +54,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 		/// Deactivate Pock
 		NSApp.deactivate()
+		
+		/// Show On-Board window, if needed
+		if Preferences[.didShowOnBoard] == false {
+			openOnBoardController()
+		}
+
 	}
 	
 	func applicationWillTerminate(_ notification: Notification) {
@@ -123,6 +129,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		debugMenu.addItem(withTitle: "Open widgets directory…", action: #selector(openWidgetsDirectory), keyEquivalent: "")
 		debugMenu.addItem(withTitle: "Reload Widgets", action: #selector(reloadWidgets), keyEquivalent: "")
 		debugMenu.addItem(NSMenuHeader.new(title: "General"))
+		debugMenu.addItem(withTitle: "Open On-Board…", action: #selector(openOnBoardController), keyEquivalent: "")
 		debugMenu.addItem(withTitle: "Toggle Touch Bar visibility", action: #selector(toggleTouchBarVisibility), keyEquivalent: "")
 		debugMenu.addItem(withTitle: "Show debug console…", action: #selector(showDebugConsole), keyEquivalent: "c")
 		debugMenu.addItem(withTitle: "Relaunch Pock", action: #selector(relaunch), keyEquivalent: "")
@@ -301,6 +308,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		default:
 			return
 		}
+	}
+	
+	// MARK: Open On-Board window
+	@objc private func openOnBoardController() {
+		AppController.shared.openController(OnBoardViewController())
 	}
 
 }

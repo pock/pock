@@ -135,7 +135,7 @@ class PreferencesViewController: NSViewController {
 				NSAnimationContext.runAnimationGroup { context in
 					context.duration = 0.2725
 					context.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
-					constraint.animator().constant = minify ? 132 : 256
+					constraint.animator().constant = minify ? 140 : 280
 					button.superview?.animator().alphaValue = minify ? 0.525 : 1.0
 				}
 			}

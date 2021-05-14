@@ -41,6 +41,7 @@ internal struct Preferences {
 		case showTrackingArea
 		case checkForUpdatesOnceADay
 		case userDefinedPresentationMode
+		case didShowOnBoard
 	}
 	static subscript<T>(_ key: Keys) -> T {
 		get {
@@ -70,6 +71,8 @@ internal struct Preferences {
 					return false as! T
 				case .userDefinedPresentationMode:
 					return PresentationMode.undefined as! T
+				case .didShowOnBoard:
+					return false as! T
 				}
 			}
 			return value

@@ -40,8 +40,10 @@
 
 // MARK: Onboard Screen
 "onboard.title" = "Get the Most Out of Your MacBook Pro Touch Bar";
-"onboard.message" = "Pock comes with default widgets that let you access your frequently used controls and essential information.";
+"onboard.body" = "Pock comes with default widgets that let you access the most essential information and functionality of your frequently used controls and services.";
 "onboard.footer" = "Follow the instructions in the Touch Bar to install default widgets";
+"onboard.open-preferences" = "Open Preferences…";
+"onboard.continue-with-default-settings" = "Continue with default settings";
 
 // MARK: Preferences
 "preferences.window.title" = "Preferences";
