@@ -47,7 +47,7 @@ static void LoginItemsChanged(LSSharedFileListRef list, void *context) {
 		for (id item in listSnapshot) {
 			LSSharedFileListItemRef itemRef = (__bridge LSSharedFileListItemRef)item;
 			CFURLRef itemRefURL = LSSharedFileListItemCopyResolvedURL(itemRef, 0, NULL);
-			if (itemRefURL && CFEqual(itemRefURL, CFBridgingRetain(bundleURL))) {
+			if (itemRefURL && CFEqual(itemRefURL, (__bridge CFTypeRef)(bundleURL))) {
 				CFRetain(itemRef);
 				CFRelease(itemRefURL);
 				return itemRef;
@@ -73,7 +73,6 @@ static void LoginItemsChanged(LSSharedFileListRef list, void *context) {
 	CFURLRef url = (__bridge CFURLRef)bundleURL;
 	LSSharedFileListItemRef itemRef = LSSharedFileListInsertItemURL(self.loginItems, kLSSharedFileListItemBeforeFirst, NULL, NULL, url, NULL, NULL);
 	if (itemRef) CFRelease(itemRef);
-	CFRelease(url);
 	return true;
 }
 
