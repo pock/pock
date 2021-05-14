@@ -48,6 +48,7 @@ internal class AppController: NSResponder {
 		registerForInternalNotifications()
 		registerDoubleControlHotKey()
 		prepareOnceADayTimer()
+		clearTemporaryWidgetsFolder()
 	}
 	
 	required init?(coder: NSCoder) {
@@ -60,6 +61,15 @@ internal class AppController: NSResponder {
 
 	internal var isVisible: Bool {
 		return pockTouchBarController != nil && pockTouchBarController.isVisible
+	}
+	
+	/// Clear tmp widgets folder
+	private func clearTemporaryWidgetsFolder() {
+		do {
+			try FileManager.default.removeItem(at: kWidgetsTempPathURL)
+		} catch {
+			Roger.error(error)
+		}
 	}
 	
 	/// Fetch latest versions

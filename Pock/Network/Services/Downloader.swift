@@ -114,7 +114,7 @@ internal class DefaultWidgetsDownloader {
 			completion([:], .invalidFileURL)
 			return
 		}
-		let request = URLRequest(url: url, cachePolicy: .returnCacheDataElseLoad, timeoutInterval: 20)
+		let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 20)
 		let task = URLSession.shared.dataTask(with: request) { data, response, error in
 			if let error = error {
 				Roger.error(error)
