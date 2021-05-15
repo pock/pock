@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>QLPockWidget</string>
+	<string>Pock Widget</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -27,7 +27,9 @@
 		<key>NSExtensionAttributes</key>
 		<dict>
 			<key>QLSupportedContentTypes</key>
-			<array/>
+			<array>
+				<string>com.pigigaldi.pock.widget</string>
+			</array>
 			<key>QLSupportsSearchableItems</key>
 			<false/>
 		</dict>

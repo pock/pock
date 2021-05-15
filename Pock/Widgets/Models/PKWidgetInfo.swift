@@ -9,7 +9,7 @@ import Foundation
 
 public struct PKWidgetInfo: Equatable {
 	
-	fileprivate enum BundleKeys: String {
+	public enum BundleKeys: String {
 		case principalClass = "NSPrincipalClass"
 		case bundleIdentifier = "CFBundleIdentifier"
 		case bundleName = "CFBundleName"
@@ -31,14 +31,14 @@ public struct PKWidgetInfo: Equatable {
 	let name: String
 	let author: String
 	let version: String
-	let build: String
+	let build: String?
 	let loaded: Bool
 	
 	var fullVersion: String {
-		if build.isEmpty {
-			return version
+		if let build = build {
+			return "\(version)-\(build)"
 		}
-		return "\(version)-\(build)"
+		return version
 	}
 	
 	// MARK: Preferences
@@ -66,9 +66,9 @@ public struct PKWidgetInfo: Equatable {
 		self.author = author
 		self.version = version
 		if let build: String = bundle[.bundleBuild] {
-			self.build = build == "1" ? "" : build
+			self.build = build == "1" ? nil : build
 		} else {
-			self.build = ""
+			self.build = nil
 		}
 		self.loaded = bundle.isLoaded
 		/// Preferences

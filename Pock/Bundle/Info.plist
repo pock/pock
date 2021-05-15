@@ -12,7 +12,7 @@
 				<string>pock</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>widget-big-icon</string>
+			<string>pkwidget-icon</string>
 			<key>CFBundleTypeIconSystemGenerated</key>
 			<integer>0</integer>
 			<key>CFBundleTypeName</key>
@@ -36,9 +36,9 @@
 				<string>pkarchive</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>widget-big-icon</string>
+			<string></string>
 			<key>CFBundleTypeIconSystemGenerated</key>
-			<integer>0</integer>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Pock Widget Archive</string>
 			<key>CFBundleTypeRole</key>
@@ -95,11 +95,11 @@
 			<key>UTTypeDescription</key>
 			<string>Pock Widget</string>
 			<key>UTTypeIconFile</key>
-			<string>widget-big-icon</string>
+			<string>pkwidget-icon</string>
 			<key>UTTypeIcons</key>
 			<dict>
 				<key>UTTypeIconBadgeName</key>
-				<string>widget-big-icon</string>
+				<string></string>
 			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>com.pigigaldi.pock.widget</string>
@@ -123,11 +123,15 @@
 			<key>UTTypeDescription</key>
 			<string>Pock Widget Archive</string>
 			<key>UTTypeIconFile</key>
-			<string>widget-big-icon</string>
+			<string></string>
 			<key>UTTypeIcons</key>
 			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>pkarchive-bg-icon</string>
 				<key>UTTypeIconBadgeName</key>
-				<string>widget-big-icon</string>
+				<string></string>
+				<key>UTTypeIconText</key>
+				<string>ARCHIVE</string>
 			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>com.pigigaldi.pock.widget.archive</string>

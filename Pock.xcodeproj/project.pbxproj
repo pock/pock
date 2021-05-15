@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3400F92D264EBBC8003B2B4C /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3400F92C264EBBC8003B2B4C /* Media.xcassets */; };
+		3425AEC12650363000B8BE6F /* DispatchQueue-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34564DF725F83E490093E5E0 /* DispatchQueue-Extensions.swift */; };
 		34291B54263C778E00768B08 /* PKWidgetInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34291B53263C778E00768B08 /* PKWidgetInfo.swift */; };
 		34291B57263C7DA400768B08 /* PKWidgetCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34291B55263C7DA400768B08 /* PKWidgetCellView.swift */; };
 		34291B58263C7DA400768B08 /* PKWidgetCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34291B56263C7DA400768B08 /* PKWidgetCellView.xib */; };
@@ -830,6 +831,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3425AEC12650363000B8BE6F /* DispatchQueue-Extensions.swift in Sources */,
 				34E78F62264EB220001CBA4E /* PKWidgetInfo.swift in Sources */,
 				34E78F53264EB0FD001CBA4E /* PreviewViewController.swift in Sources */,
 			);
@@ -1029,7 +1031,7 @@
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 788D9WZ9Z3;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Pock/Bundle/Info.plist;
@@ -1062,7 +1064,7 @@
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 788D9WZ9Z3;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Pock/Bundle/Info.plist;
@@ -1090,7 +1092,7 @@
 				CODE_SIGN_ENTITLEMENTS = QLPockWidget/QLPockWidget.entitlements;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 788D9WZ9Z3;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = QLPockWidget/Info.plist;
@@ -1104,7 +1106,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.pigigaldi.pock.QLPockWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Pock QL Plugin (Distribution)";
-				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -1115,7 +1116,7 @@
 				CODE_SIGN_ENTITLEMENTS = QLPockWidget/QLPockWidget.entitlements;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 788D9WZ9Z3;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = QLPockWidget/Info.plist;
@@ -1129,7 +1130,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.pigigaldi.pock.QLPockWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Pock QL Plugin (Distribution)";
-				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;

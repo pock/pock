@@ -1,12 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "widget-ql-icon.png",
+      "filename" : "icon_256x256.png",
       "idiom" : "mac",
       "scale" : "1x"
     },
     {
-      "filename" : "widget-ql-icon@2x.png",
+      "filename" : "icon_256x256@2x.png",
       "idiom" : "mac",
       "scale" : "2x"
     }
