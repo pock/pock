@@ -65,11 +65,7 @@ internal class AppController: NSResponder {
 	
 	/// Clear tmp widgets folder
 	private func clearTemporaryWidgetsFolder() {
-		do {
-			try FileManager.default.removeItem(at: kWidgetsTempPathURL)
-		} catch {
-			Roger.error(error)
-		}
+		WidgetsInstaller().clearTemporaryWidgetsFolder()
 	}
 	
 	/// Fetch latest versions

@@ -36,6 +36,7 @@
 "menu.advanced.reload_touchbar" = "Reload Control Strip…";
 "menu.advanced.relaunch_touchbar" = "Relaunch Touch Bar…";
 // Quit
+"menu.goodbye" = "Goodbye";
 "menu.quit" = "Quit Pock";
 
 // MARK: Onboard Screen
@@ -108,7 +109,7 @@ You can always configure default settings from `System Preferences > Keyboard` t
 
 "widget.install.drag-here.title" = "Install new widget";
 "widget.install.drag-here.body" = "Drag & Drop widget file inside this dialog, or click the `Choose…` button to pick up the file.";
-"widget.install.drag-here.valid-formats" = "Accepted format: .pock";
+"widget.install.drag-here.valid-formats" = "Accepted formats: .pock, .pkarchive";
 
 "widget.remove.title" = "Remove %@ widget";
 "widget.remove.body" = "Would you like to proceed and remove %@ widget?";

@@ -7,6 +7,7 @@
 
 import Cocoa
 
+// swiftlint:disable file_length
 // swiftlint:disable type_body_length
 class WidgetsInstallViewController: NSViewController {
 
@@ -158,6 +159,17 @@ class WidgetsInstallViewController: NSViewController {
 			actionButton.title = "general.action.install".localized
 			actionButton.isEnabled = true
 			
+		case .installArchive(let url):
+			// MARK: Install (archive)
+			let name = url.deletingPathExtension().lastPathComponent
+			titleLabel.stringValue = "widget.install.title".localized(name)
+			bodyLabel.stringValue = "widget.install.body".localized(name)
+			progressBar.isHidden = true
+			toggleChangelogVisibility(false, title: "widget.install.click-to-continue".localized)
+			cancelButton.title = "general.action.cancel".localized
+			actionButton.title = "general.action.install".localized
+			actionButton.isEnabled = true
+			
 		case .update(let widget, let version):
 			// MARK: Update
 			titleLabel.stringValue = "widget.update.title".localized(widget.name)
@@ -220,7 +232,7 @@ class WidgetsInstallViewController: NSViewController {
 				// MARK: Installed
 				titleLabel.stringValue = "widget.install.success.title".localized
 				bodyLabel.stringValue = "widget.install.success.body".localized(widget.name)
-				actionButton.title = "general.action.reload".localized
+				actionButton.title = "general.action.relaunch".localized
 			case .updated:
 				// MARK: Updated
 				titleLabel.stringValue = "widget.update.success.title".localized
@@ -264,11 +276,23 @@ class WidgetsInstallViewController: NSViewController {
 			case let .install(widget):
 				// MARK: Install
 				state = .installing(widget: widget)
-				WidgetsInstaller().installWidget(widget) { [weak self] error in
+				WidgetsInstaller().installWidget(widget) { [weak self] _, error in
 					if let error = error {
 						self?.state = .error(error)
 					} else {
 						self?.state = .installed(widget: widget)
+					}
+				}
+			case let .installArchive(url):
+				// MARK: Install (archive)
+				let name = url.deletingPathExtension().lastPathComponent
+				WidgetsInstaller().extractAndInstall(name, atLocation: url, removeSource: false) { [weak self] widget, error in
+					if let error = error {
+						self?.state = .error(error)
+					} else if let widget = widget {
+						self?.state = .installed(widget: widget)
+					} else {
+						self?.state = .error(WidgetsInstallerError.invalidBundle(reason: nil))
 					}
 				}
 			case let .update(widget, version):
@@ -280,7 +304,7 @@ class WidgetsInstallViewController: NSViewController {
 					progress: { [weak self] progress in
 						self?.state = .downloading(widget: widget, progress: progress)
 					},
-					completion: { [weak self] error in
+					completion: { [weak self] _, error in
 						if let error = error {
 							self?.state = .error(error)
 						} else {
@@ -288,13 +312,7 @@ class WidgetsInstallViewController: NSViewController {
 						}
 					}
 				)
-			case .installed:
-				// MARK: Reload
-				AppController.shared.reload(shouldFetchLatestVersions: true)
-				async { [weak self] in
-					self?.dismiss(nil)
-				}
-			case .installedDefault:
+			case .installed, .installedDefault:
 				// MARK: Relaunch on default widgets installation
 				AppController.shared.relaunch()
 				
@@ -352,13 +370,7 @@ extension WidgetsInstallViewController {
 		case .dragdrop:
 			view.canAcceptDraggedElement = true
 			view.completion = { [weak self] path in
-				do {
-					let widget = try PKWidgetInfo(path: path)
-					self?.state = .install(widget: widget)
-				} catch {
-					Roger.error(error)
-					self?.state = .error(WidgetsInstallerError.invalidBundle(reason: error.localizedDescription))
-				}
+				self?.handleFileAtPath(path)
 			}
 		default:
 			view.canAcceptDraggedElement = false
@@ -375,24 +387,40 @@ extension WidgetsInstallViewController {
 		openPanel.canChooseDirectories = true
 		openPanel.canChooseFiles = true
 		openPanel.allowsMultipleSelection = false
-		openPanel.allowedFileTypes = ["pock"]
+		openPanel.allowedFileTypes = ["pock", "pkarchive"]
 		openPanel.beginSheetModal(for: window, completionHandler: { [weak self] result in
 			if result == NSApplication.ModalResponse.OK {
 				guard let self = self else {
 					return
 				}
 				if let path = openPanel.url {
-					do {
-						let widget = try PKWidgetInfo(path: path)
-						self.state = .install(widget: widget)
-					} catch {
-						Roger.error(error)
-						self.state = .error(WidgetsInstallerError.invalidBundle(reason: error.localizedDescription))
-					}
+					self.handleFileAtPath(path)
 				} else {
 					self.state = .error(WidgetsInstallerError.invalidBundle(reason: "error.unknown".localized))
 				}
 			}
 		})
 	}
+	
+	private func handleFileAtPath(_ path: URL) {
+		var pathURL: URL = path
+		if path.scheme == nil {
+			pathURL = URL(fileURLWithPath: path.path)
+		}
+		switch pathURL.pathExtension {
+		case "pock":
+			do {
+				let widget = try PKWidgetInfo(path: pathURL)
+				self.state = .install(widget: widget)
+			} catch {
+				Roger.error(error)
+				self.state = .error(WidgetsInstallerError.invalidBundle(reason: error.localizedDescription))
+			}
+		case "pkarchive":
+			self.state = .installArchive(url: pathURL)
+		default:
+			self.state = .error(WidgetsInstallerError.invalidBundle(reason: "error.unknown".localized))
+		}
+	}
 }
+// swiftlint:enable file_length

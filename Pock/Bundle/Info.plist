@@ -14,7 +14,7 @@
 			<key>CFBundleTypeIconFile</key>
 			<string>widget-big-icon</string>
 			<key>CFBundleTypeIconSystemGenerated</key>
-			<integer>1</integer>
+			<integer>0</integer>
 			<key>CFBundleTypeName</key>
 			<string>Pock Widget</string>
 			<key>CFBundleTypeRole</key>
@@ -24,6 +24,30 @@
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>com.pigigaldi.pock.widget</string>
+			</array>
+			<key>LSTypeIsPackage</key>
+			<integer>1</integer>
+			<key>NSDocumentClass</key>
+			<string>$(PRODUCT_MODULE_NAME).WidgetsInstaller</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>pkarchive</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>widget-big-icon</string>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>0</integer>
+			<key>CFBundleTypeName</key>
+			<string>Pock Widget Archive</string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.pigigaldi.pock.widget.archive</string>
 			</array>
 			<key>LSTypeIsPackage</key>
 			<integer>1</integer>
@@ -86,6 +110,34 @@
 				<key>public.filename-extension</key>
 				<array>
 					<string>pock</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.archive</string>
+				<string>public.data</string>
+				<string>public.zip-archive</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Pock Widget Archive</string>
+			<key>UTTypeIconFile</key>
+			<string>widget-big-icon</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBadgeName</key>
+				<string>widget-big-icon</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>com.pigigaldi.pock.widget.archive</string>
+			<key>UTTypeReferenceURL</key>
+			<string>https://pock.dev</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>pkarchive</string>
 				</array>
 			</dict>
 		</dict>

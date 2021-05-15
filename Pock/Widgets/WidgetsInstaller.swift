@@ -36,6 +36,7 @@ internal final class WidgetsInstaller: NSDocument {
 		case dragdrop
 		case remove(widget: PKWidgetInfo)
 		case install(widget: PKWidgetInfo)
+		case installArchive(url: URL)
 		case update(widget: PKWidgetInfo, version: Version)
 		case removing(widget: PKWidgetInfo)
 		case installing(widget: PKWidgetInfo)
@@ -60,15 +61,40 @@ internal final class WidgetsInstaller: NSDocument {
 	
 	init(contentsOf url: URL, ofType typeName: String) throws {
 		super.init()
-		let widget = try PKWidgetInfo(path: url)
-		installWidget(widget) { error in
-			let controller = WidgetsInstallViewController()
-			if let error = error {
-				controller.state = .error(error)
-			} else {
-				controller.state = .installed(widget: widget)
+		let controller = WidgetsManagerViewController()
+		AppController.shared.openController(controller)
+		do {
+			switch url.pathExtension {
+			case "pock":
+				let widget = try PKWidgetInfo(path: url)
+				installWidget(widget) { _, error in
+					let state: WidgetsInstaller.State
+					if let error = error {
+						state = .error(error)
+					} else {
+						state = .installed(widget: widget)
+					}
+					controller.presentWidgetInstallPanel(withInitialState: state)
+				}
+			case "pkarchive":
+				let name = url.lastPathComponent.replacingOccurrences(of: ".pkarchive", with: "")
+				extractAndInstall(name, atLocation: url, removeSource: false) { widget, error in
+					let state: WidgetsInstaller.State
+					if let error = error {
+						state = .error(error)
+					} else if let widget = widget {
+						state = .installed(widget: widget)
+					} else {
+						state = .error(WidgetsInstallerError.invalidBundle(reason: nil))
+					}
+					controller.presentWidgetInstallPanel(withInitialState: state)
+				}
+			default:
+				controller.presentWidgetInstallPanel(withInitialState: .error(WidgetsInstallerError.invalidBundle(reason: nil)))
 			}
-			AppController.shared.openController(controller)
+			
+		} catch {
+			controller.presentWidgetInstallPanel(withInitialState: .error(WidgetsInstallerError.invalidBundle(reason: error.localizedDescription)))
 		}
 	}
 	
@@ -76,7 +102,7 @@ internal final class WidgetsInstaller: NSDocument {
 	
 	// MARK: Install local widget
 	
-	internal func installWidget(_ widget: PKWidgetInfo, removeSource: Bool = false, _ completion: (PockError?) -> Void) {
+	internal func installWidget(_ widget: PKWidgetInfo, removeSource: Bool = false, _ completion: (PKWidgetInfo?, PockError?) -> Void) {
 		do {
 			let fromLocation = URL(fileURLWithPath: widget.path.path)
 			let toLocation = kWidgetsPathURL.appendingPathComponent(widget.path.lastPathComponent)
@@ -85,10 +111,10 @@ internal final class WidgetsInstaller: NSDocument {
 			} else {
 				try manager.copyItem(at: fromLocation, to: toLocation)
 			}
-			completion(nil)
+			completion(widget, nil)
 		} catch {
 			Roger.error(error)
-			completion(Error.cantCopy(reason: error.localizedDescription))
+			completion(nil, Error.cantCopy(reason: error.localizedDescription))
 		}
 	}
 	
@@ -106,7 +132,7 @@ internal final class WidgetsInstaller: NSDocument {
 	
 	// MARK: Update local widget
 	
-	internal func updateWidget(_ widget: PKWidgetInfo, version: Version, progress: @escaping (Double) -> Void, completion: @escaping (PockError?) -> Void) {
+	internal func updateWidget(_ widget: PKWidgetInfo, version: Version, progress: @escaping (Double) -> Void, completion: @escaping (PKWidgetInfo?, PockError?) -> Void) {
 		downloadWidget(
 			at: version.link,
 			name: widget.name,
@@ -119,21 +145,21 @@ internal final class WidgetsInstaller: NSDocument {
 		)
 	}
 	
-	private func downloadWidget(at url: URL, name: String, progress: @escaping (Double) -> Void, completion: @escaping (PockError?) -> Void) {
+	internal func downloadWidget(at url: URL, name: String, progress: @escaping (Double) -> Void, completion: @escaping (PKWidgetInfo?, PockError?) -> Void) {
 		Downloader(
 			url: url,
 			progress: progress,
 			completion: { locationURL, error in
 				async { [weak self, name, completion, locationURL, error] in
 					if let error = error {
-						completion(error)
+						completion(nil, error)
 						return
 					}
 					guard let url = locationURL else {
-						completion(Error.cantCopy(reason: "error.invalid-path".localized))
+						completion(nil, Error.cantCopy(reason: "error.invalid-path".localized))
 						return
 					}
-					self?.extractAndInstall(name, atLocation: url, completion)
+					self?.extractAndInstall(name, atLocation: url, removeSource: true, completion)
 				}
 			}
 		)
@@ -173,12 +199,12 @@ internal final class WidgetsInstaller: NSDocument {
 							))
 						}
 					},
-					completion: { [completion, name] error in
+					completion: { [completion, name] widget, error in
 						defer {
 							dsleep(0.75)
 							semaphore.signal()
 						}
-						errors[name] = error
+						errors[widget?.name ?? name] = error
 						if processed == total {
 							completion(errors)
 						}
@@ -192,23 +218,31 @@ internal final class WidgetsInstaller: NSDocument {
 	
 	// MARK: Extract downloaded widget
 	
-	private func extractAndInstall(_ widgetName: String, atLocation location: URL, _ completion: (PockError?) -> Void) {
+	internal func extractAndInstall(_ widgetName: String, atLocation location: URL, removeSource: Bool, _ completion: (PKWidgetInfo?, PockError?) -> Void) {
 		let zipFileLocation = location.deletingLastPathComponent().appendingPathComponent(widgetName).appendingPathExtension("zip")
 		defer {
-			try? manager.removeItem(at: zipFileLocation)
+			clearTemporaryWidgetsFolder()
 		}
 		do {
-			try manager.moveItem(at: location, to: zipFileLocation)
+			if removeSource {
+				try manager.moveItem(at: location, to: zipFileLocation)
+			} else {
+				try manager.copyItem(at: location, to: zipFileLocation)
+			}
 			try Zip.unzipFile(zipFileLocation, destination: kWidgetsTempPathURL, overwrite: true, password: nil)
 			try manager.removeItem(at: zipFileLocation)
-			let unzippedLocation = kWidgetsTempPathURL.appendingPathComponent(widgetName).appendingPathExtension("pock")
+			guard let fileName = manager.filesInFolder(kWidgetsTempPathURL.path, filter: { $0.contains(".pock") }).first?.lastPathComponent else {
+				completion(nil, WidgetsInstallerError.invalidBundle(reason: "Invalid filename"))
+				return
+			}
+			let unzippedLocation = kWidgetsTempPathURL.appendingPathComponent(fileName)
 			let newWidget = try PKWidgetInfo(path: unzippedLocation)
 			if let oldWidget = WidgetsLoader.installedWidgets.first(where: {
 				$0.bundleIdentifier.lowercased() == widgetName.lowercased() || $0.name.lowercased() == widgetName.lowercased()
 			}) {
 				uninstallWidget(oldWidget) { error in
 					if let error = error {
-						completion(error)
+						completion(nil, error)
 					} else {
 						installWidget(newWidget, removeSource: true, completion)
 					}
@@ -217,7 +251,17 @@ internal final class WidgetsInstaller: NSDocument {
 				installWidget(newWidget, removeSource: true, completion)
 			}
 		} catch {
-			completion(Error.cantCopy(reason: error.localizedDescription))
+			completion(nil, Error.cantCopy(reason: error.localizedDescription))
+		}
+	}
+	
+	// MARK: Clear temporary widgets folder
+	
+	internal func clearTemporaryWidgetsFolder() {
+		do {
+			try FileManager.default.removeItem(at: kWidgetsTempPathURL)
+		} catch {
+			Roger.error(error)
 		}
 	}
 	

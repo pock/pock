@@ -24,6 +24,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		/// Set Roger allowed log levels
 		#if DEBUG
 		Roger.allowedLevels = [.error, .debug]
+		// ecxc-tyop-fwqo-eznp
 		#else
 		Roger.allowedLevels = []
 		#endif
@@ -203,7 +204,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		#endif
 		
 		// MARK: Quit Pock
-		mainBarMenu.addItem(.separator())
+		mainBarMenu.addItem(NSMenuHeader.new(title: "menu.goodbye".localized))
 		mainBarMenu.addItem(NSMenuItemCustomView.new(
 			title: "menu.quit".localized,
 			target: NSApp,
