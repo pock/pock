@@ -273,14 +273,17 @@ extension AppController: NSTouchBarDelegate {
 	}
 	
 	func touchBar(_ touchBar: NSTouchBar, makeItemForIdentifier identifier: NSTouchBarItem.Identifier) -> NSTouchBarItem? {
-		guard let widget = pockTouchBarController.touchBar?.item(forIdentifier: identifier) as? PKWidgetTouchBarItem else {
+		guard let item = pockTouchBarController.touchBar?.item(forIdentifier: identifier) else {
 			Roger.error("Can't find `NSTouchBarItem` for given identifier: `\(identifier)`")
 			return nil
 		}
-		let item = NSCustomTouchBarItem(identifier: identifier)
-		item.view = widget.viewForCustomizationPalette()
-		item.customizationLabel = widget.customizationLabel
-		return item
+		guard let widget = item as? PKWidgetTouchBarItem else {
+			return item
+		}
+		let widgetItem = NSCustomTouchBarItem(identifier: identifier)
+		widgetItem.view = widget.viewForCustomizationPalette()
+		widgetItem.customizationLabel = widget.customizationLabel
+		return widgetItem
 	}
 	
 	private func addCustomizationObservers() {

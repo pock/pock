@@ -57,6 +57,7 @@ internal class PKWidgetTouchBarItem: NSCustomTouchBarItem {
 	}
 	
 	private var snapshotView: NSView {
+		widget?.prepareForCustomization?()
 		if let customImage = widget?.imageForCustomization {
 			return NSImageView(image: customImage)
 		}

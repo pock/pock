@@ -13,17 +13,12 @@ extension NSTouchBar.CustomizationIdentifier {
 	static let pockTouchBarController = "PockTouchBarController"
 }
 
-/// Control Strip item identifier
-extension NSTouchBarItem.Identifier {
-	static let pockControlStripItem = NSTouchBarItem.Identifier("PockControlStripItem")
-}
-
 /// Pock (main Touch Bar controller)
 internal class PockTouchBarController: PKTouchBarMouseController {
 
 	/// Data
 	private(set) var widgets: [NSTouchBarItem.Identifier: PKWidgetInfo] = [:]
-	private(set) var cachedItems: [NSTouchBarItem.Identifier: PKWidgetTouchBarItem] = [:]
+	private(set) var cachedItems: [NSTouchBarItem.Identifier: NSTouchBarItem] = [:]
 	
 	private var currentItems: [NSTouchBarItem.Identifier] {
 		return touchBar?.itemIdentifiers ?? []
@@ -167,7 +162,7 @@ internal class PockTouchBarController: PKTouchBarMouseController {
 	// MARK: Mouse delegates
 	
 	private var mouseDelegates: [PKScreenEdgeMouseDelegate] {
-		return cachedItems.values.compactMap({ $0.widget as? PKScreenEdgeMouseDelegate })
+		return cachedItems.values.compactMap({ ($0 as? PKWidgetTouchBarItem)?.widget as? PKScreenEdgeMouseDelegate })
 	}
 	
 	// MARK: Mouse Overrides
