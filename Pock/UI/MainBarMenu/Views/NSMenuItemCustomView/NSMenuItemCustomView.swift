@@ -18,6 +18,16 @@ internal class NSMenuItemCustomView: NSView {
 	@IBOutlet internal private(set) weak var keyChar: NSTextField!
 
 	internal weak var item: NSMenuItem?
+    
+    override var intrinsicContentSize: NSSize {
+        mainLabel.sizeToFit()
+        keyModifier.sizeToFit()
+        keyChar.sizeToFit()
+        var orig = super.intrinsicContentSize
+        orig.width = mainLabel.frame.width + keyModifier.frame.width + keyChar.frame.width
+        orig.width += 32    
+        return orig
+    }
 
 	internal static func new(title: String, target: AnyObject?, selector: Selector?, keyEquivalent: String?, isAlternate: Bool = false, height: CGFloat = 23) -> NSMenuItem {
 		let item = NSMenuItem(title: title, action: selector, keyEquivalent: keyEquivalent ?? "")
