@@ -19,6 +19,11 @@ extension String {
 		let localized = NSLocalizedString(self, tableName: "Localisations", bundle: .main, value: self, comment: self)
 		return String(format: localized, arguments: args)
 	}
+    
+    /// Compare two versions
+    func isGreatherThan(_ version: String) -> Bool {
+        return compare(version, options: .numeric) == .orderedDescending
+    }
 	
 	/// Class name as string
 	init(_ clss: AnyClass) {

@@ -55,9 +55,9 @@ internal class Updater {
 	// MARK: Netowrk core-info
 	
 	#if DEBUG
-	private let latestVersionURLString: String = "https://pock.dev/api/dev/latestVersions.json"
+	private let latestVersionURLString: String = "https://stage.pock.app/api/latestVersions.json"
 	#else
-	private let latestVersionURLString: String = "https://pock.dev/api/latestVersions.json"
+	private let latestVersionURLString: String = "https://pock.app/api/latestVersions.json"
 	#endif
 	
 	// MARK: Cache (?)
@@ -108,11 +108,11 @@ internal class Updater {
 			return (nil, nil)
 		}
 		if let coreMin = new.coreMin {
-			if fullAppVersion < coreMin {
-				return (nil, .invalidCoreVersion(minVersion: coreMin))
-			}
+            if coreMin.isGreatherThan(fullAppVersion) {
+                return (nil, .invalidCoreVersion(minVersion: coreMin))
+            }
 		}
-		return widget.fullVersion < new.name ? (new, nil) : (nil, nil)
+        return new.name.isGreatherThan(widget.fullVersion) ? (new, nil) : (nil, nil)
 	}
 	
 }

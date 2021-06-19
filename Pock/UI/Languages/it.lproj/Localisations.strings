@@ -7,7 +7,7 @@
 */
 
 // MARK: Base
-"base.website_url" = "https://pock.dev/it";
+"base.website_url" = "https://pock.app/it";
 
 // MARK: MainBarMenu
 // General

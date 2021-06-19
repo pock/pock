@@ -104,7 +104,7 @@
 			<key>UTTypeIdentifier</key>
 			<string>com.pigigaldi.pock.widget</string>
 			<key>UTTypeReferenceURL</key>
-			<string>https://pock.dev</string>
+			<string>https://pock.app</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
@@ -136,7 +136,7 @@
 			<key>UTTypeIdentifier</key>
 			<string>com.pigigaldi.pock.widget.archive</string>
 			<key>UTTypeReferenceURL</key>
-			<string>https://pock.dev</string>
+			<string>https://pock.app</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>

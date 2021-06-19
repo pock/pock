@@ -40,6 +40,7 @@ class PreferencesViewController: NSViewController {
 	/// Update sections
 	@IBOutlet private weak var checkForUpdatesOnceADayCheckbox: NSButton!
 	@IBOutlet private weak var checkForUpdatesNowButton: NSButton!
+    @IBOutlet private weak var checkForUpdatesSpinner: NSProgressIndicator!
 	
 	// MARK: Overrides
 	
@@ -93,6 +94,7 @@ class PreferencesViewController: NSViewController {
 		showTrackingAreaCheckbox.state = Preferences[.showTrackingArea] == true ? .on : .off
 		showTrackingAreaCheckbox.isEnabled = Preferences[.mouseSupportEnabled] == true
 		checkForUpdatesOnceADayCheckbox.state = Preferences[.checkForUpdatesOnceADay] == true ? .on : .off
+        checkForUpdatesSpinner.stopAnimation(nil)
 		/// Layout Style
 		updateLayoutStyleUIElements()
 		/// Default Touch Bar Presentation Mode
@@ -227,7 +229,7 @@ class PreferencesViewController: NSViewController {
 	private func shouldAskToupdate(_ completion: @escaping (Version?) -> Void) {
 		AppController.shared.fetchLatestVersions { [completion] in
 			let currentVersion = Updater.fullAppVersion
-			if let core = Updater.cachedLatestReleases?.core, core.name > currentVersion {
+            if let core = Updater.cachedLatestReleases?.core, core.name.isGreatherThan(currentVersion) {
 				completion(core)
 			} else {
 				completion(nil)
@@ -236,16 +238,20 @@ class PreferencesViewController: NSViewController {
 	}
 	
 	@IBAction private func checkForUpdates(_ sender: NSButton) {
+        checkForUpdatesSpinner.startAnimation(nil)
 		checkForUpdatesNowButton.isEnabled = false
 		checkForUpdatesNowButton.title = "general.action.checking".localized
-		shouldAskToupdate { [weak self] newVersion in
-			guard let self = self else {
-				return
-			}
-			self.checkForUpdatesNowButton.title = "general.action.check-for-updates".localized
-			self.checkForUpdatesNowButton.isEnabled = true
-			self.showUpdateAlert(for: newVersion)
-		}
+        async(after: 1) { [weak self] in
+            self?.shouldAskToupdate { [weak self] newVersion in
+                guard let self = self else {
+                    return
+                }
+                self.checkForUpdatesNowButton.title = "general.action.check-for-updates".localized
+                self.checkForUpdatesNowButton.isEnabled = true
+                self.checkForUpdatesSpinner.stopAnimation(nil)
+                self.showUpdateAlert(for: newVersion)
+            }
+        }
 	}
 	
 	private func showUpdateAlert(for version: Version?) {

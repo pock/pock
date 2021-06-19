@@ -259,7 +259,8 @@ extension WidgetsManagerViewController: NSTableViewDelegate {
 		cell.status.image = NSImage(named: widget.loaded ? NSImage.statusAvailableName : NSImage.statusUnavailableName)
 		cell.name.stringValue = widget.name
 		cell.name.alphaValue  = disabled ? 0.475 : 1
-		cell.badge.isHidden = disabled || Updater.newVersion(for: widget).version == nil
+        let newVersion = Updater.newVersion(for: widget)
+        cell.badge.isHidden = disabled || newVersion.version == nil && newVersion.error == nil
 		/// Return
 		return cell
 	}

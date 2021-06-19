@@ -225,12 +225,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			return
 		}
 		var coreBadge: Int = 0
-		if latestVersions.core.name > Updater.fullAppVersion {
+        if latestVersions.core.name.isGreatherThan(Updater.fullAppVersion) {
 			coreBadge = 1
 		}
 		var widgetsToUpdate: Int = 0
 		for widget in WidgetsLoader.installedWidgets {
-			if Updater.newVersion(for: widget).version != nil {
+            let newVersion = Updater.newVersion(for: widget)
+            if newVersion.version != nil || newVersion.error != nil {
 				widgetsToUpdate += 1
 			}
 		}

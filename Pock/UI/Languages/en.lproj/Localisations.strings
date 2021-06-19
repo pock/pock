@@ -7,7 +7,7 @@
 */
 
 // MARK: Base
-"base.website_url" = "https://pock.dev";
+"base.website_url" = "https://pock.app";
 "base.widget" = "widget";
 "base.Widget" = "Widget";
 

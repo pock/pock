@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="18121" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19115.2" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18121"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19115.2"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -12,6 +12,7 @@
                 <outlet property="allowBlankTouchBarDescriptionLabel" destination="p9e-gh-Bw3" id="nSN-sA-hQC"/>
                 <outlet property="checkForUpdatesNowButton" destination="vXJ-0E-c0K" id="JX4-93-x1O"/>
                 <outlet property="checkForUpdatesOnceADayCheckbox" destination="MN0-pv-egG" id="kKd-hK-kvl"/>
+                <outlet property="checkForUpdatesSpinner" destination="Vck-yP-qm0" id="wEm-c8-rix"/>
                 <outlet property="cursorOptionsTitleLabel" destination="kRC-K7-BrY" id="nh1-xL-SDp"/>
                 <outlet property="defaultTouchBarPresentationModeDesc" destination="tcQ-ad-eeX" id="OPu-fY-5rD"/>
                 <outlet property="defaultTouchBarPresentationModeLabel" destination="m4D-MG-SrZ" id="y5o-i9-nPy"/>
@@ -53,7 +54,7 @@
                             <rect key="frame" x="5" y="0.0" width="140" height="47"/>
                             <subviews>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kr3-XJ-o9h">
-                                    <rect key="frame" x="50" y="29" width="40" height="18"/>
+                                    <rect key="frame" x="51" y="29" width="38" height="18"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="18" id="aqi-fM-FZ3"/>
                                     </constraints>
@@ -79,7 +80,7 @@
                                     <constraints>
                                         <constraint firstAttribute="width" constant="140" id="Nyb-Re-1Cn"/>
                                     </constraints>
-                                    <textFieldCell key="cell" selectable="YES" alignment="center" title="pock.dev" id="cuv-gB-iKR">
+                                    <textFieldCell key="cell" selectable="YES" alignment="center" title="pock.app" id="cuv-gB-iKR">
                                         <font key="font" metaFont="miniSystem"/>
                                         <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -116,19 +117,6 @@
                         <constraint firstAttribute="width" constant="1" id="MiR-RC-txf"/>
                     </constraints>
                 </box>
-                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vXJ-0E-c0K">
-                    <rect key="frame" x="504" y="9" width="146" height="34"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="22" id="IgT-mq-cNe"/>
-                    </constraints>
-                    <buttonCell key="cell" type="push" title="Check for updates" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="PLt-VI-1i1">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="checkForUpdates:" target="-2" id="SZf-Ja-8gv"/>
-                    </connections>
-                </button>
                 <stackView distribution="equalSpacing" orientation="vertical" alignment="leading" spacing="16" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TET-qG-kOa">
                     <rect key="frame" x="171" y="94" width="472" height="451"/>
                     <subviews>
@@ -136,7 +124,7 @@
                             <rect key="frame" x="0.0" y="383" width="472" height="68"/>
                             <subviews>
                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Sqw-AL-GkK">
-                                    <rect key="frame" x="-2" y="52" width="55" height="16"/>
+                                    <rect key="frame" x="-2" y="52" width="52" height="16"/>
                                     <textFieldCell key="cell" selectable="YES" title="General" id="Pbd-fB-54z">
                                         <font key="font" usesAppearanceFont="YES"/>
                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -221,7 +209,7 @@
                             <rect key="frame" x="0.0" y="248" width="472" height="102"/>
                             <subviews>
                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="jRN-fQ-kWQ">
-                                    <rect key="frame" x="-2" y="86" width="48" height="16"/>
+                                    <rect key="frame" x="-2" y="86" width="45" height="16"/>
                                     <textFieldCell key="cell" selectable="YES" title="Layout" id="dV8-Hr-2Tf">
                                         <font key="font" usesAppearanceFont="YES"/>
                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -350,7 +338,7 @@
                                     <rect key="frame" x="0.0" y="83" width="374" height="35"/>
                                     <subviews>
                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Hou-tH-Wbe">
-                                            <rect key="frame" x="-2" y="19" width="182" height="16"/>
+                                            <rect key="frame" x="-2" y="19" width="171" height="16"/>
                                             <textFieldCell key="cell" selectable="YES" title="Switch to default Touch Bar" id="xMH-P5-S6x">
                                                 <font key="font" usesAppearanceFont="YES"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -445,7 +433,7 @@ You can always configure default settings from `System Preferences &gt; Keyboard
                             <rect key="frame" x="0.0" y="0.0" width="472" height="64"/>
                             <subviews>
                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="kRC-K7-BrY">
-                                    <rect key="frame" x="-2" y="48" width="102" height="16"/>
+                                    <rect key="frame" x="-2" y="48" width="96" height="16"/>
                                     <textFieldCell key="cell" selectable="YES" title="Cursor Options" id="E5d-QZ-IKo">
                                         <font key="font" usesAppearanceFont="YES"/>
                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -523,23 +511,51 @@ You can always configure default settings from `System Preferences &gt; Keyboard
                         <action selector="didChangePreferencesOptionFor:" target="-2" id="FfI-K3-WPa"/>
                     </connections>
                 </button>
+                <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="14" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cZc-n6-Rrt">
+                    <rect key="frame" x="481" y="16" width="162" height="22"/>
+                    <subviews>
+                        <progressIndicator maxValue="100" displayedWhenStopped="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="Vck-yP-qm0">
+                            <rect key="frame" x="0.0" y="3" width="16" height="16"/>
+                        </progressIndicator>
+                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vXJ-0E-c0K">
+                            <rect key="frame" x="23" y="-7" width="146" height="34"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="22" id="IgT-mq-cNe"/>
+                            </constraints>
+                            <buttonCell key="cell" type="push" title="Check for updates" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="PLt-VI-1i1">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="checkForUpdates:" target="-2" id="SZf-Ja-8gv"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <visibilityPriorities>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                    </visibilityPriorities>
+                    <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                    </customSpacing>
+                </stackView>
             </subviews>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="vXJ-0E-c0K" secondAttribute="bottom" constant="16" id="7Pj-Qi-Od5"/>
                 <constraint firstItem="evs-Wg-hnZ" firstAttribute="leading" secondItem="iRU-qG-dyZ" secondAttribute="trailing" id="7ps-jJ-THU"/>
                 <constraint firstItem="MN0-pv-egG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="evs-Wg-hnZ" secondAttribute="trailing" constant="20" id="BcU-jW-v3F"/>
                 <constraint firstItem="iRU-qG-dyZ" firstAttribute="centerY" secondItem="7A0-aS-6xu" secondAttribute="centerY" id="Dua-AH-eb7"/>
-                <constraint firstItem="MN0-pv-egG" firstAttribute="trailing" secondItem="vXJ-0E-c0K" secondAttribute="trailing" id="ITj-Cr-UnH"/>
                 <constraint firstAttribute="bottom" secondItem="evs-Wg-hnZ" secondAttribute="bottom" id="JQe-re-aKG"/>
+                <constraint firstAttribute="bottom" secondItem="cZc-n6-Rrt" secondAttribute="bottom" constant="16" id="M3v-3j-j5I"/>
+                <constraint firstItem="cZc-n6-Rrt" firstAttribute="top" secondItem="MN0-pv-egG" secondAttribute="bottom" constant="8" symbolic="YES" id="O6z-s1-KMh"/>
                 <constraint firstItem="TET-qG-kOa" firstAttribute="top" secondItem="7A0-aS-6xu" secondAttribute="top" constant="16" id="O8u-n1-Opc"/>
-                <constraint firstAttribute="trailing" secondItem="vXJ-0E-c0K" secondAttribute="trailing" constant="20" id="ezS-sX-EaP"/>
+                <constraint firstAttribute="trailing" secondItem="cZc-n6-Rrt" secondAttribute="trailing" constant="20" symbolic="YES" id="RXu-ex-Ep7"/>
                 <constraint firstItem="MN0-pv-egG" firstAttribute="top" secondItem="TET-qG-kOa" secondAttribute="bottom" constant="32" id="hoj-s9-uYD"/>
-                <constraint firstItem="vXJ-0E-c0K" firstAttribute="top" secondItem="MN0-pv-egG" secondAttribute="bottom" constant="8" id="i4T-jA-Zwm"/>
-                <constraint firstItem="vXJ-0E-c0K" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="evs-Wg-hnZ" secondAttribute="trailing" constant="20" id="kDG-0Q-kSv"/>
                 <constraint firstAttribute="trailing" secondItem="TET-qG-kOa" secondAttribute="trailing" constant="20" id="nMD-Nz-WkP"/>
                 <constraint firstItem="iRU-qG-dyZ" firstAttribute="leading" secondItem="7A0-aS-6xu" secondAttribute="leading" id="oge-5P-ue1"/>
                 <constraint firstItem="TET-qG-kOa" firstAttribute="leading" secondItem="evs-Wg-hnZ" secondAttribute="trailing" constant="20" id="pnp-RD-XYf"/>
                 <constraint firstItem="evs-Wg-hnZ" firstAttribute="top" secondItem="7A0-aS-6xu" secondAttribute="top" id="sq9-uG-tsG"/>
+                <constraint firstItem="MN0-pv-egG" firstAttribute="trailing" secondItem="cZc-n6-Rrt" secondAttribute="trailing" id="vFO-4g-Jb2"/>
             </constraints>
             <point key="canvasLocation" x="-942.5" y="-224"/>
         </customView>

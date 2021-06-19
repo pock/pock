@@ -102,9 +102,9 @@ internal class Downloader: NSObject, URLSessionTaskDelegate, URLSessionDownloadD
 internal class DefaultWidgetsDownloader {
 	
 	#if DEBUG
-	private let defaultWidgetsURLString: String = "https://pock.dev/api/dev/defaults.php"
+	private let defaultWidgetsURLString: String = "https://stage.pock.app/api/defaults.php"
 	#else
-	private let defaultWidgetsURLString: String = "https://pock.dev/api/defaults.php"
+	private let defaultWidgetsURLString: String = "https://pock.app/api/defaults.php"
 	#endif
 	
 	// MARK: Fetch default widgets list
