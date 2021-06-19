@@ -13,6 +13,7 @@ public struct PKWidgetInfo: Equatable {
 		case principalClass = "NSPrincipalClass"
 		case bundleIdentifier = "CFBundleIdentifier"
 		case bundleName = "CFBundleName"
+        case bundleDisplayName = "CFBundleDisplayName"
 		case bundleVersion = "CFBundleShortVersionString"
 		case widgetAuthor = "PKWidgetAuthor"
 		case bundleBuild = "CFBundleVersion"
@@ -54,7 +55,7 @@ public struct PKWidgetInfo: Equatable {
 		guard let bundle = Bundle(path: path.path),
 			  let bundleIdentifier: String = bundle[.bundleIdentifier],
 			  let principalClass = bundle.principalClass,
-			  let name: String = bundle[.bundleName],
+              let name: String = bundle[.bundleDisplayName] ?? bundle[.bundleName],
 			  let author: String = bundle[.widgetAuthor],
 			  let version: String = bundle[.bundleVersion] else {
 			throw NSError(domain: "PKWidgetInfo:init", code: -1, userInfo: ["description": "Can't load widget at: \"\(path.absoluteString)\""])
