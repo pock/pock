@@ -89,18 +89,18 @@ internal final class WidgetsLoader {
 				WidgetsLoader.installedWidgets.append(info)
 			}
 			return info
-		} catch {
-			Roger.error(error.localizedDescription)
+		} catch let error1 {
+            do {
+                let info = try PKWidgetInfo(unloadableWidgetAtPath: url)
+                if !WidgetsLoader.installedWidgets.contains(info) {
+                    WidgetsLoader.installedWidgets.append(info)
+                }
+                return info
+            } catch let error2 {
+                Roger.error(error2.localizedDescription)
+            }
+            Roger.error(error1.localizedDescription)
 			return nil
-		}
-	}
-	
-	/// Unload all widgets
-	internal static func unloadAllWidgets() {
-		for widget in loadedWidgets {
-			let bundle = Bundle(for: widget.principalClass)
-			Roger.debug("[WidgetsLoader] unloading: \(widget.name)")
-			bundle.unload()
 		}
 	}
 

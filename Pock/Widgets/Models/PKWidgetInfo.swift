@@ -28,7 +28,7 @@ public struct PKWidgetInfo: Equatable {
 	// MARK: Data
 	let path: URL
 	let bundleIdentifier: String
-	let principalClass: AnyClass
+	let principalClass: AnyClass?
 	let name: String
 	let author: String
 	let version: String
@@ -79,6 +79,27 @@ public struct PKWidgetInfo: Equatable {
 			self.preferencesClass = nil
 		}
 	}
+    
+    public init(unloadableWidgetAtPath path: URL) throws {
+        let infoFile = path.appendingPathComponent("Contents", isDirectory: true).appendingPathComponent("Info").appendingPathExtension("plist")
+        guard let infoDict = NSDictionary(contentsOf: infoFile), let bundleIdentifier: String = infoDict[.bundleIdentifier] else {
+            throw NSError(domain: "PKWidgetInfo:init", code: -1, userInfo: ["description": "Can't load widget at: \"\(path.absoluteString)\""])
+        }
+        self.path = path
+        self.bundleIdentifier = bundleIdentifier
+        self.principalClass = nil
+        self.name = infoDict[.bundleDisplayName] ?? infoDict[.bundleName] ?? "Unknown"
+        self.author = infoDict[.widgetAuthor] ?? "Unknown"
+        self.version = infoDict[.bundleVersion] ?? "--"
+        if let build: String = infoDict[.bundleBuild] {
+            self.build = build == "1" ? nil : build
+        } else {
+            self.build = nil
+        }
+        self.loaded = false
+        /// Preferences
+        self.preferencesClass = nil
+    }
 	
 }
 
@@ -86,4 +107,10 @@ extension Bundle {
 	fileprivate subscript<T>(_ key: PKWidgetInfo.BundleKeys) -> T? {
 		return object(forInfoDictionaryKey: key.rawValue) as? T
 	}
+}
+
+extension NSDictionary {
+    fileprivate subscript<T>(_ key: PKWidgetInfo.BundleKeys, type: T.Type = T.self) -> T? {
+        return value(forKey: key.rawValue) as? T
+    }
 }
