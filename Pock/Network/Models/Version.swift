@@ -12,7 +12,7 @@ internal struct Version: Codable {
 	let link: URL
 	let changelog: String
 	let coreMin: String?
-    private enum CodingKeys : String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case name, link, changelog, coreMin = "core_min"
     }
 }

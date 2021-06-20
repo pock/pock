@@ -58,7 +58,7 @@ internal struct Preferences {
 				}
 				switch key {
 				case .allowBlankTouchBar:
-					return true as! T
+					return false as! T
 				case .launchAtLogin:
 					fatalError("[Pock][Internal-Error]: Execution should not reach this point.")
 				case .layoutStyle:
