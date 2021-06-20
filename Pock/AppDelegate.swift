@@ -10,6 +10,7 @@ import AppCenter
 import AppCenterAnalytics
 import AppCenterCrashes
 
+// swiftlint:disable type_body_length
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
 
@@ -89,6 +90,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			selector: #selector(selectAdvancedSectionItem(_:)),
 			keyEquivalent: "d"
 		))
+        menu.addItem(NSMenuItemCustomView.new(
+            title: "menu.advanced.open-widgets-folder".localized,
+            target: self,
+            selector: #selector(selectAdvancedSectionItem(_:)),
+            keyEquivalent: "f"
+        ))
 		menu.addItem(NSMenuHeader.new(title: "general.action.reload".localized))
 		menu.addItem(NSMenuItemCustomView.new(
 			title: "menu.advanced.reload_pock".localized,
@@ -127,7 +134,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	private lazy var _debugMenuItem: NSMenuItem = {
 		let debugMenu = NSMenu(title: "PockDebug")
 		debugMenu.addItem(NSMenuHeader.new(title: "Widgets"))
-		debugMenu.addItem(withTitle: "Open widgets directory…", action: #selector(openWidgetsDirectory), keyEquivalent: "")
 		debugMenu.addItem(withTitle: "Reload Widgets", action: #selector(reloadWidgets), keyEquivalent: "")
 		debugMenu.addItem(NSMenuHeader.new(title: "General"))
 		debugMenu.addItem(withTitle: "Open On-Board…", action: #selector(openOnBoardController), keyEquivalent: "")
@@ -294,22 +300,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	
 	// MARK: Select advanced section item
 	@objc private func selectAdvancedSectionItem(_ sender: NSMenuItem) {
-		switch sender.keyEquivalent {
-		case "d":
+        switch sender.keyEquivalent {
+        case "d":
 			AppController.shared.reInstallDefaultWidgets()
-		case "r":
-			AppController.shared.reload(shouldFetchLatestVersions: true)
-		case "R":
-			AppController.shared.relaunch()
-		case "s":
-			TouchBarHelper.reloadTouchBarAgent()
-		case "S":
-			TouchBarHelper.reloadTouchBarServer { _ in
-				NSApp.activate(ignoringOtherApps: true)
-			}
-		default:
-			return
-		}
+        case "f":
+            NSWorkspace.shared.open(kWidgetsPathURL)
+        case "r":
+            AppController.shared.reload(shouldFetchLatestVersions: true)
+        case "R":
+            AppController.shared.relaunch()
+        case "s":
+            TouchBarHelper.reloadTouchBarAgent()
+        case "S":
+            TouchBarHelper.reloadTouchBarServer { _ in
+                NSApp.activate(ignoringOtherApps: true)
+            }
+        default:
+            return
+        }
 	}
 	
 	// MARK: Open On-Board window
@@ -318,6 +326,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	}
 
 }
+// swiftlint:enable type_body_length
 
 #if DEBUG
 private extension AppDelegate {
@@ -328,10 +337,6 @@ private extension AppDelegate {
 	// MARK: Show debug console
 	@objc private func showDebugConsole() {
 		// TODO: AppController.shared.showDebugConsole()
-	}
-	// MARK: Open widgets directory
-	@objc private func openWidgetsDirectory() {
-		NSWorkspace.shared.open(kWidgetsPathURL)
 	}
 	// MARK: Reload Widgets
 	@objc private func reloadWidgets() {

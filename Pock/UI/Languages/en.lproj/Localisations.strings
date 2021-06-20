@@ -31,6 +31,7 @@
 // Advanced
 "menu.advanced" = "Advanced";
 "menu.advanced.re-install-default-widgets" = "Re-install default widgets…";
+"menu.advanced.open-widgets-folder" = "Open widgets folder…";
 "menu.advanced.reload_pock" = "Reload Pock…";
 "menu.advanced.relaunch_pock" = "Relaunch Pock…";
 "menu.advanced.reload_touchbar" = "Reload Control Strip…";
