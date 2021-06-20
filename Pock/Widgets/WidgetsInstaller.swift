@@ -106,7 +106,10 @@ internal final class WidgetsInstaller: NSDocument {
 		do {
 			let fromLocation = URL(fileURLWithPath: widget.path.path)
 			let toLocation = kWidgetsPathURL.appendingPathComponent(widget.path.lastPathComponent)
-			if removeSource {
+            if manager.fileExists(at: toLocation.path, directory: true) {
+                try? manager.removeItem(at: toLocation)
+            }
+            if removeSource {
 				try manager.moveItem(at: fromLocation, to: toLocation)
 			} else {
 				try manager.copyItem(at: fromLocation, to: toLocation)
