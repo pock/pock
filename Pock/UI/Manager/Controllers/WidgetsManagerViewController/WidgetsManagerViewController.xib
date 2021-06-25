@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="18121" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18121"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -264,7 +264,7 @@
                         <constraint firstItem="kST-EG-Ed1" firstAttribute="leading" secondItem="Mtk-tc-IPU" secondAttribute="leading" constant="20" id="2w0-QQ-IrF"/>
                         <constraint firstItem="kST-EG-Ed1" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Mtk-tc-IPU" secondAttribute="top" constant="20" id="AjP-Tn-3Uj"/>
                         <constraint firstAttribute="trailing" secondItem="kST-EG-Ed1" secondAttribute="trailing" constant="20" id="GVa-bS-iWk"/>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="220" id="ILx-g3-iJx"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="270" id="ILx-g3-iJx"/>
                         <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="kST-EG-Ed1" secondAttribute="bottom" constant="20" id="Ijr-36-peb"/>
                         <constraint firstItem="kST-EG-Ed1" firstAttribute="centerY" secondItem="Mtk-tc-IPU" secondAttribute="centerY" id="eGl-Vn-Ni8"/>
                     </constraints>
