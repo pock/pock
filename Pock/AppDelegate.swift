@@ -24,7 +24,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	func applicationDidFinishLaunching(_ aNotification: Notification) {
 		/// Set Roger allowed log levels
 		#if DEBUG
-		Roger.allowedLevels = [.error, .debug]
+        Roger.allowedLevels = [.error, .debug, .info]
 		// ecxc-tyop-fwqo-eznp
 		#else
 		Roger.allowedLevels = []
