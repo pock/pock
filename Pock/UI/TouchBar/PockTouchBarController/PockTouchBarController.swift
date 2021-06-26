@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import AppCenterAnalytics
 import PockKit
 
 /// Customization identifier
@@ -89,11 +90,15 @@ internal class PockTouchBarController: PKTouchBarMouseController {
 		}
 		TouchBarHelper.setPresentationMode(to: presentationMode)
 		checkForBlankTouchBar()
+        // Track event
+        Analytics.trackEvent("PockTouchBarController.present()")
 	}
 	
 	override func minimize() {
 		emptyTouchBarController?.dismiss()
 		super.minimize()
+        // Track event
+        Analytics.trackEvent("PockTouchBarController.minimize()")
 	}
 	
 	override func dismiss() {
@@ -103,6 +108,8 @@ internal class PockTouchBarController: PKTouchBarMouseController {
 		}
 		TouchBarHelper.setPresentationMode(to: Preferences[.userDefinedPresentationMode] as PresentationMode)
 		super.dismiss()
+        // Track event
+        Analytics.trackEvent("PockTouchBarController.dismiss()")
 	}
 	
 	private func flushWidgetItems() {

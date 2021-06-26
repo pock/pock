@@ -6,6 +6,7 @@
 //
 
 import Cocoa
+import AppCenterAnalytics
 
 class PreferencesViewController: NSViewController {
 
@@ -173,6 +174,11 @@ class PreferencesViewController: NSViewController {
 		async(after: 0.4) {
 			NotificationCenter.default.post(name: .shouldReloadPock, object: nil)
 		}
+        // Track event
+        Analytics.trackEvent(
+            "PreferencesViewController.didChangeLayoutStyle(for:)",
+            withProperties: ["layoutStyle": style.rawValue]
+        )
 	}
 	
 	@IBAction private func didChangeDefaultTouchBarPresentationMode(_ button: NSPopUpButton) {
@@ -212,6 +218,14 @@ class PreferencesViewController: NSViewController {
 			return
 		}
 		Preferences[key] = newValue
+        // Track event
+        Analytics.trackEvent(
+            "PreferencesViewController.didChangePreferencesOption(for:)",
+            withProperties: [
+                key.rawValue: newValue.description,
+                "shouldReloadPock": shouldReloadPock.description
+            ]
+        )
 		if shouldReloadPock {
 			async {
 				NotificationCenter.default.post(name: .shouldReloadPock, object: nil)
@@ -252,6 +266,8 @@ class PreferencesViewController: NSViewController {
                 self.showUpdateAlert(for: newVersion)
             }
         }
+        // Track event
+        Analytics.trackEvent("PreferencesViewController.checkForUpdates(_:)")
 	}
 	
 	private func showUpdateAlert(for version: Version?) {
@@ -272,6 +288,11 @@ class PreferencesViewController: NSViewController {
 					}
 				}
 			)
+            // Track event
+            Analytics.trackEvent(
+                "PreferencesViewController.showUpdateAlert(for:)",
+                withProperties: ["newVersion": newVersion.name]
+            )
 		} else {
 			self.showAlert(
 				title: "preferences.updates.already-on-latest-version.title".localized(currentVersion),

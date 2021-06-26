@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import AppCenterAnalytics
 import Magnet
 import PockKit
 
@@ -385,5 +386,7 @@ extension AppController {
         windowController.showWindow(self)
         window.delegate = self
         window.orderFrontRegardless()
+        // Track this event
+        Analytics.trackEvent("AppController.showDebugConsole()")
     }
 }
