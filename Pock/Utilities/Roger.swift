@@ -16,6 +16,33 @@ public func print(_ data: Any) {
 
 /// Lightweight and performance-driven loggin class
 public class Roger {
+    
+    private static var pipeForSTDOUT = Pipe()
+    private static var pipeForSTDERR = Pipe()
+    
+    public static func listenForSTDOUTEvents(_ handler: @escaping (String) -> Void) {
+        setvbuf(stdout, nil, _IONBF, 0)
+        dup2(pipeForSTDOUT.fileHandleForWriting.fileDescriptor, STDOUT_FILENO)
+        pipeForSTDOUT.fileHandleForReading.readabilityHandler = { handle in
+            let data = handle.availableData
+            let str = String(data: data, encoding: .utf8) ?? "[stdout]: <Invalid-utf8 data of size: \(data.count)>\n"
+            async { [str] in
+                handler(str)
+            }
+        }
+    }
+    
+    public static func listenForSTDERREvents(_ handler: @escaping (String) -> Void) {
+        setvbuf(stdout, nil, _IONBF, 0)
+        dup2(pipeForSTDERR.fileHandleForWriting.fileDescriptor, STDERR_FILENO)
+        pipeForSTDERR.fileHandleForReading.readabilityHandler = { handle in
+            let data = handle.availableData
+            let str = String(data: data, encoding: .utf8) ?? "[stderr]: <Invalid-utf8 data of size: \(data.count)>\n"
+            async { [str] in
+                handler(str)
+            }
+        }
+    }
 
 	/// Log levels
 	public enum Level: String, CaseIterable {

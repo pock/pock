@@ -37,6 +37,9 @@ internal class AppController: NSResponder {
 	
 	/// Current window controller
 	private var windowController: NSWindowController?
+    
+    /// Debug console controller
+    private var debugConsoleController: NSWindowController?
 
 	/// Private initialiser
 	private override init() {
@@ -237,7 +240,15 @@ internal class AppController: NSResponder {
 
 extension AppController: NSWindowDelegate {
 	func windowWillClose(_ notification: Notification) {
-		windowController = nil
+        guard let window = notification.object as? NSWindow else {
+            return
+        }
+        switch window.contentViewController {
+        case is DebugConsoleViewController:
+            debugConsoleController = nil
+        default:
+            windowController = nil
+        }
 	}
 }
 
@@ -347,4 +358,29 @@ extension AppController {
 		fetchLatestVersions {}
 	}
 	
+}
+
+// MARK: Debug console
+extension AppController {
+    internal func showDebugConsole() {
+        let windowController: NSWindowController
+        let window: NSWindow
+        if let current = debugConsoleController, let currentWindow = current.window {
+            windowController = current
+            window = currentWindow
+        } else {
+            let controller = DebugConsoleViewController()
+            window = NSWindow(contentViewController: controller)
+            window.title = controller.title ?? ""
+            window.miniwindowTitle = controller.title
+            window.titleVisibility = .visible
+            window.isReleasedWhenClosed = true
+            window.level = .mainMenu
+            windowController = NSWindowController(window: window)
+            debugConsoleController = windowController
+        }
+        windowController.showWindow(self)
+        window.delegate = self
+        window.orderFrontRegardless()
+    }
 }

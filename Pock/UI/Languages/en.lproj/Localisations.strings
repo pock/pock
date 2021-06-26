@@ -36,6 +36,8 @@
 "menu.advanced.relaunch_pock" = "Relaunch Pock…";
 "menu.advanced.reload_touchbar" = "Reload Control Strip…";
 "menu.advanced.relaunch_touchbar" = "Relaunch Touch Bar…";
+"menu.developers" = "Developers";
+"menu.advanced.show_debug_console" = "Show debug console…";
 // Quit
 "menu.goodbye" = "Goodbye";
 "menu.quit" = "Quit Pock";

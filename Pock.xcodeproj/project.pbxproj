@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		3400F92D264EBBC8003B2B4C /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3400F92C264EBBC8003B2B4C /* Media.xcassets */; };
 		340D5BA326861A67001D73F8 /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 340D5BA226861A67001D73F8 /* Secrets.plist */; };
+		340D5BA92687038C001D73F8 /* DebugConsoleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340D5BA72687038C001D73F8 /* DebugConsoleViewController.swift */; };
+		340D5BAA2687038C001D73F8 /* DebugConsoleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 340D5BA82687038C001D73F8 /* DebugConsoleViewController.xib */; };
 		3425AEC12650363000B8BE6F /* DispatchQueue-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34564DF725F83E490093E5E0 /* DispatchQueue-Extensions.swift */; };
 		34291B54263C778E00768B08 /* PKWidgetInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34291B53263C778E00768B08 /* PKWidgetInfo.swift */; };
 		34291B57263C7DA400768B08 /* PKWidgetCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34291B55263C7DA400768B08 /* PKWidgetCellView.swift */; };
@@ -111,6 +113,8 @@
 /* Begin PBXFileReference section */
 		3400F92C264EBBC8003B2B4C /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		340D5BA226861A67001D73F8 /* Secrets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Secrets.plist; sourceTree = "<group>"; };
+		340D5BA72687038C001D73F8 /* DebugConsoleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugConsoleViewController.swift; sourceTree = "<group>"; };
+		340D5BA82687038C001D73F8 /* DebugConsoleViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DebugConsoleViewController.xib; sourceTree = "<group>"; };
 		34291B53263C778E00768B08 /* PKWidgetInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKWidgetInfo.swift; sourceTree = "<group>"; };
 		34291B55263C7DA400768B08 /* PKWidgetCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKWidgetCellView.swift; sourceTree = "<group>"; };
 		34291B56263C7DA400768B08 /* PKWidgetCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PKWidgetCellView.xib; sourceTree = "<group>"; };
@@ -215,6 +219,15 @@
 				42458EF7CBD8C1A887586801 /* Pods-Pock.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		340D5BAB26870392001D73F8 /* DebugConsole */ = {
+			isa = PBXGroup;
+			children = (
+				340D5BA72687038C001D73F8 /* DebugConsoleViewController.swift */,
+				340D5BA82687038C001D73F8 /* DebugConsoleViewController.xib */,
+			);
+			path = DebugConsole;
 			sourceTree = "<group>";
 		};
 		34291B59263C7DA800768B08 /* Views */ = {
@@ -415,6 +428,7 @@
 				34564DEC25F837B60093E5E0 /* MainBarMenu */,
 				34564DEB25F837A00093E5E0 /* TouchBar */,
 				34291B6B263EDFA600768B08 /* Preferences */,
+				340D5BAB26870392001D73F8 /* DebugConsole */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -699,6 +713,7 @@
 				34564DD925F826340093E5E0 /* NSMenuItemCustomView.xib in Resources */,
 				34A1A4AD25FBDAA20086500F /* Localisations.strings in Resources */,
 				34291B58263C7DA400768B08 /* PKWidgetCellView.xib in Resources */,
+				340D5BAA2687038C001D73F8 /* DebugConsoleViewController.xib in Resources */,
 				34E7B98C263C65590072FE54 /* WidgetsManagerViewController.xib in Resources */,
 				34E393E4261871F400E0B556 /* NSMenuHeader.xib in Resources */,
 				34291BA2264D0B1200768B08 /* OnBoardViewController.xib in Resources */,
@@ -801,6 +816,7 @@
 				34E393E026186F3000E0B556 /* NSMenuHeader.swift in Sources */,
 				34291B7A2643189500768B08 /* Updater.swift in Sources */,
 				34E7B98B263C65590072FE54 /* WidgetsManagerViewController.swift in Sources */,
+				340D5BA92687038C001D73F8 /* DebugConsoleViewController.swift in Sources */,
 				34291B54263C778E00768B08 /* PKWidgetInfo.swift in Sources */,
 				34291B7826419B5A00768B08 /* DestinationView.swift in Sources */,
 				34564DCC25F8254B0093E5E0 /* String+Extensions.swift in Sources */,
@@ -960,7 +976,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1015,7 +1031,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -1035,7 +1051,7 @@
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = 788D9WZ9Z3;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Pock/Bundle/Info.plist;
@@ -1043,7 +1059,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 0.9.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pigigaldi.pock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1068,7 +1084,7 @@
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = 788D9WZ9Z3;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Pock/Bundle/Info.plist;
@@ -1076,7 +1092,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 0.9.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pigigaldi.pock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1096,7 +1112,7 @@
 				CODE_SIGN_ENTITLEMENTS = QLPockWidget/QLPockWidget.entitlements;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = 788D9WZ9Z3;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = QLPockWidget/Info.plist;
@@ -1105,7 +1121,7 @@
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 0.9.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pigigaldi.pock.QLPockWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1120,7 +1136,7 @@
 				CODE_SIGN_ENTITLEMENTS = QLPockWidget/QLPockWidget.entitlements;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = 788D9WZ9Z3;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = QLPockWidget/Info.plist;
@@ -1129,7 +1145,7 @@
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 0.9.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pigigaldi.pock.QLPockWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";

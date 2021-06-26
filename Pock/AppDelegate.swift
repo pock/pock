@@ -88,7 +88,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			title: "menu.advanced.re-install-default-widgets".localized,
 			target: self,
 			selector: #selector(selectAdvancedSectionItem(_:)),
-			keyEquivalent: "d"
+			keyEquivalent: "w"
 		))
         menu.addItem(NSMenuItemCustomView.new(
             title: "menu.advanced.open-widgets-folder".localized,
@@ -123,6 +123,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			keyEquivalent: "S",
 			isAlternate: true
 		))
+        menu.addItem(NSMenuHeader.new(title: "menu.developers".localized))
+        menu.addItem(NSMenuItemCustomView.new(
+            title: "menu.advanced.show_debug_console".localized,
+            target: self,
+            selector: #selector(selectAdvancedSectionItem(_:)),
+            keyEquivalent: "d"
+        ))
 		let menuItem = NSMenuItem(title: "menu.advanced".localized, action: nil, keyEquivalent: "")
 		menuItem.submenu = menu
 		menuItem.view = NSMenuItemCustomView(item: menuItem)
@@ -138,7 +145,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		debugMenu.addItem(NSMenuHeader.new(title: "General"))
 		debugMenu.addItem(withTitle: "Open On-Board…", action: #selector(openOnBoardController), keyEquivalent: "")
 		debugMenu.addItem(withTitle: "Toggle Touch Bar visibility", action: #selector(toggleTouchBarVisibility), keyEquivalent: "")
-		debugMenu.addItem(withTitle: "Show debug console…", action: #selector(showDebugConsole), keyEquivalent: "c")
 		debugMenu.addItem(withTitle: "Relaunch Pock", action: #selector(relaunch), keyEquivalent: "")
 		let debugMenuItem = NSMenuItem(title: "Debug…", action: nil, keyEquivalent: "")
 		debugMenuItem.submenu = debugMenu
@@ -301,7 +307,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	// MARK: Select advanced section item
 	@objc private func selectAdvancedSectionItem(_ sender: NSMenuItem) {
         switch sender.keyEquivalent {
-        case "d":
+        case "w":
 			AppController.shared.reInstallDefaultWidgets()
         case "f":
             NSWorkspace.shared.open(kWidgetsPathURL)
@@ -315,6 +321,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             TouchBarHelper.reloadTouchBarServer { _ in
                 NSApp.activate(ignoringOtherApps: true)
             }
+        case "d":
+            AppController.shared.showDebugConsole()
         default:
             return
         }
@@ -324,6 +332,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	@objc private func openOnBoardController() {
 		AppController.shared.openController(OnBoardViewController())
 	}
+    
+    // MARK: Show debug console
+    @objc private func showDebugConsole() {
+        AppController.shared.showDebugConsole()
+    }
 
 }
 // swiftlint:enable type_body_length
@@ -333,10 +346,6 @@ private extension AppDelegate {
 	// MARK: Toggle Touch Bar visibility
 	@objc private func toggleTouchBarVisibility() {
 		AppController.shared.toggleVisibility()
-	}
-	// MARK: Show debug console
-	@objc private func showDebugConsole() {
-		// TODO: AppController.shared.showDebugConsole()
 	}
 	// MARK: Reload Widgets
 	@objc private func reloadWidgets() {
