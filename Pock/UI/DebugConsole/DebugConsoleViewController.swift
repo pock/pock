@@ -17,6 +17,7 @@ class DebugConsoleViewController: NSViewController {
     
     @IBOutlet private weak var textView: NSTextView!
     @IBOutlet private weak var floatingWindowButton: NSButton!
+    @IBOutlet private weak var showOnLaunchCheckbox: NSButton!
     @IBOutlet private weak var autoScrollButton: NSButton!
     @IBOutlet private weak var clearButton: NSButton!
     
@@ -70,13 +71,19 @@ class DebugConsoleViewController: NSViewController {
         view.wantsLayer = true
         view.layer?.backgroundColor = NSColor(red: 41/255, green: 42/255, blue: 47/255, alpha: 1).cgColor
         // TextView
+        textView.textContainerInset.height = 4
         textView.isEditable = false
         textView.backgroundColor = .clear
-        textView.font = NSFont.monospacedDigitSystemFont(ofSize: 13, weight: .medium)
+        textView.font = NSFont(name: "Menlo", size: 12)
         textView.textColor = .white
         // Action buttons
+        showOnLaunchCheckbox.state = Preferences[.showDebugConsoleOnLaunch] ? .on : .off
         floatingWindowButton.contentTintColor = isFloatingWindow ? .controlAccentColor : .white
         autoScrollButton.contentTintColor = isAutoScrollEnabled ? .systemBlue : .white
+        // Tooltips
+        floatingWindowButton.toolTip = "debug.console.floating-window".localized
+        autoScrollButton.toolTip = "debug.console.scroll-automatically".localized
+        clearButton.toolTip = "debug.console.clear-console".localized
     }
     
     private func updateTextViewWithData(_ data: String) {
@@ -84,10 +91,10 @@ class DebugConsoleViewController: NSViewController {
         defer {
             lock.unlock()
         }
-        let shouldScroll = self.isAutoScrollEnabled && self.textView.visibleRect.maxY == self.textView.bounds.maxY
+        let shouldScroll = isAutoScrollEnabled && textView.visibleRect.maxY == textView.bounds.maxY
         textView.string += data
         if shouldScroll {
-            self.textView.scrollToEndOfDocument(self)
+            textView.scrollToEndOfDocument(self)
         }
     }
     
@@ -110,6 +117,9 @@ class DebugConsoleViewController: NSViewController {
         case floatingWindowButton:
             isFloatingWindow = !isFloatingWindow
         
+        case showOnLaunchCheckbox:
+            Preferences[.showDebugConsoleOnLaunch] = showOnLaunchCheckbox.state == .on
+            
         case autoScrollButton:
             isAutoScrollEnabled = !isAutoScrollEnabled
         

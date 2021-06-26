@@ -12,6 +12,7 @@
                 <outlet property="autoScrollButton" destination="Akc-rL-gbI" id="Ovf-Vx-yCx"/>
                 <outlet property="clearButton" destination="NRm-Ss-ze8" id="Wrc-E8-HBo"/>
                 <outlet property="floatingWindowButton" destination="db2-B9-uuz" id="Ucr-oa-sB5"/>
+                <outlet property="showOnLaunchCheckbox" destination="dH7-QJ-6Th" id="rnh-Gd-F93"/>
                 <outlet property="textView" destination="fsQ-7U-AXt" id="c7A-xT-gcO"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
@@ -19,25 +20,25 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="Hz6-mo-xeY">
-            <rect key="frame" x="0.0" y="0.0" width="496" height="338"/>
+            <rect key="frame" x="0.0" y="0.0" width="800" height="500"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <stackView distribution="fill" orientation="vertical" alignment="trailing" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dM0-Rz-Olw">
-                    <rect key="frame" x="0.0" y="8" width="496" height="330"/>
+                    <rect key="frame" x="0.0" y="8" width="945" height="492"/>
                     <subviews>
                         <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nxD-Th-YdR">
-                            <rect key="frame" x="0.0" y="28" width="496" height="302"/>
+                            <rect key="frame" x="0.0" y="28" width="945" height="464"/>
                             <clipView key="contentView" drawsBackground="NO" id="2xJ-8y-eyg">
-                                <rect key="frame" x="0.0" y="0.0" width="496" height="302"/>
+                                <rect key="frame" x="0.0" y="0.0" width="945" height="464"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="fsQ-7U-AXt">
-                                        <rect key="frame" x="0.0" y="0.0" width="496" height="302"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="945" height="464"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        <size key="minSize" width="496" height="302"/>
-                                        <size key="maxSize" width="496" height="10000000"/>
+                                        <size key="minSize" width="945" height="464"/>
+                                        <size key="maxSize" width="945" height="10000000"/>
                                         <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     </textView>
                                 </subviews>
@@ -47,26 +48,58 @@
                                 <autoresizingMask key="autoresizingMask"/>
                             </scroller>
                             <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="ZQO-Hv-j0R">
-                                <rect key="frame" x="480" y="0.0" width="16" height="302"/>
+                                <rect key="frame" x="929" y="0.0" width="16" height="464"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </scroller>
                         </scrollView>
                         <stackView distribution="equalCentering" orientation="horizontal" alignment="centerY" spacing="12" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pML-gA-C1O">
-                            <rect key="frame" x="12" y="0.0" width="472" height="20"/>
+                            <rect key="frame" x="12" y="0.0" width="921" height="20"/>
                             <subviews>
-                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="db2-B9-uuz">
-                                    <rect key="frame" x="0.0" y="1.5" width="24.5" height="19"/>
-                                    <buttonCell key="cell" type="bevel" title="Floating window" bezelStyle="rounded" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="fuc-eZ-M6D">
-                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
-                                        <font key="font" metaFont="system"/>
-                                        <imageReference key="image" image="macwindow.on.rectangle" catalog="system" symbolScale="large" renderingMode="template"/>
-                                    </buttonCell>
-                                    <connections>
-                                        <action selector="didSelectAction:" target="-2" id="7zB-mw-Qoo"/>
-                                    </connections>
-                                </button>
+                                <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="12" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rvb-OU-M3O">
+                                    <rect key="frame" x="0.0" y="0.0" width="169" height="20"/>
+                                    <subviews>
+                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="db2-B9-uuz">
+                                            <rect key="frame" x="0.0" y="1.5" width="24.5" height="19"/>
+                                            <buttonCell key="cell" type="bevel" title="Floating window" bezelStyle="rounded" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="fuc-eZ-M6D">
+                                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                                <imageReference key="image" image="macwindow.on.rectangle" catalog="system" symbolScale="large" renderingMode="template"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="didSelectAction:" target="-2" id="7zB-mw-Qoo"/>
+                                            </connections>
+                                        </button>
+                                        <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="fbN-GE-wdu">
+                                            <rect key="frame" x="34" y="0.0" width="5" height="20"/>
+                                        </box>
+                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dH7-QJ-6Th">
+                                            <rect key="frame" x="47" y="1" width="122" height="18"/>
+                                            <buttonCell key="cell" type="check" title="Show on launch" bezelStyle="regularSquare" imagePosition="left" inset="2" id="ASz-1f-ue1">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="didSelectAction:" target="-2" id="IFZ-qe-BuC"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="fbN-GE-wdu" firstAttribute="top" secondItem="Rvb-OU-M3O" secondAttribute="top" id="Ioy-co-q8j"/>
+                                        <constraint firstAttribute="bottom" secondItem="fbN-GE-wdu" secondAttribute="bottom" id="lRZ-di-eT5"/>
+                                    </constraints>
+                                    <visibilityPriorities>
+                                        <integer value="1000"/>
+                                        <integer value="1000"/>
+                                        <integer value="1000"/>
+                                    </visibilityPriorities>
+                                    <customSpacing>
+                                        <real value="3.4028234663852886e+38"/>
+                                        <real value="3.4028234663852886e+38"/>
+                                        <real value="3.4028234663852886e+38"/>
+                                    </customSpacing>
+                                </stackView>
                                 <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="12" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R65-XG-TEY">
-                                    <rect key="frame" x="414" y="0.0" width="58" height="20"/>
+                                    <rect key="frame" x="863" y="0.0" width="58" height="20"/>
                                     <subviews>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Akc-rL-gbI">
                                             <rect key="frame" x="0.0" y="2" width="18" height="17"/>
@@ -95,6 +128,10 @@
                                             </connections>
                                         </button>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="JuY-i1-cdg" firstAttribute="top" secondItem="R65-XG-TEY" secondAttribute="top" id="ILM-Aw-wQG"/>
+                                        <constraint firstAttribute="bottom" secondItem="JuY-i1-cdg" secondAttribute="bottom" id="wbS-M9-bJl"/>
+                                    </constraints>
                                     <visibilityPriorities>
                                         <integer value="1000"/>
                                         <integer value="1000"/>
@@ -108,7 +145,11 @@
                                 </stackView>
                             </subviews>
                             <constraints>
+                                <constraint firstAttribute="bottom" secondItem="R65-XG-TEY" secondAttribute="bottom" id="0LP-2u-AjA"/>
                                 <constraint firstAttribute="height" constant="20" id="7RF-KR-anU"/>
+                                <constraint firstAttribute="bottom" secondItem="Rvb-OU-M3O" secondAttribute="bottom" id="Ikx-cV-ZYN"/>
+                                <constraint firstItem="R65-XG-TEY" firstAttribute="top" secondItem="pML-gA-C1O" secondAttribute="top" id="roY-hO-ZOj"/>
+                                <constraint firstItem="Rvb-OU-M3O" firstAttribute="top" secondItem="pML-gA-C1O" secondAttribute="top" id="zBw-vo-eeF"/>
                             </constraints>
                             <visibilityPriorities>
                                 <integer value="1000"/>
@@ -142,7 +183,7 @@
                 <constraint firstAttribute="trailing" secondItem="dM0-Rz-Olw" secondAttribute="trailing" id="cj3-VY-p7v"/>
                 <constraint firstItem="dM0-Rz-Olw" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="rkM-ou-xIf"/>
             </constraints>
-            <point key="canvasLocation" x="139" y="121"/>
+            <point key="canvasLocation" x="363.5" y="183.5"/>
         </customView>
     </objects>
     <resources>

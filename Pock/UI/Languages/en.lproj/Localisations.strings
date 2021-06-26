@@ -9,7 +9,6 @@
 // MARK: Base
 "base.website_url" = "https://pock.app";
 "base.widget" = "widget";
-"base.Widget" = "Widget";
 
 // MARK: General
 "general.welcome-to-pock" = "Welcome to Pock";
@@ -183,3 +182,9 @@ You can always configure default settings from `System Preferences > Keyboard` t
 "error.downloader.response-error" = "Can't request file. Server response: %@";
 "error.downloader.download-error" = "Can't download requested file: %@";
 "error.file-system-error" = "Can't manage file: %@\n\nPlease, check app permission and try again.";
+
+// MARK: Debug console
+"debug.console.floating-window" = "Floating window";
+"debug.console.show-on-launch" = "Show on launch";
+"debug.console.scroll-automatically" = "Scroll automatically";
+"debug.console.clear-console" = "Clear console";
