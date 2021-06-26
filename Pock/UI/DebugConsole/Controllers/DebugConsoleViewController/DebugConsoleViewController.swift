@@ -18,8 +18,18 @@ class DebugConsoleViewController: NSViewController {
     @IBOutlet private weak var textView: NSTextView!
     @IBOutlet private weak var floatingWindowButton: NSButton!
     @IBOutlet private weak var showOnLaunchCheckbox: NSButton!
+    @IBOutlet private weak var filterTextField: NSFilterTextField!
     @IBOutlet private weak var autoScrollButton: NSButton!
     @IBOutlet private weak var clearButton: NSButton!
+    
+    // MARK: Data
+    
+    private lazy var filterQuery: String = "" {
+        didSet {
+            updateTextViewWithData("")
+        }
+    }
+    private var logsData: [String] = []
     
     // MARK: Variables
     
@@ -91,8 +101,22 @@ class DebugConsoleViewController: NSViewController {
         defer {
             lock.unlock()
         }
+        
+        // split per line
+        let splitted = data.split(separator: "\n")
+        logsData.append(contentsOf: splitted.map({ String($0) }))
+        
         let shouldScroll = isAutoScrollEnabled && textView.visibleRect.maxY == textView.bounds.maxY
-        textView.string += data
+        let stringValue: String
+        if !filterQuery.isEmpty {
+            let filtered = logsData.filter({ $0.lowercased().contains(filterQuery.lowercased()) })
+            filterTextField.setNumberOfOccurrencies(filtered.count)
+            stringValue = filtered.joined(separator: "\n")
+        } else {
+            filterTextField.setNumberOfOccurrencies(0)
+            stringValue = logsData.joined(separator: "\n")
+        }
+        textView.string = stringValue
         if shouldScroll {
             textView.scrollToEndOfDocument(self)
         }
@@ -119,6 +143,14 @@ class DebugConsoleViewController: NSViewController {
         
         case showOnLaunchCheckbox:
             Preferences[.showDebugConsoleOnLaunch] = showOnLaunchCheckbox.state == .on
+            
+        case filterTextField.textField:
+            filterQuery = filterTextField.textField.stringValue
+            
+        case filterTextField.clearButton:
+            filterTextField.textField.stringValue = ""
+            filterQuery = ""
+            view.window?.makeFirstResponder(nil)
             
         case autoScrollButton:
             isAutoScrollEnabled = !isAutoScrollEnabled

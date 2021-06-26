@@ -378,7 +378,7 @@ extension AppController {
             window.miniwindowTitle = controller.title
             window.titleVisibility = .visible
             window.isReleasedWhenClosed = true
-            window.level = .mainMenu
+            window.level = .normal
             windowController = NSWindowController(window: window)
             debugConsoleController = windowController
         }
