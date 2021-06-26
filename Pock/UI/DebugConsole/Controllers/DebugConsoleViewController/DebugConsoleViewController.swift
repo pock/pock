@@ -156,7 +156,8 @@ class DebugConsoleViewController: NSViewController {
             isAutoScrollEnabled = !isAutoScrollEnabled
         
         case clearButton:
-            textView.string = ""
+            logsData.removeAll()
+            updateTextViewWithData("")
             
         default:
             return
