@@ -296,7 +296,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		switch sender.keyEquivalent {
 		case "p":
 			AppController.shared.openPockCustomizationPalette()
-		case "s":
+		case "c":
 			AppController.shared.openControlStripCustomizationPalette()
 		default:
 			return

@@ -7,6 +7,12 @@
 
 #import <AppKit/AppKit.h>
 
+// MARK: NSApplication
+@interface NSApplication (Pock)
+- (void)toggleTouchBarControlStripCustomizationPalette:(nullable id)arg2;
+@end
+
+
 // MARK: NSMenu
 @interface NSMenuItem (Pock)
 - (void)_setViewHandlesEvents:(BOOL)arg0;

@@ -292,7 +292,7 @@ extension AppController: NSTouchBarDelegate {
 	}
 	
 	@objc internal func openControlStripCustomizationPalette() {
-		NSApp.toggleTouchBarCustomizationPalette(self)
+        NSApp.toggleTouchBarControlStripCustomizationPalette(nil)
 	}
 	
 	override func makeTouchBar() -> NSTouchBar? {
@@ -331,10 +331,6 @@ extension AppController: NSTouchBarDelegate {
 		NotificationCenter.default.removeObserver(self,
 												  name: NSNotification.Name("NSTouchBarDidExitCustomization"),
 												  object: nil)
-	}
-	
-	@objc private func delayedOpenCustomization() {
-		NSApp.toggleTouchBarCustomizationPalette(nil)
 	}
 	
 	@objc private func didExitCustomization(_ sender: Any?) {
@@ -405,7 +401,7 @@ extension AppController {
         windowController.showWindow(self)
         window.delegate = self
         window.orderFrontRegardless()
-        // Track this event
+        // Track event
         Analytics.trackEvent("AppController.showDebugConsole()")
     }
 }
