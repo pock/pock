@@ -33,7 +33,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="945" height="556"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="fsQ-7U-AXt">
+                                    <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="fsQ-7U-AXt" customClass="NSTextViewWithShortcuts" customModule="Pock" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="945" height="556"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -119,7 +119,7 @@
                                                                     </constraints>
                                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="line.3.horizontal.decrease.circle" catalog="system" id="fit-qf-MaU"/>
                                                                 </imageView>
-                                                                <textField verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uhS-6V-Rad">
+                                                                <textField verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uhS-6V-Rad" customClass="NSTextFieldWithShortcuts" customModule="Pock" customModuleProvider="target">
                                                                     <rect key="frame" x="22" y="2" width="123" height="16"/>
                                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" alignment="left" placeholderString="Filter" id="qZy-1s-eGw">
                                                                         <font key="font" usesAppearanceFont="YES"/>

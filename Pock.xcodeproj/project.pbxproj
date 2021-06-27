@@ -12,6 +12,7 @@
 		340D5BA92687038C001D73F8 /* DebugConsoleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340D5BA72687038C001D73F8 /* DebugConsoleViewController.swift */; };
 		340D5BAA2687038C001D73F8 /* DebugConsoleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 340D5BA82687038C001D73F8 /* DebugConsoleViewController.xib */; };
 		340D5BAF2687A474001D73F8 /* NSFilterTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340D5BAE2687A474001D73F8 /* NSFilterTextField.swift */; };
+		340D5BB22688C29B001D73F8 /* NSTextViewWithShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340D5BB12688C29B001D73F8 /* NSTextViewWithShortcuts.swift */; };
 		3425AEC12650363000B8BE6F /* DispatchQueue-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34564DF725F83E490093E5E0 /* DispatchQueue-Extensions.swift */; };
 		34291B54263C778E00768B08 /* PKWidgetInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34291B53263C778E00768B08 /* PKWidgetInfo.swift */; };
 		34291B57263C7DA400768B08 /* PKWidgetCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34291B55263C7DA400768B08 /* PKWidgetCellView.swift */; };
@@ -117,6 +118,7 @@
 		340D5BA72687038C001D73F8 /* DebugConsoleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugConsoleViewController.swift; sourceTree = "<group>"; };
 		340D5BA82687038C001D73F8 /* DebugConsoleViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DebugConsoleViewController.xib; sourceTree = "<group>"; };
 		340D5BAE2687A474001D73F8 /* NSFilterTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSFilterTextField.swift; sourceTree = "<group>"; };
+		340D5BB12688C29B001D73F8 /* NSTextViewWithShortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSTextViewWithShortcuts.swift; sourceTree = "<group>"; };
 		34291B53263C778E00768B08 /* PKWidgetInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKWidgetInfo.swift; sourceTree = "<group>"; };
 		34291B55263C7DA400768B08 /* PKWidgetCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKWidgetCellView.swift; sourceTree = "<group>"; };
 		34291B56263C7DA400768B08 /* PKWidgetCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PKWidgetCellView.xib; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 			isa = PBXGroup;
 			children = (
 				340D5BAE2687A474001D73F8 /* NSFilterTextField.swift */,
+				340D5BB12688C29B001D73F8 /* NSTextViewWithShortcuts.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -843,6 +846,7 @@
 				34E393E026186F3000E0B556 /* NSMenuHeader.swift in Sources */,
 				34291B7A2643189500768B08 /* Updater.swift in Sources */,
 				34E7B98B263C65590072FE54 /* WidgetsManagerViewController.swift in Sources */,
+				340D5BB22688C29B001D73F8 /* NSTextViewWithShortcuts.swift in Sources */,
 				340D5BA92687038C001D73F8 /* DebugConsoleViewController.swift in Sources */,
 				34291B54263C778E00768B08 /* PKWidgetInfo.swift in Sources */,
 				34291B7826419B5A00768B08 /* DestinationView.swift in Sources */,

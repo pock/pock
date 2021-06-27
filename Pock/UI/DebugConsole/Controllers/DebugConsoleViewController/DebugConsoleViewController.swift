@@ -15,7 +15,7 @@ class DebugConsoleViewController: NSViewController {
     
     // MARK: UI Elements
     
-    @IBOutlet private weak var textView: NSTextView!
+    @IBOutlet private weak var textView: NSTextViewWithShortcuts!
     @IBOutlet private weak var floatingWindowButton: NSButton!
     @IBOutlet private weak var showOnLaunchCheckbox: NSButton!
     @IBOutlet private weak var filterTextField: NSFilterTextField!
@@ -103,18 +103,17 @@ class DebugConsoleViewController: NSViewController {
         }
         
         // split per line
-        let splitted = data.split(separator: "\n")
-        logsData.append(contentsOf: splitted.map({ String($0) }))
+        logsData.append(data)
         
         let shouldScroll = isAutoScrollEnabled && textView.visibleRect.maxY == textView.bounds.maxY
         let stringValue: String
         if !filterQuery.isEmpty {
             let filtered = logsData.filter({ $0.lowercased().contains(filterQuery.lowercased()) })
             filterTextField.setNumberOfOccurrencies(filtered.count)
-            stringValue = filtered.joined(separator: "\n")
+            stringValue = filtered.joined()
         } else {
             filterTextField.setNumberOfOccurrencies(0)
-            stringValue = logsData.joined(separator: "\n")
+            stringValue = logsData.joined()
         }
         textView.string = stringValue
         if shouldScroll {
