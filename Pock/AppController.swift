@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 import AppCenterAnalytics
 import Magnet
 import PockKit
@@ -25,6 +26,7 @@ internal struct MessageAction {
 	}
 }
 
+// swiftlint:disable file_length
 internal class AppController: NSResponder {
 	
 	/// Singleton
@@ -56,6 +58,7 @@ internal class AppController: NSResponder {
 		registerDoubleControlHotKey()
 		prepareOnceADayTimer()
 		clearTemporaryWidgetsFolder()
+        startListeningForScreenLockNotifications()
 	}
 	
 	required init?(coder: NSCoder) {
@@ -69,6 +72,22 @@ internal class AppController: NSResponder {
 	internal var isVisible: Bool {
 		return pockTouchBarController != nil && pockTouchBarController.isVisible
 	}
+    
+    /// Listen for lock notifications
+    private lazy var disposeBag = Set<AnyCancellable>()
+    private func startListeningForScreenLockNotifications() {
+        let notificationCenter = DistributedNotificationCenter.default()
+        // listen for `screen is locked`
+        notificationCenter.publisher(for: .init("com.apple.screenIsLocked")).sink { _ in
+            Roger.debug("Screen is locked. Tearing down PockTouchBarController...")
+            TouchBarHelper.markTouchBarAsDimmed(true)
+        }.store(in: &disposeBag)
+        // listen for `screen is unlocked`
+        notificationCenter.publisher(for: .init("com.apple.screenIsUnlocked")).sink { _ in
+            Roger.debug("Screen is unlocked. Preparing PockTouchBarController...")
+            TouchBarHelper.markTouchBarAsDimmed(false)
+        }.store(in: &disposeBag)
+    }
 	
 	/// Clear tmp widgets folder
 	private func clearTemporaryWidgetsFolder() {
@@ -390,3 +409,4 @@ extension AppController {
         Analytics.trackEvent("AppController.showDebugConsole()")
     }
 }
+// swiftlint:enable file_length
