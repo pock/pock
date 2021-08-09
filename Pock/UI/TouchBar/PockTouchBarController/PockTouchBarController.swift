@@ -66,7 +66,7 @@ internal class PockTouchBarController: PKTouchBarMouseController {
 	}
 
 	override func present() {
-		guard isVisible == false else {
+        guard AppController.shared.isLocked == false, isVisible == false else {
 			return
 		}
 		for widget in WidgetsLoader.loadedWidgets {

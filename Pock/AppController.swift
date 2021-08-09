@@ -73,17 +73,21 @@ internal class AppController: NSResponder {
 		return pockTouchBarController != nil && pockTouchBarController.isVisible
 	}
     
+    internal private(set) var isLocked: Bool = false
+    
     /// Listen for lock notifications
     private lazy var disposeBag = Set<AnyCancellable>()
     private func startListeningForScreenLockNotifications() {
         let notificationCenter = DistributedNotificationCenter.default()
         // listen for `screen is locked`
-        notificationCenter.publisher(for: .init("com.apple.screenIsLocked")).sink { _ in
+        notificationCenter.publisher(for: .init("com.apple.screenIsLocked")).sink { [weak self] _ in
             Roger.debug("Screen is locked. Tearing down PockTouchBarController...")
+            self?.isLocked = true
             TouchBarHelper.markTouchBarAsDimmed(true)
         }.store(in: &disposeBag)
         // listen for `screen is unlocked`
         notificationCenter.publisher(for: .init("com.apple.screenIsUnlocked")).sink { [weak self] _ in
+            self?.isLocked = false
             if self?.pockTouchBarController?.isVisible == false {
                 Roger.debug("Screen is unlocked. Preparing PockTouchBarController...")
                 TouchBarHelper.markTouchBarAsDimmed(false)
