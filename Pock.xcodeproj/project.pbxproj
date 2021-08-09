@@ -172,6 +172,8 @@
 		34564E0725F98FD50093E5E0 /* PKWidgetTouchBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKWidgetTouchBarItem.swift; sourceTree = "<group>"; };
 		34564E0A25F990060093E5E0 /* PKWidgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKWidgetViewController.swift; sourceTree = "<group>"; };
 		3457D7DF264FCB2E00C4D2D6 /* QLPockWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QLPockWidget.entitlements; sourceTree = "<group>"; };
+		3469C30926B2B245005D3A3D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localisations.strings; sourceTree = "<group>"; };
+		3469C30A26B2B252005D3A3D /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Localisations.strings"; sourceTree = "<group>"; };
 		34A1A4AE25FBDAA20086500F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localisations.strings; sourceTree = "<group>"; };
 		34A1A4B025FBDAA60086500F /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localisations.strings; sourceTree = "<group>"; };
 		34E393DF26186F3000E0B556 /* NSMenuHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSMenuHeader.swift; sourceTree = "<group>"; };
@@ -718,6 +720,8 @@
 				en,
 				it,
 				Base,
+				de,
+				"pt-PT",
 			);
 			mainGroup = 34564DAF25F81E520093E5E0;
 			productRefGroup = 34564DB925F81E520093E5E0 /* Products */;
@@ -910,6 +914,8 @@
 			children = (
 				34A1A4AE25FBDAA20086500F /* en */,
 				34A1A4B025FBDAA60086500F /* it */,
+				3469C30926B2B245005D3A3D /* de */,
+				3469C30A26B2B252005D3A3D /* pt-PT */,
 			);
 			name = Localisations.strings;
 			sourceTree = "<group>";
