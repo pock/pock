@@ -83,9 +83,13 @@ internal class AppController: NSResponder {
             TouchBarHelper.markTouchBarAsDimmed(true)
         }.store(in: &disposeBag)
         // listen for `screen is unlocked`
-        notificationCenter.publisher(for: .init("com.apple.screenIsUnlocked")).sink { _ in
-            Roger.debug("Screen is unlocked. Preparing PockTouchBarController...")
-            TouchBarHelper.markTouchBarAsDimmed(false)
+        notificationCenter.publisher(for: .init("com.apple.screenIsUnlocked")).sink { [weak self] _ in
+            if self?.pockTouchBarController?.isVisible == false {
+                Roger.debug("Screen is unlocked. Preparing PockTouchBarController...")
+                TouchBarHelper.markTouchBarAsDimmed(false)
+            } else {
+                Roger.debug("Screen is unlocked. PockTouchBarController is already visible...")
+            }
         }.store(in: &disposeBag)
     }
 	
