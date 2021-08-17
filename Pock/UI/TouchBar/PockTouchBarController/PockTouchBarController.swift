@@ -31,15 +31,16 @@ internal class PockTouchBarController: PKTouchBarMouseController {
 	}
 	
 	// MARK: Mouse Support
-	private var touchBarView: NSView {
+	private var touchBarView: NSView? {
 		guard let views = NSFunctionRow._topLevelViews() as? [NSView], let view = views.last else {
-			fatalError("Touch Bar is not available.")
+            Roger.debug("Touch Bar is not available.")
+            return nil
 		}
 		return view
 	}
 	public override var visibleRectWidth: CGFloat {
 		get {
-			return touchBarView.visibleRect.width
+            return touchBarView?.visibleRect.width ?? .zero
 		} set {
 			super.visibleRectWidth = newValue
 		}
