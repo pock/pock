@@ -31,6 +31,8 @@ class WidgetsManagerViewController: NSViewController {
 	@IBOutlet private weak var widgetUpdateStatusLabel: NSTextField!
 	@IBOutlet private weak var widgetPreferencesContainer: NSView!
 	@IBOutlet private weak var widgetPreferencesStatusLabel: NSTextField!
+    @IBOutlet private weak var widgetPreferencesHorizontalLine: NSView!
+    @IBOutlet private weak var widgetPreferencesResetButton: NSButton!
 	
 	@IBOutlet private weak var checkForWidgetsUpdateButton: NSButton!
 	
@@ -171,13 +173,17 @@ extension WidgetsManagerViewController {
 		addChild(preferences)
 		widgetPreferencesContainer.addSubview(preferences.view)
 		preferences.view.edgesToSuperview()
+        widgetPreferencesHorizontalLine.isHidden = false
+        widgetPreferencesResetButton.isHidden = false
 		async { [weak self] in
 			self?.updatePreferredContentSize()
 		}
 	}
 	
 	private func unloadPreferencesContainerWithTitle(_ title: String) {
-		selectedPreferences?.view.removeFromSuperview()
+        widgetPreferencesHorizontalLine.isHidden = true
+        widgetPreferencesResetButton.isHidden = true
+        selectedPreferences?.view.removeFromSuperview()
 		selectedPreferences?.removeFromParent()
 		selectedPreferences = nil
 		widgetPreferencesStatusLabel.stringValue = title
@@ -221,6 +227,14 @@ extension WidgetsManagerViewController {
 			self?.reload()
 		}
 	}
+    
+    @IBAction private func resetWidgetPreferences(_ sender: Any?) {
+        selectedPreferences?.reset()
+        unloadPreferencesContainerWithTitle("Resetting preferences to default values…")
+        async(after: 1.325) { [weak self] in
+            self?.updatePreferencesContainerForSelectedPreferences()
+        }
+    }
 	
 }
 
