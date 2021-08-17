@@ -91,7 +91,7 @@ class WidgetsInstallViewController: NSViewController {
 		// MARK: State
 		defer {
 			setupDraggingHandler()
-			actionButton.isHighlighted = true
+            actionButton.bezelColor = NSColor.controlAccentColor
 		}
 		switch state {
 		case .installDefault:

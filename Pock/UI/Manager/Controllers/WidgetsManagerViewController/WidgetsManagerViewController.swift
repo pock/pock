@@ -91,13 +91,7 @@ class WidgetsManagerViewController: NSViewController {
 	}
 	
 	private func configureUIElements() {
-		/// Check for updates button
-		checkForWidgetsUpdateButton.wantsLayer = true
-		checkForWidgetsUpdateButton.layer?.backgroundColor = NSColor.quaternaryLabelColor.cgColor
 		checkForWidgetsUpdateButton.title = "general.action.check-for-updates".localized
-		/// Install widget button
-		widgetInstallButton.wantsLayer = true
-		widgetInstallButton.layer?.backgroundColor = NSColor.secondarySelectedControlColor.cgColor
 		widgetInstallButton.title = "menu.widgets.install-widget".localized
 	}
 	
