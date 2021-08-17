@@ -63,11 +63,16 @@ internal final class WidgetsInstaller: NSDocument {
 		super.init()
 		let controller = WidgetsManagerViewController()
 		AppController.shared.openController(controller)
+        #if DEBUG
+        let removeSource = true
+        #else
+        let removeSource = false
+        #endif
 		do {
 			switch url.pathExtension {
 			case "pock":
 				let widget = try PKWidgetInfo(path: url)
-				installWidget(widget) { _, error in
+                installWidget(widget, removeSource: removeSource) { _, error in
 					let state: WidgetsInstaller.State
 					if let error = error {
 						state = .error(error)
@@ -77,8 +82,9 @@ internal final class WidgetsInstaller: NSDocument {
 					controller.presentWidgetInstallPanel(withInitialState: state)
 				}
 			case "pkarchive":
+                
 				let name = url.lastPathComponent.replacingOccurrences(of: ".pkarchive", with: "")
-				extractAndInstall(name, atLocation: url, removeSource: false) { widget, error in
+				extractAndInstall(name, atLocation: url, removeSource: removeSource) { widget, error in
 					let state: WidgetsInstaller.State
 					if let error = error {
 						state = .error(error)

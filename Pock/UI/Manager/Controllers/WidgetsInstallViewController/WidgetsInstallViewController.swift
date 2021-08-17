@@ -275,8 +275,13 @@ class WidgetsInstallViewController: NSViewController {
 				}
 			case let .install(widget):
 				// MARK: Install
+                #if DEBUG
+                let removeSource = true
+                #else
+                let removeSource = false
+                #endif
 				state = .installing(widget: widget)
-				WidgetsInstaller().installWidget(widget) { [weak self] _, error in
+				WidgetsInstaller().installWidget(widget, removeSource: removeSource) { [weak self] _, error in
 					if let error = error {
 						self?.state = .error(error)
 					} else {
@@ -285,8 +290,13 @@ class WidgetsInstallViewController: NSViewController {
 				}
 			case let .installArchive(url):
 				// MARK: Install (archive)
+                #if DEBUG
+                let removeSource = true
+                #else
+                let removeSource = false
+                #endif
 				let name = url.deletingPathExtension().lastPathComponent
-				WidgetsInstaller().extractAndInstall(name, atLocation: url, removeSource: false) { [weak self] widget, error in
+				WidgetsInstaller().extractAndInstall(name, atLocation: url, removeSource: removeSource) { [weak self] widget, error in
 					if let error = error {
 						self?.state = .error(error)
 					} else if let widget = widget {
