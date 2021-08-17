@@ -61,7 +61,7 @@ internal struct Preferences {
                 case .allowBlankTouchBar:
                     return false as! T
                 case .launchAtLogin:
-                    fatalError("[Pock][Internal-Error]: Execution should not reach this point.")
+                    fatalError("[Pock][Internal-Error][Preferences.launchAtLogin]: Execution should not reach this point.")
                 case .layoutStyle:
                     return LayoutStyle.withControlStrip as! T
                 case .mouseSupportEnabled:
