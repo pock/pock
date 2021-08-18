@@ -109,7 +109,12 @@ extension WidgetsManagerViewController {
 	
 	@objc private func reload() {
 		async { [weak self] in
-			self?.tableView.reloadData()
+            if let selectedIndex = self?.tableView.selectedRowIndexes {
+                self?.tableView.reloadData()
+                self?.tableView.selectRowIndexes(selectedIndex, byExtendingSelection: false)
+            } else {
+                self?.tableView.reloadData()
+            }
 		}
 	}
 	
