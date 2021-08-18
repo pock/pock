@@ -49,7 +49,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		
 		/// Load installed widgets and prepare touch bar
 		AppController.shared.reloadWidgets {
-			AppController.shared.fetchLatestVersions {}
+			AppController.shared.fetchLatestVersions { [weak self] in
+                let currentVersion = Updater.fullAppVersion
+                if let core = Updater.cachedLatestReleases?.core, core.name.isGreatherThan(currentVersion) {
+                    self?.openPreferences()
+                }
+            }
 			AppController.shared.prepareTouchBar()
 		}
 

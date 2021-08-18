@@ -72,7 +72,9 @@ class PreferencesViewController: NSViewController {
 		super.viewDidAppear()
 		shouldAskToupdate { [weak self] newVersion in
 			if let self = self, let new = newVersion {
-				self.showUpdateAlert(for: new)
+                self.checkForUpdatesNowButton.title = "preferences.updates.new-version-available.title".localized
+                self.checkForUpdatesNowButton.bezelColor = .controlAccentColor
+                self.showUpdateAlert(for: new)
 			}
 		}
 	}
@@ -96,6 +98,7 @@ class PreferencesViewController: NSViewController {
 		showTrackingAreaCheckbox.isEnabled = Preferences[.mouseSupportEnabled] == true
 		checkForUpdatesOnceADayCheckbox.state = Preferences[.checkForUpdatesOnceADay] == true ? .on : .off
         checkForUpdatesSpinner.stopAnimation(nil)
+        checkForUpdatesNowButton.bezelColor = .windowFrameColor
 		/// Layout Style
 		updateLayoutStyleUIElements()
 		/// Default Touch Bar Presentation Mode
@@ -260,7 +263,9 @@ class PreferencesViewController: NSViewController {
                 guard let self = self else {
                     return
                 }
-                self.checkForUpdatesNowButton.title = "general.action.check-for-updates".localized
+                let newVersionAvailable = newVersion != nil
+                self.checkForUpdatesNowButton.title = newVersionAvailable ? "preferences.updates.new-version-available.title".localized : "general.action.check-for-updates".localized
+                self.checkForUpdatesNowButton.bezelColor = newVersionAvailable ? .controlAccentColor : .windowFrameColor
                 self.checkForUpdatesNowButton.isEnabled = true
                 self.checkForUpdatesSpinner.stopAnimation(nil)
                 self.showUpdateAlert(for: newVersion)
