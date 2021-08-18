@@ -47,7 +47,7 @@ class NSFilterTextField: NSView {
         layer?.cornerRadius = 8
         textField.focusRingType = .none
         textField.stringValue = ""
-        textField.placeholderString = "Filter" // TODO: Should be localized?
+        textField.placeholderString = "Filter"
         setNumberOfOccurrencies(0)
     }
  

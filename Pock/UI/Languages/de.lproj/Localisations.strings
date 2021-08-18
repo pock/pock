@@ -96,6 +96,7 @@
 "widgets-manager.list.did-update" = "\"%@\" widget aktualisiert. \n Pock neu laden, um zu aktualisieren.";
 "widgets-manager.loading-preferences" = "Einstellungen laden…";
 "widgets-manager.list.no-preferences" = "Dieses Widget hat keine Einstellungen";
+"widgets-manager.list.reset-preferences" = "Einstellungen auf Standardwerte zurücksetzen";
 
 // MARK: Empty Touch Bar
 "widgets.defaults.tap-to-install" = "Tippen Sie auf, um Standard-Widgets zu installieren…";

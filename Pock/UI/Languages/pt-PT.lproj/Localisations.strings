@@ -96,6 +96,7 @@
 "widgets-manager.list.did-update" = "\"%@\" widget atualizado.\nRecarregar Pock para atualizar.";
 "widgets-manager.loading-preferences" = "A carregar as preferências…";
 "widgets-manager.list.no-preferences" = "Este widget não tem preferências";
+"widgets-manager.list.reset-preferences" = "Repor as definições para os valores por defeito";
 
 // MARK: Empty Touch Bar
 "widgets.defaults.tap-to-install" = "Tocar para instalar os widgets predefinidos…";

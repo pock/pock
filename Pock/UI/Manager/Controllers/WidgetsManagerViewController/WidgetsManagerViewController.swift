@@ -91,8 +91,11 @@ class WidgetsManagerViewController: NSViewController {
 	}
 	
 	private func configureUIElements() {
+        widgetUpdateButton.title = "general.action.update".localized
+        widgetUninstallButton.title = "general.action.remove".localized
 		checkForWidgetsUpdateButton.title = "general.action.check-for-updates".localized
 		widgetInstallButton.title = "menu.widgets.install-widget".localized
+        widgetPreferencesResetButton.title = "widgets-manager.list.reset-preferences".localized
 	}
 	
 	deinit {

@@ -96,6 +96,7 @@
 "widgets-manager.list.did-update" = "\"%@\" widget aggiornato.\nRiavvia Pock per aggiornare.";
 "widgets-manager.loading-preferences" = "Caricamento preferenze…";
 "widgets-manager.list.no-preferences" = "Questo widget non ha preferenze";
+"widgets-manager.list.reset-preferences" = "Ripristina i valori di default";
 
 // MARK: Empty Touch Bar
 "widgets.defaults.tap-to-install" = "Tocca per installare i widget predefiniti…";
@@ -161,7 +162,7 @@
 "general.action.update" = "Aggiorna";
 "general.action.downloading" = "Download in corso…";
 "general.action.check-for-updates" = "Verifica aggiornamenti";
-"general.action.checking" = "Verifica aggiornamenti in corso…";
+"general.action.checking" = "Verifica aggiornamenti…";
 "general.action.close" = "Chiudi";
 "general.action.reload" = "Ricarica";
 "general.action.relaunch" = "Riavvia";
