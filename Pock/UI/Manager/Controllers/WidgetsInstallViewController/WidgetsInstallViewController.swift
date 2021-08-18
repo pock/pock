@@ -8,7 +8,6 @@
 import Cocoa
 
 // swiftlint:disable file_length
-// swiftlint:disable type_body_length
 class WidgetsInstallViewController: NSViewController {
 
     // MARK: UI Elements
@@ -347,7 +346,6 @@ class WidgetsInstallViewController: NSViewController {
 	// swiftlint:enable function_body_length
 	// swiftlint:enable cyclomatic_complexity
 }
-// swiftlint:enable type_body_length
 
 extension WidgetsInstallViewController {
 	

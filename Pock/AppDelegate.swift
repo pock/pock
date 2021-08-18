@@ -10,7 +10,6 @@ import AppCenter
 import AppCenterAnalytics
 import AppCenterCrashes
 
-// swiftlint:disable type_body_length
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
 
@@ -343,7 +342,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
 }
-// swiftlint:enable type_body_length
 
 #if DEBUG
 private extension AppDelegate {

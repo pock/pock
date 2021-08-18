@@ -4,6 +4,7 @@ excluded:
 
 # Custom configurations
 line_length: 220
+type_body_length: 250
 
 # Disabled rules
 disabled_rules:
