@@ -45,7 +45,7 @@ internal class PockTouchBarController: PKTouchBarMouseController {
 			super.visibleRectWidth = newValue
 		}
 	}
-	public override var parentView: NSView! {
+	public override var parentView: NSView? {
 		get {
 			return touchBarView
 		} set {
@@ -169,7 +169,7 @@ internal class PockTouchBarController: PKTouchBarMouseController {
 	
 	// MARK: Mouse Overrides
 	override func reloadScreenEdgeController() {
-		if Preferences[.mouseSupportEnabled] {
+		if Preferences[.mouseSupportEnabled], let parentView = parentView {
 			let color: NSColor = Preferences[.showTrackingArea] ? .systemBlue : .clear
 			self.edgeController = PKScreenEdgeController(mouseDelegate: self, parentView: parentView, barColor: color)
 		} else {
