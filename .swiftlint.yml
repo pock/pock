@@ -1,0 +1,11 @@
+# Paths to ignore during linting
+excluded:
+ - Pods
+
+# Custom configurations
+line_length: 220
+type_body_length: 250
+
+# Disabled rules
+disabled_rules:
+ - trailing_whitespace

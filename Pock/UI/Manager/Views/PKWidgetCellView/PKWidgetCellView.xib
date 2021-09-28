@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="18121" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18121"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner"/>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView identifier="widgetCellIdentifier" id="c22-O7-iKe" customClass="PKWidgetCellView" customModule="Pock" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="220" height="42"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Cx-ZE-iIN">
+                    <rect key="frame" x="12" y="0.0" width="196" height="42"/>
+                    <subviews>
+                        <imageView wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jYs-Yj-gaX">
+                            <rect key="frame" x="0.0" y="13" width="16" height="16"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="16" id="xDv-ra-kPe"/>
+                                <constraint firstAttribute="width" constant="16" id="yyE-La-Ez5"/>
+                            </constraints>
+                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSStatusUnavailable" id="rO5-Aj-qKx"/>
+                        </imageView>
+                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="9gm-xG-S02">
+                            <rect key="frame" x="22" y="13" width="152" height="16"/>
+                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="Widget Name" id="otX-3u-Oby">
+                                <font key="font" metaFont="system"/>
+                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <imageView wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nqV-02-GlP" userLabel="Badge">
+                            <rect key="frame" x="180" y="13" width="16" height="16"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="16" id="36E-ba-Y6W"/>
+                                <constraint firstAttribute="width" constant="16" id="l7s-6A-vjH"/>
+                            </constraints>
+                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="new-version-badge" id="m34-UC-wwZ"/>
+                            <color key="contentTintColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
+                        </imageView>
+                    </subviews>
+                    <visibilityPriorities>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                    </visibilityPriorities>
+                    <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                    </customSpacing>
+                </stackView>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="6Cx-ZE-iIN" secondAttribute="bottom" id="0e3-ki-JgU"/>
+                <constraint firstAttribute="trailing" secondItem="6Cx-ZE-iIN" secondAttribute="trailing" constant="12" id="NIy-ty-udR"/>
+                <constraint firstItem="6Cx-ZE-iIN" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="VF3-vO-ECA"/>
+                <constraint firstItem="6Cx-ZE-iIN" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="12" id="su3-cg-Jpc"/>
+            </constraints>
+            <connections>
+                <outlet property="badge" destination="nqV-02-GlP" id="ILC-PK-53f"/>
+                <outlet property="name" destination="9gm-xG-S02" id="eU6-ea-1FP"/>
+                <outlet property="status" destination="jYs-Yj-gaX" id="REE-qB-mRB"/>
+            </connections>
+            <point key="canvasLocation" x="212" y="60"/>
+        </customView>
+    </objects>
+    <resources>
+        <image name="NSStatusUnavailable" width="16" height="16"/>
+        <image name="new-version-badge" width="32" height="32"/>
+    </resources>
+</document>

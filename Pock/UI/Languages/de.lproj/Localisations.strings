@@ -1,0 +1,191 @@
+/*
+
+  German.strings
+  Pock
+
+  Created by Pierluigi Galdi on 12/03/21.
+  
+*/
+
+// MARK: Base
+"base.website_url" = "https://pock.app";
+"base.widget" = "widget";
+
+// MARK: General
+"general.welcome-to-pock" = "Willkommen in Pock";
+"general.pock-widgets-manager" = "Widgets-Manager für die Macbook Touch Bar";
+
+// MARK: MainBarMenu
+// General
+"menu.general" = "Allgemein";
+"menu.about" = "Über Pock";
+"menu.preferences" = "Einstellungen…";
+// Widgets
+"menu.widgets" = "Widgets";
+"menu.widgets.manage-widgets" = "Widgets verwalten…";
+"menu.widgets.install-widget" = "Widget installieren…";
+// Customisation
+"menu.customization" = "Anpassung";
+"menu.customization.pock" = "Pock anpassen…";
+"menu.customization.control-strip" = "Control Strip anpassen…";
+// Advanced
+"menu.advanced" = "Erweiterte Einstellungen";
+"menu.advanced.re-install-default-widgets" = "Standard-Widgets neu installieren…";
+"menu.advanced.open-widgets-folder" = "Widgets-Ordner öffnen…";
+"menu.advanced.reload_pock" = "Pock neu laden…";
+"menu.advanced.relaunch_pock" = "Pock neu starten…";
+"menu.advanced.reload_touchbar" = "Control Strip neu laden…";
+"menu.advanced.relaunch_touchbar" = "Touch Bar neu starten…";
+"menu.developers" = "Entwickler";
+"menu.advanced.show_debug_console" = "Debug-Konsole anzeigen…";
+// Quit
+"menu.goodbye" = "Auf Wiedersehen!";
+"menu.quit" = "Pock beenden";
+
+// MARK: Onboard Screen
+"onboard.title" = "Holen Sie das Beste aus der Touch Bar Ihres Macbook Pro";
+"onboard.body" = "Pock ist mit Standard-Widgets ausgestattet, die Ihnen Zugriff auf wichtige Informationen, Befehle und Funktionen Ihrer meistgenutzten Dienste geben.";
+"onboard.footer" = "Folgen Sie den Anweisungen in der Touch Bar, um Standard-Widgets zu installieren";
+"onboard.open-preferences" = "Einstellungen öffnen…";
+"onboard.continue-with-default-settings" = "Mit den Standardeinstellungen fortfahren";
+
+// MARK: Preferences
+"preferences.window.title" = "Einstellungen";
+
+"preferences.general.title" = " Allgemein";
+"preferences.general.allow-blank-touchbar.title" = "Leere Touch Bar erlauben";
+"preferences.general.allow-blank-touchbar.desc" = "Wenn aktiviert, können Sie die Touch Bar komplett ausschalten, indem Sie alle hinzugefügten Widgets entfernen.";
+"preferences.general.launch-at-login" = "Bei Einloggen starten";
+
+"preferences.layout.title" = "Lay-out";
+
+"preferences.double-control.title" = "Zur Standard-Touch Bar wechseln";
+"preferences.double-control.desc" = "Drücken Sie zweimal die Taste \"^Control\", um von Pock zur System-Touch-Bar zu wechseln und umgekehrt.";
+"preferences.default-touchbar.shows" = "Die Standard-TouchBar zeigt:";
+"preferences.default-touchbar.desc" = "Um richtig zu funktionieren, kann Pock die Standard-Touch-Bar-Einstellungen überschalten. Sie können jederzeit Standardeinstellungen unter \"Systemeinstellungen > Tastatur\" konfigurieren, um die Touch Bar an Ihre Bedürfnisse anzupassen.";
+
+"preferences.cursor-options.title" = "Cursor-Einstellungen";
+"preferences.cursor-options.enable-mouse-support" = "Cursor-Unterstützung einstellen";
+"preferences.cursor-options.show-tracking-area" = "Tracking-Bereich anzeigen";
+
+"preferences.updates.check-for-updates-once-a-day" = "Einmal täglich nach Updates suchen";
+
+"preferences.updates.already-on-latest-version.title" = "Installierte Version: %@";
+"preferences.updates.already-on-latest-version.message" = "Pock läuft bereits auf der neuesten Version.";
+"preferences.updates.new-version-available.title" = "Eine neue Version ist verfügbar";
+"preferences.updates.new-version-available.message" = "Möchten Sie Pock von Version %@ auf Version %@ aktualisieren?";
+
+// MARK: Layout Style
+"layout-style.show-control-strip" = "Control Strip anzeigen";
+"layout-style.full-width" = "Vollbild";
+
+// MARK: Presentation Mode
+"presentation-mode.app" = "App";
+"presentation-mode.app-with-control-strip" = "App mit Control Strip";
+"presentation-mode.full-control-strip" = "Vollständig Control Strip";
+"presentation-mode.function-keys" = "Funktionstasten (Fn)";
+"presentation-mode.workflows" = "Workflows";
+"presentation-mode.workflows-with-control-strip" = "Workflow mit Control Strip";
+"presentation-mode.spaces" = "Räume";
+"presentation-mode.spaces-with-control-strip" = "Räume mit Control Strip";
+
+// MARK: Widgets Manager
+"widgets-manager.list.title" = "Widgets-Manager";
+"widgets-manager.list.select-widget" = "Wählen Sie ein Widget aus der Liste";
+"widgets-manager.list.will-be-updated" = "\"%@\" Widget wird aktualisiert";
+"widgets-manager.list.did-update" = "\"%@\" widget aktualisiert. \n Pock neu laden, um zu aktualisieren.";
+"widgets-manager.loading-preferences" = "Einstellungen laden…";
+"widgets-manager.list.no-preferences" = "Dieses Widget hat keine Einstellungen";
+"widgets-manager.list.reset-preferences" = "Einstellungen auf Standardwerte zurücksetzen";
+
+// MARK: Empty Touch Bar
+"widgets.defaults.tap-to-install" = "Tippen Sie auf, um Standard-Widgets zu installieren…";
+"widgets.empty.add-widgets-to-pock" = "Tippen Sie auf, um Widgets zu Pock hinzuzufügen…";
+
+// MARK: Widget Install/Update
+
+"widget.install.default.title" = "Standard-Widgets installieren";
+"widget.install.default.body" = "Möchten Sie Standard-Widgets installieren?";
+
+"widget.installing.default.body" = "Verarbeitet: %d/%d";
+"widget.installed.default.success.body" = "Standard-Widgets wurden erfolgreich installiert! \n Klicke auf \"Neu starten\", um Pock neu zu starten und geniesse deine brandneue Touch Bar!";
+
+"widget.install.drag-here.title" = "Neues Widget installieren";
+"widget.install.drag-here.body" = "Ziehen Sie die Widget-Datei in dieses Dialogfeld, oder klicken Sie auf die Taste \"Auswählen...\", um die Datei auszuwählen.";
+"widget.install.drag-here.valid-formats" = "Akzeptierte Formate: .pock, .pkarchive";
+
+"widget.remove.title" = " %@ Widget entfernen";
+"widget.remove.body" = "Möchten Sie fortfahren und das %@-Widget entfernen?";
+"widget.remove.click-to-continue" = "Klicken Sie auf \"Entfernen\", um fortzufahren…";
+
+"widget.install.title" = "%@ Widget installieren";
+"widget.install.body" = "Möchten Sie fortfahren und das %@-Widget installieren?";
+"widget.install.click-to-continue" = "Klicken Sie auf \"Installieren\", um fortzufahren ";
+
+"widget.update.title" = "Neue Version für %@-Widget verfügbar!";
+"widget.update.body" = "Möchten Sie von Version %@ auf die neue Version %@ upgraden?";
+"widget.update.changelog.title" = "Neuigkeiten:";
+
+"widget.removing.title" = "Entfernen des %@-Widget…";
+"widget.removing.body" = "Dieser Vorgang kann einige Zeit dauern…";
+
+"widget.installing.title" = "Installieren  des %@-Widget…";
+"widget.installing.body" = "Dieser Vorgang kann einige Zeit dauern…";
+
+"widget.downloading.title" = "Herunterladen des %@-Widgets…";
+"widget.downloading.body" = "Dieser Vorgang kann einige Zeit dauern…\n\n Berechnen des geschätzten Fortschritts:";
+
+"widget.remove.error.title" = "Das Entfernen von Widgets ist fehlgeschlagen!";
+"widget.install.error.title" = "Die Installation des Widgets ist fehlgeschlagen!";
+
+"widget.error.title" = "Etwas ist schief gelaufen…";
+"widget.error.body" = "Während des Task ist ein Fehler aufgetreten.\n\n%@";
+
+"widget.remove.success.title" = "Widget erfolgreich entfernt!";
+"widget.remove.success.body" = "Super, %@ Widget wurde komplett entfernt. \n Klicken Sie auf \"Neustarten\", um Pock neu zu starten.";
+
+"widget.install.success.title" = "Welch ein Erfolg!";
+"widget.install.success.body" = "Gratulation, %@ Widget kann nun zur Touch Bar hinzugefügt werden.\nLaden Sie Pock neu und klicken Sie dann auf die Option \"Pock anpassen...\", um Ihre Widgets zu personalisieren.";
+
+"widget.update.success.title" = "Fertig!";
+"widget.update.success.body" = "Gratulation, %@ Widget ist jetzt auf die neueste Version aktualisiert.\nKlicken Sie auf \"Neustarten\", um Pock neu zu starten.";
+
+// MARK: Actions
+"general.action.cancel" = "Abrechen";
+"general.action.start" = "Starten";
+"general.action.choose" = "Auswählen…";
+"general.action.remove" = "Entfernen";
+"general.action.removing" = "Entfernen…";
+"general.action.install" = "Installieren";
+"general.action.installing" = "Installieren…";
+"general.action.later" = "Vielleicht später";
+"general.action.update" = "Aktualisieren";
+"general.action.downloading" = " Herunterladen…";
+"general.action.check-for-updates" = "Nach Updates suchen";
+"general.action.checking" = " Überprüfen…";
+"general.action.close" = "Enden";
+"general.action.reload" = "Neu laden";
+"general.action.relaunch" = "Neu starten";
+"general.action.customize" = "Anpassen";
+
+// MARK: Errors
+"error.unknown" = "Ein unbekannter Fehler ist aufgetreten.";
+"error.cant-copy" = "Datei kann nicht in den Zielordner kopiert werden.\n%@";
+"error.cant-remove" = "Widget-Datei kann nicht entfernt werden.\n%@";
+"error.unknown-server-error" = "Unbekannte";
+
+"error.updater.invalid-endpoint-url" = "Ungültige URL.";
+"error.updater.response-error" = "Ungültige Antwort des Servers: %@";
+"error.updater.parsing-error" = " Ungültige Antwortdaten.";
+"error.updater.invalid-core-version" = "Eine neue Version für dieses Widget ist verfügbar, aber Ihre Version von Pock wird nicht unterstützt. Bitte aktualisieren Sie auf die minimal unterstützte Version (%@), um die Version dieses Widgets zu installieren.";
+
+"error.downloader.invalid-file-url" = "Abgeforderte Datei auf dem entfernten Server nicht gefunden.";
+"error.downloader.response-error" = "Kann keine Datei anfordern. Serverantwort: %@";
+"error.downloader.download-error" = "Die angeforderte Datei kann nicht heruntergeladen werden: %@";
+"error.file-system-error" = "Datei kann nicht verwaltet werden: %@\n\nBitte überprüfen Sie App Berechtigung und versuchen Sie es erneut.";
+
+// MARK: Debug console
+"debug.console.floating-window" = "Schwebendes Fenster";
+"debug.console.show-on-launch" = "Bei Start anzeigen";
+"debug.console.scroll-automatically" = "Automatisch blättern";
+"debug.console.clear-console" = "Konsole reinigen";
