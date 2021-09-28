@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-platform :osx, '10.13'
+platform :osx, '10.15'
 
 target 'Pock' do
 
@@ -7,7 +7,7 @@ target 'Pock' do
   use_frameworks!
 
   # PockKit
-  pod 'PockKit', :path => '../../Pod/PockKit/'
+  pod 'PockKit', :git => 'git@github.com:pock/pockkit.git'
 
   # Analytics
   pod 'AppCenter/Analytics'
