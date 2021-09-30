@@ -7,7 +7,7 @@ target 'Pock' do
   use_frameworks!
 
   # PockKit
-  pod 'PockKit', :git => 'git@github.com:pock/pockkit.git'
+  pod 'PockKit', :git => 'https://github.com/pock/pockkit.git'
 
   # Analytics
   pod 'AppCenter/Analytics'
