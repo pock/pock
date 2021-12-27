@@ -59,6 +59,10 @@ internal class AppController: NSResponder {
 		prepareOnceADayTimer()
 		clearTemporaryWidgetsFolder()
         startListeningForScreenLockNotifications()
+        // Show fake badge for testing
+        #if DEBUG
+        NSApp.dockTile.badgeLabel = "Pock"
+        #endif
 	}
 	
 	required init?(coder: NSCoder) {
@@ -228,11 +232,13 @@ internal class AppController: NSResponder {
 		alert.messageText = title ?? "alert.title.default".localized
 		alert.informativeText = message ?? "alert.message.default".localized
 		alert.alertStyle = style
-		if actions.isEmpty {
+        var actionsList = actions
+		if actionsList.isEmpty {
 			let cancel = alert.addButton(withTitle: "general.action.cancel".localized)
 			cancel.keyEquivalent = MessageAction.Key.esc.rawValue
+            actionsList = [MessageAction(title: cancel.title)]
 		} else {
-			actions.forEach({
+            actionsList.forEach({
 				let button = alert.addButton(withTitle: $0.title)
 				button.keyEquivalent = $0.key.rawValue
 			})
@@ -243,11 +249,11 @@ internal class AppController: NSResponder {
 		}
 		switch alert.runModal() {
 		case .alertFirstButtonReturn:
-			actions[0].action?()
+            actionsList[0].action?()
 		case .alertSecondButtonReturn:
-			actions[1].action?()
+            actionsList[1].action?()
 		case .alertThirdButtonReturn:
-			actions[2].action?()
+            actionsList[2].action?()
 		default:
 			return
 		}
