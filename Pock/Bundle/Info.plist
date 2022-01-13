@@ -76,7 +76,7 @@
 	<key>LSMinimumSystemVersion</key>
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
 	<key>LSUIElement</key>
-	<string>$(APP_IS_AGENT)</string>
+	<true/>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2021 Pierluigi Galdi. All rights reserved.</string>
 	<key>NSMainNibFile</key>
