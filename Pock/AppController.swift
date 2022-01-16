@@ -61,7 +61,9 @@ internal class AppController: NSResponder {
         startListeningForScreenLockNotifications()
         // Show fake badge for testing
         #if DEBUG
-        NSApp.dockTile.badgeLabel = "Pock"
+        NSApp.dockTile.badgeLabel = "stage"
+        #else
+        NSApp.dockTile.badgeLabel = nil
         #endif
 	}
 	

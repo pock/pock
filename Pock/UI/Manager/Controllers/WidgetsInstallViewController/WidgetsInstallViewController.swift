@@ -125,7 +125,12 @@ class WidgetsInstallViewController: NSViewController {
 			actionButton.title = "general.action.relaunch".localized
 			progressBar.isHidden = true
 			toggleChangelogVisibility(false)
+            #if DEBUG
+            cancelButton.isHidden = false
+            cancelButton.isEnabled = true
+            #else
 			cancelButton.isHidden = true
+            #endif
 			actionButton.isEnabled = true
 		
 		case .dragdrop:

@@ -32,13 +32,6 @@ internal class EmptyTouchBarController: PKTouchBarMouseController {
 		}
 		return view
 	}
-	public override var visibleRectWidth: CGFloat {
-		get {
-            return touchBarView?.visibleRect.width ?? .zero
-		} set {
-			super.visibleRectWidth = newValue
-		}
-	}
 	public override var parentView: NSView! {
 		get {
 			return touchBarView
