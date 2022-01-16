@@ -14,7 +14,6 @@ target 'Pock' do
   pod 'AppCenter/Crashes'
 
   # Utils
-  pod 'Magnet'
   pod 'Zip'
 
 end

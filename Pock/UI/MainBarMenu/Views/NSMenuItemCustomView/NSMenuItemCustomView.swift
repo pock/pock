@@ -7,7 +7,6 @@
 //
 
 import Cocoa
-import Magnet
 
 @IBDesignable
 internal class NSMenuItemCustomView: NSView {

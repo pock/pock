@@ -8,7 +8,6 @@
 import Foundation
 import Combine
 import AppCenterAnalytics
-import Magnet
 import PockKit
 
 internal struct MessageAction {

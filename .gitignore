@@ -8,6 +8,7 @@ Pods
 ## Userdata
 clear_pock_environment
 Pock.xcodeproj/xcuserdata
+Pock.xcodeproj/project.xcworkspace/xcuserdata
 Pock.xcworkspace/xcuserdata
 Pock.xcworkspace/contents.xcworkspacedata
 
