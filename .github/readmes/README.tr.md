@@ -1,11 +1,11 @@
 
-<p align="center"><img src="https://pock.dev/assets/img/brand/web-icon-black.png" width="96"/></p>
+<p align="center"><img src="https://pock.app/_nuxt/img/pock-icon-big-sur.53a4c62.png" width="96"/></p>
 <p align="center">MacOS Dock’u Touch Bar üzerinde gösterir. Ücretsiz ve açık kaynak proje!</p>
 
 <p align="center">Pock, yeni güncelleme ile artık karşınızda! Birçok performans geliştirmesi ve Touch Bar üzerine minimalist widget eklentisi ile birlikte gelir!
 </p>
 <p align="center">
-<img width="800" src="https://pock.dev/assets/img/preview/pock_widgets.png"/>
+  <img width="800" src="https://pock.app/_nuxt/img/pock_widgets.5cf5510.png"/>
 </p>
 
 [🇺🇸English](README.md) | [🇨🇳中文](README.cn.md) | [🇯🇵日本語](README.ja.md) | [🇹🇷Türk dili](README.tr.md)
@@ -35,7 +35,10 @@ Dock’u TouchBar'ın içine konumlandırın. Tamamen işlevsel bir bildirim pin
 *Uygulamaların tam ekran boyutunun tadını çıkarın!*
 
 <div align="left">
-<img width="500" src="https://pock.dev/assets/img/preview/widgets/pock_dock_widget.png"/>
+  <img width="500" src="https://pock.app/_nuxt/img/pock_dock_widget.6c84647.png"/>
+</div>
+<div align="left" style="margin-top:6px">
+  <img width="500" src="https://pock.app/_nuxt/img/pock_app_expose.122ed53.png"/>
 </div>
 
 
@@ -51,9 +54,8 @@ Medya kontrolleri için el hareketleri desteği içerir ve bir bakışta medya b
 | sağa çek | sonraki şarkı         |
 
 <div align="left">
-<img width="500" src="https://pock.dev/assets/img/preview/widgets/pock_now_playing_widget.png"/>
+  <img width="500" src="https://pock.app/_nuxt/img/pock_now_playing_widget.fb1e8cf.png"/>
 </div>
-
 
 
 ##### ESC widget
@@ -61,7 +63,7 @@ Medya kontrolleri için el hareketleri desteği içerir ve bir bakışta medya b
 Widget üzerinde ESC düğmesi mevcut ve ESC düğmesini kullanmak için Pock’u gizlemeniz gerekmez.
 
 <div align="left">
-<img width="500" src="https://pock.dev/assets/img/preview/widgets/pock_esc_widget.png"/>
+  <img width="500" src="https://pock.app/_nuxt/img/pock_esc_widget.03f476d.png"/>
 </div>
 
 
@@ -71,8 +73,9 @@ Widget üzerinde ESC düğmesi mevcut ve ESC düğmesini kullanmak için Pock’
 Gözünüz her zaman saat, wifi veya batarya durumu bilgileri üzerinde olsun. Durum öğelerini Pock ayarlarından yapılandırabilirsiniz.
 
 <div align="left">
-<img width="500" src="https://pock.dev/assets/img/preview/widgets/pock_status_widget.png"/>
+  <img width="500" src="https://pock.app/_nuxt/img/pock_status_widget.33efaa7.png"/>
 </div>
+
 
 
 
@@ -81,7 +84,7 @@ Gözünüz her zaman saat, wifi veya batarya durumu bilgileri üzerinde olsun. D
 Ekran parlaklığını ve sistem sesini kolaylıkla kontrol edebilirsiniz. Kontrol merkezinden sürükleyip Touch Bar’ınıza bırakabilirsiniz.
 
 <div align="left">
-<img width="500" src="https://pock.dev/assets/img/preview/widgets/pock_control_center_widget.png"/>
+  <img width="500" src="https://pock.app/_nuxt/img/pock_control_center_widget.3ab93ea.png"/>
 </div>
 
 
@@ -92,8 +95,9 @@ Daha çok widget yakında gelecek!
 Sosyal medya üzerinden #pock hashtag’ini takip ederek tüm güncellemelerden haberdar olabilirsiniz!
 
 <div align="left">
-<img width="500" src="https://pock.dev/assets/img/preview/widgets/pock_more_widget.png"/>
+  <img width="500" src="https://pock.app/_nuxt/img/pock_more_widget.b8c7aa2.png"/>
 </div>
+
 
 
 
@@ -102,9 +106,9 @@ Sosyal medya üzerinden #pock hashtag’ini takip ederek tüm güncellemelerden 
 Özel ihtiyaçlarınızı yansıtmak için Pock ve widget ayarlarını yapabilirsiniz. Bu bölmelere **Preferences**(tercihler) menü öğesinden erişebilirsiniz.
 
 <div display="float">
-<img width="262" src="https://pock.dev/assets/img/preview/preferences/preference_dock_widget.png"/>
-<img width="262" src="https://pock.dev/assets/img/preview/preferences/preference_general.png"/>
-<img width="262" src="https://pock.dev/assets/img/preview/preferences/preference_status_widget.png"/>
+  <img width="262" src="https://pock.app/_nuxt/img/preference_general.f5f55b1.png"/>
+  <img width="262" src="https://pock.app/_nuxt/img/preference_nowplaying_widget.4cfa367.png"/>
+  <img width="262" src="https://pock.app/_nuxt/img/preference_dock_widget.b2bb413.png"/>
 </div>
 
 ## Özelleştir
@@ -112,7 +116,7 @@ Sosyal medya üzerinden #pock hashtag’ini takip ederek tüm güncellemelerden 
 TouchBar'daki widget konumunu **Customize**(özelleştir) menü öğesinden özelleştirebilirsiniz.
 
 <div align="left">
-<img src="https://pock.dev/assets/img/preview/pock_customize.png"/>
+  <img src="https://pock.app/_nuxt/img/pock_customize.25172d4.png"/>
 </div>
 
 
@@ -123,7 +127,7 @@ TouchBar'daki widget konumunu **Customize**(özelleştir) menü öğesinden öze
 </p>
 
 <div align="center">
-<img width="260" src="https://pock.dev/assets/img/preview/developers/xcode_plus_pockkit.png"/>
+  <img width="260" src="https://pock.app/_nuxt/img/xcode12_plus_pockkit.68788ac.png"/>
 </div>
 
 
