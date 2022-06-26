@@ -48,7 +48,8 @@ Pock will always be available as free software!
 
 To have a flawless experience, please click [here](https://pock.app/docs/catalina) and read all the suggestions carefully.
 
-
+Pock sends some _anonymous events_ over _AppCenter_ to speed up issues/bugs-catching. If you don't agree with this, then please, don't download it.
+_These events will never be used for marketing purposes_.
 
 ## How to uninstall
 
