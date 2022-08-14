@@ -190,7 +190,7 @@ internal class AppController: NSResponder {
 			prepareTouchBar()
 		} else {
 			if navigationController.visibleController?.isVisible == true {
-				if NSFunctionRow.activeFunctionRows().count > 1 {
+				if NSFunctionRow.activeFunctionRows().count >= 1 {
 					TouchBarHelper.markTouchBarAsDimmed(true)
 				} else {
 					reload(shouldFetchLatestVersions: false)
@@ -217,7 +217,10 @@ internal class AppController: NSResponder {
 
 	/// Register double `ctrl` hotkey
 	private func registerDoubleControlHotKey() {
-		doubleCtrlHotKey = HotKey(key: .control, double: true, target: self, selector: #selector(toggleVisibility))
+        if let keyCombo = KeyCombo(doubledCocoaModifiers: .control) {
+            doubleCtrlHotKey = HotKey(identifier: "ControlDoubleTap", keyCombo: keyCombo, target: self, action: #selector(toggleVisibility))
+            doubleCtrlHotKey?.register()
+        }
 	}
 	
 	// MARK: Show messages panel to inform users about certain situations

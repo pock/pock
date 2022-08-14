@@ -54,7 +54,6 @@
 		34564DF625F83E2D0093E5E0 /* STPrivilegedTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 34564DF525F83E2D0093E5E0 /* STPrivilegedTask.m */; };
 		34564DF825F83E490093E5E0 /* DispatchQueue-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34564DF725F83E490093E5E0 /* DispatchQueue-Extensions.swift */; };
 		34564DFA25F83ECB0093E5E0 /* DFRFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34564DF925F83ECB0093E5E0 /* DFRFoundation.framework */; };
-		34564E0025F850170093E5E0 /* HotKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34564DFF25F850170093E5E0 /* HotKey.swift */; };
 		34564E0225F983640093E5E0 /* WidgetsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34564E0125F983640093E5E0 /* WidgetsLoader.swift */; };
 		34564E0625F984850093E5E0 /* FileManager+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34564E0525F984850093E5E0 /* FileManager+Extensions.swift */; };
 		34564E0825F98FD50093E5E0 /* PKWidgetTouchBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34564E0725F98FD50093E5E0 /* PKWidgetTouchBarItem.swift */; };
@@ -169,7 +168,6 @@
 		34564DF525F83E2D0093E5E0 /* STPrivilegedTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPrivilegedTask.m; sourceTree = "<group>"; };
 		34564DF725F83E490093E5E0 /* DispatchQueue-Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchQueue-Extensions.swift"; sourceTree = "<group>"; };
 		34564DF925F83ECB0093E5E0 /* DFRFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DFRFoundation.framework; path = ../../../../../../../../../System/Library/PrivateFrameworks/DFRFoundation.framework; sourceTree = "<group>"; };
-		34564DFF25F850170093E5E0 /* HotKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotKey.swift; sourceTree = "<group>"; };
 		34564E0125F983640093E5E0 /* WidgetsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetsLoader.swift; sourceTree = "<group>"; };
 		34564E0525F984850093E5E0 /* FileManager+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extensions.swift"; sourceTree = "<group>"; };
 		34564E0725F98FD50093E5E0 /* PKWidgetTouchBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKWidgetTouchBarItem.swift; sourceTree = "<group>"; };
@@ -556,7 +554,6 @@
 				34564DF325F83E2D0093E5E0 /* STPrivilegedTask */,
 				34291B99264BDBB300768B08 /* LoginServiceKit */,
 				34564DEE25F8389D0093E5E0 /* Roger.swift */,
-				34564DFF25F850170093E5E0 /* HotKey.swift */,
 				34291B842643562800768B08 /* Errors.swift */,
 			);
 			path = Utilities;
@@ -904,7 +901,6 @@
 				34564DE725F836530093E5E0 /* AppController.swift in Sources */,
 				34291B962645674D00768B08 /* NSView+Extensions.swift in Sources */,
 				34291B6F263F4A7600768B08 /* Collections+Extensions.swift in Sources */,
-				34564E0025F850170093E5E0 /* HotKey.swift in Sources */,
 				34291B68263EDF9800768B08 /* PreferencesViewController.swift in Sources */,
 				34291BA1264D0B1200768B08 /* OnBoardViewController.swift in Sources */,
 			);
