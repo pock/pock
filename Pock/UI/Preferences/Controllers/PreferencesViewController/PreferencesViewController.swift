@@ -32,7 +32,7 @@ class PreferencesViewController: NSViewController {
 	@IBOutlet private weak var defaultTouchBarPresentationModeLabel: NSTextField!
 	@IBOutlet private weak var defaultTouchBarPresentationModePopUp: NSPopUpButton!
 	@IBOutlet private weak var defaultTouchBarPresentationModeDesc: NSTextField!
-    @IBOutlet private weak var doubleControlEnabledCheckbox: NSButton!
+	@IBOutlet private weak var doubleControlEnabledCheckbox: NSButton!
 	
 	/// Cursor options
 	@IBOutlet private weak var cursorOptionsTitleLabel: NSTextField!
@@ -98,7 +98,7 @@ class PreferencesViewController: NSViewController {
 		showTrackingAreaCheckbox.state = Preferences[.showTrackingArea] == true ? .on : .off
 		showTrackingAreaCheckbox.isEnabled = Preferences[.mouseSupportEnabled] == true
 		checkForUpdatesOnceADayCheckbox.state = Preferences[.checkForUpdatesOnceADay] == true ? .on : .off
-        doubleControlEnabledCheckbox.state = Preferences[.enableDoubleControlHotkey] == true ? .on : .off
+		doubleControlEnabledCheckbox.state = Preferences[.enableDoubleControlHotkey] == true ? .on : .off
         checkForUpdatesSpinner.stopAnimation(nil)
         checkForUpdatesNowButton.bezelColor = .windowFrameColor
 		/// Layout Style
@@ -119,7 +119,7 @@ class PreferencesViewController: NSViewController {
 		
 		doubleControlTitleLabel.stringValue = "preferences.double-control.title".localized
 		doubleControlDescriptionLabel.stringValue = "preferences.double-control.desc".localized
-        doubleControlEnabledCheckbox.title = "preferences.double-control.checkbox".localized
+		doubleControlEnabledCheckbox.title = "preferences.double-control.checkbox".localized
 
 		defaultTouchBarPresentationModeLabel.stringValue = "preferences.default-touchbar.shows".localized
 		defaultTouchBarPresentationModeDesc.stringValue = "preferences.default-touchbar.desc".localized
@@ -221,9 +221,9 @@ class PreferencesViewController: NSViewController {
 			key = .checkForUpdatesOnceADay
 			shouldReloadPock = false
 
-        case doubleControlEnabledCheckbox:
-            key = .enableDoubleControlHotkey
-            shouldReloadPock = false
+		case doubleControlEnabledCheckbox:
+			key = .enableDoubleControlHotkey
+			shouldReloadPock = false
 			
 		default:
 			return
