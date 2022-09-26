@@ -32,7 +32,7 @@ class PreferencesViewController: NSViewController {
 	@IBOutlet private weak var defaultTouchBarPresentationModeLabel: NSTextField!
 	@IBOutlet private weak var defaultTouchBarPresentationModePopUp: NSPopUpButton!
 	@IBOutlet private weak var defaultTouchBarPresentationModeDesc: NSTextField!
-    @IBOutlet private weak var doubleControlEnabledCheckedbox: NSButton!
+    @IBOutlet private weak var doubleControlEnabledCheckbox: NSButton!
 	
 	/// Cursor options
 	@IBOutlet private weak var cursorOptionsTitleLabel: NSTextField!
@@ -118,7 +118,7 @@ class PreferencesViewController: NSViewController {
 		
 		doubleControlTitleLabel.stringValue = "preferences.double-control.title".localized
 		doubleControlDescriptionLabel.stringValue = "preferences.double-control.desc".localized
-        doubleControlEnabledCheckedbox.title = "preferences.double-control.checkbox".localized
+        doubleControlEnabledCheckbox.title = "preferences.double-control.checkbox".localized
 
 		defaultTouchBarPresentationModeLabel.stringValue = "preferences.default-touchbar.shows".localized
 		defaultTouchBarPresentationModeDesc.stringValue = "preferences.default-touchbar.desc".localized
@@ -219,6 +219,9 @@ class PreferencesViewController: NSViewController {
 		case checkForUpdatesOnceADayCheckbox:
 			key = .checkForUpdatesOnceADay
 			shouldReloadPock = false
+
+        case doubleControlEnabledCheckbox:
+            key = .enableDoubleControlHotkey
 			
 		default:
 			return
