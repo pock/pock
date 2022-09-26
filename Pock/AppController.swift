@@ -186,6 +186,10 @@ internal class AppController: NSResponder {
 
 	/// Toggle
 	@objc internal func toggleVisibility() {
+        if !Preferences[.enableDoubleControlHotkey] {
+            return
+        }
+
 		if pockTouchBarController == nil {
 			prepareTouchBar()
 		} else {
@@ -217,9 +221,7 @@ internal class AppController: NSResponder {
 
 	/// Register double `ctrl` hotkey
 	private func registerDoubleControlHotKey() {
-        if Preferences[.enableDoubleControlHotkey] {
-            doubleCtrlHotKey = HotKey(key: .control, double: true, target: self, selector: #selector(toggleVisibility))
-        }
+        doubleCtrlHotKey = HotKey(key: .control, double: true, target: self, selector: #selector(toggleVisibility))
 	}
 	
 	// MARK: Show messages panel to inform users about certain situations

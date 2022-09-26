@@ -18,6 +18,7 @@
                 <outlet property="defaultTouchBarPresentationModeLabel" destination="m4D-MG-SrZ" id="y5o-i9-nPy"/>
                 <outlet property="defaultTouchBarPresentationModePopUp" destination="nGT-wm-8ex" id="tE8-vV-8nA"/>
                 <outlet property="doubleControlDescriptionLabel" destination="mw3-L0-eHQ" id="Ljf-w5-sXM"/>
+                <outlet property="doubleControlEnabledCheckbox" destination="nNG-8N-xKK" id="tTx-lQ-8dw"/>
                 <outlet property="doubleControlTitleLabel" destination="Hou-tH-Wbe" id="ffz-ir-dDz"/>
                 <outlet property="enableMouseSupportCheckbox" destination="AG6-Hk-tWN" id="fS2-H7-FZy"/>
                 <outlet property="generalTitleLabel" destination="Sqw-AL-GkK" id="Fbo-Ji-HaQ"/>
@@ -226,10 +227,10 @@
                                                 <rect key="frame" x="6" y="6" width="448" height="68"/>
                                                 <subviews>
                                                     <stackView distribution="fillProportionally" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ko1-G6-YKS">
-                                                        <rect key="frame" x="0.0" y="9" width="292" height="51"/>
+                                                        <rect key="frame" x="0.0" y="9" width="280" height="51"/>
                                                         <subviews>
                                                             <button translatesAutoresizingMaskIntoConstraints="NO" id="Pkh-0h-z7G">
-                                                                <rect key="frame" x="6" y="21" width="280" height="30"/>
+                                                                <rect key="frame" x="0.0" y="21" width="280" height="30"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="30" id="bMB-Av-o4n"/>
                                                                     <constraint firstAttribute="width" constant="280" identifier="layout-style.option.width" id="seE-Cl-PVa"/>
@@ -243,7 +244,7 @@
                                                                 </connections>
                                                             </button>
                                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XgJ-3V-poM">
-                                                                <rect key="frame" x="101" y="0.0" width="91" height="13"/>
+                                                                <rect key="frame" x="95" y="0.0" width="91" height="13"/>
                                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="With Control Strip" id="Ho0-9J-U9p">
                                                                     <font key="font" textStyle="caption1" name=".SFNS-Regular"/>
                                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -261,10 +262,10 @@
                                                         </customSpacing>
                                                     </stackView>
                                                     <stackView distribution="fillProportionally" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ixm-1w-ksv">
-                                                        <rect key="frame" x="308" y="9" width="140" height="51"/>
+                                                        <rect key="frame" x="296" y="9" width="152" height="51"/>
                                                         <subviews>
                                                             <button translatesAutoresizingMaskIntoConstraints="NO" id="qgX-V4-ZgJ">
-                                                                <rect key="frame" x="0.0" y="21" width="140" height="30"/>
+                                                                <rect key="frame" x="6" y="21" width="140" height="30"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="30" id="2Iq-9S-RaK"/>
                                                                     <constraint firstAttribute="width" constant="140" identifier="layout-style.option.width" id="7Y8-GE-9JO"/>
@@ -278,7 +279,7 @@
                                                                 </connections>
                                                             </button>
                                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OLc-cJ-BZQ">
-                                                                <rect key="frame" x="45" y="0.0" width="51" height="13"/>
+                                                                <rect key="frame" x="51" y="0.0" width="51" height="13"/>
                                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Full width" id="mfM-jJ-Zon">
                                                                     <font key="font" textStyle="caption1" name=".SFNS-Regular"/>
                                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>

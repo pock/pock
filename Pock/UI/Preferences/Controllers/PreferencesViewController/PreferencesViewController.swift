@@ -98,6 +98,7 @@ class PreferencesViewController: NSViewController {
 		showTrackingAreaCheckbox.state = Preferences[.showTrackingArea] == true ? .on : .off
 		showTrackingAreaCheckbox.isEnabled = Preferences[.mouseSupportEnabled] == true
 		checkForUpdatesOnceADayCheckbox.state = Preferences[.checkForUpdatesOnceADay] == true ? .on : .off
+        doubleControlEnabledCheckbox.state = Preferences[.enableDoubleControlHotkey] == true ? .on : .off
         checkForUpdatesSpinner.stopAnimation(nil)
         checkForUpdatesNowButton.bezelColor = .windowFrameColor
 		/// Layout Style
@@ -222,6 +223,7 @@ class PreferencesViewController: NSViewController {
 
         case doubleControlEnabledCheckbox:
             key = .enableDoubleControlHotkey
+            shouldReloadPock = false
 			
 		default:
 			return
