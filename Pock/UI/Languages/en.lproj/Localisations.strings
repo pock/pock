@@ -61,6 +61,7 @@
 
 "preferences.double-control.title" = "Switch to default Touch Bar";
 "preferences.double-control.desc" = "Double press `^Control` key to toggle between Pock and System Touch Bar.";
+"preferences.double-control.checkbox" = "Enable hotkey";
 "preferences.default-touchbar.shows" = "Default Touch Bar shows:";
 "preferences.default-touchbar.desc" = "To work properly, Pock may override the default Touch Bar preferences.
 You can always configure default settings from `System Preferences > Keyboard` to adapt the Touch Bar to your needs.";

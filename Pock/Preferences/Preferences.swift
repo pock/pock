@@ -43,6 +43,7 @@ internal struct Preferences {
 		case userDefinedPresentationMode
 		case didShowOnBoard
         case showDebugConsoleOnLaunch
+        case enableDoubleControlHotkey
 	}
 	static subscript<T>(_ key: Keys) -> T {
         get {
@@ -75,6 +76,8 @@ internal struct Preferences {
                 case .didShowOnBoard:
                     return false as! T
                 case .showDebugConsoleOnLaunch:
+                    return false as! T
+                case .enableDoubleControlHotkey:
                     return false as! T
                 }
             }
