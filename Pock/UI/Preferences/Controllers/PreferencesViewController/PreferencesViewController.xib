@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19115.2" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21225" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19115.2"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21225"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,6 +18,7 @@
                 <outlet property="defaultTouchBarPresentationModeLabel" destination="m4D-MG-SrZ" id="y5o-i9-nPy"/>
                 <outlet property="defaultTouchBarPresentationModePopUp" destination="nGT-wm-8ex" id="tE8-vV-8nA"/>
                 <outlet property="doubleControlDescriptionLabel" destination="mw3-L0-eHQ" id="Ljf-w5-sXM"/>
+                <outlet property="doubleControlEnabledCheckbox" destination="nNG-8N-xKK" id="tTx-lQ-8dw"/>
                 <outlet property="doubleControlTitleLabel" destination="Hou-tH-Wbe" id="ffz-ir-dDz"/>
                 <outlet property="enableMouseSupportCheckbox" destination="AG6-Hk-tWN" id="fS2-H7-FZy"/>
                 <outlet property="generalTitleLabel" destination="Sqw-AL-GkK" id="Fbo-Ji-HaQ"/>
@@ -35,11 +36,11 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="7A0-aS-6xu">
-            <rect key="frame" x="0.0" y="0.0" width="663" height="561"/>
+            <rect key="frame" x="0.0" y="0.0" width="663" height="593"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="6" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iRU-qG-dyZ">
-                    <rect key="frame" x="0.0" y="229" width="150" height="103"/>
+                    <rect key="frame" x="0.0" y="245" width="150" height="103"/>
                     <subviews>
                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="632-vB-dK1">
                             <rect key="frame" x="50" y="53" width="50" height="50"/>
@@ -112,16 +113,16 @@
                     </customSpacing>
                 </stackView>
                 <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="evs-Wg-hnZ">
-                    <rect key="frame" x="148" y="0.0" width="5" height="561"/>
+                    <rect key="frame" x="148" y="0.0" width="5" height="593"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="1" id="MiR-RC-txf"/>
                     </constraints>
                 </box>
                 <stackView distribution="equalSpacing" orientation="vertical" alignment="leading" spacing="16" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TET-qG-kOa">
-                    <rect key="frame" x="171" y="94" width="472" height="451"/>
+                    <rect key="frame" x="171" y="94" width="472" height="483"/>
                     <subviews>
                         <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="6" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SQJ-q8-7Td">
-                            <rect key="frame" x="0.0" y="383" width="472" height="68"/>
+                            <rect key="frame" x="0.0" y="415" width="472" height="68"/>
                             <subviews>
                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Sqw-AL-GkK">
                                     <rect key="frame" x="-2" y="52" width="52" height="16"/>
@@ -203,10 +204,10 @@
                             </customSpacing>
                         </stackView>
                         <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="lvj-QI-Js4">
-                            <rect key="frame" x="0.0" y="364" width="305" height="5"/>
+                            <rect key="frame" x="0.0" y="395" width="305" height="5"/>
                         </box>
                         <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="6" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="etT-Op-zt4">
-                            <rect key="frame" x="0.0" y="248" width="472" height="102"/>
+                            <rect key="frame" x="0.0" y="278" width="472" height="102"/>
                             <subviews>
                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="jRN-fQ-kWQ">
                                     <rect key="frame" x="-2" y="86" width="45" height="16"/>
@@ -226,10 +227,10 @@
                                                 <rect key="frame" x="6" y="6" width="448" height="68"/>
                                                 <subviews>
                                                     <stackView distribution="fillProportionally" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ko1-G6-YKS">
-                                                        <rect key="frame" x="0.0" y="9" width="292" height="51"/>
+                                                        <rect key="frame" x="0.0" y="9" width="280" height="51"/>
                                                         <subviews>
                                                             <button translatesAutoresizingMaskIntoConstraints="NO" id="Pkh-0h-z7G">
-                                                                <rect key="frame" x="6" y="21" width="280" height="30"/>
+                                                                <rect key="frame" x="0.0" y="21" width="280" height="30"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="30" id="bMB-Av-o4n"/>
                                                                     <constraint firstAttribute="width" constant="280" identifier="layout-style.option.width" id="seE-Cl-PVa"/>
@@ -243,7 +244,7 @@
                                                                 </connections>
                                                             </button>
                                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XgJ-3V-poM">
-                                                                <rect key="frame" x="101" y="0.0" width="91" height="13"/>
+                                                                <rect key="frame" x="95" y="0.0" width="91" height="13"/>
                                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="With Control Strip" id="Ho0-9J-U9p">
                                                                     <font key="font" textStyle="caption1" name=".SFNS-Regular"/>
                                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -261,10 +262,10 @@
                                                         </customSpacing>
                                                     </stackView>
                                                     <stackView distribution="fillProportionally" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ixm-1w-ksv">
-                                                        <rect key="frame" x="308" y="9" width="140" height="51"/>
+                                                        <rect key="frame" x="296" y="9" width="152" height="51"/>
                                                         <subviews>
                                                             <button translatesAutoresizingMaskIntoConstraints="NO" id="qgX-V4-ZgJ">
-                                                                <rect key="frame" x="0.0" y="21" width="140" height="30"/>
+                                                                <rect key="frame" x="6" y="21" width="140" height="30"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="30" id="2Iq-9S-RaK"/>
                                                                     <constraint firstAttribute="width" constant="140" identifier="layout-style.option.width" id="7Y8-GE-9JO"/>
@@ -278,7 +279,7 @@
                                                                 </connections>
                                                             </button>
                                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OLc-cJ-BZQ">
-                                                                <rect key="frame" x="45" y="0.0" width="51" height="13"/>
+                                                                <rect key="frame" x="51" y="0.0" width="51" height="13"/>
                                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Full width" id="mfM-jJ-Zon">
                                                                     <font key="font" textStyle="caption1" name=".SFNS-Regular"/>
                                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -329,16 +330,16 @@
                             </customSpacing>
                         </stackView>
                         <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="TrH-oc-vna">
-                            <rect key="frame" x="0.0" y="229" width="305" height="5"/>
+                            <rect key="frame" x="0.0" y="258" width="305" height="5"/>
                         </box>
                         <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="12" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z24-9W-9hs">
-                            <rect key="frame" x="0.0" y="97" width="472" height="118"/>
+                            <rect key="frame" x="0.0" y="99" width="472" height="144"/>
                             <subviews>
                                 <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="6" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NxX-9H-KMc">
-                                    <rect key="frame" x="0.0" y="83" width="374" height="35"/>
+                                    <rect key="frame" x="0.0" y="83" width="374" height="61"/>
                                     <subviews>
                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Hou-tH-Wbe">
-                                            <rect key="frame" x="-2" y="19" width="171" height="16"/>
+                                            <rect key="frame" x="-2" y="45" width="171" height="16"/>
                                             <textFieldCell key="cell" selectable="YES" title="Switch to default Touch Bar" id="xMH-P5-S6x">
                                                 <font key="font" usesAppearanceFont="YES"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -346,19 +347,34 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="mw3-L0-eHQ">
-                                            <rect key="frame" x="-2" y="0.0" width="378" height="13"/>
+                                            <rect key="frame" x="-2" y="26" width="378" height="13"/>
                                             <textFieldCell key="cell" selectable="YES" title="Double press `⌃ Control` key to toggle between Pock and System Touch Bar." id="FeU-cD-3A4">
                                                 <font key="font" textStyle="footnote" name=".SFNS-Regular"/>
                                                 <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
+                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nNG-8N-xKK">
+                                            <rect key="frame" x="-2" y="-1" width="112" height="22"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="20" id="TTv-Nk-mJ4"/>
+                                            </constraints>
+                                            <buttonCell key="cell" type="check" title="Enable hotkey" bezelStyle="regularSquare" imagePosition="left" inset="2" id="MPK-nX-pIL">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="didChangePreferencesOptionFor:" target="-2" id="XbE-Pw-R84"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <visibilityPriorities>
                                         <integer value="1000"/>
                                         <integer value="1000"/>
+                                        <integer value="1000"/>
                                     </visibilityPriorities>
                                     <customSpacing>
+                                        <real value="3.4028234663852886e+38"/>
                                         <real value="3.4028234663852886e+38"/>
                                         <real value="3.4028234663852886e+38"/>
                                     </customSpacing>
@@ -427,7 +443,7 @@ You can always configure default settings from `System Preferences &gt; Keyboard
                             </customSpacing>
                         </stackView>
                         <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="DOx-3P-T88">
-                            <rect key="frame" x="0.0" y="78" width="305" height="5"/>
+                            <rect key="frame" x="0.0" y="79" width="305" height="5"/>
                         </box>
                         <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="6" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x9f-1q-gTr">
                             <rect key="frame" x="0.0" y="0.0" width="472" height="64"/>

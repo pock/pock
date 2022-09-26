@@ -186,6 +186,10 @@ internal class AppController: NSResponder {
 
 	/// Toggle
 	@objc internal func toggleVisibility() {
+		if !Preferences[.enableDoubleControlHotkey] {
+			return
+		}
+
 		if pockTouchBarController == nil {
 			prepareTouchBar()
 		} else {
