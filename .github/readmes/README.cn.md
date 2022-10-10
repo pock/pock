@@ -1,8 +1,8 @@
 <p align="center"><img src="https://pock.app/_nuxt/img/pock-icon-big-sur.53a4c62.png" width="96"/></p>
-<p align="center">在触控栏中显示macOS程序坞。它是免费和开源的！</p>
+<p align="center">在触控栏中显示macOS程序坞，它是免费和开源的！</p>
 
 <p align="center">全新的Pock终于来了！
-它带来了很多性能改进，而且能为您的触控栏带来了极简主义的小组件！
+它带来了很多性能改进，而且能为您的触控栏带来了极简主义的组件！
 </p>
 <p align="center">
   <img width="800" src="https://pock.app/_nuxt/img/pock_widgets.5cf5510.png"/>
@@ -12,20 +12,20 @@
 
 ## 感谢!
 
-如果你想支持这个项目，你可以[点击这里](https://paypal.me/pigigaldi)！
+如果您想支持这个项目，可以[点击这里](https://paypal.me/pigigaldi)！
 Pock将永远免费！
 
 ## 如何启用
 
 1. 将Pock移动到您的应用程序文件夹
 2. 打开Pock
-3. 如果你没有在触控栏中看到Pock，请到系统偏好设置中的`键盘` 面板，然后选择“触控栏显示 _App控制_.”
+3. 如果您没有在触控栏中看到Pock，请到系统偏好设置中的`键盘` 面板，然后选择“触控栏显示 _App控制_.”
 
-## 小组件
+## 组件
 
-<small>包括五个默认小组件</small>
+<small>包括五个默认组件</small>
 
-##### 程序坞小组件
+##### 程序坞组件
 
 您的macOS程序坞位于MacBook的触控栏中，即核心功能。
 它配备了全功能角标支持，因此您不会错过任何通知。
@@ -89,7 +89,7 @@ Pock将永远免费！
 
 ## 首选项
 
-您可以调整Pock和小部件设置以反映您的特定需求。 您可以从**首选项**访问这些面板。
+您可以调整Pock和组件设置以反映您的特定需求。 您可以从**首选项**访问这些面板。
 
 <div display="float">
   <img width="262" src="https://pock.app/_nuxt/img/preference_general.f5f55b1.png"/>
@@ -107,8 +107,8 @@ Pock将永远免费！
 
 ## 开发者
 
-<p align="left">你想为Pock构建一个自定义组件吗？
-  很快你就可以用<b> PockKit </b>来做到这一点！
+<p align="left">您想为Pock构建一个自定义组件吗？
+  很快您就可以用<b> PockKit </b>来做到这一点！
 </p>
 
 <div align="center">
