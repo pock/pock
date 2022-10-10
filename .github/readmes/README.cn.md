@@ -1,8 +1,8 @@
 <p align="center"><img src="https://pock.app/_nuxt/img/pock-icon-big-sur.53a4c62.png" width="96"/></p>
 <p align="center">在触控栏中显示macOS程序坞。它是免费和开源的！</p>
 
-<p align="center">一个新的Pock更新终于来了！
-它带来了很多性能改进，它为您的触控栏带来了极简主义的小部件！
+<p align="center">全新的Pock终于来了！
+它带来了很多性能改进，而且能为您的触控栏带来了极简主义的小组件！
 </p>
 <p align="center">
   <img width="800" src="https://pock.app/_nuxt/img/pock_widgets.5cf5510.png"/>
@@ -13,23 +13,23 @@
 ## 感谢!
 
 如果你想支持这个项目，你可以[点击这里](https://paypal.me/pigigaldi)！
-Pock将永远作为免费软件提供！
+Pock将永远免费！
 
 ## 如何启用
 
 1. 将Pock移动到您的应用程序文件夹
 2. 打开Pock
-3. 如果你没有在触摸栏中看到Pock，去到系统偏好设置中的`键盘` 面板然后选择“触控栏显示 _App控制_.”
+3. 如果你没有在触控栏中看到Pock，请到系统偏好设置中的`键盘` 面板，然后选择“触控栏显示 _App控制_.”
 
-## 部件
+## 小组件
 
-<small>包括五个默认部件</small>
+<small>包括五个默认小组件</small>
 
-##### 程序坞部件
+##### 程序坞小组件
 
-您的macOS程序坞位于MacBook的触控栏中，即核心部件。
+您的macOS程序坞位于MacBook的触控栏中，即核心功能。
 它配备了全功能角标支持，因此您不会错过任何通知。
-可以在部件设置中配置更多功能以及其他首选项。
+可以在组件设置中配置更多功能以及其它偏好设置。
 *每次都享受全尺寸的屏幕！*
 
 <div align="left">
@@ -39,11 +39,11 @@ Pock将永远作为免费软件提供！
   <img width="500" src="https://pock.app/_nuxt/img/pock_app_expose.122ed53.png"/>
 </div>
 
-##### 正在播放部件
+##### 播放器组件
 
 包含控制手势的媒体信息一目了然。
 
-| 手势   | 动作    |
+| 手势   | 操作    |
 | ---- | ----- |
 | 点击   | 播放/暂停 |
 | 向左滑动 | 上一曲   |
@@ -53,23 +53,23 @@ Pock将永远作为免费软件提供！
   <img width="500" src="https://pock.app/_nuxt/img/pock_now_playing_widget.fb1e8cf.png"/>
 </div>
 
-##### ESC部件
+##### ESC组件
 
-有一个方便的ESC按钮，以防万一，所以你不必隐藏Pock来访问系统。
+有一个方便的ESC按钮，以防万一，这样您就不必隐藏Pock来访问系统。
 
 <div align="left">
   <img width="500" src="https://pock.app/_nuxt/img/pock_esc_widget.03f476d.png"/>
 </div>
 
-##### 状态部件
+##### 状态组件
 
-始终关注系统信息，例如时间，WiFi状态或电池状态。 从设置更改可见性。
+始终关注系统信息，例如时间，WiFi状态或电池状态，您可以在设置更改其可见性。
 
 <div align="left">
   <img width="500" src="https://pock.app/_nuxt/img/pock_status_widget.33efaa7.png"/>
 </div>
 
-##### 控制中心部件
+##### 控制中心组件
 
 通过简单的控制更改屏幕亮度或系统音量。
 长按或滑动控制中心项目以调用滑块。
@@ -80,8 +80,8 @@ Pock将永远作为免费软件提供！
 
 ##### 更多...
 
-更多部件即将推出！
-继续搜索社交媒体上的#pock，以便在将来的部件发布时进行更新！
+更多组件即将推出！
+在社交媒体上搜索#pock，以便在未来组件发布时进行更新！
 
 <div align="left">
   <img width="500" src="https://pock.app/_nuxt/img/pock_more_widget.b8c7aa2.png"/>
@@ -99,7 +99,7 @@ Pock将永远作为免费软件提供！
 
 ## 自定义
 
-您可以从**自定义触控栏**中自定义触控栏中的窗口部件位置。
+您可以从**自定义触控栏**中自定义触控栏中的窗口组件位置。
 
 <div align="left">
   <img src="https://pock.app/_nuxt/img/pock_customize.25172d4.png"/>
@@ -107,7 +107,7 @@ Pock将永远作为免费软件提供！
 
 ## 开发者
 
-<p align="left">你想为Pock构建一个自定义部件吗？
+<p align="left">你想为Pock构建一个自定义组件吗？
   很快你就可以用<b> PockKit </b>来做到这一点！
 </p>
 
@@ -125,7 +125,7 @@ Pock将永远作为免费软件提供！
 * [Defaults, Preferences, LaunchAtLogin](https://github.com/sindresorhus/)
 * [Witness](https://github.com/njdehoog/Witness)
 
-## 信息
+## 承诺
 
 **Pock**永远不会成为商业软件。
 
