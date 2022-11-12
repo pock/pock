@@ -1,0 +1,192 @@
+/*
+ 
+  Russian.strings
+  Pock
+
+  Created by Pierluigi Galdi on 12/03/21, translated by Alexey Malakhov.
+  
+*/
+
+// MARK: Base
+"base.website_url" = "https://pock.app";
+"base.widget" = "widget";
+
+// MARK: General
+"general.welcome-to-pock" = "Добро пожаловать в Pock";
+"general.pock-widgets-manager" = "Менеджер виджетов для MacBook с Touch Bar";
+
+// MARK: MainBarMenu
+// General
+"menu.general" = "Основные";
+"menu.about" = "О Pock";
+"menu.preferences" = "Настройки…";
+// Widgets
+"menu.widgets" = "Виджеты";
+"menu.widgets.manage-widgets" = "Управление виджетами…";
+"menu.widgets.install-widget" = "Установка виджетов…";
+// Customisation
+"menu.customization" = "Персонализация";
+"menu.customization.pock" = "Изменить Pock…";
+"menu.customization.control-strip" = "Изменить Control Strip…";
+// Advanced
+"menu.advanced" = "Продвинутые";
+"menu.advanced.re-install-default-widgets" = "Переустановка стандартных виджетов…";
+"menu.advanced.open-widgets-folder" = "Открыть папку с виджетами…";
+"menu.advanced.reload_pock" = "Перезагрузить Pock…";
+"menu.advanced.relaunch_pock" = "Перезапустить Pock…";
+"menu.advanced.reload_touchbar" = "Перезагрузить Control Strip…";
+"menu.advanced.relaunch_touchbar" = "Перезапустить Touch Bar…";
+"menu.developers" = "Разработка";
+"menu.advanced.show_debug_console" = "Показать консоль для отладки…";
+// Quit
+"menu.goodbye" = "До свидания";
+"menu.quit" = "Закрыть Pock";
+
+// MARK: Onboard Screen
+"onboard.title" = "Получите максимум от своего MacBook Pro с Touch Bar";
+"onboard.body" = "Pock содержит стандартные виджеты, которые позовляют взаимодейтсвовать и получать полезную информацию из ваших часто используемых настроек и сервисов.";
+"onboard.footer" = "Следуйте инcтрукциям на Touch Bar для установки стандартных виджетов";
+"onboard.open-preferences" = "Открыть Настройки…";
+"onboard.continue-with-default-settings" = "Продолжить со стандартными опциями";
+
+// MARK: Preferences
+"preferences.window.title" = "Настройки";
+
+"preferences.general.title" = "Основные";
+"preferences.general.allow-blank-touchbar.title" = "Пустой Touch Bar";
+"preferences.general.allow-blank-touchbar.desc" = "Если включено, вы можете полностью выключить Touch Bar, удалив все добавленные виджеты.";
+"preferences.general.launch-at-login" = "Запускать при входе в систему";
+
+"preferences.layout.title" = "Расположение";
+
+"preferences.double-control.title" = "Вернуться к стандартному Touch Bar";
+"preferences.double-control.desc" = "Для переключения меджу Pock с Системным Touch Bar, дважды нажмите клавишу `^Control`.";
+"preferences.default-touchbar.shows" = "Стандартный АFTouch Bar показывает:";
+"preferences.default-touchbar.desc" = "Для удобства, Pock может перезаписать настройки стандартного Touch Bar.
+Вы всегда можете управлять стандартными настройками через `System Preferences > Keyboard` для настройки Touch Bar под ваши задачи.";
+
+"preferences.cursor-options.title" = "Опции курсора";
+"preferences.cursor-options.enable-mouse-support" = "Разрешить поддержку курсора";
+"preferences.cursor-options.show-tracking-area" = "Показывать поле для взаимодействия";
+
+"preferences.updates.check-for-updates-once-a-day" = "Проверять обновления раз в день";
+
+"preferences.updates.already-on-latest-version.title" = "Установленная версия: %@";
+"preferences.updates.already-on-latest-version.message" = "У Вас установлена самая последняя версия Pock.";
+"preferences.updates.new-version-available.title" = "Доступна новая версия";
+"preferences.updates.new-version-available.message" = "Вы хотели бы обновить ваш Pock версии %@ до %@?";
+
+// MARK: Layout Style
+"layout-style.show-control-strip" = "Показать Control Strip";
+"layout-style.full-width" = "Полная ширина";
+
+// MARK: Presentation Mode
+"presentation-mode.app" = "App";
+"presentation-mode.app-with-control-strip" = "App with Control Strip";
+"presentation-mode.full-control-strip" = "Full Control Strip";
+"presentation-mode.function-keys" = "Function Keys (Fn)";
+"presentation-mode.workflows" = "Workflows";
+"presentation-mode.workflows-with-control-strip" = "Workflow with Control Strip";
+"presentation-mode.spaces" = "Spaces";
+"presentation-mode.spaces-with-control-strip" = "Spaces with Control Strip";
+
+// MARK: Widgets Manager
+"widgets-manager.list.title" = "Менеджер виджетов";
+"widgets-manager.list.select-widget" = "Выберите виджет из списка";
+"widgets-manager.list.will-be-updated" = "\"%@\" виджет будет обновлен";
+"widgets-manager.list.did-update" = "\"%@\" виджет обновлен.\nПерезагрузите Pock.";
+"widgets-manager.loading-preferences" = "Загрузка настроек…";
+"widgets-manager.list.no-preferences" = "У этого виджета нет настроек";
+"widgets-manager.list.reset-preferences" = "Сбросить настройки до первоначальных значений";
+
+// MARK: Empty Touch Bar
+"widgets.defaults.tap-to-install" = "Кликните для установки стандартных виджетов…";
+"widgets.empty.add-widgets-to-pock" = "Кликните чтобы добавить виджет в Pock…";
+
+// MARK: Widget Install/Update
+
+"widget.install.default.title" = "Установить стандартные виджеты";
+"widget.install.default.body" = "Вы хотели бы установить стандратные виджеты?";
+
+"widget.installing.default.body" = "Обработано: %d/%d";
+"widget.installed.default.success.body" = "Стандартные виджеты были успешно установлены!\nНажмите `Перезапустить` чтобы перезапустить Pock и наслаждайтесь вашим новеньким Touch Bar!";
+
+"widget.install.drag-here.title" = "Установить новые виджеты";
+"widget.install.drag-here.body" = "Перетащите файл виджета в этот диалог или кликните `Выбрать…` для выбора файла виджета.";
+"widget.install.drag-here.valid-formats" = "Допустимые форматы: .pock, .pkarchive";
+
+"widget.remove.title" = "Удалить %@ виджет";
+"widget.remove.body" = "Продолжить удаление %@ виджета?";
+"widget.remove.click-to-continue" = "Для продолжения, кликните \"Удалить\"…";
+
+"widget.install.title" = "Установить %@ виджет";
+"widget.install.body" = "Продолжить установку %@ виджета?";
+"widget.install.click-to-continue" = "для продолжения, кликните \"Установить\"…";
+
+"widget.update.title" = "Новая версия доступна для %@ виджета!";
+"widget.update.body" = "Продолжить обновление версии %@ на новую %@?";
+"widget.update.changelog.title" = "Лог изменений:";
+
+"widget.removing.title" = "Удаляю %@ виджет…";
+"widget.removing.body" = "Это может занять некоторое время…";
+
+"widget.installing.title" = "Устанавливаю %@ виджет…";
+"widget.installing.body" = "Это может занять некоторое время…";
+
+"widget.downloading.title" = "Скачиваю %@ виджет…";
+"widget.downloading.body" = "Это может занять некоторое время…\n\nРассчитываю предполагаемый прогресс:";
+
+"widget.remove.error.title" = "Удаление виджета неудалось!";
+"widget.install.error.title" = "Установка виджета неудалось!";
+
+"widget.error.title" = "Что-то пошло не так…";
+"widget.error.body" = "Во время процесса произошла ошибка.\n\n%@";
+
+"widget.remove.success.title" = "Виджет успешно удален!";
+"widget.remove.success.body" = "Отлично, %@ виджет был полностью удален.\nНажмите `Relaunch` для перезапуска Pock.";
+
+"widget.install.success.title" = "Вот это успех!";
+"widget.install.success.body" = "Поздравляю, теперь %@ виджет может быть добавлен на Touch Bar.\nПерезагрузите Pock и кликните `Изменить Pock…` опцию.";
+
+"widget.update.success.title" = "Готово!";
+"widget.update.success.body" = "Поздравляю, теперь %@ виджет обновлен до самой последней версии.\nНажмите `Перезапуск` чтобы перезапустить Pock.";
+
+// MARK: Actions
+"general.action.cancel" = "Отмена";
+"general.action.start" = "Старт";
+"general.action.choose" = "Выбрать…";
+"general.action.remove" = "Удалить";
+"general.action.removing" = "Удаление…";
+"general.action.install" = "Установить";
+"general.action.installing" = "Установка…";
+"general.action.later" = "Попробуйте позже";
+"general.action.update" = "Обновить";
+"general.action.downloading" = "Скачивание…";
+"general.action.check-for-updates" = "Проверить обновление";
+"general.action.checking" = "Проверяю…";
+"general.action.close" = "Закрыть";
+"general.action.reload" = "Перезагрузить";
+"general.action.relaunch" = "Перезапустить";
+"general.action.customize" = "Изменить";
+
+// MARK: Errors
+"error.unknown" = "Произошла неизвестная ошибка.";
+"error.cant-copy" = "Файл не может быть скопирован в заданную директорию.\n%@";
+"error.cant-remove" = "Файл виджета не может быть удален.\n%@";
+"error.unknown-server-error" = "Неизвестная";
+
+"error.updater.invalid-endpoint-url" = "Некорректный URL.";
+"error.updater.response-error" = "Некорректный ответ от сервера: %@";
+"error.updater.parsing-error" = "Некорректные данные в ответе.";
+"error.updater.invalid-core-version" = "Доступна новая версия этого виджета, но ваша версия Pock неподдерживает ее. Пожалуйста, обновите до минимально подерживаемой версии (%@) для установки этой версии виджета.";
+
+"error.downloader.invalid-file-url" = "Невозможно найти запрошенный файл на удаленно сервере.";
+"error.downloader.response-error" = "Невозможно запросить файл. Ответ сервера: %@";
+"error.downloader.download-error" = "Невозможно скачать запрошенный файл: %@";
+"error.file-system-error" = "Невозможно управлять файлом: %@\n\nПроверьте доступ, данный программе и попробуйте снова.";
+
+// MARK: Debug console
+"debug.console.floating-window" = "Плавающее окно";
+"debug.console.show-on-launch" = "Показывать при запуске";
+"debug.console.scroll-automatically" = "Прокручивать автоматически";
+"debug.console.clear-console" = "Отчистить консоль";
