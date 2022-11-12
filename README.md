@@ -211,6 +211,7 @@ Please look at the [Contributing](https://github.com/pock/pock/blob/master/CONTR
 🇨🇳 [中文](.github/readmes/README.cn.md)
 🇯🇵 [日本語](.github/readmes/README.ja.md)
 🇹🇷 [Türkçe](.github/readmes/README.tr.md)
+🇷🇺 [Russian](.github/readmes/README.ru.md)
 
 <small>* Some translations may be different or incomplete</small>.
 
