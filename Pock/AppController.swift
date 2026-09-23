@@ -172,6 +172,12 @@ internal class AppController: NSResponder {
 	
 	/// Setup
 	internal func prepareTouchBar() {
+		/// Never replace a live controller without dismissing it, or its Touch Bar stays on screen
+		if pockTouchBarController != nil {
+			tearDownTouchBar()
+		}
+		/// Pock is shown again (e.g. reload from Preferences): lock/unlock and wake must restore it
+		userDidHidePock = false
 		pockTouchBarController = PockTouchBarController.load()
 		navigationController = PKTouchBarNavigationController(rootController: pockTouchBarController)
 	}
@@ -260,8 +266,14 @@ internal class AppController: NSResponder {
 	
 	/// Register for internal notifications
 	private func registerForInternalNotifications() {
-		NotificationCenter.default.addObserver(self, selector: #selector(reload), name: .shouldReloadPock, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(shouldReloadPock(_:)), name: .shouldReloadPock, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(prepareOnceADayTimer), name: .shouldEnableAutomaticUpdates, object: nil)
+	}
+
+	/// `.shouldReloadPock` handler. Observing with `reload(shouldFetchLatestVersions:)` directly would pass
+	/// the `Notification` pointer as the `Bool` argument.
+	@objc private func shouldReloadPock(_ notification: Notification) {
+		reload(shouldFetchLatestVersions: false)
 	}
 
 	/// Register double `ctrl` hotkey

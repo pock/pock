@@ -110,7 +110,8 @@ private enum LaunchAtLogin {
 	static var isEnabled: Bool {
 		get {
 			if #available(macOS 13.0, *) {
-				return SMAppService.mainApp.status == .enabled
+				/// Also report a legacy item (added by older versions), so it can still be turned off from Preferences
+				return SMAppService.mainApp.status == .enabled || LoginServiceKit().existsLoginItem(for: .main)
 			}
 			return LoginServiceKit().existsLoginItem(for: .main)
 		}
@@ -129,8 +130,8 @@ private enum LaunchAtLogin {
 				} catch {
 					Roger.error("[Preferences][LaunchAtLogin]: \(error.localizedDescription)")
 				}
-				/// Clean up legacy login item, if any
-				if newValue == false {
+				/// Clean up legacy login item, if any (also once `SMAppService` took over, to not launch twice)
+				if newValue == false || SMAppService.mainApp.status == .enabled {
 					LoginServiceKit().removeLoginItem(for: .main)
 				}
 				return

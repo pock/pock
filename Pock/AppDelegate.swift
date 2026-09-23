@@ -304,9 +304,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			}
 			self.preferencesMenuItem.setBadge(coreBadge > 0 ? "\(coreBadge)" : nil)
 			self.manageWidgetsMenuItem.setBadge(widgetsToUpdate > 0 ? "\(widgetsToUpdate)" : nil)
+			/// Versions are fetched repeatedly (launch, once a day, Preferences…): don't stack badges
+			let badgeIdentifier = NSUserInterfaceItemIdentifier("pock.main-bar-item.badge")
+			self.mainBarItem.button?.subviews.filter({ $0.identifier == badgeIdentifier }).forEach({ $0.removeFromSuperview() })
 			if coreBadge + widgetsToUpdate > 0 {
 				let base = self.mainBarItem.button
 				let badge = NSView(frame: .zero)
+				badge.identifier = badgeIdentifier
 				badge.wantsLayer = true
 				badge.layer?.backgroundColor = NSColor.systemRed.cgColor
 				badge.layer?.cornerRadius = 2
@@ -315,8 +319,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 				badge.width(4)
 				badge.rightToSuperview(offset: -3)
 				badge.bottomToSuperview(offset: -4)
-			} else {
-				self.mainBarItem.button?.subviews.forEach({ $0.removeFromSuperview() })
 			}
 		}
 	}
