@@ -56,11 +56,14 @@
 "preferences.general.allow-blank-touchbar.title" = "Permitir Touch Bar vazia";
 "preferences.general.allow-blank-touchbar.desc" = "Se ativada, pode desligar completamente a TouchBar apenas removendo quaisquer widgets adicionados.";
 "preferences.general.launch-at-login" = "Abrir no momento do login";
+"preferences.general.show-menu-bar-icon" = "Mostrar o Pock na barra de menus";
+"preferences.general.show-menu-bar-icon.desc" = "Quando oculto, abra o Pock novamente (p. ex. a partir do Finder ou do Launchpad) para mostrar as Preferências.";
 
 "preferences.layout.title" = "Layout";
 
 "preferences.double-control.title" = "Mudar para a Touch Bar predefinida";
 "preferences.double-control.desc" = "Pressione duas vezes `^Control` para alternar entre o Pock e a Touch Bar de sistema.";
+"preferences.double-control.enable" = "Ativar o atalho duplo `^Control`";
 "preferences.default-touchbar.shows" = "A Touch Bar predefinida mostra:";
 "preferences.default-touchbar.desc" = "Para funcionar corretamente, Pock pode sobrescrever as configurações predefinidas da Touch Bar. Pode sempre alterar as configurações predefinidas a partir de \"Preferências de Sistema > Teclado\" para adaptar a Touch Bar às suas necessidades.";
 
@@ -189,3 +192,9 @@
 "debug.console.show-on-launch" = "Mostrar no momento do arranque";
 "debug.console.scroll-automatically" = "Rolar automaticamente";
 "debug.console.clear-console" = "Limpar a consola";
+
+/// Safe mode
+"safe-mode.title" = "O Pock não terminou o arranque da última vez";
+"safe-mode.message" = "Um widget instalado pode estar a fazer o Pock falhar no arranque. Pode iniciar sem carregar widgets e depois remover ou atualizar o widget com problemas em “Gerir widgets…”.";
+"safe-mode.action.launch-without-widgets" = "Iniciar sem widgets";
+"safe-mode.action.launch-normally" = "Iniciar normalmente";

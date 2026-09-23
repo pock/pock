@@ -47,6 +47,10 @@ internal final class WidgetsLoader {
 	/// List of installed widgets (loaded or not)
 	public static var installedWidgets: [PKWidgetInfo] = []
 	
+	/// When `true`, widgets' code is not loaded (only their `Info.plist` is read),
+	/// so users can remove or update a widget that crashes Pock at launch.
+	public static var isSafeMode: Bool = false
+	
 	init() {
 		/// Create support folders, if needed
 		guard createSupportFoldersIfNeeded() else {
@@ -83,6 +87,12 @@ internal final class WidgetsLoader {
 	
 	/// Load single widget
 	private func loadWidgetAtURL(_ url: URL) -> PKWidgetInfo? {
+		if WidgetsLoader.isSafeMode, let info = try? PKWidgetInfo(unloadableWidgetAtPath: url) {
+			if !WidgetsLoader.installedWidgets.contains(info) {
+				WidgetsLoader.installedWidgets.append(info)
+			}
+			return info
+		}
 		do {
 			let info = try PKWidgetInfo(path: url)
 			if !WidgetsLoader.installedWidgets.contains(info) {

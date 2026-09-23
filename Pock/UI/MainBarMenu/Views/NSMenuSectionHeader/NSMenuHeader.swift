@@ -17,7 +17,12 @@ internal class NSMenuHeader: NSView {
 	
 	internal static func new(title: String, height: CGFloat = 24) -> NSMenuItem {
 		let item = NSMenuItem(title: title, action: nil, keyEquivalent: "")
-		item.view = NSMenuHeader(item: item, height: height)
+		if NSMenuItemCustomView.usesCustomViews {
+			item.view = NSMenuHeader(item: item, height: height)
+		} else {
+			/// Native look: a disabled item acts as section title
+			item.isEnabled = false
+		}
 		return item
 	}
 

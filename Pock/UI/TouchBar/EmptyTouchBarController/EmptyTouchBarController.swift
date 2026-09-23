@@ -32,7 +32,7 @@ internal class EmptyTouchBarController: PKTouchBarMouseController {
 		}
 		return view
 	}
-	public override var parentView: NSView! {
+	public override var parentView: NSView? {
 		get {
 			return touchBarView
 		} set {
@@ -62,6 +62,12 @@ internal class EmptyTouchBarController: PKTouchBarMouseController {
 		async(after: 0.5) { [weak self] in
 			self?.addIconViewAnimation()
 		}
+	}
+	
+	override func dismiss() {
+		/// Stop the infinite bounce animation, it keeps the Touch Bar redrawing
+		removeIconViewAnimation()
+		super.dismiss()
 	}
 	
 	@IBAction private func actionButtonPressed(_ button: NSButton) {
@@ -95,7 +101,9 @@ internal class EmptyTouchBarController: PKTouchBarMouseController {
 	}
 	
 	private func button(at location: NSPoint?) -> NSButton? {
-		guard let view = parentView.subview(in: parentView, at: location, of: "NSTouchBarItemContainerView") else {
+		/// `parentView` is `nil` while the Touch Bar is being torn down (e.g. `dismiss()` resets the cursor)
+		guard let location = location, let parentView = parentView,
+			  let view = parentView.subview(in: parentView, at: location, of: "NSTouchBarItemContainerView") else {
 			return nil
 		}
 		return view.findViews(subclassOf: NSButton.self).first
@@ -106,17 +114,21 @@ internal class EmptyTouchBarController: PKTouchBarMouseController {
 // MARK: Icon bounce animation
 extension EmptyTouchBarController {
 	private func addIconViewAnimation() {
-		actionIconView.superview?.layout()
+		/// Outlets are weak: the Touch Bar may already be gone when this runs
+		guard let container = actionIconView?.superview else {
+			return
+		}
+		container.layout()
 		let slideAnimation = CABasicAnimation(keyPath: "position.x")
 		slideAnimation.duration  = 0.475
-		slideAnimation.fromValue = (actionIconView.superview?.frame.origin.x ?? 0) + 3.3525
-		slideAnimation.toValue   = (actionIconView.superview?.frame.origin.x ?? 0) - 1.3525
+		slideAnimation.fromValue = container.frame.origin.x + 3.3525
+		slideAnimation.toValue   = container.frame.origin.x - 1.3525
 		slideAnimation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
 		slideAnimation.autoreverses = true
 		slideAnimation.repeatCount = .greatestFiniteMagnitude
-		actionIconView.superview?.layer?.add(slideAnimation, forKey: "bounce_animation")
+		container.layer?.add(slideAnimation, forKey: "bounce_animation")
 	}
 	private func removeIconViewAnimation() {
-		actionIconView.superview?.layer?.removeAnimation(forKey: "bounce_animation")
+		actionIconView?.superview?.layer?.removeAnimation(forKey: "bounce_animation")
 	}
 }

@@ -81,26 +81,68 @@ internal class AppController: NSResponder {
     
     internal private(set) var isLocked: Bool = false
     
-    /// Listen for lock notifications
+    /// `true` when the user switched to the system Touch Bar (double `ctrl`).
+    /// Used to restore the right state after lock/unlock and sleep/wake.
+    private var userDidHidePock: Bool = false
+    
+    /// Listen for lock, session and sleep/wake notifications
     private lazy var disposeBag = Set<AnyCancellable>()
     private func startListeningForScreenLockNotifications() {
         let notificationCenter = DistributedNotificationCenter.default()
         // listen for `screen is locked`
         notificationCenter.publisher(for: .init("com.apple.screenIsLocked")).sink { [weak self] _ in
-            Roger.debug("Screen is locked. Tearing down PockTouchBarController...")
-            self?.isLocked = true
-            TouchBarHelper.markTouchBarAsDimmed(true)
+            self?.screenDidLock()
         }.store(in: &disposeBag)
         // listen for `screen is unlocked`
         notificationCenter.publisher(for: .init("com.apple.screenIsUnlocked")).sink { [weak self] _ in
-            self?.isLocked = false
-            if self?.pockTouchBarController?.isVisible == false {
-                Roger.debug("Screen is unlocked. Preparing PockTouchBarController...")
-                TouchBarHelper.markTouchBarAsDimmed(false)
-            } else {
-                Roger.debug("Screen is unlocked. PockTouchBarController is already visible...")
+            self?.screenDidUnlock()
+        }.store(in: &disposeBag)
+        let workspaceCenter = NSWorkspace.shared.notificationCenter
+        // fast user switching behaves like lock/unlock
+        workspaceCenter.publisher(for: NSWorkspace.sessionDidResignActiveNotification).sink { [weak self] _ in
+            self?.screenDidLock()
+        }.store(in: &disposeBag)
+        workspaceCenter.publisher(for: NSWorkspace.sessionDidBecomeActiveNotification).sink { [weak self] _ in
+            self?.screenDidUnlock()
+        }.store(in: &disposeBag)
+        // sleep/wake: the Touch Bar server drops system-modal bars while sleeping
+        workspaceCenter.publisher(for: NSWorkspace.didWakeNotification).sink { [weak self] _ in
+            async(after: 1.5) { [weak self] in
+                guard let self = self, self.isLocked == false, self.userDidHidePock == false else {
+                    return
+                }
+                Roger.debug("Did wake from sleep. Reloading PockTouchBarController...")
+                self.reload(shouldFetchLatestVersions: false)
             }
         }.store(in: &disposeBag)
+    }
+    
+    private func screenDidLock() {
+        guard isLocked == false else {
+            return
+        }
+        Roger.debug("Screen is locked. Tearing down PockTouchBarController...")
+        isLocked = true
+        tearDownTouchBar()
+    }
+    
+    private func screenDidUnlock() {
+        guard isLocked else {
+            return
+        }
+        isLocked = false
+        // `tearDownTouchBar()` releases the controller on lock, so it must be re-created here
+        guard userDidHidePock == false, isVisible == false else {
+            Roger.debug("Screen is unlocked. Nothing to restore.")
+            return
+        }
+        Roger.debug("Screen is unlocked. Preparing PockTouchBarController...")
+        async(after: 0.5) { [weak self] in
+            guard let self = self, self.isLocked == false else {
+                return
+            }
+            self.reload(shouldFetchLatestVersions: false)
+        }
     }
 	
 	/// Clear tmp widgets folder
@@ -130,6 +172,12 @@ internal class AppController: NSResponder {
 	
 	/// Setup
 	internal func prepareTouchBar() {
+		/// Never replace a live controller without dismissing it, or its Touch Bar stays on screen
+		if pockTouchBarController != nil {
+			tearDownTouchBar()
+		}
+		/// Pock is shown again (e.g. reload from Preferences): lock/unlock and wake must restore it
+		userDidHidePock = false
 		pockTouchBarController = PockTouchBarController.load()
 		navigationController = PKTouchBarNavigationController(rootController: pockTouchBarController)
 	}
@@ -187,18 +235,25 @@ internal class AppController: NSResponder {
 	/// Toggle
 	@objc internal func toggleVisibility() {
 		if pockTouchBarController == nil {
+			userDidHidePock = false
 			prepareTouchBar()
+		} else if navigationController?.visibleController?.isVisible == true {
+			/// Always tear down: on recent macOS `activeFunctionRows()` may only contain Pock's own row,
+			/// and reloading in that case just made the Touch Bar blink without switching to the system one.
+			userDidHidePock = true
+			tearDownTouchBar()
 		} else {
-			if navigationController.visibleController?.isVisible == true {
-				if NSFunctionRow.activeFunctionRows().count > 1 {
-					TouchBarHelper.markTouchBarAsDimmed(true)
-				} else {
-					reload(shouldFetchLatestVersions: false)
-				}
-			} else {
-				TouchBarHelper.markTouchBarAsDimmed(false)
-			}
+			userDidHidePock = false
+			reload(shouldFetchLatestVersions: false)
 		}
+	}
+	
+	/// Double `ctrl` hotkey handler
+	@objc private func doubleControlHotKeyPressed() {
+		guard Preferences[.doubleControlShortcutEnabled] == true else {
+			return
+		}
+		toggleVisibility()
 	}
 	
 	/// Blank Touch Bar
@@ -211,13 +266,19 @@ internal class AppController: NSResponder {
 	
 	/// Register for internal notifications
 	private func registerForInternalNotifications() {
-		NotificationCenter.default.addObserver(self, selector: #selector(reload), name: .shouldReloadPock, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(shouldReloadPock(_:)), name: .shouldReloadPock, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(prepareOnceADayTimer), name: .shouldEnableAutomaticUpdates, object: nil)
+	}
+
+	/// `.shouldReloadPock` handler. Observing with `reload(shouldFetchLatestVersions:)` directly would pass
+	/// the `Notification` pointer as the `Bool` argument.
+	@objc private func shouldReloadPock(_ notification: Notification) {
+		reload(shouldFetchLatestVersions: false)
 	}
 
 	/// Register double `ctrl` hotkey
 	private func registerDoubleControlHotKey() {
-		doubleCtrlHotKey = HotKey(key: .control, double: true, target: self, selector: #selector(toggleVisibility))
+		doubleCtrlHotKey = HotKey(key: .control, double: true, target: self, selector: #selector(doubleControlHotKeyPressed))
 	}
 	
 	// MARK: Show messages panel to inform users about certain situations
@@ -302,6 +363,8 @@ extension AppController: NSTouchBarDelegate {
 		pockTouchBarController.minimize()
 		NSApp.touchBar = makeTouchBar()
 		addCustomizationObservers()
+		/// The customization palette only shows up for the active application
+		NSApp.activate(ignoringOtherApps: true)
 		async(after: 0.375) {
 			NSApp.toggleTouchBarCustomizationPalette(self)
 		}
@@ -323,7 +386,7 @@ extension AppController: NSTouchBarDelegate {
 	}
 	
 	func touchBar(_ touchBar: NSTouchBar, makeItemForIdentifier identifier: NSTouchBarItem.Identifier) -> NSTouchBarItem? {
-		guard let item = pockTouchBarController.touchBar?.item(forIdentifier: identifier) else {
+		guard let item = pockTouchBarController?.touchBar?.item(forIdentifier: identifier) else {
 			Roger.error("Can't find `NSTouchBarItem` for given identifier: `\(identifier)`")
 			return nil
 		}
@@ -337,6 +400,7 @@ extension AppController: NSTouchBarDelegate {
 	}
 	
 	private func addCustomizationObservers() {
+		removeCustomizationObservers()
 		NotificationCenter.default.addObserver(self,
 											   selector: #selector(didExitCustomization(_:)),
 											   name: NSNotification.Name("NSTouchBarDidExitCustomization"),
@@ -350,8 +414,10 @@ extension AppController: NSTouchBarDelegate {
 	}
 	
 	@objc private func didExitCustomization(_ sender: Any?) {
+		removeCustomizationObservers()
 		NSApp.touchBar = nil
-		pockTouchBarController.present()
+		NSApp.deactivate()
+		pockTouchBarController?.present()
 	}
 	
 }

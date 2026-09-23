@@ -23,7 +23,9 @@ internal class NSMenuBadgeItemView: NSMenuItemCustomView {
 		let item = NSMenuBadgeItem(title: title, action: selector, keyEquivalent: keyEquivalent ?? "")
 		item.target = target
 		item.isAlternate = isAlternate
-		item.view = NSMenuBadgeItemView(item: item, height: height)
+		if usesCustomViews {
+			item.view = NSMenuBadgeItemView(item: item, height: height)
+		}
 		return item
 	}
 

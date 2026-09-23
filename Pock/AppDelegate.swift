@@ -45,6 +45,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 		/// Register for notifications
 		NotificationCenter.default.addObserver(self, selector: #selector(updateMenuItemsAfterLatestVersionsFetch), name: .didFetchLatestVersions, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(updateMainBarItemVisibility), name: .shouldUpdateMenuBarIconVisibility, object: nil)
+		
+		/// If the previous launch never completed, a widget is likely crashing Pock on load
+		askToLaunchInSafeModeIfNeeded()
 		
 		/// Load installed widgets and prepare touch bar
 		AppController.shared.reloadWidgets {
@@ -55,6 +59,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 }
             }
 			AppController.shared.prepareTouchBar()
+			/// Widgets are initialised once the Touch Bar is presented. If we get here, launch went fine.
+			async(after: 10) {
+				Preferences[.launchInProgress] = false
+			}
 		}
 
 		/// Deactivate Pock
@@ -68,12 +76,44 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	}
 	
 	func applicationWillTerminate(_ notification: Notification) {
+		Preferences[.launchInProgress] = false
 		/// Tear down Pock to be sure to reset user defined Touch Bar settings.
 		AppController.shared.tearDownTouchBar()
+	}
+	
+	/// Re-opening Pock (e.g. from Finder or Launchpad) shows Preferences. Needed when the menu bar icon is hidden.
+	func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
+		if flag == false {
+			openPreferences()
+		}
+		return true
+	}
+	
+	// MARK: Safe mode
+	private func askToLaunchInSafeModeIfNeeded() {
+		defer {
+			Preferences[.launchInProgress] = true
+			UserDefaults.standard.synchronize()
+		}
+		guard Preferences[.launchInProgress] == true else {
+			return
+		}
+		AppController.shared.showMessagePanelWith(
+			title: "safe-mode.title".localized,
+			message: "safe-mode.message".localized,
+			style: .warning,
+			actions: [
+				MessageAction(title: "safe-mode.action.launch-without-widgets".localized, key: .enter) {
+					WidgetsLoader.isSafeMode = true
+				},
+				MessageAction(title: "safe-mode.action.launch-normally".localized, key: .esc)
+			]
+		)
 	}
 
 	// MARK: Setup main bar menu items
 	private func addMainBarItem() {
+		updateMainBarItemVisibility()
 		if let button = mainBarItem.button {
 			button.image = NSImage(named: .pockInnerIcon)
 			button.image?.isTemplate = true
@@ -81,6 +121,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			setupMainBarMenuItems()
 			mainBarItem.menu = mainBarMenu
 		}
+	}
+	
+	@objc private func updateMainBarItemVisibility() {
+		mainBarItem.isVisible = Preferences[.showMenuBarIcon]
 	}
 	
 	// MARK: Advanced menu
@@ -135,7 +179,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         ))
 		let menuItem = NSMenuItem(title: "menu.advanced".localized, action: nil, keyEquivalent: "")
 		menuItem.submenu = menu
-		menuItem.view = NSMenuItemCustomView(item: menuItem)
+		if NSMenuItemCustomView.usesCustomViews {
+			menuItem.view = NSMenuItemCustomView(item: menuItem)
+		}
 		return menuItem
 	}()
 	
@@ -151,7 +197,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		debugMenu.addItem(withTitle: "Relaunch Pock", action: #selector(relaunch), keyEquivalent: "")
 		let debugMenuItem = NSMenuItem(title: "Debug…", action: nil, keyEquivalent: "")
 		debugMenuItem.submenu = debugMenu
-		debugMenuItem.view = NSMenuItemCustomView(item: debugMenuItem)
+		if NSMenuItemCustomView.usesCustomViews {
+			debugMenuItem.view = NSMenuItemCustomView(item: debugMenuItem)
+		}
 		return debugMenuItem
 	}()
 	#endif
@@ -256,9 +304,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			}
 			self.preferencesMenuItem.setBadge(coreBadge > 0 ? "\(coreBadge)" : nil)
 			self.manageWidgetsMenuItem.setBadge(widgetsToUpdate > 0 ? "\(widgetsToUpdate)" : nil)
+			/// Versions are fetched repeatedly (launch, once a day, Preferences…): don't stack badges
+			let badgeIdentifier = NSUserInterfaceItemIdentifier("pock.main-bar-item.badge")
+			self.mainBarItem.button?.subviews.filter({ $0.identifier == badgeIdentifier }).forEach({ $0.removeFromSuperview() })
 			if coreBadge + widgetsToUpdate > 0 {
 				let base = self.mainBarItem.button
 				let badge = NSView(frame: .zero)
+				badge.identifier = badgeIdentifier
 				badge.wantsLayer = true
 				badge.layer?.backgroundColor = NSColor.systemRed.cgColor
 				badge.layer?.cornerRadius = 2
@@ -267,8 +319,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 				badge.width(4)
 				badge.rightToSuperview(offset: -3)
 				badge.bottomToSuperview(offset: -4)
-			} else {
-				self.mainBarItem.button?.subviews.forEach({ $0.removeFromSuperview() })
 			}
 		}
 	}

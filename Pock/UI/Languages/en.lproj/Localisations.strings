@@ -56,11 +56,14 @@
 "preferences.general.allow-blank-touchbar.title" = "Allow blank Touch Bar";
 "preferences.general.allow-blank-touchbar.desc" = "If enabled, you can turn the Touch Bar completely off just by removing any added widgets.";
 "preferences.general.launch-at-login" = "Launch at login";
+"preferences.general.show-menu-bar-icon" = "Show Pock in the menu bar";
+"preferences.general.show-menu-bar-icon.desc" = "When hidden, open Pock again (e.g. from Finder or Launchpad) to show Preferences.";
 
 "preferences.layout.title" = "Layout";
 
 "preferences.double-control.title" = "Switch to default Touch Bar";
 "preferences.double-control.desc" = "Double press `^Control` key to toggle between Pock and System Touch Bar.";
+"preferences.double-control.enable" = "Enable double `^Control` shortcut";
 "preferences.default-touchbar.shows" = "Default Touch Bar shows:";
 "preferences.default-touchbar.desc" = "To work properly, Pock may override the default Touch Bar preferences.
 You can always configure default settings from `System Preferences > Keyboard` to adapt the Touch Bar to your needs.";
@@ -190,3 +193,9 @@ You can always configure default settings from `System Preferences > Keyboard` t
 "debug.console.show-on-launch" = "Show on launch";
 "debug.console.scroll-automatically" = "Scroll automatically";
 "debug.console.clear-console" = "Clear console";
+
+/// Safe mode
+"safe-mode.title" = "Pock did not finish launching last time";
+"safe-mode.message" = "An installed widget may be crashing Pock at launch. You can launch without loading widgets, then remove or update the faulty one from “Manage Widgets…”.";
+"safe-mode.action.launch-without-widgets" = "Launch without widgets";
+"safe-mode.action.launch-normally" = "Launch normally";

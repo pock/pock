@@ -30,6 +30,8 @@ class DebugConsoleViewController: NSViewController {
         }
     }
     private var logsData: [String] = []
+    /// Upper bound for retained log chunks, keeps memory and re-rendering cost bounded
+    private let maxLogsDataCount: Int = 2000
     
     // MARK: Variables
     
@@ -64,17 +66,24 @@ class DebugConsoleViewController: NSViewController {
     }
     
     deinit {
+        Roger.stopListeningForConsoleEvents()
         Roger.debug("** deinit **")
+    }
+    
+    override func viewWillDisappear() {
+        super.viewWillDisappear()
+        /// Stop capturing `stdout`/`stderr` once the console is closed
+        Roger.stopListeningForConsoleEvents()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        startListeningForConsoleEvents()
     }
     
     override func viewWillAppear() {
         super.viewWillAppear()
         configureUIElements()
+        startListeningForConsoleEvents()
     }
     
     private func configureUIElements() {
@@ -103,9 +112,28 @@ class DebugConsoleViewController: NSViewController {
         }
         
         // split per line
-        logsData.append(data)
+        if !data.isEmpty {
+            logsData.append(data)
+        }
+        /// Trim in batches, so the full re-render below only happens once every `maxLogsDataCount / 4` chunks
+        let didTrim = logsData.count > maxLogsDataCount + maxLogsDataCount / 4
+        if didTrim {
+            logsData.removeFirst(logsData.count - maxLogsDataCount)
+        }
         
         let shouldScroll = isAutoScrollEnabled && textView.visibleRect.maxY == textView.bounds.maxY
+        /// Fast path: append only the new chunk instead of re-rendering the whole log
+        if filterQuery.isEmpty, !data.isEmpty, !didTrim, let storage = textView.textStorage {
+            filterTextField.setNumberOfOccurrencies(0)
+            storage.append(NSAttributedString(string: data, attributes: [
+                .font: textView.font ?? NSFont.monospacedSystemFont(ofSize: 12, weight: .regular),
+                .foregroundColor: textView.textColor ?? NSColor.white
+            ]))
+            if shouldScroll {
+                textView.scrollToEndOfDocument(self)
+            }
+            return
+        }
         let stringValue: String
         if !filterQuery.isEmpty {
             let filtered = logsData.filter({ $0.lowercased().contains(filterQuery.lowercased()) })
