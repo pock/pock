@@ -56,11 +56,14 @@
 "preferences.general.allow-blank-touchbar.title" = "Leere Touch Bar erlauben";
 "preferences.general.allow-blank-touchbar.desc" = "Wenn aktiviert, können Sie die Touch Bar komplett ausschalten, indem Sie alle hinzugefügten Widgets entfernen.";
 "preferences.general.launch-at-login" = "Bei Einloggen starten";
+"preferences.general.show-menu-bar-icon" = "Pock in der Menüleiste anzeigen";
+"preferences.general.show-menu-bar-icon.desc" = "Wenn ausgeblendet, öffne Pock erneut (z. B. im Finder oder Launchpad), um die Einstellungen anzuzeigen.";
 
 "preferences.layout.title" = "Lay-out";
 
 "preferences.double-control.title" = "Zur Standard-Touch Bar wechseln";
 "preferences.double-control.desc" = "Drücken Sie zweimal die Taste \"^Control\", um von Pock zur System-Touch-Bar zu wechseln und umgekehrt.";
+"preferences.double-control.enable" = "Doppeltes `^Control`-Kürzel aktivieren";
 "preferences.default-touchbar.shows" = "Die Standard-TouchBar zeigt:";
 "preferences.default-touchbar.desc" = "Um richtig zu funktionieren, kann Pock die Standard-Touch-Bar-Einstellungen überschalten. Sie können jederzeit Standardeinstellungen unter \"Systemeinstellungen > Tastatur\" konfigurieren, um die Touch Bar an Ihre Bedürfnisse anzupassen.";
 
@@ -189,3 +192,9 @@
 "debug.console.show-on-launch" = "Bei Start anzeigen";
 "debug.console.scroll-automatically" = "Automatisch blättern";
 "debug.console.clear-console" = "Konsole reinigen";
+
+/// Safe mode
+"safe-mode.title" = "Pock wurde beim letzten Mal nicht vollständig gestartet";
+"safe-mode.message" = "Ein installiertes Widget bringt Pock möglicherweise beim Start zum Absturz. Du kannst Pock ohne Widgets starten und das fehlerhafte Widget unter „Widgets verwalten…“ entfernen oder aktualisieren.";
+"safe-mode.action.launch-without-widgets" = "Ohne Widgets starten";
+"safe-mode.action.launch-normally" = "Normal starten";

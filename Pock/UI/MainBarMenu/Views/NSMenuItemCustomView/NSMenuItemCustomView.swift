@@ -18,6 +18,15 @@ internal class NSMenuItemCustomView: NSView {
 	@IBOutlet internal private(set) weak var keyChar: NSTextField!
 
 	internal weak var item: NSMenuItem?
+	
+	/// Custom menu item views mimic the Big Sur style and look out of place on Catalina,
+	/// where native menu items are used instead.
+	internal static var usesCustomViews: Bool {
+		if #available(macOS 11, *) {
+			return true
+		}
+		return false
+	}
     
     override var intrinsicContentSize: NSSize {
         mainLabel.sizeToFit()
@@ -33,7 +42,9 @@ internal class NSMenuItemCustomView: NSView {
 		let item = NSMenuItem(title: title, action: selector, keyEquivalent: keyEquivalent ?? "")
 		item.target = target
 		item.isAlternate = isAlternate
-		item.view = NSMenuItemCustomView(item: item, height: height)
+		if usesCustomViews {
+			item.view = NSMenuItemCustomView(item: item, height: height)
+		}
 		return item
 	}
 	

@@ -6,10 +6,12 @@
 //
 
 import Foundation
+import ServiceManagement
 
 extension NSNotification.Name {
 	static let shouldReloadPock = NSNotification.Name("shouldReloadPock")
 	static let shouldEnableAutomaticUpdates = NSNotification.Name("shouldEnableAutomaticUpdates")
+	static let shouldUpdateMenuBarIconVisibility = NSNotification.Name("shouldUpdateMenuBarIconVisibility")
 }
 
 internal enum LayoutStyle: String {
@@ -43,12 +45,15 @@ internal struct Preferences {
 		case userDefinedPresentationMode
 		case didShowOnBoard
         case showDebugConsoleOnLaunch
+		case doubleControlShortcutEnabled
+		case showMenuBarIcon
+		case launchInProgress
 	}
 	static subscript<T>(_ key: Keys) -> T {
         get {
             // swiftlint:disable force_cast
             if key == .launchAtLogin {
-                return LoginServiceKit().existsLoginItem(for: .main) as! T
+                return LaunchAtLogin.isEnabled as! T
             }
             guard let value = UserDefaults.standard.value(forKey: key.rawValue) as? T else {
                 if T.self == LayoutStyle.self, let raw = UserDefaults.standard.value(forKey: key.rawValue) as? String {
@@ -76,6 +81,12 @@ internal struct Preferences {
                     return false as! T
                 case .showDebugConsoleOnLaunch:
                     return false as! T
+                case .doubleControlShortcutEnabled:
+                    return true as! T
+                case .showMenuBarIcon:
+                    return true as! T
+                case .launchInProgress:
+                    return false as! T
                 }
             }
             return value
@@ -84,14 +95,50 @@ internal struct Preferences {
 		set {
 			if key == .launchAtLogin {
 				if let boolValue = newValue as? Bool {
-					if boolValue {
-						LoginServiceKit().addLoginItem(for: .main)
-					} else {
-						LoginServiceKit().removeLoginItem(for: .main)
-					}
+					LaunchAtLogin.isEnabled = boolValue
 				}
 			} else {
 				UserDefaults.standard.setValue(newValue, forKey: key.rawValue)
+			}
+		}
+	}
+}
+
+// MARK: Launch at login
+private enum LaunchAtLogin {
+	/// `LSSharedFileList` is deprecated and silently stopped working on macOS 13+, use `SMAppService` there.
+	static var isEnabled: Bool {
+		get {
+			if #available(macOS 13.0, *) {
+				return SMAppService.mainApp.status == .enabled
+			}
+			return LoginServiceKit().existsLoginItem(for: .main)
+		}
+		set {
+			if #available(macOS 13.0, *) {
+				do {
+					if newValue {
+						try SMAppService.mainApp.register()
+						/// The user may have to allow Pock in System Settings → Login Items
+						if SMAppService.mainApp.status == .requiresApproval {
+							SMAppService.openSystemSettingsLoginItems()
+						}
+					} else {
+						try SMAppService.mainApp.unregister()
+					}
+				} catch {
+					Roger.error("[Preferences][LaunchAtLogin]: \(error.localizedDescription)")
+				}
+				/// Clean up legacy login item, if any
+				if newValue == false {
+					LoginServiceKit().removeLoginItem(for: .main)
+				}
+				return
+			}
+			if newValue {
+				LoginServiceKit().addLoginItem(for: .main)
+			} else {
+				LoginServiceKit().removeLoginItem(for: .main)
 			}
 		}
 	}

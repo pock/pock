@@ -185,11 +185,9 @@ internal class PockTouchBarController: PKTouchBarMouseController {
 		})
 	}
     
-    private func screenEdgeController(_ controller: PKScreenEdgeController, mouseScrollWithDelta delta: CGFloat, atLocation location: NSPoint, in view: NSView, event: NSEvent) {
+    override func screenEdgeController(_ controller: PKScreenEdgeController, mouseScrollWithDelta delta: CGFloat, atLocation location: NSPoint, in view: NSView) {
         mouseDelegates.forEach({
-            if $0.screenEdgeController?(controller, mouseScrollWithDelta: delta, atLocation: location, in: view, event: event) == nil {
-                $0.screenEdgeController?(controller, mouseScrollWithDelta: delta, atLocation: location, in: view)
-            }
+            $0.screenEdgeController?(controller, mouseScrollWithDelta: delta, atLocation: location, in: view)
         })
     }
 	

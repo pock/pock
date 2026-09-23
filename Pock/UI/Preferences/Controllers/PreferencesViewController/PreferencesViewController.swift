@@ -43,6 +43,10 @@ class PreferencesViewController: NSViewController {
 	@IBOutlet private weak var checkForUpdatesNowButton: NSButton!
     @IBOutlet private weak var checkForUpdatesSpinner: NSProgressIndicator!
 	
+	/// Programmatically added options
+	private lazy var enableDoubleControlCheckbox = NSButton(checkboxWithTitle: "", target: self, action: #selector(didChangePreferencesOption(for:)))
+	private lazy var showMenuBarIconCheckbox = NSButton(checkboxWithTitle: "", target: self, action: #selector(didChangePreferencesOption(for:)))
+	
 	// MARK: Overrides
 	
 	override var title: String? {
@@ -90,6 +94,15 @@ class PreferencesViewController: NSViewController {
 	
 	// MARK: Configure UI Elements
 	private func configureUIElements() {
+		/// Additional checkboxes
+		if showMenuBarIconCheckbox.superview == nil, let stackView = generalTitleLabel.superview as? NSStackView {
+			stackView.addArrangedSubview(showMenuBarIconCheckbox)
+		}
+		if enableDoubleControlCheckbox.superview == nil, let stackView = doubleControlDescriptionLabel.superview as? NSStackView {
+			stackView.addArrangedSubview(enableDoubleControlCheckbox)
+		}
+		showMenuBarIconCheckbox.state = Preferences[.showMenuBarIcon] == true ? .on : .off
+		enableDoubleControlCheckbox.state = Preferences[.doubleControlShortcutEnabled] == true ? .on : .off
 		/// Checkboxes
 		allowBlankTouchBarCheckbox.state = Preferences[.allowBlankTouchBar] == true ? .on : .off
 		launchAtLoginCheckbox.state  = Preferences[.launchAtLogin] == true ? .on : .off
@@ -112,11 +125,14 @@ class PreferencesViewController: NSViewController {
 		allowBlankTouchBarCheckbox.title = "preferences.general.allow-blank-touchbar.title".localized
 		allowBlankTouchBarDescriptionLabel.stringValue = "preferences.general.allow-blank-touchbar.desc".localized
 		launchAtLoginCheckbox.title = "preferences.general.launch-at-login".localized
+		showMenuBarIconCheckbox.title = "preferences.general.show-menu-bar-icon".localized
+		showMenuBarIconCheckbox.toolTip = "preferences.general.show-menu-bar-icon.desc".localized
 		
 		layoutStyleTitleLabel.stringValue = "preferences.layout.title".localized
 		
 		doubleControlTitleLabel.stringValue = "preferences.double-control.title".localized
 		doubleControlDescriptionLabel.stringValue = "preferences.double-control.desc".localized
+		enableDoubleControlCheckbox.title = "preferences.double-control.enable".localized
 		defaultTouchBarPresentationModeLabel.stringValue = "preferences.default-touchbar.shows".localized
 		defaultTouchBarPresentationModeDesc.stringValue = "preferences.default-touchbar.desc".localized
 		
@@ -131,7 +147,8 @@ class PreferencesViewController: NSViewController {
 	private func updateDefaultPresentationModePopUpButton() {
 		let mode: PresentationMode = Preferences[.userDefinedPresentationMode]
 		defaultTouchBarPresentationModePopUp.removeAllItems()
-		defaultTouchBarPresentationModePopUp.addItems(withTitles: PresentationMode.allCases.compactMap({ $0.title }))
+		/// Must match the indexes used in `didChangeDefaultTouchBarPresentationMode(_:)`
+		defaultTouchBarPresentationModePopUp.addItems(withTitles: PresentationMode.allCases.without(.undefined).map({ $0.title }))
 		defaultTouchBarPresentationModePopUp.selectItem(withTitle: mode.title)
 	}
 	
@@ -185,10 +202,16 @@ class PreferencesViewController: NSViewController {
 	}
 	
 	@IBAction private func didChangeDefaultTouchBarPresentationMode(_ button: NSPopUpButton) {
-		let presentationMode = PresentationMode.allCases.without(.undefined)[defaultTouchBarPresentationModePopUp.indexOfSelectedItem]
+		let modes = PresentationMode.allCases.without(.undefined)
+		let index = defaultTouchBarPresentationModePopUp.indexOfSelectedItem
+		guard modes.indices.contains(index) else {
+			return
+		}
+		let presentationMode = modes[index]
 		if Preferences[.userDefinedPresentationMode] as PresentationMode != presentationMode {
 			Preferences[.userDefinedPresentationMode] = presentationMode.rawValue
-			if AppController.shared.pockTouchBarController?.isVisible == nil || false {
+			/// Apply immediately when Pock is not the one currently showing
+			if AppController.shared.isVisible == false {
 				TouchBarHelper.setPresentationMode(to: presentationMode)
 			}
 		}
@@ -217,6 +240,14 @@ class PreferencesViewController: NSViewController {
 			key = .checkForUpdatesOnceADay
 			shouldReloadPock = false
 			
+		case enableDoubleControlCheckbox:
+			key = .doubleControlShortcutEnabled
+			shouldReloadPock = false
+			
+		case showMenuBarIconCheckbox:
+			key = .showMenuBarIcon
+			shouldReloadPock = false
+			
 		default:
 			return
 		}
@@ -233,6 +264,9 @@ class PreferencesViewController: NSViewController {
 			async {
 				NotificationCenter.default.post(name: .shouldReloadPock, object: nil)
 			}
+		}
+		if button == showMenuBarIconCheckbox {
+			NotificationCenter.default.post(name: .shouldUpdateMenuBarIconVisibility, object: nil)
 		}
 		if button == checkForUpdatesOnceADayCheckbox {
 			async {
