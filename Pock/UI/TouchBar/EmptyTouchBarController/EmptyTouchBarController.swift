@@ -95,7 +95,7 @@ internal class EmptyTouchBarController: PKTouchBarMouseController {
 	}
 	
 	private func button(at location: NSPoint?) -> NSButton? {
-		guard let view = parentView.subview(in: parentView, at: location, of: "NSTouchBarItemContainerView") else {
+		guard let parent = parentView, let view = parent.subview(in: parent, at: location, of: "NSTouchBarItemContainerView") else {
 			return nil
 		}
 		return view.findViews(subclassOf: NSButton.self).first

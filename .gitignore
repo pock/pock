@@ -13,3 +13,6 @@ Pock.xcworkspace/contents.xcworkspacedata
 
 ## Hide Secrets
 Secrets.plist
+
+## Local build products (build-and-install.sh)
+build/
