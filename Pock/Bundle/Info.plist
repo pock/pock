@@ -146,5 +146,7 @@
 			</dict>
 		</dict>
 	</array>
+	<key>NSAppleEventsUsageDescription</key>
+	<string>Pock uses Apple Events to display track metadata and control media playback in Spotify, Music, and web browsers.</string>
 </dict>
 </plist>
